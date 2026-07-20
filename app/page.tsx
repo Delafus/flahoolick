@@ -5,7 +5,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
-import Link from 'next/link'
+import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
 
 const SCROLLS = [
   {
@@ -135,42 +135,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* El sistema */}
-      <section
-        className="page-px section-py"
-        style={{
-          minHeight: '80dvh',
-          backgroundColor: 'var(--brand-ink)',
-          color: 'var(--brand-chalk)',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <div className="max-container w-full flex flex-col gap-16">
-          <div className="flex flex-col gap-3">
-            <p className="label opacity-40">El sistema</p>
-            <h2 className="text-headline font-light">Cuatro capas. Un sistema continuo.</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
-            {LAYERS.map((layer, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-4 py-8 pr-8"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}
-              >
-                <p className="label opacity-25">{String(i + 1).padStart(2, '0')}</p>
-                <h3 className="text-base font-medium">{layer.name}</h3>
-                <p className="text-sm leading-relaxed opacity-50">{layer.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', paddingTop: '2rem' }}>
-            <Link href="/#contacto" className="label opacity-50 hover:opacity-100 transition-opacity">
-              Conversemos →
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Módulo Capacidades + Metodología */}
+      <ModuloCapacidadesMetodologia />
 
       {/* Contacto */}
       <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />

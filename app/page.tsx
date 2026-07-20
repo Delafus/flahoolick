@@ -6,6 +6,7 @@ import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
 import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
+import { ModuloJerga } from '@/components/modulo-jerga'
 import Link from 'next/link'
 
 const SCROLLS = [
@@ -138,6 +139,9 @@ export default function HomePage() {
 
       {/* Módulo Capacidades + Metodología */}
       <ModuloCapacidadesMetodologia />
+
+      {/* Módulo JERGA */}
+      <ModuloJerga />
 
       {/* Contacto */}
       <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />

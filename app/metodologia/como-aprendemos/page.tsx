@@ -12,7 +12,7 @@ const items = [
 export default function ComoAprendemos() {
   return (
     <>
-      <PageColorSetter bg="var(--page-metodologia-bg)" text="var(--page-metodologia-text)" />
+      <PageColorSetter bg="#F5FD92" text="#000000" />
       <PageLayout eyebrow="El sistema mejora con cada ciclo." headline="Cómo aprendemos"
         description="Un sistema de contenido que no aprende es un calendario glorificado. El Sistema de Autoridad de Mercado mejora con cada interacción del mercado — objeciones nuevas, señales de performance, cambios en el comportamiento del comprador."
         heroBg="var(--page-metodologia-bg)" heroText="var(--page-metodologia-text)">

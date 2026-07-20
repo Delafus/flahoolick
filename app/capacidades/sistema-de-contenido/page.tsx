@@ -17,7 +17,7 @@ const entregables = ['Sistema operativo de contenido documentado','Banco de señ
 export default function SistemaContenido() {
   return (
     <>
-      <PageColorSetter bg="var(--page-capacidades-bg)" text="var(--page-capacidades-text)" />
+      <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
         eyebrow="Presencia que se acumula."
         headline="Sistema de Contenido"

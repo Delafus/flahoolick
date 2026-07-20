@@ -14,7 +14,7 @@ const clientes = ['Claro Empresas', 'UNAB', 'Cajas de Chile', 'Diario Financiero
 export default function SobreFlahoolick() {
   return (
     <>
-      <PageColorSetter bg="var(--page-sobre-bg)" text="var(--page-sobre-text)" />
+      <PageColorSetter bg="#F9F0E2" text="#000000" />
 
       {/* Hero — exactamente como NOBL About: split layout, fondo rosa */}
       <section

@@ -49,7 +49,7 @@ export function Header() {
     return () => document.removeEventListener('keydown', handler)
   }, [])
 
-  const isLight = text === '#000000' || text === 'var(--brand-ink)'
+  const isLight = text === '#000000' || text === 'black'
   const divColor = isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.12)'
   const logoFilter = isLight ? 'brightness(0)' : 'brightness(0) invert(1)'
 

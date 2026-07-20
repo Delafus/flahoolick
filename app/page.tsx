@@ -38,7 +38,7 @@ const INDUSTRIES = [
 export default function HomePage() {
   return (
     <>
-      <PageColorSetter bg="var(--page-home-bg)" text="var(--page-home-text)" />
+      <PageColorSetter bg="#000000" text="#ffffff" />
 
       {/* Scroll sections — sin snap, scroll normal */}
       {SCROLLS.map((s, i) => (

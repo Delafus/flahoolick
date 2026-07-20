@@ -38,7 +38,7 @@ const produce = [
 export default function SensorPage() {
   return (
     <>
-      <PageColorSetter bg="var(--page-sensor-bg)" text="var(--page-sensor-text)" />
+      <PageColorSetter bg="#3B0B2C" text="#ffffff" />
 
       {/* Hero */}
       <section

@@ -86,7 +86,7 @@
   /* TIPOGRAFÍA — mobile first */
   .text-hero {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 400;
     font-size: clamp(2.75rem, 7vw, 9rem);
     line-height: 1.0;
     letter-spacing: -0.02em;
@@ -94,7 +94,7 @@
 
   .text-display {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 400;
     font-size: clamp(2.5rem, 5.5vw, 6.5rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
@@ -102,7 +102,7 @@
 
   .text-headline {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 400;
     font-size: clamp(1.75rem, 3.5vw, 3.75rem);
     line-height: 1.05;
     letter-spacing: -0.015em;

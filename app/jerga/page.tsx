@@ -118,7 +118,7 @@ function ImgPlaceholder({ aspect = '16/9' }: { aspect?: string }) {
 export default function JergaPage() {
   return (
     <>
-      <PageColorSetter bg="var(--page-metodologia-bg)" text="var(--page-metodologia-text)" />
+      <PageColorSetter bg="#F5FD92" text="#000000" />
 
       {/* Hero — fondo chartreuse */}
       <section

@@ -17,7 +17,7 @@ const entregables = ['Documento de narrativa de marca','Definición de ICP con p
 export default function EstrategiaRelato() {
   return (
     <>
-      <PageColorSetter bg="var(--page-capacidades-bg)" text="var(--page-capacidades-text)" />
+      <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
         eyebrow="El relato primero."
         headline="Estrategia y Relato"

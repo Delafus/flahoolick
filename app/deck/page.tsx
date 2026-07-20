@@ -14,7 +14,7 @@ const usos = ['Pitch de directorio','Propuesta técnica para licitación','Prese
 export default function DeckPage() {
   return (
     <>
-      <PageColorSetter bg="var(--page-deck-bg)" text="var(--page-deck-text)" />
+      <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout eyebrow="Las ideas ya las tienes. Nosotros las presentamos." headline="DECK"
         description="Una presentación ejecutiva mal construida hace perder negocios que estaban ganados. DECK toma múltiples fuentes y produce una presentación estructurada, visualmente consistente y lista para entregar. Sin el resultado genérico que Gamma, Canva o cualquier generador de IA entrega igual para todos."
         heroBg="var(--page-deck-bg)" heroText="var(--page-deck-text)"

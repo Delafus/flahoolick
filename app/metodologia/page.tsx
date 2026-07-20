@@ -14,7 +14,7 @@ const subs = [
 export default function Metodologia() {
   return (
     <>
-      <PageColorSetter bg="var(--page-metodologia-bg)" text="var(--page-metodologia-text)" />
+      <PageColorSetter bg="#F5FD92" text="#000000" />
 
       {/* Hero */}
       <section className="page-hero flex items-end page-px pb-16 pt-24"

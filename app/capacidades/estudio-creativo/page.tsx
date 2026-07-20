@@ -17,7 +17,7 @@ const entregables = ['Producción mensual de piezas de autoridad','Activos de Li
 export default function EstudioCreativo() {
   return (
     <>
-      <PageColorSetter bg="var(--page-capacidades-bg)" text="var(--page-capacidades-text)" />
+      <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
         eyebrow="La producción que construye presencia."
         headline="Estudio Creativo"

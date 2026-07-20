@@ -19,7 +19,7 @@ const industries = ['Tecnología B2B','Servicios financieros especializados','In
 export default function Capacidades() {
   return (
     <>
-      <PageColorSetter bg="var(--page-capacidades-bg)" text="var(--page-capacidades-text)" />
+      <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
         eyebrow="Tres frentes. Un sistema."
         headline="El conocimiento atrapado no vende."

@@ -79,17 +79,18 @@ export function ModuloCapacidadesMetodologia() {
           {/* Eyebrow */}
           <p className="label" style={{ color: ROSA }}>En qué nos especializamos</p>
 
-          {/* Titular — blanco, Georgia Italic */}
+          {/* Titular — blanco, Instrument Serif, 2 líneas */}
           <h2 style={{
-            fontFamily: 'Georgia, serif',
-            fontStyle: 'italic',
-            fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'normal',
+            fontSize: 'clamp(2.5rem, 4.5vw, 5rem)',
             lineHeight: 1.1,
             color: BLANCO,
             fontWeight: 400,
-            maxWidth: '800px',
+            maxWidth: '700px',
+            whiteSpace: 'nowrap',
           }}>
-            Tu conocimiento ya existe,<br />pongámoslo en circulación
+            Tu conocimiento ya existe, pongámoslo en circulación
           </h2>
         </div>
 

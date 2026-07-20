@@ -79,18 +79,17 @@ export function ModuloCapacidadesMetodologia() {
           {/* Eyebrow */}
           <p className="label" style={{ color: ROSA }}>En qué nos especializamos</p>
 
-          {/* Titular — blanco, Instrument Serif, 2 líneas */}
+          {/* Titular — blanco, Instrument Serif, 2 líneas, centrado */}
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontStyle: 'normal',
-            fontSize: 'clamp(2.5rem, 4.5vw, 5rem)',
-            lineHeight: 1.1,
+            fontSize: 'clamp(2.75rem, 7vw, 9rem)',
+            lineHeight: 1.05,
             color: BLANCO,
             fontWeight: 400,
-            maxWidth: '700px',
-            whiteSpace: 'nowrap',
+            textAlign: 'center',
           }}>
-            Tu conocimiento ya existe, pongámoslo en circulación
+            Tu conocimiento ya existe,<br />pongámoslo en circulación.
           </h2>
         </div>
 
@@ -149,11 +148,11 @@ export function ModuloCapacidadesMetodologia() {
       <section className="page-px section-py">
         <div className="max-container">
 
-          {/* Fila superior: Metodología (67%) + cards (33%) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          {/* Fila superior: Metodología (67%) + línea + cards (33%) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 items-start">
 
             {/* Metodología — 2/3 */}
-            <div className="md:col-span-2 flex flex-col gap-8">
+            <div className="md:col-span-2 flex flex-col gap-8 pr-0 md:pr-16">
               <h2 style={{
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
@@ -180,8 +179,11 @@ export function ModuloCapacidadesMetodologia() {
               </div>
             </div>
 
-            {/* Tarjetas JERGA — 1/3 */}
-            <div className="flex flex-col gap-6">
+            {/* Tarjetas JERGA — 1/3 con línea divisoria blanca a la izquierda */}
+            <div
+              className="flex flex-col gap-6 pl-0 md:pl-8 mt-12 md:mt-0"
+              style={{ borderLeft: `1px solid rgba(255,255,255,0.25)` }}
+            >
               {tarjetasJerga.map((card, i) => (
                 <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
                   <Image

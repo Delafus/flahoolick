@@ -4,65 +4,48 @@
 
 /* ============================================================
    FLAHOOLICK — DESIGN TOKENS
-   Cambiar estos valores actualiza sitio, decks y fanzine.
    ============================================================ */
 
 :root {
-  /* === BRAND TOKENS === */
-  --brand-ink:     #000000;   /* Negro principal */
-  --brand-chalk:   #ffffff;   /* Blanco puro */
-  --brand-signal:  #F09DB6;   /* Acento 1 — Rosa */
-  --brand-energy:  #F5FD92;   /* Acento 2 — Chartreuse */
-  --brand-ground:  #F9F0E2;   /* Neutro cálido — Crema */
-  --brand-depth:   #3B0B2C;   /* Acento oscuro — Ciruela */
+  --brand-ink:     #000000;
+  --brand-chalk:   #ffffff;
+  --brand-signal:  #F09DB6;
+  --brand-energy:  #F5FD92;
+  --brand-ground:  #F9F0E2;
+  --brand-depth:   #3B0B2C;
 
-  /* === PAGE COLOR ASSIGNMENTS ===
-     Cambiar aquí para reasignar colores a secciones */
   --page-home-bg:          var(--brand-ink);
   --page-home-text:        var(--brand-chalk);
-  
   --page-capacidades-bg:   var(--brand-signal);
   --page-capacidades-text: var(--brand-ink);
-  
   --page-metodologia-bg:   var(--brand-energy);
   --page-metodologia-text: var(--brand-ink);
-  
   --page-sobre-bg:         var(--brand-ground);
   --page-sobre-text:       var(--brand-ink);
-  
   --page-sensor-bg:        var(--brand-depth);
   --page-sensor-text:      var(--brand-chalk);
-  
   --page-deck-bg:          var(--brand-ink);
   --page-deck-text:        var(--brand-chalk);
-  
   --page-faq-bg:           var(--brand-ground);
   --page-faq-text:         var(--brand-ink);
 
-  /* === SECTION TOKENS ===
-     Usados dentro de las páginas para alternar secciones */
   --section-body-bg:       var(--brand-ground);
   --section-body-text:     var(--brand-ink);
-  
   --section-dark-bg:       var(--brand-ink);
   --section-dark-text:     var(--brand-chalk);
-  
   --section-emphasis-bg:   var(--brand-depth);
   --section-emphasis-text: var(--brand-chalk);
 
-  /* === TYPOGRAPHY ===
-     Font families inyectadas por Next.js */
   --font-display: var(--font-playfair), 'Georgia', serif;
   --font-body:    var(--font-inter), system-ui, sans-serif;
 
-  /* === SPACING & LAYOUT === */
-  --page-px:   clamp(1.5rem, 5vw, 4rem);
+  --page-px:    clamp(1.5rem, 5vw, 4rem);
   --section-py: clamp(4rem, 8vw, 8rem);
-  --max-w:     90rem;
+  --max-w:      90rem;
 }
 
 /* ============================================================
-   BASE STYLES
+   BASE
    ============================================================ */
 
 @layer base {
@@ -88,11 +71,10 @@
 }
 
 /* ============================================================
-   UTILITY CLASSES — usadas en todos los componentes
+   UTILITIES
    ============================================================ */
 
 @layer utilities {
-  /* Label — uppercase tracking */
   .label {
     font-family: var(--font-body);
     font-size: 0.6875rem;
@@ -101,51 +83,51 @@
     font-weight: 500;
   }
 
-  /* Display typography — mobile first con clamp */
+  /* TIPOGRAFÍA — mobile first */
   .text-hero {
     font-family: var(--font-display);
-    font-size: clamp(2.25rem, 7vw, 9rem);
+    font-weight: 700;
+    font-size: clamp(2.75rem, 7vw, 9rem);
     line-height: 1.0;
     letter-spacing: -0.02em;
-    font-weight: 700;
   }
 
   .text-display {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5.5vw, 6.5rem);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5.5vw, 6.5rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    font-weight: 700;
   }
 
   .text-headline {
     font-family: var(--font-display);
+    font-weight: 700;
     font-size: clamp(1.75rem, 3.5vw, 3.75rem);
     line-height: 1.05;
     letter-spacing: -0.015em;
-    font-weight: 700;
   }
 
-  /* Page container */
+  /* Lead paragraph — para texto editorial grande */
+  .text-lead {
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* Layout */
   .page-px { padding-left: var(--page-px); padding-right: var(--page-px); }
   .section-py { padding-top: var(--section-py); padding-bottom: var(--section-py); }
   .max-container { max-width: var(--max-w); margin: 0 auto; }
 
-  /* Scroll snap — usa dvh para mobile (evita el address bar de iOS) */
-  .snap-y-mandatory {
-    height: 100dvh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-  }
-  .snap-y-mandatory::-webkit-scrollbar { display: none; }
-
-  .snap-start {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+  /* Hero de páginas internas — empieza justo bajo el nav */
+  .page-hero {
     min-height: 100dvh;
-    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: calc(64px + 5rem);
+    padding-bottom: 4rem;
   }
 
   /* Marquee */
@@ -159,13 +141,3 @@
     width: max-content;
   }
 }
-
-  /* Hero de páginas internas — dvh para mobile */
-  .page-hero {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-bottom: 4rem;
-    padding-top: 6rem;
-  }

@@ -20,7 +20,7 @@ export function PageLayout({
   description,
   heroBg,
   heroText,
-  ctaLabel = 'Activar el sistema →',
+  ctaLabel = 'Conversemos →',
   ctaHref = '/#contacto',
   children,
 }: PageLayoutProps) {
@@ -38,7 +38,7 @@ export function PageLayout({
         className="page-hero page-px"
         style={{ backgroundColor: heroBg, color: heroText }}
       >
-        <div className="max-container w-full grid grid-cols-12 gap-8 items-end">
+        <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
           {/* Illustration placeholder — left 5 cols */}
           <div className="hidden md:flex col-span-5 items-center justify-center"
             style={{

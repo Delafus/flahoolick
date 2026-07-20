@@ -24,7 +24,7 @@ export function InternalPageLayout({
   heroBg,
   heroText,
   ctaHref = '/#contacto',
-  ctaLabel = 'Activar el sistema →',
+  ctaLabel = 'Conversemos →',
   children,
   showContact = true,
 }: InternalPageLayoutProps) {

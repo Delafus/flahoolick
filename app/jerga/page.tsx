@@ -12,7 +12,7 @@ const categorias = [
   'Estrategia B2B',
   'Disponibilidad Mental',
   'Marketing de Contenido',
-  'El Punto de Vista',
+  'El Criterio',
   'Sistemas de Contenido',
   'Ciclo de Compra',
 ]
@@ -22,7 +22,7 @@ const guias = [
     num: '01',
     categoria: 'Estrategia B2B',
     titulo: 'Por qué el 95% de tu mercado no te está mirando hoy',
-    href: '/punto-de-vista/95-5',
+    href: '/el-criterio/95-5',
   },
   {
     num: '02',
@@ -39,10 +39,10 @@ const guias = [
 ]
 
 const destacado = {
-  categoria: 'El Punto de Vista',
+  categoria: 'El Criterio',
   titulo: 'That is not your decision.',
   bajada: 'Cuando le das clic a publicar, hay una suposición que nunca se dice en voz alta: que producir y llegar son la misma cosa. El mercado responde como Ragnar Lothbrok. Todos los días. A todas las marcas. Sin excepción.',
-  href: '/punto-de-vista/that-is-not-your-decision',
+  href: '/el-criterio/that-is-not-your-decision',
 }
 
 const tendencias = [
@@ -59,7 +59,7 @@ const tendencias = [
     href: '#',
   },
   {
-    categoria: 'El Punto de Vista',
+    categoria: 'El Criterio',
     titulo: 'Mark Ritson tenía razón: bothism no es cobardía, es rigor',
     bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
     href: '#',
@@ -85,11 +85,11 @@ const tendencias = [
 ]
 
 const todosLosArticulos = [
-  { categoria: 'El Punto de Vista', titulo: 'Por qué el 95% de tu mercado no te está mirando hoy', href: '/punto-de-vista/95-5' },
-  { categoria: 'El Punto de Vista', titulo: 'That is not your decision.', href: '/punto-de-vista/that-is-not-your-decision' },
+  { categoria: 'El Criterio', titulo: 'Por qué el 95% de tu mercado no te está mirando hoy', href: '/el-criterio/95-5' },
+  { categoria: 'El Criterio', titulo: 'That is not your decision.', href: '/el-criterio/that-is-not-your-decision' },
   { categoria: 'Estrategia B2B', titulo: 'Los Category Entry Points: cómo tu comprador decide antes de buscar', href: '#' },
   { categoria: 'Marketing de Contenido', titulo: 'Por qué el contenido genérico es la peor inversión de marketing B2B', href: '#' },
-  { categoria: 'El Punto de Vista', titulo: 'Mark Ritson tenía razón: bothism no es cobardía, es rigor', href: '#' },
+  { categoria: 'El Criterio', titulo: 'Mark Ritson tenía razón: bothism no es cobardía, es rigor', href: '#' },
   { categoria: 'Disponibilidad Mental', titulo: 'Qué pasa cuando una empresa B2B le habla al 5% y olvida al 95%', href: '#' },
   { categoria: 'Ciclo de Compra', titulo: 'Cómo Byron Sharp cambió lo que sabemos sobre el crecimiento de marcas', href: '#' },
   { categoria: 'Sistemas de Contenido', titulo: 'El banco de evidencia: cómo el conocimiento de tu empresa se convierte en activo', href: '#' },

@@ -79,7 +79,7 @@ export function Header() {
         <Link href="/" className="absolute left-1/2 -translate-x-1/2"
           onClick={() => { setActive(null); setMobile(false) }}>
           <Image
-            src="/shield-flahoolick.svg"
+            src="/logo-flahoolick-hrztl.svg"
             alt="Flahoolick"
             width={140}
             height={40}
@@ -91,7 +91,6 @@ export function Header() {
         {/* Right nav */}
         <nav className="hidden md:flex items-center gap-10">
           <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
-          <NavLink href="/punto-de-vista" color={text} onClick={() => setActive(null)}>Punto de Vista</NavLink>
           <NavLink href="/sensor" color={text} onClick={() => setActive(null)}>SENSOR</NavLink>
           <NavLink href="/deck"   color={text} onClick={() => setActive(null)}>DECK</NavLink>
         </nav>

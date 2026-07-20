@@ -62,97 +62,76 @@ export default function HomePage() {
         </section>
       ))}
 
-      {/* Reveal — Somos Flahoolick */}
+      {/* MÓDULO SOMOS FLAHOOLICK — todo rosa */}
       <section
-        className="flex flex-col items-center justify-center page-px text-center"
-        style={{
-          minHeight: '100dvh',
-          backgroundColor: 'var(--brand-signal)',
-          color: 'var(--brand-ink)',
-        }}
+        className="flex flex-col items-center text-center"
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingBottom: '4rem' }}
       >
-        <div className="max-container w-full flex flex-col items-center gap-10">
-          <Image
-            src="/shield-flahoolick.svg"
-            alt="Flahoolick"
-            width={80}
-            height={100}
-            style={{ filter: 'brightness(0)' }}
-          />
-          <h2 className="text-hero" style={{ color: 'var(--brand-ink)' }}>
-            Somos Flahoolick.
+        {/* Titular */}
+        <div className="max-container w-full page-px pt-20 pb-16">
+          <h2 className="text-hero" style={{ color: '#3B0B2C', fontFamily: 'var(--font-display)' }}>
+            Somos FLAHOOLICK.<br />
+            Convertimos conocimiento técnico en autoridad de mercado.
           </h2>
-          <p className="text-lead max-w-2xl opacity-70" style={{ color: 'var(--brand-ink)' }}>
-            Instalamos el Sistema de Autoridad de Mercado para empresas B2B con ciclos de decisión complejos.
-          </p>
-          <Link
-            href="/#contacto"
-            className="label inline-flex items-center gap-2 border px-8 py-4 hover:opacity-60 transition-opacity"
-            style={{ color: 'var(--brand-ink)', borderColor: 'var(--brand-ink)' }}
-          >
-            Conversemos →
-          </Link>
         </div>
-      </section>
 
-      {/* Bloque ciruela — Todo empieza dentro */}
-      <section
-        className="flex flex-col items-center justify-center page-px text-center"
-        style={{
-          minHeight: '100dvh',
-          backgroundColor: 'var(--brand-depth)',
-          color: 'var(--brand-chalk)',
-        }}
-      >
-        <div className="max-container w-full flex flex-col items-center gap-10">
-          <p className="label opacity-50">Todo empieza dentro</p>
-          <h2 className="text-display" style={{ color: 'var(--brand-chalk)' }}>
-            El conocimiento ya existe.
-            <br />
-            Pongámoslo en circulación.
-          </h2>
-          <p className="text-lead max-w-xl opacity-60">
-            Capturamos lo que saben tus equipos y lo convertimos en señales, contenido y herramientas para el mercado.
-          </p>
-          <Link
-            href="/#contacto"
-            className="label inline-flex items-center gap-2 border px-8 py-4 hover:opacity-60 transition-opacity"
-            style={{ color: 'var(--brand-chalk)', borderColor: 'var(--brand-chalk)' }}
-          >
-            Conversemos →
-          </Link>
-          <div className="flex flex-col gap-3 mt-4">
-            {['Señales reales', 'Sistema operativo', 'Producción continua'].map(item => (
-              <p key={item} className="label opacity-50">✓ {item}</p>
-            ))}
-          </div>
+        {/* Divisoria con aire */}
+        <div className="w-full" style={{ padding: '0 4rem' }}>
+          <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
-      </section>
 
-      {/* Credencial + Marquee */}
-      <section
-        className="flex flex-col justify-center"
-        style={{
-          minHeight: '80dvh',
-          backgroundColor: 'var(--brand-ink)',
-          color: 'var(--brand-chalk)',
-        }}
-      >
-        <div className="max-container w-full page-px flex flex-col gap-8 py-16">
-          <p className="label opacity-40">Marcas que nos formaron</p>
-          <p className="text-lead max-w-2xl opacity-60">
-            Nuestro equipo acumula más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales. Ese oficio lo ejecutamos hoy en sistemas de contenido para empresas B2B complejas.
+        {/* Marcas que nos formaron */}
+        <div className="w-full pt-10 pb-6">
+          <p className="label" style={{ color: '#3B0B2C', opacity: 0.6 }}>Marcas que nos formaron</p>
+        </div>
+
+        {/* Marquee ciruela sobre rosa */}
+        <div className="w-full overflow-hidden">
+          <Marquee color="#3B0B2C" />
+        </div>
+
+        {/* Párrafo */}
+        <div className="max-container w-full page-px pt-10 pb-10">
+          <p className="text-lead max-w-md mx-auto" style={{ color: '#3B0B2C', opacity: 0.75 }}>
+            Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
           </p>
         </div>
-        <Marquee />
-        <div
-          className="max-container w-full page-px flex flex-col gap-5 py-12"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+
+        {/* Botón — fondo ciruela, texto rosa */}
+        <Link
+          href="/sobre-flahoolick"
+          className="label px-8 py-4 hover:opacity-80 transition-opacity"
+          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6' }}
         >
-          <p className="label opacity-40">Industrias a las que servimos</p>
-          <p className="text-lg font-light opacity-50 leading-relaxed">
-            {INDUSTRIES.join(' · ')}
-          </p>
+          APRENDE SOBRE NOSOTROS
+        </Link>
+
+        {/* Divisoria con aire */}
+        <div className="w-full mt-16" style={{ padding: '0 4rem' }}>
+          <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
+        </div>
+
+        {/* Con quién trabajamos */}
+        <div className="w-full pt-10 pb-6">
+          <p className="label" style={{ color: '#3B0B2C', opacity: 0.6 }}>Con quién trabajamos</p>
+        </div>
+
+        {/* Tags industries */}
+        <div className="max-container w-full page-px pb-16 flex flex-wrap justify-center gap-2">
+          {[
+            'Tecnología', 'Servicios financieros', 'Ingeniería industrial',
+            'Energía', 'Minería', 'Infraestructura', 'Logística', 'Salud',
+            'Educación', 'Activos inmobiliarios', 'Manufactura',
+            'Servicios profesionales', 'Sector público'
+          ].map(tag => (
+            <span
+              key={tag}
+              className="text-sm px-3 py-1.5"
+              style={{ border: '1px solid #3B0B2C', color: '#3B0B2C', opacity: 0.7, borderRadius: '4px' }}
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </section>
 

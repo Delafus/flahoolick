@@ -30,9 +30,9 @@ export function Footer() {
               alt="Flahoolick"
               width={200}
               height={56}
-              style={{ filter: 'brightness(0) invert(1)', height: '40px', width: 'auto' }}
+              style={{ filter: 'brightness(0) invert(1)', height: '36px', width: 'auto', display: 'block', marginLeft: 0 }}
             />
-            <p className="text-sm opacity-40 leading-relaxed mt-2">
+            <p className="text-sm opacity-40 leading-relaxed">
               Consultora de estrategia y contenido B2B.<br />Santiago, Chile.
             </p>
           </div>

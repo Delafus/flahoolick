@@ -15,29 +15,29 @@ const logos = [
   { src: '/logo-dunamis.svg', alt: 'Dunamis' },
 ]
 
-interface MarqueeProps {
-  invert?: boolean
-}
+export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
+  const filter = color === '#3B0B2C'
+    ? 'brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(2000%) hue-rotate(280deg) brightness(40%)'
+    : 'brightness(0) invert(1)'
 
-export function Marquee({ invert = false }: MarqueeProps) {
   return (
-    <div className="w-full overflow-hidden py-8" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+    <div className="w-full overflow-hidden py-6">
       <div className="animate-marquee">
         {[...logos, ...logos].map((logo, i) => (
           <div
             key={i}
             className="mx-10 flex items-center justify-center shrink-0"
-            style={{ height: '36px', width: '100px' }}
+            style={{ height: '32px', width: '110px' }}
           >
             <Image
               src={logo.src}
               alt={logo.alt}
-              width={100}
-              height={36}
+              width={110}
+              height={32}
               style={{
                 objectFit: 'contain',
-                filter: invert ? 'invert(0) brightness(0.4)' : 'invert(1) brightness(0.6)',
-                maxHeight: '36px',
+                filter,
+                maxHeight: '32px',
                 width: 'auto',
               }}
             />

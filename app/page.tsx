@@ -6,6 +6,7 @@ import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
 import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
+import Link from 'next/link'
 
 const SCROLLS = [
   {

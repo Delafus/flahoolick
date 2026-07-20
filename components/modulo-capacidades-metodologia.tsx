@@ -5,7 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const CIRUELA = '#3B0B2C'
-const ROSA = '#F09DB6'
+const ROSA    = '#F09DB6'
+const BLANCO  = '#ffffff'
 
 const acordeonItems = [
   {
@@ -44,193 +45,186 @@ const footerCols = [
 ]
 
 const tarjetasJerga = [
-  {
-    img: '/card-95-5.svg',
-    titulo: 'El 95% que no está comprando',
-    label: 'PUNTO DE PARTIDA',
-    href: '/jerga',
-  },
-  {
-    img: '/card-idea-que-viaja.svg',
-    titulo: 'Cómo viaja una idea',
-    label: 'PUNTO DE PARTIDA',
-    href: '/jerga',
-  },
+  { img: '/card-95-5.svg',           titulo: 'El 95% que no está comprando', href: '/jerga' },
+  { img: '/card-idea-que-viaja.svg', titulo: 'Cómo viaja una idea',           href: '/jerga' },
 ]
+
+function ShieldIcon() {
+  return (
+    <Image
+      src="/shield.svg"
+      alt=""
+      width={16}
+      height={20}
+      style={{
+        filter: 'brightness(0) saturate(100%) invert(75%) sepia(30%) saturate(500%) hue-rotate(300deg) brightness(1.1)',
+        height: '20px',
+        width: 'auto',
+        flexShrink: 0,
+      }}
+    />
+  )
+}
 
 export function ModuloCapacidadesMetodologia() {
   const [abierto, setAbierto] = useState(0)
 
   return (
-    <div style={{ backgroundColor: CIRUELA, color: ROSA }}>
+    <div style={{ backgroundColor: CIRUELA }}>
 
       {/* ── SECCIÓN 1: CAPACIDADES ── */}
       <section className="page-px section-py">
-        <div className="max-container flex flex-col gap-12">
+        <div className="max-container flex flex-col items-center text-center gap-6">
 
-          {/* Label + Titular */}
-          <div className="flex flex-col gap-4">
-            <p className="label" style={{ color: ROSA, opacity: 0.6 }}>En qué nos especializamos</p>
-            <h2 style={{
-              fontFamily: 'Georgia, serif',
-              fontStyle: 'italic',
-              fontSize: 'clamp(2.5rem, 5vw, 5rem)',
-              lineHeight: 1.1,
-              color: ROSA,
-              fontWeight: 400,
-            }}>
-              Tu conocimiento ya existe,<br />pongámoslo en circulación
-            </h2>
+          {/* Eyebrow */}
+          <p className="label" style={{ color: ROSA }}>En qué nos especializamos</p>
+
+          {/* Titular — blanco, Georgia Italic */}
+          <h2 style={{
+            fontFamily: 'Georgia, serif',
+            fontStyle: 'italic',
+            fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
+            lineHeight: 1.1,
+            color: BLANCO,
+            fontWeight: 400,
+            maxWidth: '800px',
+          }}>
+            Tu conocimiento ya existe,<br />pongámoslo en circulación
+          </h2>
+        </div>
+
+        {/* Espacio */}
+        <div style={{ height: '200px' }} />
+
+        {/* Dos columnas iguales */}
+        <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+          {/* Columna izquierda — ilustración */}
+          <div>
+            <Image
+              src="/papeles-flahoolick.svg"
+              alt="Conocimiento en circulación"
+              width={500}
+              height={400}
+              style={{ width: '100%', height: 'auto' }}
+            />
           </div>
 
-          {/* Grid: ilustración + acordeón */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-
-            {/* Ilustración */}
-            <div>
-              <Image
-                src="/papeles-flahoolick.svg"
-                alt="Flahoolick — conocimiento en circulación"
-                width={500}
-                height={400}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            </div>
-
-            {/* Acordeón */}
-            <div className="flex flex-col">
-              {acordeonItems.map((item, i) => (
-                <div
-                  key={i}
-                  style={{ borderTop: `1px solid ${ROSA}`, opacity: 1 }}
+          {/* Columna derecha — acordeón */}
+          <div className="flex flex-col">
+            {acordeonItems.map((item, i) => (
+              <div key={i} style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }}>
+                <button
+                  onClick={() => setAbierto(abierto === i ? -1 : i)}
+                  className="w-full flex items-center justify-between py-5 text-left"
                 >
-                  <button
-                    onClick={() => setAbierto(abierto === i ? -1 : i)}
-                    className="w-full flex items-center justify-between py-5 text-left"
-                    style={{ color: ROSA }}
-                  >
-                    <span className="label font-bold" style={{ color: ROSA }}>{item.titulo}</span>
-                    <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>
-                      {abierto === i ? '−' : '+'}
-                    </span>
-                  </button>
-                  {abierto === i && (
-                    <div className="pb-6 flex flex-col gap-4">
-                      <p className="text-sm leading-relaxed" style={{ color: ROSA, opacity: 0.8 }}>
-                        {item.desc}
-                      </p>
-                      <Link
-                        href={item.href}
-                        className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-70 transition-opacity"
-                        style={{ border: `1px solid ${ROSA}`, color: ROSA, fontSize: '0.65rem' }}
-                      >
-                        CÓMO LO HACEMOS
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              ))}
-              {/* Línea final del acordeón */}
-              <div style={{ borderTop: `1px solid ${ROSA}` }} />
-            </div>
+                  <span className="label font-bold" style={{ color: BLANCO }}>{item.titulo}</span>
+                  <span style={{ color: BLANCO, fontSize: '1.2rem', lineHeight: 1 }}>
+                    {abierto === i ? '−' : '+'}
+                  </span>
+                </button>
+                {abierto === i && (
+                  <div className="pb-6 flex flex-col gap-4">
+                    <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.8 }}>
+                      {item.desc}
+                    </p>
+                    <Link
+                      href={item.href}
+                      className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
+                      style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem' }}
+                    >
+                      CÓMO LO HACEMOS
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ))}
+            <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
           </div>
         </div>
       </section>
-
-      {/* Divisoria */}
-      <div className="page-px">
-        <div className="max-container">
-          <hr style={{ borderColor: ROSA, borderTopWidth: '1px', opacity: 0.3 }} />
-        </div>
-      </div>
 
       {/* ── SECCIÓN 2: METODOLOGÍA ── */}
       <section className="page-px section-py">
-        <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div className="max-container">
 
-          {/* Izquierda */}
-          <div className="flex flex-col gap-8">
-            <h2 style={{
-              fontFamily: 'Georgia, serif',
-              fontStyle: 'italic',
-              fontSize: 'clamp(3rem, 6vw, 7rem)',
-              lineHeight: 1.0,
-              color: ROSA,
-              fontWeight: 400,
-            }}>
-              Metodología
-            </h2>
-            <div className="flex flex-col gap-4">
-              <p className="label" style={{ color: ROSA, opacity: 0.5 }}>El mercado forma opinión en silencio</p>
-              <p className="text-lead" style={{ color: ROSA, opacity: 0.8 }}>
-                La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
-              </p>
+          {/* Fila superior: Metodología (67%) + cards (33%) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+            {/* Metodología — 2/3 */}
+            <div className="md:col-span-2 flex flex-col gap-8">
+              <h2 style={{
+                fontFamily: 'Georgia, serif',
+                fontStyle: 'italic',
+                fontSize: 'clamp(4rem, 10vw, 12rem)',
+                lineHeight: 0.95,
+                color: BLANCO,
+                fontWeight: 400,
+              }}>
+                Metodología
+              </h2>
+
+              <div className="flex flex-col gap-5" style={{ maxWidth: '560px' }}>
+                <p className="label" style={{ color: ROSA }}>El mercado forma opinión en silencio</p>
+                <p className="text-lead" style={{ color: BLANCO, opacity: 0.85 }}>
+                  La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
+                </p>
+                <Link
+                  href="/metodologia"
+                  className="label inline-flex items-center px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+                  style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}
+                >
+                  EXPLORAR METODOLOGÍA
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/metodologia"
-              className="label inline-flex items-center px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
-              style={{ border: `1px solid ${ROSA}`, color: ROSA, fontSize: '0.65rem' }}
-            >
-              EXPLORAR METODOLOGÍA
-            </Link>
-          </div>
 
-          {/* Derecha — tarjetas JERGA */}
-          <div className="flex flex-col gap-6">
-            {tarjetasJerga.map((card, i) => (
-              <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
-                <div className="overflow-hidden" style={{ borderRadius: '4px' }}>
+            {/* Tarjetas JERGA — 1/3 */}
+            <div className="flex flex-col gap-6">
+              {tarjetasJerga.map((card, i) => (
+                <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
                   <Image
                     src={card.img}
                     alt={card.titulo}
-                    width={400}
-                    height={220}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    width={300}
+                    height={180}
+                    style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
                   />
+                  <div>
+                    <p className="text-sm font-medium" style={{ color: BLANCO }}>{card.titulo}</p>
+                    <p className="label mt-1" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Divisoria blanca */}
+          <hr style={{ borderColor: BLANCO, borderTopWidth: '1px', opacity: 0.2, marginTop: '5rem' }} />
+
+          {/* Tres columnas footer */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+            {footerCols.map((col, i) => (
+              <div key={i} className="flex flex-col gap-3">
+                {/* Shield + título en la misma línea */}
+                <div className="flex items-center gap-3">
+                  <ShieldIcon />
+                  <p className="label font-bold" style={{ color: BLANCO }}>{col.titulo}</p>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <p className="text-sm font-medium" style={{ color: ROSA }}>{card.titulo}</p>
-                  <p className="label" style={{ color: ROSA, opacity: 0.5 }}>{card.label}</p>
-                </div>
-              </Link>
+                <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>
+                  {col.desc}
+                </p>
+                <Link
+                  href={col.href}
+                  className="label hover:opacity-80 transition-opacity"
+                  style={{ color: ROSA, fontSize: '0.65rem' }}
+                >
+                  CONOCE MÁS &gt;
+                </Link>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Divisoria */}
-      <div className="page-px">
-        <div className="max-container">
-          <hr style={{ borderColor: ROSA, borderTopWidth: '1px', opacity: 0.3 }} />
-        </div>
-      </div>
-
-      {/* ── FOOTER DE 3 COLUMNAS ── */}
-      <section className="page-px section-py">
-        <div className="max-container grid grid-cols-1 md:grid-cols-3 gap-12">
-          {footerCols.map((col, i) => (
-            <div key={i} className="flex flex-col gap-4">
-              {/* Ícono escudo */}
-              <Image
-                src="/logo-flahoolick-shield.svg"
-                alt="Flahoolick"
-                width={24}
-                height={28}
-                style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(30%) saturate(500%) hue-rotate(300deg)', height: '24px', width: 'auto' }}
-              />
-              <p className="label font-bold" style={{ color: ROSA }}>{col.titulo}</p>
-              <p className="text-sm leading-relaxed" style={{ color: ROSA, opacity: 0.7 }}>
-                {col.desc}
-              </p>
-              <Link
-                href={col.href}
-                className="label hover:opacity-60 transition-opacity"
-                style={{ color: ROSA, opacity: 0.5, fontSize: '0.65rem' }}
-              >
-                CONOCE MÁS &gt;
-              </Link>
-            </div>
-          ))}
         </div>
       </section>
 

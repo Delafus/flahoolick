@@ -28,9 +28,9 @@ export default function SobreFlahoolick() {
             <Image
               src="/logo-flahoolick-shield.svg"
               alt="Flahoolick"
-              width={320}
-              height={400}
-              style={{ width: '100%', maxWidth: '320px', height: 'auto', filter: 'brightness(0)' }}
+              width={480}
+              height={600}
+              style={{ width: '100%', maxWidth: '480px', height: 'auto', filter: 'brightness(0)' }}
               priority
             />
           </div>
@@ -41,8 +41,15 @@ export default function SobreFlahoolick() {
           </div>
 
           {/* Derecha — Titular + tagline + descripción */}
-          <div className="col-span-12 md:col-span-6 flex flex-col gap-8 justify-center">
-            <h1 className="text-display" style={{ color: 'var(--page-capacidades-text)' }}>
+          <div className="col-span-12 md:col-span-6 flex flex-col gap-10 justify-center" style={{ minHeight: '610px' }}>
+            <h1 style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 400,
+              fontSize: 'clamp(3.5rem, 7vw, 9rem)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
+              color: 'var(--page-capacidades-text)',
+            }}>
               Nacimos de una idea generosa.
             </h1>
             <hr style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopWidth: '1px' }} />

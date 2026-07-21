@@ -66,14 +66,14 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-10" onMouseLeave={() => setActive(null)}>
           <Link href="/capacidades"
             className="label hover:opacity-60 transition-opacity"
-            style={{ color, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
+            style={{ color: text, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
             onMouseEnter={() => setActive('cap')}
             onClick={() => setActive(null)}>
             Capacidades
           </Link>
           <Link href="/metodologia"
             className="label hover:opacity-60 transition-opacity"
-            style={{ color, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
+            style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
             onMouseEnter={() => setActive('met')}
             onClick={() => setActive(null)}>
             Metodología

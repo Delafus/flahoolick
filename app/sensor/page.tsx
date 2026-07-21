@@ -51,8 +51,6 @@ export default function SensorPage() {
             <p className="label opacity-20" style={{ color: 'var(--page-sensor-text)' }}>Ilustración</p>
           </div>
           <div className="flex flex-col gap-8">
-              El conocimiento ya existe. SENSOR lo captura.
-            </p>
             <h1 className="text-display" style={{ color: 'var(--page-sensor-text)' }}>SENSOR</h1>
             <p className="text-lg font-light leading-relaxed max-w-md opacity-70"
               style={{ color: 'var(--page-sensor-text)' }}>

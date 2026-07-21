@@ -78,13 +78,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2"
           onClick={() => { setActive(null); setMobile(false) }}>
-          <Image
+          <img
             src="/logo-flahoolick-hrztl.svg"
             alt="Flahoolick"
-            width={140}
-            height={40}
-            style={{ filter: logoFilter, height: '32px', width: 'auto' }}
-            priority
+            style={{ filter: logoFilter, height: '28px', width: 'auto', maxWidth: '160px', display: 'block' }}
           />
         </Link>
 

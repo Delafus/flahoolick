@@ -155,26 +155,30 @@ export function ModuloCapacidadesMetodologia() {
       <section className="page-px section-py">
         <div className="max-container">
 
-          {/* Grid 12 col: texto 70% + cards 30% */}
-          <div style={{ display: 'grid', gridTemplateColumns: '8fr 4fr', gap: '3rem', alignItems: 'start' }}>
+          {/* Grid responsive: mobile 1 col, desktop 8fr 4fr */}
+          <div className="flex flex-col md:grid gap-8 md:gap-12 items-start"
+            style={{ '--md-cols': '8fr 4fr' } as React.CSSProperties}>
+            <style>{`@media (min-width: 768px) { .met-grid { grid-template-columns: 8fr 4fr; display: grid; } }`}</style>
+            <div className="met-grid w-full flex flex-col gap-8 md:contents">
 
             {/* Columna izquierda — texto */}
             <div className="flex flex-col gap-8">
               <h2 style={{
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 'clamp(5rem, 10vw, 12rem)',
+                fontSize: 'clamp(3rem, 10vw, 12rem)',
                 lineHeight: 0.92,
                 letterSpacing: '-0.03em',
                 color: BLANCO,
                 fontWeight: 400,
+                overflowWrap: 'break-word',
               }}>
                 Metodología
               </h2>
 
               <div className="flex flex-col gap-5" style={{ maxWidth: '560px' }}>
                 <p className="label" style={{ color: ROSA }}>El mercado forma opinión en silencio</p>
-                <p style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
+                <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
                   La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
                 </p>
                 <Link href="/metodologia"
@@ -185,23 +189,31 @@ export function ModuloCapacidadesMetodologia() {
               </div>
             </div>
 
-            {/* Columna derecha — cards (con línea divisoria izquierda) */}
-            <div className="flex flex-col gap-0" style={{ borderLeft: `1px solid rgba(255,255,255,0.2)`, paddingLeft: '2rem' }}>
-              {tarjetasJerga.map((card, i) => (
-                <div key={i}>
-                  <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
-                    {/* Orden: Imagen → Título → Eyebrow */}
-                    <Image src={card.img} alt={card.titulo}
-                      width={300} height={180}
-                      style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+            {/* Columna derecha — cards */}
+            <div className="flex flex-col gap-0 mt-8 md:mt-0"
+              style={{ borderLeft: 'none', paddingLeft: 0 }}>
+              <div className="hidden md:block" style={{ borderLeft: `1px solid rgba(255,255,255,0.2)`, paddingLeft: '2rem' }}>
+                {tarjetasJerga.map((card, i) => (
+                  <div key={i}>
+                    <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
+                      <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+                      <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
+                      <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+                    </Link>
+                    {i === 0 && <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />}
+                  </div>
+                ))}
+              </div>
+              <div className="md:hidden flex flex-col gap-6">
+                {tarjetasJerga.map((card, i) => (
+                  <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
+                    <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
                     <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
                     <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
                   </Link>
-                  {i === 0 && (
-                    <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
             </div>
           </div>
 

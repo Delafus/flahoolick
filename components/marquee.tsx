@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 const logos = [
   { src: '/logo-grey.svg',    alt: 'Grey' },
   { src: '/logo-mccann.svg',  alt: 'McCann' },
@@ -21,23 +19,31 @@ export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
     : 'brightness(0) invert(1)'
 
   return (
-    <div className="w-full overflow-hidden py-6">
-      <div className="animate-marquee items-center">
+    <div style={{ width: '100%', overflow: 'hidden', padding: '1.5rem 0' }}>
+      <div className="animate-marquee" style={{ alignItems: 'center' }}>
         {[...logos, ...logos].map((logo, i) => (
           <div
             key={i}
-            className="mx-10 flex items-center justify-center shrink-0"
-            style={{ height: '40px', width: '120px' }}
+            style={{
+              marginLeft: '3rem',
+              marginRight: '3rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '56px',
+              flexShrink: 0,
+            }}
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={logo.src}
               alt={logo.alt}
-              width={120}
-              height={40}
               style={{
-                height: '40px',
+                height: '56px',
                 width: 'auto',
+                maxWidth: '160px',
                 objectFit: 'contain',
+                display: 'block',
                 filter,
               }}
             />

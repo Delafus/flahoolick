@@ -67,59 +67,55 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — todo rosa */}
       <section
         className="flex flex-col items-center text-center"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingBottom: '4rem' }}
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingTop: '300px', paddingBottom: '300px' }}
       >
         {/* Titular */}
-        <div className="max-container w-full page-px pt-20 pb-16">
-          <h2 className="text-hero" style={{ color: '#3B0B2C', fontFamily: 'var(--font-display)' }}>
+        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
+          <h2 className="text-hero" style={{ color: '#3B0B2C', fontFamily: 'var(--font-display)', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             Somos FLAHOOLICK.<br />
             Convertimos conocimiento técnico en autoridad de mercado.
           </h2>
         </div>
 
         {/* Divisoria con aire */}
-        <div className="w-full" style={{ padding: '0 4rem' }}>
+        <div style={{ width: '100%', padding: '0 4rem', marginBottom: '3rem' }}>
           <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
         {/* Marcas que nos formaron */}
-        <div className="w-full pt-10 pb-6">
-          <p className="label" style={{ color: '#3B0B2C', opacity: 0.6 }}>Marcas que nos formaron</p>
-        </div>
+        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem' }}>Marcas que nos formaron</p>
 
-        {/* Marquee ciruela sobre rosa */}
-        <div className="w-full overflow-hidden">
+        {/* Marquee */}
+        <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
           <Marquee color="#3B0B2C" />
         </div>
 
         {/* Párrafo */}
-        <div className="max-container w-full page-px pt-10 pb-10">
-          <p className="text-lead max-w-md mx-auto" style={{ color: '#3B0B2C', opacity: 0.75 }}>
+        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '3rem' }}>
+          <p className="text-lead mx-auto" style={{ color: '#3B0B2C', opacity: 0.75, maxWidth: '36rem' }}>
             Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
           </p>
         </div>
 
-        {/* Botón — fondo ciruela, texto rosa */}
+        {/* Botón */}
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6' }}
+          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6', marginBottom: '5rem' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>
 
         {/* Divisoria con aire */}
-        <div className="w-full mt-16" style={{ padding: '0 4rem' }}>
+        <div style={{ width: '100%', padding: '0 4rem', marginBottom: '3rem' }}>
           <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
         {/* Con quién trabajamos */}
-        <div className="w-full pt-10 pb-6">
-          <p className="label" style={{ color: '#3B0B2C', opacity: 0.6 }}>Con quién trabajamos</p>
-        </div>
+        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem' }}>Con quién trabajamos</p>
 
         {/* Tags industries */}
-        <div className="max-container w-full page-px pb-16 flex flex-wrap justify-center gap-2">
+        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
             'Tecnología', 'Servicios financieros', 'Ingeniería industrial',
             'Energía', 'Minería', 'Infraestructura', 'Logística', 'Salud',

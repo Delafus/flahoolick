@@ -22,23 +22,23 @@ export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
 
   return (
     <div className="w-full overflow-hidden py-6">
-      <div className="animate-marquee">
+      <div className="animate-marquee items-center">
         {[...logos, ...logos].map((logo, i) => (
           <div
             key={i}
             className="mx-10 flex items-center justify-center shrink-0"
-            style={{ height: '32px', width: '110px' }}
+            style={{ height: '40px', width: '120px' }}
           >
             <Image
               src={logo.src}
               alt={logo.alt}
-              width={110}
-              height={32}
+              width={120}
+              height={40}
               style={{
+                height: '40px',
+                width: 'auto',
                 objectFit: 'contain',
                 filter,
-                maxHeight: '32px',
-                width: 'auto',
               }}
             />
           </div>

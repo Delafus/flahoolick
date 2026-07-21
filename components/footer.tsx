@@ -24,14 +24,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
 
           {/* Logo horizontal */}
-          <div className="flex flex-col gap-4">
-            <Image
-              src="/logo-flahoolick-hrztl.svg"
-              alt="Flahoolick"
-              width={200}
-              height={56}
-              style={{ filter: 'brightness(0) invert(1)', height: '36px', width: 'auto', display: 'block', marginLeft: 0 }}
-            />
+          <div className="flex flex-col gap-4 items-start">
+            <div style={{ display: 'block', lineHeight: 0 }}>
+              <Image
+                src="/logo-flahoolick-hrztl.svg"
+                alt="Flahoolick"
+                width={200}
+                height={56}
+                style={{ filter: 'brightness(0) invert(1)', height: '36px', width: 'auto', display: 'block' }}
+              />
+            </div>
             <p className="text-sm opacity-40 leading-relaxed">
               Consultora de estrategia y contenido B2B.<br />Santiago, Chile.
             </p>

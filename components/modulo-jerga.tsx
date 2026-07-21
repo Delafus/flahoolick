@@ -38,13 +38,13 @@ export function ModuloJerga() {
           </div>
         </div>
 
-        {/* ── DOS CARDS ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '3rem', alignItems: 'start' }}>
+        {/* ── DOS CARDS — responsivo ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0">
 
           {/* Card 1 */}
-          <div className="flex flex-col gap-6">
+          <div className="w-full flex flex-col gap-6 md:pr-12">
             <p className="label font-bold" style={{ color: NEGRO }}>PUNTO DE PARTIDA</p>
-            <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
               <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
             </div>
             <div className="flex flex-col gap-3">
@@ -61,13 +61,35 @@ export function ModuloJerga() {
             </Link>
           </div>
 
-          {/* Separador vertical */}
-          <div style={{ backgroundColor: NEGRO, opacity: 0.2, height: '100%', minHeight: '400px', width: '1px' }} />
+          {/* Separador vertical — solo desktop */}
+          <div className="hidden md:block w-full flex flex-col gap-6 md:pl-12" style={{ position: 'relative' }}>
+            <div className="hidden md:block" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', backgroundColor: NEGRO, opacity: 0.2 }} />
 
-          {/* Card 2 */}
-          <div className="flex flex-col gap-6">
+            {/* Card 2 */}
+            <div className="w-full flex flex-col gap-6 pl-12">
+              <p className="label font-bold" style={{ color: NEGRO }}>METODOLOGÍA</p>
+              <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
+              </div>
+              <div className="flex flex-col gap-3">
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', lineHeight: 1.2, color: NEGRO }}>
+                  Sistema de Circulación: de la señal al contenido
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: NEGRO, opacity: 0.7 }}>
+                  Cómo una idea nacida dentro de la empresa puede transformarse en contenido, argumentos y herramientas comerciales.
+                </p>
+              </div>
+              <Link href="/jerga" className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: NEGRO, color: AMARILLO }}>
+                LEER ARTÍCULO →
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 2 — solo mobile */}
+          <div className="md:hidden w-full flex flex-col gap-6">
             <p className="label font-bold" style={{ color: NEGRO }}>METODOLOGÍA</p>
-            <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
               <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
             </div>
             <div className="flex flex-col gap-3">

@@ -30,49 +30,80 @@ export function PageLayout({
 
   return (
     <>
-      {/* ── HERO — NOBL split layout ──
-          Izquierda: placeholder ilustración
-          Línea divisoria
-          Derecha: eyebrow + H1 + description + CTA */}
+      {/* ── HERO — NOBL style ── */}
       <section
         className="page-hero page-px"
         style={{ backgroundColor: heroBg, color: heroText }}
       >
-        <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
-          {/* Illustration placeholder — left 5 cols */}
-          <div className="hidden md:flex col-span-5 items-center justify-center"
-            style={{
-              aspectRatio: '1/1',
-              maxHeight: '420px',
-              border: `1px solid ${divColor}`,
-            }}>
-            <span className="label opacity-20" style={{ color: heroText }}>Ilustración</span>
-          </div>
+        <div className="max-container w-full">
 
-          {/* Vertical divider */}
-          <div className="hidden md:flex col-span-1 justify-center self-stretch py-4">
-            <div className="w-px h-full" style={{ backgroundColor: divColor }} />
-          </div>
-
-          {/* Text — right 6 cols */}
-          <div className="col-span-12 md:col-span-6 flex flex-col gap-8">
-            {eyebrow && (
-              <p className="label opacity-50" style={{ color: heroText }}>{eyebrow}</p>
-            )}
-            <h1 className="text-display" style={{ color: heroText }}>{headline}</h1>
+          {/* Mobile: solo texto apilado */}
+          <div className="flex flex-col gap-6 md:hidden">
+              <h1 style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(3.5rem, 14vw, 12rem)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.02em',
+                color: heroText,
+                wordBreak: 'break-word',
+              }}>
+                {headline}
+              </h1>
             {description && (
-              <p className="text-lg font-light leading-relaxed max-w-md opacity-70"
-                style={{ color: heroText }}>
+              <p style={{ fontSize: '1.1rem', lineHeight: 1.6, opacity: 0.7, color: heroText, fontWeight: 300 }}>
                 {description}
               </p>
             )}
-            <Link
-              href={ctaHref}
+            <Link href={ctaHref}
               className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
-              style={{ color: heroText, borderColor: heroText }}
-            >
+              style={{ color: heroText, borderColor: heroText }}>
               {ctaLabel}
             </Link>
+          </div>
+
+          {/* Desktop: split — ilustración | divisor | texto */}
+          <div className="hidden md:grid gap-0 items-end"
+            style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
+
+            {/* Ilustración */}
+            <div style={{
+              aspectRatio: '4/3',
+              border: `1px solid ${divColor}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '3rem',
+            }}>
+              <span className="label opacity-20" style={{ color: heroText }}>Ilustración</span>
+            </div>
+
+            {/* Divisor vertical */}
+            <div style={{ backgroundColor: divColor, height: '100%', width: '1px' }} />
+
+            {/* Texto */}
+            <div className="flex flex-col gap-8" style={{ paddingLeft: '3rem' }}>
+              <h1 style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(4rem, 13vw, 20rem)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.025em',
+                color: heroText,
+              }}>
+                {headline}
+              </h1>
+              {description && (
+                <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.4rem)', lineHeight: 1.65, opacity: 0.7, color: heroText, fontWeight: 300, maxWidth: '400px' }}>
+                  {description}
+                </p>
+              )}
+              <Link href={ctaHref}
+                className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
+                style={{ color: heroText, borderColor: heroText }}>
+                {ctaLabel}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

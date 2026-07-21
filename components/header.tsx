@@ -63,13 +63,21 @@ export function Header() {
       <div className="flex items-center justify-between page-px" style={{ height: '64px', color: text }}>
 
         {/* Left nav */}
-        <nav className="hidden md:flex items-center gap-10">
-          <NavBtn label="Capacidades" active={active === 'cap'} color={text}
+        <nav className="hidden md:flex items-center gap-10" onMouseLeave={() => setActive(null)}>
+          <Link href="/capacidades"
+            className="label hover:opacity-60 transition-opacity"
+            style={{ color, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
             onMouseEnter={() => setActive('cap')}
-            onClick={() => setActive(p => p === 'cap' ? null : 'cap')} />
-          <NavBtn label="Metodología" active={active === 'met'} color={text}
+            onClick={() => setActive(null)}>
+            Capacidades
+          </Link>
+          <Link href="/metodologia"
+            className="label hover:opacity-60 transition-opacity"
+            style={{ color, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
             onMouseEnter={() => setActive('met')}
-            onClick={() => setActive(p => p === 'met' ? null : 'met')} />
+            onClick={() => setActive(null)}>
+            Metodología
+          </Link>
           <NavLink href="/sobre-flahoolick" color={text} onClick={() => setActive(null)}>
             Sobre Flahoolick
           </NavLink>

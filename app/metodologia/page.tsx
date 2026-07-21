@@ -20,7 +20,6 @@ export default function Metodologia() {
       <section className="page-hero flex items-end page-px pb-16 pt-24"
         style={{ backgroundColor: 'var(--page-metodologia-bg)', color: 'var(--page-metodologia-text)' }}>
         <div className="max-container w-full flex flex-col gap-8">
-          <p className="label opacity-50">Del conocimiento al mercado.</p>
           <h1 className="text-display" style={{ color: 'var(--page-metodologia-text)' }}>
             El sistema empieza antes de producir.
           </h1>

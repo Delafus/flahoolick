@@ -98,40 +98,21 @@ export default function SobreFlahoolick() {
         className="page-px section-py"
         style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
       >
-        <div className="max-container flex flex-col gap-16">
+        <div className="max-container">
 
-          {/* Header estilo Bud Caddell */}
-          <div className="flex flex-col gap-2">
-            <p style={{
-              fontFamily: 'var(--font-display)',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-              lineHeight: 1.2,
-            }}>
-              Conoce a nuestro founder
-            </p>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(3.5rem, 7vw, 9rem)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.02em',
-            }}>
-              Felipe de la Fuente
-            </h2>
-            <p className="label" style={{ opacity: 0.5, marginTop: '1rem' }}>Founder & Director Creativo</p>
-          </div>
+          {/* Desktop: split foto | divisor | texto — igual que los headers */}
+          <div className="hidden md:grid items-start gap-0"
+            style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
 
-          {/* Foto + bio */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div className="md:col-span-4">
-              <div className="relative overflow-hidden" style={{ aspectRatio: '3/4', maxWidth: '320px' }}>
+            {/* Foto izquierda */}
+            <div style={{ paddingRight: '3rem' }}>
+              <div style={{ aspectRatio: '3/4', maxWidth: '100%', overflow: 'hidden' }}>
                 <Image
                   src="/foto-felipe.png"
                   alt="Felipe de la Fuente"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%)' }}
+                  width={500}
+                  height={667}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%)', display: 'block' }}
                 />
               </div>
               <div className="mt-4">
@@ -142,25 +123,56 @@ export default function SobreFlahoolick() {
               </div>
             </div>
 
-            <div className="md:col-span-8 flex flex-col gap-6">
-              <p className="text-lead opacity-75">
-                Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.
-              </p>
-              <p className="text-lead opacity-75">
-                Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.
-              </p>
-              <p className="text-lead opacity-75">
-                El problema se vuelve especialmente serio en empresas B2B. Sus soluciones requieren contexto. Sus ventas tardan meses. Sus compradores necesitan comprender, confiar y recordar. Durante ese tiempo, muchas compañías publican piezas aisladas, repiten mensajes genéricos y vuelven a empezar con cada campaña. Así se pierde conocimiento, consistencia y autoridad.
-              </p>
-              <p className="text-lead opacity-75">
-                Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación. Unimos estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.
-              </p>
-              <p className="text-lead opacity-75">
-                Usamos inteligencia artificial para investigar, minar y modelar información a escala. El criterio estratégico, el relato y la redacción final dependen de juicio humano senior.
-              </p>
-              <p className="text-lead opacity-75">
-                Flahoolick nace de toda esa experiencia acumulada. De haber visto cómo trabajan las agencias, los medios, los equipos comerciales y las grandes organizaciones. De entender dónde se corta el hilo. Y de saber cómo convertir conocimiento complejo en presencia de marca, autoridad de mercado y herramientas concretas para vender.
-              </p>
+            {/* Divisor vertical */}
+            <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', width: '1px', alignSelf: 'stretch' }} />
+
+            {/* Texto derecha */}
+            <div className="flex flex-col gap-8" style={{ paddingLeft: '3rem' }}>
+              {/* Header estilo Bud Caddell */}
+              <div className="flex flex-col gap-2">
+                <p style={{
+                  fontFamily: 'var(--font-display)',
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  fontSize: 'clamp(1.2rem, 2vw, 2rem)',
+                  lineHeight: 1.2,
+                }}>
+                  Conoce a nuestro founder
+                </p>
+                <h2 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 400,
+                  fontSize: 'clamp(2.5rem, 5vw, 7rem)',
+                  lineHeight: 1.0,
+                  letterSpacing: '-0.02em',
+                }}>
+                  Felipe de la Fuente
+                </h2>
+                <p className="label" style={{ opacity: 0.5 }}>Founder & Director Creativo</p>
+              </div>
+
+              {/* Bio */}
+              <div className="flex flex-col gap-5">
+                <p className="text-lead opacity-75">
+                  Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.
+                </p>
+                <p className="text-lead opacity-75">
+                  Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.
+                </p>
+                <p className="text-lead opacity-75">
+                  El problema se vuelve especialmente serio en empresas B2B. Sus soluciones requieren contexto. Sus ventas tardan meses. Sus compradores necesitan comprender, confiar y recordar. Durante ese tiempo, muchas compañías publican piezas aisladas, repiten mensajes genéricos y vuelven a empezar con cada campaña. Así se pierde conocimiento, consistencia y autoridad.
+                </p>
+                <p className="text-lead opacity-75">
+                  Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación. Unimos estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.
+                </p>
+                <p className="text-lead opacity-75">
+                  Usamos inteligencia artificial para investigar, minar y modelar información a escala. El criterio estratégico, el relato y la redacción final dependen de juicio humano senior.
+                </p>
+                <p className="text-lead opacity-75">
+                  Flahoolick nace de toda esa experiencia acumulada. De haber visto cómo trabajan las agencias, los medios, los equipos comerciales y las grandes organizaciones. De entender dónde se corta el hilo. Y de saber cómo convertir conocimiento complejo en presencia de marca, autoridad de mercado y herramientas concretas para vender.
+                </p>
+              </div>
+
               <Link href="/jerga"
                 className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
                 style={{ color: 'var(--section-body-text)', borderColor: 'var(--section-body-text)' }}>
@@ -168,6 +180,33 @@ export default function SobreFlahoolick() {
               </Link>
             </div>
           </div>
+
+          {/* Mobile: stack */}
+          <div className="flex flex-col gap-8 md:hidden">
+            <div style={{ aspectRatio: '3/4', maxWidth: '280px', overflow: 'hidden' }}>
+              <Image src="/foto-felipe.png" alt="Felipe de la Fuente" width={280} height={373}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%)' }} />
+            </div>
+            <div className="flex flex-col gap-2">
+              <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '1.3rem', lineHeight: 1.2 }}>Conoce a nuestro founder</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.0, letterSpacing: '-0.02em' }}>
+                Felipe de la Fuente
+              </h2>
+              <p className="label" style={{ opacity: 0.5 }}>Founder & Director Creativo</p>
+            </div>
+            <div className="flex flex-col gap-5">
+              {[
+                'Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.',
+                'Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.',
+                'Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación.',
+              ].map((p, i) => (
+                <p key={i} className="text-lead opacity-75">{p}</p>
+              ))}
+            </div>
+            <Link href="https://linkedin.com/in/felipedelafuente" target="_blank" rel="noopener noreferrer"
+              className="label opacity-40 hover:opacity-80 transition-opacity">LinkedIn →</Link>
+          </div>
+
         </div>
       </section>
 

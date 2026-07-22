@@ -19,7 +19,7 @@ export default function EstudioCreativo() {
     <>
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
-        eyebrow="La producción que construye presencia."
+        tagline="La producción que construye presencia."
         headline="Estudio Creativo"
         description="La estrategia y el sistema definen qué decir. El Estudio Creativo lo produce. Es la capacidad de producción dedicada de Flahoolick — opera sobre la estrategia, conoce el mercado y entiende el ciclo de decisión del comprador de tu empresa."
         heroBg="var(--page-capacidades-bg)"

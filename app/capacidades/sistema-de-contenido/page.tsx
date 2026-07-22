@@ -19,7 +19,7 @@ export default function SistemaContenido() {
     <>
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
-        eyebrow="Presencia que se acumula."
+        tagline="Presencia que se acumula."
         headline="Sistema de Contenido"
         description="El contenido que no tiene sistema no acumula. Cada mes se empieza desde cero, el equipo improvisa temas y el mercado recibe señales inconsistentes. El Sistema de Contenido convierte el relato de tu empresa en un flujo continuo, gobernado y medible."
         heroBg="var(--page-capacidades-bg)"

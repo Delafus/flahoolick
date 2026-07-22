@@ -13,7 +13,7 @@ export default function ComoIA() {
   return (
     <>
       <PageColorSetter bg="#F5FD92" text="#000000" />
-      <PageLayout eyebrow="IA para capturar y modelar. Criterio para decidir." headline="Cómo trabajamos con IA"
+      <PageLayout tagline="IA para capturar y modelar. Criterio para decidir." headline="Cómo trabajamos con IA"
         description="La inteligencia artificial procesa volúmenes de información que ningún equipo puede manejar manualmente. Flahoolick usa IA para capturar y modelar ese conocimiento a escala. El criterio editorial, la estrategia y la decisión de qué merece circular los define siempre el equipo senior."
         heroBg="var(--page-metodologia-bg)" heroText="var(--page-metodologia-text)">
         <BodySection title="Cómo lo hacemos"><HowList items={items} /></BodySection>

@@ -2,10 +2,10 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, CrossLinks } from '@/components/page-layout'
 import Link from 'next/link'
+import { ContactForm } from '@/components/contact-form'
 
 export const metadata: Metadata = {
   title: 'Capacidades — Flahoolick',
-  description: 'Tres frentes para construir autoridad de mercado.',
 }
 
 const caps = [
@@ -21,12 +21,12 @@ export default function Capacidades() {
     <>
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
-        eyebrow="Tres frentes. Un sistema."
         headline="SENIOR DRIVEN SKILLS"
-        heroBg="var(--page-capacidades-bg)"
-        heroText="var(--page-capacidades-text)"
+        tagline="DELIVERING THE KNOWLEDGE"
+        description="El conocimiento técnico de una empresa raramente llega al mercado en la forma que debería. Trabajamos en tres frentes para convertirlo en presencia real antes de la decisión de compra."
+        heroBg="#F09DB6"
+        heroText="#000000"
       >
-        {/* Capacidades grid */}
         <BodySection title="Qué hacemos">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.1)' }}>
             {caps.map(c => (
@@ -41,7 +41,6 @@ export default function Capacidades() {
           </div>
         </BodySection>
 
-        {/* Industrias */}
         <BodySection title="Industrias a las que servimos">
           <div className="flex flex-wrap gap-3">
             {industries.map(i => (
@@ -51,23 +50,19 @@ export default function Capacidades() {
           </div>
         </BodySection>
 
-        {/* Puente a Metodología */}
         <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="flex flex-col gap-6">
-              <p className="label opacity-40">Metodología</p>
-              <h2 className="text-headline font-light">El sistema empieza antes de producir.</h2>
-              <p className="text-lg font-light opacity-60 leading-relaxed">
-                Antes de activar cualquiera de estas tres capacidades, capturamos lo que tu empresa ya sabe.
-              </p>
-              <Link href="/metodologia" className="label opacity-50 hover:opacity-100 transition-opacity">
-                Explorar Metodología →
-              </Link>
-            </div>
+          <div className="flex flex-col gap-6 max-w-xl">
+            <p className="label opacity-40">Metodología</p>
+            <h2 className="text-headline font-light">El sistema empieza antes de producir.</h2>
+            <p className="text-lg font-light opacity-60 leading-relaxed">
+              Antes de activar cualquiera de estas capacidades, capturamos lo que tu empresa ya sabe.
+            </p>
+            <Link href="/metodologia" className="label opacity-50 hover:opacity-100 transition-opacity">
+              Explorar Metodología →
+            </Link>
           </div>
         </BodySection>
 
-        {/* SENSOR y DECK */}
         <BodySection title="Las herramientas que lo hacen posible">
           <CrossLinks links={[
             { title: 'SENSOR', desc: 'Captura y procesa el conocimiento técnico y comercial de tu empresa.', href: '/sensor' },

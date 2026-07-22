@@ -19,7 +19,7 @@ export default function EstrategiaRelato() {
     <>
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
-        eyebrow="El relato primero."
+        tagline="El relato primero."
         headline="Estrategia y Relato"
         description="Tu empresa tiene una ventaja real. El mercado no la ve porque nadie la ha traducido a un relato que permanezca. Estrategia y Relato define lo que tu empresa representa para el mercado que importa — antes de producir una sola pieza."
         heroBg="var(--page-capacidades-bg)"

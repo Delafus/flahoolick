@@ -13,7 +13,7 @@ export default function ComoFunciona() {
   return (
     <>
       <PageColorSetter bg="#F5FD92" text="#000000" />
-      <PageLayout eyebrow="Cuatro capas. Un ciclo continuo." headline="Cómo funciona el sistema"
+      <PageLayout tagline="Cuatro capas. Un ciclo continuo." headline="Cómo funciona el sistema"
         description="El sistema no empieza con una hoja en blanco. Empieza con lo que tu empresa ya sabe. Capturamos esas señales, las modelamos con criterio, producimos activos de autoridad y medimos la respuesta del mercado. Cada ciclo alimenta al siguiente."
         heroBg="var(--page-metodologia-bg)" heroText="var(--page-metodologia-text)">
         <BodySection title="Cómo funciona"><HowList items={items} /></BodySection>

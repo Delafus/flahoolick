@@ -12,15 +12,15 @@ import Link from 'next/link'
 const SCROLLS = [
   {
     h1: 'Tu empresa sabe demasiado para comunicar como cualquiera.',
-    sub: 'Gran parte de ese conocimiento nunca llega al mercado.',
+    sub: 'Gran parte de ese conocimiento queda atrapado.',
   },
   {
-    h1: 'El 95% de tu mercado no está buscando nada hoy.',
-    sub: 'Cuando decida comprar, recordará a quien estuvo presente.',
+    h1: 'Solo el 5% de tu mercado está listo para comprar hoy.',
+    sub: 'El 95% restante está formando opinión.',
   },
   {
     h1: 'Tu ventaja competitiva ya existe.',
-    sub: 'El sistema que la pone en circulación, todavía no.',
+    sub: 'Necesita un sistema que la ponga en circulación.',
   },
 ]
 

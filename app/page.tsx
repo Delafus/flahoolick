@@ -67,7 +67,7 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section
         className="flex flex-col items-center text-center"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingTop: '300px', paddingBottom: '300px' }}
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingTop: '300px', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
@@ -110,7 +110,7 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 2: Con quién trabajamos, centrado */}
       <section
         className="flex flex-col items-center justify-center text-center"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', minHeight: '50vh', padding: '6rem var(--page-px)' }}
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', minHeight: '40vh', padding: '4rem var(--page-px)' }}
       >
         {/* Divisoria con aire */}
         <div style={{ width: '100%', maxWidth: '80rem', marginBottom: '3rem' }}>

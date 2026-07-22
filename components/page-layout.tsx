@@ -42,7 +42,7 @@ export function PageLayout({
               <h1 style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 400,
-                fontSize: 'clamp(3.5rem, 14vw, 12rem)',
+                fontSize: 'clamp(3.5rem, 10vw, 11rem)',
                 lineHeight: 1.0,
                 letterSpacing: '-0.02em',
                 color: heroText,
@@ -86,7 +86,7 @@ export function PageLayout({
               <h1 style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 400,
-                fontSize: 'clamp(4rem, 13vw, 20rem)',
+                fontSize: 'clamp(3.5rem, 8vw, 11rem)',
                 lineHeight: 1.0,
                 letterSpacing: '-0.025em',
                 color: heroText,

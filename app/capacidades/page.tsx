@@ -22,7 +22,7 @@ export default function Capacidades() {
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
         eyebrow="Tres frentes. Un sistema."
-        headline="El conocimiento atrapado no vende."
+        headline="SENIOR DRIVEN SKILLS"
         heroBg="var(--page-capacidades-bg)"
         heroText="var(--page-capacidades-text)"
       >

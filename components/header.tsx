@@ -63,7 +63,7 @@ export function Header() {
       <div className="flex items-center justify-between page-px" style={{ height: '64px', color: text }}>
 
         {/* Left nav */}
-        <nav className="hidden md:flex items-center gap-10" onMouseLeave={() => setActive(null)}>
+        <nav className="hidden md:flex items-center gap-10">
           <Link href="/capacidades"
             className="label hover:opacity-60 transition-opacity"
             style={{ color: text, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}

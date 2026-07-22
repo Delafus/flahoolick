@@ -148,7 +148,7 @@ export default function SobreFlahoolick() {
                 }}>
                   Felipe de la Fuente
                 </h2>
-                <p className="label" style={{ opacity: 0.5 }}>Founder & Director Creativo</p>
+                <p className="label" style={{ opacity: 0.5 }}>Founder & CEO</p>
               </div>
 
               {/* Bio */}
@@ -192,7 +192,7 @@ export default function SobreFlahoolick() {
               <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.0, letterSpacing: '-0.02em' }}>
                 Felipe de la Fuente
               </h2>
-              <p className="label" style={{ opacity: 0.5 }}>Founder & Director Creativo</p>
+              <p className="label" style={{ opacity: 0.5 }}>Founder & CEO</p>
             </div>
             <div className="flex flex-col gap-5">
               {[

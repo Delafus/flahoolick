@@ -93,14 +93,38 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
-      {/* Meet the Founder — fondo crema */}
+      {/* Meet the Founder */}
       <section
         className="page-px section-py"
         style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
       >
-        <div className="max-container">
+        <div className="max-container flex flex-col gap-16">
+
+          {/* Header estilo Bud Caddell */}
+          <div className="flex flex-col gap-2">
+            <p style={{
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              lineHeight: 1.2,
+            }}>
+              Conoce a nuestro founder
+            </p>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 400,
+              fontSize: 'clamp(3.5rem, 7vw, 9rem)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
+            }}>
+              Felipe de la Fuente
+            </h2>
+            <p className="label" style={{ opacity: 0.5, marginTop: '1rem' }}>Founder & Director Creativo</p>
+          </div>
+
+          {/* Foto + bio */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            {/* Foto */}
             <div className="md:col-span-4">
               <div className="relative overflow-hidden" style={{ aspectRatio: '3/4', maxWidth: '320px' }}>
                 <Image
@@ -111,44 +135,35 @@ export default function SobreFlahoolick() {
                 />
               </div>
               <div className="mt-4">
-                <Link
-                  href="https://linkedin.com/in/felipedelafuente"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="label opacity-40 hover:opacity-80 transition-opacity"
-                >
+                <Link href="https://linkedin.com/in/felipedelafuente" target="_blank" rel="noopener noreferrer"
+                  className="label opacity-40 hover:opacity-80 transition-opacity">
                   LinkedIn →
                 </Link>
               </div>
             </div>
 
-            {/* Texto */}
-            <div className="md:col-span-8 flex flex-col gap-8">
-              <div>
-                <p className="label opacity-40 mb-3">El Fundador</p>
-                <h2 className="text-headline">Felipe de la Fuente</h2>
-                <p className="label opacity-50 mt-2">Founder & Director Creativo</p>
-              </div>
-              <div className="flex flex-col gap-6">
-                <p className="text-lead opacity-75">
-                  Felipe de la Fuente lleva más de 25 años en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse — y llegó ahí por la puerta que nadie usaba.
-                </p>
-                <p className="text-lead opacity-75">
-                  En 1998, cuando lo digital significaba programar en Actionscript para Macromedia Flash, comenzó en Merlin Interactive Systems. Desde ahí construyó una trayectoria que lo llevó por McCann MRM, Multinet, Grey y BBDO — acumulando una visión de cómo las organizaciones grandes producen comunicación y dónde pierden el hilo. En 2015 llegó a Grupo Copesa, donde fundó el Laboratorio de Contenidos de Marca de La Tercera. Ahí descubrió algo que ninguna agencia le había mostrado con esa claridad: las empresas no necesitaban solo branded content. Necesitaban un sistema capaz de convertir lo que sabían en algo que el mercado pudiera recordar.
-                </p>
-                <p className="text-lead opacity-75">
-                  El mismo patrón se repetía en cada organización que pasaba por el laboratorio. Las empresas con mayor conocimiento técnico tenían las mayores dificultades para comunicarlo. Sus mejores ideas vivían en la cabeza de sus especialistas, en propuestas que el mercado nunca leía, en documentos que acumulaban polvo en carpetas compartidas. Cada área producía piezas por separado. Cada campaña empezaba desde cero.
-                </p>
-                <p className="text-lead opacity-75">
-                  En empresas B2B el problema era estructural. Sus decisiones de compra tardaban meses. Sus audiencias necesitaban comprender antes de confiar. Y el mercado recordaría, llegado el momento de comprar, a quienes habían estado presentes antes de que hubiera una razón para buscar.
-                </p>
-                <p className="text-lead opacity-75">Esa brecha se convirtió en su obsesión. Y en Flahoolick.</p>
-              </div>
-              <Link
-                href="/jerga"
+            <div className="md:col-span-8 flex flex-col gap-6">
+              <p className="text-lead opacity-75">
+                Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.
+              </p>
+              <p className="text-lead opacity-75">
+                Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.
+              </p>
+              <p className="text-lead opacity-75">
+                El problema se vuelve especialmente serio en empresas B2B. Sus soluciones requieren contexto. Sus ventas tardan meses. Sus compradores necesitan comprender, confiar y recordar. Durante ese tiempo, muchas compañías publican piezas aisladas, repiten mensajes genéricos y vuelven a empezar con cada campaña. Así se pierde conocimiento, consistencia y autoridad.
+              </p>
+              <p className="text-lead opacity-75">
+                Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación. Unimos estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.
+              </p>
+              <p className="text-lead opacity-75">
+                Usamos inteligencia artificial para investigar, minar y modelar información a escala. El criterio estratégico, el relato y la redacción final dependen de juicio humano senior.
+              </p>
+              <p className="text-lead opacity-75">
+                Flahoolick nace de toda esa experiencia acumulada. De haber visto cómo trabajan las agencias, los medios, los equipos comerciales y las grandes organizaciones. De entender dónde se corta el hilo. Y de saber cómo convertir conocimiento complejo en presencia de marca, autoridad de mercado y herramientas concretas para vender.
+              </p>
+              <Link href="/jerga"
                 className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
-                style={{ color: 'var(--section-body-text)', borderColor: 'var(--section-body-text)' }}
-              >
+                style={{ color: 'var(--section-body-text)', borderColor: 'var(--section-body-text)' }}>
                 Leer JERGA →
               </Link>
             </div>

@@ -163,8 +163,8 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
       <div className="col-span-4 flex flex-col justify-between gap-12">
         <p className="text-2xl font-light leading-snug" style={{ color: textColor }}>{menu.tagline}</p>
         <Link href={menu.ctaHref} onClick={onClose}
-          className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
-          style={{ color: textColor, borderColor: textColor }}>
+          className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
+          style={{ backgroundColor: '#ffffff', color: '#000000', borderRadius: '2px' }}>
           {menu.ctaLabel} →
         </Link>
       </div>

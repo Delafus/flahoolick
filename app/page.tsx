@@ -64,7 +64,7 @@ export default function HomePage() {
         </section>
       ))}
 
-      {/* MÓDULO SOMOS FLAHOOLICK — todo rosa */}
+      {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section
         className="flex flex-col items-center text-center"
         style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingTop: '300px', paddingBottom: '300px' }}
@@ -101,32 +101,33 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6', marginBottom: '5rem' }}
+          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>
+      </section>
 
+      {/* MÓDULO SOMOS FLAHOOLICK — bloque 2: Con quién trabajamos, centrado */}
+      <section
+        className="flex flex-col items-center justify-center text-center"
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', minHeight: '50vh', padding: '6rem var(--page-px)' }}
+      >
         {/* Divisoria con aire */}
-        <div style={{ width: '100%', padding: '0 4rem', marginBottom: '3rem' }}>
+        <div style={{ width: '100%', maxWidth: '80rem', marginBottom: '3rem' }}>
           <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
-        {/* Con quién trabajamos */}
         <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem' }}>Con quién trabajamos</p>
 
-        {/* Tags industries */}
-        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
+        <div style={{ maxWidth: '80rem', width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
             'Tecnología', 'Servicios financieros', 'Ingeniería industrial',
             'Energía', 'Minería', 'Infraestructura', 'Logística', 'Salud',
             'Educación', 'Activos inmobiliarios', 'Manufactura',
             'Servicios profesionales', 'Sector público'
           ].map(tag => (
-            <span
-              key={tag}
-              className="text-sm px-3 py-1.5"
-              style={{ border: '1px solid #3B0B2C', color: '#3B0B2C', opacity: 0.7, borderRadius: '4px' }}
-            >
+            <span key={tag} className="text-sm px-3 py-1.5"
+              style={{ border: '1px solid #3B0B2C', color: '#3B0B2C', opacity: 0.7, borderRadius: '4px' }}>
               {tag}
             </span>
           ))}

@@ -29,17 +29,17 @@ const acordeonItems = [
 const footerCols = [
   {
     titulo: 'NUESTRO PROCESO',
-    desc: 'Capturamos señales, interpretamos patrones, activamos contenido y aprendemos con el mercado.',
+    desc: 'Capturamos lo que tu empresa ya sabe, lo estructuramos con criterio editorial y lo convertimos en presencia continua. Cuatro capas que trabajan en ciclo: señales, conocimiento, producción y aprendizaje.',
     href: '/metodologia/como-funciona-el-sistema',
   },
   {
     titulo: 'CÓMO MEDIMOS',
-    desc: 'Seguimos temas, preguntas, objeciones, tracción editorial y uso comercial.',
+    desc: 'Seguimos temas, preguntas y objeciones que emergen en el ciclo comercial. Medimos tracción editorial, uso interno y visibilidad en plataformas de IA para calibrar cada ciclo siguiente.',
     href: '/metodologia/como-aprendemos',
   },
   {
     titulo: 'LA DIFERENCIA',
-    desc: 'El punto de partida es una pregunta: qué sabe tu empresa que tu audiencia necesita entender.',
+    desc: 'El punto de partida es una pregunta: qué sabe tu empresa que tu audiencia necesita entender. Esa respuesta, bien construida, es lo que separa la autoridad del ruido en mercados B2B complejos.',
     href: '/metodologia/como-trabajamos-con-ia',
   },
 ]
@@ -155,13 +155,11 @@ export function ModuloCapacidadesMetodologia() {
       <section className="page-px section-py">
         <div className="max-container">
 
-          {/* Grid responsive: mobile 1 col, desktop 8fr 4fr */}
-          <div className="flex flex-col md:grid gap-8 md:gap-12 items-start"
-            style={{ '--md-cols': '8fr 4fr' } as React.CSSProperties}>
-            <style>{`@media (min-width: 768px) { .met-grid { grid-template-columns: 8fr 4fr; display: grid; } }`}</style>
-            <div className="met-grid w-full flex flex-col gap-8 md:contents">
+          {/* Grid: columna izquierda larga + columna derecha sticky */}
+          <div className="hidden md:grid gap-12 items-start"
+            style={{ gridTemplateColumns: '10fr 3fr' }}>
 
-            {/* Columna izquierda — texto */}
+            {/* Columna izquierda — scrollea libremente */}
             <div className="flex flex-col gap-8">
               <h2 style={{
                 fontFamily: 'Georgia, serif',
@@ -187,57 +185,98 @@ export function ModuloCapacidadesMetodologia() {
                   EXPLORAR METODOLOGÍA ›
                 </Link>
               </div>
+
+              {/* Tres cajitas — dentro de la columna izquierda, tras el contenido */}
+              <div style={{ borderTop: `1px solid rgba(255,255,255,0.2)`, marginTop: '3rem', paddingTop: '3rem' }}>
+                <div className="grid grid-cols-3 gap-8">
+                  {footerCols.map((col, i) => (
+                    <div key={i} className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <ShieldIcon />
+                        <p style={{ fontSize: '0.9rem', fontWeight: 700, color: BLANCO, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                          {col.titulo}
+                        </p>
+                      </div>
+                      <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
+                      <Link href={col.href}
+                        className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
+                        style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                        CONOCE MÁS ›
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Columna derecha — cards */}
-            <div className="flex flex-col gap-0 mt-8 md:mt-0"
-              style={{ borderLeft: 'none', paddingLeft: 0 }}>
-              <div className="hidden md:block" style={{ borderLeft: `1px solid rgba(255,255,255,0.2)`, paddingLeft: '2rem' }}>
-                {tarjetasJerga.map((card, i) => (
-                  <div key={i}>
-                    <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
-                      <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
-                      <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
-                      <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
-                    </Link>
-                    {i === 0 && <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />}
-                  </div>
-                ))}
-              </div>
-              <div className="md:hidden flex flex-col gap-6">
-                {tarjetasJerga.map((card, i) => (
-                  <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
+            {/* Columna derecha — sticky */}
+            <div style={{
+              position: 'sticky',
+              top: '80px',
+              alignSelf: 'start',
+              borderLeft: `1px solid rgba(255,255,255,0.2)`,
+              paddingLeft: '2rem',
+            }}>
+              {tarjetasJerga.map((card, i) => (
+                <div key={i}>
+                  <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
                     <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
                     <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
                     <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
                   </Link>
-                ))}
-              </div>
-            </div>
+                  {i === 0 && <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Divisoria blanca */}
-          <hr style={{ borderColor: BLANCO, borderTopWidth: '1px', opacity: 0.2, marginTop: '5rem' }} />
-
-          {/* Tres columnas footer */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
-            {footerCols.map((col, i) => (
-              <div key={i} className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <ShieldIcon />
-                  <p style={{ fontSize: '1.1rem', fontWeight: 700, color: BLANCO, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                    {col.titulo}
-                  </p>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
-                <Link href={col.href}
-                  className="label inline-flex items-center gap-1 px-5 py-2.5 w-fit hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
-                  CONOCE MÁS ›
-                </Link>
-              </div>
+          {/* Mobile: stack vertical */}
+          <div className="flex flex-col gap-8 md:hidden">
+            <h2 style={{
+              fontFamily: 'Georgia, serif',
+              fontStyle: 'italic',
+              fontSize: 'clamp(3rem, 10vw, 8rem)',
+              lineHeight: 0.92,
+              letterSpacing: '-0.03em',
+              color: BLANCO,
+              fontWeight: 400,
+            }}>
+              Metodología
+            </h2>
+            <div className="flex flex-col gap-5">
+              <p className="label" style={{ color: ROSA }}>El mercado forma opinión en silencio</p>
+              <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
+                La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
+              </p>
+              <Link href="/metodologia"
+                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                EXPLORAR METODOLOGÍA ›
+              </Link>
+            </div>
+            {tarjetasJerga.map((card, i) => (
+              <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
+                <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+                <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
+                <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+              </Link>
             ))}
+            <div style={{ borderTop: `1px solid rgba(255,255,255,0.2)`, paddingTop: '2rem' }}>
+              {footerCols.map((col, i) => (
+                <div key={i} className="flex flex-col gap-3 mb-8">
+                  <div className="flex items-center gap-2">
+                    <ShieldIcon />
+                    <p style={{ fontSize: '0.9rem', fontWeight: 700, color: BLANCO, textTransform: 'uppercase' }}>{col.titulo}</p>
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
+                  <Link href={col.href}
+                    className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
+                    style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                    CONOCE MÁS ›
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

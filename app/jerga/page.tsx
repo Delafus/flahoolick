@@ -1,296 +1,202 @@
 import { Metadata } from 'next'
-import { PageColorSetter } from '@/components/page-color-setter'
 import Link from 'next/link'
+import Image from 'next/image'
+import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
+import {
+  CATEGORIAS, todas, porTipo, destacada, categoria,
+  conteoPorCategoria, fechaLegible, ETIQUETA_TIPO, CTA_TIPO,
+} from '@/content/jerga'
 
 export const metadata: Metadata = {
   title: 'JERGA — Flahoolick',
   description: 'Estrategia de contenido, marketing B2B y autoridad de mercado. Lo que importa, dicho como hay que decirlo.',
 }
 
-const categorias = [
-  'Estrategia B2B',
-  'Disponibilidad Mental',
-  'Marketing de Contenido',
-  'El Criterio',
-  'Sistemas de Contenido',
-  'Ciclo de Compra',
-]
-
-const guias = [
-  {
-    num: '01',
-    categoria: 'Estrategia B2B',
-    titulo: 'Por qué el 95% de tu mercado no te está mirando hoy',
-    href: '/el-criterio/95-5',
-  },
-  {
-    num: '02',
-    categoria: 'Disponibilidad Mental',
-    titulo: 'La diferencia entre publicar contenido y construir disponibilidad mental',
-    href: '#',
-  },
-  {
-    num: '03',
-    categoria: 'Sistemas de Contenido',
-    titulo: 'Cómo construir un sistema de contenido que aprende con cada ciclo',
-    href: '#',
-  },
-]
-
-const destacado = {
-  categoria: 'El Criterio',
-  titulo: 'That is not your decision.',
-  bajada: 'Cuando le das clic a publicar, hay una suposición que nunca se dice en voz alta: que producir y llegar son la misma cosa. El mercado responde como Ragnar Lothbrok. Todos los días. A todas las marcas. Sin excepción.',
-  href: '/el-criterio/that-is-not-your-decision',
-}
-
-const tendencias = [
-  {
-    categoria: 'Estrategia B2B',
-    titulo: 'Los Category Entry Points: cómo tu comprador decide antes de buscar',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-  {
-    categoria: 'Marketing de Contenido',
-    titulo: 'Por qué el contenido genérico es la peor inversión de marketing B2B',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-  {
-    categoria: 'El Criterio',
-    titulo: 'Mark Ritson tenía razón: bothism no es cobardía, es rigor',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-  {
-    categoria: 'Disponibilidad Mental',
-    titulo: 'Qué pasa cuando una empresa B2B le habla al 5% y olvida al 95%',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-  {
-    categoria: 'Ciclo de Compra',
-    titulo: 'Cómo Byron Sharp cambió lo que sabemos sobre el crecimiento de marcas',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-  {
-    categoria: 'Sistemas de Contenido',
-    titulo: 'El banco de evidencia: cómo el conocimiento de tu empresa se convierte en activo',
-    bajada: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    href: '#',
-  },
-]
-
-const todosLosArticulos = [
-  { categoria: 'El Criterio', titulo: 'Por qué el 95% de tu mercado no te está mirando hoy', href: '/el-criterio/95-5' },
-  { categoria: 'El Criterio', titulo: 'That is not your decision.', href: '/el-criterio/that-is-not-your-decision' },
-  { categoria: 'Estrategia B2B', titulo: 'Los Category Entry Points: cómo tu comprador decide antes de buscar', href: '#' },
-  { categoria: 'Marketing de Contenido', titulo: 'Por qué el contenido genérico es la peor inversión de marketing B2B', href: '#' },
-  { categoria: 'El Criterio', titulo: 'Mark Ritson tenía razón: bothism no es cobardía, es rigor', href: '#' },
-  { categoria: 'Disponibilidad Mental', titulo: 'Qué pasa cuando una empresa B2B le habla al 5% y olvida al 95%', href: '#' },
-  { categoria: 'Ciclo de Compra', titulo: 'Cómo Byron Sharp cambió lo que sabemos sobre el crecimiento de marcas', href: '#' },
-  { categoria: 'Sistemas de Contenido', titulo: 'El banco de evidencia: cómo el conocimiento de tu empresa se convierte en activo', href: '#' },
-  { categoria: 'Estrategia B2B', titulo: 'La regla de Ritson que nadie aplica en B2B latinoamericano', href: '#' },
-  { categoria: 'Disponibilidad Mental', titulo: 'Howard Gossage lo dijo en 1965: la atención no se captura, se merece', href: '#' },
-]
-
-// Imagen placeholder component
-function ImgPlaceholder({ aspect = '16/9' }: { aspect?: string }) {
-  return (
-    <div
-      style={{
-        aspectRatio: aspect,
-        backgroundColor: 'rgba(0,0,0,0.08)',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <span className="label opacity-20">Imagen</span>
-    </div>
-  )
-}
+const CHARTREUSE = '#F5FD92'
+const NEGRO = '#000000'
 
 export default function JergaPage() {
+  const featured = destacada()
+  const guias = porTipo('guia')
+  const todasLasPiezas = todas()
+  const recientes = todasLasPiezas.filter(p => p.slug !== featured?.slug).slice(0, 6)
+  const conteos = conteoPorCategoria()
+
   return (
     <>
-      <PageColorSetter bg="#F5FD92" text="#000000" />
+      <PageColorSetter bg={CHARTREUSE} text={NEGRO} />
 
-      {/* Hero — fondo chartreuse */}
-      <section
-        className="page-hero page-px"
-        style={{ backgroundColor: 'var(--page-metodologia-bg)', color: 'var(--page-metodologia-text)' }}
-      >
-        <div className="max-container w-full flex flex-col gap-8">
-          <p className="label opacity-50">Flahoolick</p>
-          <h1 className="text-hero" style={{ color: 'var(--page-metodologia-text)' }}>JERGA</h1>
-          <p className="text-lead max-w-xl opacity-70">
-            Lo que importa sobre estrategia B2B, marketing de contenido y autoridad de mercado — dicho como hay que decirlo.
-          </p>
-
-          {/* Categorías */}
-          <div className="flex flex-wrap gap-3 mt-4">
-            {categorias.map(cat => (
-              <span
-                key={cat}
-                className="label px-4 py-2 cursor-pointer hover:opacity-60 transition-opacity"
-                style={{ border: '1px solid rgba(0,0,0,0.2)', color: 'var(--page-metodologia-text)' }}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Guías destacadas */}
-      <section
-        className="page-px section-py"
-        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
-      >
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-headline">Lecturas esenciales</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.08)' }}>
-            {guias.map(g => (
-              <Link
-                key={g.num}
-                href={g.href}
-                className={`flex flex-col gap-6 p-10 group ${g.href === '#' ? 'pointer-events-none' : ''}`}
-                style={{ backgroundColor: 'var(--section-body-bg)' }}
-              >
-                <div className="flex flex-col gap-4">
-                  <span className="text-display font-display opacity-10">{g.num}</span>
-                  <p className="label opacity-40">{g.categoria}</p>
-                  <h3 className="text-xl font-semibold leading-snug group-hover:opacity-60 transition-opacity">
-                    {g.titulo}
-                  </h3>
-                </div>
-                {g.href !== '#' && (
-                  <span className="label opacity-30 group-hover:opacity-70 transition-opacity mt-auto">
-                    Leer →
-                  </span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Artículo destacado */}
-      <section
-        className="page-px py-0"
-        style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}
-      >
+      {/* ── Cabecera del medio ── */}
+      <section className="page-px" style={{ backgroundColor: CHARTREUSE, color: NEGRO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            {/* Imagen */}
-            <div style={{ aspectRatio: '1/1', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span className="label opacity-20">Imagen destacada</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div>
+              <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}
+                style={{ width: 'clamp(220px, 26vw, 340px)', height: 'auto' }} priority />
             </div>
-            {/* Texto */}
-            <div className="flex flex-col justify-center gap-8 p-12">
-              <p className="label opacity-40">Artículo destacado</p>
-              <p className="label opacity-50">{destacado.categoria}</p>
-              <Link href={destacado.href}>
-                <h2 className="text-headline hover:opacity-60 transition-opacity">{destacado.titulo}</h2>
-              </Link>
-              <p className="text-lead opacity-60">{destacado.bajada}</p>
-              <Link
-                href={destacado.href}
-                className="label inline-flex items-center gap-2 border px-6 py-3 w-fit hover:opacity-60 transition-opacity"
-                style={{ borderColor: 'rgba(255,255,255,0.3)' }}
-              >
-                Leer artículo →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tendencias */}
-      <section
-        className="page-px section-py"
-        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
-      >
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-headline">Artículos recientes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {tendencias.map((art, i) => (
-              <div key={i} className="flex flex-col gap-4">
-                <ImgPlaceholder aspect="3/2" />
-                <div className="flex flex-col gap-3">
-                  <p className="label opacity-40">{art.categoria}</p>
-                  <Link href={art.href}>
-                    <h3 className="text-lg font-semibold leading-snug hover:opacity-60 transition-opacity">
-                      {art.titulo}
-                    </h3>
+            <div className="flex flex-col gap-8 md:pt-4">
+              <p style={{
+                fontFamily: 'var(--font-display)', fontStyle: 'italic',
+                fontSize: 'clamp(1.25rem, 2.1vw, 1.75rem)', lineHeight: 1.35,
+              }}>
+                Ideas, guías y puntos de vista para convertir conocimiento técnico en autoridad de mercado.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {CATEGORIAS.map(c => (
+                  <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
+                    className="label px-4 py-2 hover:opacity-60 transition-opacity"
+                    style={{ border: '1px solid rgba(0,0,0,0.25)', borderRadius: '2px' }}>
+                    {c.nombre}
                   </Link>
-                  <p className="text-sm leading-relaxed opacity-55">{art.bajada}</p>
-                  {art.href !== '#' && (
-                    <Link href={art.href} className="label opacity-30 hover:opacity-70 transition-opacity">
-                      Leer →
-                    </Link>
-                  )}
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Por categoría */}
-      <section
-        className="page-px py-16"
-        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)', borderTop: '1px solid rgba(0,0,0,0.1)' }}
-      >
-        <div className="max-container flex flex-col gap-8">
-          <p className="label opacity-40">Explorar por categoría</p>
-          <div className="flex flex-wrap gap-3">
-            {categorias.map(cat => (
-              <span
-                key={cat}
-                className="text-sm px-5 py-2.5 hover:opacity-60 transition-opacity cursor-pointer"
-                style={{ border: '1px solid rgba(0,0,0,0.15)' }}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Todos los artículos */}
-      <section
-        className="page-px section-py"
-        style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}
-      >
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-headline">Todos los artículos</h2>
-          <div className="flex flex-col">
-            {todosLosArticulos.map((art, i) => (
-              <Link
-                key={i}
-                href={art.href}
-                className={`group grid grid-cols-1 md:grid-cols-12 gap-6 py-8 ${art.href === '#' ? 'pointer-events-none' : ''}`}
-                style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
-              >
-                <div className="md:col-span-3">
-                  <div style={{ aspectRatio: '3/2', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span className="label opacity-15">Imagen</span>
-                  </div>
+      {/* ── Destacada ── */}
+      {featured && (
+        <section style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
+          <div className="max-container page-px">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
+              <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span className="label" style={{ opacity: 0.2 }}>Imagen destacada</span>
+              </div>
+              <div className="flex flex-col justify-center gap-6 py-12 md:pl-16">
+                <p className="label" style={{ opacity: 0.4 }}>Destacado · {categoria(featured.categoria)?.nombre}</p>
+                <Link href={`/jerga/${featured.slug}`}>
+                  <h2 style={{
+                    fontFamily: 'var(--font-display)', fontWeight: 400,
+                    fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em',
+                  }} className="hover:opacity-60 transition-opacity">{featured.titulo}</h2>
+                </Link>
+                <p style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', lineHeight: 1.6, opacity: 0.65 }}>{featured.bajada}</p>
+                <div className="flex gap-6 label" style={{ opacity: 0.4 }}>
+                  <span>{featured.autor}</span>
+                  <span>{featured.lectura} min</span>
                 </div>
-                <div className="md:col-span-9 flex flex-col gap-3 justify-center">
-                  <p className="label opacity-35">{art.categoria}</p>
-                  <h3 className={`text-xl font-semibold leading-snug transition-opacity ${art.href !== '#' ? 'group-hover:opacity-60' : 'opacity-40'}`}>
-                    {art.titulo}
-                  </h3>
-                  {art.href !== '#' && (
-                    <span className="label opacity-25 group-hover:opacity-60 transition-opacity">Leer →</span>
-                  )}
+                <Link href={`/jerga/${featured.slug}`}
+                  className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
+                  style={{ backgroundColor: '#ffffff', color: NEGRO, borderRadius: '2px' }}>
+                  {CTA_TIPO[featured.tipo]}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Guías ── */}
+      {guias.length > 0 && (
+        <section className="page-px section-py" style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}>
+          <div className="max-container flex flex-col gap-12">
+            <div className="flex flex-col gap-3">
+              <h2 className="text-display">Guías</h2>
+              <p className="text-sm" style={{ opacity: 0.55, maxWidth: '520px' }}>
+                Documentos largos para leer completos. Pensados para llevar a una conversación de comité.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.12)' }}>
+              {guias.map(g => (
+                <Link key={g.slug} href={`/jerga/${g.slug}`}
+                  className="group flex flex-col gap-6 p-10"
+                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
+                  <span style={{
+                    fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                    lineHeight: 1, opacity: 0.18,
+                  }}>{String(g.orden ?? 0).padStart(2, '0')}</span>
+                  <div className="flex flex-col gap-3 flex-1">
+                    <p className="label" style={{ opacity: 0.4 }}>{categoria(g.categoria)?.nombre}</p>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)', fontWeight: 400,
+                      fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.15,
+                    }} className="group-hover:opacity-60 transition-opacity">{g.titulo}</h3>
+                    <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{g.bajada}</p>
+                  </div>
+                  <span className="label" style={{ opacity: 0.35 }}>{g.lectura} min · Leer guía →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Recientes ── */}
+      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+        <div className="max-container flex flex-col gap-12">
+          <h2 className="text-display">Lo último</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {recientes.map(p => (
+              <Link key={p.slug} href={`/jerga/${p.slug}`} className="group flex flex-col gap-4">
+                <div style={{ aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
+                </div>
+                <div className="flex items-center gap-4 label" style={{ opacity: 0.4 }}>
+                  <span>{ETIQUETA_TIPO[p.tipo]}</span>
+                  <span>{categoria(p.categoria)?.nombre}</span>
+                </div>
+                <h3 style={{
+                  fontFamily: 'var(--font-display)', fontWeight: 400,
+                  fontSize: 'clamp(1.25rem, 1.9vw, 1.625rem)', lineHeight: 1.15,
+                }} className="group-hover:opacity-60 transition-opacity">{p.titulo}</h3>
+                <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{p.bajada}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Explorar por categoría ── */}
+      <section className="page-px section-py" style={{ backgroundColor: CHARTREUSE, color: NEGRO }}>
+        <div className="max-container flex flex-col gap-12">
+          <h2 className="text-display">Explorar por categoría</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.15)' }}>
+            {conteos.map(({ categoria: c, total }) => (
+              <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
+                className="group flex flex-col gap-3 p-10"
+                style={{ backgroundColor: CHARTREUSE }}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)', fontWeight: 400,
+                    fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)', lineHeight: 1.1,
+                  }} className="group-hover:opacity-60 transition-opacity">{c.nombre}</h3>
+                  <span className="label shrink-0" style={{ opacity: 0.45 }}>{total}</span>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ opacity: 0.65, maxWidth: '420px' }}>{c.descripcion}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Archivo completo ── */}
+      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
+        <div className="max-container flex flex-col gap-12">
+          <div className="flex items-baseline gap-6">
+            <h2 className="text-display">Todo</h2>
+            <span className="label" style={{ opacity: 0.4 }}>{todasLasPiezas.length} publicaciones</span>
+          </div>
+          <div className="flex flex-col">
+            {todasLasPiezas.map(p => (
+              <Link key={p.slug} href={`/jerga/${p.slug}`}
+                className="group grid grid-cols-1 md:grid-cols-12 gap-6 py-7"
+                style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+                <div className="md:col-span-2 label flex items-center" style={{ opacity: 0.35 }}>
+                  {fechaLegible(p.fecha).replace(' de ' + p.fecha.slice(0, 4), '')}
+                </div>
+                <div className="md:col-span-2 label flex items-center" style={{ opacity: 0.35 }}>
+                  {categoria(p.categoria)?.nombre}
+                </div>
+                <div className="md:col-span-7 flex items-center">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)', fontWeight: 400,
+                    fontSize: 'clamp(1.125rem, 1.6vw, 1.5rem)', lineHeight: 1.2,
+                  }} className="group-hover:opacity-60 transition-opacity">{p.titulo}</h3>
+                </div>
+                <div className="md:col-span-1 label flex items-center justify-end" style={{ opacity: 0.3 }}>
+                  {p.lectura}′
                 </div>
               </Link>
             ))}

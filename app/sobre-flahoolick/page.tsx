@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Nacimos de una idea generosa. Consultora de estrategia y contenido B2B, Santiago, Chile.',
 }
 
-const clientes = ['Claro Empresas', 'UNAB', 'Cajas de Chile', 'Diario Financiero', 'Consorcio Ciencia e Innovación 2030', 'Adidas']
+
 
 export default function SobreFlahoolick() {
   return (
@@ -23,16 +23,19 @@ export default function SobreFlahoolick() {
       >
         <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
 
-          {/* Izquierda — Logo shield grande */}
+          {/* Izquierda — placeholder ilustración */}
           <div className="hidden md:flex col-span-5 items-center justify-center py-8">
-            <Image
-              src="/logo-flahoolick-shield.svg"
-              alt="Flahoolick"
-              width={480}
-              height={600}
-              style={{ width: '100%', maxWidth: '480px', height: 'auto', filter: 'brightness(0)' }}
-              priority
-            />
+            <div style={{
+              width: '100%',
+              maxWidth: '480px',
+              aspectRatio: '4/5',
+              border: '1px solid rgba(0,0,0,0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+            </div>
           </div>
 
           {/* Divisor vertical */}
@@ -131,7 +134,7 @@ export default function SobreFlahoolick() {
             style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
 
             {/* Foto izquierda — sticky */}
-            <div style={{ paddingRight: '3rem' }}>
+            <div style={{ paddingRight: '3rem', alignSelf: 'stretch' }}>
               <div style={{ position: 'sticky', top: 'calc(64px + 3rem)' }}>
                 <div style={{ aspectRatio: '4/5', maxHeight: '60vh', overflow: 'hidden' }}>
                   <Image
@@ -238,22 +241,6 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
-      {/* Con quiénes hemos trabajado */}
-      <section
-        className="page-px py-16"
-        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)', borderTop: '1px solid rgba(0,0,0,0.08)' }}
-      >
-        <div className="max-container flex flex-col gap-8">
-          <p className="label opacity-40">Con quiénes hemos trabajado</p>
-          <div className="flex flex-wrap gap-3">
-            {clientes.map(c => (
-              <span key={c} className="text-sm opacity-60 px-4 py-2"
-                style={{ border: '1px solid rgba(0,0,0,0.15)' }}>{c}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Más sobre Flahoolick */}
       <section
         className="page-px section-py"
@@ -283,12 +270,6 @@ export default function SobreFlahoolick() {
               },
             ].map(card => (
               <div key={card.href} className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
-                <img
-                  src="/shield.svg"
-                  alt=""
-                  aria-hidden="true"
-                  style={{ height: '44px', width: 'auto', filter: 'brightness(0) invert(1)', display: 'block' }}
-                />
                 <div className="flex flex-col gap-4 flex-1">
                   <p style={{
                     fontFamily: 'var(--font-display)',

@@ -235,7 +235,7 @@ export default function PoliticaDePrivacidadPage() {
 
           {/* Desktop — título sticky + divisor + texto */}
           <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
-            <div style={{ paddingRight: '3rem' }}>
+            <div style={{ paddingRight: '3rem', alignSelf: 'stretch' }}>
               <h1 style={{
                 position: 'sticky',
                 top: 'calc(64px + 3rem)',

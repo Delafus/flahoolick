@@ -21,12 +21,12 @@ const produce = [
 export default function SensorPage() {
   return (
     <>
-      <PageColorSetter bg="#3B0B2C" text="#ffffff" />
+      <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
         headline="SENSOR"
         tagline="KNOWLEDGE CAPTURED"
         description="La mayoría del conocimiento valioso de una empresa ya existe — en documentos, en grabaciones, en conversaciones comerciales que no dejan registro. SENSOR es el módulo con el que Flahoolick captura ese material y lo convierte en materia prima estratégica."
-        heroBg="#3B0B2C"
+        heroBg="#000000"
         heroText="#ffffff"
       >
         <BodySection title="Tipos de material que procesamos">

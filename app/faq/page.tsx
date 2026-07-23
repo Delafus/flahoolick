@@ -117,8 +117,8 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
           <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7, opacity: 0.65, maxWidth: '680px' }}>{a}</p>
           {link && (
             <Link href={link.href}
-              className="label hover:opacity-60 transition-opacity"
-              style={{ opacity: 0.5 }}>
+              className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-70 transition-opacity"
+              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '2px' }}>
               {link.label}
             </Link>
           )}
@@ -168,31 +168,50 @@ export default function FAQPage() {
       {/* Intro + acordeón — crema */}
       <section className="page-px section-py" style={{ backgroundColor: 'var(--brand-ground)', color: 'var(--brand-ink)' }}>
         <div className="max-container">
-          {/* Intro estilo NOBL */}
-          <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-16"
-            style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '2rem' }}>
-            <div className="flex flex-col gap-1">
-              <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', lineHeight: 1.2 }}>
-                Preguntado y respondido
-              </p>
-              <p className="text-sm opacity-55">Las preguntas más frecuentes de clientes potenciales antes de empezar.</p>
-            </div>
-            <Link href="/#contacto"
-              className="label inline-flex items-center gap-2 border px-5 py-3 w-fit hover:opacity-60 transition-opacity shrink-0"
-              style={{ borderColor: 'rgba(0,0,0,0.3)' }}>
-              Escríbenos →
-            </Link>
-          </div>
-
-          {/* Acordeón */}
-          <div className="max-w-4xl">
-            {preguntas.map(p => (
-              <Acordeon key={p.q} q={p.q} a={p.a} link={p.link} />
-            ))}
-            <div style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem', marginTop: '1rem' }}>
-              <Link href="/#contacto" className="label opacity-50 hover:opacity-100 transition-opacity">
+          {/* Mobile — apilado */}
+          <div className="flex flex-col gap-10 md:hidden">
+            <div className="flex flex-col gap-6" style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
+              <div className="flex flex-col gap-1">
+                <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', lineHeight: 1.2 }}>
+                  Preguntado y respondido
+                </p>
+                <p className="text-sm opacity-55">Las preguntas más frecuentes de clientes potenciales antes de empezar.</p>
+              </div>
+              <Link href="/#contacto"
+                className="label inline-flex items-center gap-2 border px-5 py-3 w-fit hover:opacity-60 transition-opacity"
+                style={{ borderColor: 'rgba(0,0,0,0.3)' }}>
                 Escríbenos →
               </Link>
+            </div>
+            <div>
+              {preguntas.map(p => (
+                <Acordeon key={p.q} q={p.q} a={p.a} link={p.link} />
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop — dos columnas con divisor */}
+          <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
+            <div className="flex flex-col gap-8" style={{ paddingRight: '3rem', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
+              <div className="flex flex-col gap-2">
+                <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.4rem, 2.4vw, 2.2rem)', lineHeight: 1.15 }}>
+                  Preguntado y respondido
+                </p>
+                <p className="text-sm opacity-55" style={{ maxWidth: '380px' }}>Las preguntas más frecuentes de clientes potenciales antes de empezar.</p>
+              </div>
+              <Link href="/#contacto"
+                className="label inline-flex items-center gap-2 border px-5 py-3 w-fit hover:opacity-60 transition-opacity"
+                style={{ borderColor: 'rgba(0,0,0,0.3)' }}>
+                Escríbenos →
+              </Link>
+            </div>
+
+            <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', height: '100%', width: '1px' }} />
+
+            <div style={{ paddingLeft: '3rem' }}>
+              {preguntas.map(p => (
+                <Acordeon key={p.q} q={p.q} a={p.a} link={p.link} />
+              ))}
             </div>
           </div>
         </div>

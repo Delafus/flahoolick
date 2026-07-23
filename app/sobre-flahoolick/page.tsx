@@ -16,10 +16,10 @@ export default function SobreFlahoolick() {
     <>
       <PageColorSetter bg="#F9F0E2" text="#000000" />
 
-      {/* Hero — exactamente como NOBL About: split layout, fondo rosa */}
+      {/* Hero — exactamente como NOBL About: split layout, fondo crema */}
       <section
         className="page-hero page-px"
-        style={{ backgroundColor: 'var(--page-capacidades-bg)', color: 'var(--page-capacidades-text)' }}
+        style={{ backgroundColor: 'var(--page-sobre-bg)', color: 'var(--page-sobre-text)' }}
       >
         <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
 
@@ -48,7 +48,7 @@ export default function SobreFlahoolick() {
               fontSize: 'clamp(3.5rem, 7vw, 9rem)',
               lineHeight: 1.0,
               letterSpacing: '-0.02em',
-              color: 'var(--page-capacidades-text)',
+              color: 'var(--page-sobre-text)',
             }}>
               Nacimos de una idea generosa.
             </h1>
@@ -85,11 +85,37 @@ export default function SobreFlahoolick() {
         className="page-px section-py"
         style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}
       >
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-display" style={{ color: 'var(--section-dark-text)' }}>Por qué existimos</h2>
-          <p className="text-lead max-w-4xl opacity-70">
-            El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
-          </p>
+        <div className="max-container">
+
+          {/* Mobile — apilado */}
+          <div className="flex flex-col gap-10 md:hidden">
+            <h2 className="text-display" style={{ color: 'var(--section-dark-text)' }}>Por qué existimos</h2>
+            <p className="text-lead opacity-70">
+              El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
+            </p>
+            <div style={{ aspectRatio: '4/3', border: '1px solid rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+            </div>
+          </div>
+
+          {/* Desktop — texto izquierda | divisor | placeholder derecha */}
+          <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '6fr 1px 5fr' }}>
+            <div className="flex flex-col gap-10" style={{ paddingRight: '3rem' }}>
+              <h2 className="text-display" style={{ color: 'var(--section-dark-text)' }}>Por qué existimos</h2>
+              <p className="text-lead opacity-70">
+                El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
+              </p>
+            </div>
+
+            <div style={{ backgroundColor: 'rgba(255,255,255,0.18)', width: '1px', alignSelf: 'stretch' }} />
+
+            <div style={{ paddingLeft: '3rem' }}>
+              <div style={{ aspectRatio: '4/5', border: '1px solid rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -104,22 +130,24 @@ export default function SobreFlahoolick() {
           <div className="hidden md:grid items-start gap-0"
             style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
 
-            {/* Foto izquierda */}
+            {/* Foto izquierda — sticky */}
             <div style={{ paddingRight: '3rem' }}>
-              <div style={{ aspectRatio: '3/4', maxWidth: '100%', overflow: 'hidden' }}>
-                <Image
-                  src="/foto-felipe.png"
-                  alt="Felipe de la Fuente"
-                  width={500}
-                  height={667}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%)', display: 'block' }}
-                />
-              </div>
-              <div className="mt-4">
-                <Link href="https://linkedin.com/in/felipedelafuente" target="_blank" rel="noopener noreferrer"
-                  className="label opacity-40 hover:opacity-80 transition-opacity">
-                  LinkedIn →
-                </Link>
+              <div style={{ position: 'sticky', top: 'calc(64px + 3rem)' }}>
+                <div style={{ aspectRatio: '4/5', maxHeight: '60vh', overflow: 'hidden' }}>
+                  <Image
+                    src="/foto-felipe.png"
+                    alt="Felipe de la Fuente"
+                    width={500}
+                    height={625}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%)', display: 'block' }}
+                  />
+                </div>
+                <div className="mt-4">
+                  <Link href="https://linkedin.com/in/felipedelafuente" target="_blank" rel="noopener noreferrer"
+                    className="label opacity-40 hover:opacity-80 transition-opacity">
+                    LinkedIn →
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -232,32 +260,48 @@ export default function SobreFlahoolick() {
         style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}
       >
         <div className="max-container flex flex-col gap-16">
-          <h2 className="text-headline">Más sobre Flahoolick</h2>
+          <h2 className="text-display">Más sobre Flahoolick</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
-            <div className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
-              <svg width="28" height="20" viewBox="0 0 28 20" fill="none"><rect x="0" y="0" width="8" height="8" fill="#F09DB6"/><rect x="10" y="0" width="8" height="8" fill="#F09DB6" opacity="0.5"/><rect x="20" y="0" width="8" height="8" fill="#F09DB6" opacity="0.25"/><rect x="0" y="12" width="8" height="8" fill="#F09DB6" opacity="0.5"/><rect x="10" y="12" width="8" height="8" fill="#F09DB6"/><rect x="20" y="12" width="8" height="8" fill="#F09DB6" opacity="0.5"/></svg>
-              <div className="flex flex-col gap-4 flex-1">
-                <p className="label font-bold">CAPACIDADES</p>
-                <p className="text-sm leading-relaxed opacity-60">Los tres frentes de nuestro trabajo — los contextos en los que operan nuestros clientes y las razones más frecuentes por las que una empresa B2B nos llama.</p>
+            {[
+              {
+                titulo: 'CAPACIDADES',
+                desc: 'Los tres frentes de nuestro trabajo — los contextos en los que operan nuestros clientes y las razones más frecuentes por las que una empresa B2B nos llama.',
+                href: '/capacidades',
+                cta: 'Explorar →',
+              },
+              {
+                titulo: 'METODOLOGÍA',
+                desc: 'El cómo y el qué de nuestro trabajo — el sistema diseñado para ciclos de decisión complejos y refinado durante cientos de proyectos.',
+                href: '/metodologia',
+                cta: 'Explorar →',
+              },
+              {
+                titulo: 'JERGA',
+                desc: 'Lo aprendido en el trabajo — estrategia de contenido, marketing B2B y autoridad de mercado. Ideas para líderes que necesitan que el mercado los recuerde cuando decida comprar.',
+                href: '/jerga',
+                cta: 'Leer JERGA →',
+              },
+            ].map(card => (
+              <div key={card.href} className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
+                <img
+                  src="/shield.svg"
+                  alt=""
+                  aria-hidden="true"
+                  style={{ height: '44px', width: 'auto', filter: 'brightness(0) invert(1)', display: 'block' }}
+                />
+                <div className="flex flex-col gap-4 flex-1">
+                  <p style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 400,
+                    fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)',
+                    lineHeight: 1.05,
+                    letterSpacing: '-0.015em',
+                  }}>{card.titulo}</p>
+                  <p className="text-sm leading-relaxed opacity-60">{card.desc}</p>
+                </div>
+                <Link href={card.href} className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-60 transition-opacity w-fit" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>{card.cta}</Link>
               </div>
-              <Link href="/capacidades" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-60 transition-opacity w-fit" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>Explorar →</Link>
-            </div>
-            <div className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="10" y="0" width="8" height="8" fill="#F5FD92"/><rect x="0" y="10" width="8" height="8" fill="#F5FD92" opacity="0.5"/><rect x="10" y="10" width="8" height="8" fill="#F5FD92"/><rect x="20" y="10" width="8" height="8" fill="#F5FD92" opacity="0.5"/><rect x="5" y="20" width="8" height="8" fill="#F5FD92" opacity="0.35"/><rect x="15" y="20" width="8" height="8" fill="#F5FD92" opacity="0.35"/></svg>
-              <div className="flex flex-col gap-4 flex-1">
-                <p className="label font-bold">METODOLOGÍA</p>
-                <p className="text-sm leading-relaxed opacity-60">El cómo y el qué de nuestro trabajo — el sistema diseñado para ciclos de decisión complejos y refinado durante cientos de proyectos.</p>
-              </div>
-              <Link href="/metodologia" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-60 transition-opacity w-fit" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>Explorar →</Link>
-            </div>
-            <div className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
-              <svg width="28" height="24" viewBox="0 0 28 24" fill="none"><rect x="0" y="0" width="18" height="4" fill="#F9F0E2"/><rect x="0" y="8" width="28" height="4" fill="#F9F0E2" opacity="0.5"/><rect x="0" y="16" width="12" height="4" fill="#F9F0E2" opacity="0.75"/></svg>
-              <div className="flex flex-col gap-4 flex-1">
-                <p className="label font-bold">JERGA</p>
-                <p className="text-sm leading-relaxed opacity-60">Lo aprendido en el trabajo — estrategia de contenido, marketing B2B y autoridad de mercado. Ideas para líderes que necesitan que el mercado los recuerde cuando decida comprar.</p>
-              </div>
-              <Link href="/jerga" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-60 transition-opacity w-fit" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>Leer JERGA →</Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>

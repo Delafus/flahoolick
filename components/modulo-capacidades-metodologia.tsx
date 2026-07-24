@@ -11,17 +11,17 @@ const BLANCO  = '#ffffff'
 const acordeonItems = [
   {
     titulo: 'ESTRATEGIA Y RELATO',
-    desc: 'Definimos quién eres para el mercado que importa antes de producir una sola pieza.',
+    desc: 'Definimos la posición, las audiencias y el relato que la empresa necesita instalar en el mercado.',
     href: '/capacidades/estrategia-y-relato',
   },
   {
     titulo: 'SISTEMA DE CONTENIDO',
-    desc: 'Instalamos el flujo continuo que mantiene tu conocimiento en circulación mes a mes.',
+    desc: 'Diseñamos el playbook, los flujos y la cadencia que mantienen el conocimiento en circulación.',
     href: '/capacidades/sistema-de-contenido',
   },
   {
     titulo: 'ESTUDIO CREATIVO',
-    desc: 'Producimos los activos que construyen presencia y habilitan el cierre comercial.',
+    desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan la venta.',
     href: '/capacidades/estudio-creativo',
   },
 ]

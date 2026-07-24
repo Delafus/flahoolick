@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { todas, categoria, CTA_TIPO, type Pieza } from '@/content/jerga'
+import { CTA_TIPO } from '@/content/jerga'
+import { todas, categorias, type Pieza } from '@/sanity/lib/jerga'
 
 const AMARILLO = '#F6FD92'
 const NEGRO    = '#000000'
 
-function Card({ pieza }: { pieza: Pieza }) {
+function Card({ pieza, nombreCategoria }: { pieza: Pieza; nombreCategoria?: string }) {
   return (
     <div className="w-full flex flex-col gap-6">
       <p className="label font-bold" style={{ color: NEGRO }}>
-        {categoria(pieza.categoria)?.nombre.toUpperCase()}
+        {nombreCategoria?.toUpperCase()}
       </p>
       <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
@@ -31,8 +32,10 @@ function Card({ pieza }: { pieza: Pieza }) {
   )
 }
 
-export function ModuloJerga() {
-  const [primera, segunda] = todas().slice(0, 2)
+export async function ModuloJerga() {
+  const [piezas, cats] = await Promise.all([todas(), categorias()])
+  const [primera, segunda] = piezas.slice(0, 2)
+  const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
     <section style={{ backgroundColor: AMARILLO, color: NEGRO }}>
@@ -70,11 +73,11 @@ export function ModuloJerga() {
         {/* ── DOS CARDS ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0">
           <div className="md:pr-12">
-            {primera && <Card pieza={primera} />}
+            {primera && <Card pieza={primera} nombreCategoria={nombreCategoria(primera.categoria)} />}
           </div>
           <div className="md:pl-12" style={{ position: 'relative' }}>
             <div className="hidden md:block" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', backgroundColor: NEGRO, opacity: 0.2 }} />
-            {segunda && <Card pieza={segunda} />}
+            {segunda && <Card pieza={segunda} nombreCategoria={nombreCategoria(segunda.categoria)} />}
           </div>
         </div>
 

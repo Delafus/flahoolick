@@ -1,6 +1,3 @@
-'use client'
-
-import { useRef } from 'react'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'

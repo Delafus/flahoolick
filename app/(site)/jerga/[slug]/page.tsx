@@ -5,6 +5,8 @@ import NextImage from 'next/image'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import { CuerpoJerga } from '@/components/portable-text-jerga'
+import { TocSidebar } from '@/components/toc-sidebar'
+import { extraerToc } from '@/lib/toc'
 import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
 import { todas, porSlug, categoria, categorias, relacionadas } from '@/sanity/lib/jerga'
 
@@ -37,68 +39,72 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
     categorias(),
   ])
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
+  const toc = pieza.tipo === 'guia' ? extraerToc(pieza.cuerpo) : []
 
   return (
     <>
       <PageColorSetter bg={CREMA} text={NEGRO} />
 
-      {/* Cabecera */}
-      <section className="page-px" style={{ backgroundColor: CREMA, color: NEGRO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '3rem' }}>
+      {/* Cabecera — split: texto | foto */}
+      <section className="page-px" style={{ backgroundColor: CREMA, color: NEGRO, paddingTop: 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
-          <div style={{ maxWidth: '900px' }}>
-            <div className="flex flex-wrap items-center gap-4 mb-8">
-              <Link href={`/jerga/categoria/${pieza.categoria}`}
-                className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: CREMA, borderRadius: '2px' }}>
-                {cat?.nombre}
-              </Link>
-              <span className="label" style={{ opacity: 0.45 }}>{ETIQUETA_TIPO[pieza.tipo]}</span>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+
+            {/* Texto */}
+            <div className="md:col-span-6">
+              <div className="flex flex-wrap items-center gap-4 mb-8">
+                <Link href={`/jerga/categoria/${pieza.categoria}`}
+                  className="label px-4 py-2 hover:opacity-60 transition-opacity"
+                  style={{ backgroundColor: NEGRO, color: CREMA, borderRadius: '2px' }}>
+                  {cat?.nombre}
+                </Link>
+                <span className="label" style={{ opacity: 0.45 }}>{ETIQUETA_TIPO[pieza.tipo]}</span>
+              </div>
+
+              <h1 style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                lineHeight: 1.02,
+                letterSpacing: '-0.025em',
+                marginBottom: '2rem',
+              }}>{pieza.titulo}</h1>
+
+              <p style={{ fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)', lineHeight: 1.5, opacity: 0.65, marginBottom: '2.5rem' }}>
+                {pieza.bajada}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: '1px solid rgba(0,0,0,0.15)', paddingTop: '1.5rem' }}>
+                <span>{pieza.autor}</span>
+                <span>{fechaLegible(pieza.fecha)}</span>
+                <span>{pieza.lectura} min de lectura</span>
+              </div>
             </div>
 
-            <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(2.5rem, 5.5vw, 5rem)',
-              lineHeight: 1.02,
-              letterSpacing: '-0.025em',
-              marginBottom: '2rem',
-            }}>{pieza.titulo}</h1>
-
-            <p style={{ fontSize: 'clamp(1.125rem, 1.8vw, 1.5rem)', lineHeight: 1.5, opacity: 0.65, marginBottom: '2.5rem' }}>
-              {pieza.bajada}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: '1px solid rgba(0,0,0,0.15)', paddingTop: '1.5rem' }}>
-              <span>{pieza.autor}</span>
-              <span>{fechaLegible(pieza.fecha)}</span>
-              <span>{pieza.lectura} min de lectura</span>
+            {/* Foto */}
+            <div className="md:col-span-6">
+              <div style={{
+                position: 'relative',
+                aspectRatio: '4/5',
+                backgroundColor: 'rgba(0,0,0,0.07)',
+                display: pieza.imagenDestacadaUrl ? 'block' : 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                {pieza.imagenDestacadaUrl ? (
+                  <NextImage
+                    src={pieza.imagenDestacadaUrl}
+                    alt={pieza.imagenDestacadaAlt ?? pieza.titulo}
+                    fill
+                    priority
+                    style={{ objectFit: 'cover' }}
+                  />
+                ) : (
+                  <span className="label" style={{ opacity: 0.25 }}>Imagen de apertura</span>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Imagen de apertura */}
-      <section className="page-px" style={{ backgroundColor: CREMA }}>
-        <div className="max-container">
-          <div style={{
-            position: 'relative',
-            aspectRatio: '21/9',
-            backgroundColor: 'rgba(0,0,0,0.07)',
-            display: pieza.imagenDestacadaUrl ? 'block' : 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            {pieza.imagenDestacadaUrl ? (
-              <NextImage
-                src={pieza.imagenDestacadaUrl}
-                alt={pieza.imagenDestacadaAlt ?? pieza.titulo}
-                fill
-                priority
-                style={{ objectFit: 'cover' }}
-              />
-            ) : (
-              <span className="label" style={{ opacity: 0.25 }}>Imagen de apertura</span>
-            )}
           </div>
         </div>
       </section>
@@ -106,14 +112,24 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
       {/* Cuerpo */}
       <section className="page-px section-py" style={{ backgroundColor: CREMA, color: NEGRO }}>
         <div className="max-container">
-          <article style={{ maxWidth: '720px' }}>
-            <CuerpoJerga value={pieza.cuerpo} />
-          </article>
+          <div className={toc.length > 0 ? 'grid grid-cols-1 md:grid-cols-12 gap-12' : ''}>
+            {toc.length > 0 && (
+              <aside className="hidden md:block md:col-span-3">
+                <TocSidebar items={toc} />
+              </aside>
+            )}
 
-          {/* Firma */}
-          <div style={{ maxWidth: '720px', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-            <p className="label" style={{ opacity: 0.45, marginBottom: '0.5rem' }}>Escrito por</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', lineHeight: 1.2 }}>{pieza.autor}</p>
+            <div className={toc.length > 0 ? 'md:col-span-9' : ''}>
+              <article style={{ maxWidth: '720px' }}>
+                <CuerpoJerga value={pieza.cuerpo} />
+              </article>
+
+              {/* Firma */}
+              <div style={{ maxWidth: '720px', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.15)' }}>
+                <p className="label" style={{ opacity: 0.45, marginBottom: '0.5rem' }}>Escrito por</p>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', lineHeight: 1.2 }}>{pieza.autor}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -11,8 +11,8 @@ const componentes: PortableTextComponents = {
         {children}
       </p>
     ),
-    h2: ({ children }) => (
-      <h2 style={{
+    h2: ({ children, value }) => (
+      <h2 id={value._key} style={{
         fontFamily: 'var(--font-display)',
         fontWeight: 400,
         fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
@@ -20,6 +20,7 @@ const componentes: PortableTextComponents = {
         letterSpacing: '-0.015em',
         marginTop: '3.5rem',
         marginBottom: '1.5rem',
+        scrollMarginTop: '6rem',
       }}>{children}</h2>
     ),
   },

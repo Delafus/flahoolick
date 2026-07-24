@@ -1,31 +1,36 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import NextImage from 'next/image'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
-import {
-  CATEGORIAS, categoria, porCategoria,
-  fechaLegible, ETIQUETA_TIPO, CTA_TIPO,
-} from '@/content/jerga'
+import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
+import { categoria, categorias, porCategoria } from '@/sanity/lib/jerga'
 
 const CHARTREUSE = '#F5FD92'
 const NEGRO = '#000000'
 
-export function generateStaticParams() {
-  return CATEGORIAS.map(c => ({ slug: c.slug }))
+export const revalidate = 60
+
+export async function generateStaticParams() {
+  const cats = await categorias()
+  return cats.map(c => ({ slug: c.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const cat = categoria(params.slug)
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const cat = await categoria(params.slug)
   if (!cat) return { title: 'JERGA — Flahoolick' }
   return { title: `${cat.nombre} — JERGA`, description: cat.descripcion }
 }
 
-export default function CategoriaPage({ params }: { params: { slug: string } }) {
-  const cat = categoria(params.slug)
+export default async function CategoriaPage({ params }: { params: { slug: string } }) {
+  const cat = await categoria(params.slug)
   if (!cat) notFound()
 
-  const piezas = porCategoria(cat.slug)
+  const [piezas, cats] = await Promise.all([
+    porCategoria(cat.slug),
+    categorias(),
+  ])
 
   return (
     <>
@@ -54,7 +59,7 @@ export default function CategoriaPage({ params }: { params: { slug: string } }) 
 
           {/* Otras categorías */}
           <div className="flex flex-wrap gap-3 mt-10">
-            {CATEGORIAS.map(c => (
+            {cats.map(c => (
               <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                 className="label px-4 py-2 hover:opacity-60 transition-opacity"
                 style={c.slug === cat.slug
@@ -75,8 +80,12 @@ export default function CategoriaPage({ params }: { params: { slug: string } }) 
               className="group grid grid-cols-1 md:grid-cols-12 gap-8 py-10"
               style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
               <div className="md:col-span-4">
-                <div style={{ aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
+                <div style={{ position: 'relative', aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: p.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {p.imagenDestacadaUrl ? (
+                    <NextImage src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill style={{ objectFit: 'cover' }} />
+                  ) : (
+                    <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
+                  )}
                 </div>
               </div>
               <div className="md:col-span-8 flex flex-col gap-3 justify-center">

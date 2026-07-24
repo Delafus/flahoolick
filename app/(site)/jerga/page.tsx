@@ -3,10 +3,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
-import {
-  CATEGORIAS, todas, porTipo, destacada, categoria,
-  conteoPorCategoria, fechaLegible, ETIQUETA_TIPO, CTA_TIPO,
-} from '@/content/jerga'
+import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
+import { todas, porTipo, destacada, categorias, conteoPorCategoria } from '@/sanity/lib/jerga'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'JERGA — Flahoolick',
@@ -16,12 +16,16 @@ export const metadata: Metadata = {
 const CHARTREUSE = '#F5FD92'
 const NEGRO = '#000000'
 
-export default function JergaPage() {
-  const featured = destacada()
-  const guias = porTipo('guia')
-  const todasLasPiezas = todas()
+export default async function JergaPage() {
+  const [featured, guias, todasLasPiezas, conteos, cats] = await Promise.all([
+    destacada(),
+    porTipo('guia'),
+    todas(),
+    conteoPorCategoria(),
+    categorias(),
+  ])
   const recientes = todasLasPiezas.filter(p => p.slug !== featured?.slug).slice(0, 6)
-  const conteos = conteoPorCategoria()
+  const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
     <>
@@ -43,7 +47,7 @@ export default function JergaPage() {
                 Ideas, guías y puntos de vista para convertir conocimiento técnico en autoridad de mercado.
               </p>
               <div className="flex flex-wrap gap-3">
-                {CATEGORIAS.map(c => (
+                {cats.map(c => (
                   <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                     className="label px-4 py-2 hover:opacity-60 transition-opacity"
                     style={{ border: '1px solid rgba(0,0,0,0.25)', borderRadius: '2px' }}>
@@ -61,11 +65,15 @@ export default function JergaPage() {
         <section style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
           <div className="max-container page-px">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
-              <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span className="label" style={{ opacity: 0.2 }}>Imagen destacada</span>
+              <div style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'rgba(255,255,255,0.06)', display: featured.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {featured.imagenDestacadaUrl ? (
+                  <Image src={featured.imagenDestacadaUrl} alt={featured.imagenDestacadaAlt ?? featured.titulo} fill style={{ objectFit: 'cover' }} />
+                ) : (
+                  <span className="label" style={{ opacity: 0.2 }}>Imagen destacada</span>
+                )}
               </div>
               <div className="flex flex-col justify-center gap-6 py-12 md:pl-16">
-                <p className="label" style={{ opacity: 0.4 }}>Destacado · {categoria(featured.categoria)?.nombre}</p>
+                <p className="label" style={{ opacity: 0.4 }}>Destacado · {nombreCategoria(featured.categoria)}</p>
                 <Link href={`/jerga/${featured.slug}`}>
                   <h2 style={{
                     fontFamily: 'var(--font-display)', fontWeight: 400,
@@ -108,7 +116,7 @@ export default function JergaPage() {
                     lineHeight: 1, opacity: 0.18,
                   }}>{String(g.orden ?? 0).padStart(2, '0')}</span>
                   <div className="flex flex-col gap-3 flex-1">
-                    <p className="label" style={{ opacity: 0.4 }}>{categoria(g.categoria)?.nombre}</p>
+                    <p className="label" style={{ opacity: 0.4 }}>{nombreCategoria(g.categoria)}</p>
                     <h3 style={{
                       fontFamily: 'var(--font-display)', fontWeight: 400,
                       fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.15,
@@ -130,12 +138,16 @@ export default function JergaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {recientes.map(p => (
               <Link key={p.slug} href={`/jerga/${p.slug}`} className="group flex flex-col gap-4">
-                <div style={{ aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
+                <div style={{ position: 'relative', aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: p.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {p.imagenDestacadaUrl ? (
+                    <Image src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill style={{ objectFit: 'cover' }} />
+                  ) : (
+                    <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
+                  )}
                 </div>
                 <div className="flex items-center gap-4 label" style={{ opacity: 0.4 }}>
                   <span>{ETIQUETA_TIPO[p.tipo]}</span>
-                  <span>{categoria(p.categoria)?.nombre}</span>
+                  <span>{nombreCategoria(p.categoria)}</span>
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-display)', fontWeight: 400,
@@ -187,7 +199,7 @@ export default function JergaPage() {
                   {fechaLegible(p.fecha).replace(' de ' + p.fecha.slice(0, 4), '')}
                 </div>
                 <div className="md:col-span-2 label flex items-center" style={{ opacity: 0.35 }}>
-                  {categoria(p.categoria)?.nombre}
+                  {nombreCategoria(p.categoria)}
                 </div>
                 <div className="md:col-span-7 flex items-center">
                   <h3 style={{

@@ -7,9 +7,9 @@ import { ContactForm } from '@/components/contact-form'
 export const metadata: Metadata = { title: 'Metodología — Flahoolick' }
 
 const subs = [
-  { title: 'Cómo funciona el sistema', desc: 'Cuatro capas que convierten conocimiento disperso en presencia continua.', href: '/metodologia/como-funciona-el-sistema' },
-  { title: 'Cómo trabajamos con IA', desc: 'IA para capturar y modelar. El criterio lo define siempre el equipo senior.', href: '/metodologia/como-trabajamos-con-ia' },
-  { title: 'Cómo aprendemos', desc: 'Cada ciclo alimenta al siguiente. El sistema mejora con cada señal del mercado.', href: '/metodologia/como-aprendemos' },
+  { title: 'Cómo funciona el sistema', desc: 'Cuatro capas transforman conocimiento técnico en presencia continua.', href: '/metodologia/como-funciona-el-sistema' },
+  { title: 'Cómo trabajamos con IA', desc: 'La IA captura, organiza y modela información para acelerar el sistema.', href: '/metodologia/como-trabajamos-con-ia' },
+  { title: 'Cómo aprendemos', desc: 'Cada señal del mercado mejora el contenido y alimenta el siguiente ciclo.', href: '/metodologia/como-aprendemos' },
 ]
 
 export default function Metodologia() {
@@ -17,9 +17,8 @@ export default function Metodologia() {
     <>
       <PageColorSetter bg="#F5FD92" text="#000000" />
       <PageLayout
-        headline="CONTENT IN LOOP"
-        tagline="MAKING KNOWLEDGE VISIBLE"
-        description="Flahoolick diseñó el Sistema de Autoridad de Mercado para el comprador B2B que toma decisiones complejas en ciclos largos."
+        headline="SISTEMA DE AUTORIDAD"
+        description="Convertimos el conocimiento técnico de empresas B2B en una presencia de marca continua."
         heroBg="#F5FD92"
         heroText="#000000"
       >

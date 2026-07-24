@@ -9,9 +9,9 @@ const CAP_MENU = {
   tagline: 'Convertimos lo que tu empresa sabe en autoridad que el mercado reconoce.',
   ctaLabel: 'Explorar Capacidades', ctaHref: '/capacidades',
   items: [
-    { title: 'Estrategia y Relato',   desc: 'Definimos quién eres para el mercado que importa antes de producir una sola pieza.',    href: '/capacidades/estrategia-y-relato' },
-    { title: 'Sistema de Contenido', desc: 'Instalamos el flujo continuo que mantiene tu conocimiento en circulación mes a mes.',   href: '/capacidades/sistema-de-contenido' },
-    { title: 'Estudio Creativo',      desc: 'Producimos los activos que construyen presencia y habilitan el cierre comercial.',       href: '/capacidades/estudio-creativo' },
+    { title: 'Estrategia y Relato',   desc: 'Definimos la posición, las audiencias y el relato que la empresa necesita instalar en el mercado.',    href: '/capacidades/estrategia-y-relato' },
+    { title: 'Sistema de Contenido', desc: 'Diseñamos el playbook, los flujos y la cadencia que mantienen el conocimiento en circulación.',   href: '/capacidades/sistema-de-contenido' },
+    { title: 'Estudio Creativo',      desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan la venta.',       href: '/capacidades/estudio-creativo' },
   ],
 }
 
@@ -19,9 +19,9 @@ const MET_MENU = {
   tagline: 'Del conocimiento disperso a un sistema que aprende.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Cómo funcionamos', desc: 'Cuatro capas que convierten conocimiento disperso en presencia continua.',                          href: '/metodologia/como-funciona-el-sistema' },
-    { title: 'Dónde usamos IA',   desc: 'IA para capturar y modelar conocimiento a escala. El criterio lo define siempre el equipo senior.', href: '/metodologia/como-trabajamos-con-ia' },
-    { title: 'Cómo aprendemos',          desc: 'Cada ciclo alimenta al siguiente. El sistema mejora con cada señal del mercado.',                    href: '/metodologia/como-aprendemos' },
+    { title: 'Cómo funcionamos', desc: 'Cuatro capas transforman conocimiento técnico en presencia continua.',                          href: '/metodologia/como-funciona-el-sistema' },
+    { title: 'Dónde usamos IA',   desc: 'La IA captura, organiza y modela información para acelerar el sistema.', href: '/metodologia/como-trabajamos-con-ia' },
+    { title: 'Cómo aprendemos',          desc: 'Cada señal del mercado mejora el contenido y alimenta el siguiente ciclo.',                    href: '/metodologia/como-aprendemos' },
   ],
 }
 

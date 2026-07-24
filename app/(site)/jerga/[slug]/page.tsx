@@ -9,6 +9,7 @@ import { TocSidebar } from '@/components/toc-sidebar'
 import { extraerToc } from '@/lib/toc'
 import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
 import { todas, porSlug, categoria, categorias, relacionadas } from '@/sanity/lib/jerga'
+import { esClaro } from '@/lib/color'
 
 const CREMA = '#F9F0E2'
 const NEGRO = '#000000'
@@ -41,12 +42,15 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
   const toc = pieza.tipo === 'guia' ? extraerToc(pieza.cuerpo) : []
 
+  const heroBg = pieza.tipo === 'guia' && cat?.color ? cat.color : CREMA
+  const heroText = heroBg !== CREMA ? (esClaro(heroBg) ? NEGRO : '#FFFFFF') : NEGRO
+
   return (
     <>
-      <PageColorSetter bg={CREMA} text={NEGRO} />
+      <PageColorSetter bg={heroBg} text={heroText} />
 
       {/* Cabecera — split: texto | foto */}
-      <section className="page-px" style={{ backgroundColor: CREMA, color: NEGRO, paddingTop: 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
+      <section className="page-px" style={{ backgroundColor: heroBg, color: heroText, paddingTop: 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
 
@@ -55,7 +59,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <Link href={`/jerga/categoria/${pieza.categoria}`}
                   className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                  style={{ backgroundColor: NEGRO, color: CREMA, borderRadius: '2px' }}>
+                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '2px' }}>
                   {cat?.nombre}
                 </Link>
                 <span className="label" style={{ opacity: 0.45 }}>{ETIQUETA_TIPO[pieza.tipo]}</span>
@@ -74,7 +78,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
                 {pieza.bajada}
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: '1px solid rgba(0,0,0,0.15)', paddingTop: '1.5rem' }}>
+              <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: `1px solid ${heroText === NEGRO ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.25)'}`, paddingTop: '1.5rem' }}>
                 <span>{pieza.autor}</span>
                 <span>{fechaLegible(pieza.fecha)}</span>
                 <span>{pieza.lectura} min de lectura</span>

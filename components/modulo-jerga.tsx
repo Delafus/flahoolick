@@ -12,8 +12,12 @@ function Card({ pieza, nombreCategoria }: { pieza: Pieza; nombreCategoria?: stri
       <p className="label font-bold" style={{ color: NEGRO }}>
         {nombreCategoria?.toUpperCase()}
       </p>
-      <div style={{ aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-        <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
+      <div style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: pieza.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+        {pieza.imagenDestacadaUrl ? (
+          <Image src={pieza.imagenDestacadaUrl} alt={pieza.imagenDestacadaAlt ?? pieza.titulo} fill style={{ objectFit: 'cover' }} />
+        ) : (
+          <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
+        )}
       </div>
       <div className="flex flex-col gap-3 flex-1">
         <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', lineHeight: 1.2, color: NEGRO }}>

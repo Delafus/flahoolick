@@ -185,22 +185,16 @@ export default function SobreFlahoolick() {
               {/* Bio */}
               <div className="flex flex-col gap-5">
                 <p className="text-lead opacity-75">
-                  Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.
+                  Durante más de 25 años he cruzado creatividad, estrategia y negocio. Comencé programando en Actionscript de Flash en Merlin Interactive Systems. Después dirigí creatividad digital en McCann MRM, GREY y FIEBRE/BBDO, con marcas y campañas a nivel latam.
                 </p>
                 <p className="text-lead opacity-75">
-                  Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.
+                  Luego fundé el laboratorio de contenidos de marca de La Tercera, dentro de Grupo Copesa. Ahí entendí el problema real: las empresas saben mucho y comunican poco. Su conocimiento queda disperso entre especialistas, decks, manuales y conversaciones internas — y su mercado recibe apenas una fracción de ese valor.
                 </p>
                 <p className="text-lead opacity-75">
-                  El problema se vuelve especialmente serio en empresas B2B. Sus soluciones requieren contexto. Sus ventas tardan meses. Sus compradores necesitan comprender, confiar y recordar. Durante ese tiempo, muchas compañías publican piezas aisladas, repiten mensajes genéricos y vuelven a empezar con cada campaña. Así se pierde conocimiento, consistencia y autoridad.
+                  En negocios B2B, donde las ventas tardan meses y el mercado necesita comprender, confiar y recordar, esa dispersión cuesta disponibilidad mental. Fundé Flahoolick para resolverlo. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias, y lo convertimos en un sistema continuo de comunicación — estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.
                 </p>
                 <p className="text-lead opacity-75">
-                  Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación. Unimos estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.
-                </p>
-                <p className="text-lead opacity-75">
-                  Usamos inteligencia artificial para investigar, minar y modelar información a escala. El criterio estratégico, el relato y la redacción final dependen de juicio humano senior.
-                </p>
-                <p className="text-lead opacity-75">
-                  Flahoolick nace de toda esa experiencia acumulada. De haber visto cómo trabajan las agencias, los medios, los equipos comerciales y las grandes organizaciones. De entender dónde se corta el hilo. Y de saber cómo convertir conocimiento complejo en presencia de marca, autoridad de mercado y herramientas concretas para vender.
+                  Usamos inteligencia artificial para investigar y modelar información a escala; el criterio, el relato y la redacción final dependen de juicio humano senior. Es la síntesis de haber visto por dentro cómo trabajan agencias, medios y grandes organizaciones — y de saber exactamente dónde se corta el hilo.
                 </p>
               </div>
 
@@ -227,9 +221,9 @@ export default function SobreFlahoolick() {
             </div>
             <div className="flex flex-col gap-5">
               {[
-                'Durante más de 25 años he trabajado en el punto donde la estrategia, la creatividad y el negocio necesitan entenderse. Comencé en el mundo digital cuando todavía se programaba en Flash. Después dirigí creatividad en agencias globales como McCann MRM, GREY y BBDO, trabajando con grandes marcas, equipos exigentes y problemas reales de negocio.',
-                'Luego pasé al mundo de los medios. En La Tercera fundé un laboratorio de contenidos de marca. Ahí confirmé algo que venía observando desde hacía años: muchas empresas saben muchísimo y comunican muy poco. Su conocimiento queda disperso entre especialistas, presentaciones, propuestas comerciales, manuales, datos y conversaciones internas. Su mercado recibe apenas una fracción de todo ese valor.',
-                'Fundé Flahoolick para resolver esa brecha. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias y lo convertimos en un sistema continuo de comunicación.',
+                'Durante más de 25 años he cruzado creatividad, estrategia y negocio. Comencé programando en Actionscript de Flash en Merlin Interactive Systems. Después dirigí creatividad digital en McCann MRM, GREY y FIEBRE/BBDO, con marcas y campañas a nivel latam.',
+                'Luego fundé el laboratorio de contenidos de marca de La Tercera, dentro de Grupo Copesa. Ahí entendí el problema real: las empresas saben mucho y comunican poco. Su conocimiento queda disperso entre especialistas, decks, manuales y conversaciones internas — y su mercado recibe apenas una fracción de ese valor.',
+                'Fundé Flahoolick para resolverlo. Tomamos el conocimiento técnico de una empresa, lo estructuramos alrededor de sus audiencias, y lo convertimos en un sistema continuo de comunicación — estrategia de marca, inteligencia de audiencias, operación editorial y ejecución creativa bajo una misma dirección.',
               ].map((p, i) => (
                 <p key={i} className="text-lead opacity-75">{p}</p>
               ))}

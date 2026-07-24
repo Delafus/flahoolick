@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 }
 
 const caps = [
-  { title: 'Estrategia y Relato',   desc: 'Definimos quién eres para el mercado que importa antes de producir una sola pieza.',    href: '/capacidades/estrategia-y-relato' },
-  { title: 'Sistema de Contenido', desc: 'Instalamos el flujo continuo que mantiene tu conocimiento en circulación mes a mes.',   href: '/capacidades/sistema-de-contenido' },
-  { title: 'Estudio Creativo',      desc: 'Producimos los activos que construyen presencia y habilitan el cierre comercial.',       href: '/capacidades/estudio-creativo' },
+  { title: 'Estrategia y Relato',   desc: 'Definimos la posición, las audiencias y el relato que la empresa necesita instalar en el mercado.',    href: '/capacidades/estrategia-y-relato' },
+  { title: 'Sistema de Contenido', desc: 'Diseñamos el playbook, los flujos y la cadencia que mantienen el conocimiento en circulación.',   href: '/capacidades/sistema-de-contenido' },
+  { title: 'Estudio Creativo',      desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan la venta.',       href: '/capacidades/estudio-creativo' },
 ]
 
 const industries = ['Tecnología B2B','Servicios financieros especializados','Ingeniería y servicios industriales','Salud corporativa','Educación ejecutiva','Infraestructura y concesiones']
@@ -21,9 +21,8 @@ export default function Capacidades() {
     <>
       <PageColorSetter bg="#F09DB6" text="#000000" />
       <PageLayout
-        headline="SENIOR DRIVEN SKILLS"
-        tagline="DELIVERING THE KNOWLEDGE"
-        description="El conocimiento técnico de una empresa raramente llega al mercado en la forma que debería. Trabajamos en tres frentes para convertirlo en presencia real antes de la decisión de compra."
+        headline="CONOCIMIENTO EN ACCIÓN"
+        description="Convertimos el conocimiento técnico de empresas B2B en una presencia clara, continua y útil para el negocio. Trabajamos en tres frentes conectados para construir autoridad durante todo el ciclo de decisión."
         heroBg="#F09DB6"
         heroText="#000000"
       >

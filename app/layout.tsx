@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
-import { PageColorProvider } from '@/context/page-color'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,13 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${inter.variable} ${instrumentSerif.variable}`}>
-      <body>
-        <PageColorProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </PageColorProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

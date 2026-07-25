@@ -28,6 +28,7 @@ export default function SensorPage() {
         description="La mayoría del conocimiento valioso de una empresa ya existe — en documentos, en grabaciones, en conversaciones comerciales que no dejan registro. SENSOR es el módulo con el que Flahoolick captura ese material y lo convierte en materia prima estratégica."
         heroBg="#000000"
         heroText="#ffffff"
+        illustration={{ src: '/sensor-cover.svg', alt: 'SENSOR — captura y modela el conocimiento de tu empresa', ratio: '1/1' }}
       >
         <BodySection title="Tipos de material que procesamos">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.08)' }}>

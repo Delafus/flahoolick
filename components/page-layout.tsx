@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './contact-form'
 
@@ -8,6 +9,7 @@ interface PageLayoutProps {
   heroBg: string
   heroText: string
   ctaHref?: string
+  illustration?: { src: string; alt: string; ratio?: string }
   children: React.ReactNode
 }
 
@@ -17,6 +19,7 @@ export function PageLayout({
   description,
   heroBg,
   heroText,
+  illustration,
   children,
 }: PageLayoutProps) {
   const isLight = heroText === '#000000' || heroText === 'black'
@@ -63,14 +66,20 @@ export function PageLayout({
 
             {/* Ilustración */}
             <div style={{
-              aspectRatio: '4/3',
-              border: `1px solid ${divColor}`,
+              position: 'relative',
+              aspectRatio: illustration?.ratio ?? '4/3',
+              border: illustration ? 'none' : `1px solid ${divColor}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: '3rem',
+              overflow: 'hidden',
             }}>
-              <span className="label" style={{ color: heroText, opacity: 0.2 }}>Ilustración</span>
+              {illustration ? (
+                <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} priority />
+              ) : (
+                <span className="label" style={{ color: heroText, opacity: 0.2 }}>Ilustración</span>
+              )}
             </div>
 
             {/* Divisor */}

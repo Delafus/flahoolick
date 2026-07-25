@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, Tags } from '@/components/page-layout'
+import { PageLayout, BodySection } from '@/components/page-layout'
 
 export const metadata: Metadata = { title: 'SENSOR — Flahoolick' }
 
@@ -11,11 +11,12 @@ const tipos = [
   { titulo: 'Señales de mercado', desc: 'Cómo responden los modelos de lenguaje cuando el comprador ideal busca soluciones en la categoría del cliente. Dónde aparece la empresa y dónde es invisible.' },
 ]
 
-const produce = [
-  'Mapa de conocimiento con valor de contenido jerarquizado',
-  'Identificación de vacíos de visibilidad en plataformas de IA',
-  'Oportunidades editoriales ordenadas por audiencia y momento de compra',
-  'Materia prima estructurada lista para el ciclo de producción',
+const genera = [
+  { titulo: 'Mapa de conocimiento', desc: 'Ordena y jerarquiza los temas con mayor valor para la empresa y sus audiencias.' },
+  { titulo: 'Puntos de entrada a la categoría', desc: 'Identifica las situaciones, necesidades y problemas que activan la categoría en la mente del comprador.' },
+  { titulo: 'Brechas de visibilidad', desc: 'Detecta preguntas, temas y contextos de decisión donde la empresa tiene baja presencia.' },
+  { titulo: 'Agenda editorial', desc: 'Prioriza oportunidades de contenido según audiencia, punto de entrada y momento del ciclo de compra.' },
+  { titulo: 'Base de producción', desc: 'Estructura los hallazgos para alimentar contenidos, activos ejecutivos y herramientas comerciales.' },
 ]
 
 export default function SensorPage() {
@@ -24,8 +25,8 @@ export default function SensorPage() {
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
         headline="SENSOR"
-        tagline="KNOWLEDGE CAPTURED"
-        description="La mayoría del conocimiento valioso de una empresa ya existe — en documentos, en grabaciones, en conversaciones comerciales que no dejan registro. SENSOR es el módulo con el que Flahoolick captura ese material y lo convierte en materia prima estratégica."
+        tagline="SISTEMA DE INTELIGENCIA B2B"
+        description="El valor estratégico de una empresa vive disperso en documentos, datos, grabaciones y conversaciones comerciales. SENSOR captura, organiza y analiza esas señales para definir qué temas puede liderar la empresa, en qué momentos debe aparecer y qué necesita producir."
         heroBg="#000000"
         heroText="#ffffff"
         illustration={{ src: '/sensor-cover.svg', alt: 'SENSOR — captura y modela el conocimiento de tu empresa', ratio: '1/1' }}
@@ -41,7 +42,20 @@ export default function SensorPage() {
             ))}
           </div>
         </BodySection>
-        <BodySection dark title="Qué produce SENSOR"><Tags items={produce} dark /></BodySection>
+        <BodySection dark title="Lo que genera SENSOR">
+          <p className="text-lg font-light opacity-70 max-w-2xl">
+            El sistema convierte fuentes internas y señales del mercado en una base priorizada para orientar la estrategia, el contenido y las herramientas comerciales.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            {genera.map((g, i) => (
+              <div key={i} className="flex flex-col gap-4 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
+                <p className="label opacity-25">{String(i + 1).padStart(2, '0')}</p>
+                <h3 className="text-base font-semibold">{g.titulo}</h3>
+                <p className="text-sm leading-relaxed opacity-60">{g.desc}</p>
+              </div>
+            ))}
+          </div>
+        </BodySection>
       </PageLayout>
     </>
   )

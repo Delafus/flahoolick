@@ -5,7 +5,6 @@ export interface Categoria {
   slug: string
   nombre: string
   descripcion: string
-  color?: string
 }
 
 export interface Pieza {
@@ -19,6 +18,9 @@ export interface Pieza {
   lectura: number
   destacada: boolean
   orden?: number
+  color?: string
+  fijadaEnBarra?: boolean
+  etiquetaBarra?: string
   imagenDestacadaUrl?: string
   imagenDestacadaAlt?: string
   cuerpo: any[]
@@ -35,6 +37,9 @@ const PIEZA_PROYECCION = `{
   lectura,
   "destacada": destacada == true,
   orden,
+  color,
+  fijadaEnBarra,
+  etiquetaBarra,
   "imagenDestacadaUrl": imagenDestacada.asset->url,
   "imagenDestacadaAlt": imagenDestacada.alt,
   cuerpo,
@@ -71,14 +76,20 @@ export async function destacada(): Promise<Pieza | null> {
 
 export async function categorias(): Promise<Categoria[]> {
   return client.fetch(
-    `*[_type == "categoria"] | order(nombre asc){ "slug": slug.current, nombre, descripcion, color }`,
+    `*[_type == "categoria"] | order(nombre asc){ "slug": slug.current, nombre, descripcion }`,
   )
 }
 
 export async function categoria(slug: string): Promise<Categoria | null> {
   return client.fetch(
-    `*[_type == "categoria" && slug.current == $slug][0]{ "slug": slug.current, nombre, descripcion, color }`,
+    `*[_type == "categoria" && slug.current == $slug][0]{ "slug": slug.current, nombre, descripcion }`,
     { slug },
+  )
+}
+
+export async function guiasFijadas(): Promise<Pieza[]> {
+  return client.fetch(
+    `*[_type == "articulo" && tipo == "guia" && fijadaEnBarra == true] | order(coalesce(orden, 99) asc) ${PIEZA_PROYECCION}`,
   )
 }
 

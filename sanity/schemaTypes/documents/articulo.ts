@@ -109,6 +109,33 @@ export const articulo = defineType({
       validation: (Rule) => Rule.integer().positive(),
     }),
     defineField({
+      name: 'color',
+      title: 'Color de header',
+      description: 'Código hexadecimal (ej. #F5FD92). Fondo del hero de esta guía. Si se deja vacío, usa el crema por defecto.',
+      type: 'string',
+      hidden: ({document}) => document?.tipo !== 'guia',
+      validation: (Rule) => Rule.regex(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/, {
+        name: 'hex',
+        invert: false,
+      }).error('Debe ser un color hexadecimal válido, ej. #F5FD92'),
+    }),
+    defineField({
+      name: 'fijadaEnBarra',
+      title: 'Fijar en la barra de guías',
+      description: 'La barra que aparece arriba de las guías con accesos directos a las guías insignia.',
+      type: 'boolean',
+      initialValue: false,
+      hidden: ({document}) => document?.tipo !== 'guia',
+    }),
+    defineField({
+      name: 'etiquetaBarra',
+      title: 'Etiqueta corta para la barra',
+      description: 'Texto corto para el botón en la barra (ej. "Empezar el cambio"). No uses el título completo.',
+      type: 'string',
+      hidden: ({document}) => document?.tipo !== 'guia' || !document?.fijadaEnBarra,
+      validation: (Rule) => Rule.max(30),
+    }),
+    defineField({
       name: 'cuerpo',
       title: 'Cuerpo',
       type: 'array',

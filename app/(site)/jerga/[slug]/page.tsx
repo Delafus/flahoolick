@@ -6,6 +6,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import { CuerpoJerga } from '@/components/portable-text-jerga'
 import { TocSidebar } from '@/components/toc-sidebar'
+import { PinnedGuidesBar } from '@/components/pinned-guides-bar'
 import { extraerToc } from '@/lib/toc'
 import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
 import { todas, porSlug, categoria, categorias, relacionadas } from '@/sanity/lib/jerga'
@@ -42,15 +43,17 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
   const toc = pieza.tipo === 'guia' ? extraerToc(pieza.cuerpo) : []
 
-  const heroBg = pieza.tipo === 'guia' && cat?.color ? cat.color : CREMA
+  const heroBg = pieza.tipo === 'guia' && pieza.color ? pieza.color : CREMA
   const heroText = heroBg !== CREMA ? (esClaro(heroBg) ? NEGRO : '#FFFFFF') : NEGRO
 
   return (
     <>
       <PageColorSetter bg={heroBg} text={heroText} />
 
+      {pieza.tipo === 'guia' && <PinnedGuidesBar bg={heroBg} text={heroText} />}
+
       {/* Cabecera — split: texto | foto */}
-      <section className="page-px" style={{ backgroundColor: heroBg, color: heroText, paddingTop: 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
+      <section className="page-px" style={{ backgroundColor: heroBg, color: heroText, paddingTop: pieza.tipo === 'guia' ? '3rem' : 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
 

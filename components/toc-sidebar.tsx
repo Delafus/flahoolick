@@ -31,8 +31,8 @@ export function TocSidebar({ items }: { items: TocItem[] }) {
 
   return (
     <nav aria-label="Tabla de contenidos" style={{ position: 'sticky', top: 'calc(64px + 3rem)' }}>
-      <p className="label" style={{ opacity: 0.4, marginBottom: '1rem' }}>En esta guía</p>
-      <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', borderLeft: '1px solid rgba(0,0,0,0.15)' }}>
+      <p className="label" style={{ opacity: 0.4, marginBottom: '1.25rem', fontSize: '0.85rem' }}>Tabla de contenidos</p>
+      <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', borderLeft: '1px solid rgba(0,0,0,0.15)' }}>
         {items.map(item => {
           const esActivo = item.id === activo
           return (
@@ -44,7 +44,7 @@ export function TocSidebar({ items }: { items: TocItem[] }) {
                   paddingLeft: '1rem',
                   marginLeft: '-1px',
                   borderLeft: esActivo ? '2px solid #000000' : '1px solid transparent',
-                  fontSize: '0.9rem',
+                  fontSize: '1.05rem',
                   lineHeight: 1.4,
                   opacity: esActivo ? 1 : 0.5,
                   transition: 'opacity 0.15s ease',

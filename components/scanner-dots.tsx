@@ -65,21 +65,20 @@ export function ScannerDots({
         const distance = Math.abs(index - scannerPosition)
         const intensity = Math.max(0, 1 - distance * 1.2)
 
+        if (intensity <= 0) return
+
         const x = pt.cx * scale
         const y = pt.cy * scale
-        const r = (baseRadius + baseRadius * 0.35 * intensity) * scale
+        // Radio y opacidad como función continua de la intensidad — sin saltos al
+        // cruzar el umbral, para que el crecimiento se sienta suave, no de golpe.
+        const eased = intensity * intensity * (3 - 2 * intensity) // smoothstep
+        const r = (baseRadius + baseRadius * 0.35 * eased) * scale
 
         ctx!.beginPath()
-        if (intensity > 0) {
-          ctx!.shadowBlur = (4 + 16 * intensity) * scale
-          ctx!.shadowColor = color
-          ctx!.fillStyle = color
-          ctx!.globalAlpha = 0.55 + 0.45 * intensity
-        } else {
-          ctx!.shadowBlur = 0
-          ctx!.fillStyle = color
-          ctx!.globalAlpha = 0
-        }
+        ctx!.shadowBlur = 16 * eased * scale
+        ctx!.shadowColor = color
+        ctx!.fillStyle = color
+        ctx!.globalAlpha = eased
         ctx!.arc(x, y, r, 0, Math.PI * 2)
         ctx!.fill()
         ctx!.closePath()

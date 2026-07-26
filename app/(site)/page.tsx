@@ -7,6 +7,7 @@ import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ScannerDots } from '@/components/scanner-dots'
 import { CirculationDots } from '@/components/circulation-dots'
+import { ScrollConnector } from '@/components/scroll-connector'
 import Link from 'next/link'
 
 const SCROLLS = [
@@ -76,8 +77,17 @@ export default function HomePage() {
               </div>
             )}
           </div>
+          {i < SCROLLS.length - 1 && <ScrollConnector color="#ffffff" />}
         </section>
       ))}
+
+      {/* Conector que cruza el límite rojo → amarillo, cambiando de color a la mitad */}
+      <div style={{ position: 'relative', height: '96px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #EE3F4A 50%, #F5FD92 50%)' }} />
+        <div style={{ position: 'relative' }}>
+          <ScrollConnector color="#ffffff" colorTo="#000000" height={96} />
+        </div>
+      </div>
 
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section

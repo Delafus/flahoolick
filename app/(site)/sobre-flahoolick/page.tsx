@@ -3,6 +3,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
+import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick',
@@ -26,12 +27,7 @@ export default function SobreFlahoolick() {
           {/* Izquierda — ilustración */}
           <div className="hidden md:flex col-span-5 items-center justify-center py-8">
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px', aspectRatio: '4/5' }}>
-              <Image
-                src="/logo-idea-generosa.svg"
-                alt="Idea generosa"
-                fill
-                style={{ objectFit: 'contain', filter: 'brightness(0)' }}
-              />
+              <IdeaGenerosaLogo color="#000000" className="w-full h-full" />
             </div>
           </div>
 

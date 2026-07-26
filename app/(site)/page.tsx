@@ -69,23 +69,26 @@ export default function HomePage() {
               {s.sub}
             </p>
             {s.img && (
-              <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginTop: '196px', marginBottom: '220px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
-                <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
-                {i === 0 && <TrappedDots diameterPercent={44.8} />}
-                {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} />}
-                {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#F5FD92" />}
-              </div>
+              <>
+                <ScrollConnector color="#ffffff" height={140} />
+                <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginBottom: '160px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
+                  <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
+                  {i === 0 && <TrappedDots diameterPercent={44.8} />}
+                  {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} />}
+                  {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#F5FD92" />}
+                </div>
+              </>
             )}
           </div>
-          {i < SCROLLS.length - 1 && <ScrollConnector color="#ffffff" />}
+          {i < SCROLLS.length - 1 && <ScrollConnector color="#ffffff" height={200} />}
         </section>
       ))}
 
       {/* Conector que cruza el límite rojo → amarillo, cambiando de color a la mitad */}
-      <div style={{ position: 'relative', height: '96px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #EE3F4A 50%, #F5FD92 50%)' }} />
         <div style={{ position: 'relative' }}>
-          <ScrollConnector color="#ffffff" colorTo="#000000" height={96} />
+          <ScrollConnector color="#ffffff" colorTo="#000000" height={220} thickness={3} dotSize={16} />
         </div>
       </div>
 

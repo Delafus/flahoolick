@@ -27,7 +27,7 @@ const SCROLLS = [
     h1: 'Tu ventaja competitiva ya existe.',
     sub: 'Necesita un sistema que la ponga en circulación.',
     img: '/dots-scroll-03.svg',
-    imgSize: { width: 622, height: 622 },
+    imgSize: { width: 590, height: 590 },
   },
 ]
 

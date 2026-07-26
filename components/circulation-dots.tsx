@@ -61,13 +61,28 @@ export function CirculationDots({
 
     const maxIndex = points.length - 1
     const targetRgb = hexToRgb(color)
-    // La onda entra y sale de la fila fuera de rango (-2 → maxIndex+2) antes
+    // La onda entra y sale de la fila fuera de rango (-2 → maxIndex+3) antes
     // de reiniciar, para que el barrido tenga "colchón" de entrada/salida en
     // vez de rebotar de golpe — la inercia que pide el sandbox de referencia.
     const entryBuffer = 2
-    const exitBuffer = 2
+    const exitBuffer = 3
     let wavePosition = -entryBuffer
     const waveWidth = 1.8
+
+    // Margen real (en unidades de viewBox) entre el borde de cada punto y el
+    // borde del recuadro — determina cuánto puede crecer sin cortarse. El
+    // último punto de la diagonal toca la esquina exacta (margen 0), así que
+    // se queda sin crecimiento; el resto sí puede "florecer" al pasar la onda.
+    function safeMargin(pt: { cx: number; cy: number; r: number }) {
+      return Math.min(
+        pt.cx - pt.r,
+        viewBoxSize - (pt.cx + pt.r),
+        pt.cy - pt.r,
+        viewBoxSize - (pt.cy + pt.r),
+      )
+    }
+    const GROWTH_RATIO = 0.5 // crecimiento deseado en el pico: hasta +50% del radio
+    const growthCaps = points.map(pt => Math.max(0, safeMargin(pt) * 0.92))
 
     function animate() {
       ctx!.clearRect(0, 0, width, height)
@@ -86,9 +101,11 @@ export function CirculationDots({
         const progressRatio = index / maxIndex
         const x = pt.cx * scale
         const y = pt.cy * scale
-        // El radio no crece más allá del tamaño real del punto estático, para
-        // que nunca se salga del recuadro de la imagen (el más grande toca el borde).
-        const r = pt.r * scale
+        // Crecimiento proporcional (más marcado hacia el punto final), acotado
+        // por el margen real de cada punto para que nunca se corte contra el borde.
+        const desiredGrowth = pt.r * GROWTH_RATIO * progressRatio
+        const growth = Math.min(desiredGrowth, growthCaps[index])
+        const r = (pt.r + growth * intensity) * scale
 
         // Transición de blanco (color de reposo del punto estático) a la
         // tonalidad de acento, a medida que la onda lo activa.

@@ -9,9 +9,9 @@ export async function PinnedGuidesBar({ bg, text }: { bg: string; text: string }
   const dividerColor = text === '#000000' || text === 'black' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.25)'
 
   return (
-    <div className="page-px" style={{ backgroundColor: bg, color: text, borderTop: `2px solid ${text}`, borderBottom: `1px solid ${dividerColor}`, paddingTop: '64px' }}>
+    <div className="page-px" style={{ backgroundColor: bg, color: text, borderTop: '3px solid #000000', borderBottom: `1px solid ${dividerColor}`, paddingTop: '64px' }}>
       <div className="max-container flex flex-wrap items-center justify-between gap-4" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-        <Link href="/jerga" style={{ display: 'block', width: '150px' }}>
+        <Link href="/jerga" style={{ display: 'block', width: '230px' }}>
           <Image
             src="/logo-jerga-horizontal.svg"
             alt="JERGA"

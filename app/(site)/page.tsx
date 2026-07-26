@@ -11,14 +11,19 @@ const SCROLLS = [
     h1: 'Tu empresa sabe demasiado para comunicar como cualquiera.',
     sub: 'Gran parte de ese conocimiento queda atrapado.',
     img: '/dots-scroll-01.svg',
+    imgSize: { width: 622, height: 622 },
   },
   {
     h1: 'Solo el 5% de tu mercado está listo para comprar hoy.',
     sub: 'El 95% restante está formando opinión.',
+    img: '/dots-scroll-02.svg',
+    imgSize: { width: 638, height: 638 },
   },
   {
     h1: 'Tu ventaja competitiva ya existe.',
     sub: 'Necesita un sistema que la ponga en circulación.',
+    img: '/dots-scroll-03.svg',
+    imgSize: { width: 622, height: 622 },
   },
 ]
 
@@ -59,8 +64,8 @@ export default function HomePage() {
               {s.sub}
             </p>
             {s.img && (
-              <div style={{ marginTop: '2rem', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
-                <Image src={s.img} alt="" width={571} height={565} style={{ width: '100%', height: 'auto' }} />
+              <div style={{ marginTop: '88px', marginBottom: '112px', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
+                <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
               </div>
             )}
           </div>

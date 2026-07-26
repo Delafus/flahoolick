@@ -93,7 +93,7 @@ export default function HomePage() {
         </div>
 
         {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem' }}>Marcas que nos formaron</p>
+        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
 
         {/* Marquee */}
         <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
@@ -127,7 +127,7 @@ export default function HomePage() {
           <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
-        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem' }}>Con quién trabajamos</p>
+        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
 
         <div style={{ maxWidth: '80rem', width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[

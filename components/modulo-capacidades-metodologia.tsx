@@ -69,7 +69,7 @@ export function ModuloCapacidadesMetodologia() {
       {/* ── SECCIÓN 1: CAPACIDADES ── */}
       <section className="page-px section-py">
         <div className="max-container flex flex-col items-center text-center gap-6">
-          <p className="label" style={{ color: ROSA }}>En qué nos especializamos</p>
+          <p className="label" style={{ color: ROSA, fontSize: '1rem' }}>En qué nos especializamos</p>
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(2.75rem, 7vw, 9rem)',
@@ -111,7 +111,7 @@ export function ModuloCapacidadesMetodologia() {
                   className="w-full flex items-center justify-between py-5 text-left"
                   style={{ cursor: 'pointer' }}
                 >
-                  <span className="label font-bold" style={{ color: BLANCO }}>{item.titulo}</span>
+                  <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem' }}>{item.titulo}</span>
                   <span style={{
                     color: BLANCO,
                     fontSize: '1.2rem',

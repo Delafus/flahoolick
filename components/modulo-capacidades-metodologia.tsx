@@ -88,7 +88,7 @@ export function ModuloCapacidadesMetodologia() {
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Ilustración */}
           <div>
-            <div style={{ position: 'relative', aspectRatio: '1/1', width: '100%' }}>
+            <div style={{ position: 'relative', aspectRatio: '1/1', width: '80%', margin: '0 auto' }}>
               <Image src="/iconos-industria.svg" alt="Íconos de industrias B2B" fill style={{ objectFit: 'contain' }} />
             </div>
           </div>

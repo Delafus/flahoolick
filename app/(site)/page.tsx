@@ -49,10 +49,9 @@ export default function HomePage() {
       {SCROLLS.map((s, i) => (
         <section
           key={i}
-          className="flex flex-col items-center justify-center page-px"
+          className={`flex flex-col items-center justify-center page-px pt-24 ${i === 0 ? 'md:pt-[220px]' : ''}`}
           style={{
             minHeight: '100dvh',
-            paddingTop: 'calc(64px + 2rem)',
             paddingBottom: '2rem',
             backgroundColor: 'var(--brand-ink)',
             color: 'var(--brand-chalk)',
@@ -66,7 +65,7 @@ export default function HomePage() {
               {s.sub}
             </p>
             {s.img && (
-              <div className="w-full max-w-[160px] md:max-w-[360px]" style={{ marginTop: '196px', marginBottom: '220px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginTop: '196px', marginBottom: '220px', marginLeft: 'auto', marginRight: 'auto' }}>
                 <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
               </div>
             )}

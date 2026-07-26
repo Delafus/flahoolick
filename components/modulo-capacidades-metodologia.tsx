@@ -88,17 +88,8 @@ export function ModuloCapacidadesMetodologia() {
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Ilustración */}
           <div>
-            {/* Placeholder ilustración */}
-            <div style={{
-              aspectRatio: '5/4',
-              backgroundColor: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-            }}>
-              <span className="label" style={{ color: 'rgba(255,255,255,0.2)' }}>Ilustración</span>
+            <div style={{ position: 'relative', aspectRatio: '1/1', width: '100%' }}>
+              <Image src="/iconos-industria.svg" alt="Íconos de industrias B2B" fill style={{ objectFit: 'contain' }} />
             </div>
           </div>
 

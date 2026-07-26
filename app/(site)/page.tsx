@@ -59,14 +59,14 @@ export default function HomePage() {
           }}
         >
           <div className="max-container w-full text-center flex flex-col gap-6">
-            <h1 className="text-hero" style={{ color: 'var(--brand-chalk)' }}>
+            <h1 className="text-hero scroll-hero-h1" style={{ color: 'var(--brand-chalk)' }}>
               {s.h1}
             </h1>
-            <p className="text-xl md:text-2xl font-light opacity-50 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-2xl font-light opacity-50 max-w-2xl mx-auto leading-relaxed">
               {s.sub}
             </p>
             {s.img && (
-              <div style={{ marginTop: '196px', marginBottom: '220px', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <div className="w-full max-w-[160px] md:max-w-[360px]" style={{ marginTop: '196px', marginBottom: '220px', marginLeft: 'auto', marginRight: 'auto' }}>
                 <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
               </div>
             )}
@@ -76,8 +76,8 @@ export default function HomePage() {
 
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section
-        className="flex flex-col items-center text-center"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingTop: '300px', paddingBottom: '6rem' }}
+        className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
+        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>

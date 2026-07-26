@@ -77,7 +77,7 @@ export function ModuloCapacidadesMetodologia() {
             fontWeight: 400,
             textAlign: 'center',
           }}>
-            DONDE EL CONTENIDO TRABAJA PARA EL NEGOCIO
+            Donde el contenido trabaja para el negocio
           </h2>
         </div>
 

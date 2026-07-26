@@ -14,27 +14,24 @@ export const metadata: Metadata = {
 export default function SobreFlahoolick() {
   return (
     <>
-      <PageColorSetter bg="#F9F0E2" text="#000000" />
+      <PageColorSetter bg="#F5FD92" text="#000000" />
 
-      {/* Hero — exactamente como NOBL About: split layout, fondo crema */}
+      {/* Hero — exactamente como NOBL About: split layout, fondo amarillo */}
       <section
         className="page-hero page-px"
-        style={{ backgroundColor: 'var(--page-sobre-bg)', color: 'var(--page-sobre-text)' }}
+        style={{ backgroundColor: '#F5FD92', color: '#000000' }}
       >
         <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
 
-          {/* Izquierda — placeholder ilustración */}
+          {/* Izquierda — ilustración */}
           <div className="hidden md:flex col-span-5 items-center justify-center py-8">
-            <div style={{
-              width: '100%',
-              maxWidth: '480px',
-              aspectRatio: '4/5',
-              border: '1px solid rgba(0,0,0,0.15)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+            <div style={{ position: 'relative', width: '100%', maxWidth: '480px', aspectRatio: '4/5' }}>
+              <Image
+                src="/logo-idea-generosa.svg"
+                alt="Idea generosa"
+                fill
+                style={{ objectFit: 'contain', filter: 'brightness(0)' }}
+              />
             </div>
           </div>
 
@@ -281,7 +278,7 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
-      <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />
+      <ContactForm bg="#ffffff" text="#000000" />
     </>
   )
 }

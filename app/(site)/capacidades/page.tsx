@@ -19,12 +19,13 @@ const industries = ['Tecnología B2B','Servicios financieros especializados','In
 export default function Capacidades() {
   return (
     <>
-      <PageColorSetter bg="#F09DB6" text="#000000" />
+      <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="CONOCIMIENTO EN ACCIÓN"
+        headline="Conocimiento en acción"
         description="Convertimos el conocimiento técnico de empresas B2B en una presencia clara, continua y útil para el negocio. Trabajamos en tres frentes conectados para construir autoridad durante todo el ciclo de decisión."
-        heroBg="#F09DB6"
-        heroText="#000000"
+        heroBg="#000000"
+        heroText="#ffffff"
+        illustration={{ src: '/iconos-industria.svg', alt: 'Íconos de industrias B2B', ratio: '1/1' }}
       >
         <BodySection title="Qué hacemos">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.1)' }}>

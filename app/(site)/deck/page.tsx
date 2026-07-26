@@ -27,7 +27,7 @@ export default function DeckPage() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="ACTIVOS COMERCIALES"
+        headline="Activos comerciales"
         tagline="ACTIVOS PARA DECIDIR"
         description="DECK convierte información compleja en herramientas comerciales y ejecutivas claras, consistentes y listas para usar. Construimos presentaciones, propuestas, battlecards, playbooks y piezas que ayudan a explicar valor, sostener argumentos y avanzar decisiones."
         heroBg="#000000"

@@ -15,12 +15,12 @@ const subs = [
 export default function Metodologia() {
   return (
     <>
-      <PageColorSetter bg="#F5FD92" text="#000000" />
+      <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="SISTEMA DE AUTORIDAD"
+        headline="Sistema de autoridad"
         description="Convertimos el conocimiento técnico de empresas B2B en una presencia de marca continua."
-        heroBg="#F5FD92"
-        heroText="#000000"
+        heroBg="#000000"
+        heroText="#ffffff"
       >
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.1)' }}>

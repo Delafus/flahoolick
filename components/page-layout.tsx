@@ -116,7 +116,7 @@ export function PageLayout({
         {children}
       </div>
 
-      <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />
+      <ContactForm bg="#ffffff" text="#000000" />
     </>
   )
 }

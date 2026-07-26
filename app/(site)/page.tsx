@@ -76,7 +76,7 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section
         className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
-        style={{ backgroundColor: '#FBFE56', color: '#000000', paddingBottom: '6rem' }}
+        style={{ backgroundColor: '#F5FD92', color: '#000000', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
@@ -110,7 +110,7 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#000000', color: '#FBFE56' }}
+          style={{ backgroundColor: '#000000', color: '#F5FD92' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>
@@ -119,7 +119,7 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 2: Con quién trabajamos, centrado */}
       <section
         className="flex flex-col items-center justify-center text-center"
-        style={{ backgroundColor: '#FBFE56', color: '#000000', minHeight: '40vh', padding: '4rem var(--page-px)' }}
+        style={{ backgroundColor: '#F5FD92', color: '#000000', minHeight: '40vh', padding: '4rem var(--page-px)' }}
       >
         {/* Divisoria con aire */}
         <div style={{ width: '100%', maxWidth: '80rem', marginBottom: '3rem' }}>

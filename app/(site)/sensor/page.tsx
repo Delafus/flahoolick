@@ -24,7 +24,7 @@ export default function SensorPage() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="INTELIGENCIA B2B"
+        headline="Inteligencia B2B"
         tagline="SENSOR SISTEMA DE ANALISIS"
         description="El valor estratégico de una empresa vive disperso en documentos, datos, grabaciones y conversaciones comerciales. SENSOR captura, organiza y analiza esas señales para definir qué temas puede liderar la empresa, en qué momentos debe aparecer y qué necesita producir."
         heroBg="#000000"

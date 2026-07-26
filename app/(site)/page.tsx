@@ -6,6 +6,7 @@ import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-me
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ScannerDots } from '@/components/scanner-dots'
+import { CirculationDots } from '@/components/circulation-dots'
 import Link from 'next/link'
 
 const SCROLLS = [
@@ -71,6 +72,7 @@ export default function HomePage() {
                 <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                 {i === 0 && <TrappedDots diameterPercent={44.8} />}
                 {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} />}
+                {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#F5FD92" />}
               </div>
             )}
           </div>

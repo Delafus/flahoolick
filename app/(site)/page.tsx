@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
+import { ScannerDots } from '@/components/scanner-dots'
 import Link from 'next/link'
 
 const SCROLLS = [
@@ -69,6 +70,7 @@ export default function HomePage() {
               <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginTop: '196px', marginBottom: '220px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
                 <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                 {i === 0 && <TrappedDots diameterPercent={44.8} />}
+                {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} />}
               </div>
             )}
           </div>

@@ -10,6 +10,7 @@ const SCROLLS = [
   {
     h1: 'Tu empresa sabe demasiado para comunicar como cualquiera.',
     sub: 'Gran parte de ese conocimiento queda atrapado.',
+    img: '/dots-scroll-01.svg',
   },
   {
     h1: 'Solo el 5% de tu mercado está listo para comprar hoy.',
@@ -57,6 +58,11 @@ export default function HomePage() {
             <p className="text-xl md:text-2xl font-light opacity-50 max-w-2xl mx-auto leading-relaxed">
               {s.sub}
             </p>
+            {s.img && (
+              <div style={{ marginTop: '2rem', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
+                <Image src={s.img} alt="" width={571} height={565} style={{ width: '100%', height: 'auto' }} />
+              </div>
+            )}
           </div>
         </section>
       ))}

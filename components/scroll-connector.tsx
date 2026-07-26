@@ -40,14 +40,20 @@ export function ScrollConnector({
     ? `linear-gradient(to bottom, ${color} 50%, ${colorTo} 50%)`
     : color
 
+  const lineHeight = height * 0.78
+
   return (
     <div ref={ref} className="w-full flex flex-col items-center justify-center" style={{ height: `${height}px` }}>
       <div
         style={{
           width: `${thickness}px`,
-          height: visible ? `${height * 0.78}px` : '0px',
+          height: `${lineHeight}px`,
           background: lineBackground,
-          transition: 'height 1.1s cubic-bezier(0.4, 0, 0.2, 1)',
+          // El clip-path se anima en vez del alto, para que la línea se
+          // "desenmascare" de arriba hacia abajo (como si el scroll la
+          // fuera dibujando), en vez de crecer desde el centro.
+          clipPath: visible ? 'inset(0 0 0% 0)' : 'inset(0 0 100% 0)',
+          transition: 'clip-path 1.1s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       />
       <div

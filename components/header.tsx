@@ -177,7 +177,7 @@ export function Header() {
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
               className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: '#000000', color: '#ffffff', borderRadius: '2px' }}>
+              style={{ backgroundColor: '#000000', color: '#ffffff', borderRadius: '0' }}>
               CERRAR ✕
             </button>
           </div>
@@ -229,7 +229,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
           style={{
             backgroundColor: textColor,
             color: textColor.toLowerCase() === '#000000' ? '#ffffff' : '#000000',
-            borderRadius: '2px',
+            borderRadius: '0',
           }}>
           {menu.ctaLabel} →
         </Link>

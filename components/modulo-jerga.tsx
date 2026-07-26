@@ -42,8 +42,27 @@ export async function ModuloJerga() {
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
-    <section style={{ backgroundColor: AZUL, color: BLANCO }}>
-      <div className="max-container page-px" style={{ paddingTop: '4rem', paddingBottom: '5rem' }}>
+    <section style={{ backgroundColor: AZUL, color: BLANCO, position: 'relative', overflow: 'hidden' }}>
+      {/* Cuadrícula de plano de patente — sutil, solo arriba, se desvanece hacia abajo */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '420px',
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)
+          `,
+          backgroundSize: '28px 28px',
+          WebkitMaskImage: 'linear-gradient(to bottom, black, transparent)',
+          maskImage: 'linear-gradient(to bottom, black, transparent)',
+          pointerEvents: 'none',
+        }}
+      />
+      <div className="max-container page-px" style={{ paddingTop: '4rem', paddingBottom: '5rem', position: 'relative' }}>
 
         {/* ── HEADER: logo + tagline ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">

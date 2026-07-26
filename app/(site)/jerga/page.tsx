@@ -13,8 +13,9 @@ export const metadata: Metadata = {
   description: 'Estrategia de contenido, marketing B2B y autoridad de mercado. Lo que importa, dicho como hay que decirlo.',
 }
 
-const CHARTREUSE = '#F5FD92'
+const AZUL = '#105E9C'
 const NEGRO = '#000000'
+const BLANCO = '#ffffff'
 
 export default async function JergaPage() {
   const [featured, guias, todasLasPiezas, conteos, cats] = await Promise.all([
@@ -29,15 +30,15 @@ export default async function JergaPage() {
 
   return (
     <>
-      <PageColorSetter bg={CHARTREUSE} text={NEGRO} />
+      <PageColorSetter bg={AZUL} text={BLANCO} />
 
       {/* ── Cabecera del medio ── */}
-      <section className="page-px" style={{ backgroundColor: CHARTREUSE, color: NEGRO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
+      <section className="page-px" style={{ backgroundColor: AZUL, color: BLANCO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
               <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}
-                style={{ width: 'clamp(220px, 26vw, 340px)', height: 'auto' }} priority />
+                style={{ width: 'clamp(220px, 26vw, 340px)', height: 'auto', filter: 'brightness(0) invert(1)' }} priority />
             </div>
             <div className="flex flex-col gap-8 md:pt-4">
               <p style={{
@@ -50,7 +51,7 @@ export default async function JergaPage() {
                 {cats.map(c => (
                   <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                     className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                    style={{ border: '1px solid rgba(0,0,0,0.25)', borderRadius: '2px' }}>
+                    style={{ border: '1px solid rgba(255,255,255,0.35)', borderRadius: '0' }}>
                     {c.nombre}
                   </Link>
                 ))}
@@ -87,7 +88,7 @@ export default async function JergaPage() {
                 </div>
                 <Link href={`/jerga/${featured.slug}`}
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
-                  style={{ backgroundColor: '#ffffff', color: NEGRO, borderRadius: '2px' }}>
+                  style={{ backgroundColor: '#ffffff', color: NEGRO, borderRadius: '0' }}>
                   {CTA_TIPO[featured.tipo]}
                 </Link>
               </div>
@@ -161,14 +162,14 @@ export default async function JergaPage() {
       </section>
 
       {/* ── Explorar por categoría ── */}
-      <section className="page-px section-py" style={{ backgroundColor: CHARTREUSE, color: NEGRO }}>
+      <section className="page-px section-py" style={{ backgroundColor: AZUL, color: BLANCO }}>
         <div className="max-container flex flex-col gap-12">
           <h2 className="text-display">Explorar por categoría</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.15)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.2)' }}>
             {conteos.map(({ categoria: c, total }) => (
               <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                 className="group flex flex-col gap-3 p-10"
-                style={{ backgroundColor: CHARTREUSE }}>
+                style={{ backgroundColor: AZUL }}>
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 style={{
                     fontFamily: 'var(--font-display)', fontWeight: 400,
@@ -184,7 +185,7 @@ export default async function JergaPage() {
       </section>
 
       {/* ── Archivo completo ── */}
-      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
+      <section className="page-px section-py" style={{ backgroundColor: AZUL, color: BLANCO }}>
         <div className="max-container flex flex-col gap-12">
           <div className="flex items-baseline gap-6">
             <h2 className="text-display">Todo</h2>
@@ -216,7 +217,7 @@ export default async function JergaPage() {
         </div>
       </section>
 
-      <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />
+      <ContactForm bg="#ffffff" text="#000000" />
     </>
   )
 }

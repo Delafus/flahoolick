@@ -77,7 +77,7 @@ export function ModuloCapacidadesMetodologia() {
             fontWeight: 400,
             textAlign: 'center',
           }}>
-            Tu conocimiento ya existe,<br />pongámoslo en circulación.
+            DONDE EL CONTENIDO TRABAJA PARA EL NEGOCIO
           </h2>
         </div>
 
@@ -87,7 +87,7 @@ export function ModuloCapacidadesMetodologia() {
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Ilustración */}
           <div>
-            <div style={{ position: 'relative', aspectRatio: '1/1', width: '80%', margin: '0 auto' }}>
+            <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
               <Image src="/iconos-industria.svg" alt="Íconos de industrias B2B" fill style={{ objectFit: 'contain' }} />
             </div>
           </div>
@@ -171,7 +171,7 @@ export function ModuloCapacidadesMetodologia() {
                 </p>
                 <Link href="/metodologia"
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
+                  style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
                   EXPLORAR METODOLOGÍA ›
                 </Link>
               </div>
@@ -190,7 +190,7 @@ export function ModuloCapacidadesMetodologia() {
                       <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
                       <Link href={col.href}
                         className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
-                        style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
+                        style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
                         CONOCE MÁS ›
                       </Link>
                     </div>
@@ -240,7 +240,7 @@ export function ModuloCapacidadesMetodologia() {
               </p>
               <Link href="/metodologia"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
+                style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
                 EXPLORAR METODOLOGÍA ›
               </Link>
             </div>
@@ -261,7 +261,7 @@ export function ModuloCapacidadesMetodologia() {
                   <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
                   <Link href={col.href}
                     className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
-                    style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
+                    style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
                     CONOCE MÁS ›
                   </Link>
                 </div>

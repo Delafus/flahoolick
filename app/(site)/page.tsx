@@ -61,7 +61,7 @@ export default function HomePage() {
             <h1 className="text-hero scroll-hero-h1" style={{ color: 'var(--brand-chalk)' }}>
               {s.h1}
             </h1>
-            <p className="text-base md:text-2xl font-light opacity-50 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-2xl font-light max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--brand-chalk)', opacity: 0.85 }}>
               {s.sub}
             </p>
             {s.img && (

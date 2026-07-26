@@ -3,33 +3,33 @@ import Link from 'next/link'
 import { CTA_TIPO } from '@/content/jerga'
 import { todas, categorias, type Pieza } from '@/sanity/lib/jerga'
 
-const AMARILLO = '#F6FD92'
-const NEGRO    = '#000000'
+const AZUL   = '#105E9C'
+const BLANCO = '#ffffff'
 
 function Card({ pieza, nombreCategoria }: { pieza: Pieza; nombreCategoria?: string }) {
   return (
     <div className="w-full flex flex-col gap-6">
-      <p className="label font-bold" style={{ color: NEGRO }}>
+      <p className="label font-bold" style={{ color: BLANCO }}>
         {nombreCategoria?.toUpperCase()}
       </p>
-      <div style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'rgba(0,0,0,0.08)', display: pieza.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+      <div style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'rgba(255,255,255,0.12)', display: pieza.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         {pieza.imagenDestacadaUrl ? (
           <Image src={pieza.imagenDestacadaUrl} alt={pieza.imagenDestacadaAlt ?? pieza.titulo} fill style={{ objectFit: 'cover' }} />
         ) : (
-          <span className="label" style={{ color: NEGRO, opacity: 0.3 }}>Imagen</span>
+          <span className="label" style={{ color: BLANCO, opacity: 0.3 }}>Imagen</span>
         )}
       </div>
       <div className="flex flex-col gap-3 flex-1">
-        <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', lineHeight: 1.2, color: NEGRO }}>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', lineHeight: 1.2, color: BLANCO }}>
           {pieza.titulo}
         </h3>
-        <p className="text-sm leading-relaxed" style={{ color: NEGRO, opacity: 0.7 }}>
+        <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>
           {pieza.bajada}
         </p>
       </div>
       <Link href={`/jerga/${pieza.slug}`}
         className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-80 transition-opacity"
-        style={{ backgroundColor: NEGRO, color: AMARILLO }}>
+        style={{ backgroundColor: BLANCO, color: AZUL }}>
         {CTA_TIPO[pieza.tipo].toUpperCase()}
       </Link>
     </div>
@@ -42,7 +42,7 @@ export async function ModuloJerga() {
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
-    <section style={{ backgroundColor: AMARILLO, color: NEGRO }}>
+    <section style={{ backgroundColor: AZUL, color: BLANCO }}>
       <div className="max-container page-px" style={{ paddingTop: '4rem', paddingBottom: '5rem' }}>
 
         {/* ── HEADER: logo + tagline ── */}
@@ -54,7 +54,7 @@ export async function ModuloJerga() {
                 alt="JERGA"
                 width={280}
                 height={160}
-                style={{ width: '280px', height: 'auto' }}
+                style={{ width: '280px', height: 'auto', filter: 'brightness(0) invert(1)' }}
                 priority
               />
             </Link>
@@ -67,7 +67,7 @@ export async function ModuloJerga() {
               fontWeight: 400,
               fontSize: 'clamp(1.2rem, 2vw, 1.6rem)',
               lineHeight: 1.4,
-              color: NEGRO,
+              color: BLANCO,
             }}>
               Ideas, guías y puntos de vista para convertir conocimiento técnico en autoridad de mercado.
             </p>
@@ -80,14 +80,14 @@ export async function ModuloJerga() {
             {primera && <Card pieza={primera} nombreCategoria={nombreCategoria(primera.categoria)} />}
           </div>
           <div className="md:pl-12" style={{ position: 'relative' }}>
-            <div className="hidden md:block" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', backgroundColor: NEGRO, opacity: 0.2 }} />
+            <div className="hidden md:block" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', backgroundColor: BLANCO, opacity: 0.2 }} />
             {segunda && <Card pieza={segunda} nombreCategoria={nombreCategoria(segunda.categoria)} />}
           </div>
         </div>
 
         {/* ── Ver todo ── */}
-        <div className="mt-16 pt-8" style={{ borderTop: `1px solid rgba(0,0,0,0.2)` }}>
-          <Link href="/jerga" className="label hover:opacity-60 transition-opacity" style={{ color: NEGRO }}>
+        <div className="mt-16 pt-8" style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }}>
+          <Link href="/jerga" className="label hover:opacity-60 transition-opacity" style={{ color: BLANCO }}>
             VER TODO JERGA →
           </Link>
         </div>

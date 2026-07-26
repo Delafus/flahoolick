@@ -53,7 +53,7 @@ export default function HomePage() {
           style={{
             minHeight: '100dvh',
             paddingBottom: '2rem',
-            backgroundColor: 'var(--brand-ink)',
+            backgroundColor: '#EE3F4A',
             color: 'var(--brand-chalk)',
           }}
         >
@@ -76,11 +76,11 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
       <section
         className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', paddingBottom: '6rem' }}
+        style={{ backgroundColor: '#FBFE56', color: '#000000', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
-          <h2 className="text-hero" style={{ color: '#3B0B2C', fontFamily: 'var(--font-display)', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+          <h2 className="text-hero" style={{ color: '#000000', fontFamily: 'var(--font-display)', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             Somos FLAHOOLICK.<br />
             Convertimos conocimiento técnico en autoridad de mercado.
           </h2>
@@ -88,20 +88,20 @@ export default function HomePage() {
 
         {/* Divisoria con aire */}
         <div style={{ width: '100%', padding: '0 4rem', marginBottom: '3rem' }}>
-          <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
+          <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
         {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
 
         {/* Marquee */}
         <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
-          <Marquee color="#3B0B2C" />
+          <Marquee color="#000000" />
         </div>
 
         {/* Párrafo */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '3rem' }}>
-          <p className="text-lead mx-auto" style={{ color: '#3B0B2C', opacity: 0.75, maxWidth: '36rem' }}>
+          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '36rem' }}>
             Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#3B0B2C', color: '#F09DB6' }}
+          style={{ backgroundColor: '#000000', color: '#FBFE56' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>
@@ -119,14 +119,14 @@ export default function HomePage() {
       {/* MÓDULO SOMOS FLAHOOLICK — bloque 2: Con quién trabajamos, centrado */}
       <section
         className="flex flex-col items-center justify-center text-center"
-        style={{ backgroundColor: '#F09DB6', color: '#3B0B2C', minHeight: '40vh', padding: '4rem var(--page-px)' }}
+        style={{ backgroundColor: '#FBFE56', color: '#000000', minHeight: '40vh', padding: '4rem var(--page-px)' }}
       >
         {/* Divisoria con aire */}
         <div style={{ width: '100%', maxWidth: '80rem', marginBottom: '3rem' }}>
-          <hr style={{ borderColor: '#3B0B2C', borderTopWidth: '1px', opacity: 0.3 }} />
+          <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
-        <p className="label" style={{ color: '#3B0B2C', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
 
         <div style={{ maxWidth: '80rem', width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
@@ -136,7 +136,7 @@ export default function HomePage() {
             'Servicios profesionales', 'Sector público'
           ].map(tag => (
             <span key={tag} className="text-sm px-3 py-1.5"
-              style={{ border: '1px solid #3B0B2C', color: '#3B0B2C', opacity: 0.7, borderRadius: '4px' }}>
+              style={{ border: '1px solid #000000', color: '#000000', opacity: 0.7, borderRadius: '4px' }}>
               {tag}
             </span>
           ))}
@@ -150,7 +150,7 @@ export default function HomePage() {
       <ModuloJerga />
 
       {/* Contacto */}
-      <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />
+      <ContactForm bg="#ffffff" text="#000000" />
     </>
   )
 }

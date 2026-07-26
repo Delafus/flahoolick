@@ -16,6 +16,8 @@ const logos = [
 export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
   const filter = color === '#3B0B2C'
     ? 'brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(2000%) hue-rotate(280deg) brightness(40%)'
+    : color === '#000000'
+    ? 'brightness(0) saturate(100%)'
     : 'brightness(0) invert(1)'
 
   return (

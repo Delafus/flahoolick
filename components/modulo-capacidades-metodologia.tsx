@@ -4,8 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const CIRUELA = '#3B0B2C'
-const ROSA    = '#F09DB6'
+const NEGRO   = '#000000'
 const BLANCO  = '#ffffff'
 
 const acordeonItems = [
@@ -53,7 +52,7 @@ function ShieldIcon() {
   return (
     <Image src="/shield.svg" alt="" width={18} height={22}
       style={{
-        filter: 'brightness(0) saturate(100%) invert(75%) sepia(30%) saturate(500%) hue-rotate(300deg) brightness(1.1)',
+        filter: 'brightness(0) invert(1)',
         height: '22px', width: 'auto', flexShrink: 0,
       }}
     />
@@ -64,12 +63,12 @@ export function ModuloCapacidadesMetodologia() {
   const [abierto, setAbierto] = useState(0)
 
   return (
-    <div style={{ backgroundColor: CIRUELA }}>
+    <div style={{ backgroundColor: NEGRO }}>
 
       {/* ── SECCIÓN 1: CAPACIDADES ── */}
       <section className="page-px section-py">
         <div className="max-container flex flex-col items-center text-center gap-6">
-          <p className="label" style={{ color: ROSA, fontSize: '1rem' }}>En qué nos especializamos</p>
+          <p className="label" style={{ color: BLANCO, fontSize: '1rem' }}>En qué nos especializamos</p>
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(2.75rem, 7vw, 9rem)',
@@ -123,7 +122,7 @@ export function ModuloCapacidadesMetodologia() {
                     <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.8 }}>{item.desc}</p>
                     <Link href={item.href}
                       className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
-                      style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem' }}>
+                      style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
                       CÓMO LO HACEMOS
                     </Link>
                   </div>
@@ -138,7 +137,7 @@ export function ModuloCapacidadesMetodologia() {
       {/* Divisoria */}
       <div className="page-px">
         <div className="max-container">
-          <hr style={{ borderColor: ROSA, borderTopWidth: '1px', opacity: 0.3 }} />
+          <hr style={{ borderColor: BLANCO, borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
       </div>
 
@@ -166,13 +165,13 @@ export function ModuloCapacidadesMetodologia() {
               </h2>
 
               <div className="flex flex-col gap-5" style={{ maxWidth: '560px' }}>
-                <p className="label" style={{ color: ROSA }}>El mercado forma opinión en silencio</p>
+                <p className="label" style={{ color: BLANCO }}>El mercado forma opinión en silencio</p>
                 <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
                   La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
                 </p>
                 <Link href="/metodologia"
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                  style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
                   EXPLORAR METODOLOGÍA ›
                 </Link>
               </div>
@@ -191,7 +190,7 @@ export function ModuloCapacidadesMetodologia() {
                       <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
                       <Link href={col.href}
                         className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
-                        style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                        style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
                         CONOCE MÁS ›
                       </Link>
                     </div>
@@ -213,7 +212,7 @@ export function ModuloCapacidadesMetodologia() {
                   <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
                     <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
                     <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
-                    <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+                    <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
                   </Link>
                   {i === 0 && <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />}
                 </div>
@@ -235,13 +234,13 @@ export function ModuloCapacidadesMetodologia() {
               Metodología
             </h2>
             <div className="flex flex-col gap-5">
-              <p className="label" style={{ color: ROSA }}>El mercado forma opinión en silencio</p>
+              <p className="label" style={{ color: BLANCO }}>El mercado forma opinión en silencio</p>
               <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
                 La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
               </p>
               <Link href="/metodologia"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
                 EXPLORAR METODOLOGÍA ›
               </Link>
             </div>
@@ -249,7 +248,7 @@ export function ModuloCapacidadesMetodologia() {
               <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
                 <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
                 <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
-                <p className="label" style={{ color: ROSA, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+                <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
               </Link>
             ))}
             <div style={{ borderTop: `1px solid rgba(255,255,255,0.2)`, paddingTop: '2rem' }}>
@@ -262,7 +261,7 @@ export function ModuloCapacidadesMetodologia() {
                   <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.7 }}>{col.desc}</p>
                   <Link href={col.href}
                     className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
-                    style={{ backgroundColor: ROSA, color: CIRUELA, fontSize: '0.65rem', borderRadius: '999px' }}>
+                    style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
                     CONOCE MÁS ›
                   </Link>
                 </div>

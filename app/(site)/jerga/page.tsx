@@ -33,8 +33,27 @@ export default async function JergaPage() {
       <PageColorSetter bg={AZUL} text={BLANCO} />
 
       {/* ── Cabecera del medio ── */}
-      <section className="page-px" style={{ backgroundColor: AZUL, color: BLANCO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
-        <div className="max-container">
+      <section className="page-px" style={{ backgroundColor: AZUL, color: BLANCO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem', position: 'relative', overflow: 'hidden' }}>
+        {/* Cuadrícula de plano de patente — sutil, solo arriba, se desvanece hacia abajo */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '420px',
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)
+            `,
+            backgroundSize: '28px 28px',
+            WebkitMaskImage: 'linear-gradient(to bottom, black, transparent)',
+            maskImage: 'linear-gradient(to bottom, black, transparent)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div className="max-container" style={{ position: 'relative' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
               <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}

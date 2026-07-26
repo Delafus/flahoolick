@@ -22,11 +22,17 @@ const DEFAULT_POINTS = [
   { cx: 587.714, cy: 34.286, r: 34.286 },
 ]
 
+function hexToRgb(hex: string) {
+  const m = hex.replace('#', '')
+  const n = parseInt(m.length === 3 ? m.split('').map(c => c + c).join('') : m, 16)
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 }
+}
+
 export function CirculationDots({
   viewBoxSize = 622,
   points = DEFAULT_POINTS,
-  color = '#EE3F4A',
-  speed = 0.045,
+  color = '#F5FD92',
+  speed = 0.05,
 }: CirculationDotsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -53,44 +59,52 @@ export function CirculationDots({
       scale = width / viewBoxSize
     }
 
-    let time = 0
     const maxIndex = points.length - 1
-    // Pausa breve al final de cada pasada antes de reiniciar (en unidades de índice).
-    const restPad = 1.2
-    const cycleLength = maxIndex + restPad
+    const targetRgb = hexToRgb(color)
+    // La onda entra y sale de la fila fuera de rango (-2 → maxIndex+2) antes
+    // de reiniciar, para que el barrido tenga "colchón" de entrada/salida en
+    // vez de rebotar de golpe — la inercia que pide el sandbox de referencia.
+    const entryBuffer = 2
+    const exitBuffer = 2
+    let wavePosition = -entryBuffer
+    const waveWidth = 1.8
 
     function animate() {
       ctx!.clearRect(0, 0, width, height)
 
-      time += speed
-      // Barrido de un solo sentido, como el intermitente secuencial de un Audi:
-      // avanza del índice 0 al último y vuelve a empezar de golpe, nunca retrocede.
-      const travelPos = time % cycleLength
+      wavePosition += speed
+      if (wavePosition > maxIndex + exitBuffer) wavePosition = -entryBuffer
 
       points.forEach((pt, index) => {
-        const distance = Math.abs(index - travelPos)
-        const intensity = Math.max(0, 1 - distance * 0.9)
-        if (intensity <= 0) return
+        const distance = Math.abs(index - wavePosition)
+        if (distance >= waveWidth) return
 
-        // smoothstep — crecimiento y apagado graduales, sin saltos de golpe.
-        const eased = intensity * intensity * (3 - 2 * intensity)
+        // Suavizado armónico (coseno) — transición de entrada/salida más
+        // fluida que una rampa lineal.
+        const intensity = Math.cos((distance / waveWidth) * (Math.PI / 2))
 
+        const progressRatio = index / maxIndex
         const x = pt.cx * scale
         const y = pt.cy * scale
         // El radio no crece más allá del tamaño real del punto estático, para
         // que nunca se salga del recuadro de la imagen (el más grande toca el borde).
         const r = pt.r * scale
 
+        // Transición de blanco (color de reposo del punto estático) a la
+        // tonalidad de acento, a medida que la onda lo activa.
+        const cr = Math.round(255 + (targetRgb.r - 255) * intensity)
+        const cg = Math.round(255 + (targetRgb.g - 255) * intensity)
+        const cb = Math.round(255 + (targetRgb.b - 255) * intensity)
+        const fill = `rgb(${cr}, ${cg}, ${cb})`
+
         ctx!.beginPath()
-        ctx!.shadowBlur = 18 * eased * scale
+        ctx!.shadowBlur = (4 + 8 * progressRatio) * intensity * scale
         ctx!.shadowColor = color
-        ctx!.fillStyle = color
-        ctx!.globalAlpha = eased
+        ctx!.fillStyle = fill
         ctx!.arc(x, y, r, 0, Math.PI * 2)
         ctx!.fill()
         ctx!.closePath()
         ctx!.shadowBlur = 0
-        ctx!.globalAlpha = 1
       })
 
       frameId = requestAnimationFrame(animate)

@@ -25,7 +25,7 @@ export function ScannerDots({
   viewBoxSize = 638,
   points = DEFAULT_POINTS,
   baseRadius = 17.5,
-  color = '#EE3F4A',
+  color = '#ffffff',
   speed = 0.03,
 }: ScannerDotsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -69,16 +69,16 @@ export function ScannerDots({
 
         const x = pt.cx * scale
         const y = pt.cy * scale
-        // Radio y opacidad como función continua de la intensidad — sin saltos al
-        // cruzar el umbral, para que el crecimiento se sienta suave, no de golpe.
-        const eased = intensity * intensity * (3 - 2 * intensity) // smoothstep
-        const r = (baseRadius + baseRadius * 0.35 * eased) * scale
+        // Curva lineal (sin smoothstep) y crecimiento marcado, tal como el
+        // sandbox HTML5 de referencia: el punto casi triplica su tamaño
+        // en el pico del barrido.
+        const r = baseRadius * (1 + 1.667 * intensity) * scale
 
         ctx!.beginPath()
-        ctx!.shadowBlur = 16 * eased * scale
+        ctx!.shadowBlur = (8 + 24 * intensity) * scale
         ctx!.shadowColor = color
         ctx!.fillStyle = color
-        ctx!.globalAlpha = eased
+        ctx!.globalAlpha = 0.4 + 0.6 * intensity
         ctx!.arc(x, y, r, 0, Math.PI * 2)
         ctx!.fill()
         ctx!.closePath()

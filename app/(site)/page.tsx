@@ -52,6 +52,8 @@ export default function HomePage() {
           className="flex flex-col items-center justify-center page-px"
           style={{
             minHeight: '100dvh',
+            paddingTop: 'calc(64px + 2rem)',
+            paddingBottom: '2rem',
             backgroundColor: 'var(--brand-ink)',
             color: 'var(--brand-chalk)',
           }}
@@ -64,7 +66,7 @@ export default function HomePage() {
               {s.sub}
             </p>
             {s.img && (
-              <div style={{ marginTop: '88px', marginBottom: '112px', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <div style={{ marginTop: '196px', marginBottom: '220px', width: '100%', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
                 <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
               </div>
             )}

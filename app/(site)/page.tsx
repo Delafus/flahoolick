@@ -71,7 +71,7 @@ export default function HomePage() {
             {s.img && (
               <>
                 <ScrollConnector color="#ffffff" height={140} />
-                <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginBottom: '160px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
+                <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginTop: '80px', marginBottom: '80px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} />}
                   {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} color="#ffffff" />}

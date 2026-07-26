@@ -76,7 +76,9 @@ export function PageLayout({
               overflow: 'hidden',
             }}>
               {illustration ? (
-                <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} priority />
+                <div style={{ position: 'relative', width: '70%', height: '70%' }}>
+                  <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} priority />
+                </div>
               ) : (
                 <span className="label" style={{ color: heroText, opacity: 0.2 }}>Ilustración</span>
               )}

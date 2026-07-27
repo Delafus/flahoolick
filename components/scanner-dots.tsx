@@ -44,11 +44,14 @@ export function ScannerDots({
     let height = 0
     let scale = 1
 
-    // Estos 5 puntos ya tocan el borde superior exacto del recuadro en el
-    // arte original (cy - r = 0) — al crecer, el círculo se corta contra ese
-    // borde. Se le da al canvas un colchón extra por arriba (fuera del
-    // recuadro de la imagen) para que el crecimiento tenga espacio real.
-    const topPadding = 20
+    // El primer punto toca el borde superior exacto del recuadro (cy - r = 0)
+    // y el último toca también el borde derecho exacto (cx + r = viewBoxSize)
+    // — al crecer, el círculo se corta contra esos bordes. Se le da al canvas
+    // un colchón extra arriba y a la derecha para que el crecimiento tenga
+    // espacio real. El ancho del canvas SÍ se agranda por ese colchón, así
+    // que la escala debe descontarlo para no desalinear la grilla con la
+    // imagen estática de abajo.
+    const PAD = 20
 
     function setup() {
       if (!canvas) return
@@ -59,7 +62,7 @@ export function ScannerDots({
       canvas.width = width * dpr
       canvas.height = height * dpr
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      scale = Math.max(0, width - topPadding) / viewBoxSize
+      scale = Math.max(0, width - PAD) / viewBoxSize
     }
 
     let time = 0
@@ -77,7 +80,7 @@ export function ScannerDots({
         if (intensity <= 0) return
 
         const x = pt.cx * scale
-        const y = topPadding + pt.cy * scale
+        const y = PAD + pt.cy * scale
         // Curva lineal (sin smoothstep), igual que el sandbox de referencia:
         // el punto casi triplica su tamaño en el pico del barrido.
         const r = baseRadius * (1 + 1.667 * intensity) * scale
@@ -117,8 +120,7 @@ export function ScannerDots({
         position: 'absolute',
         top: '-20px',
         left: 0,
-        right: 0,
-        width: '100%',
+        width: 'calc(100% + 20px)',
         height: 'calc(100% + 20px)',
         pointerEvents: 'none',
       }}

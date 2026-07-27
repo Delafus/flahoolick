@@ -17,16 +17,16 @@ interface CirculationDotsProps {
 // cambiar de color, en un solo sentido, del más chico (sin crecimiento)
 // al más grande (crecimiento máximo).
 const DEFAULT_POINTS = [
-  { cx: 1.732, cy: 587.714 },
-  { cx: 66.841, cy: 522.605 },
-  { cx: 131.95, cy: 457.495 },
-  { cx: 197.059, cy: 392.386 },
-  { cx: 262.168, cy: 327.278 },
-  { cx: 327.278, cy: 262.168 },
-  { cx: 392.386, cy: 197.059 },
-  { cx: 457.495, cy: 131.95 },
-  { cx: 522.605, cy: 66.841 },
-  { cx: 587.714, cy: 1.732 },
+  { cx: 1.827, cy: 620.154 },
+  { cx: 70.5303, cy: 551.451 },
+  { cx: 139.233, cy: 482.748 },
+  { cx: 207.936, cy: 414.045 },
+  { cx: 276.639, cy: 345.342 },
+  { cx: 345.342, cy: 276.639 },
+  { cx: 414.044, cy: 207.936 },
+  { cx: 482.747, cy: 139.233 },
+  { cx: 551.451, cy: 70.5301 },
+  { cx: 620.173, cy: 1.827 },
 ]
 
 function hexToRgb(hex: string) {
@@ -36,9 +36,9 @@ function hexToRgb(hex: string) {
 }
 
 export function CirculationDots({
-  viewBoxSize = 590,
+  viewBoxSize = 622,
   points = DEFAULT_POINTS,
-  baseRadius = 1.732,
+  baseRadius = 1.827,
   color = '#F5FD92',
   speed = 0.05,
 }: CirculationDotsProps) {

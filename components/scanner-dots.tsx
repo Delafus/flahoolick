@@ -41,6 +41,12 @@ export function ScannerDots({
     let height = 0
     let scale = 1
 
+    // Estos 5 puntos ya tocan el borde superior exacto del recuadro en el
+    // arte original (cy - r = 0) — al crecer, el círculo se corta contra ese
+    // borde. Se le da al canvas un colchón extra por arriba (fuera del
+    // recuadro de la imagen) para que el crecimiento tenga espacio real.
+    const topPadding = 50
+
     function setup() {
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
@@ -68,7 +74,7 @@ export function ScannerDots({
         if (intensity <= 0) return
 
         const x = pt.cx * scale
-        const y = pt.cy * scale
+        const y = topPadding + pt.cy * scale
         // Curva lineal (sin smoothstep) y crecimiento marcado, tal como el
         // sandbox HTML5 de referencia: el punto casi triplica su tamaño
         // en el pico del barrido.
@@ -105,7 +111,15 @@ export function ScannerDots({
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+      style={{
+        position: 'absolute',
+        top: '-50px',
+        left: 0,
+        right: 0,
+        width: '100%',
+        height: 'calc(100% + 50px)',
+        pointerEvents: 'none',
+      }}
     />
   )
 }

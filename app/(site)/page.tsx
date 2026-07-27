@@ -76,19 +76,22 @@ export default function HomePage() {
                   {i === 0 && <TrappedDots diameterPercent={44.8} />}
                   {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} color="#ffffff" />}
                   {i === 1 && (
-                    <div
+                    <svg
                       aria-hidden="true"
+                      viewBox="0 0 174 14"
+                      preserveAspectRatio="none"
                       style={{
                         position: 'absolute',
                         left: '53.592%',
-                        top: '-1.458%',
+                        top: '-1.639%',
                         width: '48.044%',
-                        height: '3.503%',
-                        border: '1px solid rgba(255,255,255,0.57)',
-                        borderRadius: '9999px',
+                        height: '3.866%',
                         pointerEvents: 'none',
                       }}
-                    />
+                    >
+                      <path d="M173.153 13.4552H170.305V12.6367H172.266V0.818569H170.305V0H173.153V13.4552Z" fill="#ffffff" />
+                      <path d="M2.84794 12.6367V13.4552H0V0H2.84794V0.818569H0.886783V12.6367H2.84794Z" fill="#ffffff" />
+                    </svg>
                   )}
                   {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#F5FD92" />}
                 </div>

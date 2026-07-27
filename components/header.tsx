@@ -11,7 +11,7 @@ const CAP_MENU = {
   items: [
     { title: 'Estrategia y Relato',   desc: 'Definimos la posición, las audiencias y el relato que la empresa necesita instalar en el mercado.',    href: '/capacidades/estrategia-y-relato' },
     { title: 'Sistema de Contenido', desc: 'Diseñamos el playbook, los flujos y la cadencia que mantienen el conocimiento en circulación.',   href: '/capacidades/sistema-de-contenido' },
-    { title: 'Estudio Creativo',      desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan la venta.',       href: '/capacidades/estudio-creativo' },
+    { title: 'Estudio Creativo',      desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan tu venta.',       href: '/capacidades/estudio-creativo' },
   ],
 }
 

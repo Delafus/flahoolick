@@ -21,7 +21,7 @@ const SCROLLS = [
     h1: 'Solo el 5% de tu mercado está listo para comprar hoy.',
     sub: 'El 95% restante está formando opinión.',
     img: '/dots-scroll-02.svg',
-    imgSize: { width: 638, height: 638 },
+    imgSize: { width: 622, height: 622 },
   },
   {
     h1: 'Tu ventaja competitiva ya existe.',

@@ -70,7 +70,7 @@ export function CirculationDots({
       canvas.width = width * dpr
       canvas.height = height * dpr
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      scale = (width - EXTRA) / viewBoxSize
+      scale = Math.max(0, width - EXTRA) / viewBoxSize
     }
 
     const maxIndex = points.length - 1

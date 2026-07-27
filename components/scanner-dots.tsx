@@ -13,18 +13,21 @@ interface ScannerDotsProps {
   speed?: number
 }
 
+// Las 5 últimas columnas de la primera fila (r===0, c>=5) en la nueva
+// grilla 10x10 de dots-scroll-02.svg — todos del mismo tamaño chico en el
+// arte estático, igual que en dots-scroll-03.svg.
 const DEFAULT_POINTS = [
-  { cx: 345.5, cy: 17.5 },
-  { cx: 413.5, cy: 17.5 },
-  { cx: 482.5, cy: 17.5 },
-  { cx: 551.5, cy: 17.5 },
-  { cx: 620.5, cy: 17.5 },
+  { cx: 345.342, cy: 1.827 },
+  { cx: 414.044, cy: 1.827 },
+  { cx: 482.747, cy: 1.827 },
+  { cx: 551.451, cy: 1.827 },
+  { cx: 620.173, cy: 1.827 },
 ]
 
 export function ScannerDots({
-  viewBoxSize = 638,
+  viewBoxSize = 622,
   points = DEFAULT_POINTS,
-  baseRadius = 17.5,
+  baseRadius = 1.827,
   color = '#ffffff',
   speed = 0.03,
 }: ScannerDotsProps) {
@@ -45,7 +48,7 @@ export function ScannerDots({
     // arte original (cy - r = 0) — al crecer, el círculo se corta contra ese
     // borde. Se le da al canvas un colchón extra por arriba (fuera del
     // recuadro de la imagen) para que el crecimiento tenga espacio real.
-    const topPadding = 50
+    const topPadding = 20
 
     function setup() {
       if (!canvas) return
@@ -56,7 +59,7 @@ export function ScannerDots({
       canvas.width = width * dpr
       canvas.height = height * dpr
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      scale = width / viewBoxSize
+      scale = Math.max(0, width - topPadding) / viewBoxSize
     }
 
     let time = 0
@@ -75,13 +78,12 @@ export function ScannerDots({
 
         const x = pt.cx * scale
         const y = topPadding + pt.cy * scale
-        // Curva lineal (sin smoothstep) y crecimiento marcado, tal como el
-        // sandbox HTML5 de referencia: el punto casi triplica su tamaño
-        // en el pico del barrido.
+        // Curva lineal (sin smoothstep), igual que el sandbox de referencia:
+        // el punto casi triplica su tamaño en el pico del barrido.
         const r = baseRadius * (1 + 1.667 * intensity) * scale
 
         ctx!.beginPath()
-        ctx!.shadowBlur = (8 + 24 * intensity) * scale
+        ctx!.shadowBlur = (4 + 12 * intensity) * scale
         ctx!.shadowColor = color
         ctx!.fillStyle = color
         ctx!.globalAlpha = 0.4 + 0.6 * intensity
@@ -113,11 +115,11 @@ export function ScannerDots({
       aria-hidden="true"
       style={{
         position: 'absolute',
-        top: '-50px',
+        top: '-20px',
         left: 0,
         right: 0,
         width: '100%',
-        height: 'calc(100% + 50px)',
+        height: 'calc(100% + 20px)',
         pointerEvents: 'none',
       }}
     />

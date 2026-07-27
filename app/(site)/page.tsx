@@ -75,6 +75,21 @@ export default function HomePage() {
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} />}
                   {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} color="#ffffff" />}
+                  {i === 1 && (
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: 'absolute',
+                        left: '53.592%',
+                        top: '-1.458%',
+                        width: '48.044%',
+                        height: '3.503%',
+                        border: '1px solid rgba(255,255,255,0.57)',
+                        borderRadius: '9999px',
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  )}
                   {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#F5FD92" />}
                 </div>
               </>

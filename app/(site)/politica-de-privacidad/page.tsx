@@ -77,7 +77,7 @@ function Contenido() {
       <P>Al visitar este sitio web, contactarnos mediante formularios o suscribirte a nuestras comunicaciones, aceptas las prácticas descritas en esta política.</P>
 
       <H2>1. Quiénes somos</H2>
-      <P>Flahoolick es una consultora de estrategia y contenido para empresas B2B.</P>
+      <P>Flahoolick es un partner moderno de estrategia y contenido para empresas B2B.</P>
       <P>Para efectos de esta política, «Flahoolick», «nosotros» o «nuestro» se refiere a Flahoolick y a las personas o proveedores que apoyan la operación de este sitio y sus comunicaciones.</P>
       <P>Sitio web: flahoolick.com</P>
       <P>Contacto: {CORREO}</P>

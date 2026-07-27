@@ -51,7 +51,7 @@ export default function SobreFlahoolick() {
             <hr style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopWidth: '1px' }} />
             <p className="label opacity-60">Del irlandés flaithiúil: generoso, espléndido, abundante.</p>
             <p className="text-lead opacity-70">
-              Flahoolick es una consultora de estrategia y contenido para empresas B2B con ciclos de decisión complejos. Basados en Santiago, Chile.
+              Flahoolick es un partner moderno de estrategia y contenido para empresas B2B con ciclos de decisión complejos. Basados en Santiago, Chile.
             </p>
           </div>
 

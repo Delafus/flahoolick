@@ -36,11 +36,20 @@ export function ScrollConnector({
     return () => observer.disconnect()
   }, [])
 
-  const lineBackground = colorTo
-    ? `linear-gradient(to bottom, ${color} 50%, ${colorTo} 50%)`
-    : color
-
   const lineHeight = height * 0.78
+
+  // La línea (78% del alto) y el punto van centrados como bloque dentro del
+  // contenedor, así que el punto medio de la LÍNEA no coincide con el centro
+  // real del contenedor (el punto ocupa espacio debajo). Cuando hay dos
+  // colores, el corte debe calzar exactamente con el centro del contenedor
+  // (ahí es donde el fondo rojo/amarillo se parte a la mitad detrás), no con
+  // el 50% de la línea misma.
+  const topOffset = (height - (lineHeight + dotSize)) / 2
+  const splitPercent = ((height / 2 - topOffset) / lineHeight) * 100
+
+  const lineBackground = colorTo
+    ? `linear-gradient(to bottom, ${color} ${splitPercent}%, ${colorTo} ${splitPercent}%)`
+    : color
 
   return (
     <div ref={ref} className="w-full flex flex-col items-center justify-center" style={{ height: `${height}px` }}>

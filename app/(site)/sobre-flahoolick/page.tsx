@@ -58,24 +58,6 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
-      {/* El origen — Gossage — fondo crema */}
-      <section
-        className="page-px section-py"
-        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
-      >
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-display" style={{ color: 'var(--section-body-text)' }}>El origen</h2>
-          <p className="text-lead opacity-80 max-w-4xl">
-            Howard Luck Gossage (San Francisco, 1917-1969) resolvió en vida el problema que el marketing de contenidos lleva cincuenta años intentando nombrar. Operaba desde una estación de bomberos reconvertida en North Beach — trece personas, nunca más — mientras Madison Avenue levantaba imperios de cuentas y de burocracia creativa. Gossage entendía algo que sus contemporáneos no podían procesar: la atención de una persona es soberana. El único camino hacia ella es merecerla. Su principio operativo era uno solo:{' '}
-            <mark style={{ backgroundColor: 'var(--brand-signal)', padding: '0 4px', fontStyle: 'italic' }}>
-              "Nobody reads ads. People read what interests them. Sometimes it's an ad."
-            </mark>{' '}
-            Cada campaña que producía tenía un cupón de respuesta — diseñado para crear conversación con quien lo leía. Medía el feedback. Escribía el siguiente anuncio desde ahí. Lo que hoy llamamos content marketing, permission marketing y feedback loop, Gossage lo practicaba cuando esos términos no existían. Fue él quien introdujo a Marshall McLuhan ante el mundo corporativo y mediático, convirtiendo a un filósofo canadiense desconocido en la voz más citada sobre comunicación del siglo XX. Su salón en North Beach recibía a John Steinbeck, Buckminster Fuller, Ken Kesey, Tom Wolfe. Jeff Goodby y Rich Silverstein fundaron su agencia en 1982 con un anuncio que decía: <em>"Introducing a new ad agency founded by a guy who died 14 years ago."</em> Gossage murió a los 52 años de leucemia. Dejó una sola pregunta abierta, que es el título de su libro póstumo: <em>Is There Any Hope for Advertising?</em> La respuesta que él habría dado es la misma que da Flahoolick: sí, cuando la comunicación trata a la audiencia como el único destinatario que importa. La palabra que eligió para una campaña de whiskey irlandés — <em>flahoolick</em>, del gaélico <em>flaithiúil</em>: generoso, espléndido, abundante — era una declaración de principios sobre cómo debería funcionar la comunicación entre una marca y las personas que algún día podrían necesitarla.
-          </p>
-          <p className="text-xl font-semibold">Nosotros la convertimos en una forma de trabajar.</p>
-        </div>
-      </section>
-
       {/* Por qué existimos — fondo negro */}
       <section
         className="page-px section-py"
@@ -225,6 +207,24 @@ export default function SobreFlahoolick() {
               className="label opacity-40 hover:opacity-80 transition-opacity">LinkedIn →</Link>
           </div>
 
+        </div>
+      </section>
+
+      {/* El origen — Gossage — fondo crema */}
+      <section
+        className="page-px section-py"
+        style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}
+      >
+        <div className="max-container flex flex-col gap-12">
+          <h2 className="text-display" style={{ color: 'var(--section-body-text)' }}>El origen</h2>
+          <p className="text-lead opacity-80 max-w-4xl">
+            Howard Luck Gossage (San Francisco, 1917-1969) resolvió en vida el problema que el marketing de contenidos lleva cincuenta años intentando nombrar. Operaba desde una estación de bomberos reconvertida en North Beach — trece personas, nunca más — mientras Madison Avenue levantaba imperios de cuentas y de burocracia creativa. Gossage entendía algo que sus contemporáneos no podían procesar: la atención de una persona es soberana. El único camino hacia ella es merecerla. Su principio operativo era uno solo:{' '}
+            <mark style={{ backgroundColor: 'var(--brand-signal)', padding: '0 4px', fontStyle: 'italic' }}>
+              "Nobody reads ads. People read what interests them. Sometimes it's an ad."
+            </mark>{' '}
+            Cada campaña que producía tenía un cupón de respuesta — diseñado para crear conversación con quien lo leía. Medía el feedback. Escribía el siguiente anuncio desde ahí. Lo que hoy llamamos content marketing, permission marketing y feedback loop, Gossage lo practicaba cuando esos términos no existían. Fue él quien introdujo a Marshall McLuhan ante el mundo corporativo y mediático, convirtiendo a un filósofo canadiense desconocido en la voz más citada sobre comunicación del siglo XX. Su salón en North Beach recibía a John Steinbeck, Buckminster Fuller, Ken Kesey, Tom Wolfe. Jeff Goodby y Rich Silverstein fundaron su agencia en 1982 con un anuncio que decía: <em>"Introducing a new ad agency founded by a guy who died 14 years ago."</em> Gossage murió a los 52 años de leucemia. Dejó una sola pregunta abierta, que es el título de su libro póstumo: <em>Is There Any Hope for Advertising?</em> La respuesta que él habría dado es la misma que da Flahoolick: sí, cuando la comunicación trata a la audiencia como el único destinatario que importa. La palabra que eligió para una campaña de whiskey irlandés — <em>flahoolick</em>, del gaélico <em>flaithiúil</em>: generoso, espléndido, abundante — era una declaración de principios sobre cómo debería funcionar la comunicación entre una marca y las personas que algún día podrían necesitarla.
+          </p>
+          <p className="text-xl font-semibold">Nosotros la convertimos en una forma de trabajar.</p>
         </div>
       </section>
 

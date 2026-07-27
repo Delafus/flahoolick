@@ -4,22 +4,29 @@ import { useEffect, useRef } from 'react'
 
 interface CirculationDotsProps {
   viewBoxSize?: number
-  points?: { cx: number; cy: number; r: number }[]
+  points?: { cx: number; cy: number }[]
+  baseRadius?: number
   color?: string
   speed?: number
 }
 
-// Los 7 puntos grandes que ya forman la diagonal en dots-scroll-03.svg,
-// de menor a mayor (del centro hacia la esquina superior derecha) — el
-// barrido viaja del más chico al más grande, en un solo sentido.
+// Los 10 puntos de la diagonal (de la esquina inferior izquierda a la
+// superior derecha) en la nueva grilla 10x10 de dots-scroll-03.svg. A
+// diferencia de la versión anterior, acá todos los puntos son del mismo
+// tamaño en el arte estático — el barrido es el que los hace crecer y
+// cambiar de color, en un solo sentido, del más chico (sin crecimiento)
+// al más grande (crecimiento máximo).
 const DEFAULT_POINTS = [
-  { cx: 197.059, cy: 424.941, r: 10.74 },
-  { cx: 262.168, cy: 359.832, r: 14.2 },
-  { cx: 327.277, cy: 294.723, r: 16.97 },
-  { cx: 392.386, cy: 229.613, r: 20.43 },
-  { cx: 457.496, cy: 164.504, r: 23.9 },
-  { cx: 522.605, cy: 99.395, r: 28.05 },
-  { cx: 587.714, cy: 34.286, r: 34.286 },
+  { cx: 1.732, cy: 587.714 },
+  { cx: 66.841, cy: 522.605 },
+  { cx: 131.95, cy: 457.495 },
+  { cx: 197.059, cy: 392.386 },
+  { cx: 262.168, cy: 327.278 },
+  { cx: 327.278, cy: 262.168 },
+  { cx: 392.386, cy: 197.059 },
+  { cx: 457.495, cy: 131.95 },
+  { cx: 522.605, cy: 66.841 },
+  { cx: 587.714, cy: 1.732 },
 ]
 
 function hexToRgb(hex: string) {
@@ -29,8 +36,9 @@ function hexToRgb(hex: string) {
 }
 
 export function CirculationDots({
-  viewBoxSize = 622,
+  viewBoxSize = 590,
   points = DEFAULT_POINTS,
+  baseRadius = 1.732,
   color = '#F5FD92',
   speed = 0.05,
 }: CirculationDotsProps) {
@@ -47,6 +55,12 @@ export function CirculationDots({
     let height = 0
     let scale = 1
 
+    // El punto final de la diagonal (el que más crece) toca la esquina
+    // superior derecha exacta del recuadro — se le da al canvas un colchón
+    // extra hacia arriba y hacia la derecha para que el crecimiento tenga
+    // espacio real sin cortarse contra el borde.
+    const EXTRA = 30
+
     function setup() {
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
@@ -56,7 +70,7 @@ export function CirculationDots({
       canvas.width = width * dpr
       canvas.height = height * dpr
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      scale = width / viewBoxSize
+      scale = (width - EXTRA) / viewBoxSize
     }
 
     const maxIndex = points.length - 1
@@ -69,20 +83,10 @@ export function CirculationDots({
     let wavePosition = -entryBuffer
     const waveWidth = 1.8
 
-    // Margen real (en unidades de viewBox) entre el borde de cada punto y el
-    // borde del recuadro — determina cuánto puede crecer sin cortarse. El
-    // último punto de la diagonal toca la esquina exacta (margen 0), así que
-    // se queda sin crecimiento; el resto sí puede "florecer" al pasar la onda.
-    function safeMargin(pt: { cx: number; cy: number; r: number }) {
-      return Math.min(
-        pt.cx - pt.r,
-        viewBoxSize - (pt.cx + pt.r),
-        pt.cy - pt.r,
-        viewBoxSize - (pt.cy + pt.r),
-      )
-    }
-    const GROWTH_RATIO = 0.5 // crecimiento deseado en el pico: hasta +50% del radio
-    const growthCaps = points.map(pt => Math.max(0, safeMargin(pt) * 0.92))
+    // Crecimiento proporcional: el primer punto no crece nada, el último
+    // llega a su tamaño máximo — igual que el sandbox de referencia.
+    const maxTargetRadius = baseRadius * 7
+    const totalGrowthAvailable = maxTargetRadius - baseRadius
 
     function animate() {
       ctx!.clearRect(0, 0, width, height)
@@ -100,12 +104,10 @@ export function CirculationDots({
 
         const progressRatio = index / maxIndex
         const x = pt.cx * scale
-        const y = pt.cy * scale
-        // Crecimiento proporcional (más marcado hacia el punto final), acotado
-        // por el margen real de cada punto para que nunca se corte contra el borde.
-        const desiredGrowth = pt.r * GROWTH_RATIO * progressRatio
-        const growth = Math.min(desiredGrowth, growthCaps[index])
-        const r = (pt.r + growth * intensity) * scale
+        const y = EXTRA + pt.cy * scale
+
+        const myMaxGrowth = totalGrowthAvailable * progressRatio
+        const r = (baseRadius + myMaxGrowth * intensity) * scale
 
         // Transición de blanco (color de reposo del punto estático) a la
         // tonalidad de acento, a medida que la onda lo activa.
@@ -137,13 +139,20 @@ export function CirculationDots({
       cancelAnimationFrame(frameId)
       window.removeEventListener('resize', onResize)
     }
-  }, [viewBoxSize, points, color, speed])
+  }, [viewBoxSize, points, baseRadius, color, speed])
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+      style={{
+        position: 'absolute',
+        top: '-30px',
+        left: 0,
+        width: 'calc(100% + 30px)',
+        height: 'calc(100% + 30px)',
+        pointerEvents: 'none',
+      }}
     />
   )
 }

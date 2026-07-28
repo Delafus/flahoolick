@@ -20,6 +20,12 @@ interface AcordeonSeccionProps {
   bajada?: string
   /** Si no se pasa, el acordeón ocupa una sola columna centrada. */
   illustration?: { src: string; alt: string }
+  /**
+   * Alternativa a `illustration` para contenido que reacciona al acordeón:
+   * recibe el índice abierto (-1 si están todos cerrados). Pensado para
+   * montar aquí una animación que cambie de estado según la etapa.
+   */
+  renderIllustration?: (abierto: number) => React.ReactNode
   items: AcordeonItem[]
   /** Texto del botón que aparece al abrir cada item. */
   ctaLabel: string
@@ -35,6 +41,7 @@ export function AcordeonSeccion({
   titulo,
   bajada,
   illustration,
+  renderIllustration,
   items,
   ctaLabel,
 }: AcordeonSeccionProps) {
@@ -111,11 +118,13 @@ export function AcordeonSeccion({
 
       <div style={{ height: '200px' }} />
 
-      {illustration ? (
+      {illustration || renderIllustration ? (
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
             <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
-              <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} />
+              {renderIllustration
+                ? renderIllustration(abierto)
+                : illustration && <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} />}
             </div>
           </div>
           {acordeon}

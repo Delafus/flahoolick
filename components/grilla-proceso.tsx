@@ -17,6 +17,19 @@ const VIAJE_MS = 850
 /** Encendido de la grilla completa, una vez que llegaron todos. */
 const ENCENDIDO_MS = 550
 
+/* Paso 03 — pulsos que se propagan.
+   Cada pulso nace en un punto al azar y se expande como una onda circular.
+   Al convivir varios, nacidos en momentos y lugares distintos, nunca se
+   forma un frente único: es lo que evita que se lea como una ola. */
+/** Cada cuánto nace un pulso nuevo. */
+const PULSO_CADA_MS = 620
+/** Lo que tarda un pulso en cruzar la grilla y apagarse. */
+const PULSO_VIDA_MS = 2200
+/** Radio final del pulso, en casillas. */
+const PULSO_ALCANCE = 9
+/** Grosor del anillo, en casillas. */
+const PULSO_GROSOR = 1.15
+
 interface Punto {
   x: number
   y: number
@@ -100,6 +113,8 @@ export function GrillaProceso({ abierto }: GrillaProcesoProps) {
   const inicioPasoRef = useRef(0)
   const activosRef = useRef<number[]>([])
   const particulasRef = useRef<Particula[]>([])
+  const pulsosRef = useRef<{ origen: number; inicio: number }[]>([])
+  const proximoPulsoRef = useRef(0)
   // Permite repintar al cambiar de etapa aunque el bucle esté detenido
   // (fuera de pantalla o con prefers-reduced-motion).
   const dibujarRef = useRef<((now: number) => void) | null>(null)
@@ -150,6 +165,16 @@ export function GrillaProceso({ abierto }: GrillaProcesoProps) {
         p.destino = destinos[i]
         p.delay = orden.indexOf(i) * STAGGER_MS
       })
+    }
+
+    if (paso === 3) {
+      // Arranca con un par de pulsos ya en camino, para que la operación
+      // se vea en marcha desde el primer segundo y no haya que esperar.
+      pulsosRef.current = [
+        { origen: Math.floor(Math.random() * COUNT), inicio: -900 },
+        { origen: Math.floor(Math.random() * COUNT), inicio: -1650 },
+      ]
+      proximoPulsoRef.current = 0
     }
 
     dibujarRef.current?.(performance.now())
@@ -262,13 +287,48 @@ export function GrillaProceso({ abierto }: GrillaProcesoProps) {
       })
     }
 
-    function dibujarOperacion(now: number) {
-      const fase = now * 0.0032
+    function dibujarOperacion(t: number) {
+      const pulsos = pulsosRef.current
+
+      // Si el bucle estuvo detenido, no acumula pulsos atrasados.
+      if (t - proximoPulsoRef.current > PULSO_VIDA_MS * 2) proximoPulsoRef.current = t
+
+      // Nace un pulso nuevo cada tanto, en una casilla al azar.
+      while (t > proximoPulsoRef.current) {
+        pulsos.push({ origen: Math.floor(Math.random() * COUNT), inicio: proximoPulsoRef.current })
+        proximoPulsoRef.current += PULSO_CADA_MS
+      }
+      while (pulsos.length && t - pulsos[0].inicio > PULSO_VIDA_MS) pulsos.shift()
+
+      // Al venir de la instalación la grilla está encendida; se apaga en un
+      // segundo hasta el estado de reposo, para no cortar de golpe.
+      const reposo = BASE_ALPHA + (1 - BASE_ALPHA) * clamp01(1 - t / 900)
+
       puntos.forEach(g => {
-        const diagonal = g.col + g.row * 0.82
-        const onda = 0.5 + 0.5 * Math.sin(fase - diagonal * 0.78)
-        const pico = Math.pow(onda, 3.6)
-        punto(g.x, g.y, BASE_DIAMETER * (0.95 + pico * 0.1), BASE_ALPHA + pico * (1 - BASE_ALPHA))
+        let brillo = 0
+
+        for (const pulso of pulsos) {
+          const edad = (t - pulso.inicio) / PULSO_VIDA_MS
+          if (edad < 0 || edad > 1) continue
+          const origen = puntos[pulso.origen]
+          if (!origen) continue
+
+          const distancia = Math.hypot(g.col - origen.col, g.row - origen.row)
+          const radio = easeOutCubic(edad) * PULSO_ALCANCE
+          const cercania = 1 - Math.abs(distancia - radio) / PULSO_GROSOR
+          if (cercania <= 0) continue
+
+          // El anillo pierde fuerza a medida que se aleja del origen.
+          brillo = Math.max(brillo, cercania * (1 - edad))
+        }
+
+        const pico = Math.pow(clamp01(brillo), 1.5)
+        punto(
+          g.x,
+          g.y,
+          BASE_DIAMETER * (0.95 + pico * 0.45),
+          Math.max(reposo, BASE_ALPHA + pico * (1 - BASE_ALPHA)),
+        )
       })
     }
 
@@ -279,7 +339,7 @@ export function GrillaProceso({ abierto }: GrillaProcesoProps) {
       switch (pasoRef.current) {
         case 1: dibujarDiagnostico(t); break
         case 2: dibujarInstalacion(t); break
-        case 3: dibujarOperacion(now); break
+        case 3: dibujarOperacion(t); break
         default: grillaBase(BASE_ALPHA)
       }
     }

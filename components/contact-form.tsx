@@ -1,13 +1,49 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export function ContactForm({ bg = 'var(--brand-depth)', text = 'var(--brand-chalk)' }: {
+/** Etapas del servicio, en el orden en que se ofrecen. */
+const ETAPAS = [
+  'Diagnóstico de Autoridad',
+  'Instalación del Sistema',
+  'Operación Editorial',
+  'Necesito orientación',
+]
+
+/** Valores admitidos en ?servicio= para preseleccionar la etapa. */
+const ETAPA_POR_PARAMETRO: Record<string, string> = {
+  diagnostico: 'Diagnóstico de Autoridad',
+  instalacion: 'Instalación del Sistema',
+  operacion:   'Operación Editorial',
+}
+
+export function ContactForm({
+  bg = 'var(--brand-depth)',
+  text = 'var(--brand-chalk)',
+  headline = 'Hablemos.',
+  description = 'Da el primer paso hacia un sistema de contenido que trabaja antes de que tu comprador empiece a buscar. Escríbenos y vemos cómo podemos ayudarte.',
+  submitLabel = 'Enviar mensaje →',
+  etapaField = false,
+}: {
   bg?: string
   text?: string
+  headline?: string
+  description?: string
+  submitLabel?: string
+  /** Muestra el selector "¿En qué etapa necesitas ayuda?". */
+  etapaField?: boolean
 }) {
   const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
+  const [etapa, setEtapa]     = useState(ETAPAS[3])
+
+  // La etapa llega por querystring desde los enlaces de cada servicio
+  // (/servicios?servicio=diagnostico#contacto).
+  useEffect(() => {
+    if (!etapaField) return
+    const param = new URLSearchParams(window.location.search).get('servicio')
+    if (param && ETAPA_POR_PARAMETRO[param]) setEtapa(ETAPA_POR_PARAMETRO[param])
+  }, [etapaField])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -27,10 +63,8 @@ export function ContactForm({ bg = 'var(--brand-depth)', text = 'var(--brand-cha
         {/* Left */}
         <div className="flex flex-col gap-6">
           <p className="label opacity-40">Contacto</p>
-          <h2 className="text-headline" style={{ color: text }}>Hablemos.</h2>
-          <p className="text-lead max-w-sm opacity-60">
-            Da el primer paso hacia un sistema de contenido que trabaja antes de que tu comprador empiece a buscar. Escríbenos y vemos cómo podemos ayudarte.
-          </p>
+          <h2 className="text-headline" style={{ color: text }}>{headline}</h2>
+          <p className="text-lead max-w-sm opacity-60">{description}</p>
         </div>
 
         {/* Right */}
@@ -73,6 +107,25 @@ export function ContactForm({ bg = 'var(--brand-depth)', text = 'var(--brand-cha
                   }}
                 />
               </div>
+              {etapaField && (
+                <div className="flex flex-col gap-2">
+                  <label className="label opacity-50" htmlFor="etapa" style={{ color: text }}>
+                    ¿En qué etapa necesitas ayuda?
+                  </label>
+                  <select
+                    id="etapa" name="etapa" value={etapa} onChange={e => setEtapa(e.target.value)}
+                    className="w-full py-3 px-4 text-sm outline-none"
+                    style={{
+                      background: 'transparent',
+                      border: `1px solid ${text === 'var(--brand-chalk)' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
+                      color: text,
+                      borderRadius: 0,
+                    }}
+                  >
+                    {ETAPAS.map(e => <option key={e} value={e}>{e}</option>)}
+                  </select>
+                </div>
+              )}
               <div className="flex flex-col gap-2">
                 <label className="label opacity-50" htmlFor="mensaje" style={{ color: text }}>Mensaje</label>
                 <textarea
@@ -91,7 +144,7 @@ export function ContactForm({ bg = 'var(--brand-depth)', text = 'var(--brand-cha
                 className="label mt-2 py-4 px-8 hover:opacity-70 disabled:opacity-30 transition-opacity w-fit"
                 style={{ background: text, color: bg }}
               >
-                {loading ? 'Enviando...' : 'Enviar mensaje →'}
+                {loading ? 'Enviando...' : submitLabel}
               </button>
             </form>
           )}

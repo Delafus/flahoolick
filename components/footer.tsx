@@ -4,6 +4,7 @@ import Image from 'next/image'
 export function Footer() {
   const links = {
     servicios: [
+      { label: 'Servicios',    href: '/servicios' },
       { label: 'Capacidades',  href: '/capacidades' },
       { label: 'Metodología',  href: '/metodologia' },
       { label: 'SENSOR',       href: '/sensor' },

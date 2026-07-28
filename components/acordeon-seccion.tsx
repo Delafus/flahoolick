@@ -1,0 +1,132 @@
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+const NEGRO  = '#000000'
+const BLANCO = '#ffffff'
+
+export interface AcordeonItem {
+  titulo: string
+  desc: string
+  href: string
+}
+
+interface AcordeonSeccionProps {
+  eyebrow: string
+  titulo: string
+  /** Párrafo opcional bajo el titular. */
+  bajada?: string
+  /** Si no se pasa, el acordeón ocupa una sola columna centrada. */
+  illustration?: { src: string; alt: string }
+  items: AcordeonItem[]
+  /** Texto del botón que aparece al abrir cada item. */
+  ctaLabel: string
+}
+
+/**
+ * Sección negra con titular centrado + acordeón. Se usa tanto en el módulo
+ * de servicios ("Cómo trabajamos") como en el de capacidades ("En qué nos
+ * especializamos"), para que compartan exactamente el mismo diseño.
+ */
+export function AcordeonSeccion({
+  eyebrow,
+  titulo,
+  bajada,
+  illustration,
+  items,
+  ctaLabel,
+}: AcordeonSeccionProps) {
+  const [abierto, setAbierto] = useState(0)
+
+  const acordeon = (
+    <div className="flex flex-col">
+      {items.map((item, i) => (
+        <div key={i} style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }}>
+          <button
+            onClick={() => setAbierto(abierto === i ? -1 : i)}
+            className="w-full flex items-center justify-between py-5 text-left"
+            style={{ cursor: 'pointer' }}
+          >
+            <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem' }}>{item.titulo}</span>
+            <span style={{
+              color: BLANCO,
+              fontSize: '1.2rem',
+              lineHeight: 1,
+              transition: 'transform 0.3s ease',
+              display: 'inline-block',
+              transform: abierto === i ? 'rotate(45deg)' : 'rotate(0deg)',
+            }}>+</span>
+          </button>
+          {/* Animación con max-height */}
+          <div style={{
+            maxHeight: abierto === i ? '300px' : '0px',
+            overflow: 'hidden',
+            transition: 'max-height 0.35s ease, opacity 0.3s ease',
+            opacity: abierto === i ? 1 : 0,
+          }}>
+            <div className="pb-6 flex flex-col gap-4">
+              <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.8 }}>{item.desc}</p>
+              <Link href={item.href}
+                className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
+                {ctaLabel}
+              </Link>
+            </div>
+          </div>
+        </div>
+      ))}
+      <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
+    </div>
+  )
+
+  return (
+    <section className="page-px section-py">
+      <div className="max-container flex flex-col items-center text-center gap-6">
+        <p className="label" style={{ color: BLANCO, fontSize: '1rem' }}>{eyebrow}</p>
+        <h2 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(2.75rem, 7vw, 9rem)',
+          lineHeight: 1.05,
+          color: BLANCO,
+          fontWeight: 400,
+          textAlign: 'center',
+        }}>
+          {titulo}
+        </h2>
+        {bajada && (
+          <p style={{
+            fontSize: 'clamp(1rem, 1.6vw, 1.35rem)',
+            lineHeight: 1.6,
+            color: BLANCO,
+            opacity: 0.75,
+            fontWeight: 300,
+            maxWidth: '46rem',
+          }}>
+            {bajada}
+          </p>
+        )}
+      </div>
+
+      <div style={{ height: '200px' }} />
+
+      {illustration ? (
+        <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div>
+            <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
+              <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} />
+            </div>
+          </div>
+          {acordeon}
+        </div>
+      ) : (
+        <div className="max-container">
+          <div style={{ maxWidth: '52rem', marginLeft: 'auto', marginRight: 'auto' }}>
+            {acordeon}
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}

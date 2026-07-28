@@ -3,6 +3,7 @@ import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
 import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
+import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ScannerDots } from '@/components/scanner-dots'
@@ -110,7 +111,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* MÓDULO SOMOS FLAHOOLICK — bloque 1: título + marquee + botón */}
+      {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section
         className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
         style={{ backgroundColor: '#F5FD92', color: '#000000', paddingBottom: '6rem' }}
@@ -123,26 +124,6 @@ export default function HomePage() {
           </h2>
         </div>
 
-        {/* Divisoria con aire */}
-        <div style={{ width: '100%', padding: '0 4rem', marginBottom: '3rem' }}>
-          <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
-        </div>
-
-        {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
-
-        {/* Marquee */}
-        <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
-          <Marquee color="#000000" />
-        </div>
-
-        {/* Párrafo */}
-        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '3rem' }}>
-          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '36rem' }}>
-            Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
-          </p>
-        </div>
-
         {/* Botón */}
         <Link
           href="/sobre-flahoolick"
@@ -153,19 +134,40 @@ export default function HomePage() {
         </Link>
       </section>
 
-      {/* MÓDULO SOMOS FLAHOOLICK — bloque 2: Con quién trabajamos, centrado */}
+      {/* Módulo Servicios — cómo trabajamos */}
+      <ModuloComoTrabajamos />
+
+      {/* Módulo Capacidades + Metodología */}
+      <ModuloCapacidadesMetodologia />
+
+      {/* EVIDENCIA — marcas, experiencia e industrias */}
       <section
-        className="flex flex-col items-center justify-center text-center"
-        style={{ backgroundColor: '#F5FD92', color: '#000000', minHeight: '40vh', padding: '4rem var(--page-px)' }}
+        className="flex flex-col items-center text-center"
+        style={{ backgroundColor: '#F5FD92', color: '#000000', padding: '6rem 0' }}
       >
+        {/* Marcas que nos formaron */}
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
+
+        {/* Marquee */}
+        <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
+          <Marquee color="#000000" />
+        </div>
+
+        {/* Párrafo */}
+        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)' }}>
+          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '36rem' }}>
+            Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
+          </p>
+        </div>
+
         {/* Divisoria con aire */}
-        <div style={{ width: '100%', maxWidth: '80rem', marginBottom: '3rem' }}>
+        <div style={{ width: '100%', maxWidth: '80rem', padding: '0 var(--page-px)', margin: '4rem 0 3rem' }}>
           <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
         <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
 
-        <div style={{ maxWidth: '80rem', width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
+        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
             'Tecnología', 'Servicios financieros', 'Ingeniería industrial',
             'Energía', 'Minería', 'Infraestructura', 'Logística', 'Salud',
@@ -179,9 +181,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Módulo Capacidades + Metodología */}
-      <ModuloCapacidadesMetodologia />
 
       {/* Módulo JERGA */}
       <ModuloJerga />

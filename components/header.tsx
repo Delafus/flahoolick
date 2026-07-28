@@ -5,7 +5,33 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePageColor } from '@/context/page-color'
 
-const CAP_MENU = {
+interface MegaMenuItem {
+  title: string
+  desc: string
+  href: string
+  /** Enlace visible dentro de la tarjeta. Si se omite, solo se muestra título y descripción. */
+  linkLabel?: string
+}
+
+interface MegaMenuData {
+  tagline: string
+  ctaLabel: string
+  ctaHref: string
+  items: MegaMenuItem[]
+}
+
+const SRV_MENU: MegaMenuData = {
+  tagline: 'Tres etapas conectadas para convertir conocimiento técnico en una operación de contenido continua.',
+  ctaLabel: 'Explorar servicios', ctaHref: '/servicios',
+  items: [
+    { title: '01. Diagnóstico de Autoridad', desc: 'Identificamos qué sabe tu empresa, qué necesita comprender el mercado y dónde puede construir autoridad.', href: '/servicios#diagnostico', linkLabel: 'Explorar diagnóstico →' },
+    { title: '02. Instalación del Sistema',  desc: 'Diseñamos el relato, el playbook y los flujos que convierten conocimiento en una operación editorial.',   href: '/servicios#instalacion', linkLabel: 'Explorar instalación →' },
+    { title: '03. Operación Editorial',      desc: 'Capturamos señales, producimos activos y mantenemos el sistema activo durante todo el ciclo comercial.',   href: '/servicios#operacion',   linkLabel: 'Explorar operación →' },
+    { title: 'DECK',                         desc: 'Convertimos información compleja en presentaciones, propuestas y playbooks listos para usar.',             href: '/deck',                  linkLabel: 'Explorar DECK →' },
+  ],
+}
+
+const CAP_MENU: MegaMenuData = {
   tagline: 'Convertimos lo que tu empresa sabe en autoridad que el mercado reconoce.',
   ctaLabel: 'Explorar Capacidades', ctaHref: '/capacidades',
   items: [
@@ -15,21 +41,23 @@ const CAP_MENU = {
   ],
 }
 
-const MET_MENU = {
+const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que aprende.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Cómo funcionamos', desc: 'Cuatro capas transforman conocimiento técnico en presencia continua.',                          href: '/metodologia/como-funciona-el-sistema' },
-    { title: 'Dónde usamos IA',   desc: 'La IA captura, organiza y modela información para acelerar el sistema.', href: '/metodologia/como-trabajamos-con-ia' },
+    { title: 'Cómo funciona el sistema', desc: 'Cuatro capas transforman conocimiento técnico en presencia continua.',                          href: '/metodologia/como-funciona-el-sistema' },
+    { title: 'SENSOR',                   desc: 'Captura, organiza y analiza las señales dispersas que definen qué temas puede liderar la empresa.', href: '/sensor' },
+    { title: 'Cómo trabajamos con IA',   desc: 'La IA captura, organiza y modela información para acelerar el sistema.', href: '/metodologia/como-trabajamos-con-ia' },
     { title: 'Cómo aprendemos',          desc: 'Cada señal del mercado mejora el contenido y alimenta el siguiente ciclo.',                    href: '/metodologia/como-aprendemos' },
   ],
 }
 
-type ActiveMenu = 'cap' | 'met' | null
+type ActiveMenu = 'srv' | 'cap' | 'met' | null
 
 const PANEL_BG = '#3B0B2C'
 
 const PANEL_MAIN = [
+  { label: 'Servicios',   href: '/servicios' },
   { label: 'Capacidades', href: '/capacidades' },
   { label: 'Metodología', href: '/metodologia' },
   { label: 'JERGA',       href: '/jerga' },
@@ -86,6 +114,13 @@ export function Header() {
 
         {/* Left nav */}
         <nav className="hidden md:flex items-center gap-10">
+          <Link href="/servicios"
+            className="label hover:opacity-60 transition-opacity"
+            style={{ color: text, textDecoration: active === 'srv' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
+            onMouseEnter={() => setActive('srv')}
+            onClick={() => setActive(null)}>
+            Servicios
+          </Link>
           <Link href="/capacidades"
             className="label hover:opacity-60 transition-opacity"
             style={{ color: text, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
@@ -100,9 +135,6 @@ export function Header() {
             onClick={() => setActive(null)}>
             Metodología
           </Link>
-          <NavLink href="/sobre-flahoolick" color={text} onClick={() => setActive(null)}>
-            Sobre Flahoolick
-          </NavLink>
         </nav>
 
         {/* Logo */}
@@ -119,8 +151,7 @@ export function Header() {
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
             <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
-            <NavLink href="/sensor" color={text} onClick={() => setActive(null)}>SENSOR</NavLink>
-            <NavLink href="/deck"   color={text} onClick={() => setActive(null)}>DECK</NavLink>
+            <NavLink href="/sobre-flahoolick" color={text} onClick={() => setActive(null)}>Sobre Flahoolick</NavLink>
           </nav>
           <button
             onClick={() => { setMobile(true); setActive(null) }}
@@ -146,6 +177,7 @@ export function Header() {
           borderTop: active ? `1px solid ${divColor}` : 'none',
         }}
       >
+        {active === 'srv' && <MegaMenu menu={SRV_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'cap' && <MegaMenu menu={CAP_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'met' && <MegaMenu menu={MET_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
       </div>
@@ -218,7 +250,7 @@ export function Header() {
 }
 
 function MegaMenu({ menu, textColor, divColor, onClose }: {
-  menu: typeof CAP_MENU; textColor: string; divColor: string; onClose: () => void
+  menu: MegaMenuData; textColor: string; divColor: string; onClose: () => void
 }) {
   return (
     <div className="page-px py-12 max-container w-full mx-auto grid grid-cols-12 gap-8">
@@ -234,7 +266,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
           {menu.ctaLabel} →
         </Link>
       </div>
-      <div className="col-span-8 grid grid-cols-3 gap-8">
+      <div className={`col-span-8 grid gap-8 ${menu.items.length > 3 ? 'grid-cols-2 gap-y-10' : 'grid-cols-3'}`}>
         {menu.items.map(item => (
           <Link key={item.href} href={item.href} onClick={onClose} className="group relative flex flex-col gap-3 pl-8">
             <span
@@ -249,6 +281,12 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
               {item.title}
             </h3>
             <p className="text-sm leading-relaxed opacity-60" style={{ color: textColor }}>{item.desc}</p>
+            {item.linkLabel && (
+              <span className="label opacity-70 group-hover:opacity-100 transition-opacity"
+                style={{ color: textColor, fontSize: '0.65rem' }}>
+                {item.linkLabel}
+              </span>
+            )}
           </Link>
         ))}
       </div>

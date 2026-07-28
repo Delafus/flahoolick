@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AcordeonSeccion } from './acordeon-seccion'
 
 const NEGRO   = '#000000'
 const BLANCO  = '#ffffff'
@@ -20,7 +20,7 @@ const acordeonItems = [
   },
   {
     titulo: 'ESTUDIO CREATIVO',
-    desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan la venta.',
+    desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan tu venta.',
     href: '/capacidades/estudio-creativo',
   },
 ]
@@ -60,79 +60,18 @@ function ShieldIcon() {
 }
 
 export function ModuloCapacidadesMetodologia() {
-  const [abierto, setAbierto] = useState(0)
-
   return (
     <div style={{ backgroundColor: NEGRO }}>
 
       {/* ── SECCIÓN 1: CAPACIDADES ── */}
-      <section className="page-px section-py">
-        <div className="max-container flex flex-col items-center text-center gap-6">
-          <p className="label" style={{ color: BLANCO, fontSize: '1rem' }}>En qué nos especializamos</p>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2.75rem, 7vw, 9rem)',
-            lineHeight: 1.05,
-            color: BLANCO,
-            fontWeight: 400,
-            textAlign: 'center',
-          }}>
-            Donde el contenido trabaja para el negocio
-          </h2>
-        </div>
-
-        <div style={{ height: '200px' }} />
-
-        {/* Dos columnas iguales */}
-        <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Ilustración */}
-          <div>
-            <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
-              <Image src="/iconos-industria.svg" alt="Íconos de industrias B2B" fill style={{ objectFit: 'contain' }} />
-            </div>
-          </div>
-
-          {/* Acordeón con animación */}
-          <div className="flex flex-col">
-            {acordeonItems.map((item, i) => (
-              <div key={i} style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }}>
-                <button
-                  onClick={() => setAbierto(abierto === i ? -1 : i)}
-                  className="w-full flex items-center justify-between py-5 text-left"
-                  style={{ cursor: 'pointer' }}
-                >
-                  <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem' }}>{item.titulo}</span>
-                  <span style={{
-                    color: BLANCO,
-                    fontSize: '1.2rem',
-                    lineHeight: 1,
-                    transition: 'transform 0.3s ease',
-                    display: 'inline-block',
-                    transform: abierto === i ? 'rotate(45deg)' : 'rotate(0deg)',
-                  }}>+</span>
-                </button>
-                {/* Animación con max-height */}
-                <div style={{
-                  maxHeight: abierto === i ? '300px' : '0px',
-                  overflow: 'hidden',
-                  transition: 'max-height 0.35s ease, opacity 0.3s ease',
-                  opacity: abierto === i ? 1 : 0,
-                }}>
-                  <div className="pb-6 flex flex-col gap-4">
-                    <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.8 }}>{item.desc}</p>
-                    <Link href={item.href}
-                      className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
-                      style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
-                      CÓMO LO HACEMOS
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
-          </div>
-        </div>
-      </section>
+      <AcordeonSeccion
+        eyebrow="En qué nos especializamos"
+        titulo="Donde el contenido trabaja para el negocio"
+        bajada="Tres capacidades trabajan juntas durante el diagnóstico, la instalación y la operación."
+        illustration={{ src: '/iconos-industria.svg', alt: 'Íconos de industrias B2B' }}
+        items={acordeonItems}
+        ctaLabel="CÓMO LO HACEMOS"
+      />
 
       {/* Divisoria */}
       <div className="page-px">

@@ -10,6 +10,8 @@ interface PageLayoutProps {
   heroText: string
   ctaHref?: string
   illustration?: { src: string; alt: string; ratio?: string }
+  /** Sobrescribe el copy del formulario de contacto al pie de la página. */
+  contact?: { headline?: string; description?: string; submitLabel?: string; etapaField?: boolean }
   children: React.ReactNode
 }
 
@@ -20,6 +22,7 @@ export function PageLayout({
   heroBg,
   heroText,
   illustration,
+  contact,
   children,
 }: PageLayoutProps) {
   const isLight = heroText === '#000000' || heroText === 'black'
@@ -118,7 +121,7 @@ export function PageLayout({
         {children}
       </div>
 
-      <ContactForm bg="#ffffff" text="#000000" />
+      <ContactForm bg="#ffffff" text="#000000" {...contact} />
     </>
   )
 }

@@ -73,7 +73,7 @@ export function ModuloComoTrabajamos() {
     <div style={{ backgroundColor: NEGRO }}>
       <AcordeonSeccion
         eyebrow="Cómo trabajamos"
-        titulo="Instalamos y operamos el sistema que pone tu conocimiento en circulación."
+        titulo="Instalamos el sistema que pone tu conocimiento en circulación."
         bajada="Trabajamos en tres etapas conectadas. Diagnosticamos el conocimiento disponible, instalamos el sistema editorial y mantenemos su operación en el tiempo."
         items={etapas}
         ctaLabel="VER MÁS"

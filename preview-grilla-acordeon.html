@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flahoolick · Cómo trabajamos · Prototype V5</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111111;
+      --text: #f4f4f4;
+      --muted: rgba(255,255,255,.52);
+      --line: rgba(255,255,255,.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 32px;
+    }
+
+    .prototype {
+      width: min(1180px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      min-height: 420px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .controls {
+      border-top: 1px solid var(--line);
+    }
+
+    .item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .item button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 22px 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .num {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .12em;
+    }
+
+    .label {
+      font-size: clamp(20px, 2vw, 30px);
+      letter-spacing: -.03em;
+    }
+
+    .symbol {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      transition: transform .25s ease, color .25s ease, border-color .25s ease;
+    }
+
+    .item button[aria-expanded="true"] .symbol {
+      transform: rotate(45deg);
+      color: #fff;
+      border-color: rgba(255,255,255,.42);
+    }
+
+    .copy {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s ease;
+    }
+
+    .copy > div {
+      overflow: hidden;
+    }
+
+    .item.is-open .copy {
+      grid-template-rows: 1fr;
+    }
+
+    .copy p {
+      margin: 0;
+      padding: 0 0 24px 58px;
+      max-width: 42ch;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .status {
+      margin-top: 18px;
+      color: rgba(255,255,255,.38);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 820px) {
+      body { padding: 18px; }
+      .prototype { grid-template-columns: 1fr; gap: 24px; }
+      .visual { min-height: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .copy, .symbol { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="prototype">
+    <section class="visual" aria-label="Prototipo visual de las etapas de trabajo">
+      <canvas id="processCanvas"></canvas>
+    </section>
+
+    <section>
+      <div class="controls" id="accordion">
+        <article class="item" data-step="1">
+          <button type="button" aria-expanded="false" aria-controls="panel-1">
+            <span class="num">01</span>
+            <span class="label">Diagnóstico</span>
+            <span class="symbol" aria-hidden="true">+</span>
+          </button>
+          <div class="copy" id="panel-1"><div><p>Algunos puntos adquieren valor: crecen, se iluminan y quedan activos.</p></div></div>
+        </article>
+
+        <article class="item" data-step="2">
+          <button type="button" aria-expanded="false" aria-controls="panel-2">
+            <span class="num">02</span>
+            <span class="label">Instalación</span>
+            <span class="symbol" aria-hidden="true">+</span>
+          </button>
+          <div class="copy" id="panel-2"><div><p>Los puntos activos cambian de posición y se integran en una estructura completa.</p></div></div>
+        </article>
+
+        <article class="item" data-step="3">
+          <button type="button" aria-expanded="false" aria-controls="panel-3">
+            <span class="num">03</span>
+            <span class="label">Operación</span>
+            <span class="symbol" aria-hidden="true">+</span>
+          </button>
+          <div class="copy" id="panel-3"><div><p>La grilla completa entra en ritmo mediante un barrido continuo de encendido y apagado.</p></div></div>
+        </article>
+      </div>
+      <div class="status" id="status">00 · Cerrado</div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const canvas = document.getElementById('processCanvas');
+  const ctx = canvas.getContext('2d');
+  const visual = canvas.parentElement;
+  const status = document.getElementById('status');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const GRID = 10;
+  const COUNT = GRID * GRID;
+  const BASE_DIAMETER = 3;
+  const ACTIVE_DIAMETER = 13;
+  const BASE_ALPHA = 0.30;
+  const ACTIVE_ALPHA = 1;
+  const ACTIVE_COUNT = 16;
+
+  let dpr = 1;
+  let width = 0;
+  let height = 0;
+  let gridPoints = [];
+  let activeStep = 0;
+  let previousStep = 0;
+  let running = true;
+  let raf = 0;
+  let lastTime = performance.now();
+
+  let activeIndices = [];
+  let sourceIndices = [];
+  let destinationIndices = [];
+  let installStart = 0;
+  let installDuration = 1550;
+  let gridFill = 0;
+
+  const particles = Array.from({ length: COUNT }, (_, index) => ({
+    index,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.75 + Math.random() * 0.55,
+    activeAmount: 0,
+    x: 0,
+    y: 0,
+    fromX: 0,
+    fromY: 0,
+    toX: 0,
+    toY: 0,
+    delay: 0,
+    duration: 1,
+    arc: 0,
+    direction: Math.random() > .5 ? 1 : -1
+  }));
+
+  function resize() {
+    const rect = visual.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = Math.max(1, rect.width);
+    height = Math.max(1, rect.height);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildGrid();
+    syncParticleCoordinates();
+    draw(performance.now());
+  }
+
+  function buildGrid() {
+    const side = Math.min(width, height) * 0.77;
+    const left = (width - side) / 2;
+    const top = (height - side) / 2;
+    const gap = side / (GRID - 1);
+
+    gridPoints = [];
+    for (let row = 0; row < GRID; row++) {
+      for (let col = 0; col < GRID; col++) {
+        gridPoints.push({
+          x: left + col * gap,
+          y: top + row * gap,
+          row,
+          col
+        });
+      }
+    }
+  }
+
+  function syncParticleCoordinates() {
+    particles.forEach((p, i) => {
+      const point = gridPoints[i];
+      if (!point) return;
+      if (!Number.isFinite(p.x) || (activeStep !== 2 && previousStep !== 2)) {
+        p.x = point.x;
+        p.y = point.y;
+      }
+      if (activeStep !== 2) {
+        p.fromX = point.x;
+        p.fromY = point.y;
+        p.toX = point.x;
+        p.toY = point.y;
+      }
+    });
+  }
+
+  function shuffledIndices() {
+    const values = Array.from({ length: COUNT }, (_, i) => i);
+    for (let i = values.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [values[i], values[j]] = [values[j], values[i]];
+    }
+    return values;
+  }
+
+  function selectActiveDots() {
+    activeIndices = shuffledIndices().slice(0, ACTIVE_COUNT);
+    sourceIndices = [...activeIndices];
+    particles.forEach(p => p.activeAmount = activeIndices.includes(p.index) ? 1 : 0);
+  }
+
+  function createDerangement(indices) {
+    if (indices.length < 2) return [...indices];
+    let result;
+    let attempts = 0;
+    do {
+      result = [...indices];
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      attempts++;
+    } while (result.some((value, i) => value === indices[i]) && attempts < 1000);
+
+    if (result.some((value, i) => value === indices[i])) {
+      result = [...indices.slice(1), indices[0]];
+    }
+    return result;
+  }
+
+  function prepareInstallation(now) {
+    if (!activeIndices.length) selectActiveDots();
+    sourceIndices = [...activeIndices];
+    destinationIndices = createDerangement(sourceIndices);
+    installStart = now;
+    gridFill = 0;
+
+    sourceIndices.forEach((sourceIndex, order) => {
+      const p = particles[sourceIndex];
+      const from = gridPoints[sourceIndex];
+      const to = gridPoints[destinationIndices[order]];
+      p.fromX = from.x;
+      p.fromY = from.y;
+      p.toX = to.x;
+      p.toY = to.y;
+      p.x = from.x;
+      p.y = from.y;
+      p.delay = order * 24;
+      p.duration = installDuration - 200 - p.delay;
+      p.arc = 18 + Math.random() * 22;
+      p.direction = Math.random() > .5 ? 1 : -1;
+    });
+  }
+
+  function clamp01(value) {
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function setStep(step) {
+    if (![0,1,2,3].includes(step)) return;
+    previousStep = activeStep;
+    activeStep = step;
+    const now = performance.now();
+
+    if (step === 0) {
+      gridFill = 0;
+    }
+
+    if (step === 1) {
+      selectActiveDots();
+      gridFill = 0;
+    }
+
+    if (step === 2) {
+      prepareInstallation(now);
+    }
+
+    if (step === 3) {
+      gridFill = 1;
+    }
+
+    updateStatus();
+    if (!running) draw(now);
+  }
+
+  function updateStatus() {
+    const labels = ['00 · Cerrado', '01 · Diagnóstico', '02 · Instalación', '03 · Operación'];
+    status.textContent = labels[activeStep];
+  }
+
+  function drawDot(x, y, diameter, alpha) {
+    if (alpha <= 0 || diameter <= 0) return;
+    ctx.beginPath();
+    ctx.arc(x, y, diameter / 2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${clamp01(alpha)})`;
+    ctx.fill();
+  }
+
+  function drawBaseGrid(alpha) {
+    gridPoints.forEach(point => {
+      drawDot(point.x, point.y, BASE_DIAMETER, alpha);
+    });
+  }
+
+  function drawClosed() {
+    drawBaseGrid(BASE_ALPHA);
+  }
+
+  function drawDiagnosis(now) {
+    drawBaseGrid(BASE_ALPHA);
+
+    activeIndices.forEach(index => {
+      const p = particles[index];
+      const point = gridPoints[index];
+      const pulse = 0.5 + 0.5 * Math.sin(now * 0.001 * p.speed + p.phase);
+      const diameter = 10.2 + pulse * (ACTIVE_DIAMETER - 10.2);
+      const alpha = 0.78 + pulse * 0.22;
+      drawDot(point.x, point.y, diameter, alpha);
+    });
+  }
+
+  function drawInstallation(now) {
+    const elapsed = now - installStart;
+    const overall = clamp01(elapsed / installDuration);
+
+    // La grilla permanece baja durante el viaje y sube a 100% al final.
+    const fillStart = 0.72;
+    gridFill = clamp01((overall - fillStart) / (1 - fillStart));
+    const gridAlpha = BASE_ALPHA + (1 - BASE_ALPHA) * easeOutCubic(gridFill);
+    drawBaseGrid(gridAlpha);
+
+    sourceIndices.forEach((sourceIndex, order) => {
+      const p = particles[sourceIndex];
+      const local = clamp01((elapsed - p.delay) / p.duration);
+      if (local >= 1) return;
+
+      const eased = easeInOutCubic(local);
+      const x = p.fromX + (p.toX - p.fromX) * eased;
+      const yBase = p.fromY + (p.toY - p.fromY) * eased;
+      const arc = Math.sin(Math.PI * eased) * p.arc * p.direction;
+
+      const dx = p.toX - p.fromX;
+      const dy = p.toY - p.fromY;
+      const len = Math.hypot(dx, dy) || 1;
+      const normalX = -dy / len;
+      const normalY = dx / len;
+      const y = yBase + normalY * arc;
+      const curvedX = x + normalX * arc;
+
+      const settle = clamp01((local - 0.72) / 0.28);
+      const diameter = ACTIVE_DIAMETER + (BASE_DIAMETER - ACTIVE_DIAMETER) * easeOutCubic(settle);
+      const alpha = 1 - settle * 0.15;
+      drawDot(curvedX, y, diameter, alpha);
+    });
+  }
+
+  function drawOperation(now) {
+    const speed = 0.0032;
+    const phase = now * speed;
+
+    gridPoints.forEach(point => {
+      const diagonal = point.col + point.row * 0.82;
+      const wave = 0.5 + 0.5 * Math.sin(phase - diagonal * 0.78);
+      const sharpened = Math.pow(wave, 3.6);
+      const alpha = 0.20 + sharpened * 0.80;
+      const diameter = BASE_DIAMETER * (0.95 + sharpened * 0.10);
+      drawDot(point.x, point.y, diameter, alpha);
+    });
+  }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, width, height);
+    if (activeStep === 0) drawClosed();
+    if (activeStep === 1) drawDiagnosis(now);
+    if (activeStep === 2) drawInstallation(now);
+    if (activeStep === 3) drawOperation(now);
+  }
+
+  function loop(now) {
+    if (!running) return;
+    const dt = Math.min(50, now - lastTime);
+    lastTime = now;
+    draw(now, dt);
+    raf = requestAnimationFrame(loop);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries[0]?.isIntersecting;
+    if (visible && !running) {
+      running = true;
+      lastTime = performance.now();
+      raf = requestAnimationFrame(loop);
+    } else if (!visible && running) {
+      running = false;
+      cancelAnimationFrame(raf);
+    }
+  }, { threshold: 0.01 });
+
+  observer.observe(visual);
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(visual);
+
+  document.querySelectorAll('.item').forEach(item => {
+    const button = item.querySelector('button');
+    const step = Number(item.dataset.step);
+
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+      document.querySelectorAll('.item').forEach(other => {
+        other.classList.remove('is-open');
+        other.querySelector('button').setAttribute('aria-expanded', 'false');
+      });
+
+      if (isOpen) {
+        setStep(0);
+        return;
+      }
+
+      item.classList.add('is-open');
+      button.setAttribute('aria-expanded', 'true');
+      setStep(step);
+    });
+  });
+
+  window.setFlahoolickProcessStep = step => {
+    document.querySelectorAll('.item').forEach(item => {
+      const itemStep = Number(item.dataset.step);
+      const open = itemStep === step;
+      item.classList.toggle('is-open', open);
+      item.querySelector('button').setAttribute('aria-expanded', String(open));
+    });
+    setStep(step);
+  };
+
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
+    resizeObserver.disconnect();
+    cancelAnimationFrame(raf);
+  });
+
+  if (reduceMotion) {
+    running = false;
+    observer.disconnect();
+    cancelAnimationFrame(raf);
+  }
+
+  setStep(0);
+  resize();
+  if (!reduceMotion) raf = requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

@@ -4,20 +4,22 @@ import { AcordeonSeccion } from './acordeon-seccion'
 
 const NEGRO = '#000000'
 
+// Las descripciones son las mismas que usa el megamenú de Servicios, para
+// que el visitante lea lo mismo venga de donde venga.
 const etapas = [
   {
     titulo: '01. DIAGNÓSTICO DE AUTORIDAD',
-    desc: 'Identificamos qué sabe la empresa, qué necesita comprender el mercado y dónde existen oportunidades de autoridad.',
+    desc: 'Identificamos qué sabe tu empresa, qué necesita comprender el mercado y dónde puede construir autoridad.',
     href: '/servicios#diagnostico',
   },
   {
     titulo: '02. INSTALACIÓN DEL SISTEMA',
-    desc: 'Definimos el relato, los territorios, el playbook, los flujos y la gobernanza editorial.',
+    desc: 'Diseñamos el relato, el playbook y los flujos que convierten conocimiento en una operación editorial.',
     href: '/servicios#instalacion',
   },
   {
     titulo: '03. OPERACIÓN EDITORIAL',
-    desc: 'Capturamos señales, producimos activos y recalibramos el sistema según la respuesta del mercado.',
+    desc: 'Capturamos señales, producimos activos y mantenemos el sistema activo durante todo el ciclo comercial.',
     href: '/servicios#operacion',
   },
 ]
@@ -77,6 +79,7 @@ export function ModuloComoTrabajamos() {
         bajada="Trabajamos en tres etapas conectadas. Diagnosticamos el conocimiento disponible, instalamos el sistema editorial y mantenemos su operación en el tiempo."
         items={etapas}
         ctaLabel="VER MÁS"
+        cta={{ label: 'EXPLORAR SERVICIOS ›', href: '/servicios' }}
         renderIllustration={abierto => <PlaceholderEtapa abierto={abierto} />}
       />
     </div>

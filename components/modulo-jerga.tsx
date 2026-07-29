@@ -62,7 +62,7 @@ export async function ModuloJerga() {
           pointerEvents: 'none',
         }}
       />
-      <div className="max-container page-px" style={{ paddingTop: '4rem', paddingBottom: '5rem', position: 'relative' }}>
+      <div className="max-container page-px" style={{ paddingTop: 'clamp(5rem, 9vw, 10rem)', paddingBottom: '5rem', position: 'relative' }}>
 
         {/* ── HEADER: logo + tagline ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">

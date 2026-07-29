@@ -19,9 +19,10 @@ export function IdeaGenerosaLogo({ color = '#000000', className }: IdeaGenerosaL
       style={{ color, overflow: 'visible' }}
     >
       <style>{`
+        /* Gira en antihorario: la frase entra por abajo y se lee mejor. */
         @keyframes idea-generosa-spin {
           from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          to { transform: rotate(-360deg); }
         }
         .idea-generosa-ring {
           transform-origin: 189.7px 189.7px;

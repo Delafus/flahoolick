@@ -13,6 +13,8 @@ export interface Etapa {
   entregables: string[]
   acordeon: { titulo: string; contenido: string }
   destacado: { titulo: string; desc: string }
+  /** Señal de alcance: cuánto compromete contratar esta etapa. */
+  plazo: { label: string; valor: string }
   ctaLabel: string
   /** Solo Operación Editorial: formatos que produce, como tags. */
   formatos?: string[]
@@ -40,6 +42,7 @@ export const ETAPAS: Etapa[] = [
       titulo: 'Mapa de autoridad de mercado',
       desc: 'Define qué conocimiento debe poner en circulación la empresa, para quién, con qué propósito y en qué orden.',
     },
+    plazo: { label: 'Duración referencial', valor: '2 a 4 semanas.' },
     ctaLabel: 'Hablemos del diagnóstico →',
   },
   {
@@ -63,6 +66,7 @@ export const ETAPAS: Etapa[] = [
       titulo: 'Sistema operativo de contenido',
       desc: 'Un playbook aplicado para capturar, producir, distribuir y medir contenido con una lógica compartida.',
     },
+    plazo: { label: 'Duración referencial', valor: '6 a 10 semanas.' },
     ctaLabel: 'Hablemos de la instalación →',
   },
   {
@@ -86,6 +90,7 @@ export const ETAPAS: Etapa[] = [
       titulo: 'Operación editorial activa',
       desc: 'Una capacidad continua para transformar conocimiento interno en presencia de mercado, autoridad y herramientas comerciales.',
     },
+    plazo: { label: 'Modalidad', valor: 'Operación mensual. El alcance se define según las audiencias, territorios, formatos y activos que necesita la empresa.' },
     ctaLabel: 'Hablemos de la operación →',
     formatos: [
       'Artículos', 'Guías', 'Reportes', 'Casos', 'LinkedIn', 'Newsletters',

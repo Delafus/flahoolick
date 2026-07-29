@@ -1,8 +1,7 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { AcordeonSeccion } from './acordeon-seccion'
+import { guiasFijadas } from '@/sanity/lib/jerga'
 
 const NEGRO   = '#000000'
 const BLANCO  = '#ffffff'
@@ -43,10 +42,30 @@ const footerCols = [
   },
 ]
 
-const tarjetasJerga = [
-  { img: '/card-95-5.svg',           titulo: 'El 95% que no está comprando', href: '/jerga' },
-  { img: '/card-idea-que-viaja.svg', titulo: 'Cómo viaja una idea',           href: '/jerga' },
-]
+interface TarjetaJerga {
+  img?: string
+  alt: string
+  titulo: string
+  href: string
+}
+
+/** Portada de la guía. Tolera guías todavía sin imagen destacada. */
+function PortadaGuia({ card }: { card: TarjetaJerga }) {
+  if (!card.img) {
+    return (
+      <div style={{
+        width: '100%',
+        aspectRatio: '16/10',
+        border: '1px solid rgba(255,255,255,0.2)',
+        borderRadius: '4px',
+      }} />
+    )
+  }
+  return (
+    <img src={card.img} alt={card.alt}
+      style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+  )
+}
 
 function ShieldIcon() {
   return (
@@ -59,7 +78,17 @@ function ShieldIcon() {
   )
 }
 
-export function ModuloCapacidadesMetodologia() {
+export async function ModuloCapacidadesMetodologia() {
+  // Las dos tarjetas salen de las guías que estén fijadas en Sanity, las
+  // mismas que alimentan la barra de JERGA. Se controlan desde el CMS.
+  const guias = await guiasFijadas()
+  const tarjetasJerga: TarjetaJerga[] = guias.slice(0, 2).map(g => ({
+    img: g.imagenDestacadaUrl,
+    alt: g.imagenDestacadaAlt ?? g.titulo,
+    titulo: g.titulo,
+    href: `/jerga/${g.slug}`,
+  }))
+
   return (
     <div style={{ backgroundColor: NEGRO }}>
 
@@ -142,17 +171,19 @@ export function ModuloCapacidadesMetodologia() {
               position: 'sticky',
               top: '80px',
               alignSelf: 'start',
-              borderLeft: `1px solid rgba(255,255,255,0.2)`,
+              borderLeft: tarjetasJerga.length ? `1px solid rgba(255,255,255,0.2)` : 'none',
               paddingLeft: '2rem',
             }}>
               {tarjetasJerga.map((card, i) => (
-                <div key={i}>
+                <div key={card.href}>
                   <Link href={card.href} className="group flex flex-col gap-3 py-6 hover:opacity-80 transition-opacity">
-                    <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+                    <PortadaGuia card={card} />
                     <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
                     <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
                   </Link>
-                  {i === 0 && <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />}
+                  {i === 0 && tarjetasJerga.length > 1 && (
+                    <hr style={{ borderColor: 'rgba(255,255,255,0.15)', borderTopWidth: '1px' }} />
+                  )}
                 </div>
               ))}
             </div>
@@ -181,9 +212,9 @@ export function ModuloCapacidadesMetodologia() {
                 EXPLORAR METODOLOGÍA ›
               </Link>
             </div>
-            {tarjetasJerga.map((card, i) => (
-              <Link key={i} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
-                <img src={card.img} alt={card.titulo} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+            {tarjetasJerga.map(card => (
+              <Link key={card.href} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
+                <PortadaGuia card={card} />
                 <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
                 <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
               </Link>

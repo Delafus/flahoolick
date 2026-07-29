@@ -155,7 +155,7 @@ export default function HomePage() {
 
         {/* Párrafo */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)' }}>
-          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '36rem' }}>
+          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '52rem' }}>
             Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
           </p>
         </div>

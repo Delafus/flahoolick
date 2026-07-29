@@ -119,6 +119,12 @@ export function ServiciosEtapas() {
                     </div>
                   </div>
                 )}
+
+                <div className="flex flex-col gap-2 pt-6"
+                  style={{ borderTop: '1px solid rgba(249,240,226,0.18)' }}>
+                  <p className="label opacity-50">{etapa.plazo.label}</p>
+                  <p className="text-sm leading-relaxed opacity-75">{etapa.plazo.valor}</p>
+                </div>
               </div>
             </div>
           </div>

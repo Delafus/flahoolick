@@ -37,7 +37,7 @@ export const ETAPAS: Etapa[] = [
       contenido: 'Revisamos documentos, contenidos, propuestas y conversaciones comerciales. Entrevistamos a expertos internos. Analizamos preguntas, objeciones y señales del mercado. Jerarquizamos los hallazgos según su valor estratégico.',
     },
     destacado: {
-      titulo: 'Mapa de Autoridad de Mercado',
+      titulo: 'Mapa de autoridad de mercado',
       desc: 'Define qué conocimiento debe poner en circulación la empresa, para quién, con qué propósito y en qué orden.',
     },
     ctaLabel: 'Hablemos del diagnóstico →',
@@ -60,7 +60,7 @@ export const ETAPAS: Etapa[] = [
       contenido: 'Definimos las audiencias, los principios editoriales, el sistema de captura, los formatos y los canales. Organizamos los roles, las aprobaciones, la cadencia y los indicadores que sostienen la operación.',
     },
     destacado: {
-      titulo: 'Sistema Operativo de Contenido',
+      titulo: 'Sistema operativo de contenido',
       desc: 'Un playbook aplicado para capturar, producir, distribuir y medir contenido con una lógica compartida.',
     },
     ctaLabel: 'Hablemos de la instalación →',
@@ -83,7 +83,7 @@ export const ETAPAS: Etapa[] = [
       contenido: 'Capturamos conocimiento con los expertos internos. Priorizamos temas y oportunidades. Investigamos, redactamos, editamos y producimos los activos. Revisamos su desempeño y actualizamos la agenda editorial.',
     },
     destacado: {
-      titulo: 'Operación Editorial Activa',
+      titulo: 'Operación editorial activa',
       desc: 'Una capacidad continua para transformar conocimiento interno en presencia de mercado, autoridad y herramientas comerciales.',
     },
     ctaLabel: 'Hablemos de la operación →',

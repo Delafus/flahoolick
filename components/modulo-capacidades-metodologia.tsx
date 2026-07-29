@@ -91,11 +91,10 @@ export function ModuloCapacidadesMetodologia() {
             {/* Columna izquierda — scrollea libremente */}
             <div className="flex flex-col gap-8">
               <h2 style={{
-                fontFamily: 'Georgia, serif',
-                fontStyle: 'italic',
+                fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(3rem, 10vw, 12rem)',
-                lineHeight: 0.92,
-                letterSpacing: '-0.03em',
+                lineHeight: 1.0,
+                letterSpacing: '-0.02em',
                 color: BLANCO,
                 fontWeight: 400,
                 overflowWrap: 'break-word',
@@ -162,11 +161,10 @@ export function ModuloCapacidadesMetodologia() {
           {/* Mobile: stack vertical */}
           <div className="flex flex-col gap-8 md:hidden">
             <h2 style={{
-              fontFamily: 'Georgia, serif',
-              fontStyle: 'italic',
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(3rem, 10vw, 8rem)',
-              lineHeight: 0.92,
-              letterSpacing: '-0.03em',
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
               color: BLANCO,
               fontWeight: 400,
             }}>

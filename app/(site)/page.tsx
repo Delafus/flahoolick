@@ -107,7 +107,7 @@ export default function HomePage() {
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #EE3F4A 50%, #F5FD92 50%)' }} />
         <div style={{ position: 'relative' }}>
-          <ScrollConnector color="#ffffff" colorTo="#000000" height={220} thickness={3} dotSize={16} />
+          <ScrollConnector color="#F5FD92" colorTo="#000000" height={220} thickness={3} dotSize={16} />
         </div>
       </div>
 

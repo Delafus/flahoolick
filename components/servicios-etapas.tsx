@@ -69,8 +69,8 @@ export function ServiciosEtapas() {
 
               <Link
                 href={`/servicios?servicio=${etapa.id}#contacto`}
-                className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit mt-2 hover:opacity-60 transition-opacity"
-                style={{ borderColor: 'currentColor' }}
+                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-2 hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: '#000000', color: 'var(--brand-ground)' }}
               >
                 {etapa.ctaLabel}
               </Link>
@@ -79,9 +79,10 @@ export function ServiciosEtapas() {
             {/* Derecha — qué se lleva el cliente, como una sola unidad:
                 primero el entregable principal y después lo que lo compone. */}
             <div className="md:col-span-5">
-              <div className="flex flex-col gap-8 p-8" style={{ border: '1px solid rgba(0,0,0,0.15)' }}>
+              <div className="flex flex-col gap-8 p-8"
+                style={{ backgroundColor: '#000000', color: 'var(--brand-ground)' }}>
                 <div className="flex flex-col gap-3">
-                  <p className="label opacity-40">Entregable principal</p>
+                  <p className="label opacity-50">Entregable principal</p>
                   <p style={{
                     fontFamily: 'var(--font-display)',
                     fontWeight: 400,
@@ -94,11 +95,11 @@ export function ServiciosEtapas() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <p className="label opacity-40">Qué incluye</p>
+                  <p className="label opacity-50">Qué incluye</p>
                   <ul className="flex flex-col">
                     {etapa.entregables.map(item => (
                       <li key={item} className="text-base py-3"
-                        style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                        style={{ borderTop: '1px solid rgba(249,240,226,0.18)' }}>
                         {item}
                       </li>
                     ))}
@@ -107,11 +108,11 @@ export function ServiciosEtapas() {
 
                 {etapa.formatos && (
                   <div className="flex flex-col gap-3">
-                    <p className="label opacity-40">Formatos que produce</p>
+                    <p className="label opacity-50">Formatos que produce</p>
                     <div className="flex flex-wrap gap-2">
                       {etapa.formatos.map(f => (
                         <span key={f} className="text-sm px-3 py-1.5"
-                          style={{ border: '1px solid rgba(0,0,0,0.2)', opacity: 0.75 }}>
+                          style={{ border: '1px solid rgba(249,240,226,0.3)', opacity: 0.8 }}>
                           {f}
                         </span>
                       ))}

@@ -54,7 +54,7 @@ const MET_MENU: MegaMenuData = {
 
 type ActiveMenu = 'srv' | 'cap' | 'met' | null
 
-const PANEL_BG = '#3B0B2C'
+const PANEL_BG = '#000000'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
@@ -198,6 +198,8 @@ export function Header() {
         style={{
           backgroundColor: PANEL_BG,
           color: '#ffffff',
+          // Separa el panel de las páginas de fondo negro, donde si no se funde.
+          borderLeft: '1px solid rgba(255,255,255,0.2)',
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
@@ -209,7 +211,7 @@ export function Header() {
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
               className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: '#000000', color: '#ffffff', borderRadius: '0' }}>
+              style={{ backgroundColor: '#ffffff', color: '#000000', borderRadius: '0' }}>
               CERRAR ✕
             </button>
           </div>

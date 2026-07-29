@@ -97,7 +97,7 @@ export function InternalPageLayout({
       </div>
 
       {/* Contacto */}
-      {showContact && <ContactForm bg="#3B0B2C" text="#ffffff" />}
+      {showContact && <ContactForm bg="#ffffff" text="#000000" />}
     </div>
   )
 }

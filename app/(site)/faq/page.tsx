@@ -217,7 +217,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <ContactForm bg="var(--brand-depth)" text="var(--brand-chalk)" />
+      <ContactForm bg="#ffffff" text="#000000" />
     </>
   )
 }

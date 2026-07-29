@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection } from '@/components/page-layout'
 import { ServiciosEtapas } from '@/components/servicios-etapas'
+import { ETAPAS } from '@/components/servicios-datos'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -26,58 +27,52 @@ export default function Servicios() {
           etapaField: true,
         }}
       >
-        {/* Bloque introductorio */}
-        <BodySection title="Cómo trabajamos">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <h2 className="md:col-span-6" style={{
+        {/* Índice de orientación. Reemplaza al antiguo bloque introductorio,
+            que repetía lo que ya dice el header, y hace de navegación interna:
+            la pregunta que trae el lector es cuál de las tres etapas le toca. */}
+        <BodySection title="Dónde empezar">
+          <div className="flex flex-col gap-10">
+            <h2 style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 400,
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
             }}>
-              Un sistema completo. Tres etapas de trabajo.
+              ¿En qué etapa estás?
             </h2>
-            <div className="md:col-span-6 flex flex-col gap-4">
-              <p className="text-lead opacity-80">
-                Cada servicio resuelve una necesidad concreta y deja una capacidad instalada.
-              </p>
-              <p className="text-base leading-relaxed opacity-65">
-                El diagnóstico define dónde existe una oportunidad de autoridad.
-                La instalación organiza el relato, los procesos y la producción.
-                La operación mantiene el conocimiento en circulación y alimenta el aprendizaje del sistema.
-              </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px"
+              style={{ background: 'rgba(0,0,0,0.12)' }}>
+              {ETAPAS.map(etapa => (
+                <a key={etapa.id} href={`#${etapa.id}`}
+                  className="group flex flex-col gap-3 p-8 hover:opacity-70 transition-opacity"
+                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
+                  <p className="label opacity-40">{etapa.numero}</p>
+                  <p style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 400,
+                    fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
+                    lineHeight: 1.15,
+                  }}>
+                    {etapa.nombre}
+                  </p>
+                  <p className="text-sm leading-relaxed opacity-65">{etapa.cuando}</p>
+                  <span className="label opacity-35 group-hover:opacity-70 transition-opacity mt-2">
+                    Ver detalle →
+                  </span>
+                </a>
+              ))}
             </div>
+
+            <p className="text-lead" style={{ borderLeft: '2px solid currentColor', paddingLeft: '1.25rem' }}>
+              Una empresa puede comenzar desde la etapa que corresponda a su nivel de madurez.
+            </p>
           </div>
         </BodySection>
 
-        {/* Las tres etapas, con anclas y navegación interna */}
+        {/* Las tres etapas en detalle */}
         <ServiciosEtapas />
-
-        {/* Bloque de conexión */}
-        <BodySection title="Una ruta continua">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <h2 className="md:col-span-6" style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-            }}>
-              Cada etapa prepara la siguiente.
-            </h2>
-            <div className="md:col-span-6 flex flex-col gap-6">
-              <p className="text-base leading-relaxed opacity-65">
-                El diagnóstico encuentra la oportunidad.
-                La instalación construye el sistema.
-                La operación mantiene ese sistema activo.
-              </p>
-              <p className="text-lead" style={{ borderLeft: '2px solid currentColor', paddingLeft: '1.25rem' }}>
-                Una empresa puede comenzar desde la etapa que corresponda a su nivel de madurez.
-              </p>
-            </div>
-          </div>
-        </BodySection>
 
         {/* Bloque de metodología */}
         <BodySection dark title="El sistema por dentro">

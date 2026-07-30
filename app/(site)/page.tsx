@@ -112,7 +112,10 @@ export default function HomePage() {
       {/* Conector que cruza el límite azul → verde, cambiando de color a la mitad */}
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #083EA7 50%, #1FDE91 50%)' }} />
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} className="md:hidden">
+          <ScrollConnector color="#1FDE91" colorTo="#083EA7" height={220} thickness={1.5} dotSize={9} />
+        </div>
+        <div style={{ position: 'relative' }} className="hidden md:block">
           <ScrollConnector color="#1FDE91" colorTo="#083EA7" height={220} thickness={3} dotSize={16} />
         </div>
       </div>

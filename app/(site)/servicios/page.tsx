@@ -15,7 +15,6 @@ export default function Servicios() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        tagline="Servicios"
         headline="Empieza donde tu operación se corta."
         description="Ordenamos qué debe llegar al mercado, instalamos la forma de producirlo o dirigimos la operación editorial mes a mes."
         heroBg="#000000"

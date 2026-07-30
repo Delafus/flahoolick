@@ -38,8 +38,8 @@ export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = 
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       containerRadius = width / 2
-      // Tamaño fijo (7px de diámetro) para que se note bien, sin escalar con el contenedor.
-      dotRadius = 3.5
+      // Tamaño fijo (6px de diámetro) para que se note bien, sin escalar con el contenedor.
+      dotRadius = 3
 
       dots = []
       for (let i = 0; i < dotCount; i++) {

@@ -71,7 +71,7 @@ export default function HomePage() {
             </p>
             {s.img && (
               <>
-                <div className="md:hidden"><ScrollConnector color="#1FDE91" height={64} /></div>
+                <div className="md:hidden"><ScrollConnector color="#1FDE91" height={90} thickness={1.5} dotSize={9} /></div>
                 <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={140} /></div>
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
@@ -102,7 +102,7 @@ export default function HomePage() {
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#1FDE91" height={96} /></div>
+              <div className="md:hidden"><ScrollConnector color="#1FDE91" height={130} thickness={1.5} dotSize={9} /></div>
               <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={200} /></div>
             </>
           )}

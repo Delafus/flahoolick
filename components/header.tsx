@@ -104,9 +104,19 @@ export function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const isLight = text === '#000000' || text === 'black'
-  const divColor = isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.12)'
-  const logoFilter = isLight ? 'brightness(0)' : 'brightness(0) invert(1)'
+  const isDarkText = text === '#000000' || text === 'black'
+  const isBlueText = text.toLowerCase() === '#083ea7'
+  const divColor = isDarkText
+    ? 'rgba(0,0,0,0.12)'
+    : isBlueText
+    ? 'rgba(8,62,167,0.2)'
+    : 'rgba(255,255,255,0.12)'
+  const logoFilter = isDarkText
+    ? 'brightness(0)'
+    : isBlueText
+    // Calibrado con canvas ctx.filter contra el RGB real (8,62,167).
+    ? 'brightness(0) saturate(100%) invert(15%) sepia(90%) saturate(3000%) hue-rotate(210deg) brightness(90%)'
+    : 'brightness(0) invert(1)'
 
   return (
     <header
@@ -289,7 +299,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
             </h3>
             <p className="text-sm leading-relaxed opacity-60" style={{ color: textColor }}>{item.desc}</p>
             {item.linkLabel && (
-              <span className="label opacity-70 group-hover:opacity-100 transition-opacity"
+              <span className="label transition-opacity"
                 style={{ color: textColor, fontSize: '0.65rem' }}>
                 {item.linkLabel}
               </span>

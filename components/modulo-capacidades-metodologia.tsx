@@ -26,19 +26,22 @@ const acordeonItems = [
 
 const footerCols = [
   {
-    titulo: 'NUESTRO PROCESO',
-    desc: 'Capturamos lo que tu empresa ya sabe, lo estructuramos con criterio editorial y lo convertimos en presencia continua. Cuatro capas que trabajan en ciclo: señales, conocimiento, producción y aprendizaje.',
-    href: '/metodologia/como-funciona-el-sistema',
+    titulo: 'NUESTRO SISTEMA',
+    desc: 'Cuatro capas convierten señales dispersas en una operación continua.',
+    href: '/metodologia#como-funciona',
+    cta: 'VER CÓMO FUNCIONA ›',
   },
   {
-    titulo: 'CÓMO MEDIMOS',
-    desc: 'Seguimos temas, preguntas y objeciones que emergen en el ciclo comercial. Medimos tracción editorial, uso interno y visibilidad en plataformas de IA para calibrar cada ciclo siguiente.',
-    href: '/metodologia/como-aprendemos',
-  },
-  {
-    titulo: 'LA DIFERENCIA',
-    desc: 'El punto de partida es una pregunta: qué sabe tu empresa que tu audiencia necesita entender. Esa respuesta, bien construida, es lo que separa la autoridad del ruido en mercados B2B complejos.',
+    titulo: 'IA Y CRITERIO',
+    desc: 'La tecnología procesa a escala. El equipo senior dirige las decisiones.',
     href: '/metodologia/como-trabajamos-con-ia',
+    cta: 'VER CÓMO TRABAJAMOS ›',
+  },
+  {
+    titulo: 'LO QUE SE ACUMULA',
+    desc: 'Cada ciclo deja conocimiento, criterios y activos disponibles para el siguiente.',
+    href: '/metodologia#lo-que-acumula',
+    cta: 'VER LO QUE CONSTRUYE ›',
   },
 ]
 
@@ -119,22 +122,23 @@ export async function ModuloCapacidadesMetodologia() {
 
             {/* Columna izquierda — scrollea libremente */}
             <div className="flex flex-col gap-8">
+              <p className="label" style={{ color: BLANCO, opacity: 0.6 }}>Metodología</p>
               <h2 style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 10vw, 12rem)',
+                fontSize: 'clamp(3rem, 10vw, 8rem)',
                 lineHeight: 1.0,
                 letterSpacing: '-0.02em',
                 color: BLANCO,
                 fontWeight: 400,
                 overflowWrap: 'break-word',
+                marginTop: '-0.5rem',
               }}>
-                Metodología
+                Cada ciclo deja un activo.
               </h2>
 
               <div className="flex flex-col gap-5" style={{ maxWidth: '560px' }}>
-                <p className="label" style={{ color: BLANCO }}>El mercado forma opinión en silencio</p>
                 <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
-                  La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
+                  Capturamos señales, priorizamos oportunidades, producimos activos y usamos la respuesta del mercado para mejorar el siguiente ciclo.
                 </p>
                 <Link href="/metodologia"
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
@@ -158,7 +162,7 @@ export async function ModuloCapacidadesMetodologia() {
                       <Link href={col.href}
                         className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
                         style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
-                        CONOCE MÁS ›
+                        {col.cta}
                       </Link>
                     </div>
                   ))}
@@ -191,6 +195,7 @@ export async function ModuloCapacidadesMetodologia() {
 
           {/* Mobile: stack vertical */}
           <div className="flex flex-col gap-8 md:hidden">
+            <p className="label" style={{ color: BLANCO, opacity: 0.6 }}>Metodología</p>
             <h2 style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(3rem, 10vw, 8rem)',
@@ -198,13 +203,13 @@ export async function ModuloCapacidadesMetodologia() {
               letterSpacing: '-0.02em',
               color: BLANCO,
               fontWeight: 400,
+              marginTop: '-1rem',
             }}>
-              Metodología
+              Cada ciclo deja un activo.
             </h2>
             <div className="flex flex-col gap-5">
-              <p className="label" style={{ color: BLANCO }}>El mercado forma opinión en silencio</p>
               <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
-                La autoridad técnica se construye antes de la reunión comercial. Ocurre cuando una empresa logra transformar lo que sabe en ideas, argumentos y activos que circulan durante meses. Flahoolick convierte señales internas en presencia continua para mercados B2B complejos.
+                Capturamos señales, priorizamos oportunidades, producimos activos y usamos la respuesta del mercado para mejorar el siguiente ciclo.
               </p>
               <Link href="/metodologia"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
@@ -230,7 +235,7 @@ export async function ModuloCapacidadesMetodologia() {
                   <Link href={col.href}
                     className="label inline-flex items-center gap-1 px-4 py-2 w-fit hover:opacity-80 transition-opacity"
                     style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
-                    CONOCE MÁS ›
+                    {col.cta}
                   </Link>
                 </div>
               ))}

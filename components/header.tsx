@@ -48,13 +48,12 @@ const CAP_MENU: MegaMenuData = {
 }
 
 const MET_MENU: MegaMenuData = {
-  tagline: 'Del conocimiento disperso a un sistema que aprende.',
+  tagline: 'Cada ciclo deja un activo: así funciona el sistema detrás de los tres servicios.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Cómo funciona el sistema', desc: 'Cuatro capas transforman conocimiento técnico en presencia continua.',                          href: '/metodologia/como-funciona-el-sistema' },
-    { title: 'SENSOR',                   desc: 'Captura, organiza y analiza las señales dispersas que definen qué temas puede liderar la empresa.', href: '/sensor' },
-    { title: 'Cómo trabajamos con IA',   desc: 'La IA captura, organiza y modela información para acelerar el sistema.', href: '/metodologia/como-trabajamos-con-ia' },
-    { title: 'Cómo aprendemos',          desc: 'Cada señal del mercado mejora el contenido y alimenta el siguiente ciclo.',                    href: '/metodologia/como-aprendemos' },
+    { title: 'Cómo funciona el sistema',    desc: 'Cuatro capas que trabajan como un ciclo continuo.',            href: '/metodologia#como-funciona' },
+    { title: 'IA y criterio humano',        desc: 'Cómo usamos tecnología, fuentes y control experto.',            href: '/metodologia/como-trabajamos-con-ia' },
+    { title: 'Lo que el sistema acumula',   desc: 'Los activos y capacidades que mejora cada ciclo.',              href: '/metodologia#lo-que-acumula' },
   ],
 }
 

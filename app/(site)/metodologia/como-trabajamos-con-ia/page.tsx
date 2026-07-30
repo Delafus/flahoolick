@@ -19,8 +19,8 @@ export default function ComoIA() {
         <BodySection title="Cómo lo hacemos"><HowList items={items} /></BodySection>
         <BodySection title="Otras secciones">
           <CrossLinks links={[
-            { title: 'Cómo funciona el sistema', desc: 'Cuatro capas. Un ciclo continuo.', href: '/metodologia/como-funciona-el-sistema' },
-            { title: 'Cómo aprendemos', desc: 'El sistema mejora con cada ciclo.', href: '/metodologia/como-aprendemos' },
+            { title: 'Cómo funciona el sistema', desc: 'Cuatro capas. Un ciclo continuo.', href: '/metodologia#como-funciona' },
+            { title: 'Lo que el sistema acumula', desc: 'El trabajo de hoy mejora el de mañana.', href: '/metodologia#lo-que-acumula' },
           ]} />
         </BodySection>
       </PageLayout>

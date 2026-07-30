@@ -42,12 +42,12 @@ const preguntas = [
   {
     q: '¿Cómo es un engagement típico?',
     a: 'Empieza con un Diagnóstico de Visibilidad — cinco días de trabajo donde auditamos qué sabe tu empresa, cómo responden los modelos de IA cuando tu comprador busca en tu categoría y dónde están los vacíos más urgentes. Ese diagnóstico tiene valor propio: te quedas con él independientemente de lo que decidas después. Si confirma que hay trabajo estructural por hacer, diseñamos el sistema completo. La mayoría de nuestros clientes trabajan con nosotros entre 6 y 18 meses en ciclos mensuales.',
-    link: { label: 'Cómo funciona el sistema →', href: '/metodologia/como-funciona-el-sistema' },
+    link: { label: 'Cómo funciona el sistema →', href: '/metodologia#como-funciona' },
   },
   {
     q: '¿Cuánto tiempo tarda en verse resultados?',
     a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental — que el mercado te recuerde cuando decida buscar — es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
-    link: { label: 'Cómo aprendemos →', href: '/metodologia/como-aprendemos' },
+    link: { label: 'Lo que el sistema acumula →', href: '/metodologia#lo-que-acumula' },
   },
   {
     q: '¿Qué necesito entregarles para empezar?',

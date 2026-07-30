@@ -277,7 +277,11 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
           className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
           style={{
             backgroundColor: textColor,
-            color: textColor.toLowerCase() === '#000000' ? '#ffffff' : '#000000',
+            color: textColor.toLowerCase() === '#000000'
+              ? '#ffffff'
+              : textColor.toLowerCase() === '#083ea7'
+              ? '#1FDE91'
+              : '#000000',
             borderRadius: '0',
           }}>
           {menu.ctaLabel} →

@@ -20,7 +20,7 @@ const ETAPA_POR_PARAMETRO: Record<string, string> = {
 export function ContactForm({
   bg = 'var(--brand-depth)',
   text = 'var(--brand-chalk)',
-  headline = 'Hablemos.',
+  headline = 'Contacto.',
   description = 'Da el primer paso hacia un sistema de contenido que trabaja antes de que tu comprador empiece a buscar. Escríbenos y vemos cómo podemos ayudarte.',
   note,
   submitLabel = 'Enviar mensaje →',

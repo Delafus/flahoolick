@@ -217,13 +217,6 @@ export async function ModuloCapacidadesMetodologia() {
                 EXPLORAR METODOLOGÍA ›
               </Link>
             </div>
-            {tarjetasJerga.map(card => (
-              <Link key={card.href} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
-                <PortadaGuia card={card} />
-                <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
-                <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
-              </Link>
-            ))}
             <div style={{ borderTop: `1px solid rgba(255,255,255,0.2)`, paddingTop: '2rem' }}>
               {footerCols.map((col, i) => (
                 <div key={i} className="flex flex-col gap-3 mb-8">
@@ -238,6 +231,15 @@ export async function ModuloCapacidadesMetodologia() {
                     {col.cta}
                   </Link>
                 </div>
+              ))}
+            </div>
+            <div style={{ borderTop: `1px solid rgba(255,255,255,0.2)`, paddingTop: '2rem' }} className="flex flex-col gap-8">
+              {tarjetasJerga.map(card => (
+                <Link key={card.href} href={card.href} className="group flex flex-col gap-3 hover:opacity-80 transition-opacity">
+                  <PortadaGuia card={card} />
+                  <p className="text-sm font-semibold" style={{ color: BLANCO }}>{card.titulo}</p>
+                  <p className="label" style={{ color: BLANCO, opacity: 0.6, fontSize: '0.6rem' }}>PUNTO DE PARTIDA</p>
+                </Link>
               ))}
             </div>
           </div>

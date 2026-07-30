@@ -59,7 +59,7 @@ export function AcordeonSeccion({
             className="w-full flex items-center justify-between py-5 text-left"
             style={{ cursor: 'pointer' }}
           >
-            <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem' }}>{item.titulo}</span>
+            <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem', letterSpacing: '0.03em' }}>{item.titulo}</span>
             <span style={{
               color: BLANCO,
               fontSize: '1.2rem',
@@ -87,13 +87,15 @@ export function AcordeonSeccion({
           </div>
         </div>
       ))}
-      <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
       {cta && (
-        <Link href={cta.href}
-          className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-8 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
-          {cta.label}
-        </Link>
+        <>
+          <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
+          <Link href={cta.href}
+            className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-8 hover:opacity-80 transition-opacity"
+            style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
+            {cta.label}
+          </Link>
+        </>
       )}
     </div>
   )
@@ -126,11 +128,11 @@ export function AcordeonSeccion({
         )}
       </div>
 
-      <div style={{ height: '200px' }} />
+      <div className="h-16 md:h-[200px]" />
 
       {illustration || renderIllustration ? (
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
+          <div style={{ position: 'sticky', top: '80px' }}>
             <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
               {renderIllustration
                 ? renderIllustration(abierto)

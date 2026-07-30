@@ -28,7 +28,6 @@ export function ModuloComoTrabajamos() {
         bajada="Trabajamos en tres etapas conectadas. Diagnosticamos el conocimiento disponible, instalamos el sistema editorial y mantenemos su operación en el tiempo."
         items={etapas}
         ctaLabel="VER MÁS"
-        cta={{ label: 'EXPLORAR SERVICIOS ›', href: '/servicios' }}
         renderIllustration={abierto => <GrillaProceso abierto={abierto} />}
       />
     </div>

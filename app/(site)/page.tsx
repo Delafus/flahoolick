@@ -71,8 +71,9 @@ export default function HomePage() {
             </p>
             {s.img && (
               <>
-                <ScrollConnector color="#1FDE91" height={140} />
-                <div className="w-full max-w-[240px] md:max-w-[360px]" style={{ marginTop: '80px', marginBottom: '80px', marginLeft: 'auto', marginRight: 'auto', position: 'relative' }}>
+                <div className="md:hidden"><ScrollConnector color="#1FDE91" height={64} /></div>
+                <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={140} /></div>
+                <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#083EA7" />}
                   {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} color="#1FDE91" />}
@@ -99,7 +100,12 @@ export default function HomePage() {
               </>
             )}
           </div>
-          {i < SCROLLS.length - 1 && <ScrollConnector color="#1FDE91" height={200} />}
+          {i < SCROLLS.length - 1 && (
+            <>
+              <div className="md:hidden"><ScrollConnector color="#1FDE91" height={96} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={200} /></div>
+            </>
+          )}
         </section>
       ))}
 

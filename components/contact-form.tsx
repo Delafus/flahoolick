@@ -22,6 +22,7 @@ export function ContactForm({
   text = 'var(--brand-chalk)',
   headline = 'Hablemos.',
   description = 'Da el primer paso hacia un sistema de contenido que trabaja antes de que tu comprador empiece a buscar. Escríbenos y vemos cómo podemos ayudarte.',
+  note,
   submitLabel = 'Enviar mensaje →',
   etapaField = false,
 }: {
@@ -29,6 +30,8 @@ export function ContactForm({
   text?: string
   headline?: string
   description?: string
+  /** Línea corta y discreta bajo la bajada, ej. "Te propondremos un punto de entrada concreto." */
+  note?: string
   submitLabel?: string
   /** Muestra el selector "¿En qué etapa necesitas ayuda?". */
   etapaField?: boolean
@@ -57,7 +60,7 @@ export function ContactForm({
     <section
       id="contacto"
       className="page-px section-py"
-      style={{ backgroundColor: bg, color: text, minHeight: '60dvh' }}
+      style={{ backgroundColor: bg, color: text, minHeight: '60dvh', scrollMarginTop: '80px' }}
     >
       <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left */}
@@ -65,6 +68,7 @@ export function ContactForm({
           <p className="label opacity-40">Contacto</p>
           <h2 className="text-headline" style={{ color: text }}>{headline}</h2>
           <p className="text-lead max-w-sm opacity-60">{description}</p>
+          {note && <p className="text-sm opacity-45" style={{ maxWidth: '24rem' }}>{note}</p>}
         </div>
 
         {/* Right */}

@@ -8,10 +8,12 @@ interface PageLayoutProps {
   description?: string
   heroBg: string
   heroText: string
+  /** CTA opcional en el hero. Solo se renderiza si se pasan ambos. */
   ctaHref?: string
+  ctaLabel?: string
   illustration?: { src: string; alt: string; ratio?: string }
   /** Sobrescribe el copy del formulario de contacto al pie de la página. */
-  contact?: { headline?: string; description?: string; submitLabel?: string; etapaField?: boolean }
+  contact?: { headline?: string; description?: string; note?: string; submitLabel?: string; etapaField?: boolean }
   children: React.ReactNode
 }
 
@@ -21,6 +23,8 @@ export function PageLayout({
   description,
   heroBg,
   heroText,
+  ctaHref,
+  ctaLabel,
   illustration,
   contact,
   children,
@@ -60,6 +64,13 @@ export function PageLayout({
               <p style={{ fontSize: '1rem', lineHeight: 1.6, opacity: 0.7, color: heroText, fontWeight: 300 }}>
                 {description}
               </p>
+            )}
+            {ctaHref && ctaLabel && (
+              <Link href={ctaHref}
+                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: heroText, color: heroBg }}>
+                {ctaLabel}
+              </Link>
             )}
           </div>
 
@@ -110,6 +121,13 @@ export function PageLayout({
                 <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.3rem)', lineHeight: 1.65, opacity: 0.7, color: heroText, fontWeight: 300, maxWidth: '420px' }}>
                   {description}
                 </p>
+              )}
+              {ctaHref && ctaLabel && (
+                <Link href={ctaHref}
+                  className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity mt-2"
+                  style={{ backgroundColor: heroText, color: heroBg }}>
+                  {ctaLabel}
+                </Link>
               )}
             </div>
           </div>

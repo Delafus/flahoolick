@@ -1,100 +1,150 @@
-/** Contenido de las tres etapas de servicio.
+/** Contenido de los tres servicios productizados.
     Vive fuera del componente para que la pagina (servidor) pueda leerlo:
     importarlo desde un modulo "use client" lo convierte en referencia de cliente. */
 
-export interface Etapa {
+export interface Servicio {
   id: string
   numero: string
   nombre: string
-  /** Situación del lector que corresponde a esta etapa. Sirve para ubicarse. */
-  cuando: string
-  titular: string
-  desc: string
-  entregables: string[]
-  acordeon: { titulo: string; contenido: string }
-  destacado: { titulo: string; desc: string }
-  /** Señal de alcance: cuánto compromete contratar esta etapa. */
-  plazo: { label: string; valor: string }
-  ctaLabel: string
-  /** Solo Operación Editorial: formatos que produce, como tags. */
-  formatos?: string[]
+
+  /** Tarjeta-resumen del módulo "Elige dónde empezar" — teaser, no repite la sección profunda. */
+  tarjeta: {
+    titulo: string
+    /** Para qué tipo de empresa/situación es este servicio. */
+    paraQuien: string
+    entregable: string
+    duracion: string
+    ctaLabel: string
+  }
+
+  /** Sección profunda de cada servicio. */
+  seccion: {
+    eyebrow: string
+    titulo: string
+    introduccion: string
+    resultado: string
+    entregable: { titulo: string; desc: string }
+    incluye: string[]
+    plazo: { label: string; valor: string }
+    ctaLabel: string
+  }
 }
 
-export const ETAPAS: Etapa[] = [
+export const SERVICIOS: Servicio[] = [
   {
     id: 'diagnostico',
     numero: '01',
     nombre: 'Diagnóstico de Autoridad',
-    cuando: 'Si todavía no sabes qué conocimiento tienes ni por dónde partir.',
-    titular: 'Encontramos el conocimiento que merece llegar al mercado.',
-    desc: 'Analizamos el conocimiento disponible, las audiencias y las señales del mercado para identificar dónde puede construir autoridad la empresa.',
-    entregables: [
-      'Mapa de conocimiento.',
-      'Mapa de audiencias y preguntas críticas.',
-      'Territorios de autoridad.',
-      'Hoja de ruta editorial priorizada.',
-    ],
-    acordeon: {
-      titulo: 'Cómo realizamos el diagnóstico',
-      contenido: 'Revisamos documentos, contenidos, propuestas y conversaciones comerciales. Entrevistamos a expertos internos. Analizamos preguntas, objeciones y señales del mercado. Jerarquizamos los hallazgos según su valor estratégico.',
+    tarjeta: {
+      titulo: 'Ordena qué merece llegar al mercado.',
+      paraQuien: 'Para empresas con experiencia dispersa, múltiples audiencias y demasiados temas compitiendo por atención.',
+      entregable: 'Mapa de Autoridad de Mercado',
+      duracion: '2 a 4 semanas',
+      ctaLabel: 'Explorar diagnóstico →',
     },
-    destacado: {
-      titulo: 'Mapa de autoridad de mercado',
-      desc: 'Define qué conocimiento debe poner en circulación la empresa, para quién, con qué propósito y en qué orden.',
+    seccion: {
+      eyebrow: '01 — Diagnóstico de Autoridad',
+      titulo: 'Decide qué merece llegar al mercado.',
+      introduccion: 'Ordenamos las fuentes internas, las audiencias y las señales de la categoría para definir qué temas puede liderar la empresa.',
+      resultado: 'Una agenda estratégica que establece qué comunicar, para quién, en qué momento y con qué evidencia.',
+      entregable: {
+        titulo: 'Mapa de Autoridad de Mercado',
+        desc: 'Un documento de decisión que conecta la experiencia de la empresa con las preguntas y situaciones que movilizan a sus compradores.',
+      },
+      incluye: [
+        'Mapa de conocimiento y evidencia.',
+        'Audiencias y preguntas críticas.',
+        'Puntos de entrada a la categoría.',
+        'Territorios de autoridad.',
+        'Brechas de visibilidad.',
+        'Hoja de ruta priorizada.',
+      ],
+      plazo: { label: 'Duración', valor: '2 a 4 semanas.' },
+      ctaLabel: 'Ordenar nuestras prioridades →',
     },
-    plazo: { label: 'Duración referencial', valor: '2 a 4 semanas.' },
-    ctaLabel: 'Hablemos del diagnóstico →',
   },
   {
     id: 'instalacion',
     numero: '02',
     nombre: 'Instalación del Sistema',
-    cuando: 'Si ya sabes qué decir, pero no tienes cómo producirlo de forma sostenida.',
-    titular: 'Convertimos la estrategia en una forma concreta de operar.',
-    desc: 'Diseñamos el relato, los flujos y las reglas que permiten transformar conocimiento en una operación editorial continua.',
-    entregables: [
-      'Narrativa y arquitectura de mensajes.',
-      'Territorios y series editoriales.',
-      'Playbook de contenido.',
-      'Flujos, gobernanza y marco de medición.',
-    ],
-    acordeon: {
-      titulo: 'Qué instalamos',
-      contenido: 'Definimos las audiencias, los principios editoriales, el sistema de captura, los formatos y los canales. Organizamos los roles, las aprobaciones, la cadencia y los indicadores que sostienen la operación.',
+    tarjeta: {
+      titulo: 'Convierte la estrategia en una forma de trabajar.',
+      paraQuien: 'Para equipos que necesitan conectar especialistas, marketing, ventas y producción bajo una operación común.',
+      entregable: 'Sistema Operativo de Contenido',
+      duracion: '6 a 10 semanas',
+      ctaLabel: 'Explorar instalación →',
     },
-    destacado: {
-      titulo: 'Sistema operativo de contenido',
-      desc: 'Un playbook aplicado para capturar, producir, distribuir y medir contenido con una lógica compartida.',
+    seccion: {
+      eyebrow: '02 — Instalación del Sistema',
+      titulo: 'Instala una forma sostenible de producir.',
+      introduccion: 'Conectamos especialistas, marketing, ventas y producción bajo criterios, roles y flujos compartidos.',
+      resultado: 'Una operación capaz de transformar prioridades estratégicas en contenido de manera continua.',
+      entregable: {
+        titulo: 'Sistema Operativo de Contenido',
+        desc: 'Un playbook aplicado que ordena cómo entra la información, cómo se prioriza y cómo se convierte en activos para el mercado.',
+      },
+      incluye: [
+        'Arquitectura de mensajes.',
+        'Territorios y series editoriales.',
+        'Sistema de captura.',
+        'Playbook de producción.',
+        'Roles y gobernanza.',
+        'Flujos de aprobación.',
+        'Cadencia editorial.',
+        'Marco de medición.',
+      ],
+      plazo: { label: 'Duración', valor: '6 a 10 semanas.' },
+      ctaLabel: 'Instalar nuestra operación →',
     },
-    plazo: { label: 'Duración referencial', valor: '6 a 10 semanas.' },
-    ctaLabel: 'Hablemos de la instalación →',
   },
   {
     id: 'operacion',
     numero: '03',
     nombre: 'Operación Editorial',
-    cuando: 'Si el sistema ya existe y necesitas mantenerlo produciendo.',
-    titular: 'Mantenemos el conocimiento en circulación.',
-    desc: 'Operamos el sistema junto al equipo del cliente y transformamos conocimiento, señales y prioridades comerciales en activos útiles para el mercado.',
-    entregables: [
-      'Dirección editorial continua.',
-      'Plan de trabajo y mesa editorial.',
-      'Producción mensual de contenidos.',
-      'Medición y recalibración del sistema.',
-    ],
-    acordeon: {
-      titulo: 'Cómo operamos',
-      contenido: 'Capturamos conocimiento con los expertos internos. Priorizamos temas y oportunidades. Investigamos, redactamos, editamos y producimos los activos. Revisamos su desempeño y actualizamos la agenda editorial.',
+    tarjeta: {
+      titulo: 'Mantén el sistema produciendo.',
+      paraQuien: 'Para empresas que necesitan una capacidad senior capaz de dirigir, producir y mejorar la agenda cada mes.',
+      entregable: 'Operación editorial continua',
+      duracion: 'Mensual',
+      ctaLabel: 'Explorar operación →',
     },
-    destacado: {
-      titulo: 'Operación editorial activa',
-      desc: 'Una capacidad continua para transformar conocimiento interno en presencia de mercado, autoridad y herramientas comerciales.',
+    seccion: {
+      eyebrow: '03 — Operación Editorial',
+      titulo: 'Pon una capacidad senior a trabajar cada mes.',
+      introduccion: 'Dirigimos la agenda, capturamos la experiencia del equipo y producimos los activos que necesita el negocio.',
+      resultado: 'Una operación editorial activa, conectada con las prioridades comerciales y capaz de sostener el ritmo.',
+      entregable: {
+        titulo: 'Operación Editorial Activa',
+        desc: 'Una capacidad continua para transformar conocimiento interno en presencia de mercado, autoridad y herramientas comerciales.',
+      },
+      incluye: [
+        'Dirección editorial.',
+        'Mesa de trabajo mensual.',
+        'Captura con especialistas.',
+        'Investigación y priorización.',
+        'Redacción y edición.',
+        'Producción creativa.',
+        'Coordinación de publicación.',
+        'Medición y ajuste.',
+      ],
+      plazo: { label: 'Modalidad', valor: 'Operación mensual.' },
+      ctaLabel: 'Activar la operación →',
     },
-    plazo: { label: 'Modalidad', valor: 'Operación mensual. El alcance se define según las audiencias, territorios, formatos y activos que necesita la empresa.' },
-    ctaLabel: 'Hablemos de la operación →',
-    formatos: [
-      'Artículos', 'Guías', 'Reportes', 'Casos', 'LinkedIn', 'Newsletters',
-      'Decks', 'One-pagers', 'Battlecards', 'Playbooks', 'Campañas B2B', 'Contenido para IA',
-    ],
+  },
+]
+
+/** Módulo "Qué puede producir" — activos agrupados por función, no como lista plana de formatos. */
+export const GRUPOS_ACTIVOS = [
+  {
+    titulo: 'Autoridad de mercado',
+    desc: 'Artículos, guías, reportes, casos, newsletters y series editoriales.',
+  },
+  {
+    titulo: 'Habilitación comercial',
+    desc: 'Decks, one-pagers, battlecards, sales playbooks y propuestas ejecutivas.',
+  },
+  {
+    titulo: 'Distribución y descubrimiento',
+    desc: 'LinkedIn, campañas B2B y contenido preparado para buscadores y plataformas de IA.',
   },
 ]

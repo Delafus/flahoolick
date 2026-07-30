@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePageColor } from '@/context/page-color'
+import { SERVICIOS } from './servicios-datos'
 
 interface MegaMenuItem {
   title: string
@@ -20,14 +21,19 @@ interface MegaMenuData {
   items: MegaMenuItem[]
 }
 
+// Las tres primeras tarjetas del megamenú salen de la misma fuente que la
+// página /servicios, para que nunca queden desincronizadas.
 const SRV_MENU: MegaMenuData = {
-  tagline: 'Tres etapas conectadas para convertir conocimiento técnico en una operación de contenido continua.',
+  tagline: 'Ordenamos qué debe llegar al mercado, instalamos la forma de producirlo o dirigimos la operación editorial mes a mes.',
   ctaLabel: 'Explorar servicios', ctaHref: '/servicios',
   items: [
-    { title: '01. Diagnóstico de Autoridad', desc: 'Identificamos qué sabe tu empresa, qué necesita comprender el mercado y dónde puede construir autoridad.', href: '/servicios#diagnostico', linkLabel: 'Explorar diagnóstico →' },
-    { title: '02. Instalación del Sistema',  desc: 'Diseñamos el relato, el playbook y los flujos que convierten conocimiento en una operación editorial.',   href: '/servicios#instalacion', linkLabel: 'Explorar instalación →' },
-    { title: '03. Operación Editorial',      desc: 'Capturamos señales, producimos activos y mantenemos el sistema activo durante todo el ciclo comercial.',   href: '/servicios#operacion',   linkLabel: 'Explorar operación →' },
-    { title: 'DECK',                         desc: 'Convertimos información compleja en presentaciones, propuestas y playbooks listos para usar.',             href: '/deck',                  linkLabel: 'Explorar DECK →' },
+    ...SERVICIOS.map(s => ({
+      title: `${s.numero}. ${s.nombre}`,
+      desc: s.tarjeta.paraQuien,
+      href: `/servicios#${s.id}`,
+      linkLabel: s.tarjeta.ctaLabel,
+    })),
+    { title: 'DECK', desc: 'Convertimos información compleja en presentaciones, propuestas y playbooks listos para usar.', href: '/deck', linkLabel: 'Explorar DECK →' },
   ],
 }
 

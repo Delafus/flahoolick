@@ -16,6 +16,9 @@ const logos = [
 export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
   const filter = color === '#3B0B2C'
     ? 'brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(2000%) hue-rotate(280deg) brightness(40%)'
+    : color === '#083EA7'
+    // Calibrado con canvas ctx.filter contra el RGB real (8,62,167): da (0,66,160), diferencia imperceptible.
+    ? 'brightness(0) saturate(100%) invert(15%) sepia(90%) saturate(3000%) hue-rotate(210deg) brightness(90%)'
     : color === '#000000'
     ? 'brightness(0) saturate(100%)'
     : 'brightness(0) invert(1)'

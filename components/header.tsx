@@ -59,7 +59,7 @@ const MET_MENU: MegaMenuData = {
 
 type ActiveMenu = 'srv' | 'cap' | 'met' | null
 
-const PANEL_BG = '#F5FD92'
+const PANEL_BG = '#1FDE91'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
@@ -202,9 +202,9 @@ export function Header() {
         className="fixed top-0 right-0 h-screen w-full md:w-1/2 overflow-y-auto transition-transform duration-300 ease-out"
         style={{
           backgroundColor: PANEL_BG,
-          color: '#000000',
+          color: '#083EA7',
           // Separa el panel de las páginas de fondo negro, donde si no se funde.
-          borderLeft: '1px solid rgba(0,0,0,0.2)',
+          borderLeft: '1px solid rgba(8,62,167,0.25)',
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
@@ -216,7 +216,7 @@ export function Header() {
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
               className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: '#000000', color: '#F5FD92', borderRadius: '0' }}>
+              style={{ backgroundColor: '#083EA7', color: '#1FDE91', borderRadius: '0' }}>
               CERRAR ✕
             </button>
           </div>
@@ -233,7 +233,7 @@ export function Header() {
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em',
                   padding: '1.75rem 0',
-                  borderTop: '1px solid rgba(0,0,0,0.2)',
+                  borderTop: '1px solid rgba(8,62,167,0.25)',
                 }}>
                 {l.label}
               </Link>
@@ -242,7 +242,7 @@ export function Header() {
 
           {/* Links secundarios */}
           <nav className="flex flex-col gap-4 pt-10"
-            style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }}>
+            style={{ borderTop: '1px solid rgba(8,62,167,0.25)' }}>
             {PANEL_SECONDARY.map(l => (
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="text-base hover:opacity-60 transition-opacity w-fit">

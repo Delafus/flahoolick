@@ -15,25 +15,25 @@ export const metadata: Metadata = {
 export default function SobreFlahoolick() {
   return (
     <>
-      <PageColorSetter bg="#F5FD92" text="#000000" />
+      <PageColorSetter bg="#1FDE91" text="#083EA7" />
 
-      {/* Hero — exactamente como NOBL About: split layout, fondo amarillo */}
+      {/* Hero — exactamente como NOBL About: split layout, fondo verde Flahoolick */}
       <section
         className="page-hero page-px"
-        style={{ backgroundColor: '#F5FD92', color: '#000000' }}
+        style={{ backgroundColor: '#1FDE91', color: '#083EA7' }}
       >
         <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
 
           {/* Izquierda — ilustración */}
           <div className="hidden md:flex col-span-5 items-center justify-center py-8">
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px', aspectRatio: '4/5' }}>
-              <IdeaGenerosaLogo color="#000000" className="w-full h-full" />
+              <IdeaGenerosaLogo color="#083EA7" className="w-full h-full" />
             </div>
           </div>
 
           {/* Divisor vertical */}
           <div className="hidden md:flex col-span-1 justify-center self-stretch py-4">
-            <div className="w-px h-full" style={{ backgroundColor: 'rgba(0,0,0,0.15)' }} />
+            <div className="w-px h-full" style={{ backgroundColor: 'rgba(8,62,167,0.2)' }} />
           </div>
 
           {/* Derecha — Titular + tagline + descripción */}
@@ -44,11 +44,11 @@ export default function SobreFlahoolick() {
               fontSize: 'clamp(3.5rem, 7vw, 9rem)',
               lineHeight: 1.0,
               letterSpacing: '-0.02em',
-              color: 'var(--page-sobre-text)',
+              color: '#083EA7',
             }}>
               Nacimos de una idea generosa.
             </h1>
-            <hr style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopWidth: '1px' }} />
+            <hr style={{ borderColor: 'rgba(8,62,167,0.25)', borderTopWidth: '1px' }} />
             <p className="label opacity-60">Del irlandés flaithiúil: generoso, espléndido, abundante.</p>
             <p className="text-lead opacity-70">
               Flahoolick es un partner moderno de estrategia y contenido para empresas B2B con ciclos de decisión complejos. Basados en Santiago, Chile.

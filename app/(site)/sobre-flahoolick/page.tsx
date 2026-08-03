@@ -67,8 +67,8 @@ export default function SobreFlahoolick() {
 
           {/* Mobile — apilado */}
           <div className="flex flex-col gap-10 md:hidden">
-            <h2 className="text-display" style={{ color: '#1FDE91' }}>Por qué existimos</h2>
-            <p className="text-lead opacity-70" style={{ color: '#1FDE91' }}>
+            <h2 className="text-display" style={{ color: '#F9F0E2' }}>Por qué existimos</h2>
+            <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
               El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
             </p>
             <div style={{ aspectRatio: '4/3', border: '1px solid rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -79,8 +79,8 @@ export default function SobreFlahoolick() {
           {/* Desktop — texto izquierda | divisor | placeholder derecha */}
           <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '6fr 1px 5fr' }}>
             <div className="flex flex-col gap-10" style={{ paddingRight: '3rem' }}>
-              <h2 className="text-display" style={{ color: '#1FDE91' }}>Por qué existimos</h2>
-              <p className="text-lead opacity-70" style={{ color: '#1FDE91' }}>
+              <h2 className="text-display" style={{ color: '#F9F0E2' }}>Por qué existimos</h2>
+              <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
                 El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
               </p>
             </div>

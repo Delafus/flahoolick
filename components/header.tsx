@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePageColor } from '@/context/page-color'
 import { SERVICIOS } from './servicios-datos'
+import { MegamenuDots } from './megamenu-dots'
 
 interface MegaMenuItem {
   title: string
@@ -190,8 +191,10 @@ export function Header() {
           opacity: active ? 1 : 0,
           backgroundColor: bg,
           borderTop: active ? `1px solid ${divColor}` : 'none',
+          position: 'relative',
         }}
       >
+        <MegamenuDots color={text} active={active !== null} />
         {active === 'srv' && <MegaMenu menu={SRV_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'cap' && <MegaMenu menu={CAP_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'met' && <MegaMenu menu={MET_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}

@@ -6,10 +6,21 @@ import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-me
 import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
-import { ScannerDots } from '@/components/scanner-dots'
 import { CirculationDots } from '@/components/circulation-dots'
 import { ScrollConnector } from '@/components/scroll-connector'
 import Link from 'next/link'
+
+// Las 5 últimas columnas de la primera fila (r===0, c>=5) en la grilla 10x10
+// de dots-scroll-02.svg — mismos puntos que usaba ScannerDots, pero ahora
+// animados con CirculationDots para que el efecto se note tanto como en el
+// hero 3.
+const HERO2_POINTS = [
+  { cx: 345.342, cy: 1.827 },
+  { cx: 414.044, cy: 1.827 },
+  { cx: 482.747, cy: 1.827 },
+  { cx: 551.451, cy: 1.827 },
+  { cx: 620.173, cy: 1.827 },
+]
 
 const SCROLLS = [
   {
@@ -76,25 +87,7 @@ export default function HomePage() {
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#083EA7" />}
-                  {i === 1 && <ScannerDots viewBoxSize={s.imgSize.width} color="#1FDE91" />}
-                  {i === 1 && (
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 174 14"
-                      preserveAspectRatio="none"
-                      style={{
-                        position: 'absolute',
-                        left: '53.592%',
-                        top: '-1.639%',
-                        width: '48.044%',
-                        height: '3.866%',
-                        pointerEvents: 'none',
-                      }}
-                    >
-                      <path d="M173.153 13.4552H170.305V12.6367H172.266V0.818569H170.305V0H173.153V13.4552Z" fill="#1FDE91" />
-                      <path d="M2.84794 12.6367V13.4552H0V0H2.84794V0.818569H0.886783V12.6367H2.84794Z" fill="#1FDE91" />
-                    </svg>
-                  )}
+                  {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" points={HERO2_POINTS} />}
                   {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" />}
                 </div>
               </>

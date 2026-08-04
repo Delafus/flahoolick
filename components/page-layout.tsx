@@ -34,7 +34,7 @@ export function PageLayout({
 
   return (
     <>
-      {/* ── HERO — estructura exacta de NOBL ── */}
+      {/* ── HERO — layout de columna dividida (ilustración | texto) ── */}
       <section
         className="page-hero page-px"
         style={{ backgroundColor: heroBg, color: heroText }}
@@ -101,7 +101,7 @@ export function PageLayout({
             {/* Divisor */}
             <div style={{ backgroundColor: divColor, height: '100%', width: '1px' }} />
 
-            {/* Texto — igual a NOBL: H1 masivo → label → HR → descripción */}
+            {/* Texto — H1 masivo → label → HR → descripción */}
             <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>
               <h1 style={{
                 fontFamily: 'var(--font-display)',

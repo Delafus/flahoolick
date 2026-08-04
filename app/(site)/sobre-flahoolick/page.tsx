@@ -17,7 +17,7 @@ export default function SobreFlahoolick() {
     <>
       <PageColorSetter bg="#1FDE91" text="#083EA7" />
 
-      {/* Hero — exactamente como NOBL About: split layout, fondo verde Flahoolick */}
+      {/* Hero — layout partido en dos columnas, fondo verde Flahoolick */}
       <section
         className="page-hero page-px"
         style={{ backgroundColor: '#1FDE91', color: '#083EA7' }}

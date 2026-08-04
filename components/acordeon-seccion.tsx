@@ -132,7 +132,12 @@ export function AcordeonSeccion({
 
       {illustration || renderIllustration ? (
         <div className="max-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div style={{ position: 'sticky', top: '80px' }}>
+          {/* Sticky solo para ilustraciones dinámicas (ej. GrillaProceso): así
+              se ven mientras se scrollea el acordeón. Las ilustraciones
+              estáticas (ej. iconos) no tienen fondo propio, así que sticky
+              haría que el texto del acordeón se les pase por encima y se
+              vuelva ilegible. */}
+          <div style={renderIllustration ? { position: 'sticky', top: '80px' } : undefined}>
             <div className="w-[80%] md:w-[56%]" style={{ position: 'relative', aspectRatio: '1/1', margin: '0 auto' }}>
               {renderIllustration
                 ? renderIllustration(abierto)

@@ -8,6 +8,23 @@ interface CirculationDotsProps {
   baseRadius?: number
   color?: string
   speed?: number
+  /** Suma pulsos que se propagan por toda la grilla 10x10, igual que el
+   *  paso "Operación Editorial" de GrillaProceso — para el hero 3. */
+  pulses?: boolean
+}
+
+// Coordenadas (en unidades del viewBox) de las 10 columnas/filas de la
+// grilla 10x10 estática de dots-scroll-03.svg — misma escala que DEFAULT_POINTS.
+const GRID_COLS = [1.827, 70.5303, 139.233, 207.936, 276.639, 345.342, 414.044, 482.747, 551.451, 620.173]
+const GRID_SIZE = 10
+
+const PULSO_CADA_MS = 620
+const PULSO_VIDA_MS = 2200
+const PULSO_ALCANCE = 9
+const PULSO_GROSOR = 1.15
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
 }
 
 // Los 10 puntos de la diagonal (de la esquina inferior izquierda a la
@@ -41,6 +58,7 @@ export function CirculationDots({
   baseRadius = 1.827,
   color = '#F5FD92',
   speed = 0.05,
+  pulses = false,
 }: CirculationDotsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -81,6 +99,7 @@ export function CirculationDots({
     const entryBuffer = 2
     const exitBuffer = 3
     let wavePosition = -entryBuffer
+    let direction = 1
     const waveWidth = 1.8
 
     // Crecimiento proporcional: el primer punto no crece nada, el último
@@ -88,11 +107,67 @@ export function CirculationDots({
     const maxTargetRadius = baseRadius * 7
     const totalGrowthAvailable = maxTargetRadius - baseRadius
 
+    // Pulsos de fondo (paso "Operación Editorial"): nacen en una celda al
+    // azar de la grilla 10x10 y se expanden como un anillo hasta apagarse.
+    const pulsos: { row: number; col: number; inicio: number }[] = []
+    let proximoPulso = performance.now()
+
+    function dibujarPulsos(now: number) {
+      if (now - proximoPulso > PULSO_VIDA_MS * 2) proximoPulso = now
+      while (now > proximoPulso) {
+        pulsos.push({ row: Math.floor(Math.random() * GRID_SIZE), col: Math.floor(Math.random() * GRID_SIZE), inicio: proximoPulso })
+        proximoPulso += PULSO_CADA_MS
+      }
+      while (pulsos.length && now - pulsos[0].inicio > PULSO_VIDA_MS) pulsos.shift()
+
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          let brillo = 0
+          for (const pulso of pulsos) {
+            const edad = (now - pulso.inicio) / PULSO_VIDA_MS
+            if (edad < 0 || edad > 1) continue
+            const distancia = Math.hypot(col - pulso.col, row - pulso.row)
+            const radio = easeOutCubic(edad) * PULSO_ALCANCE
+            const cercania = 1 - Math.abs(distancia - radio) / PULSO_GROSOR
+            if (cercania <= 0) continue
+            brillo = Math.max(brillo, cercania * (1 - edad))
+          }
+          if (brillo <= 0.02) continue
+
+          const pico = Math.pow(Math.max(0, Math.min(1, brillo)), 1.5)
+          const x = GRID_COLS[col] * scale
+          const y = EXTRA + GRID_COLS[row] * scale
+          const r = baseRadius * (1 + 2.2 * pico) * scale
+
+          const cr = Math.round(255 + (targetRgb.r - 255) * pico)
+          const cg = Math.round(255 + (targetRgb.g - 255) * pico)
+          const cb = Math.round(255 + (targetRgb.b - 255) * pico)
+
+          ctx!.beginPath()
+          ctx!.shadowBlur = 6 * pico * scale
+          ctx!.shadowColor = color
+          ctx!.fillStyle = `rgb(${cr}, ${cg}, ${cb})`
+          ctx!.globalAlpha = 0.85 * pico
+          ctx!.arc(x, y, r, 0, Math.PI * 2)
+          ctx!.fill()
+          ctx!.closePath()
+          ctx!.shadowBlur = 0
+          ctx!.globalAlpha = 1
+        }
+      }
+    }
+
     function animate() {
       ctx!.clearRect(0, 0, width, height)
 
-      wavePosition += speed
-      if (wavePosition > maxIndex + exitBuffer) wavePosition = -entryBuffer
+      wavePosition += speed * direction
+      if (wavePosition > maxIndex + exitBuffer) {
+        wavePosition = maxIndex + exitBuffer
+        direction = -1
+      } else if (wavePosition < -entryBuffer) {
+        wavePosition = -entryBuffer
+        direction = 1
+      }
 
       points.forEach((pt, index) => {
         const distance = Math.abs(index - wavePosition)
@@ -126,6 +201,8 @@ export function CirculationDots({
         ctx!.shadowBlur = 0
       })
 
+      if (pulses) dibujarPulsos(performance.now())
+
       frameId = requestAnimationFrame(animate)
     }
 
@@ -139,7 +216,7 @@ export function CirculationDots({
       cancelAnimationFrame(frameId)
       window.removeEventListener('resize', onResize)
     }
-  }, [viewBoxSize, points, baseRadius, color, speed])
+  }, [viewBoxSize, points, baseRadius, color, speed, pulses])
 
   return (
     <canvas

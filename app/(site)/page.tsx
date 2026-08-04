@@ -88,7 +88,7 @@ export default function HomePage() {
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#083EA7" />}
                   {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" points={HERO2_POINTS} />}
-                  {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" />}
+                  {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" pulses />}
                 </div>
               </>
             )}

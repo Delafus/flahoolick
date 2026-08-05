@@ -1,88 +1,150 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, HowList, Tags, CrossLinks } from '@/components/page-layout'
+import { PageLayout, BodySection } from '@/components/page-layout'
+import { TrappedDots } from '@/components/trapped-dots'
+import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
+import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Marca y Relato — Flahoolick' }
 
-const problemas = [
-  { titulo: 'Una propuesta difícil de explicar.', desc: 'Ordenamos el negocio y construimos una forma clara de presentarlo.' },
-  { titulo: 'Una marca parecida a la competencia.', desc: 'Definimos una posición, un lenguaje y una identidad reconocibles.' },
-  { titulo: 'Mensajes distintos en cada área.', desc: 'Creamos una arquitectura común para marketing, ventas, dirección y equipos técnicos.' },
-  { titulo: 'Una identidad difícil de aplicar.', desc: 'Diseñamos herramientas que permiten ejecutar la marca con consistencia.' },
-]
+const NEGRO = '#000000'
 
-const construimos = [
-  {
-    titulo: 'Estrategia de marca',
-    desc: 'Definimos el lugar que la empresa quiere ocupar en el mercado.',
-    incluye: ['Posicionamiento', 'Propuesta de valor', 'Audiencias prioritarias', 'Diferenciadores', 'Principios de marca'],
-  },
-  {
-    titulo: 'Relato y mensajes',
-    desc: 'Convertimos la estrategia en un lenguaje que la organización puede utilizar.',
-    incluye: ['Relato corporativo', 'Arquitectura de mensajes', 'Claim y tagline', 'Pilares narrativos', 'Voz y tono'],
-  },
-  {
-    titulo: 'Identidad visual',
-    desc: 'Diseñamos un sistema visual capaz de expresar la personalidad y la estrategia de la marca.',
-    incluye: ['Logotipo', 'Tipografías', 'Paleta cromática', 'Sistema gráfico', 'Aplicaciones digitales'],
-  },
-  {
-    titulo: 'Sistema de implementación',
-    desc: 'Preparamos los activos necesarios para activar la marca en cada punto de contacto.',
-    incluye: ['Manual de marca', 'Plantillas corporativas', 'Material comercial', 'Sitio web', 'Kit de lanzamiento'],
-  },
+const palabrasComunes = ['Innovación.', 'Experiencia.', 'Tecnología.', 'Compromiso.', 'Excelencia.']
+
+const problemas = [
+  { titulo: 'Tu empresa cuesta explicar', desc: 'Ordenamos el negocio y construimos una historia que el mercado puede entender y repetir.' },
+  { titulo: 'Tu marca se confunde con la categoría', desc: 'Definimos una posición, un lenguaje y unas señales capaces de distinguirla.' },
+  { titulo: 'Cada equipo cuenta una historia distinta', desc: 'Creamos una arquitectura común para marketing, ventas, dirección y equipos técnicos.' },
+  { titulo: 'La identidad pierde fuerza al aplicarse', desc: 'Diseñamos herramientas que permiten ejecutar la marca con claridad y consistencia.' },
 ]
 
 const pasos = [
-  { titulo: 'Descubrimiento.', desc: 'Revisamos el negocio, el mercado, las audiencias y la identidad actual.' },
-  { titulo: 'Posicionamiento.', desc: 'Definimos la posición, la propuesta de valor y los principios de marca.' },
-  { titulo: 'Concepto.', desc: 'Creamos rutas verbales y visuales para expresar la estrategia.' },
-  { titulo: 'Sistema.', desc: 'Desarrollamos los elementos de identidad, relato y aplicación.' },
-  { titulo: 'Activación.', desc: 'Entregamos las herramientas y acompañamos su implementación.' },
+  { numero: '01', titulo: 'Posición', desc: 'Definimos el lugar que tu empresa quiere ocupar en la mente del mercado.' },
+  { numero: '02', titulo: 'Relato', desc: 'Construimos la historia que organiza lo que haces, crees y prometes.' },
+  { numero: '03', titulo: 'Voz', desc: 'Creamos un lenguaje reconocible para cada punto de contacto.' },
+  { numero: '04', titulo: 'Identidad', desc: 'Diseñamos las señales visuales que vuelven tangible la estrategia.' },
 ]
+
+const categorias = [
+  { titulo: 'Estrategia', items: ['Estrategia de marca', 'Posicionamiento', 'Propuesta de valor', 'Audiencias prioritarias', 'Arquitectura de marca'] },
+  { titulo: 'Lenguaje', items: ['Naming', 'Tagline y claims', 'Relato corporativo', 'Arquitectura de mensajes', 'Voz y tono', 'Pilares narrativos'] },
+  { titulo: 'Identidad', items: ['Logotipo', 'Tipografía', 'Paleta cromática', 'Dirección de arte', 'Sistema gráfico', 'Iconografía'] },
+  { titulo: 'Aplicación', items: ['Manual de marca', 'Playbook de mensajes', 'Plantillas corporativas', 'Presentaciones', 'Sitio web', 'Material comercial', 'Kit de lanzamiento'] },
+]
+
+const recibes = ['Sitios', 'Presentaciones', 'Campañas', 'Redes sociales', 'Ventas', 'Licitaciones', 'Comunicación interna', 'Experiencias digitales']
 
 export default function MarcaYRelato() {
   return (
     <>
-      <PageColorSetter bg="#F09DB6" text="#000000" />
+      <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Marca y Relato"
         headline="Firma tu categoría."
         description="Construimos una posición, una voz y una identidad que el mercado puede reconocer, recordar y elegir."
         heroBg="#F09DB6"
-        heroText="#000000"
+        heroText={NEGRO}
+        ctaHref="#contacto"
+        ctaLabel="Conversemos →"
+        illustrationNode={<TrappedDots diameterPercent={72} dotColor={NEGRO} />}
       >
-        <BodySection title="Qué resolvemos"><HowList items={problemas} /></BodySection>
-
-        <BodySection dark title="Qué construimos">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {construimos.map(c => (
-              <div key={c.titulo} className="flex flex-col gap-4 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
-                <h3 className="text-lg font-semibold">{c.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-70">{c.desc}</p>
-                <Tags items={c.incluye} dark />
+        {/* Bloque de apertura */}
+        <BodySection>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <h2 style={{
+              fontFamily: 'var(--font-display)', fontWeight: 400,
+              fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
+            }}>
+              Ocupar un lugar exige definirlo.
+            </h2>
+            <div className="flex flex-col gap-4">
+              <p className="text-lead opacity-80">Las empresas complejas suelen describirse con las mismas palabras.</p>
+              <div className="flex flex-wrap gap-x-2">
+                {palabrasComunes.map(p => (
+                  <span key={p} className="text-base opacity-40">{p}</span>
+                ))}
               </div>
-            ))}
+              <p className="text-base leading-relaxed opacity-65">
+                Encontramos la idea que tu empresa puede defender y la convertimos en una posición visible.
+              </p>
+            </div>
           </div>
         </BodySection>
 
-        <BodySection title="Cómo trabajamos"><HowList items={pasos} /></BodySection>
-
-        <BodySection dark title="Entregable">
-          <div className="flex flex-col gap-4 max-w-2xl">
-            <h2 className="text-xl font-semibold">Sistema de marca</h2>
-            <p className="text-base leading-relaxed opacity-70">
-              Una plataforma estratégica, verbal y visual lista para funcionar en todos los puntos de contacto. Tu equipo recibe criterios claros, activos listos y una forma común de representar a la empresa.
-            </p>
+        {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
+        <BodySection dark>
+          <div className="flex flex-col gap-10">
+            <p className="label opacity-50">Qué resolvemos</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
+              {problemas.map(p => (
+                <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
+                  <h3 className="text-lg font-semibold">{p.titulo}</h3>
+                  <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </BodySection>
 
-        <BodySection title="Otros servicios">
-          <CrossLinks links={[
-            { title: 'Estrategia de Contenido', desc: 'Definimos qué decir, a quién y con qué propósito.', href: '/servicios/estrategia-de-contenido' },
-            { title: 'Producción de Contenido', desc: 'Transformamos conocimiento interno en activos para el mercado y ventas.', href: '/servicios/produccion-de-contenido' },
-          ]} />
+        {/* Qué construimos — secuencia de pasos con scroll-reveal */}
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <p className="label opacity-40">Qué construimos</p>
+            <ServicioScrollSteps pasos={pasos} color={NEGRO} />
+          </div>
+        </BodySection>
+
+        {/* Qué incluye — acordeón, ancho contenido */}
+        <BodySection title="Qué incluye">
+          <div style={{ maxWidth: '52rem' }}>
+            <ServicioAcordeonIncluye categorias={categorias} color={NEGRO} />
+          </div>
+        </BodySection>
+
+        {/* Qué recibes — mockup del sistema de marca */}
+        <BodySection dark>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto' }}>
+              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.12, transform: 'rotate(-6deg) translate(14px, 10px)', borderRadius: '8px' }} />
+              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.18, transform: 'rotate(3deg) translate(-8px, -6px)', borderRadius: '8px' }} />
+              <div style={{
+                position: 'absolute', inset: 0, backgroundColor: '#ffffff', borderRadius: '8px',
+                display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
+              }}>
+                <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Sistema</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.1, color: NEGRO }}>
+                  Marca y Relato
+                </h3>
+              </div>
+            </div>
+            <div className="flex flex-col gap-6">
+              <h2 style={{
+                fontFamily: 'var(--font-display)', fontWeight: 400,
+                fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
+              }}>
+                Sistema de marca
+              </h2>
+              <p className="text-base opacity-70">Una plataforma estratégica, verbal y visual preparada para funcionar en:</p>
+              <div className="flex flex-col">
+                {recibes.map(r => (
+                  <p key={r} className="text-base py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>{r}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </BodySection>
+
+        {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
+        <BodySection>
+          <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)', fontWeight: 400,
+              fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
+            }}>
+              Tu categoría ya tiene voces.
+            </h2>
+            <p className="text-lead opacity-70">Construyamos la que todos puedan reconocer.</p>
+          </div>
         </BodySection>
       </PageLayout>
     </>

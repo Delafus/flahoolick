@@ -2,12 +2,11 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection } from '@/components/page-layout'
-import { ServiciosEtapas } from '@/components/servicios-etapas'
-import { SERVICIOS, GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
+import { GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
-  description: 'Ordenamos qué debe llegar al mercado, instalamos la forma de producirlo o dirigimos la operación editorial mes a mes.',
+  description: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
 }
 
 export default function Servicios() {
@@ -16,70 +15,15 @@ export default function Servicios() {
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
         headline="Empieza donde tu operación se corta."
-        description="Ordenamos qué debe llegar al mercado, instalamos la forma de producirlo o dirigimos la operación editorial mes a mes."
+        description="Cuatro servicios, un mismo sistema: convertir el conocimiento técnico de tu empresa en autoridad de mercado."
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
         ctaLabel="Hablemos →"
         contact={{
-          headline: '¿Dónde se corta hoy tu operación?',
-          description: 'Cuéntanos si necesitas ordenar prioridades, instalar el sistema o sostener la producción.',
-          note: 'Te propondremos un punto de entrada concreto.',
           submitLabel: 'Hablemos →',
-          etapaField: true,
         }}
       >
-        {/* 02 — Tres puntos de entrada */}
-        <BodySection title="Tres puntos de entrada">
-          <div className="flex flex-col gap-10">
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-            }}>
-              Elige dónde empezar.
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px"
-              style={{ background: 'rgba(0,0,0,0.12)' }}>
-              {SERVICIOS.map(servicio => (
-                <a key={servicio.id} href={`#${servicio.id}`}
-                  className="group flex flex-col gap-4 p-8 hover:opacity-70 transition-opacity"
-                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
-                  <p className="label opacity-40">{servicio.numero} — {servicio.nombre}</p>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 400,
-                    fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
-                    lineHeight: 1.15,
-                  }}>
-                    {servicio.tarjeta.titulo}
-                  </h3>
-                  <p className="text-sm leading-relaxed opacity-65">{servicio.tarjeta.paraQuien}</p>
-
-                  <div className="flex flex-col gap-1 mt-2 pt-4" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
-                    <p className="label opacity-40" style={{ fontSize: '0.6rem' }}>Recibes</p>
-                    <p className="text-sm font-semibold">{servicio.tarjeta.entregable}</p>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <p className="label opacity-40" style={{ fontSize: '0.6rem' }}>Duración</p>
-                    <p className="text-sm font-semibold">{servicio.tarjeta.duracion}</p>
-                  </div>
-
-                  <span className="label opacity-50 group-hover:opacity-90 transition-opacity mt-2">
-                    {servicio.tarjeta.ctaLabel}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* 03, 04, 05 — Las tres secciones profundas */}
-        <ServiciosEtapas />
-
         {/* Los cuatro servicios que sostienen la operación, cada uno con su propia página */}
         <BodySection title="Qué hacemos">
           <div className="flex flex-col gap-10">
@@ -140,10 +84,10 @@ export default function Servicios() {
                 lineHeight: 1.15,
                 letterSpacing: '-0.02em',
               }}>
-                Tres servicios. Un sistema común.
+                Cuatro servicios. Un sistema común.
               </h2>
               <p className="text-base leading-relaxed opacity-70" style={{ maxWidth: '32rem' }}>
-                Cada punto de entrada trabaja sobre el Sistema de Autoridad de Flahoolick.
+                Cada servicio trabaja sobre el Sistema de Autoridad de Flahoolick.
               </p>
             </div>
             <Link href="/metodologia"

@@ -1,21 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
-/** Etapas del servicio, en el orden en que se ofrecen. */
-const ETAPAS = [
-  'Diagnóstico de Autoridad',
-  'Instalación del Sistema',
-  'Operación Editorial',
-  'Necesito orientación',
-]
-
-/** Valores admitidos en ?servicio= para preseleccionar la etapa. */
-const ETAPA_POR_PARAMETRO: Record<string, string> = {
-  diagnostico: 'Diagnóstico de Autoridad',
-  instalacion: 'Instalación del Sistema',
-  operacion:   'Operación Editorial',
-}
+import { useState } from 'react'
 
 export function ContactForm({
   bg = 'var(--brand-depth)',
@@ -24,7 +9,6 @@ export function ContactForm({
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
   submitLabel = 'Conversemos →',
-  etapaField = false,
 }: {
   bg?: string
   text?: string
@@ -33,20 +17,9 @@ export function ContactForm({
   /** Línea corta y discreta bajo la bajada, ej. "Te propondremos un punto de entrada concreto." */
   note?: string
   submitLabel?: string
-  /** Muestra el selector "¿En qué etapa necesitas ayuda?". */
-  etapaField?: boolean
 }) {
   const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
-  const [etapa, setEtapa]     = useState(ETAPAS[3])
-
-  // La etapa llega por querystring desde los enlaces de cada servicio
-  // (/servicios?servicio=diagnostico#contacto).
-  useEffect(() => {
-    if (!etapaField) return
-    const param = new URLSearchParams(window.location.search).get('servicio')
-    if (param && ETAPA_POR_PARAMETRO[param]) setEtapa(ETAPA_POR_PARAMETRO[param])
-  }, [etapaField])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -111,25 +84,6 @@ export function ContactForm({
                   }}
                 />
               </div>
-              {etapaField && (
-                <div className="flex flex-col gap-2">
-                  <label className="label opacity-50" htmlFor="etapa" style={{ color: text }}>
-                    ¿En qué etapa necesitas ayuda?
-                  </label>
-                  <select
-                    id="etapa" name="etapa" value={etapa} onChange={e => setEtapa(e.target.value)}
-                    className="w-full py-3 px-4 text-sm outline-none"
-                    style={{
-                      background: 'transparent',
-                      border: `1px solid ${text === 'var(--brand-chalk)' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
-                      color: text,
-                      borderRadius: 0,
-                    }}
-                  >
-                    {ETAPAS.map(e => <option key={e} value={e}>{e}</option>)}
-                  </select>
-                </div>
-              )}
               <div className="flex flex-col gap-2">
                 <label className="label opacity-50" htmlFor="mensaje" style={{ color: text }}>Mensaje</label>
                 <textarea

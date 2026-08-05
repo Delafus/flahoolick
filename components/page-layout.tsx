@@ -13,7 +13,7 @@ interface PageLayoutProps {
   ctaLabel?: string
   illustration?: { src: string; alt: string; ratio?: string }
   /** Sobrescribe el copy del formulario de contacto al pie de la página. */
-  contact?: { headline?: string; description?: string; note?: string; submitLabel?: string; etapaField?: boolean }
+  contact?: { headline?: string; description?: string; note?: string; submitLabel?: string }
   children: React.ReactNode
 }
 

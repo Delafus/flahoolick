@@ -12,6 +12,8 @@ interface PageLayoutProps {
   ctaHref?: string
   ctaLabel?: string
   illustration?: { src: string; alt: string; ratio?: string }
+  /** Alternativa a `illustration` para contenido custom (ej. una animación) en vez de una imagen estática. */
+  illustrationNode?: React.ReactNode
   /** Sobrescribe el copy del formulario de contacto al pie de la página. */
   contact?: { headline?: string; description?: string; note?: string; submitLabel?: string }
   children: React.ReactNode
@@ -26,6 +28,7 @@ export function PageLayout({
   ctaHref,
   ctaLabel,
   illustration,
+  illustrationNode,
   contact,
   children,
 }: PageLayoutProps) {
@@ -82,14 +85,18 @@ export function PageLayout({
             <div style={{
               position: 'relative',
               aspectRatio: illustration?.ratio ?? '4/3',
-              border: illustration ? 'none' : `1px solid ${divColor}`,
+              border: illustration || illustrationNode ? 'none' : `1px solid ${divColor}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: '3rem',
               overflow: 'hidden',
             }}>
-              {illustration ? (
+              {illustrationNode ? (
+                <div style={{ position: 'relative', width: '70%', height: '70%' }}>
+                  {illustrationNode}
+                </div>
+              ) : illustration ? (
                 <div style={{ position: 'relative', width: '70%', height: '70%' }}>
                   <Image src={illustration.src} alt={illustration.alt} fill style={{ objectFit: 'contain' }} priority />
                 </div>

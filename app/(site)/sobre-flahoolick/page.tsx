@@ -7,7 +7,7 @@ import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick',
-  description: 'Nacimos de una idea generosa. Consultora de estrategia y contenido B2B, Santiago, Chile.',
+  description: 'Nacimos de una idea generosa. Partner de estrategia y contenido B2B, Santiago, Chile.',
 }
 
 

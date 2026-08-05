@@ -35,7 +35,7 @@ export function Footer() {
               />
             </div>
             <p className="text-sm opacity-40 leading-relaxed">
-              Consultora de estrategia y contenido B2B.<br />Santiago, Chile.
+              Partner de estrategia y contenido B2B.<br />Santiago, Chile.
             </p>
           </div>
 

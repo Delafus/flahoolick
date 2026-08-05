@@ -17,7 +17,7 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: 'Flahoolick — Consultora de estrategia y contenido B2B',
+  title: 'Flahoolick — Partner de estrategia y contenido B2B',
   description: 'Instalamos el Sistema de Autoridad de Mercado para empresas B2B con ciclos de decisión complejos. Santiago, Chile.',
   openGraph: {
     title: 'Flahoolick',

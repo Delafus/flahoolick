@@ -38,16 +38,6 @@ const SRV_MENU: MegaMenuData = {
   ],
 }
 
-const CAP_MENU: MegaMenuData = {
-  tagline: 'Convertimos lo que tu empresa sabe en autoridad que el mercado reconoce.',
-  ctaLabel: 'Explorar Capacidades', ctaHref: '/capacidades',
-  items: [
-    { title: 'Estrategia y Relato',   desc: 'Definimos la posición, las audiencias y el relato que la empresa necesita instalar en el mercado.',    href: '/capacidades/estrategia-y-relato' },
-    { title: 'Sistema de Contenido', desc: 'Diseñamos el playbook, los flujos y la cadencia que mantienen el conocimiento en circulación.',   href: '/capacidades/sistema-de-contenido' },
-    { title: 'Estudio Creativo',      desc: 'Producimos contenidos, herramientas comerciales y activos ejecutivos que construyen autoridad y apoyan tu venta.',       href: '/capacidades/estudio-creativo' },
-  ],
-}
-
 const MET_MENU: MegaMenuData = {
   tagline: 'Cada ciclo deja un activo: así funciona el sistema detrás de los tres servicios.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
@@ -58,13 +48,12 @@ const MET_MENU: MegaMenuData = {
   ],
 }
 
-type ActiveMenu = 'srv' | 'cap' | 'met' | null
+type ActiveMenu = 'srv' | 'met' | null
 
 const PANEL_BG = '#1FDE91'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
-  { label: 'Capacidades', href: '/capacidades' },
   { label: 'Metodología', href: '/metodologia' },
   { label: 'JERGA',       href: '/jerga' },
 ]
@@ -137,13 +126,6 @@ export function Header() {
             onClick={() => setActive(null)}>
             Servicios
           </Link>
-          <Link href="/capacidades"
-            className="label hover:opacity-60 transition-opacity"
-            style={{ color: text, textDecoration: active === 'cap' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
-            onMouseEnter={() => setActive('cap')}
-            onClick={() => setActive(null)}>
-            Capacidades
-          </Link>
           <Link href="/metodologia"
             className="label hover:opacity-60 transition-opacity"
             style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
@@ -196,7 +178,6 @@ export function Header() {
       >
         <MegamenuDots color={text} active={active !== null} />
         {active === 'srv' && <MegaMenu menu={SRV_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
-        {active === 'cap' && <MegaMenu menu={CAP_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'met' && <MegaMenu menu={MET_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
       </div>
 

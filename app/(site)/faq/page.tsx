@@ -12,12 +12,12 @@ const preguntas = [
   {
     q: '¿Qué hace exactamente Flahoolick?',
     a: 'Instalamos el sistema que convierte el conocimiento técnico y comercial de una empresa B2B en presencia de mercado continua. Trabajamos en tres frentes simultáneos: definimos el relato de marca, instalamos el sistema operativo de contenido y producimos los activos que construyen presencia antes de la decisión de compra. El resultado es un flujo continuo de contenido con criterio, gobernanza y medición — que funciona mientras el equipo comercial está en la calle cerrando negocios.',
-    link: { label: 'Explorar Capacidades →', href: '/capacidades' },
+    link: { label: 'Explorar Servicios →', href: '/servicios' },
   },
   {
     q: '¿Qué tipo de problemas resuelven exactamente?',
     a: 'Trabajamos con empresas que enfrentan alguna de estas situaciones: el mercado no ve todo lo que la empresa sabe hacer; cada vendedor explica el servicio distinto; el contenido que producen no genera conversaciones comerciales reales; o llevan meses "trabajando en el marketing" sin que nada se acumule. Son empresas que ya tienen una ventaja real — el problema es que esa ventaja no está visible antes de que el comprador decida buscar.',
-    link: { label: 'Ver nuestras Capacidades →', href: '/capacidades' },
+    link: { label: 'Ver nuestros Servicios →', href: '/servicios' },
   },
   {
     q: '¿En qué se diferencia esto de contratar una agencia de contenido?',

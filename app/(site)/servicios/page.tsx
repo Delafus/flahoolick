@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection } from '@/components/page-layout'
 import { ServiciosEtapas } from '@/components/servicios-etapas'
-import { SERVICIOS, GRUPOS_ACTIVOS } from '@/components/servicios-datos'
+import { SERVICIOS, GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -79,6 +79,32 @@ export default function Servicios() {
 
         {/* 03, 04, 05 — Las tres secciones profundas */}
         <ServiciosEtapas />
+
+        {/* Los cuatro servicios que sostienen la operación, cada uno con su propia página */}
+        <BodySection title="Qué hacemos">
+          <div className="flex flex-col gap-10">
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 400,
+              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+            }}>
+              Cuatro servicios, un mismo sistema.
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.1)' }}>
+              {DISCIPLINAS.map(d => (
+                <Link key={d.id} href={d.href}
+                  className="group flex flex-col gap-3 p-8 hover:opacity-80 transition-opacity"
+                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
+                  <h3 className="text-base font-semibold">{d.nombre}</h3>
+                  <p className="text-sm leading-relaxed opacity-65 flex-1">{d.desc}</p>
+                  <span className="label opacity-40 group-hover:opacity-80 transition-opacity">Explorar →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </BodySection>
 
         {/* 06 — Activos de la operación */}
         <BodySection title="Qué puede producir">

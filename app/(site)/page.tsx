@@ -2,8 +2,9 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
-import { ModuloCapacidadesMetodologia } from '@/components/modulo-capacidades-metodologia'
+import { ModuloMetodologia } from '@/components/modulo-metodologia'
 import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
+import { ModuloProductos } from '@/components/modulo-productos'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
 import { CirculationDots } from '@/components/circulation-dots'
@@ -136,11 +137,14 @@ export default function HomePage() {
         </Link>
       </section>
 
-      {/* Módulo Servicios — cómo trabajamos */}
+      {/* Módulo Servicios — en qué nos especializamos */}
       <ModuloComoTrabajamos />
 
-      {/* Módulo Capacidades + Metodología */}
-      <ModuloCapacidadesMetodologia />
+      {/* Módulo Metodología */}
+      <ModuloMetodologia />
+
+      {/* Módulo Productos — SENSOR / DECK */}
+      <ModuloProductos />
 
       {/* EVIDENCIA — marcas, experiencia e industrias */}
       <section

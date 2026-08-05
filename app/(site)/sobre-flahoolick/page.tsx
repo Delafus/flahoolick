@@ -220,9 +220,9 @@ export default function SobreFlahoolick() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
             {[
               {
-                titulo: 'CAPACIDADES',
-                desc: 'Los tres frentes de nuestro trabajo — los contextos en los que operan nuestros clientes y las razones más frecuentes por las que una empresa B2B nos llama.',
-                href: '/capacidades',
+                titulo: 'SERVICIOS',
+                desc: 'Los tres puntos de entrada a nuestro trabajo — diagnóstico, instalación y operación — y las disciplinas que los sostienen.',
+                href: '/servicios',
                 cta: 'Explorar →',
               },
               {

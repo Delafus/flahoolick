@@ -31,7 +31,7 @@ const SRV_MENU: MegaMenuData = {
     title: d.nombre,
     desc: d.desc,
     href: d.href,
-    linkLabel: `Explorar ${d.nombre} →`,
+    linkLabel: 'Explorar →',
   })),
 }
 

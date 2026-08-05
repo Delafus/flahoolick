@@ -22,10 +22,10 @@ export function ModuloMetodologia() {
             color: BLANCO,
             fontWeight: 400,
           }}>
-            Cada ciclo deja un activo.
+            Del conocimiento disperso a un sistema que trabaja.
           </h2>
           <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
-            Capturamos señales, priorizamos oportunidades, producimos activos y usamos la respuesta del mercado para mejorar el siguiente ciclo.
+            Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado.
           </p>
           <Link href="/metodologia"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"

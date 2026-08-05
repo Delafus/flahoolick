@@ -36,12 +36,12 @@ const SRV_MENU: MegaMenuData = {
 }
 
 const MET_MENU: MegaMenuData = {
-  tagline: 'Cada ciclo deja un activo: así funciona el sistema detrás de los tres servicios.',
+  tagline: 'Del conocimiento disperso a un sistema que trabaja — así operamos detrás de los cuatro servicios.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Cómo funciona el sistema',    desc: 'Cuatro capas que trabajan como un ciclo continuo.',            href: '/metodologia#como-funciona' },
-    { title: 'IA y criterio humano',        desc: 'Cómo usamos tecnología, fuentes y control experto.',            href: '/metodologia/como-trabajamos-con-ia' },
-    { title: 'Lo que el sistema acumula',   desc: 'Los activos y capacidades que mejora cada ciclo.',              href: '/metodologia#lo-que-acumula' },
+    { title: 'Cuatro pasos, una misma lógica',  desc: 'Cómo entendemos, ordenamos, construimos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
+    { title: 'Cómo trabajamos con IA',          desc: 'IA para capturar y modelar. Criterio humano para decidir.',          href: '/metodologia/como-trabajamos-con-ia' },
+    { title: 'Cómo podemos empezar',            desc: 'Diagnóstico, proyecto o programa continuo.',                        href: '/metodologia#como-empezar' },
   ],
 }
 

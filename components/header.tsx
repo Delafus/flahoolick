@@ -59,6 +59,7 @@ const PANEL_SECONDARY = [
   { label: 'Sobre Flahoolick',      href: '/sobre-flahoolick' },
   { label: 'SENSOR',                href: '/sensor' },
   { label: 'DECK',                  href: '/deck' },
+  { label: 'FrecuenciA',            href: '/frecuencia' },
   { label: 'FAQ',                   href: '/faq' },
   { label: 'Contacto',              href: '/#contacto' },
   { label: 'Política de Privacidad', href: '/politica-de-privacidad' },

@@ -8,6 +8,7 @@ export function Footer() {
       { label: 'Metodología',  href: '/metodologia' },
       { label: 'SENSOR',       href: '/sensor' },
       { label: 'DECK',         href: '/deck' },
+      { label: 'FrecuenciA',   href: '/frecuencia' },
     ],
     empresa: [
       { label: 'Sobre Flahoolick', href: '/sobre-flahoolick' },

@@ -4,7 +4,7 @@ import { ContactForm } from './contact-form'
 
 interface PageLayoutProps {
   headline: string
-  tagline?: string
+  tagline?: React.ReactNode
   description?: string
   heroBg: string
   heroText: string

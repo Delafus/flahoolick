@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
-import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
+import { ServicioCards } from '@/components/servicio-cards'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Marca y Relato — Flahoolick' }
@@ -90,7 +90,7 @@ export default function MarcaYRelato() {
         <BodySection>
           <div className="flex flex-col gap-10">
             <p className="label opacity-40">Qué construimos</p>
-            <ServicioScrollSteps pasos={pasos} color={NEGRO} />
+            <ServicioCards items={pasos} color={NEGRO} />
           </div>
         </BodySection>
 

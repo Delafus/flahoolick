@@ -1,18 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import { FontMix } from './font-mix'
 
 export function ContactForm({
   bg = 'var(--brand-depth)',
   text = 'var(--brand-chalk)',
-  headline = 'Tu empresa ya tiene el conocimiento.',
+  headline = <FontMix bold="Tu empresa ya tiene" italic=" el conocimiento." />,
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
   submitLabel = 'Conversemos →',
 }: {
   bg?: string
   text?: string
-  headline?: string
+  headline?: React.ReactNode
   description?: string
   /** Línea corta y discreta bajo la bajada, ej. "Te propondremos un punto de entrada concreto." */
   note?: string
@@ -39,7 +40,7 @@ export function ContactForm({
         {/* Left */}
         <div className="flex flex-col gap-6">
           <p className="label opacity-40">Contacto</p>
-          <h2 className="text-headline" style={{ color: text }}>{headline}</h2>
+          <h2 className="text-headline" style={{ color: text, lineHeight: 0.92 }}>{headline}</h2>
           <p className="text-lead max-w-sm opacity-60">{description}</p>
           {note && <p className="text-sm opacity-45" style={{ maxWidth: '24rem' }}>{note}</p>}
         </div>

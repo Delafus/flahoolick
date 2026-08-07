@@ -15,25 +15,25 @@ export const metadata: Metadata = {
 export default function SobreFlahoolick() {
   return (
     <>
-      <PageColorSetter bg="#1FDE91" text="#083EA7" />
+      <PageColorSetter bg="#1FDE91" text="#000000" />
 
       {/* Hero — layout partido en dos columnas, fondo verde Flahoolick */}
       <section
         className="page-hero page-px"
-        style={{ backgroundColor: '#1FDE91', color: '#083EA7' }}
+        style={{ backgroundColor: '#1FDE91', color: '#000000' }}
       >
         <div className="max-container w-full grid grid-cols-12 gap-8 items-start">
 
           {/* Izquierda — ilustración */}
           <div className="hidden md:flex col-span-5 items-center justify-center py-8">
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px', aspectRatio: '4/5' }}>
-              <IdeaGenerosaLogo color="#083EA7" className="w-full h-full" />
+              <IdeaGenerosaLogo color="#000000" className="w-full h-full" />
             </div>
           </div>
 
           {/* Divisor vertical */}
           <div className="hidden md:flex col-span-1 justify-center self-stretch py-4">
-            <div className="w-px h-full" style={{ backgroundColor: 'rgba(8,62,167,0.2)' }} />
+            <div className="w-px h-full" style={{ backgroundColor: 'rgba(0,0,0,0.2)' }} />
           </div>
 
           {/* Derecha — Titular + tagline + descripción */}
@@ -41,11 +41,11 @@ export default function SobreFlahoolick() {
             <h1 style={{
               fontSize: 'clamp(3.5rem, 7vw, 9rem)',
               lineHeight: 0.92,
-              color: '#083EA7',
+              color: '#000000',
             }}>
               <FontMix bold="Nacimos de" italic=" una idea generosa." />
             </h1>
-            <hr style={{ borderColor: 'rgba(8,62,167,0.25)', borderTopWidth: '1px' }} />
+            <hr style={{ borderColor: 'rgba(0,0,0,0.25)', borderTopWidth: '1px' }} />
             <p className="label opacity-60">Del irlandés flaithiúil: generoso, espléndido, abundante.</p>
             <p className="text-lead opacity-70">
               Flahoolick es un partner moderno de estrategia y contenido para empresas B2B con ciclos de decisión complejos. Basados en Santiago, Chile.
@@ -64,7 +64,7 @@ export default function SobreFlahoolick() {
 
           {/* Mobile — apilado */}
           <div className="flex flex-col gap-10 md:hidden">
-            <h2 className="text-display" style={{ color: '#F9F0E2' }}>Por qué existimos</h2>
+            <h2 className="text-display" style={{ color: '#F9F0E2' }}><FontMix bold="Por qué existimos" /></h2>
             <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
               El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
             </p>
@@ -76,7 +76,7 @@ export default function SobreFlahoolick() {
           {/* Desktop — texto izquierda | divisor | placeholder derecha */}
           <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '6fr 1px 5fr' }}>
             <div className="flex flex-col gap-10" style={{ paddingRight: '3rem' }}>
-              <h2 className="text-display" style={{ color: '#F9F0E2' }}>Por qué existimos</h2>
+              <h2 className="text-display" style={{ color: '#F9F0E2' }}><FontMix bold="Por qué existimos" /></h2>
               <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
                 El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
               </p>
@@ -100,7 +100,7 @@ export default function SobreFlahoolick() {
         style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}
       >
         <div className="max-container flex flex-col gap-16">
-          <h2 className="text-display">Más sobre Flahoolick</h2>
+          <h2 className="text-display"><FontMix bold="Más sobre Flahoolick" /></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
             {[
               {

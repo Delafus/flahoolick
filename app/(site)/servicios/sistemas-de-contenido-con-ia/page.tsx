@@ -3,6 +3,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
+import { ServicioCards } from '@/components/servicio-cards'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Sistemas de Contenido con IA — Flahoolick' }
@@ -107,14 +108,7 @@ export default function SistemasDeContenidoConIA() {
 
         {/* Qué construimos */}
         <BodySection title="Qué construimos">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
-            {construimos.map(c => (
-              <div key={c.titulo} className="flex flex-col gap-3 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 className="text-lg font-semibold">{c.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-65">{c.desc}</p>
-              </div>
-            ))}
-          </div>
+          <ServicioCards items={construimos} color={NEGRO} />
         </BodySection>
 
         {/* Cómo funciona — secuencia de pasos con scroll-reveal */}

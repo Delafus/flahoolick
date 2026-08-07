@@ -22,7 +22,7 @@ export function ModuloMetodologia() {
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Del conocimiento disperso</span>
             <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}> a un sistema que trabaja.</span>
           </h2>
-          <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
+          <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.35rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.75, fontWeight: 300 }}>
             Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado.
           </p>
           <Link href="/metodologia"

@@ -4,10 +4,11 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection } from '@/components/page-layout'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { CasoAudioBrief } from '@/components/caso-audio-brief'
+import { CasoImagenBrief } from '@/components/caso-imagen-brief'
 
 export const metadata: Metadata = {
   title: 'FrecuenciA — Flahoolick',
-  description: 'Tu negocio en la frecuencia exacta. Herramientas públicas que venden, construidas con IA y publicadas en semanas.',
+  description: 'Tu negocio en la frecuencia exacta. Dossiers, simuladores, blogs y agentes conectados a tu base de datos, construidos con IA y publicados en semanas.',
 }
 
 const NEGRO = '#000000'
@@ -24,12 +25,14 @@ const productosDunamis = [
   { titulo: 'Simulador de valorización', href: 'https://valor.dunamis.broker/' },
   { titulo: 'Diagnóstico comprar/arrendar', href: 'https://decision.dunamis.broker/' },
   { titulo: 'Blog editorial (12 artículos)', href: 'https://www.dunamis.broker/blog' },
+  { titulo: 'Agente Dee', href: 'https://dunamis.agency/' },
 ]
 
 const niveles = [
   { numero: 'NIVEL 1', titulo: 'Dossier', desc: 'Un documento interactivo que reemplaza tus PDFs de ventas estáticos.' },
   { numero: 'NIVEL 2', titulo: 'Simulador', desc: 'Una herramienta con lógica y datos propios que califica y captura leads en vivo.' },
   { numero: 'NIVEL 3', titulo: 'Sistema editorial', desc: 'Un blog con voz propia y producción continua, integrado al resto.' },
+  { numero: 'NIVEL 4', titulo: 'Agente', desc: 'Un asistente conectado a tu inventario o base de datos que conversa, filtra y agenda sin intervención humana.' },
 ]
 
 const pasos = [
@@ -96,7 +99,28 @@ export default function FrecuenciaPage() {
               </Link>
             </div>
 
-            {/* Los 4 productos en vivo */}
+            <CasoImagenBrief
+              src="/dee-chat.svg"
+              alt="Conversación real con Dee, el agente de Dunamis Agency"
+              numero="02"
+              label="AGENTE AUTOMATIZADO · DUNAMIS AGENCY (CHICUREO)"
+              contextoTexto="Dee conversa, entiende lo que el cliente busca y responde con propiedades reales de la base de datos. Sin formularios, sin menús."
+              resultadoTexto="Cada conversación termina en una visita agendada o un dato de contacto capturado."
+              color={NEGRO}
+            />
+
+            <div className="flex flex-col items-center gap-4 text-center">
+              <Link
+                href="https://dunamis.agency"
+                target="_blank" rel="noopener noreferrer"
+                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: NEGRO, color: '#ffffff' }}
+              >
+                Habla con Dee →
+              </Link>
+            </div>
+
+            {/* Los 5 productos en vivo */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px mt-4" style={{ background: 'rgba(0,0,0,0.1)' }}>
               {productosDunamis.map(p => (
                 <Link key={p.href} href={p.href} target="_blank" rel="noopener noreferrer"
@@ -112,8 +136,8 @@ export default function FrecuenciaPage() {
           </div>
         </BodySection>
 
-        {/* Tres niveles */}
-        <BodySection dark title="Tres niveles">
+        {/* Cuatro niveles */}
+        <BodySection dark title="Cuatro niveles">
           <div className="flex flex-col">
             {niveles.map(n => (
               <div key={n.titulo} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-8" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>

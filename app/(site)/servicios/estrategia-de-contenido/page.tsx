@@ -49,11 +49,8 @@ export default function EstrategiaDeContenido() {
         {/* Bloque de apertura */}
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-            }}>
-              Tu empresa tiene ideas. Necesita dirección.
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Tu empresa tiene ideas." italic=" Necesita dirección." />
             </h2>
             <div className="flex flex-col gap-4">
               <p className="text-lead opacity-80">
@@ -109,17 +106,14 @@ export default function EstrategiaDeContenido() {
                 display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
               }}>
                 <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Playbook</p>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.1, color: NEGRO }}>
-                  Estrategia de Contenido
+                <h3 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, color: NEGRO }}>
+                  <FontMix bold="Estrategia de Contenido" />
                 </h3>
               </div>
             </div>
             <div className="flex flex-col gap-6">
-              <h2 style={{
-                fontFamily: 'var(--font-display)', fontWeight: 400,
-                fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-              }}>
-                Playbook de estrategia de contenido
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+                <FontMix bold="Playbook de" italic=" estrategia de contenido" />
               </h2>
               <p className="text-base opacity-70">Un sistema operativo para decidir:</p>
               <div className="flex flex-col">
@@ -134,11 +128,8 @@ export default function EstrategiaDeContenido() {
         {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
         <BodySection>
           <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 400,
-              fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-            }}>
-              El calendario empieza después.
+            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
+              <FontMix bold="El calendario" italic=" empieza después." />
             </h2>
             <p className="text-lead opacity-70">Primero construimos la lógica que le da sentido.</p>
           </div>

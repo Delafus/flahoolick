@@ -27,14 +27,8 @@ export default function Servicios() {
         {/* Los cuatro servicios que sostienen la operación, cada uno con su propia página */}
         <BodySection title="Qué hacemos">
           <div className="flex flex-col gap-10">
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-            }}>
-              Cuatro servicios, un mismo sistema.
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Cuatro servicios," italic=" un mismo sistema." />
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.1)' }}>
               {DISCIPLINAS.map(d => (
@@ -53,14 +47,8 @@ export default function Servicios() {
         {/* 06 — Activos de la operación */}
         <BodySection title="Qué puede producir">
           <div className="flex flex-col gap-10">
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-            }}>
-              Activos para construir presencia y mover decisiones.
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Activos para construir" italic=" presencia y mover decisiones." />
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {GRUPOS_ACTIVOS.map(grupo => (
@@ -77,14 +65,8 @@ export default function Servicios() {
         <BodySection dark title="Un mismo método">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-3">
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 400,
-                fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-                lineHeight: 1.15,
-                letterSpacing: '-0.02em',
-              }}>
-                Cuatro servicios. Un sistema común.
+              <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', lineHeight: 1.05 }}>
+                <FontMix bold="Cuatro servicios." italic=" Un sistema común." />
               </h2>
               <p className="text-base leading-relaxed opacity-70" style={{ maxWidth: '32rem' }}>
                 Cada servicio trabaja sobre el Sistema de Autoridad de Flahoolick.

@@ -51,11 +51,8 @@ export default function MarcaYRelato() {
         {/* Bloque de apertura */}
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 400,
-              fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-            }}>
-              Ocupar un lugar exige definirlo.
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Ocupar un lugar" italic=" exige definirlo." />
             </h2>
             <div className="flex flex-col gap-4">
               <p className="text-lead opacity-80">Las empresas complejas suelen describirse con las mismas palabras.</p>
@@ -112,17 +109,14 @@ export default function MarcaYRelato() {
                 display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
               }}>
                 <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Sistema</p>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.1, color: NEGRO }}>
-                  Marca y Relato
+                <h3 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, color: NEGRO }}>
+                  <FontMix bold="Marca y Relato" />
                 </h3>
               </div>
             </div>
             <div className="flex flex-col gap-6">
-              <h2 style={{
-                fontFamily: 'var(--font-display)', fontWeight: 400,
-                fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-              }}>
-                Sistema de marca
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+                <FontMix bold="Sistema" italic=" de marca" />
               </h2>
               <p className="text-base opacity-70">Una plataforma estratégica, verbal y visual preparada para funcionar en:</p>
               <div className="flex flex-col">
@@ -137,11 +131,8 @@ export default function MarcaYRelato() {
         {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
         <BodySection>
           <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 400,
-              fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.02em',
-            }}>
-              Tu categoría ya tiene voces.
+            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Tu categoría ya tiene" italic=" voces." />
             </h2>
             <p className="text-lead opacity-70">Construyamos la que todos puedan reconocer.</p>
           </div>

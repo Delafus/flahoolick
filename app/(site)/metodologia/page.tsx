@@ -126,8 +126,8 @@ export default function Metodologia() {
         {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
         <BodySection dark>
           <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '42rem', margin: '0 auto' }}>
-            <h2 style={{ ...headingStyle, fontSize: 'clamp(2.25rem, 5vw, 3.5rem)' }}>
-              Tu empresa ya hizo la parte difícil: aprender.
+            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Tu empresa ya hizo" italic=" la parte difícil: aprender." />
             </h2>
             <p className="text-lead opacity-70">Ahora hagamos que ese conocimiento trabaje.</p>
           </div>

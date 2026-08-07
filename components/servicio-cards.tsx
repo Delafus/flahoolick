@@ -7,7 +7,7 @@ interface ServicioCardsProps {
 /** Grid de cards blancas — reemplaza a los timelines/listas con borde para contenido tipo "qué construimos". */
 export function ServicioCards({ items, color = '#000000' }: ServicioCardsProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       {items.map((item, i) => (
         <div key={item.titulo} className="flex flex-col gap-4 p-8"
           style={{

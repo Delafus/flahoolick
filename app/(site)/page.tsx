@@ -25,19 +25,22 @@ const HERO2_POINTS = [
 
 const SCROLLS = [
   {
-    h1: 'Tu empresa sabe demasiado para comunicar como cualquiera.',
+    h1Base: 'Tu empresa sabe demasiado ',
+    h1Emphasis: 'para comunicar como cualquiera.',
     sub: 'Gran parte de ese conocimiento queda atrapado.',
     img: '/dots-scroll-01.svg',
     imgSize: { width: 622, height: 622 },
   },
   {
-    h1: 'Solo el 5% de tu mercado está listo para comprar hoy.',
+    h1Base: 'Solo el 5% de tu mercado ',
+    h1Emphasis: 'está listo para comprar hoy.',
     sub: 'El 95% restante está formando opinión.',
     img: '/dots-scroll-02.svg',
     imgSize: { width: 622, height: 622 },
   },
   {
-    h1: 'Tu ventaja competitiva ya existe.',
+    h1Base: 'Tu ventaja competitiva ',
+    h1Emphasis: 'ya existe.',
     sub: 'Necesita un sistema que la ponga en circulación.',
     img: '/dots-scroll-03.svg',
     imgSize: { width: 622, height: 622 },
@@ -70,34 +73,37 @@ export default function HomePage() {
           style={{
             minHeight: '100dvh',
             paddingBottom: '2rem',
-            backgroundColor: '#083EA7',
-            color: '#1FDE91',
+            backgroundColor: '#F4F1E8',
+            color: '#000000',
           }}
         >
           <div className="max-container w-full text-center flex flex-col gap-6">
-            <h1 className="text-hero scroll-hero-h1" style={{ color: '#1FDE91' }}>
-              {s.h1}
+            <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>
+              {s.h1Base}
+              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400 }}>
+                {s.h1Emphasis}
+              </span>
             </h1>
-            <p className="text-base md:text-2xl font-light max-w-2xl mx-auto leading-relaxed" style={{ color: '#1FDE91', opacity: 0.85 }}>
+            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
               {s.sub}
             </p>
             {s.img && (
               <>
-                <div className="md:hidden"><ScrollConnector color="#1FDE91" height={90} thickness={1.5} dotSize={9} /></div>
-                <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={140} /></div>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} /></div>
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
-                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#083EA7" />}
-                  {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" points={HERO2_POINTS} />}
-                  {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#1FDE91" pulses />}
+                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#F4F1E8" />}
+                  {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" points={HERO2_POINTS} />}
+                  {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" pulses />}
                 </div>
               </>
             )}
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#1FDE91" height={130} thickness={1.5} dotSize={9} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#1FDE91" height={200} /></div>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} /></div>
             </>
           )}
         </section>

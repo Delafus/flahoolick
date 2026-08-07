@@ -17,6 +17,12 @@ const VIAJE_MS = 850
 /** Encendido de la grilla completa, una vez que llegaron todos. */
 const ENCENDIDO_MS = 550
 
+function hexToRgb(hex: string) {
+  const m = hex.replace('#', '')
+  const n = parseInt(m.length === 3 ? m.split('').map(c => c + c).join('') : m, 16)
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 }
+}
+
 /* Paso 03 — pulsos que se propagan.
    Cada pulso nace en un punto al azar y se expande como una onda circular.
    Al convivir varios, nacidos en momentos y lugares distintos, nunca se
@@ -104,9 +110,12 @@ function repartirDestinos(origenes: number[]) {
 interface GrillaProcesoProps {
   /** Índice del acordeón abierto: -1 cerrado, 0 diagnóstico, 1 instalación, 2 operación. */
   abierto: number
+  /** Color de los puntos. Default blanco (fondo oscuro). */
+  color?: string
 }
 
-export function GrillaProceso({ abierto }: GrillaProcesoProps) {
+export function GrillaProceso({ abierto, color = '#ffffff' }: GrillaProcesoProps) {
+  const { r, g, b } = hexToRgb(color)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // El paso vive en un ref para que el bucle de dibujo lo lea sin reiniciarse.
   const pasoRef = useRef(abierto + 1)
@@ -225,7 +234,7 @@ export function GrillaProceso({ abierto }: GrillaProcesoProps) {
       if (alpha <= 0 || diametro <= 0) return
       ctx!.beginPath()
       ctx!.arc(x, y, diametro / 2, 0, Math.PI * 2)
-      ctx!.fillStyle = `rgba(255,255,255,${clamp01(alpha)})`
+      ctx!.fillStyle = `rgba(${r},${g},${b},${clamp01(alpha)})`
       ctx!.fill()
     }
 

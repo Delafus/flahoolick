@@ -4,7 +4,7 @@ import { AcordeonSeccion } from './acordeon-seccion'
 import { GrillaProceso } from './grilla-proceso'
 import { DISCIPLINAS } from './servicios-datos'
 
-const NEGRO = '#000000'
+const GRIS = '#D8D8D7'
 
 // Mismo origen de datos que la sección "Qué hacemos" de /servicios, para que
 // el visitante lea lo mismo venga de donde venga.
@@ -21,14 +21,16 @@ const disciplinas = DISCIPLINAS.map(d => ({
  */
 export function ModuloComoTrabajamos() {
   return (
-    <div style={{ backgroundColor: NEGRO }}>
+    <div style={{ backgroundColor: GRIS }}>
       <AcordeonSeccion
         eyebrow="En qué nos especializamos"
         titulo="Donde el contenido trabaja para el negocio"
         bajada="Cuatro disciplinas trabajan juntas durante el diagnóstico, la instalación y la operación."
         items={disciplinas}
         ctaLabel="VER MÁS"
-        renderIllustration={abierto => <GrillaProceso abierto={abierto} />}
+        renderIllustration={abierto => <GrillaProceso abierto={abierto} color="#000000" />}
+        dark={false}
+        bgColor={GRIS}
       />
     </div>
   )

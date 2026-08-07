@@ -4,9 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const NEGRO  = '#000000'
-const BLANCO = '#ffffff'
-
 export interface AcordeonItem {
   titulo: string
   desc: string
@@ -31,6 +28,10 @@ interface AcordeonSeccionProps {
   ctaLabel: string
   /** Botón de la sección completa, bajo el acordeón. */
   cta?: { label: string; href: string }
+  /** true (default) = fondo oscuro/texto claro. false = fondo claro/texto oscuro (el bg lo pone el wrapper). */
+  dark?: boolean
+  /** Color de fondo del wrapper — solo se usa para calzar el color de los botones invertidos. */
+  bgColor?: string
 }
 
 /**
@@ -47,21 +48,27 @@ export function AcordeonSeccion({
   items,
   ctaLabel,
   cta,
+  dark = true,
+  bgColor,
 }: AcordeonSeccionProps) {
   const [abierto, setAbierto] = useState(0)
+  const texto = dark ? '#ffffff' : '#000000'
+  const borde = dark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.2)'
+  const botonBg = texto
+  const botonTexto = bgColor ?? (dark ? '#000000' : '#ffffff')
 
   const acordeon = (
     <div className="flex flex-col">
       {items.map((item, i) => (
-        <div key={i} style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }}>
+        <div key={i} style={{ borderTop: `1px solid ${borde}` }}>
           <button
             onClick={() => setAbierto(abierto === i ? -1 : i)}
             className="w-full flex items-center justify-between py-5 text-left"
             style={{ cursor: 'pointer' }}
           >
-            <span className="label font-bold" style={{ color: BLANCO, fontSize: '1rem', letterSpacing: '0.03em' }}>{item.titulo}</span>
+            <span className="label font-bold" style={{ color: texto, fontSize: '1rem', letterSpacing: '0.03em' }}>{item.titulo}</span>
             <span style={{
-              color: BLANCO,
+              color: texto,
               fontSize: '1.2rem',
               lineHeight: 1,
               transition: 'transform 0.3s ease',
@@ -77,10 +84,10 @@ export function AcordeonSeccion({
             opacity: abierto === i ? 1 : 0,
           }}>
             <div className="pb-6 flex flex-col gap-4">
-              <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.8 }}>{item.desc}</p>
+              <p className="text-sm leading-relaxed" style={{ color: texto, opacity: 0.8 }}>{item.desc}</p>
               <Link href={item.href}
                 className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
+                style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem' }}>
                 {ctaLabel}
               </Link>
             </div>
@@ -89,10 +96,10 @@ export function AcordeonSeccion({
       ))}
       {cta && (
         <>
-          <div style={{ borderTop: `1px solid rgba(255,255,255,0.25)` }} />
+          <div style={{ borderTop: `1px solid ${borde}` }} />
           <Link href={cta.href}
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-8 hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem' }}>
+            style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem' }}>
             {cta.label}
           </Link>
         </>
@@ -103,12 +110,12 @@ export function AcordeonSeccion({
   return (
     <section className="page-px section-py">
       <div className="max-container flex flex-col items-center text-center gap-6">
-        <p className="label" style={{ color: BLANCO, fontSize: '1rem' }}>{eyebrow}</p>
+        <p className="label" style={{ color: texto, fontSize: '1rem' }}>{eyebrow}</p>
         <h2 style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(2.75rem, 7vw, 9rem)',
           lineHeight: 1.05,
-          color: BLANCO,
+          color: texto,
           fontWeight: 400,
           textAlign: 'center',
         }}>
@@ -118,7 +125,7 @@ export function AcordeonSeccion({
           <p style={{
             fontSize: 'clamp(1rem, 1.6vw, 1.35rem)',
             lineHeight: 1.6,
-            color: BLANCO,
+            color: texto,
             opacity: 0.75,
             fontWeight: 300,
             maxWidth: '46rem',

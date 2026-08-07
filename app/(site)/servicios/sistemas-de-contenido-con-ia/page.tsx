@@ -88,6 +88,11 @@ export default function SistemasDeContenidoConIA() {
           </div>
         </BodySection>
 
+        {/* Qué construimos */}
+        <BodySection title="Qué construimos">
+          <ServicioCards items={construimos} color={NEGRO} />
+        </BodySection>
+
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
@@ -101,11 +106,6 @@ export default function SistemasDeContenidoConIA() {
               ))}
             </div>
           </div>
-        </BodySection>
-
-        {/* Qué construimos */}
-        <BodySection title="Qué construimos">
-          <ServicioCards items={construimos} color={NEGRO} />
         </BodySection>
 
         {/* Cómo funciona — secuencia de pasos con scroll-reveal */}

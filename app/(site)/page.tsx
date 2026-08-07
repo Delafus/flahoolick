@@ -73,7 +73,7 @@ export default function HomePage() {
           style={{
             minHeight: '100dvh',
             paddingBottom: '2rem',
-            backgroundColor: '#F4F1E8',
+            backgroundColor: '#D8D8D7',
             color: '#000000',
           }}
         >
@@ -93,7 +93,7 @@ export default function HomePage() {
                 <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} /></div>
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
-                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#F4F1E8" />}
+                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#D8D8D7" />}
                   {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" points={HERO2_POINTS} />}
                   {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" pulses />}
                 </div>
@@ -109,14 +109,14 @@ export default function HomePage() {
         </section>
       ))}
 
-      {/* Conector que cruza el límite azul → verde, cambiando de color a la mitad */}
+      {/* Conector que cruza el límite gris → verde, cambiando de color a la mitad */}
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #083EA7 50%, #1FDE91 50%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
         <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#1FDE91" colorTo="#083EA7" height={220} thickness={1.5} dotSize={9} />
+          <ScrollConnector color="#403D37" colorTo="#083EA7" height={220} thickness={1.5} dotSize={9} />
         </div>
         <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#1FDE91" colorTo="#083EA7" height={220} thickness={3} dotSize={16} />
+          <ScrollConnector color="#403D37" colorTo="#083EA7" height={220} thickness={3} dotSize={16} />
         </div>
       </div>
 
@@ -127,9 +127,9 @@ export default function HomePage() {
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
-          <h2 className="text-hero" style={{ color: '#083EA7', fontFamily: 'var(--font-display)', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-            Somos FLAHOOLICK.<br />
-            Convertimos conocimiento técnico en autoridad de mercado.
+          <h2 className="text-hero" style={{ color: '#083EA7', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+            <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Somos FLAHOOLICK.</span><br />
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400 }}>Convertimos conocimiento técnico en autoridad de mercado.</span>
           </h2>
         </div>
 

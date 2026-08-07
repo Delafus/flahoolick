@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const NEGRO  = '#000000'
+const NEGRO  = '#403D37'
 const BLANCO = '#ffffff'
 
 /**

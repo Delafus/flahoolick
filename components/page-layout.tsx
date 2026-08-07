@@ -2,8 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './contact-form'
 
+/** Mezcla tipográfica estándar del sitio: lead bold en Bricolage + resto en Instrument Serif itálica. */
+export function FontMix({ bold, italic }: { bold: React.ReactNode; italic?: React.ReactNode }) {
+  return (
+    <>
+      <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>{bold}</span>
+      {italic && <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>{italic}</span>}
+    </>
+  )
+}
+
 interface PageLayoutProps {
-  headline: string
+  headline: React.ReactNode
   tagline?: React.ReactNode
   description?: string
   heroBg: string
@@ -47,11 +57,8 @@ export function PageLayout({
           {/* MOBILE — stack */}
           <div className="flex flex-col gap-6 md:hidden">
             <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
               fontSize: 'clamp(3.5rem, 10vw, 11rem)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.02em',
+              lineHeight: 0.92,
               color: heroText,
               wordBreak: 'break-word',
             }}>
@@ -71,7 +78,7 @@ export function PageLayout({
             {ctaHref && ctaLabel && (
               <Link href={ctaHref}
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: heroText, color: heroBg }}>
+                style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
                 {ctaLabel}
               </Link>
             )}
@@ -111,11 +118,8 @@ export function PageLayout({
             {/* Texto — H1 masivo → label → HR → descripción */}
             <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>
               <h1 style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 400,
                 fontSize: 'clamp(3.5rem, 8vw, 11rem)',
-                lineHeight: 1.0,
-                letterSpacing: '-0.025em',
+                lineHeight: 0.92,
                 color: heroText,
               }}>
                 {headline}
@@ -132,7 +136,7 @@ export function PageLayout({
               {ctaHref && ctaLabel && (
                 <Link href={ctaHref}
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity mt-2"
-                  style={{ backgroundColor: heroText, color: heroBg }}>
+                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
                   {ctaLabel}
                 </Link>
               )}
@@ -146,7 +150,7 @@ export function PageLayout({
         {children}
       </div>
 
-      <ContactForm bg="#ffffff" text="#000000" {...contact} />
+      <ContactForm bg="#403D37" text="#ffffff" {...contact} />
     </>
   )
 }

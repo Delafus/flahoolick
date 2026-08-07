@@ -63,8 +63,8 @@ export default async function CategoriaPage({ params }: { params: { slug: string
               <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                 className="label px-4 py-2 hover:opacity-60 transition-opacity"
                 style={c.slug === cat.slug
-                  ? { backgroundColor: NEGRO, color: CHARTREUSE, borderRadius: '0' }
-                  : { border: '1px solid rgba(0,0,0,0.25)', borderRadius: '0' }}>
+                  ? { backgroundColor: NEGRO, color: CHARTREUSE, borderRadius: '999px' }
+                  : { border: '1px solid rgba(0,0,0,0.25)', borderRadius: '999px' }}>
                 {c.nombre}
               </Link>
             ))}
@@ -109,7 +109,7 @@ export default async function CategoriaPage({ params }: { params: { slug: string
         </div>
       </section>
 
-      <ContactForm bg="#ffffff" text="#000000" />
+      <ContactForm bg="#403D37" text="#ffffff" />
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
@@ -60,7 +60,7 @@ export default function SistemasDeContenidoConIA() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Sistemas de Contenido con IA"
-        headline="Instálale memoria a tu empresa."
+        headline={<FontMix bold="Instálale memoria" italic=" a tu empresa." />}
         description="Diseñamos sistemas que capturan conocimiento, conectan señales y alimentan de forma continua a marketing, ventas y equipos técnicos."
         heroBg="#F09DB6"
         heroText={NEGRO}

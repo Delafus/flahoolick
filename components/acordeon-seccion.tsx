@@ -87,7 +87,7 @@ export function AcordeonSeccion({
               <p className="text-sm leading-relaxed" style={{ color: texto, opacity: 0.8 }}>{item.desc}</p>
               <Link href={item.href}
                 className="label inline-flex items-center px-4 py-2.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem' }}>
+                style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem', borderRadius: '999px' }}>
                 {ctaLabel}
               </Link>
             </div>
@@ -99,7 +99,7 @@ export function AcordeonSeccion({
           <div style={{ borderTop: `1px solid ${borde}` }} />
           <Link href={cta.href}
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-8 hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem' }}>
+            style={{ backgroundColor: botonBg, color: botonTexto, fontSize: '0.65rem', borderRadius: '999px' }}>
             {cta.label}
           </Link>
         </>
@@ -114,7 +114,7 @@ export function AcordeonSeccion({
         <h2 style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(2.75rem, 7vw, 9rem)',
-          lineHeight: 1.05,
+          lineHeight: 0.92,
           color: texto,
           fontWeight: 400,
           textAlign: 'center',

@@ -16,7 +16,7 @@ export function ModuloMetodologia() {
           <p className="label" style={{ color: BLANCO, opacity: 0.6 }}>Metodología</p>
           <h2 style={{
             fontSize: 'clamp(3rem, 10vw, 8rem)',
-            lineHeight: 1.0,
+            lineHeight: 0.92,
             color: BLANCO,
           }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Del conocimiento disperso</span>
@@ -27,7 +27,7 @@ export function ModuloMetodologia() {
           </p>
           <Link href="/metodologia"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '0' }}>
+            style={{ backgroundColor: BLANCO, color: NEGRO, fontSize: '0.65rem', borderRadius: '999px' }}>
             EXPLORAR METODOLOGÍA ›
           </Link>
         </div>

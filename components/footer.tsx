@@ -20,7 +20,7 @@ export function Footer() {
 
   return (
     <footer className="page-px py-16"
-      style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)' }}>
+      style={{ backgroundColor: '#403D37', color: 'var(--brand-chalk)' }}>
       <div className="max-container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
 

@@ -41,6 +41,7 @@ const SCROLLS = [
   {
     h1Base: 'Tu ventaja competitiva ',
     h1Emphasis: 'ya existe.',
+    breakBeforeEmphasis: true,
     sub: 'Necesita un sistema que la ponga en circulación.',
     img: '/dots-scroll-03.svg',
     imgSize: { width: 622, height: 622 },
@@ -82,6 +83,7 @@ export default function HomePage() {
               <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
                 {s.h1Base}
               </span>
+              {s.breakBeforeEmphasis && <br className="hidden md:block" />}
               <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
                 {s.h1Emphasis}
               </span>
@@ -115,21 +117,21 @@ export default function HomePage() {
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
         <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#403D37" colorTo="#083EA7" height={220} thickness={1.5} dotSize={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={1.5} dotSize={9} />
         </div>
         <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#403D37" colorTo="#083EA7" height={220} thickness={3} dotSize={16} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={3} dotSize={16} />
         </div>
       </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section
         className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
-        style={{ backgroundColor: '#1FDE91', color: '#083EA7', paddingBottom: '6rem' }}
+        style={{ backgroundColor: '#1FDE91', color: '#000000', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
-          <h2 className="text-hero" style={{ color: '#083EA7', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+          <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
             <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos conocimiento técnico en autoridad de mercado.</span>
           </h2>
@@ -139,7 +141,7 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#083EA7', color: '#1FDE91' }}
+          style={{ backgroundColor: '#000000', color: '#1FDE91', borderRadius: '999px' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>
@@ -157,29 +159,29 @@ export default function HomePage() {
       {/* EVIDENCIA — marcas, experiencia e industrias */}
       <section
         className="flex flex-col items-center text-center"
-        style={{ backgroundColor: '#1FDE91', color: '#083EA7', padding: '6rem 0' }}
+        style={{ backgroundColor: '#1FDE91', color: '#000000', padding: '6rem 0' }}
       >
         {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#083EA7', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Marcas que nos formaron</p>
 
         {/* Marquee */}
         <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
-          <Marquee color="#083EA7" />
+          <Marquee color="#000000" />
         </div>
 
         {/* Párrafo */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)' }}>
-          <p className="text-lead mx-auto" style={{ color: '#083EA7', opacity: 0.75, maxWidth: '52rem' }}>
+          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '52rem' }}>
             Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
           </p>
         </div>
 
         {/* Divisoria con aire */}
         <div style={{ width: '100%', maxWidth: '80rem', padding: '0 var(--page-px)', margin: '4rem 0 3rem' }}>
-          <hr style={{ borderColor: '#083EA7', borderTopWidth: '1px', opacity: 0.3 }} />
+          <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
-        <p className="label" style={{ color: '#083EA7', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem' }}>Con quién trabajamos</p>
 
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
@@ -189,7 +191,7 @@ export default function HomePage() {
             'Servicios profesionales', 'Sector público'
           ].map(tag => (
             <span key={tag} className="text-sm px-3 py-1.5"
-              style={{ border: '1px solid #083EA7', color: '#083EA7', opacity: 0.7, borderRadius: '4px' }}>
+              style={{ border: '1px solid #000000', color: '#000000', opacity: 0.7, borderRadius: '4px' }}>
               {tag}
             </span>
           ))}
@@ -200,7 +202,7 @@ export default function HomePage() {
       <ModuloJerga />
 
       {/* Contacto */}
-      <ContactForm bg="#ffffff" text="#000000" />
+      <ContactForm bg="#403D37" text="#ffffff" />
     </>
   )
 }

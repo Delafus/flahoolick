@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, HowList, CrossLinks } from '@/components/page-layout'
+import { PageLayout, BodySection, HowList, CrossLinks, FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = { title: 'Cómo trabajamos con IA — Flahoolick' }
 const items = [
@@ -13,7 +13,7 @@ export default function ComoIA() {
   return (
     <>
       <PageColorSetter bg="#F5FD92" text="#000000" />
-      <PageLayout tagline="IA para capturar y modelar. Criterio para decidir." headline="Cómo trabajamos con IA"
+      <PageLayout tagline="IA para capturar y modelar. Criterio para decidir." headline={<FontMix bold="Cómo trabajamos" italic=" con IA" />}
         description="La inteligencia artificial procesa volúmenes de información que ningún equipo puede manejar manualmente. Flahoolick usa IA para capturar y modelar ese conocimiento a escala. El criterio editorial, la estrategia y la decisión de qué merece circular los define siempre el equipo senior."
         heroBg="var(--page-metodologia-bg)" heroText="var(--page-metodologia-text)">
         <BodySection title="Cómo lo hacemos"><HowList items={items} /></BodySection>

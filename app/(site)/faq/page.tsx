@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
 import Link from 'next/link'
+import { FontMix } from '@/components/page-layout'
 
 const FRESH = '#8FE8BB'
 const NEGRO = '#000000'
@@ -118,7 +119,7 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
           {link && (
             <Link href={link.href}
               className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '0' }}>
+              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '999px' }}>
               {link.label}
             </Link>
           )}
@@ -138,8 +139,8 @@ export default function FAQPage() {
         <div className="max-container w-full">
           {/* Mobile */}
           <div className="flex flex-col gap-6 md:hidden">
-            <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(3.5rem, 10vw, 8rem)', lineHeight: 1.0, letterSpacing: '-0.02em', color: NEGRO }}>
-              Las preguntas de siempre.
+            <h1 style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', lineHeight: 0.92, color: NEGRO }}>
+              <FontMix bold="Las preguntas" italic=" de siempre." />
             </h1>
             <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
             <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
@@ -152,8 +153,8 @@ export default function FAQPage() {
             </div>
             <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', height: '100%', width: '1px' }} />
             <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>
-              <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(3.5rem, 8vw, 11rem)', lineHeight: 1.0, letterSpacing: '-0.025em', color: NEGRO }}>
-                Las preguntas de siempre.
+              <h1 style={{ fontSize: 'clamp(3.5rem, 8vw, 11rem)', lineHeight: 0.92, color: NEGRO }}>
+                <FontMix bold="Las preguntas" italic=" de siempre." />
               </h1>
               <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
               <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
@@ -217,7 +218,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <ContactForm bg="#ffffff" text="#000000" />
+      <ContactForm bg="#403D37" text="#ffffff" />
     </>
   )
 }

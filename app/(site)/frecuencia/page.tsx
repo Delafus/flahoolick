@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { CasoAudioBrief } from '@/components/caso-audio-brief'
 import { CasoImagenBrief } from '@/components/caso-imagen-brief'
@@ -51,7 +51,7 @@ export default function FrecuenciaPage() {
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
         tagline={<>Frecuenc<span style={{ color: VERDE }}>IA</span></>}
-        headline="Tu negocio en la frecuencia exacta."
+        headline={<FontMix bold="Tu negocio" italic=" en la frecuencia exacta." />}
         description="Convertimos el conocimiento disperso de tu empresa en herramientas públicas que venden — todos los días, sin depender de que alguien lo explique de nuevo."
         heroBg="#000000"
         heroText="#ffffff"
@@ -93,7 +93,7 @@ export default function FrecuenciaPage() {
                 href="https://servicios.dunamis.broker"
                 target="_blank" rel="noopener noreferrer"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff' }}
+                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}
               >
                 Ver el dossier que generó →
               </Link>
@@ -114,7 +114,7 @@ export default function FrecuenciaPage() {
                 href="https://dunamis.agency"
                 target="_blank" rel="noopener noreferrer"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff' }}
+                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}
               >
                 Habla con Dee →
               </Link>

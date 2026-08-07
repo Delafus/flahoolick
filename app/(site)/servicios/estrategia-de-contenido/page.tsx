@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
@@ -38,7 +38,7 @@ export default function EstrategiaDeContenido() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Estrategia de Contenido"
-        headline="Ponle cerebro al calendario."
+        headline={<FontMix bold="Ponle cerebro" italic=" al calendario." />}
         description="Diseñamos la lógica que conecta objetivos, audiencias, temas, canales y momentos de decisión."
         heroBg="#F09DB6"
         heroText={NEGRO}

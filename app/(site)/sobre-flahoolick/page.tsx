@@ -3,6 +3,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
+import { FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick',
@@ -38,14 +39,11 @@ export default function SobreFlahoolick() {
           {/* Derecha — Titular + tagline + descripción */}
           <div className="col-span-12 md:col-span-6 flex flex-col gap-10 justify-center" style={{ minHeight: '610px' }}>
             <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
               fontSize: 'clamp(3.5rem, 7vw, 9rem)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.02em',
+              lineHeight: 0.92,
               color: '#083EA7',
             }}>
-              Nacimos de una idea generosa.
+              <FontMix bold="Nacimos de" italic=" una idea generosa." />
             </h1>
             <hr style={{ borderColor: 'rgba(8,62,167,0.25)', borderTopWidth: '1px' }} />
             <p className="label opacity-60">Del irlandés flaithiúil: generoso, espléndido, abundante.</p>
@@ -142,7 +140,7 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
-      <ContactForm bg="#ffffff" text="#000000" />
+      <ContactForm bg="#403D37" text="#ffffff" />
     </>
   )
 }

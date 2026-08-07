@@ -25,7 +25,7 @@ export async function PinnedGuidesBar({ bg, text }: { bg: string; text: string }
           <Link
             href="/jerga"
             className="label px-4 py-2 hover:opacity-70 transition-opacity"
-            style={{ border: `1px solid ${pillBorder}`, borderRadius: '0' }}
+            style={{ border: `1px solid ${pillBorder}`, borderRadius: '999px' }}
           >
             Todas
           </Link>
@@ -34,7 +34,7 @@ export async function PinnedGuidesBar({ bg, text }: { bg: string; text: string }
               key={g.slug}
               href={`/jerga/${g.slug}`}
               className="label px-4 py-2 hover:opacity-70 transition-opacity"
-              style={{ border: `1px solid ${pillBorder}`, borderRadius: '0' }}
+              style={{ border: `1px solid ${pillBorder}`, borderRadius: '999px' }}
             >
               {g.etiquetaBarra || g.titulo}
             </Link>

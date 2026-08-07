@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = { title: 'SENSOR — Flahoolick' }
 
@@ -24,7 +24,7 @@ export default function SensorPage() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="Inteligencia B2B"
+        headline={<FontMix bold="Inteligencia B2B" />}
         tagline="SENSOR SISTEMA DE ANALISIS"
         description="El valor estratégico de una empresa vive disperso en documentos, datos, grabaciones y conversaciones comerciales. SENSOR captura, organiza y analiza esas señales para definir qué temas puede liderar la empresa, en qué momentos debe aparecer y qué necesita producir."
         heroBg="#000000"

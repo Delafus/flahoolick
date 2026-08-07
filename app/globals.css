@@ -90,7 +90,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(2.75rem, 7vw, 9rem);
-    line-height: 1.0;
+    line-height: 0.92;
     letter-spacing: -0.02em;
   }
 

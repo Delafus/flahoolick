@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function Servicios() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline="Empieza donde tu operación se corta."
+        headline={<FontMix bold="Empieza donde" italic=" tu operación se corta." />}
         description="Cuatro servicios, un mismo sistema: convertir el conocimiento técnico de tu empresa en autoridad de mercado."
         heroBg="#000000"
         heroText="#ffffff"
@@ -92,7 +92,7 @@ export default function Servicios() {
             </div>
             <Link href="/metodologia"
               className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
-              style={{ color: 'var(--section-dark-text)', borderColor: 'var(--section-dark-text)' }}>
+              style={{ color: 'var(--section-dark-text)', borderColor: 'var(--section-dark-text)', borderRadius: '999px' }}>
               Explorar metodología →
             </Link>
           </div>

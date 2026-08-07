@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, Tags } from '@/components/page-layout'
+import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
@@ -51,7 +51,7 @@ export default function ProduccionDeContenido() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Producción de Contenido"
-        headline="Pon tu conocimiento en la calle."
+        headline={<FontMix bold="Pon tu conocimiento" italic=" en la calle." />}
         description="Transformamos experiencia técnica en historias, herramientas y piezas que circulan donde las decisiones toman forma."
         heroBg="#F09DB6"
         heroText={NEGRO}

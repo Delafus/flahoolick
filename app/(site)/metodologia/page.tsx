@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, Tags } from '@/components/page-layout'
+import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = {
   title: 'Metodología — Flahoolick',
@@ -71,7 +71,7 @@ export default function Metodologia() {
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
         tagline="Metodología"
-        headline="Del conocimiento disperso a un sistema que trabaja."
+        headline={<FontMix bold="Del conocimiento disperso" italic=" a un sistema que trabaja." />}
         description="Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado."
         heroBg="#000000"
         heroText="#ffffff"

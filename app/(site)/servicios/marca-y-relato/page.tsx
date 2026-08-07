@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
@@ -40,7 +40,7 @@ export default function MarcaYRelato() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Marca y Relato"
-        headline="Firma tu categoría."
+        headline={<FontMix bold="Firma" italic=" tu categoría." />}
         description="Construimos una posición, una voz y una identidad que el mercado puede reconocer, recordar y elegir."
         heroBg="#F09DB6"
         heroText={NEGRO}

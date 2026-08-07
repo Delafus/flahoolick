@@ -219,11 +219,11 @@ export function Header() {
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="hover:opacity-60 transition-opacity"
                 style={{
-                  fontFamily: 'var(--font-bricolage)',
-                  fontWeight: 800,
+                  fontFamily: 'var(--font-instrument-serif)',
+                  fontStyle: 'italic',
+                  fontWeight: 400,
                   fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
                   lineHeight: 1.05,
-                  letterSpacing: '-0.03em',
                   padding: '1.75rem 0',
                   borderTop: '1px solid rgba(255,255,255,0.2)',
                 }}>

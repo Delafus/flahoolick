@@ -12,7 +12,7 @@ export interface AcordeonItem {
 
 interface AcordeonSeccionProps {
   eyebrow: string
-  titulo: string
+  titulo: React.ReactNode
   /** Párrafo opcional bajo el titular. */
   bajada?: string
   /** Si no se pasa, el acordeón ocupa una sola columna centrada. */

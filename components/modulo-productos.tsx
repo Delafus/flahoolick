@@ -20,11 +20,11 @@ export function ModuloProductos() {
               className="flex flex-col gap-4 p-10 group hover:opacity-80 transition-opacity"
               style={{ backgroundColor: NEGRO }}>
               <p style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 400,
+                fontFamily: 'var(--font-bricolage)',
+                fontWeight: 800,
                 fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.05,
-                letterSpacing: '-0.015em',
+                letterSpacing: '-0.03em',
                 color: BLANCO,
               }}>{p.titulo}</p>
               <p className="text-sm leading-relaxed" style={{ color: BLANCO, opacity: 0.6 }}>{p.desc}</p>

@@ -15,14 +15,12 @@ export function ModuloMetodologia() {
         <div className="flex flex-col gap-8" style={{ maxWidth: '48rem' }}>
           <p className="label" style={{ color: BLANCO, opacity: 0.6 }}>Metodología</p>
           <h2 style={{
-            fontFamily: 'var(--font-display)',
             fontSize: 'clamp(3rem, 10vw, 8rem)',
             lineHeight: 1.0,
-            letterSpacing: '-0.02em',
             color: BLANCO,
-            fontWeight: 400,
           }}>
-            Del conocimiento disperso a un sistema que trabaja.
+            <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Del conocimiento disperso</span>
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}> a un sistema que trabaja.</span>
           </h2>
           <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)', lineHeight: 1.6, color: BLANCO, opacity: 0.85, fontWeight: 300 }}>
             Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado.

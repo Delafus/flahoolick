@@ -78,9 +78,11 @@ export default function HomePage() {
           }}
         >
           <div className="max-container w-full text-center flex flex-col gap-6">
-            <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>
-              {s.h1Base}
-              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400 }}>
+            <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
+              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
+                {s.h1Base}
+              </span>
+              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
                 {s.h1Emphasis}
               </span>
             </h1>
@@ -128,8 +130,8 @@ export default function HomePage() {
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
           <h2 className="text-hero" style={{ color: '#083EA7', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-            <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400 }}>Convertimos conocimiento técnico en autoridad de mercado.</span>
+            <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos conocimiento técnico en autoridad de mercado.</span>
           </h2>
         </div>
 

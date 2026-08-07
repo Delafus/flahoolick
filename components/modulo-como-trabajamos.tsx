@@ -24,7 +24,10 @@ export function ModuloComoTrabajamos() {
     <div style={{ backgroundColor: GRIS }}>
       <AcordeonSeccion
         eyebrow="En qué nos especializamos"
-        titulo="Donde el contenido trabaja para el negocio"
+        titulo={<>
+          <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Donde el contenido trabaja</span>
+          <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}> para el negocio</span>
+        </>}
         bajada="Cuatro disciplinas trabajan juntas durante el diagnóstico, la instalación y la operación."
         items={disciplinas}
         ctaLabel="VER MÁS"

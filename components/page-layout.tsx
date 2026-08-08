@@ -17,7 +17,7 @@ interface PageLayoutProps {
   /** Alternativa a `illustration` para contenido custom (ej. una animación) en vez de una imagen estática. */
   illustrationNode?: React.ReactNode
   /** Sobrescribe el copy del formulario de contacto al pie de la página. */
-  contact?: { headline?: string; description?: string; note?: string; submitLabel?: string }
+  contact?: { headline?: React.ReactNode; description?: string; note?: string; submitLabel?: string }
   children: React.ReactNode
 }
 

@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
-import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
+import { CatalogoCards } from '@/components/catalogo-cards'
+import { NavegableCards } from '@/components/navegable-cards'
 import { CasoAudioBrief } from '@/components/caso-audio-brief'
-import { CasoImagenBrief } from '@/components/caso-imagen-brief'
 
 export const metadata: Metadata = {
   title: 'FrecuenciA — Flahoolick',
@@ -12,20 +12,19 @@ export const metadata: Metadata = {
 }
 
 const NEGRO = '#000000'
-const VERDE = '#1FDE91'
 
 const queResuelve = [
-  'Tu conocimiento técnico vive en PDFs, WhatsApps y reuniones que nadie vuelve a leer.',
-  'Tu equipo comercial repite lo mismo a cada prospecto en vez de mostrarlo.',
-  'Tus herramientas de venta son PDFs estáticos, no experiencias que capturan leads.',
+  { titulo: 'Conocimiento atrapado', desc: 'Vive en PDFs, WhatsApps y reuniones que nadie vuelve a leer.' },
+  { titulo: 'Discurso que no escala', desc: 'Tu equipo repite lo mismo a cada prospecto, uno por uno.' },
+  { titulo: 'Herramientas que no capturan', desc: 'PDFs estáticos en vez de experiencias que generan leads.' },
 ]
 
 const productosDunamis = [
-  { titulo: 'Dossier de servicios', href: 'https://servicios.dunamis.broker/' },
-  { titulo: 'Simulador de valorización', href: 'https://valor.dunamis.broker/' },
-  { titulo: 'Diagnóstico comprar/arrendar', href: 'https://decision.dunamis.broker/' },
-  { titulo: 'Blog editorial (12 artículos)', href: 'https://www.dunamis.broker/blog' },
-  { titulo: 'Agente Dee', href: 'https://dunamis.agency/' },
+  { label: 'HERRAMIENTA', titulo: 'Dossier', desc: 'Reemplaza el PDF de ventas.', href: 'https://servicios.dunamis.broker/' },
+  { label: 'HERRAMIENTA', titulo: 'Simulador', desc: 'Valoriza propiedades y captura leads.', href: 'https://valor.dunamis.broker/' },
+  { label: 'HERRAMIENTA', titulo: 'Diagnóstico', desc: 'Comprar o arrendar, resuelto en minutos.', href: 'https://decision.dunamis.broker/' },
+  { label: 'EDITORIAL', titulo: 'Blog', desc: '12 artículos con voz propia.', href: 'https://www.dunamis.broker/blog' },
+  { label: 'AGENTE', titulo: 'Dee', desc: 'Conversa, filtra y agenda visitas.', href: 'https://dunamis.agency/' },
 ]
 
 const niveles = [
@@ -35,13 +34,7 @@ const niveles = [
   { numero: 'NIVEL 4', titulo: 'Agente', desc: 'Un asistente conectado a tu inventario o base de datos que conversa, filtra y agenda sin intervención humana.' },
 ]
 
-const pasos = [
-  { numero: '01', titulo: 'Encontramos', desc: 'Identificamos el conocimiento disperso en documentos, conversaciones y la cabeza de tu equipo.' },
-  { numero: '02', titulo: 'Ordenamos', desc: 'Priorizamos qué debe convertirse en herramienta pública y qué puede esperar.' },
-  { numero: '03', titulo: 'Construimos', desc: 'Diseñamos el dossier, el simulador o el sistema editorial con tu información real.' },
-  { numero: '04', titulo: 'Publicamos', desc: 'Sacamos la herramienta al mercado, lista para que la use tu equipo comercial.' },
-  { numero: '05', titulo: 'Medimos', desc: 'Revisamos uso, leads capturados y preguntas nuevas para mejorar el siguiente ciclo.' },
-]
+const PASOS_LABELS = ['Encontramos', 'Ordenamos', 'Construimos', 'Publicamos', 'Medimos']
 
 const TRANSCRIPCION_DUNAMIS = 'Oye... necesito que me ayudes con algo. Los agentes me están pidiendo hace semanas un dossier, algo que puedan mandarle al cliente apenas preguntan por comisiones, por plazos, todo eso. Ahora se los explican por WhatsApp, cada uno a su manera, y se pierde información, o queda mal explicado. No necesito nada... como muy elaborado. Algo simple, que se entienda rápido, que se vea profesional. Que un agente lo mande y el cliente quede tranquilo, no con más dudas. ¿Podemos armar algo así? Como para tenerlo listo esta semana si se puede.'
 
@@ -50,26 +43,21 @@ export default function FrecuenciaPage() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        tagline={<>Frecuenc<span style={{ color: VERDE }}>IA</span></>}
-        headline={<FontMix bold="Tu negocio" italic=" en la frecuencia exacta." />}
-        description="Convertimos el conocimiento disperso de tu empresa en herramientas públicas que venden — todos los días, sin depender de que alguien lo explique de nuevo."
+        tagline="FrecuenciA — construido con IA, publicado en semanas"
+        headline={<FontMix bold="Herramientas públicas" italic=" que venden por ti." />}
+        description="Convertimos el conocimiento de tu empresa en dossiers, simuladores, blogs y agentes conectados a tus datos."
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
         ctaLabel="Agenda una demo →"
         contact={{
+          headline: <FontMix bold="Agenda tu demo" italic=" de FrecuenciA." />,
           submitLabel: 'Agenda una demo →',
         }}
       >
         {/* Qué resuelve */}
         <BodySection dark title="Qué resuelve">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
-            {queResuelve.map(t => (
-              <div key={t} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
-                <h3 className="text-base font-semibold leading-snug">{t}</h3>
-              </div>
-            ))}
-          </div>
+          <CatalogoCards items={queResuelve} cols={3} label="Dolor" />
         </BodySection>
 
         {/* Caso en vivo: Dunamis */}
@@ -87,52 +75,20 @@ export default function FrecuenciaPage() {
               color={NEGRO}
             />
 
-            <div className="flex flex-col items-center gap-4 text-center">
-              <p className="text-sm opacity-50">De esta conversación salió el sistema completo que ves abajo.</p>
-              <Link
-                href="https://servicios.dunamis.broker"
-                target="_blank" rel="noopener noreferrer"
-                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}
-              >
-                Ver el dossier que generó →
-              </Link>
-            </div>
+            <p className="text-center text-sm opacity-50">De esta conversación salió el sistema completo.</p>
 
-            <CasoImagenBrief
-              src="/dee-chat.svg"
-              alt="Conversación real con Dee, el agente de Dunamis Agency"
-              numero="02"
-              label="AGENTE AUTOMATIZADO · DUNAMIS AGENCY (CHICUREO)"
-              contextoTexto="Dee conversa, entiende lo que el cliente busca y responde con propiedades reales de la base de datos. Sin formularios, sin menús."
-              resultadoTexto="Cada conversación termina en una visita agendada o un dato de contacto capturado."
-              color={NEGRO}
-            />
-
-            <div className="flex flex-col items-center gap-4 text-center">
-              <Link
-                href="https://dunamis.agency"
-                target="_blank" rel="noopener noreferrer"
-                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}
-              >
-                Habla con Dee →
-              </Link>
-            </div>
-
-            {/* Los 5 productos en vivo */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px mt-4" style={{ background: 'rgba(0,0,0,0.1)' }}>
-              {productosDunamis.map(p => (
-                <Link key={p.href} href={p.href} target="_blank" rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-4 p-6 hover:opacity-70 transition-opacity"
-                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
-                  <span className="text-sm font-semibold">{p.titulo}</span>
-                  <span className="label opacity-40 group-hover:opacity-80 transition-opacity flex-shrink-0">Ver →</span>
-                </Link>
-              ))}
-            </div>
+            <NavegableCards items={productosDunamis} cols={3} />
 
             <p className="text-center text-sm opacity-45">El equipo de ventas de Dunamis lo usa a diario para cerrar clientes.</p>
+
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="text-base opacity-70">¿Quieres esto para tu empresa?</p>
+              <Link href="#contacto"
+                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+                Agenda una demo →
+              </Link>
+            </div>
           </div>
         </BodySection>
 
@@ -152,9 +108,23 @@ export default function FrecuenciaPage() {
           </div>
         </BodySection>
 
-        {/* Cómo funciona */}
+        {/* Cómo funciona — comprimido, el detalle completo vive en Metodología */}
         <BodySection title="Cómo funciona">
-          <ServicioScrollSteps pasos={pasos} color={NEGRO} />
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+              {PASOS_LABELS.map((p, i) => (
+                <span key={p} className="flex items-center gap-3">
+                  <span className="label" style={{ opacity: 0.7 }}>{p}</span>
+                  {i < PASOS_LABELS.length - 1 && <span style={{ opacity: 0.3 }}>·</span>}
+                </span>
+              ))}
+            </div>
+            <Link href="/metodologia"
+              className="label inline-flex items-center gap-2 mx-auto hover:opacity-60 transition-opacity"
+              style={{ opacity: 0.6 }}>
+              Así trabajamos →
+            </Link>
+          </div>
         </BodySection>
       </PageLayout>
     </>

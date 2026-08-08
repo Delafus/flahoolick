@@ -30,8 +30,28 @@ function seeded(seed: number) {
   }
 }
 
-function Dot({ x, y, r = R, color = '#000000', opacity = 1 }: { x: number; y: number; r?: number; color?: string; opacity?: number }) {
-  return <circle cx={x} cy={y} r={r} fill={color} opacity={opacity} />
+function Dot({ x, y, r = R, color = '#000000', opacity = 1, still = false }: { x: number; y: number; r?: number; color?: string; opacity?: number; still?: boolean }) {
+  if (still) return <circle cx={x} cy={y} r={r} fill={color} opacity={opacity} />
+  // Respiración de opacidad, timing determinístico por posición — misma técnica que grilla-proceso.tsx (modular alfa), sin trazo.
+  const dur = 2.4 + ((x * 7 + y * 13) % 21) / 10
+  const delay = ((x * 3 + y * 11) % 28) / 10
+  const lo = Math.max(0, opacity - 0.28)
+  const hi = Math.min(1, opacity + 0.15)
+  return (
+    <circle cx={x} cy={y} r={r} fill={color} opacity={opacity}>
+      <animate attributeName="opacity" values={`${opacity};${hi};${lo};${opacity}`} dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+    </circle>
+  )
+}
+
+/** Puntos interpolados entre a y b — así se lee una "línea" sin dibujar una: son puntos por proximidad. */
+function pointsAlong(a: { x: number; y: number }, b: { x: number; y: number }, count: number) {
+  const pts: { x: number; y: number; t: number }[] = []
+  for (let i = 0; i <= count; i++) {
+    const t = i / count
+    pts.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, t })
+  }
+  return pts
 }
 
 /** Ilustraciones estáticas del sistema de dots — una por página, cada una con su propio significado. Solo GrillaProceso (Metodología) está animada. */
@@ -41,33 +61,48 @@ export function DotPattern({ pattern, color = '#000000', accentColor = '#1FDE91'
   const els: React.ReactNode[] = []
 
   if (pattern === 'constelaciones') {
-    // 4 clusters separados — las 4 disciplinas sobre el mismo campo.
+    // 4 disciplinas = 4 mini-grillas separadas sobre el mismo campo, no scatter random.
     const centers = [
       { cx: 90, cy: 90 }, { cx: 210, cy: 90 },
       { cx: 90, cy: 210 }, { cx: 210, cy: 210 },
     ]
+    const sub = 5
+    const cell = 15
     centers.forEach((c, ci) => {
-      for (let i = 0; i < 14; i++) {
-        const a = rnd() * Math.PI * 2
-        const r = rnd() * 42
-        els.push(<Dot key={`${ci}-${i}`} x={c.cx + Math.cos(a) * r} y={c.cy + Math.sin(a) * r} color={color} opacity={0.35 + rnd() * 0.5} />)
+      const half = ((sub - 1) * cell) / 2
+      for (let row = 0; row < sub; row++) {
+        for (let col = 0; col < sub; col++) {
+          if (rnd() < 0.35) continue // densidad ~65%, no la grilla completa
+          const x = c.cx - half + col * cell
+          const y = c.cy - half + row * cell
+          els.push(<Dot key={`${ci}-${row}-${col}`} x={x} y={y} color={color} opacity={0.35 + rnd() * 0.5} />)
+        }
       }
     })
   }
 
   if (pattern === 'mapa') {
-    // Puntos conectados por líneas finas formando una ruta con ramificaciones.
+    // Ruta con ramificaciones — la línea la lee el ojo por proximidad de puntos encendidos, ninguna se dibuja.
     const tronco = [
       { x: 40, y: 240 }, { x: 90, y: 210 }, { x: 130, y: 170 }, { x: 170, y: 150 }, { x: 230, y: 110 }, { x: 270, y: 70 },
     ]
     const rama1 = [{ x: 130, y: 170 }, { x: 110, y: 110 }, { x: 140, y: 60 }]
     const rama2 = [{ x: 230, y: 110 }, { x: 265, y: 160 }]
-    const paths = [tronco, rama1, rama2]
-    paths.forEach((path, pi) => {
-      for (let i = 0; i < path.length - 1; i++) {
-        els.push(<line key={`l-${pi}-${i}`} x1={path[i].x} y1={path[i].y} x2={path[i + 1].x} y2={path[i + 1].y} stroke={color} strokeWidth={1} opacity={0.25} />)
+    const paths: { pts: typeof tronco; fade: boolean }[] = [
+      { pts: tronco, fade: false },
+      { pts: rama1, fade: true },
+      { pts: rama2, fade: true },
+    ]
+    paths.forEach(({ pts, fade }, pi) => {
+      for (let i = 0; i < pts.length - 1; i++) {
+        const seg = pointsAlong(pts[i], pts[i + 1], 5)
+        seg.forEach((p, si) => {
+          if (si === 0 && i > 0) return // no duplicar el punto de unión
+          const distFromStart = i + p.t
+          const decay = fade ? Math.max(0.15, 1 - distFromStart / (pts.length - 1)) : 1
+          els.push(<Dot key={`${pi}-${i}-${si}`} x={p.x} y={p.y} r={si === 0 || si === seg.length - 1 ? R : R * 0.7} color={color} opacity={0.75 * decay} />)
+        })
       }
-      path.forEach((p, i) => els.push(<Dot key={`d-${pi}-${i}`} x={p.x} y={p.y} color={color} opacity={0.8} />))
     })
   }
 
@@ -120,13 +155,15 @@ export function DotPattern({ pattern, color = '#000000', accentColor = '#1FDE91'
   }
 
   if (pattern === 'captura') {
-    // Puntos dispersos con estelas (líneas) hacia un punto colector.
+    // Puntos dispersos convergiendo hacia un colector — la trayectoria se lee por puntos intermedios, sin trazo.
     const colector = { x: SIZE - 60, y: SIZE / 2 }
-    for (let i = 0; i < 22; i++) {
-      const x = rnd() * (SIZE - 90)
-      const y = rnd() * SIZE
-      els.push(<line key={`l-${i}`} x1={x} y1={y} x2={colector.x} y2={colector.y} stroke={color} strokeWidth={0.75} opacity={0.12} />)
-      els.push(<Dot key={`d-${i}`} x={x} y={y} r={1.8} color={color} opacity={0.4 + rnd() * 0.3} />)
+    for (let i = 0; i < 14; i++) {
+      const origen = { x: rnd() * (SIZE - 90), y: rnd() * SIZE }
+      const seg = pointsAlong(origen, colector, 6)
+      seg.forEach((p, si) => {
+        const isSource = si === 0
+        els.push(<Dot key={`${i}-${si}`} x={p.x} y={p.y} r={isSource ? 1.8 : 1.1} color={color} opacity={isSource ? 0.55 : 0.12 + p.t * 0.15} />)
+      })
     }
     els.push(<Dot key="colector" x={colector.x} y={colector.y} r={7} color={color} opacity={0.9} />)
   }
@@ -171,22 +208,31 @@ export function DotPattern({ pattern, color = '#000000', accentColor = '#1FDE91'
   }
 
   if (pattern === 'origen') {
-    // Un punto latiendo en la esquina de una grilla vacía (casi invisible salvo el origen).
+    // Un punto latiendo en la esquina de una grilla vacía. El pulso son los propios puntos de la grilla
+    // modulando su alfa según su distancia al origen — igual técnica que grilla-proceso.tsx, sin trazo.
     const grid = 7
     const pad = 20
     const step = (SIZE - pad * 2) / (grid - 1)
+    const originPt = { x: pad, y: pad }
+    const maxDist = Math.hypot(SIZE - pad * 2, SIZE - pad * 2)
     for (let row = 0; row < grid; row++) {
       for (let col = 0; col < grid; col++) {
-        els.push(<Dot key={`${row}-${col}`} x={pad + col * step} y={pad + row * step} r={1.6} color={color} opacity={0.12} />)
+        const x = pad + col * step
+        const y = pad + row * step
+        const isOrigin = row === 0 && col === 0
+        if (isOrigin) {
+          els.push(<Dot key="origen" x={x} y={y} r={4} color={color} opacity={0.9} />)
+          continue
+        }
+        const dist = Math.hypot(x - originPt.x, y - originPt.y)
+        const delay = (dist / maxDist) * 2.2
+        els.push(
+          <circle key={`${row}-${col}`} cx={x} cy={y} r={1.6} fill={color} opacity={0.12}>
+            <animate attributeName="opacity" values="0.12;0.5;0.12" dur="3s" begin={`${delay}s`} repeatCount="indefinite" />
+          </circle>
+        )
       }
     }
-    els.push(
-      <circle key="pulso" cx={pad} cy={pad} r={5} fill="none" stroke={color} strokeWidth={1.5} opacity={0.5}>
-        <animate attributeName="r" values="4;16;4" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite" />
-      </circle>
-    )
-    els.push(<Dot key="origen" x={pad} y={pad} r={4} color={color} opacity={0.9} />)
   }
 
   return (

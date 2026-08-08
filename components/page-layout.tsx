@@ -52,7 +52,7 @@ export function PageLayout({
           {/* MOBILE — stack */}
           <div className="flex flex-col gap-6 md:hidden">
             <h1 style={{
-              fontSize: 'clamp(3.5rem, 10vw, 11rem)',
+              fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
               lineHeight: 0.92,
               color: heroText,
               wordBreak: 'break-word',
@@ -116,7 +116,7 @@ export function PageLayout({
             {/* Texto — H1 masivo → label → HR → descripción */}
             <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>
               <h1 style={{
-                fontSize: 'clamp(3.5rem, 8vw, 11rem)',
+                fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
                 lineHeight: 0.92,
                 color: heroText,
               }}>

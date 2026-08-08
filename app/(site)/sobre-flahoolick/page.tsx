@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 import { FontMix } from '@/components/page-layout'
+import { Marquee } from '@/components/marquee'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick',
@@ -94,6 +95,17 @@ export default function SobreFlahoolick() {
         </div>
       </section>
 
+      {/* Marcas que nos formaron */}
+      <section
+        className="page-px flex flex-col items-center text-center"
+        style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)', paddingTop: '3rem', paddingBottom: '3rem' }}
+      >
+        <p className="label" style={{ color: '#F9F0E2', opacity: 0.5, marginBottom: '1.5rem' }}>Marcas que nos formaron</p>
+        <div className="max-container" style={{ width: '100%' }}>
+          <Marquee color="#ffffff" />
+        </div>
+      </section>
+
       {/* Más sobre Flahoolick */}
       <section
         className="page-px section-py"
@@ -101,12 +113,18 @@ export default function SobreFlahoolick() {
       >
         <div className="max-container flex flex-col gap-16">
           <h2 className="text-display"><FontMix bold="Más sobre Flahoolick" /></h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
             {[
               {
                 titulo: 'SERVICIOS',
-                desc: 'Los tres puntos de entrada a nuestro trabajo — diagnóstico, instalación y operación — y las disciplinas que los sostienen.',
+                desc: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
                 href: '/servicios',
+                cta: 'Explorar →',
+              },
+              {
+                titulo: 'FRECUENCIA',
+                desc: 'Herramientas públicas que venden por ti — dossiers, simuladores, blogs y agentes conectados a tus datos.',
+                href: '/frecuencia',
                 cta: 'Explorar →',
               },
               {

@@ -11,6 +11,11 @@ const NEGRO = '#000000'
 
 const preguntas = [
   {
+    q: '¿Cómo empezamos?',
+    a: 'Con una llamada de 30 minutos. Sin presentaciones ni decks de venta. Solo una conversación para entender tu situación y ver si tiene sentido seguir. Si el diagnóstico confirma que hay trabajo por hacer, te presentamos una propuesta en la semana siguiente.',
+    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
+  },
+  {
     q: '¿Qué hace exactamente Flahoolick?',
     a: 'Instalamos el sistema que convierte el conocimiento técnico y comercial de una empresa B2B en presencia de mercado continua. Trabajamos en tres frentes simultáneos: definimos el relato de marca, instalamos el sistema operativo de contenido y producimos los activos que construyen presencia antes de la decisión de compra. El resultado es un flujo continuo de contenido con criterio, gobernanza y medición — que funciona mientras el equipo comercial está en la calle cerrando negocios.',
     link: { label: 'Explorar Servicios →', href: '/servicios' },
@@ -38,7 +43,7 @@ const preguntas = [
   {
     q: '¿Quién dentro de mi empresa debería contratarnos?',
     a: 'Generalmente nos llama el Gerente General, el Director Comercial o el Director de Marketing cuando sienten que el mercado no refleja lo que la empresa realmente vale. En algunos casos también nos llama quien lidera ventas, porque nota que el equipo comercial tiene que explicar demasiado antes de generar interés real. El trabajo termina siendo transversal — estrategia, contenido y ventas operan sobre el mismo sistema.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
   },
   {
     q: '¿Cómo es un engagement típico?',
@@ -48,41 +53,41 @@ const preguntas = [
   {
     q: '¿Cuánto tiempo tarda en verse resultados?',
     a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental — que el mercado te recuerde cuando decida buscar — es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
   },
   {
     q: '¿Qué necesito entregarles para empezar?',
     a: 'Menos de lo que crees. SENSOR está diseñado para extraer conocimiento de material que ya existe: manuales técnicos, propuestas anteriores, grabaciones de reuniones de ventas, fichas de producto. El 70% de la materia prima la sacamos de ahí. El 30% restante lo obtenemos con notas de voz de 10 minutos de tus expertos. No necesitas redactar briefs ni liberar tiempo de tu equipo para reuniones de briefing.',
-    link: { label: 'Conocer SENSOR →', href: '/sensor' },
+    link: { label: 'Conocer SENSOR →', href: '/metodologia#sensor' },
+  },
+  {
+    q: '¿Qué es FrecuenciA?',
+    a: 'FrecuenciA convierte el conocimiento de tu empresa en herramientas públicas que venden: dossiers interactivos, simuladores, blogs y agentes conectados a tus datos. Construido con IA, publicado en semanas.',
+    link: { label: 'Conoce FrecuenciA →', href: '/frecuencia' },
   },
   {
     q: '¿Qué es SENSOR?',
     a: 'SENSOR es el módulo de captura e inteligencia de conocimiento de Flahoolick. Procesa documentación técnica, conversaciones comerciales, objeciones de mercado y señales en plataformas de IA para convertir ese material en materia prima estratégica lista para trabajar. No lo opera el cliente — lo opera el equipo de Flahoolick.',
-    link: { label: 'Conocer SENSOR →', href: '/sensor' },
+    link: { label: 'Conocer SENSOR →', href: '/metodologia#sensor' },
   },
   {
     q: '¿Qué es DECK?',
     a: 'DECK es el módulo de producción de presentaciones ejecutivas de Flahoolick. Tomas múltiples fuentes — documentos, datos, contexto estratégico — y producimos una presentación estructurada, visualmente consistente y lista para entregar. Diseñado para pitches de directorio, propuestas técnicas, decks comerciales y keynotes. Sin el resultado genérico que los generadores de IA producen en tres minutos.',
-    link: { label: 'Conocer DECK →', href: '/deck' },
+    link: { label: 'Conocer DECK →', href: '/metodologia#deck' },
   },
   {
     q: '¿Tienen casos de referencia?',
     a: 'Sí. Por razones de confidencialidad, los casos que compartimos públicamente son anonimizados o requieren autorización del cliente. En una conversación podemos mostrarte los casos relevantes para tu industria con detalle. Algunas empresas con las que hemos trabajado: Claro Empresas, UNAB, Cajas de Chile, Diario Financiero, Consorcio Ciencia e Innovación 2030, Adidas.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
   },
   {
     q: '¿Trabajan con empresas fuera de Chile?',
     a: 'Sí. Operamos en español para empresas en Chile y América Latina. Lo que importa es que la empresa tenga ciclos de decisión complejos y conocimiento técnico que el mercado todavía no ve.',
     link: null,
   },
-  {
-    q: '¿Cómo empezamos?',
-    a: 'Con una llamada de 30 minutos. Sin presentaciones ni decks de venta. Solo una conversación para entender tu situación y ver si tiene sentido seguir. Si el diagnóstico confirma que hay trabajo por hacer, te presentamos una propuesta en la semana siguiente.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto' },
-  },
 ]
 
-function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string; href: string } | null }) {
+function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string; href: string; tipo?: 'comercial' } | null }) {
   const [open, setOpen] = useState(false)
   return (
     <div style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
@@ -116,13 +121,19 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
       }}>
         <div className="pb-8 flex flex-col gap-4">
           <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7, opacity: 0.65, maxWidth: '680px' }}>{a}</p>
-          {link && (
+          {link && (link.tipo === 'comercial' ? (
             <Link href={link.href}
               className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-70 transition-opacity"
               style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '999px' }}>
               {link.label}
             </Link>
-          )}
+          ) : (
+            <Link href={link.href}
+              className="label inline-flex items-center gap-2 w-fit hover:opacity-60 transition-opacity"
+              style={{ opacity: 0.55 }}>
+              {link.label}
+            </Link>
+          ))}
         </div>
       </div>
     </div>

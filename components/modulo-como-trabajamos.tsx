@@ -1,7 +1,6 @@
 'use client'
 
 import { AcordeonSeccion } from './acordeon-seccion'
-import { GrillaProceso } from './grilla-proceso'
 import { DISCIPLINAS } from './servicios-datos'
 
 const GRIS = '#D8D8D7'
@@ -31,7 +30,6 @@ export function ModuloComoTrabajamos() {
         bajada="Cuatro disciplinas trabajan juntas durante el diagnóstico, la instalación y la operación."
         items={disciplinas}
         ctaLabel="VER MÁS"
-        renderIllustration={abierto => <GrillaProceso abierto={abierto} color="#000000" />}
         dark={false}
         bgColor={GRIS}
       />

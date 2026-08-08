@@ -14,25 +14,25 @@ export const DISCIPLINAS: Disciplina[] = [
   {
     id: 'estrategia-de-contenido',
     nombre: 'Estrategia de contenido',
-    desc: 'Mapeamos audiencias, territorios de autoridad y las tensiones que activan la búsqueda de tu comprador.',
+    desc: 'Mapeamos qué busca tu comprador y qué temas puede liderar tu empresa.',
     href: '/servicios/estrategia-de-contenido',
   },
   {
     id: 'marca-y-relato',
     nombre: 'Marca y relato',
-    desc: 'Construimos la idea central y la arquitectura de mensajes que unifican cómo tu empresa le habla al mercado.',
+    desc: 'Una idea central y mensajes que todo el equipo cuenta igual.',
     href: '/servicios/marca-y-relato',
   },
   {
     id: 'produccion-de-contenido',
     nombre: 'Producción de contenido',
-    desc: 'Producimos contenido de autoridad, activos ejecutivos y herramientas comerciales listas para el ciclo de cierre.',
+    desc: 'Piezas de autoridad y herramientas de venta, en cadencia mensual.',
     href: '/servicios/produccion-de-contenido',
   },
   {
     id: 'sistemas-de-contenido-con-ia',
     nombre: 'Sistemas de contenido con IA',
-    desc: 'Diseñamos la infraestructura que captura, prioriza y distribuye conocimiento — con IA a escala y criterio senior.',
+    desc: 'Infraestructura que captura y distribuye conocimiento a escala, con criterio senior.',
     href: '/servicios/sistemas-de-contenido-con-ia',
   },
 ]

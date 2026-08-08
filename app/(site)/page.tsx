@@ -1,10 +1,11 @@
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
+import { FontMix } from '@/components/page-layout'
 import { Marquee } from '@/components/marquee'
 import Image from 'next/image'
 import { ModuloMetodologia } from '@/components/modulo-metodologia'
 import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
-import { ModuloProductos } from '@/components/modulo-productos'
+import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { TrappedDots } from '@/components/trapped-dots'
 import { CirculationDots } from '@/components/circulation-dots'
@@ -97,7 +98,7 @@ export default function HomePage() {
                 <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} /></div>
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
-                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#D8D8D7" />}
+                  {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#8B857C" />}
                   {i === 1 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" points={HERO2_POINTS} />}
                   {i === 2 && <CirculationDots viewBoxSize={s.imgSize.width} color="#403D37" pulses />}
                 </div>
@@ -147,14 +148,11 @@ export default function HomePage() {
         </Link>
       </section>
 
+      {/* Caso Dunamis — comprimido, el completo vive en /frecuencia */}
+      <ModuloCasoDunamis />
+
       {/* Módulo Servicios — en qué nos especializamos */}
       <ModuloComoTrabajamos />
-
-      {/* Módulo Metodología */}
-      <ModuloMetodologia />
-
-      {/* Módulo Productos — SENSOR / DECK */}
-      <ModuloProductos />
 
       {/* EVIDENCIA — marcas, experiencia e industrias */}
       <section
@@ -198,11 +196,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Módulo Metodología */}
+      <ModuloMetodologia />
+
       {/* Módulo JERGA */}
       <ModuloJerga />
 
       {/* Contacto */}
-      <ContactForm bg="#403D37" text="#ffffff" />
+      <ContactForm bg="#403D37" text="#ffffff"
+        headline={<FontMix bold="¿Empezamos" italic=" por una llamada?" />}
+        note="30 minutos. Sin presentaciones ni decks de venta." />
     </>
   )
 }

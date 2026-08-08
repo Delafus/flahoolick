@@ -3,7 +3,6 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioCards } from '@/components/servicio-cards'
-import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Marca y Relato — Flahoolick' }
 
@@ -25,13 +24,6 @@ const pasos = [
   { numero: '04', titulo: 'Identidad', desc: 'Diseñamos las señales visuales que vuelven tangible la estrategia.' },
 ]
 
-const categorias = [
-  { titulo: 'Estrategia', items: ['Estrategia de marca', 'Posicionamiento', 'Propuesta de valor', 'Audiencias prioritarias', 'Arquitectura de marca'] },
-  { titulo: 'Lenguaje', items: ['Naming', 'Tagline y claims', 'Relato corporativo', 'Arquitectura de mensajes', 'Voz y tono', 'Pilares narrativos'] },
-  { titulo: 'Identidad', items: ['Logotipo', 'Tipografía', 'Paleta cromática', 'Dirección de arte', 'Sistema gráfico', 'Iconografía'] },
-  { titulo: 'Aplicación', items: ['Manual de marca', 'Playbook de mensajes', 'Plantillas corporativas', 'Presentaciones', 'Sitio web', 'Material comercial', 'Kit de lanzamiento'] },
-]
-
 const recibes = ['Sitios', 'Presentaciones', 'Campañas', 'Redes sociales', 'Ventas', 'Licitaciones', 'Comunicación interna', 'Experiencias digitales']
 
 export default function MarcaYRelato() {
@@ -40,8 +32,8 @@ export default function MarcaYRelato() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Marca y Relato"
-        headline={<FontMix bold="Firma" italic=" tu categoría." />}
-        description="Construimos una posición, una voz y una identidad que el mercado puede reconocer, recordar y elegir."
+        headline={<FontMix bold="Una idea" italic=" que todo tu equipo cuenta igual." />}
+        description="La idea central y la arquitectura de mensajes que unifica cómo tu empresa habla."
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
@@ -88,13 +80,6 @@ export default function MarcaYRelato() {
           <div className="flex flex-col gap-10">
             <p className="label opacity-40">Qué construimos</p>
             <ServicioCards items={pasos} color={NEGRO} />
-          </div>
-        </BodySection>
-
-        {/* Qué incluye — acordeón, ancho contenido */}
-        <BodySection title="Qué incluye">
-          <div style={{ maxWidth: '52rem' }}>
-            <ServicioAcordeonIncluye categorias={categorias} color={NEGRO} />
           </div>
         </BodySection>
 

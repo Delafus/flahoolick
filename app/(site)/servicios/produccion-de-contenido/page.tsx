@@ -3,7 +3,6 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
-import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Producción de Contenido — Flahoolick' }
 
@@ -30,20 +29,7 @@ const pasos = [
   { numero: '04', titulo: 'Ponemos en circulación', desc: 'Adaptamos el contenido a distintos canales, formatos y momentos de decisión.' },
 ]
 
-const categorias = [
-  { titulo: 'Investigación', items: ['Entrevistas con especialistas', 'Revisión documental', 'Análisis de datos', 'Investigación de audiencias', 'Investigación de mercado'] },
-  { titulo: 'Contenido', items: ['Concepto editorial', 'Arquitectura narrativa', 'Redacción', 'Edición', 'Fact-checking', 'Optimización SEO y AEO'] },
-  { titulo: 'Diseño', items: ['Dirección de arte', 'Diseño editorial', 'Visualización de datos', 'Ilustración', 'Motion graphics', 'Producción audiovisual'] },
-  { titulo: 'Distribución', items: ['Adaptación por canal', 'Reutilización de activos', 'Calendario de publicación', 'Paid media', 'Medición y aprendizaje'] },
-]
-
 const recibes = ['Construir autoridad', 'Explicar soluciones', 'Responder preguntas', 'Apoyar a ventas', 'Alimentar campañas', 'Mantener presencia', 'Extender la vida de cada idea']
-
-const formasDeTrabajo = [
-  { titulo: 'Proyecto', desc: 'Una pieza, una campaña o una herramienta con alcance definido.' },
-  { titulo: 'Programa editorial', desc: 'Una serie de contenidos conectados por una audiencia, una idea y un objetivo.' },
-  { titulo: 'Estudio dedicado', desc: 'Un equipo senior que produce, publica y mejora contenido de forma continua.' },
-]
 
 export default function ProduccionDeContenido() {
   return (
@@ -51,8 +37,8 @@ export default function ProduccionDeContenido() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Producción de Contenido"
-        headline={<FontMix bold="Pon tu conocimiento" italic=" en la calle." />}
-        description="Transformamos experiencia técnica en historias, herramientas y piezas que circulan donde las decisiones toman forma."
+        headline={<FontMix bold="Piezas que construyen" italic=" presencia y cierran ventas." />}
+        description="Contenido de autoridad y herramientas comerciales, producidos en cadencia."
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
@@ -112,13 +98,6 @@ export default function ProduccionDeContenido() {
           </div>
         </BodySection>
 
-        {/* Qué incluye — acordeón, ancho contenido */}
-        <BodySection title="Qué incluye">
-          <div style={{ maxWidth: '52rem' }}>
-            <ServicioAcordeonIncluye categorias={categorias} color={NEGRO} />
-          </div>
-        </BodySection>
-
         {/* Qué recibes — mockup del sistema de activos */}
         <BodySection dark>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -146,18 +125,6 @@ export default function ProduccionDeContenido() {
                 ))}
               </div>
             </div>
-          </div>
-        </BodySection>
-
-        {/* Formas de trabajo */}
-        <BodySection title="Formas de trabajo">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {formasDeTrabajo.map(f => (
-              <div key={f.titulo} className="flex flex-col gap-3 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 className="text-base font-semibold">{f.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-65">{f.desc}</p>
-              </div>
-            ))}
           </div>
         </BodySection>
 

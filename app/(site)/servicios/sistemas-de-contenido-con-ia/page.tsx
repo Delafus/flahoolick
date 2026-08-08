@@ -4,7 +4,6 @@ import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-lay
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioCards } from '@/components/servicio-cards'
-import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Sistemas de Contenido con IA — Flahoolick' }
 
@@ -39,13 +38,6 @@ const pasos = [
   { numero: '05', titulo: 'Mejoramos', desc: 'Registramos preguntas, correcciones y señales para fortalecer el sistema.' },
 ]
 
-const categorias = [
-  { titulo: 'Conocimiento', items: ['Auditoría de fuentes', 'Mapa de conocimiento', 'Base documental', 'Taxonomía', 'Metadatos', 'Permisos de acceso'] },
-  { titulo: 'Inteligencia artificial', items: ['Asistentes internos', 'Agentes de investigación', 'Agentes de contenido', 'Generación de briefs', 'Búsqueda semántica', 'Procesamiento de documentos'] },
-  { titulo: 'Producción', items: ['Flujos de creación', 'Automatización de tareas', 'Reutilización de contenido', 'Procesos de aprobación', 'Integraciones', 'Documentación de trabajo'] },
-  { titulo: 'Control', items: ['Fuentes verificables', 'Reglas de marca', 'Voz y tono', 'Revisión humana', 'Gobernanza', 'Medición de calidad'] },
-]
-
 const recibes = ['Encontrar información', 'Responder preguntas', 'Generar briefs', 'Crear contenido', 'Reutilizar activos', 'Mantener consistencia', 'Registrar aprendizajes', 'Acelerar la producción']
 
 const comoUsamosIA = [
@@ -55,21 +47,14 @@ const comoUsamosIA = [
   { titulo: 'Validamos con criterio humano.', desc: 'La IA procesa. El equipo senior de Flahoolick revisa, prioriza y decide qué se produce. Ese orden es inamovible.' },
 ]
 
-const formasDeTrabajo = [
-  { titulo: 'Diagnóstico', desc: 'Identificamos fuentes, procesos, pérdidas de conocimiento y oportunidades de automatización.' },
-  { titulo: 'Piloto', desc: 'Construimos un sistema acotado para un equipo, una fuente o un caso de uso.' },
-  { titulo: 'Implementación', desc: 'Conectamos las fuentes, los asistentes y los flujos necesarios para trabajar.' },
-  { titulo: 'Mejora continua', desc: 'Mantenemos, medimos y ampliamos las capacidades del sistema.' },
-]
-
 export default function SistemasDeContenidoConIA() {
   return (
     <>
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Sistemas de Contenido con IA"
-        headline={<FontMix bold="Instálale memoria" italic=" a tu empresa." />}
-        description="Diseñamos sistemas que capturan conocimiento, conectan señales y alimentan de forma continua a marketing, ventas y equipos técnicos."
+        headline={<FontMix bold="IA a escala." italic=" Criterio senior." />}
+        description="La infraestructura que captura, prioriza y distribuye tu conocimiento todos los meses."
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
@@ -95,11 +80,6 @@ export default function SistemasDeContenidoConIA() {
           </div>
         </BodySection>
 
-        {/* Qué construimos */}
-        <BodySection title="Qué construimos">
-          <ServicioCards items={construimos} color={NEGRO} />
-        </BodySection>
-
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
@@ -115,6 +95,11 @@ export default function SistemasDeContenidoConIA() {
           </div>
         </BodySection>
 
+        {/* Qué construimos */}
+        <BodySection title="Qué construimos">
+          <ServicioCards items={construimos} color={NEGRO} />
+        </BodySection>
+
         {/* Cómo funciona — secuencia de pasos con scroll-reveal */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
@@ -126,13 +111,6 @@ export default function SistemasDeContenidoConIA() {
         {/* Cómo usamos la IA nosotros mismos */}
         <BodySection title="Así usamos la IA nosotros">
           <HowList items={comoUsamosIA} />
-        </BodySection>
-
-        {/* Qué incluye — acordeón, ancho contenido */}
-        <BodySection title="Qué incluye">
-          <div style={{ maxWidth: '52rem' }}>
-            <ServicioAcordeonIncluye categorias={categorias} color={NEGRO} />
-          </div>
         </BodySection>
 
         {/* Qué recibes — mockup del sistema */}
@@ -162,18 +140,6 @@ export default function SistemasDeContenidoConIA() {
                 ))}
               </div>
             </div>
-          </div>
-        </BodySection>
-
-        {/* Formas de trabajo */}
-        <BodySection title="Formas de trabajo">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {formasDeTrabajo.map(f => (
-              <div key={f.titulo} className="flex flex-col gap-3 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 className="text-base font-semibold">{f.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-65">{f.desc}</p>
-              </div>
-            ))}
           </div>
         </BodySection>
 

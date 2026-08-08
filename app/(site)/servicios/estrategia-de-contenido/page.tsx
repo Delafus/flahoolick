@@ -3,7 +3,6 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioCards } from '@/components/servicio-cards'
-import { ServicioAcordeonIncluye } from '@/components/servicio-acordeon-incluye'
 
 export const metadata: Metadata = { title: 'Estrategia de Contenido — Flahoolick' }
 
@@ -23,13 +22,6 @@ const pasos = [
   { numero: '04', titulo: 'Plan', desc: 'Convertimos la estrategia en un roadmap listo para ejecutar.' },
 ]
 
-const categorias = [
-  { titulo: 'Inteligencia', items: ['Auditoría de contenido', 'Análisis de brechas', 'Inteligencia de audiencias', 'Benchmark competitivo'] },
-  { titulo: 'Arquitectura', items: ['Mapa del proceso de decisión', 'Arquitectura de mensajes', 'Pilares editoriales', 'Territorios temáticos'] },
-  { titulo: 'Circulación', items: ['Plan de canales', 'SEO y visibilidad en buscadores con IA', 'Estrategia de distribución', 'Calendario editorial'] },
-  { titulo: 'Medición', items: ['Roadmap de contenido', 'Indicadores', 'Modelo de medición', 'Criterios de optimización'] },
-]
-
 const recibes = ['Qué decir', 'A quién hablar', 'Qué producir', 'Dónde distribuir', 'Cómo medir', 'Cómo sostener la operación']
 
 export default function EstrategiaDeContenido() {
@@ -38,8 +30,8 @@ export default function EstrategiaDeContenido() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Estrategia de Contenido"
-        headline={<FontMix bold="Ponle cerebro" italic=" al calendario." />}
-        description="Diseñamos la lógica que conecta objetivos, audiencias, temas, canales y momentos de decisión."
+        headline={<FontMix bold="El mapa" italic=" antes que las piezas." />}
+        description="Definimos qué decir, a quién, cuándo y por qué canal — antes de producir nada."
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
@@ -85,13 +77,6 @@ export default function EstrategiaDeContenido() {
           <div className="flex flex-col gap-10">
             <p className="label opacity-40">Qué construimos</p>
             <ServicioCards items={pasos} color={NEGRO} />
-          </div>
-        </BodySection>
-
-        {/* Qué incluye — acordeón, ancho contenido */}
-        <BodySection title="Qué incluye">
-          <div style={{ maxWidth: '52rem' }}>
-            <ServicioAcordeonIncluye categorias={categorias} color={NEGRO} />
           </div>
         </BodySection>
 

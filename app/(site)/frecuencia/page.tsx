@@ -56,9 +56,9 @@ export default function FrecuenciaPage() {
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
-        ctaLabel="Agenda una demo de FrecuenciA →"
+        ctaLabel="Agenda una demo →"
         contact={{
-          submitLabel: 'Agenda tu demo de FrecuenciA →',
+          submitLabel: 'Agenda una demo →',
         }}
       >
         {/* Qué resuelve */}

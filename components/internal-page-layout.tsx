@@ -24,7 +24,7 @@ export function InternalPageLayout({
   heroBg,
   heroText,
   ctaHref = '/#contacto',
-  ctaLabel = 'Conversemos →',
+  ctaLabel = 'Agenda una llamada →',
   children,
   showContact = true,
 }: InternalPageLayoutProps) {

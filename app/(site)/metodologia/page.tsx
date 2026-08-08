@@ -61,7 +61,7 @@ export default function Metodologia() {
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
-        ctaLabel="Cuéntanos qué necesitas resolver →"
+        ctaLabel="Agenda una llamada →"
       >
         {/* Tres pasos. Una misma lógica. */}
         <BodySection title="Tres pasos. Una misma lógica.">

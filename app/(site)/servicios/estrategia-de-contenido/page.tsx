@@ -43,7 +43,7 @@ export default function EstrategiaDeContenido() {
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
-        ctaLabel="Conversemos →"
+        ctaLabel="Agenda una llamada →"
         illustrationNode={<TrappedDots diameterPercent={72} dotColor={NEGRO} />}
       >
         {/* Bloque de apertura */}

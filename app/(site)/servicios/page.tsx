@@ -19,9 +19,9 @@ export default function Servicios() {
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
-        ctaLabel="Hablemos →"
+        ctaLabel="Agenda una llamada →"
         contact={{
-          submitLabel: 'Hablemos →',
+          submitLabel: 'Agenda una llamada →',
         }}
       >
         {/* Los cuatro servicios que sostienen la operación, cada uno con su propia página */}

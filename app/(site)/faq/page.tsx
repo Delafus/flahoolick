@@ -38,7 +38,7 @@ const preguntas = [
   {
     q: '¿Quién dentro de mi empresa debería contratarnos?',
     a: 'Generalmente nos llama el Gerente General, el Director Comercial o el Director de Marketing cuando sienten que el mercado no refleja lo que la empresa realmente vale. En algunos casos también nos llama quien lidera ventas, porque nota que el equipo comercial tiene que explicar demasiado antes de generar interés real. El trabajo termina siendo transversal — estrategia, contenido y ventas operan sobre el mismo sistema.',
-    link: { label: 'Conversemos →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto' },
   },
   {
     q: '¿Cómo es un engagement típico?',
@@ -48,7 +48,7 @@ const preguntas = [
   {
     q: '¿Cuánto tiempo tarda en verse resultados?',
     a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental — que el mercado te recuerde cuando decida buscar — es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
-    link: { label: 'Conversemos →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto' },
   },
   {
     q: '¿Qué necesito entregarles para empezar?',
@@ -68,7 +68,7 @@ const preguntas = [
   {
     q: '¿Tienen casos de referencia?',
     a: 'Sí. Por razones de confidencialidad, los casos que compartimos públicamente son anonimizados o requieren autorización del cliente. En una conversación podemos mostrarte los casos relevantes para tu industria con detalle. Algunas empresas con las que hemos trabajado: Claro Empresas, UNAB, Cajas de Chile, Diario Financiero, Consorcio Ciencia e Innovación 2030, Adidas.',
-    link: { label: 'Conversemos →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto' },
   },
   {
     q: '¿Trabajan con empresas fuera de Chile?',
@@ -78,7 +78,7 @@ const preguntas = [
   {
     q: '¿Cómo empezamos?',
     a: 'Con una llamada de 30 minutos. Sin presentaciones ni decks de venta. Solo una conversación para entender tu situación y ver si tiene sentido seguir. Si el diagnóstico confirma que hay trabajo por hacer, te presentamos una propuesta en la semana siguiente.',
-    link: { label: 'Agendar una llamada →', href: '/#contacto' },
+    link: { label: 'Agenda una llamada →', href: '/#contacto' },
   },
 ]
 

@@ -9,7 +9,7 @@ export function ContactForm({
   headline = <FontMix bold="Tu empresa ya tiene" italic=" el conocimiento." />,
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
-  submitLabel = 'Conversemos →',
+  submitLabel = 'Agenda una llamada →',
 }: {
   bg?: string
   text?: string

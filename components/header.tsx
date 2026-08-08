@@ -41,7 +41,6 @@ const MET_MENU: MegaMenuData = {
   items: [
     { title: 'Tres pasos, una misma lógica',  desc: 'Cómo encontramos, ordenamos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
     { title: 'Cómo trabajamos con IA',          desc: 'IA para capturar y modelar. Criterio humano para decidir.',          href: '/metodologia/como-trabajamos-con-ia' },
-    { title: 'Cómo podemos empezar',            desc: 'Diagnóstico, proyecto o programa continuo.',                        href: '/metodologia#como-empezar' },
   ],
 }
 

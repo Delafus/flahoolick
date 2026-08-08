@@ -48,7 +48,7 @@ const preguntas = [
   {
     q: '¿Cuánto tiempo tarda en verse resultados?',
     a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental — que el mercado te recuerde cuando decida buscar — es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
-    link: { label: 'Cómo podemos empezar →', href: '/metodologia#como-empezar' },
+    link: { label: 'Conversemos →', href: '/#contacto' },
   },
   {
     q: '¿Qué necesito entregarles para empezar?',

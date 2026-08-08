@@ -20,7 +20,7 @@ export default function ComoIA() {
         <BodySection title="Otras secciones">
           <CrossLinks links={[
             { title: 'Tres pasos, una misma lógica', desc: 'Cómo encontramos, ordenamos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
-            { title: 'Cómo podemos empezar', desc: 'Diagnóstico, proyecto o programa continuo.', href: '/metodologia#como-empezar' },
+            { title: 'Sistemas de Contenido con IA', desc: 'El servicio completo: memoria, conexiones, asistentes y producción continua.', href: '/servicios/sistemas-de-contenido-con-ia' },
           ]} />
         </BodySection>
       </PageLayout>

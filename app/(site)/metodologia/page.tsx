@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = {
   title: 'Metodología — Flahoolick',
@@ -47,14 +47,6 @@ const PASOS = [
   },
 ]
 
-const MATERIA_PRIMA = ['Especialistas', 'Documentos', 'Datos', 'Reuniones', 'Casos', 'Presentaciones', 'Preguntas de clientes', 'Objeciones comerciales', 'Experiencia acumulada']
-
-const COMO_EMPEZAR = [
-  { titulo: 'Diagnóstico', desc: 'Analizamos una necesidad concreta y definimos qué conviene hacer.' },
-  { titulo: 'Proyecto', desc: 'Construimos una solución con alcance, entregables y fechas claras.' },
-  { titulo: 'Programa continuo', desc: 'Trabajamos durante varios meses para producir, distribuir y mejorar el sistema.' },
-]
-
 export default function Metodologia() {
   return (
     <>
@@ -88,38 +80,6 @@ export default function Metodologia() {
                 </div>
               </div>
             ))}
-          </div>
-        </BodySection>
-
-        {/* Trabajamos con lo que tu empresa ya tiene */}
-        <BodySection dark title="Trabajamos con lo que tu empresa ya tiene">
-          <div className="flex flex-col gap-8">
-            <Tags items={MATERIA_PRIMA} dark />
-            <p className="text-lead opacity-75" style={{ maxWidth: '42rem' }}>
-              Encontramos el valor que vive dentro de la organización y lo convertimos en algo que el mercado puede encontrar, entender y recordar.
-            </p>
-          </div>
-        </BodySection>
-
-        {/* Cómo podemos empezar */}
-        <BodySection title="Cómo podemos empezar">
-          <div id="como-empezar" className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ scrollMarginTop: '90px' }}>
-            {COMO_EMPEZAR.map(c => (
-              <div key={c.titulo} className="flex flex-col gap-3 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 className="text-base font-semibold">{c.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-65">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </BodySection>
-
-        {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
-        <BodySection dark>
-          <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '42rem', margin: '0 auto' }}>
-            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Tu empresa ya hizo" italic=" la parte difícil: aprender." />
-            </h2>
-            <p className="text-lead opacity-70">Ahora hagamos que ese conocimiento trabaje.</p>
           </div>
         </BodySection>
       </PageLayout>

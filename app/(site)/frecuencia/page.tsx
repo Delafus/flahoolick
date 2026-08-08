@@ -5,6 +5,7 @@ import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { CatalogoCards } from '@/components/catalogo-cards'
 import { NavegableCards } from '@/components/navegable-cards'
 import { CasoAudioBrief } from '@/components/caso-audio-brief'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'FrecuenciA — Flahoolick',
@@ -50,6 +51,7 @@ export default function FrecuenciaPage() {
         heroText="#ffffff"
         ctaHref="#contacto"
         ctaLabel="Agenda una demo →"
+        illustrationNode={<DotPattern pattern="ondas" color="#ffffff" />}
         contact={{
           headline: <FontMix bold="Agenda tu demo" italic=" de FrecuenciA." />,
           submitLabel: 'Agenda una demo →',

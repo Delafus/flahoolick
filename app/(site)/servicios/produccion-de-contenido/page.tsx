@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
-import { TrappedDots } from '@/components/trapped-dots'
+import { DotPattern } from '@/components/dot-pattern'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 
 export const metadata: Metadata = { title: 'Producción de Contenido — Flahoolick' }
@@ -43,7 +43,7 @@ export default function ProduccionDeContenido() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<TrappedDots diameterPercent={72} dotColor={NEGRO} />}
+        illustrationNode={<DotPattern pattern="cadencia" color={NEGRO} />}
       >
         {/* Bloque de apertura */}
         <BodySection>

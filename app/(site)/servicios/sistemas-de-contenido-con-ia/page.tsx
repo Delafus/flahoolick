@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-layout'
-import { TrappedDots } from '@/components/trapped-dots'
+import { DotPattern } from '@/components/dot-pattern'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioCards } from '@/components/servicio-cards'
 
@@ -59,7 +59,7 @@ export default function SistemasDeContenidoConIA() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<TrappedDots diameterPercent={72} dotColor={NEGRO} />}
+        illustrationNode={<DotPattern pattern="malla" color={NEGRO} />}
       >
         {/* Bloque de apertura */}
         <BodySection>

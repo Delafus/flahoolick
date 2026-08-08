@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -21,6 +22,7 @@ export default function Servicios() {
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
         ctaNote="30 minutos. Sin presentaciones ni decks de venta."
+        illustrationNode={<DotPattern pattern="constelaciones" color="#ffffff" />}
         contact={{
           headline: <FontMix bold="Empecemos" italic=" por el diagnóstico." />,
           submitLabel: 'Agenda una llamada →',

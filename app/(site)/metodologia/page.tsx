@@ -3,6 +3,7 @@ import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { MetodologiaPasos } from '@/components/metodologia-pasos'
 import { CatalogoCards } from '@/components/catalogo-cards'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Metodología — Flahoolick',
@@ -108,14 +109,19 @@ export default function Metodologia() {
         {/* SENSOR — módulo de captura */}
         <BodySection>
           <div id="sensor" className="flex flex-col gap-10" style={{ scrollMarginTop: '90px' }}>
-            <div className="flex flex-col gap-4">
-              <p className="label opacity-40">Módulo de captura</p>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-                <FontMix bold="SENSOR: la materia prima" italic=" sale de lo que ya tienes." />
-              </h2>
-              <p className="text-lead opacity-70" style={{ maxWidth: '42rem' }}>
-                Manuales, propuestas, grabaciones de reuniones, notas de CRM. El 70% del contenido nace de material que ya existe; el resto, de notas de voz de 10 minutos de tus expertos.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-8 flex flex-col gap-4">
+                <p className="label opacity-40">Módulo de captura</p>
+                <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+                  <FontMix bold="SENSOR: la materia prima" italic=" sale de lo que ya tienes." />
+                </h2>
+                <p className="text-lead opacity-70" style={{ maxWidth: '42rem' }}>
+                  Manuales, propuestas, grabaciones de reuniones, notas de CRM. El 70% del contenido nace de material que ya existe; el resto, de notas de voz de 10 minutos de tus expertos.
+                </p>
+              </div>
+              <div className="hidden md:block md:col-span-4" style={{ aspectRatio: '1/1' }}>
+                <DotPattern pattern="captura" color="#000000" />
+              </div>
             </div>
             <CatalogoCards items={SENSOR_FUENTES} cols={4} />
             <CatalogoCards items={SENSOR_GENERA} cols={3} />
@@ -125,14 +131,19 @@ export default function Metodologia() {
         {/* DECK — módulo de producción */}
         <BodySection dark>
           <div id="deck" className="flex flex-col gap-10" style={{ scrollMarginTop: '90px' }}>
-            <div className="flex flex-col gap-4">
-              <p className="label opacity-50">Módulo de producción</p>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-                <FontMix bold="DECK: información compleja" italic=" convertida en piezas que deciden." />
-              </h2>
-              <p className="text-lead opacity-70" style={{ maxWidth: '42rem' }}>
-                Presentaciones, propuestas, battlecards y playbooks con un mismo criterio editorial y visual.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-8 flex flex-col gap-4">
+                <p className="label opacity-50">Módulo de producción</p>
+                <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+                  <FontMix bold="DECK: información compleja" italic=" convertida en piezas que deciden." />
+                </h2>
+                <p className="text-lead opacity-70" style={{ maxWidth: '42rem' }}>
+                  Presentaciones, propuestas, battlecards y playbooks con un mismo criterio editorial y visual.
+                </p>
+              </div>
+              <div className="hidden md:block md:col-span-4" style={{ aspectRatio: '1/1' }}>
+                <DotPattern pattern="pieza" color="#ffffff" />
+              </div>
             </div>
             <CatalogoCards items={DECK_PRODUCE} cols={4} />
           </div>

@@ -159,9 +159,36 @@ Orden de módulos:
 
 Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Qué construimos → Qué recibes → Contacto.**
 
-**estrategia-de-contenido (140 líneas)** — la más sana, es el modelo:
+**estrategia-de-contenido (140 líneas)** — se reestructura como página de servicio completa, con Column Five (`marketing.columnfivemedia.com/content-strategy-services`) como referencia de arquitectura comercial. Es la página piloto: una vez validada, las otras tres siguen su patrón.
+
 - Módulos hoy: Apertura / Qué resolvemos / Qué construimos / Qué incluye / Qué recibes / Cierre.
-- Cambio: **"Qué incluye" (acordeón) se elimina** — con "Qué construimos" (pasos) y "Qué recibes" (mockup) ya está dicho qué hace y qué entrega; el acordeón es el módulo de más que tú mismo intuías. El detalle fino del alcance pertenece a la propuesta comercial, a la página no.
+- **Corrección respecto a la v1 de este documento:** "Qué incluye" NO se elimina. Una lista explícita de entregables es de lo que mejor convierte en páginas de servicio B2B — Column Five la usa y le pone un CTA al lado. El error actual es que está en acordeón cerrado (esconde justo lo que el comprador quiere ver) y sin CTA. Se abre a lista visible + CTA.
+
+**Estructura objetivo:**
+
+1. **Hero** — H1 **El mapa antes que las piezas.** / *Definimos qué decir, a quién, cuándo y por qué canal — antes de producir nada.* / CTA primario / Dots: el mapa.
+2. **Qué resolvemos** — se mantiene. El problema nombrado en concreto, antes de la solución.
+3. **Qué construimos** — el módulo modelo (`servicio-scroll-steps.tsx`, 4 pasos). Se mantiene tal cual.
+4. **Qué incluye** *(reformateado)* — lista visible en dos columnas, sin acordeón, **con CTA al costado**. Estructura: entregables base + un bloque menor de "Complementos opcionales". Patrón catálogo.
+5. **Qué recibes** — el mockup del playbook. Se mantiene.
+6. **Cómo cobramos** *(NUEVO — el módulo que más frena a un comprador B2B y hoy no existe en ningún lado del sitio)*:
+   > **Cómo cobramos**
+   > El diagnóstico de visibilidad tiene un valor fijo de **$[PRECIO] CLP** y se entrega en cinco días hábiles. Te quedas con él, decidas lo que decidas después.
+   > Los proyectos de estrategia son fee fijo con entregables definidos, desde **$[PRECIO] CLP**.
+   > Los programas continuos van por retainer mensual, según alcance y cadencia de producción.
+   > `[Agenda una llamada →]`
+
+   *Nota para implementación: Felipe entrega las cifras. No inventar montos bajo ninguna circunstancia — dejar los placeholders visibles hasta que él los defina.*
+7. **FAQ de la página** *(NUEVO — 3 preguntas, no más)*. Column Five las pone dentro de la página de servicio, no en una página aparte, y resuelve las tres objeciones de compra:
+   - *¿Cómo trabajan con nuestro equipo interno?*
+   - *¿Cuánto tarda en verse resultados?*
+   - *¿Qué pasa si ya tenemos una estrategia hecha?*
+   Las respuestas se adaptan desde el FAQ general, que ya las tiene resueltas para el sitio.
+8. **Contacto** — título: **Empecemos por el diagnóstico.**
+
+**Lo que NO se copia de Column Five:** ellos tienen tres módulos que dicen casi lo mismo ("What's Included", "What You'll Walk Away With", "Why Our Clients Stick With Us"). Es redundancia de agencia grande — clonarla replicaría el problema que este documento busca eliminar.
+
+**Módulo de casos: se omite por ahora.** Column Five apoya toda la página en 4 casos con resultados numéricos. Flahoolick tiene un caso publicable (Dunamis) y vive en FrecuenciA. Un módulo "Casos" vacío en la posición más importante de la página resta más de lo que suma. Se agrega cuando exista el primer caso de estrategia publicable.
 
 **marca-y-relato (143 líneas)** — estructura idéntica a la anterior:
 - Mismo cambio: eliminar "Qué incluye".
@@ -237,7 +264,7 @@ Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Q
 | Módulo Productos | `components/modulo-productos.tsx` + home | Su comentario lo delata: fue parche de accesibilidad; el nav nuevo lo resuelve |
 | Grilla en módulo home | `ModuloComoTrabajamos` → Metodología | Pertenece al relato del método |
 | Módulo "Un mismo método" | `/servicios` | Repite titular, solo contiene un link ya presente en el nav |
-| Acordeón "Qué incluye" | Las 4 subpáginas de servicios | El alcance fino pertenece a la propuesta comercial; con Construimos + Recibes está dicho |
+| Acordeón "Qué incluye" — **se conserva, se reformatea** | Las 4 subpáginas | Corrección: la lista de entregables convierte. Deja de ser acordeón cerrado, pasa a lista visible + CTA al costado |
 | "Formas de trabajo" | produccion-de-contenido, sistemas-con-ia | Modalidades de contratación pertenecen a la llamada |
 | "Cómo funciona" (4 pasos) DECK | Sección #deck | Duplica los 3 pasos generales |
 | "Cómo funciona" (5 pasos) | /frecuencia | Comprimido a labels + link a Metodología |
@@ -256,6 +283,6 @@ Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Q
 4. Home: crear módulo caso Dunamis, simplificar `ModuloComoTrabajamos` y `ModuloMetodologia`, eliminar `ModuloProductos`.
 5. FrecuenciA: cards Dunamis + CTA post-caso + compresión de pasos.
 6. `/servicios` + `servicios-datos.ts`: descs nuevas, módulo diagnóstico, eliminar "Un mismo método".
-7. Subpáginas: heroes nuevos, eliminar "Qué incluye" (las 4) y "Formas de trabajo" (2), reordenar sistemas-con-ia.
+7. **Subpáginas — empezar por estrategia-de-contenido como piloto** (estructura completa en 3.3, incluye módulos nuevos "Cómo cobramos" y FAQ). Validar con Felipe antes de replicar. Después las otras tres: heroes nuevos, "Qué incluye" reformateado a lista visible + CTA, eliminar "Formas de trabajo" (2 páginas), reordenar sistemas-con-ia.
 8. `globals.css`: tamaño de heroes internos.
 9. SVGs de dots por página (con placeholders mientras se producen).

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
-import { TrappedDots } from '@/components/trapped-dots'
+import { DotPattern } from '@/components/dot-pattern'
 import { ServicioCards } from '@/components/servicio-cards'
 
 export const metadata: Metadata = { title: 'Marca y Relato — Flahoolick' }
@@ -38,7 +38,7 @@ export default function MarcaYRelato() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<TrappedDots diameterPercent={72} dotColor={NEGRO} />}
+        illustrationNode={<DotPattern pattern="convergencia" color={NEGRO} />}
       >
         {/* Bloque de apertura */}
         <BodySection>

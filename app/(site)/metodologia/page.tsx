@@ -17,7 +17,7 @@ const headingStyle = {
 const PASOS = [
   {
     numero: '01',
-    titulo: 'Entendemos el negocio',
+    titulo: 'Encontramos',
     parrafos: [
       'Revisamos la oferta, los objetivos, el mercado y el proceso comercial.',
       'Hablamos con las personas que conocen el negocio desde dentro.',
@@ -27,7 +27,7 @@ const PASOS = [
   },
   {
     numero: '02',
-    titulo: 'Ordenamos lo que sabes',
+    titulo: 'Ordenamos',
     parrafos: [
       'Identificamos las ideas, argumentos, preguntas y pruebas que tienen valor para el mercado.',
       'Definimos qué necesita escuchar cada audiencia durante el proceso de decisión.',
@@ -37,23 +37,13 @@ const PASOS = [
   },
   {
     numero: '03',
-    titulo: 'Construimos la respuesta',
+    titulo: 'Ponemos en circulación',
     parrafos: [
-      'Convertimos el conocimiento en una solución concreta.',
-      'Puede ser una estrategia, una marca, una campaña, un sistema de contenido, una herramienta comercial o una plataforma con inteligencia artificial.',
-      'Cada proyecto se diseña para resolver una necesidad específica.',
+      'Convertimos ese orden en la solución concreta: una estrategia, una marca, un sistema de contenido, una herramienta comercial o una plataforma con inteligencia artificial.',
+      'La publicamos, la distribuimos y la conectamos con marketing, ventas y equipos técnicos.',
+      'Medimos qué genera atención, qué ayuda a explicar y qué aporta al proceso comercial, y usamos esos aprendizajes para seguir mejorando.',
     ],
-    recibe: 'piezas, herramientas y sistemas listos para usar.',
-  },
-  {
-    numero: '04',
-    titulo: 'Lo ponemos en circulación',
-    parrafos: [
-      'Publicamos, distribuimos y conectamos el trabajo con marketing, ventas y equipos técnicos.',
-      'Medimos qué genera atención, qué ayuda a explicar y qué aporta al proceso comercial.',
-      'Usamos esos aprendizajes para definir el siguiente movimiento.',
-    ],
-    recibe: 'un plan de distribución, medición y mejora.',
+    recibe: 'piezas, sistemas y herramientas en funcionamiento, con un plan de medición y mejora.',
   },
 ]
 
@@ -78,8 +68,8 @@ export default function Metodologia() {
         ctaHref="#contacto"
         ctaLabel="Cuéntanos qué necesitas resolver →"
       >
-        {/* Cuatro pasos. Una misma lógica. */}
-        <BodySection title="Cuatro pasos. Una misma lógica.">
+        {/* Tres pasos. Una misma lógica. */}
+        <BodySection title="Tres pasos. Una misma lógica.">
           <div id="como-trabajamos" className="flex flex-col" style={{ scrollMarginTop: '90px' }}>
             {PASOS.map(p => (
               <div key={p.numero} className="grid grid-cols-1 md:grid-cols-12 gap-6 py-10" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>

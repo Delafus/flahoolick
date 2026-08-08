@@ -19,7 +19,7 @@ export default function ComoIA() {
         <BodySection title="Cómo lo hacemos"><HowList items={items} /></BodySection>
         <BodySection title="Otras secciones">
           <CrossLinks links={[
-            { title: 'Cuatro pasos, una misma lógica', desc: 'Cómo entendemos, ordenamos, construimos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
+            { title: 'Tres pasos, una misma lógica', desc: 'Cómo encontramos, ordenamos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
             { title: 'Cómo podemos empezar', desc: 'Diagnóstico, proyecto o programa continuo.', href: '/metodologia#como-empezar' },
           ]} />
         </BodySection>

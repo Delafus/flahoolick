@@ -13,6 +13,8 @@ interface PageLayoutProps {
   /** CTA opcional en el hero. Solo se renderiza si se pasan ambos. */
   ctaHref?: string
   ctaLabel?: string
+  /** Línea discreta bajo el CTA del hero, ej. "30 minutos. Sin presentaciones ni decks de venta." */
+  ctaNote?: string
   illustration?: { src: string; alt: string; ratio?: string }
   /** Alternativa a `illustration` para contenido custom (ej. una animación) en vez de una imagen estática. */
   illustrationNode?: React.ReactNode
@@ -29,6 +31,7 @@ export function PageLayout({
   heroText,
   ctaHref,
   ctaLabel,
+  ctaNote,
   illustration,
   illustrationNode,
   contact,
@@ -73,6 +76,9 @@ export function PageLayout({
                 style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
                 {ctaLabel}
               </Link>
+            )}
+            {ctaNote && (
+              <p className="text-sm" style={{ color: heroText, opacity: 0.5 }}>{ctaNote}</p>
             )}
           </div>
 
@@ -131,6 +137,9 @@ export function PageLayout({
                   style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
                   {ctaLabel}
                 </Link>
+              )}
+              {ctaNote && (
+                <p className="text-sm" style={{ color: heroText, opacity: 0.5, marginTop: '-0.75rem' }}>{ctaNote}</p>
               )}
             </div>
           </div>

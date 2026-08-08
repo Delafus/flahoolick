@@ -14,13 +14,15 @@ export default function Servicios() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline={<FontMix bold="Empieza donde" italic=" tu operación se corta." />}
-        description="Cuatro servicios, un mismo sistema: convertir el conocimiento técnico de tu empresa en autoridad de mercado."
+        headline={<FontMix bold="Tu empresa sabe" italic=" cosas que venden." />}
+        description="Cuatro servicios que convierten ese conocimiento en presencia de mercado, herramientas comerciales y clientes que llegan informados."
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
+        ctaNote="30 minutos. Sin presentaciones ni decks de venta."
         contact={{
+          headline: <FontMix bold="Empecemos" italic=" por el diagnóstico." />,
           submitLabel: 'Agenda una llamada →',
         }}
       >
@@ -61,21 +63,21 @@ export default function Servicios() {
           </div>
         </BodySection>
 
-        {/* 07 — Puente hacia Metodología: breve, sin repetir el método completo */}
-        <BodySection dark title="Un mismo método">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="flex flex-col gap-3">
-              <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', lineHeight: 1.05 }}>
-                <FontMix bold="Cuatro servicios." italic=" Un sistema común." />
+        {/* Oferta de entrada */}
+        <BodySection dark>
+          <div className="flex flex-col items-center text-center gap-6">
+            <div className="flex flex-col gap-3" style={{ maxWidth: '38rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', lineHeight: 1.0 }}>
+                <FontMix bold="Empezamos con un diagnóstico" italic=" de cinco días." />
               </h2>
-              <p className="text-base leading-relaxed opacity-70" style={{ maxWidth: '32rem' }}>
-                Cada servicio trabaja sobre el Sistema de Autoridad de Flahoolick.
+              <p className="text-lead opacity-70">
+                Auditamos qué sabe tu empresa, cómo te ven los modelos de IA cuando tu comprador busca, y dónde están los vacíos. Te quedas con el diagnóstico, decidas lo que decidas después.
               </p>
             </div>
-            <Link href="/metodologia"
-              className="label inline-flex items-center gap-2 border px-6 py-3.5 w-fit hover:opacity-60 transition-opacity"
-              style={{ color: 'var(--section-dark-text)', borderColor: 'var(--section-dark-text)', borderRadius: '999px' }}>
-              Explorar metodología →
+            <Link href="#contacto"
+              className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
+              style={{ backgroundColor: 'var(--section-dark-text)', color: 'var(--section-dark-bg)', borderRadius: '999px' }}>
+              Agenda una llamada →
             </Link>
           </div>
         </BodySection>

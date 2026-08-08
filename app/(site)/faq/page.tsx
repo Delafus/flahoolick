@@ -28,7 +28,7 @@ const preguntas = [
   {
     q: '¿Con quién nos comparan?',
     a: 'Nos comparan con agencias de contenido, firmas de marketing B2B y productoras de contenido especializado. La diferencia concreta es de arquitectura: esas opciones producen activos individuales. Flahoolick instala un sistema. El sistema captura conocimiento, lo modela con criterio editorial, lo produce y mide la respuesta del mercado para calibrar el ciclo siguiente. Con el tiempo, ese activo crece y se vuelve difícil de replicar.',
-    link: { label: 'Cómo trabajamos con IA →', href: '/metodologia/como-trabajamos-con-ia' },
+    link: { label: 'Cómo trabajamos con IA →', href: '/servicios/sistemas-de-contenido-con-ia' },
   },
   {
     q: '¿Con qué tipo de empresas trabajan?',

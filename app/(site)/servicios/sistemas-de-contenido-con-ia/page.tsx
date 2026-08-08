@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
+import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-layout'
 import { TrappedDots } from '@/components/trapped-dots'
 import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioCards } from '@/components/servicio-cards'
@@ -47,6 +47,13 @@ const categorias = [
 ]
 
 const recibes = ['Encontrar información', 'Responder preguntas', 'Generar briefs', 'Crear contenido', 'Reutilizar activos', 'Mantener consistencia', 'Registrar aprendizajes', 'Acelerar la producción']
+
+const comoUsamosIA = [
+  { titulo: 'Ingestamos el conocimiento existente.', desc: 'Procesamos PDFs técnicos, transcripciones de reuniones, propuestas y grabaciones de llamadas — sin pedirle tiempo al equipo del cliente.' },
+  { titulo: 'Detectamos señales y patrones.', desc: 'Identificamos qué temas tienen mayor potencial de autoridad para el ICP del cliente y en qué momento del ciclo de decisión.' },
+  { titulo: 'Monitoreamos la visibilidad en IA.', desc: 'Auditamos cómo responden ChatGPT, Perplexity y Claude cuando el comprador ideal busca soluciones en la categoría del cliente.' },
+  { titulo: 'Validamos con criterio humano.', desc: 'La IA procesa. El equipo senior de Flahoolick revisa, prioriza y decide qué se produce. Ese orden es inamovible.' },
+]
 
 const formasDeTrabajo = [
   { titulo: 'Diagnóstico', desc: 'Identificamos fuentes, procesos, pérdidas de conocimiento y oportunidades de automatización.' },
@@ -114,6 +121,11 @@ export default function SistemasDeContenidoConIA() {
             <p className="label opacity-50">Cómo funciona</p>
             <ServicioScrollSteps pasos={pasos} color="#ffffff" />
           </div>
+        </BodySection>
+
+        {/* Cómo usamos la IA nosotros mismos */}
+        <BodySection title="Así usamos la IA nosotros">
+          <HowList items={comoUsamosIA} />
         </BodySection>
 
         {/* Qué incluye — acordeón, ancho contenido */}

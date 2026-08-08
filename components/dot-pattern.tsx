@@ -32,14 +32,17 @@ function seeded(seed: number) {
 
 function Dot({ x, y, r = R, color = '#000000', opacity = 1, still = false }: { x: number; y: number; r?: number; color?: string; opacity?: number; still?: boolean }) {
   if (still) return <circle cx={x} cy={y} r={r} fill={color} opacity={opacity} />
-  // Respiración de opacidad, timing determinístico por posición — misma técnica que grilla-proceso.tsx (modular alfa), sin trazo.
-  const dur = 2.4 + ((x * 7 + y * 13) % 21) / 10
+  // Respiración de opacidad + tamaño, amplitud grande a propósito para que se note de inmediato — mismas propiedades permitidas (alfa, radio), sin trazo.
+  const dur = 1.8 + ((x * 7 + y * 13) % 21) / 10
   const delay = ((x * 3 + y * 11) % 28) / 10
-  const lo = Math.max(0, opacity - 0.28)
-  const hi = Math.min(1, opacity + 0.15)
+  const lo = Math.max(0.05, opacity - 0.55)
+  const hi = Math.min(1, opacity + 0.25)
+  const rLo = r * 0.55
+  const rHi = r * 1.7
   return (
     <circle cx={x} cy={y} r={r} fill={color} opacity={opacity}>
       <animate attributeName="opacity" values={`${opacity};${hi};${lo};${opacity}`} dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+      <animate attributeName="r" values={`${r};${rHi};${rLo};${r}`} dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
     </circle>
   )
 }

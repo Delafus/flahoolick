@@ -17,6 +17,7 @@ const headingStyle = {
 const PASOS = [
   {
     numero: '01',
+    slug: 'encontramos',
     titulo: 'Encontramos',
     parrafos: [
       'Revisamos la oferta, los objetivos, el mercado y el proceso comercial.',
@@ -27,6 +28,7 @@ const PASOS = [
   },
   {
     numero: '02',
+    slug: 'ordenamos',
     titulo: 'Ordenamos',
     parrafos: [
       'Identificamos las ideas, argumentos, preguntas y pruebas que tienen valor para el mercado.',
@@ -37,6 +39,7 @@ const PASOS = [
   },
   {
     numero: '03',
+    slug: 'circulacion',
     titulo: 'Ponemos en circulación',
     parrafos: [
       'Convertimos ese orden en la solución concreta: una estrategia, una marca, un sistema de contenido, una herramienta comercial o una plataforma con inteligencia artificial.',
@@ -64,7 +67,7 @@ export default function Metodologia() {
         <BodySection title="Tres pasos. Una misma lógica.">
           <div id="como-trabajamos" className="flex flex-col" style={{ scrollMarginTop: '90px' }}>
             {PASOS.map(p => (
-              <div key={p.numero} className="grid grid-cols-1 md:grid-cols-12 gap-6 py-10" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+              <div key={p.numero} id={`paso-${p.slug}`} className="grid grid-cols-1 md:grid-cols-12 gap-6 py-10" style={{ borderTop: '1px solid rgba(0,0,0,0.1)', scrollMarginTop: '90px' }}>
                 <div className="md:col-span-4">
                   <p className="label opacity-40">{p.numero}</p>
                   <h3 style={{ ...headingStyle, fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', marginTop: '0.5rem' }}>{p.titulo}</h3>

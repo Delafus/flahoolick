@@ -39,8 +39,10 @@ const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que trabaja — así operamos detrás de los cuatro servicios.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Tres pasos, una misma lógica',  desc: 'Cómo encontramos, ordenamos y ponemos en circulación.', href: '/metodologia#como-trabajamos' },
-    { title: 'Cómo trabajamos con IA',          desc: 'IA para capturar y modelar. Criterio humano para decidir.',          href: '/metodologia/como-trabajamos-con-ia' },
+    { title: 'Encontramos',            desc: 'Entramos al negocio y detectamos dónde está el valor.',           href: '/metodologia#paso-encontramos' },
+    { title: 'Ordenamos',              desc: 'Convertimos eso en mensajes, temas y prioridades claras.',         href: '/metodologia#paso-ordenamos' },
+    { title: 'Ponemos en circulación', desc: 'Construimos la pieza y la conectamos con el mercado.',             href: '/metodologia#paso-circulacion' },
+    { title: 'Cómo trabajamos con IA', desc: 'IA para capturar y modelar. Criterio humano para decidir.',        href: '/metodologia/como-trabajamos-con-ia' },
   ],
 }
 

@@ -42,7 +42,8 @@ const MET_MENU: MegaMenuData = {
     { title: 'Encontramos',            desc: 'Entramos al negocio y detectamos dónde está el valor.',           href: '/metodologia#paso-encontramos' },
     { title: 'Ordenamos',              desc: 'Convertimos eso en mensajes, temas y prioridades claras.',         href: '/metodologia#paso-ordenamos' },
     { title: 'Ponemos en circulación', desc: 'Construimos la pieza y la conectamos con el mercado.',             href: '/metodologia#paso-circulacion' },
-    { title: 'Cómo trabajamos con IA', desc: 'IA para capturar y modelar. Criterio humano para decidir.',        href: '/servicios/sistemas-de-contenido-con-ia' },
+    { title: 'SENSOR',                 desc: 'La materia prima sale de lo que tu empresa ya tiene.',              href: '/metodologia#sensor' },
+    { title: 'DECK',                   desc: 'Información compleja convertida en piezas que deciden.',            href: '/metodologia#deck' },
   ],
 }
 
@@ -52,15 +53,13 @@ const PANEL_BG = '#403D37'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
+  { label: 'FrecuenciA',  href: '/frecuencia' },
   { label: 'Metodología', href: '/metodologia' },
   { label: 'JERGA',       href: '/jerga' },
 ]
 
 const PANEL_SECONDARY = [
   { label: 'Sobre Flahoolick',      href: '/sobre-flahoolick' },
-  { label: 'SENSOR',                href: '/sensor' },
-  { label: 'DECK',                  href: '/deck' },
-  { label: 'FrecuenciA',            href: '/frecuencia' },
   { label: 'FAQ',                   href: '/faq' },
   { label: 'Contacto',              href: '/#contacto' },
   { label: 'Política de Privacidad', href: '/politica-de-privacidad' },
@@ -125,13 +124,7 @@ export function Header() {
             onClick={() => setActive(null)}>
             Servicios
           </Link>
-          <Link href="/metodologia"
-            className="label hover:opacity-60 transition-opacity"
-            style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
-            onMouseEnter={() => setActive('met')}
-            onClick={() => setActive(null)}>
-            Metodología
-          </Link>
+          <NavLink href="/frecuencia" color={text} onClick={() => setActive(null)}>FrecuenciA</NavLink>
         </nav>
 
         {/* Logo */}
@@ -144,12 +137,24 @@ export function Header() {
           />
         </Link>
 
-        {/* Right nav + hamburguesa */}
+        {/* Right nav + CTA + hamburguesa */}
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
+            <Link href="/metodologia"
+              className="label hover:opacity-60 transition-opacity"
+              style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
+              onMouseEnter={() => setActive('met')}
+              onClick={() => setActive(null)}>
+              Metodología
+            </Link>
             <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
-            <NavLink href="/sobre-flahoolick" color={text} onClick={() => setActive(null)}>Sobre Flahoolick</NavLink>
           </nav>
+          <Link href="#contacto"
+            className="label hidden md:inline-flex items-center px-5 py-2.5 hover:opacity-80 transition-opacity"
+            style={{ backgroundColor: text, color: bg, borderRadius: '999px' }}
+            onClick={() => setActive(null)}>
+            Agenda una llamada
+          </Link>
           <button
             onClick={() => { setMobile(true); setActive(null) }}
             aria-label="Abrir menú"

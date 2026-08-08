@@ -3,18 +3,17 @@ import Image from 'next/image'
 
 export function Footer() {
   const links = {
-    servicios: [
+    quehacemos: [
       { label: 'Servicios',    href: '/servicios' },
-      { label: 'Metodología',  href: '/metodologia' },
-      { label: 'SENSOR',       href: '/sensor' },
-      { label: 'DECK',         href: '/deck' },
       { label: 'FrecuenciA',   href: '/frecuencia' },
+      { label: 'Metodología',  href: '/metodologia' },
     ],
     empresa: [
       { label: 'Sobre Flahoolick', href: '/sobre-flahoolick' },
       { label: 'JERGA',            href: '/jerga' },
       { label: 'FAQ',              href: '/faq' },
       { label: 'Contacto',         href: '/#contacto' },
+      { label: 'Política de Privacidad', href: '/politica-de-privacidad' },
     ],
   }
 
@@ -41,8 +40,8 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="label opacity-30 mb-1">Servicios</p>
-            {links.servicios.map(l => (
+            <p className="label opacity-30 mb-1">Qué hacemos</p>
+            {links.quehacemos.map(l => (
               <Link key={l.href} href={l.href}
                 className="text-sm opacity-50 hover:opacity-100 transition-opacity">{l.label}</Link>
             ))}

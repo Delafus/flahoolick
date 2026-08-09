@@ -70,7 +70,7 @@ export default async function JergaPage() {
                 {cats.map(c => (
                   <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                     className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                    style={{ border: '1px solid rgba(255,255,255,0.35)', borderRadius: '999px' }}>
+                    style={{ border: '1px solid rgba(255,255,255,0.35)', borderRadius: '2px' }}>
                     {c.nombre}
                   </Link>
                 ))}
@@ -107,7 +107,7 @@ export default async function JergaPage() {
                 </div>
                 <Link href={`/jerga/${featured.slug}`}
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
-                  style={{ backgroundColor: '#ffffff', color: NEGRO, borderRadius: '999px' }}>
+                  style={{ backgroundColor: '#ffffff', color: NEGRO, borderRadius: '2px' }}>
                   {CTA_TIPO[featured.tipo]}
                 </Link>
               </div>

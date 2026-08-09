@@ -29,7 +29,7 @@ function Card({ pieza, nombreCategoria }: { pieza: Pieza; nombreCategoria?: stri
       </div>
       <Link href={`/jerga/${pieza.slug}`}
         className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-80 transition-opacity"
-        style={{ backgroundColor: BLANCO, color: AZUL, borderRadius: '999px' }}>
+        style={{ backgroundColor: BLANCO, color: AZUL, borderRadius: '2px' }}>
         {CTA_TIPO[pieza.tipo].toUpperCase()}
       </Link>
     </div>

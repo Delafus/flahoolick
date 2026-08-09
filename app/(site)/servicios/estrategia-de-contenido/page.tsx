@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
-import { DotPattern } from '@/components/dot-pattern'
 import { ServicioCards } from '@/components/servicio-cards'
 import Link from 'next/link'
 
@@ -59,7 +58,6 @@ export default function EstrategiaDeContenido() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<DotPattern pattern="mapa" color={NEGRO} />}
         contact={{ headline: <FontMix bold="Empecemos" italic=" por el diagnóstico." /> }}
       >
         {/* Bloque de apertura */}
@@ -123,7 +121,7 @@ export default function EstrategiaDeContenido() {
               <p className="text-sm opacity-60">¿Necesitas algo específico de esta lista?</p>
               <Link href="#contacto"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '2px' }}>
                 Agenda una llamada →
               </Link>
             </div>
@@ -176,7 +174,7 @@ export default function EstrategiaDeContenido() {
             </div>
             <Link href="#contacto"
               className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+              style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '2px' }}>
               Agenda una llamada →
             </Link>
           </div>

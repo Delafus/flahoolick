@@ -60,24 +60,35 @@ Diagnóstico de las filas Dunamis con este lente: son navegables sin anatomía �
 
 Hoy: `clamp(3.5rem, 8vw, 11rem)` — más grande que el hero de la home (9rem). Nuevo: `clamp(2.5rem, 5vw, 5.5rem)` en `app/globals.css`. Consecuencia: los H1 internos pueden ser frases comerciales.
 
-## 1.4 Sistema visual de headers — dots por página
+## 1.4 Sistema visual de headers — DECISIÓN ACTUALIZADA
 
-Puntos = piezas de conocimiento. Cada página muestra un **estado**. Estáticos (SVG) salvo GrillaProceso (`components/grilla-proceso.tsx`), que es la única animada y se muda a Metodología.
+**Los headers internos van con placeholder vacío (borde sutil) hasta que Felipe suba sus SVG de micrographics.**
 
-| Página | Estado | Descripción del SVG |
-|---|---|---|
-| Home (3 heroes) | Ya resuelto | TrappedDots / CirculationDots / CirculationDots con pulses — se mantienen |
-| Servicios | Cuatro constelaciones | 100 puntos en 4 clusters separados — las 4 disciplinas sobre el mismo campo |
-| Estrategia de contenido | El mapa | Puntos conectados por líneas finas formando ruta con ramificaciones |
-| Marca y relato | Convergencia | Puntos periféricos orbitando un punto central más grande |
-| Producción de contenido | La cadencia | Puntos en filas ordenadas saliendo por el borde derecho |
-| Sistemas de contenido con IA | La malla | Grilla 10×10 perfecta con algunos puntos en verde Flahoolick |
-| Metodología | GrillaProceso animada | Las 3 coreografías (latir / cascada / ondas) sincronizadas con pasos 01-02-03 |
-| SENSOR (sección) | La captura | Puntos dispersos con estelas hacia un punto colector |
-| DECK (sección) | La pieza | Puntos alineados formando un rectángulo 16:9 |
-| FrecuenciA | Las ondas | Ondas concéntricas desde 2-3 puntos — calza con el nombre |
-| JERGA | Logotipo JERGA | Se mantiene |
-| Sobre Flahoolick | El origen | Un punto latiendo en la esquina de una grilla vacía |
+Las animaciones de dots generadas para headers internos se eliminan. Razones: `TrappedDots` en las 4 subpáginas de servicios es una simulación de física con movimiento errático permanente que se lee como ruido, no como concepto — y además "atrapado" es la metáfora del problema, mal puesta en páginas que venden la solución. Las "cuatro constelaciones" del hero de Servicios quedaron como cuatro bloques idénticos sin significado.
+
+Criterio de fondo: en un header, el titular manda. Una animación en loop permanente compite con el texto y nunca deja de competir. El movimiento se justifica donde significa algo y tiene principio y fin.
+
+**Dónde SÍ se conserva movimiento:**
+- Los 3 heroes de la home (TrappedDots / CirculationDots) — el scroll narra, el movimiento acompaña el relato. **Ajuste pendiente: subir su visibilidad** (TrappedDots usa `#D8D8D7`, casi invisible; CirculationDots usa `#403D37`). Palancas en orden: contraste/opacidad del punto (~35-40% contra el fondo), luego radio, luego amplitud de la animación.
+- `GrillaProceso` en Metodología — las 3 coreografías sincronizadas con los pasos. Es la única grilla protagonista del sitio.
+- `MegamenuDots` en el header.
+
+**Conceptos para los SVG de Felipe** (referencia para cuando los produzca en Figma, todos derivados del lenguaje de puntos = piezas de conocimiento):
+
+| Página | Concepto |
+|---|---|
+| Servicios | Cuatro clusters de puntos claramente distintos entre sí |
+| Estrategia de contenido | Puntos conectados por líneas finas formando una ruta con ramificaciones |
+| Marca y relato | Puntos periféricos orbitando un punto central mayor |
+| Producción de contenido | Puntos en filas ordenadas saliendo por el borde derecho |
+| Sistemas de contenido con IA | Grilla 10×10 con algunos puntos en verde Flahoolick |
+| FrecuenciA | Ondas concéntricas desde 2-3 puntos |
+| Sobre Flahoolick | Un punto en la esquina de una grilla vacía |
+| JERGA | Logotipo JERGA (ya funciona) |
+
+## 1.5 Regla de forma: sin curvas
+
+Los botones no llevan esquinas redondeadas tipo píldora. `borderRadius: '2px'` en todo el sitio. Revisar y corregir donde haya `borderRadius: 999px` o similar (detectado en `/frecuencia` y en el hero de `/servicios`).
 
 ---
 
@@ -141,7 +152,7 @@ Orden de módulos:
 
 ## 3.2 SERVICIOS (`app/(site)/servicios/page.tsx`)
 
-**Hero:** H1 **Tu empresa sabe cosas que venden.** / Bajada: *Cuatro servicios que convierten ese conocimiento en presencia de mercado, herramientas comerciales y clientes que llegan informados.* / CTA primario + microcopy / Dots: cuatro constelaciones.
+**Hero:** H1 **El conocimiento de tu empresa puede vender por ti.** / Bajada: *Cuatro servicios que convierten ese conocimiento en presencia de mercado, herramientas comerciales y clientes que llegan informados.* / CTA primario + microcopy / Columna izquierda: **placeholder vacío con borde sutil** hasta que Felipe suba su SVG de micrographics. *(Corrección: el titular anterior "Tu empresa sabe cosas que venden" se descarta — vago y suena a traducción. Y la animación de dots generada se elimina: cuatro bloques idénticos que no comunican nada.)*
 
 **Módulos:**
 1. **Los cuatro servicios** — cards desde `DISCIPLINAS`, con `desc` reescritas en `servicios-datos.ts`:
@@ -168,7 +179,13 @@ Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Q
 
 1. **Hero** — H1 **El mapa antes que las piezas.** / *Definimos qué decir, a quién, cuándo y por qué canal — antes de producir nada.* / CTA primario / Dots: el mapa.
 2. **Qué resolvemos** — se mantiene. El problema nombrado en concreto, antes de la solución.
-3. **Qué construimos** — el módulo modelo (`servicio-scroll-steps.tsx`, 4 pasos). Se mantiene tal cual.
+3. **Qué construimos — SE ELIMINA.** *(Corrección importante respecto a versiones anteriores de este documento, que decían conservarlo.)* Es `components/servicio-scroll-steps.tsx`: pasos numerados conectados por una línea horizontal con nodos circulares. Se elimina de las 4 subpáginas y de FrecuenciA; el archivo del componente se borra.
+
+   Razones: **el método estaba contado tres veces en el sitio** con nombres distintos que no calzan entre sí (Encontramos/Extraemos, Ordenamos/Enfocamos) — en Metodología, en cada subpágina de servicios y en FrecuenciA. Además el diagrama de línea de tiempo con círculos rellenos no pertenece al lenguaje visual de Flahoolick (que es la grilla de puntos), y se desborda del viewport con 4 y 5 pasos.
+
+   El método queda **solo en Metodología**, que es la página dedicada a explicarlo. En páginas de servicio, el orden que convierte es: qué problema resuelves, qué construyes, qué recibes, cuánto cuesta. El cómo va con un link.
+
+   Lo que sí se conserva es la **jerarquía visual** que hacía bueno a ese módulo (label numerado, título corto, una línea) — se aplica a "Qué incluye" y "Qué recibes".
 4. **Qué incluye** *(reformateado)* — lista visible en dos columnas, sin acordeón, **con CTA al costado**. Estructura: entregables base + un bloque menor de "Complementos opcionales". Patrón catálogo.
 5. **Qué recibes** — el mockup del playbook. Se mantiene.
 6. **Cómo cobramos** *(NUEVO — el módulo que más frena a un comprador B2B y hoy no existe en ningún lado del sitio)*:
@@ -264,6 +281,9 @@ Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Q
 | Módulo Productos | `components/modulo-productos.tsx` + home | Su comentario lo delata: fue parche de accesibilidad; el nav nuevo lo resuelve |
 | Grilla en módulo home | `ModuloComoTrabajamos` → Metodología | Pertenece al relato del método |
 | Módulo "Un mismo método" | `/servicios` | Repite titular, solo contiene un link ya presente en el nav |
+| **Módulo de proceso con círculos y línea** | `components/servicio-scroll-steps.tsx` — 4 subpáginas + /frecuencia | El método estaba contado 3 veces en el sitio con nombres distintos. Queda solo en Metodología. El diagrama no pertenece al lenguaje visual (grilla de puntos) y se desborda del viewport |
+| Animaciones de dots en headers internos | `TrappedDots` en 4 subpáginas, dots del hero de /servicios | Movimiento errático que se lee como ruido; compite con el titular. Van placeholders hasta los SVG de Felipe |
+| Botones tipo píldora | /frecuencia, hero de /servicios | No usamos curvas. `borderRadius: '2px'` |
 | Acordeón "Qué incluye" — **se conserva, se reformatea** | Las 4 subpáginas | Corrección: la lista de entregables convierte. Deja de ser acordeón cerrado, pasa a lista visible + CTA al costado |
 | "Formas de trabajo" | produccion-de-contenido, sistemas-con-ia | Modalidades de contratación pertenecen a la llamada |
 | "Cómo funciona" (4 pasos) DECK | Sección #deck | Duplica los 3 pasos generales |
@@ -275,14 +295,28 @@ Plantilla objetivo (4 módulos + contacto): **Apertura → Qué resolvemos → Q
 
 ---
 
-# PARTE 5 — ORDEN DE IMPLEMENTACIÓN (para Claude Code)
+# PARTE 5 — QUÉ QUEDA PENDIENTE (actualizado 8 agosto, noche)
 
-1. `header.tsx` + `footer.tsx`: nav nuevo, botón CTA, mega menú Metodología corregido.
-2. CTAs unificados: buscar/reemplazar los 5 verbos + prop `titulo` en `contact-form.tsx`.
-3. Fusión: secciones #sensor/#deck en `metodologia/page.tsx`, eliminar carpetas, redirects en `next.config.mjs`, mudar `GrillaProceso`.
-4. Home: crear módulo caso Dunamis, simplificar `ModuloComoTrabajamos` y `ModuloMetodologia`, eliminar `ModuloProductos`.
-5. FrecuenciA: cards Dunamis + CTA post-caso + compresión de pasos.
-6. `/servicios` + `servicios-datos.ts`: descs nuevas, módulo diagnóstico, eliminar "Un mismo método".
-7. **Subpáginas — empezar por estrategia-de-contenido como piloto** (estructura completa en 3.3, incluye módulos nuevos "Cómo cobramos" y FAQ). Validar con Felipe antes de replicar. Después las otras tres: heroes nuevos, "Qué incluye" reformateado a lista visible + CTA, eliminar "Formas de trabajo" (2 páginas), reordenar sistemas-con-ia.
-8. `globals.css`: tamaño de heroes internos.
-9. SVGs de dots por página (con placeholders mientras se producen).
+Etapas 1 a 4 ya implementadas por Claude Code (nav, footer, CTAs, home reordenada, caso Dunamis). Lo que falta:
+
+**A. Eliminar el módulo de proceso** — `servicio-scroll-steps.tsx` fuera de las 4 subpáginas y de /frecuencia; borrar el componente. En /frecuencia lo reemplaza una línea de labels (`Encontramos · Ordenamos · Construimos · Publicamos · Medimos`) + link `Así trabajamos →` a /metodologia.
+
+**B. Hero de /servicios** — H1 nuevo (**El conocimiento de tu empresa puede vender por ti.**), eliminar la animación de dots, botón a `borderRadius: '2px'`.
+
+**C. Barrido de botones tipo píldora** en todo el sitio → 2px.
+
+**D. Eliminar animaciones de dots de los headers de las 4 subpáginas** (`TrappedDots`), dejar placeholder con borde sutil.
+
+**E. Módulo "Cómo cobramos"** en estrategia-de-contenido — Felipe entrega las cifras. NO inventar montos.
+
+**F. FAQ de 3 preguntas** dentro de estrategia-de-contenido.
+
+**G. "Qué incluye"** de acordeón cerrado a lista visible + CTA al costado (las 4 subpáginas).
+
+**H. Subir visibilidad de la grilla en los 3 heroes de la home** — contraste primero.
+
+**I. Tamaño de heroes internos** en `globals.css` → `clamp(2.5rem, 5vw, 5.5rem)`.
+
+**J. SVGs de micrographics** por header, cuando Felipe los produzca (conceptos en 1.4).
+
+Orden sugerido: A → B → C → D en una tanda (son eliminaciones y ajustes, bajo riesgo). Después E → F → G en estrategia-de-contenido como página piloto, validar, y replicar en las otras tres.

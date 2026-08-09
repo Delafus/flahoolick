@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
-import { DotPattern } from '@/components/dot-pattern'
-import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 
 export const metadata: Metadata = { title: 'Producción de Contenido — Flahoolick' }
 
@@ -22,13 +20,6 @@ const producimos = [
   { titulo: 'Circulación', desc: 'Adaptamos cada idea para que viaje por el mercado.', items: ['LinkedIn', 'Email', 'Sitios web', 'Campañas', 'Video', 'Motion graphics', 'Medios propios', 'Paid media'] },
 ]
 
-const pasos = [
-  { numero: '01', titulo: 'Extraemos', desc: 'Entrevistamos especialistas y revisamos documentos, datos y conversaciones comerciales.' },
-  { numero: '02', titulo: 'Enfocamos', desc: 'Definimos la audiencia, la pregunta y la función de cada pieza.' },
-  { numero: '03', titulo: 'Construimos', desc: 'Conectamos redacción, diseño, visualización, audiovisual y desarrollo bajo una misma idea.' },
-  { numero: '04', titulo: 'Ponemos en circulación', desc: 'Adaptamos el contenido a distintos canales, formatos y momentos de decisión.' },
-]
-
 const recibes = ['Construir autoridad', 'Explicar soluciones', 'Responder preguntas', 'Apoyar a ventas', 'Alimentar campañas', 'Mantener presencia', 'Extender la vida de cada idea']
 
 export default function ProduccionDeContenido() {
@@ -43,7 +34,6 @@ export default function ProduccionDeContenido() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<DotPattern pattern="cadencia" color={NEGRO} />}
       >
         {/* Bloque de apertura */}
         <BodySection>
@@ -87,14 +77,6 @@ export default function ProduccionDeContenido() {
                 <Tags items={g.items} />
               </div>
             ))}
-          </div>
-        </BodySection>
-
-        {/* Cómo trabajamos — secuencia de pasos con scroll-reveal */}
-        <BodySection dark>
-          <div className="flex flex-col gap-10">
-            <p className="label opacity-50">Cómo trabajamos</p>
-            <ServicioScrollSteps pasos={pasos} color="#ffffff" />
           </div>
         </BodySection>
 

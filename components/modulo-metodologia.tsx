@@ -24,7 +24,7 @@ export function ModuloMetodologia() {
           </h2>
           <Link href="/metodologia"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '999px' }}>
+            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '2px' }}>
             Explorar metodología →
           </Link>
         </div>

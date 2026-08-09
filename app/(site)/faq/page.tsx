@@ -124,7 +124,7 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
           {link && (link.tipo === 'comercial' ? (
             <Link href={link.href}
               className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '999px' }}>
+              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '2px' }}>
               {link.label}
             </Link>
           ) : (

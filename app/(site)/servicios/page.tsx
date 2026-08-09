@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -15,14 +14,13 @@ export default function Servicios() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
       <PageLayout
-        headline={<FontMix bold="Tu empresa sabe" italic=" cosas que venden." />}
+        headline={<FontMix bold="El conocimiento de tu empresa" italic=" puede vender por ti." />}
         description="Cuatro servicios que convierten ese conocimiento en presencia de mercado, herramientas comerciales y clientes que llegan informados."
         heroBg="#000000"
         heroText="#ffffff"
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
         ctaNote="30 minutos. Sin presentaciones ni decks de venta."
-        illustrationNode={<DotPattern pattern="constelaciones" color="#ffffff" />}
         contact={{
           headline: <FontMix bold="Empecemos" italic=" por el diagnóstico." />,
           submitLabel: 'Agenda una llamada →',
@@ -78,7 +76,7 @@ export default function Servicios() {
             </div>
             <Link href="#contacto"
               className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: 'var(--section-dark-text)', color: 'var(--section-dark-bg)', borderRadius: '999px' }}>
+              style={{ backgroundColor: 'var(--section-dark-text)', color: 'var(--section-dark-bg)', borderRadius: '2px' }}>
               Agenda una llamada →
             </Link>
           </div>

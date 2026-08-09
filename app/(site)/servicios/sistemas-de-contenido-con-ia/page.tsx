@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-layout'
-import { DotPattern } from '@/components/dot-pattern'
-import { ServicioScrollSteps } from '@/components/servicio-scroll-steps'
 import { ServicioCards } from '@/components/servicio-cards'
 
 export const metadata: Metadata = { title: 'Sistemas de Contenido con IA — Flahoolick' }
@@ -30,14 +28,6 @@ const construimos = [
   { titulo: 'Producción continua', desc: 'Diseñamos el flujo que conecta conocimiento interno, inteligencia artificial, revisión experta y distribución.' },
 ]
 
-const pasos = [
-  { numero: '01', titulo: 'Encontramos', desc: 'Identificamos dónde vive el conocimiento y cómo se genera.' },
-  { numero: '02', titulo: 'Ordenamos', desc: 'Creamos categorías, fuentes confiables, reglas y permisos de acceso.' },
-  { numero: '03', titulo: 'Conectamos', desc: 'Integramos herramientas, personas, procesos y modelos de inteligencia artificial.' },
-  { numero: '04', titulo: 'Activamos', desc: 'Convertimos el conocimiento en respuestas, briefs, contenidos y herramientas comerciales.' },
-  { numero: '05', titulo: 'Mejoramos', desc: 'Registramos preguntas, correcciones y señales para fortalecer el sistema.' },
-]
-
 const recibes = ['Encontrar información', 'Responder preguntas', 'Generar briefs', 'Crear contenido', 'Reutilizar activos', 'Mantener consistencia', 'Registrar aprendizajes', 'Acelerar la producción']
 
 const comoUsamosIA = [
@@ -59,7 +49,6 @@ export default function SistemasDeContenidoConIA() {
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
-        illustrationNode={<DotPattern pattern="malla" color={NEGRO} />}
       >
         {/* Bloque de apertura */}
         <BodySection>
@@ -98,14 +87,6 @@ export default function SistemasDeContenidoConIA() {
         {/* Qué construimos */}
         <BodySection title="Qué construimos">
           <ServicioCards items={construimos} color={NEGRO} />
-        </BodySection>
-
-        {/* Cómo funciona — secuencia de pasos con scroll-reveal */}
-        <BodySection dark>
-          <div className="flex flex-col gap-10">
-            <p className="label opacity-50">Cómo funciona</p>
-            <ServicioScrollSteps pasos={pasos} color="#ffffff" />
-          </div>
         </BodySection>
 
         {/* Cómo usamos la IA nosotros mismos */}

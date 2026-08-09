@@ -94,8 +94,8 @@ export default function HomePage() {
             </p>
             {s.img && (
               <>
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} /></div>
-                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} /></div>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} dotShape="shield" /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} dotShape="shield" /></div>
                 <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative' }}>
                   <Image src={s.img} alt="" width={s.imgSize.width} height={s.imgSize.height} style={{ width: '100%', height: 'auto' }} />
                   {i === 0 && <TrappedDots diameterPercent={44.8} dotColor="#8B857C" />}
@@ -107,8 +107,8 @@ export default function HomePage() {
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} /></div>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} dotShape="shield" /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} dotShape="shield" /></div>
             </>
           )}
         </section>
@@ -118,10 +118,10 @@ export default function HomePage() {
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
         <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={1.5} dotSize={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={1.5} dotSize={9} dotShape="shield" />
         </div>
         <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={3} dotSize={16} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={3} dotSize={16} dotShape="shield" />
         </div>
       </div>
 
@@ -142,7 +142,7 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#000000', color: '#1FDE91', borderRadius: '999px' }}
+          style={{ backgroundColor: '#000000', color: '#1FDE91', borderRadius: '2px' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>

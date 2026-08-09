@@ -73,7 +73,7 @@ export function PageLayout({
             {ctaHref && ctaLabel && (
               <Link href={ctaHref}
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
+                style={{ backgroundColor: heroText, color: heroBg, borderRadius: '2px' }}>
                 {ctaLabel}
               </Link>
             )}
@@ -134,7 +134,7 @@ export function PageLayout({
               {ctaHref && ctaLabel && (
                 <Link href={ctaHref}
                   className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity mt-2"
-                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
+                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '2px' }}>
                   {ctaLabel}
                 </Link>
               )}

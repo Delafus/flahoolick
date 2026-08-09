@@ -151,7 +151,7 @@ export function Header() {
           </nav>
           <Link href="#contacto"
             className="label hidden md:inline-flex items-center px-5 py-2.5 hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: text, color: bg, borderRadius: '999px' }}
+            style={{ backgroundColor: text, color: bg, borderRadius: '2px' }}
             onClick={() => setActive(null)}>
             Agenda una llamada
           </Link>
@@ -214,7 +214,7 @@ export function Header() {
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
               className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: '#ffffff', color: '#403D37', borderRadius: '999px' }}>
+              style={{ backgroundColor: '#ffffff', color: '#403D37', borderRadius: '2px' }}>
               CERRAR ✕
             </button>
           </div>
@@ -270,7 +270,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
               : textColor.toLowerCase() === '#083ea7'
               ? '#1FDE91'
               : '#000000',
-            borderRadius: '999px',
+            borderRadius: '2px',
           }}>
           {menu.ctaLabel} →
         </Link>

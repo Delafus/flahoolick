@@ -11,7 +11,13 @@ interface ScrollConnectorProps {
   thickness?: number
   /** Diámetro del punto final, en px. */
   dotSize?: number
+  /** 'shield' dibuja el escudo de Flahoolick en vez del punto circular, al mismo ancho que dotSize. */
+  dotShape?: 'circle' | 'shield'
 }
+
+const SHIELD_W = 186.178
+const SHIELD_H = 194.15
+const SHIELD_D = 'M262,647.911C262,596.499 303.677,556.939 355.089,556.939C406.501,556.939 448.178,596.499 448.178,647.911L448.178,751.089L262,751.089L262,647.911Z'
 
 export function ScrollConnector({
   color = '#ffffff',
@@ -19,6 +25,7 @@ export function ScrollConnector({
   height = 160,
   thickness = 2,
   dotSize = 13,
+  dotShape = 'circle',
 }: ScrollConnectorProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -65,16 +72,27 @@ export function ScrollConnector({
           transition: 'clip-path 1.1s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       />
-      <div
-        style={{
-          width: `${dotSize}px`,
-          height: `${dotSize}px`,
-          borderRadius: '50%',
-          backgroundColor: colorTo ?? color,
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 0.4s ease 0.8s',
-        }}
-      />
+      {dotShape === 'shield' ? (
+        <svg
+          width={dotSize}
+          height={dotSize * (SHIELD_H / SHIELD_W)}
+          viewBox={`0 0 ${SHIELD_W} ${SHIELD_H}`}
+          style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.4s ease 0.8s' }}
+        >
+          <path fill={colorTo ?? color} d={SHIELD_D} transform={`translate(0,${SHIELD_H}) scale(1,-1) translate(-262,-556.939)`} />
+        </svg>
+      ) : (
+        <div
+          style={{
+            width: `${dotSize}px`,
+            height: `${dotSize}px`,
+            borderRadius: '50%',
+            backgroundColor: colorTo ?? color,
+            opacity: visible ? 1 : 0,
+            transition: 'opacity 0.4s ease 0.8s',
+          }}
+        />
+      )}
     </div>
   )
 }

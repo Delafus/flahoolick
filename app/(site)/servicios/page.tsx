@@ -76,7 +76,7 @@ export default function Servicios() {
             </div>
             <Link href="#contacto"
               className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: 'var(--section-dark-text)', color: 'var(--section-dark-bg)', borderRadius: '2px' }}>
+              style={{ backgroundColor: 'var(--section-dark-text)', color: 'var(--section-dark-bg)', borderRadius: '999px' }}>
               Agenda una llamada →
             </Link>
           </div>

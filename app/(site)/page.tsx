@@ -142,7 +142,7 @@ export default function HomePage() {
         <Link
           href="/sobre-flahoolick"
           className="label px-8 py-4 hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#000000', color: '#1FDE91', borderRadius: '2px' }}
+          style={{ backgroundColor: '#000000', color: '#1FDE91', borderRadius: '999px' }}
         >
           APRENDE SOBRE NOSOTROS
         </Link>

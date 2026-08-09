@@ -32,12 +32,12 @@ export function ModuloCasoDunamis() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/frecuencia"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '2px' }}>
+            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '999px' }}>
             Conoce FrecuenciA →
           </Link>
           <Link href="https://dunamis.agency" target="_blank" rel="noopener noreferrer"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid rgba(255,255,255,0.3)', color: BLANCO, borderRadius: '2px' }}>
+            style={{ border: '1px solid rgba(255,255,255,0.3)', color: BLANCO, borderRadius: '999px' }}>
             Habla con Dee →
           </Link>
         </div>

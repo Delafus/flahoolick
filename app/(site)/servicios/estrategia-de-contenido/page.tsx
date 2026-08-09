@@ -121,7 +121,7 @@ export default function EstrategiaDeContenido() {
               <p className="text-sm opacity-60">¿Necesitas algo específico de esta lista?</p>
               <Link href="#contacto"
                 className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '2px' }}>
+                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
                 Agenda una llamada →
               </Link>
             </div>
@@ -174,7 +174,7 @@ export default function EstrategiaDeContenido() {
             </div>
             <Link href="#contacto"
               className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '2px' }}>
+              style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
               Agenda una llamada →
             </Link>
           </div>

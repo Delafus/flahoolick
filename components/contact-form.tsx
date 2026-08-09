@@ -101,7 +101,7 @@ export function ContactForm({
               <button
                 type="submit" disabled={loading}
                 className="label mt-2 py-4 px-8 hover:opacity-70 disabled:opacity-30 transition-opacity w-fit"
-                style={{ background: text, color: bg, borderRadius: '2px' }}
+                style={{ background: text, color: bg, borderRadius: '999px' }}
               >
                 {loading ? 'Enviando...' : submitLabel}
               </button>

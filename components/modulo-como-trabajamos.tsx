@@ -35,7 +35,7 @@ export function ModuloComoTrabajamos() {
 
         <Link href="/servicios"
           className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mx-auto hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: NEGRO, color: GRIS, borderRadius: '2px' }}>
+          style={{ backgroundColor: NEGRO, color: GRIS, borderRadius: '999px' }}>
           Explorar servicios →
         </Link>
       </div>

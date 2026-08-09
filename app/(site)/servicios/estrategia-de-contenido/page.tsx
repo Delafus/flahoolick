@@ -77,6 +77,14 @@ export default function EstrategiaDeContenido() {
           </div>
         </BodySection>
 
+        {/* Qué construimos — secuencia de pasos con scroll-reveal */}
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <p className="label opacity-40">Qué construimos</p>
+            <ServicioCards items={pasos} color={NEGRO} />
+          </div>
+        </BodySection>
+
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
@@ -91,14 +99,6 @@ export default function EstrategiaDeContenido() {
                 </div>
               ))}
             </div>
-          </div>
-        </BodySection>
-
-        {/* Qué construimos — secuencia de pasos con scroll-reveal */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <p className="label opacity-40">Qué construimos</p>
-            <ServicioCards items={pasos} color={NEGRO} />
           </div>
         </BodySection>
 

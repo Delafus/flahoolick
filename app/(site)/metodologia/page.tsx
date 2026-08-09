@@ -4,6 +4,7 @@ import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { MetodologiaPasos } from '@/components/metodologia-pasos'
 import { CatalogoCards } from '@/components/catalogo-cards'
 import { DotPattern } from '@/components/dot-pattern'
+import { WaveHero } from '@/components/wave-hero'
 
 export const metadata: Metadata = {
   title: 'Metodología — Flahoolick',
@@ -82,6 +83,7 @@ export default function Metodologia() {
         description="Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado."
         heroBg="#000000"
         heroText="#ffffff"
+        illustrationNode={<WaveHero />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
       >

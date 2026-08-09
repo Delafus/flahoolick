@@ -92,20 +92,6 @@ export default function Metodologia() {
           </div>
         </BodySection>
 
-        {/* CTA intermedio — el lector ya está convencido acá */}
-        <BodySection dark>
-          <div className="flex flex-col items-center text-center gap-6">
-            <p className="text-lead opacity-75" style={{ maxWidth: '32rem' }}>
-              30 minutos. Sin presentaciones ni decks de venta.
-            </p>
-            <a href="#contacto"
-              className="label inline-flex items-center px-6 py-3.5 hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: '#ffffff', color: '#000000', borderRadius: '999px' }}>
-              Agenda una llamada →
-            </a>
-          </div>
-        </BodySection>
-
         {/* SENSOR — módulo de captura */}
         <BodySection>
           <div id="sensor" className="flex flex-col gap-10" style={{ scrollMarginTop: '90px' }}>

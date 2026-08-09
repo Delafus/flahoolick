@@ -6,7 +6,7 @@ import { FontMix } from './font-mix'
 export function ContactForm({
   bg = 'var(--brand-depth)',
   text = 'var(--brand-chalk)',
-  headline = <FontMix bold="Tu empresa ya tiene" italic=" el conocimiento." />,
+  headline = <FontMix bold="Tu empresa ya" italic=" tiene el conocimiento." />,
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
   submitLabel = 'Agenda una llamada →',

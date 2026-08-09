@@ -21,7 +21,17 @@ const headingStyle = {
 /** Los 3 pasos de la metodología, con GrillaProceso sincronizada por scroll: cada paso visible activa su coreografía. */
 export function MetodologiaPasos({ pasos }: { pasos: Paso[] }) {
   const [activo, setActivo] = useState(0)
+  const [expandidos, setExpandidos] = useState<Set<number>>(new Set())
   const refs = useRef<(HTMLDivElement | null)[]>([])
+
+  function toggleExpandido(i: number) {
+    setExpandidos(prev => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,7 +51,7 @@ export function MetodologiaPasos({ pasos }: { pasos: Paso[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
       <div className="hidden md:block" style={{ position: 'sticky', top: '120px' }}>
-        <div style={{ position: 'relative', aspectRatio: '1/1', width: '78%', margin: '0 auto' }}>
+        <div style={{ position: 'relative', aspectRatio: '1/1', width: '92%', margin: '0 auto' }}>
           <GrillaProceso abierto={activo} color="#000000" />
         </div>
       </div>
@@ -57,9 +67,25 @@ export function MetodologiaPasos({ pasos }: { pasos: Paso[] }) {
               <h3 style={{ ...headingStyle, fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', marginTop: '0.5rem' }}>{p.titulo}</h3>
             </div>
             <div className="md:col-span-8 flex flex-col gap-3">
-              {p.parrafos.map(t => (
-                <p key={t} className="text-sm leading-relaxed opacity-65">{t}</p>
-              ))}
+              {p.parrafos[0] && (
+                <p className="text-sm leading-relaxed opacity-65">{p.parrafos[0]}</p>
+              )}
+              {p.parrafos.length > 1 && expandidos.has(i) && (
+                <>
+                  {p.parrafos.slice(1).map(t => (
+                    <p key={t} className="text-sm leading-relaxed opacity-65">{t}</p>
+                  ))}
+                </>
+              )}
+              {p.parrafos.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => toggleExpandido(i)}
+                  className="label opacity-45 hover:opacity-70 transition-opacity w-fit"
+                  style={{ marginTop: '-0.25rem' }}>
+                  {expandidos.has(i) ? 'Ver menos' : 'Ver más'}
+                </button>
+              )}
               <p className="text-sm mt-2">
                 <span className="opacity-45">Recibes: </span>
                 <span className="font-semibold">{p.recibe}</span>

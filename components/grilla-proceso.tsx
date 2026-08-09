@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 
 const GRID = 10
 const COUNT = GRID * GRID
-const BASE_DIAMETER = 3
-const BASE_ALPHA = 0.2
+const BASE_DIAMETER = 3.4
+const BASE_ALPHA = 0.34
 const ACTIVE_COUNT = 30
 
 /** Entrada de los puntos activos en el paso 01. */

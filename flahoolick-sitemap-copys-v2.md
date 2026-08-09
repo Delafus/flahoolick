@@ -363,14 +363,13 @@ La tabla de la sección 1.4 de este documento queda OBSOLETA en su columna "desc
 
 **B. Eliminar el módulo CTA intermedio** — el `BodySection dark` con "30 minutos. Sin presentaciones ni decks de venta." + botón, ubicado entre "Tres pasos" y "SENSOR". No aporta nada nuevo (el CTA del hero y el del contacto final ya cubren la conversión). Queda descartada la recomendación anterior de este documento que pedía agregar un CTA ahí — se elimina en cambio.
 
-**C. Rediseño de `components/metodologia-pasos.tsx` — DECISIÓN PENDIENTE DE FELIPE, no ejecutar sin confirmar cuál:**
+**C. Rediseño de `components/metodologia-pasos.tsx` — DECISIÓN FINAL: Opción 1.**
 
 Problema diagnosticado: la grilla (`GrillaProceso`) se ve casi invisible junto al bloque de texto (mismo problema de bajo contraste que los heroes de la home, nunca corregido acá — color negro puro sin ajuste). Y cada paso trae 2-3 párrafos con igual peso visual, sin jerarquía — se lee como pared de texto.
 
-- **Opción 1 — mantener scroll-driven, arreglar jerarquía:** el mecanismo actual (`IntersectionObserver` cambia el paso activo al hacer scroll) se mantiene. Se sube el contraste de la grilla. Del texto, solo el primer párrafo queda siempre visible (el resumen); los párrafos siguientes van bajo un toggle "Ver más" dentro del paso, sin convertir todo en acordeón.
-- **Opción 2 — acordeón completo click-driven:** cada paso colapsado por defecto, título + "Recibes" visible; clic expande el detalle completo. La `GrillaProceso` deja de sincronizarse por scroll y pasa a reaccionar al clic (cambia `activo` al abrir un paso, no al hacer scroll). Cambia la filosofía de interacción de la página, de pasiva (scroll) a activa (clic).
+**Opción 1 — mantener scroll-driven, arreglar jerarquía (confirmada, 9 agosto):** el mecanismo actual (`IntersectionObserver` cambia el paso activo al hacer scroll) se mantiene, sin tocar. Se sube el contraste de la grilla (mismo tratamiento que los dots de los heroes de la home) y se agranda un poco su tamaño. Del texto, solo el primer párrafo queda siempre visible; los párrafos siguientes van bajo un toggle discreto "Ver más" / "Ver menos" dentro del paso, sin convertir todo en acordeón — el paso completo sigue visible siempre. La línea "Recibes: ..." se mantiene siempre visible, fuera del toggle.
 
-**No implementar C hasta que Felipe elija Opción 1 o 2 explícitamente.**
+Descartada: Opción 2 (acordeón completo click-driven).
 
 ## 6.4 Botones: la regla vigente es PILL, no 2px
 

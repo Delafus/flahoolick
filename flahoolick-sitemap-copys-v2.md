@@ -86,9 +86,9 @@ Criterio de fondo: en un header, el titular manda. Una animación en loop perman
 | Sobre Flahoolick | Un punto en la esquina de una grilla vacía |
 | JERGA | Logotipo JERGA (ya funciona) |
 
-## 1.5 Regla de forma: sin curvas
+## 1.5 Regla de forma: píldora
 
-Los botones no llevan esquinas redondeadas tipo píldora. `borderRadius: '2px'` en todo el sitio. Revisar y corregir donde haya `borderRadius: 999px` o similar (detectado en `/frecuencia` y en el hero de `/servicios`).
+Los botones llevan esquinas redondeadas tipo píldora. `borderRadius: '999px'` en todo el sitio. Revisar y corregir donde haya `borderRadius: '2px'` u otro valor angular en botones/CTAs.
 
 ---
 
@@ -301,9 +301,9 @@ Etapas 1 a 4 ya implementadas por Claude Code (nav, footer, CTAs, home reordenad
 
 **A. Eliminar el módulo de proceso** — `servicio-scroll-steps.tsx` fuera de las 4 subpáginas y de /frecuencia; borrar el componente. En /frecuencia lo reemplaza una línea de labels (`Encontramos · Ordenamos · Construimos · Publicamos · Medimos`) + link `Así trabajamos →` a /metodologia.
 
-**B. Hero de /servicios** — H1 nuevo (**El conocimiento de tu empresa puede vender por ti.**), eliminar la animación de dots, botón a `borderRadius: '2px'`.
+**B. Hero de /servicios** — H1 nuevo (**El conocimiento de tu empresa puede vender por ti.**), eliminar la animación de dots, botón a `borderRadius: '999px'` (píldora).
 
-**C. Barrido de botones tipo píldora** en todo el sitio → 2px.
+**C. Barrido de botones a tipo píldora** (`borderRadius: '999px'`) en todo el sitio — regla definitiva, confirmada.
 
 **D. Eliminar animaciones de dots de los headers de las 4 subpáginas** (`TrappedDots`), dejar placeholder con borde sutil.
 
@@ -320,3 +320,58 @@ Etapas 1 a 4 ya implementadas por Claude Code (nav, footer, CTAs, home reordenad
 **J. SVGs de micrographics** por header, cuando Felipe los produzca (conceptos en 1.4).
 
 Orden sugerido: A → B → C → D en una tanda (son eliminaciones y ajustes, bajo riesgo). Después E → F → G en estrategia-de-contenido como página piloto, validar, y replicar en las otras tres.
+
+---
+
+# PARTE 6 — CORRECCIONES ABIERTAS (9 agosto, madrugada)
+
+Todo lo de esta parte es NUEVO y no debe interpretarse como reemplazo silencioso de nada anterior en el documento. Cada punto dice exactamente qué archivo toca.
+
+## 6.1 Sistema de dots — hallazgo y regla ya vigentes en el repo
+
+Ya existe `regla-grilla-dots.md` en la raíz del proyecto (lo escribió Claude Code, es el canon correcto). Resumen: todo se resuelve con la población fija de 100 puntos en grilla 10×10 de `grilla-proceso.tsx` — nunca líneas, trazos ni trigonometría libre.
+
+**Hallazgo adicional (no estaba en ese archivo):** varios patrones de `components/dot-pattern.tsx` — `constelaciones`, `mapa`, `convergencia`, `cadencia`, `malla`, `captura`, `pieza`, `ondas`, `origen` — calculan posiciones con `Math.cos`/`Math.sin` en coordenadas libres, no desde la grilla. Por eso se ven como nubes sueltas sin relación con la retícula real (confirmado en headers de Servicios y FrecuenciA, y en SENSOR/DECK dentro de Metodología — se describen como "cartel de topless" parpadeando sin lógica).
+
+**Pendiente:** reescribir todos los patrones de `dot-pattern.tsx` contra la misma grilla fija de `grilla-proceso.tsx`, agregando esta invariante a `regla-grilla-dots.md`:
+> Todo punto vive en una casilla de la grilla 10×10 fija. Ningún patrón calcula posiciones en coordenadas continuas o con trigonometría libre.
+
+No es necesario preservar el diseño visual actual de estos headers — están mal desde la base, se rediseñan contra la grilla real.
+
+## 6.2 Headers internos — nuevo concepto por página, reemplaza la tabla de la sección 1.4
+
+La tabla de la sección 1.4 de este documento queda OBSOLETA en su columna "descripción del SVG" (pedía composiciones libres tipo "puntos conectados por líneas" — es la causa raíz del problema de 6.1). Se reemplaza por comportamientos, todos derivados de la grilla fija:
+
+| Página | Comportamiento |
+|---|---|
+| Servicios | Cascada al scroll: 4 clusters de casillas contiguas se encienden en secuencia al entrar el hero en viewport, quedan encendidos |
+| Estrategia de contenido | Cursor magnético: casillas cercanas al mouse aumentan radio/opacidad, caída suave por distancia |
+| Marca y relato | Morphing lento entre 2 estados: puntos dispersos ↔ convergen al centro, loop con pausa larga en cada extremo |
+| Producción de contenido | Cascada direccional continua: ola de encendido cruzando la grilla de izquierda a derecha, en loop |
+| Sistemas de contenido con IA | Respiración: variación lenta de opacidad/radio en toda la grilla, con un grupo fijo en verde Flahoolick que NO respira (criterio humano = señal fija) |
+| FrecuenciA | Ondas concéntricas resueltas en grilla real: anillos de casillas a distancia creciente del centro, encendido en secuencia al entrar en viewport, después quietas |
+| Sobre Flahoolick | Un solo punto respirando, solo, en una esquina de grilla vacía |
+| FAQ | Sin dots — página utilitaria |
+| Metodología (hero superior) | Ver 6.3 — es el único header con tratamiento especial, no sigue esta tabla |
+
+**Referencia técnica para Servicios/FrecuenciA (cascadas):** encendido secuencial de casillas ya predefinidas por posición — no inventar geometría nueva, solo timing de encendido.
+**Referencia técnica para Estrategia (cursor magnético):** distancia del mouse a cada casilla fija, modula radio/opacidad — sin desplazamiento de posición.
+
+## 6.3 Metodología — tres cambios en `app/(site)/metodologia/page.tsx`
+
+**A. Hero superior (hoy sin ningún dot):** implementar efecto de ola 3D interactiva al cursor. Referencia técnica: `https://codepen.io/jsabutis/pen/emYQyEX` — Three.js, `THREE.Points`, grilla de posiciones que se desplazan en eje Z según `Math.sin(distancia_al_cursor - tiempo)`. Es la ÚNICA pieza del sitio que sale del sistema SVG 2D de `dot-pattern.tsx` — se justifica por ser el header de la página más importante del método, y hoy está completamente vacío. Cuidar performance en mobile: fallback estático si el dispositivo no soporta bien WebGL.
+
+**B. Eliminar el módulo CTA intermedio** — el `BodySection dark` con "30 minutos. Sin presentaciones ni decks de venta." + botón, ubicado entre "Tres pasos" y "SENSOR". No aporta nada nuevo (el CTA del hero y el del contacto final ya cubren la conversión). Queda descartada la recomendación anterior de este documento que pedía agregar un CTA ahí — se elimina en cambio.
+
+**C. Rediseño de `components/metodologia-pasos.tsx` — DECISIÓN PENDIENTE DE FELIPE, no ejecutar sin confirmar cuál:**
+
+Problema diagnosticado: la grilla (`GrillaProceso`) se ve casi invisible junto al bloque de texto (mismo problema de bajo contraste que los heroes de la home, nunca corregido acá — color negro puro sin ajuste). Y cada paso trae 2-3 párrafos con igual peso visual, sin jerarquía — se lee como pared de texto.
+
+- **Opción 1 — mantener scroll-driven, arreglar jerarquía:** el mecanismo actual (`IntersectionObserver` cambia el paso activo al hacer scroll) se mantiene. Se sube el contraste de la grilla. Del texto, solo el primer párrafo queda siempre visible (el resumen); los párrafos siguientes van bajo un toggle "Ver más" dentro del paso, sin convertir todo en acordeón.
+- **Opción 2 — acordeón completo click-driven:** cada paso colapsado por defecto, título + "Recibes" visible; clic expande el detalle completo. La `GrillaProceso` deja de sincronizarse por scroll y pasa a reaccionar al clic (cambia `activo` al abrir un paso, no al hacer scroll). Cambia la filosofía de interacción de la página, de pasiva (scroll) a activa (clic).
+
+**No implementar C hasta que Felipe elija Opción 1 o 2 explícitamente.**
+
+## 6.4 Botones: la regla vigente es PILL, no 2px
+
+Corrección ya aplicada arriba en este mismo mensaje (secciones 1.5, B y C corregidas a `999px`). Si en el futuro aparece algo en `2px`, está desactualizado — corregir a `999px`.

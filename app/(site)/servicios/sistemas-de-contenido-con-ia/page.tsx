@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-layout'
 import { ServicioCards } from '@/components/servicio-cards'
+import { DotGrid } from '@/components/dot-grid'
 
 export const metadata: Metadata = { title: 'Sistemas de Contenido con IA — Flahoolick' }
 
@@ -47,6 +48,7 @@ export default function SistemasDeContenidoConIA() {
         description="La infraestructura que captura, prioriza y distribuye tu conocimiento todos los meses."
         heroBg="#F09DB6"
         heroText={NEGRO}
+        illustrationNode={<DotGrid behavior="respiracion-fijo" color={NEGRO} />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
       >

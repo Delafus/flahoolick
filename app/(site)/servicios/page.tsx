@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { GRUPOS_ACTIVOS, DISCIPLINAS } from '@/components/servicios-datos'
+import { DotGrid } from '@/components/dot-grid'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -18,6 +19,7 @@ export default function Servicios() {
         description="Cuatro servicios que convierten ese conocimiento en presencia de mercado, herramientas comerciales y clientes que llegan informados."
         heroBg="#000000"
         heroText="#ffffff"
+        illustrationNode={<DotGrid behavior="cascada-clusters" color="#ffffff" />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
         ctaNote="30 minutos. Sin presentaciones ni decks de venta."

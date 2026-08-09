@@ -19,6 +19,10 @@ La grilla no ilustra ideas dibujándolas. Las ilustra con la distribución, la d
 
 Cualquier componente nuevo se escribe contra este modelo.
 
+## Invariante de posición
+
+Todo punto vive en una casilla de la grilla 10×10 fija. Ningún patrón calcula posiciones en coordenadas continuas o con trigonometría libre (`Math.cos`/`Math.sin` sobre un radio arbitrario, scatter aleatorio en el plano, etc.). Un punto puede desplazarse desde su casilla hacia una posición objetivo — pero esa posición objetivo también se define en términos de la grilla (otra casilla, el centro de la grilla, una interpolación entre dos casillas), nunca en coordenadas inventadas fuera de ella.
+
 ## Prohibido
 
 - `<line>`, `<polyline>`, `<path>`, `<rect>` o cualquier SVG de trazo dentro de un componente de dots
@@ -58,10 +62,10 @@ Al pausar en cualquier frame, todo pixel iluminado pertenece a un punto. Si exis
 
 ## Deuda existente
 
-`components/dot-pattern.tsx` incumple la regla en tres lugares y debe migrarse:
+Las tres violaciones de trazo (`<line>`/`<circle stroke>`) de `components/dot-pattern.tsx` ya se corrigieron. Pero el archivo seguía incumpliendo la invariante de posición: varios patrones (`constelaciones`, `mapa`, `convergencia`, `cadencia`, `malla`, `captura`, `pieza`, `ondas`, `origen`) calculaban coordenadas con `Math.cos`/`Math.sin` o scatter libre en vez de casillas de una grilla fija.
 
-- línea 68, patrón `'mapa'` — `<line>` entre los puntos de la ruta
-- línea 128, patrón `'captura'` — `<line>` como estelas hacia el colector
-- línea 184, patrón `'origen'` — `<circle stroke>` animado como pulso
+`components/dot-grid.tsx` es el reemplazo que sí cumple la invariante — motor único, grilla 10×10 fija, seis comportamientos (`cascada-clusters`, `cursor-magnetico`, `morphing`, `cascada-direccional`, `respiracion-fijo`, `ondas-concentricas`). Ya está en uso en Servicios, las 4 subpáginas de servicios y FrecuenciA.
 
-Cumplen: `trapped-dots.tsx`, `circulation-dots.tsx`, `megamenu-dots.tsx`, `grilla-proceso.tsx`.
+`components/dot-pattern.tsx` sigue existiendo solo porque Metodología (`#sensor` con `pattern="captura"`, `#deck` con `pattern="pieza"`) todavía lo usa — esa migración queda pendiente junto con el resto de los cambios de Metodología (Parte 6.3 del sitemap), no se tocó en esta pasada.
+
+Cumplen: `trapped-dots.tsx`, `circulation-dots.tsx`, `megamenu-dots.tsx`, `grilla-proceso.tsx`, `dot-grid.tsx`.

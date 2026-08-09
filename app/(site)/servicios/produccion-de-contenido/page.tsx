@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
+import { DotGrid } from '@/components/dot-grid'
 
 export const metadata: Metadata = { title: 'Producción de Contenido — Flahoolick' }
 
@@ -32,6 +33,7 @@ export default function ProduccionDeContenido() {
         description="Contenido de autoridad y herramientas comerciales, producidos en cadencia."
         heroBg="#F09DB6"
         heroText={NEGRO}
+        illustrationNode={<DotGrid behavior="cascada-direccional" color={NEGRO} />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
       >

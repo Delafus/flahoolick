@@ -39,15 +39,21 @@ export function ScrollConnector({
   }, [])
 
   const dots = Array.from({ length: dotCount }, (_, i) => i)
-  const fadeStart = 0.6
+  // Curva pareja: nace chico (continúa el tamaño con que termina el stream de FhFlow),
+  // crece a un pico moderado antes de la mitad, y se derrite hacia el verde — sin salto
+  // ni meseta de círculos grandes.
+  const peakAt = 0.32
 
   return (
     <div ref={ref} className="w-full flex flex-col items-center justify-between" style={{ height: `${height}px`, padding: `${dotSize / 2}px 0` }}>
       {dots.map(i => {
         const t = dotCount > 1 ? i / (dotCount - 1) : 0
         const dotColor = t < 0.5 ? color : (colorTo ?? color)
-        const fade = t < fadeStart ? 1 : Math.max(0, 1 - (t - fadeStart) / (1 - fadeStart))
-        const scale = 0.4 + fade * 0.6
+        const rise = Math.min(1, t / peakAt)
+        const fall = Math.max(0, 1 - Math.max(0, t - peakAt) / (1 - peakAt))
+        const curve = Math.min(rise, fall)
+        const scale = 0.3 + curve * 0.7
+        const opacity = 0.22 + curve * 0.78
         return (
           <div
             key={i}
@@ -56,7 +62,7 @@ export function ScrollConnector({
               height: `${dotSize * scale}px`,
               borderRadius: '50%',
               backgroundColor: dotColor,
-              opacity: visible ? fade : 0,
+              opacity: visible ? opacity : 0,
               transition: `opacity 0.45s ease ${0.05 * i}s`,
             }}
           />

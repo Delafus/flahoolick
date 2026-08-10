@@ -99,10 +99,10 @@ export default function HomePage() {
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
         <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={9} dotCount={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={7} dotCount={9} />
         </div>
         <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={14} dotCount={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={10} dotCount={9} />
         </div>
       </div>
 

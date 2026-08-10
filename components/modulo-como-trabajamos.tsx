@@ -24,7 +24,7 @@ export function ModuloComoTrabajamos() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(0,0,0,0.12)' }}>
           {DISCIPLINAS.map(d => (
             <Link key={d.id} href={d.href}
-              className="group flex flex-col gap-3 p-8 hover:opacity-80 transition-opacity"
+              className="group flex flex-col gap-3 p-8 hover:bg-[#F09DB6] transition-colors"
               style={{ backgroundColor: GRIS }}>
               <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{d.nombre}</h3>
               <p className="text-sm leading-relaxed opacity-65 flex-1">{d.desc}</p>

@@ -31,7 +31,7 @@ export default function MarcaYRelato() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Marca y Relato"
-        headline={<FontMix bold="Una idea" italic=" que todo tu equipo cuenta igual." />}
+        headline={<FontMix bold="Que todo tu equipo" italic=" cuente la misma historia." />}
         description="La idea central y la arquitectura de mensajes que unifica cómo tu empresa habla."
         heroBg="#F09DB6"
         heroText={NEGRO}
@@ -61,7 +61,9 @@ export default function MarcaYRelato() {
         {/* Qué construimos — secuencia de pasos con scroll-reveal */}
         <BodySection>
           <div className="flex flex-col gap-10">
-            <p className="label opacity-40">Qué construimos</p>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" construimos" />
+            </h2>
             <ServicioCards items={pasos} color={NEGRO} />
           </div>
         </BodySection>
@@ -69,7 +71,9 @@ export default function MarcaYRelato() {
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
-            <p className="label opacity-50">Qué resolvemos</p>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" resolvemos" />
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
               {problemas.map(p => (
                 <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
@@ -81,21 +85,17 @@ export default function MarcaYRelato() {
           </div>
         </BodySection>
 
-        {/* Qué recibes — mockup del sistema de marca */}
+        {/* Qué recibes */}
         <BodySection dark>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.12, transform: 'rotate(-6deg) translate(14px, 10px)', borderRadius: '8px' }} />
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.18, transform: 'rotate(3deg) translate(-8px, -6px)', borderRadius: '8px' }} />
-              <div style={{
-                position: 'absolute', inset: 0, backgroundColor: '#ffffff', borderRadius: '8px',
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
-              }}>
-                <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Sistema</p>
-                <h3 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, color: NEGRO }}>
-                  <FontMix bold="Marca y Relato" />
-                </h3>
-              </div>
+            <div
+              className="hidden md:flex"
+              style={{
+                position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto',
+                border: '1px solid rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              <span className="label" style={{ color: '#ffffff', opacity: 0.25 }}>Ilustración</span>
             </div>
             <div className="flex flex-col gap-6">
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
@@ -111,15 +111,15 @@ export default function MarcaYRelato() {
           </div>
         </BodySection>
 
-        {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
-        <BodySection>
-          <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Tu categoría ya tiene" italic=" voces." />
+        {/* Cierre — mensaje de Flahoolick, verde de marca. Sin CTA repetido, el contacto está justo debajo */}
+        <section className="page-px section-py" style={{ backgroundColor: '#1FDE91', color: NEGRO }}>
+          <div className="max-container flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
+            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0, color: NEGRO }}>
+              <FontMix bold="Tu mercado está lleno de empresas" italic=" diciendo lo mismo con distinto logo." />
             </h2>
-            <p className="text-lead opacity-70">Construyamos la que todos puedan reconocer.</p>
+            <p className="text-lead opacity-70" style={{ color: NEGRO }}>Démosle a tu marca algo propio que decir.</p>
           </div>
-        </BodySection>
+        </section>
       </PageLayout>
     </>
   )

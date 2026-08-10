@@ -106,7 +106,7 @@ export default function Servicios() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {GRUPOS_ACTIVOS.map(grupo => (
                 <div key={grupo.titulo} className="flex flex-col gap-3 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                  <h3 className="text-base font-semibold">{grupo.titulo}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{grupo.titulo}</h3>
                   <p className="text-sm leading-relaxed opacity-65">{grupo.desc}</p>
                   <p className="text-sm opacity-45">{grupo.ejemplos}</p>
                 </div>

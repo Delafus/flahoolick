@@ -30,7 +30,7 @@ const QUE_HACEMOS = [
     numero: '03',
     titulo: 'Herramientas de IA para marketing',
     desc: 'Diseñamos e implementamos herramientas con IA para investigar audiencias, aprovechar el conocimiento interno y acelerar la producción de contenido.',
-    href: '/servicios/sistemas-de-contenido-con-ia',
+    href: '/servicios/herramientas-de-ia-para-marketing',
   },
   {
     numero: '04',

@@ -101,18 +101,8 @@ export default function EstrategiaDeContenido() {
         {/* Entrega — mockup del playbook + qué recibes */}
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: NEGRO, opacity: 0.06, transform: 'rotate(-6deg) translate(14px, 10px)', borderRadius: '8px' }} />
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: NEGRO, opacity: 0.1, transform: 'rotate(3deg) translate(-8px, -6px)', borderRadius: '8px' }} />
-              <div style={{
-                position: 'absolute', inset: 0, backgroundColor: NEGRO, borderRadius: '8px',
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
-              }}>
-                <p className="label" style={{ color: '#ffffff', opacity: 0.5 }}>Playbook</p>
-                <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, color: '#ffffff' }}>
-                  Estrategia de contenido
-                </h3>
-              </div>
+            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
             </div>
             <div className="flex flex-col gap-6">
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>

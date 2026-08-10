@@ -30,10 +30,10 @@ export const DISCIPLINAS: Disciplina[] = [
     href: '/servicios/produccion-de-contenido',
   },
   {
-    id: 'sistemas-de-contenido-con-ia',
+    id: 'herramientas-de-ia-para-marketing',
     nombre: 'Herramientas de IA para marketing',
     desc: 'Diseñamos e implementamos herramientas con IA para investigar, producir y acelerar tu contenido.',
-    href: '/servicios/sistemas-de-contenido-con-ia',
+    href: '/servicios/herramientas-de-ia-para-marketing',
   },
 ]
 

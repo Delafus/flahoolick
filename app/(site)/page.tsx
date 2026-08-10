@@ -74,7 +74,7 @@ export default function HomePage() {
                   {s.h1Emphasis}
                 </span>
               </h1>
-              <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+              <p className="fh-flow__copy-end text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
                 {s.sub}
               </p>
               <div className="md:hidden" style={{ height: '90px' }} />

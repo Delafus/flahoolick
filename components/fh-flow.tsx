@@ -47,6 +47,9 @@ interface Stage {
   centerX: number
   triggerStart: number
   triggerEnd: number
+  /** Franja [sectionTop, copyEnd] — nunca se dibuja un dot del stream ahí: es donde vive el copy del hero. */
+  sectionTop: number
+  copyEnd: number
 }
 
 interface Particle {
@@ -134,6 +137,7 @@ export function FhFlow() {
     function buildMetrics() {
       const sections = Array.from(container!.querySelectorAll<HTMLElement>('.fh-flow__section'))
       const zones = Array.from(container!.querySelectorAll<HTMLElement>('.fh-flow__grid-zone'))
+      const copyEnds = Array.from(container!.querySelectorAll<HTMLElement>('.fh-flow__copy-end'))
       const containerRect = container!.getBoundingClientRect()
 
       width = Math.max(1, containerRect.width)
@@ -157,7 +161,12 @@ export function FhFlow() {
         const top = zoneRect.top - containerRect.top
         const left = zoneRect.left - containerRect.left
 
-        const sectionDocTop = (section?.getBoundingClientRect().top ?? zoneRect.top) + window.scrollY
+        const sectionRect = section?.getBoundingClientRect()
+        const sectionTop = (sectionRect ? sectionRect.top : zoneRect.top) - containerRect.top
+        const copyEndRect = copyEnds[index]?.getBoundingClientRect()
+        const copyEnd = copyEndRect ? copyEndRect.bottom - containerRect.top : sectionTop
+
+        const sectionDocTop = (sectionRect?.top ?? zoneRect.top) + window.scrollY
         const zoneDocTop = zoneRect.top + window.scrollY
 
         const triggerStart = clamp(sectionDocTop - viewportHeight * (index === 0 ? 0 : 0.58), 0, maxScroll)
@@ -165,7 +174,7 @@ export function FhFlow() {
 
         const kind: Kind = index === 0 ? 'trapped' : index === 1 ? 'market' : 'circulation'
 
-        return { index, kind, left, top, size, step, radius, centerX: left + size / 2, triggerStart, triggerEnd }
+        return { index, kind, left, top, size, step, radius, centerX: left + size / 2, triggerStart, triggerEnd, sectionTop, copyEnd }
       })
     }
 
@@ -174,10 +183,11 @@ export function FhFlow() {
       return range(scrollY, stage.triggerStart, stage.triggerEnd)
     }
 
-    function drawStreamSegment(x: number, fromY: number, toY: number, radius: number, step: number, revealY: number) {
+    function drawStreamSegment(x: number, fromY: number, toY: number, radius: number, step: number, revealY: number, skipStart?: number, skipEnd?: number) {
       if (toY <= fromY) return
       const first = Math.ceil(fromY / step) * step
       for (let y = first; y <= toY + 0.1; y += step) {
+        if (skipStart != null && skipEnd != null && y >= skipStart && y <= skipEnd) continue
         const distance = revealY - y
         const reveal = smooth(clamp(distance / Math.max(1, step) + 0.55))
         const head = Math.exp(-Math.pow(distance / Math.max(1, step), 2) / 2.4)
@@ -219,7 +229,9 @@ export function FhFlow() {
       const toY = stage.top
       const incoming = range(progress, 0, 0.44)
       const headY = fromY + (toY - fromY) * incoming
-      drawStreamSegment(stage.centerX, fromY, toY, stage.radius, stage.step, headY)
+      // Nunca se dibuja un dot del stream sobre el copy del hero actual — solo en el
+      // tramo conector, antes y después de ese bloque de texto.
+      drawStreamSegment(stage.centerX, fromY, toY, stage.radius, stage.step, headY, stage.sectionTop, stage.copyEnd)
     }
 
     function updateParticles(stage: Stage, deltaSeconds: number) {

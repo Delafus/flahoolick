@@ -142,16 +142,26 @@ export default function SobreFlahoolick() {
             ].map(card => (
               <div key={card.href} className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
                 <div className="flex flex-col gap-4 flex-1">
-                  <p style={{
+                  <p style={card.titulo === 'JERGA' ? {
                     fontFamily: 'var(--font-display)',
                     fontWeight: 400,
                     fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)',
                     lineHeight: 1.05,
                     letterSpacing: '-0.015em',
+                  } : {
+                    fontFamily: 'var(--font-bricolage)',
+                    fontWeight: 800,
+                    fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)',
+                    lineHeight: 1.05,
+                    letterSpacing: '-0.02em',
                   }}>{card.titulo}</p>
                   <p className="text-sm leading-relaxed opacity-60">{card.desc}</p>
                 </div>
-                <Link href={card.href} className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-60 transition-opacity w-fit" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>{card.cta}</Link>
+                <Link href={card.href}
+                  className="btn-invert inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium w-fit"
+                  style={{ '--btn-bg': '#ffffff', '--btn-fg': '#000000', borderRadius: '999px' } as React.CSSProperties}>
+                  {card.cta}
+                </Link>
               </div>
             ))}
           </div>

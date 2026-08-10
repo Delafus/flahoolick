@@ -124,7 +124,13 @@ export function Header() {
             onClick={() => setActive(null)}>
             Servicios
           </Link>
-          <NavLink href="/frecuencia" color={text} onClick={() => setActive(null)}>FrecuenciA</NavLink>
+          <Link href="/metodologia"
+            className="label hover:opacity-60 transition-opacity"
+            style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
+            onMouseEnter={() => setActive('met')}
+            onClick={() => setActive(null)}>
+            Metodología
+          </Link>
         </nav>
 
         {/* Logo */}
@@ -140,13 +146,6 @@ export function Header() {
         {/* Right nav + CTA + hamburguesa */}
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
-            <Link href="/metodologia"
-              className="label hover:opacity-60 transition-opacity"
-              style={{ color: text, textDecoration: active === 'met' ? 'underline' : 'none', textUnderlineOffset: '4px' }}
-              onMouseEnter={() => setActive('met')}
-              onClick={() => setActive(null)}>
-              Metodología
-            </Link>
             <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
           </nav>
           <Link href="#contacto"
@@ -177,6 +176,7 @@ export function Header() {
           opacity: active ? 1 : 0,
           backgroundColor: bg,
           borderTop: active ? `1px solid ${divColor}` : 'none',
+          borderBottom: active ? `2px solid ${text}` : 'none',
           position: 'relative',
         }}
       >

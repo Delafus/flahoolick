@@ -15,11 +15,11 @@ const CORREO = '[correo de contacto]'
 function H2({ children }: { children: React.ReactNode }) {
   return (
     <h2 style={{
-      fontFamily: 'var(--font-display)',
-      fontWeight: 400,
+      fontFamily: 'var(--font-bricolage)',
+      fontWeight: 800,
       fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
       lineHeight: 1.15,
-      letterSpacing: '-0.01em',
+      letterSpacing: '-0.02em',
       marginTop: '3.5rem',
       marginBottom: '1.25rem',
     }}>{children}</h2>
@@ -222,11 +222,11 @@ export default function PoliticaDePrivacidadPage() {
           {/* Mobile — apilado */}
           <div className="flex flex-col gap-10 md:hidden">
             <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 400,
+              fontFamily: 'var(--font-bricolage)',
+              fontWeight: 800,
               fontSize: 'clamp(2.75rem, 10vw, 4rem)',
               lineHeight: 1.0,
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.03em',
             }}>
               Política de Privacidad
             </h1>
@@ -239,11 +239,11 @@ export default function PoliticaDePrivacidadPage() {
               <h1 style={{
                 position: 'sticky',
                 top: 'calc(64px + 3rem)',
-                fontFamily: 'var(--font-display)',
-                fontWeight: 400,
+                fontFamily: 'var(--font-bricolage)',
+                fontWeight: 800,
                 fontSize: 'clamp(3rem, 6vw, 6rem)',
                 lineHeight: 1.0,
-                letterSpacing: '-0.025em',
+                letterSpacing: '-0.03em',
               }}>
                 Política de Privacidad
               </h1>

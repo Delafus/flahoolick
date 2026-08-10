@@ -52,8 +52,8 @@ export default function Metodologia() {
           submitLabel: 'Conversemos →',
         }}
       >
-        {/* Cómo trabajamos — tres pasos, cada uno en su propia franja con microgrilla */}
-        <BodySection title="Cómo trabajamos">
+        {/* Cómo trabajamos — tres pasos, cada uno en su propia franja */}
+        <BodySection>
           <div id="como-trabajamos" className="flex flex-col gap-10" style={{ scrollMarginTop: '90px' }}>
             <div className="flex flex-col gap-3">
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.0 }}>

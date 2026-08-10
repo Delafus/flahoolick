@@ -5,7 +5,6 @@ export function Footer() {
   const links = {
     quehacemos: [
       { label: 'Servicios',    href: '/servicios' },
-      { label: 'FrecuenciA',   href: '/frecuencia' },
       { label: 'Metodología',  href: '/metodologia' },
     ],
     empresa: [
@@ -35,12 +34,12 @@ export function Footer() {
               />
             </div>
             <p className="text-sm opacity-40 leading-relaxed">
-              Partner de estrategia y contenido B2B.<br />Santiago, Chile.
+              Tu partner moderno en contenido B2B.<br />Convertimos lo que sabes en autoridad de mercado.
             </p>
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="label opacity-30 mb-1">Qué hacemos</p>
+            <p className="label opacity-30 mb-1" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 700 }}>Qué hacemos</p>
             {links.quehacemos.map(l => (
               <Link key={l.href} href={l.href}
                 className="text-sm opacity-50 hover:opacity-100 transition-opacity">{l.label}</Link>
@@ -48,7 +47,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="label opacity-30 mb-1">Empresa</p>
+            <p className="label opacity-30 mb-1" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 700 }}>Empresa</p>
             {links.empresa.map(l => (
               <Link key={l.href} href={l.href}
                 className="text-sm opacity-50 hover:opacity-100 transition-opacity">{l.label}</Link>

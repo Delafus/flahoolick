@@ -1,4 +1,4 @@
-import { MicrogrillaMetodologia, type MicrogrillaKind } from './microgrilla-metodologia'
+import type { MicrogrillaKind } from './microgrilla-metodologia'
 
 interface Paso {
   numero: string
@@ -9,7 +9,7 @@ interface Paso {
   kind: MicrogrillaKind
 }
 
-/** Tres pasos como franjas horizontales independientes — cada una con su propia microgrilla 7x7. */
+/** Tres pasos como franjas horizontales independientes. */
 export function MetodologiaPasos({ pasos }: { pasos: Paso[] }) {
   return (
     <div className="flex flex-col">
@@ -23,10 +23,11 @@ export function MetodologiaPasos({ pasos }: { pasos: Paso[] }) {
             scrollMarginTop: '90px',
           }}>
           <div className="md:col-span-4 flex md:justify-center" style={{ width: 'clamp(96px, 24vw, 160px)' }}>
-            <MicrogrillaMetodologia kind={p.kind} color="#000000" />
+            <div style={{ width: '100%', aspectRatio: '1', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+            </div>
           </div>
           <div className="md:col-span-8 flex flex-col gap-3" style={{ maxWidth: '38rem' }}>
-            <p className="label opacity-45">{p.numero}</p>
             <h2 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.0 }}>
               {p.titulo}
             </h2>

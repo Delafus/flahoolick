@@ -61,11 +61,6 @@ const preguntas = [
     link: { label: 'Cómo trabajamos →', href: '/metodologia#como-trabajamos' },
   },
   {
-    q: '¿Qué es FrecuenciA?',
-    a: 'FrecuenciA convierte el conocimiento de tu empresa en herramientas públicas que venden: dossiers interactivos, simuladores, blogs y agentes conectados a tus datos. Construido con IA, publicado en semanas.',
-    link: { label: 'Conoce FrecuenciA →', href: '/frecuencia' },
-  },
-  {
     q: '¿Tienen casos de referencia?',
     a: 'Sí. Por razones de confidencialidad, los casos que compartimos públicamente son anonimizados o requieren autorización del cliente. En una conversación podemos mostrarte los casos relevantes para tu industria con detalle. Algunas empresas con las que hemos trabajado: Claro Empresas, UNAB, Cajas de Chile, Diario Financiero, Consorcio Ciencia e Innovación 2030, Adidas.',
     link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
@@ -86,8 +81,10 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
         className="w-full flex items-start justify-between text-left group py-6 gap-6"
       >
         <span style={{
+          fontFamily: 'var(--font-bricolage)',
           fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
-          fontWeight: 500,
+          fontWeight: 700,
+          letterSpacing: '-0.01em',
           lineHeight: 1.3,
           transition: 'opacity 0.2s',
         }}
@@ -145,7 +142,6 @@ export default function FAQPage() {
             </h1>
             <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
             <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
-            <p style={{ fontSize: '1rem', lineHeight: 1.6, opacity: 0.65, fontWeight: 300 }}>Si tu pregunta no está acá, escríbenos directo.</p>
           </div>
           {/* Desktop */}
           <div className="hidden md:grid items-end gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
@@ -159,9 +155,6 @@ export default function FAQPage() {
               </h1>
               <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
               <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
-              <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.3rem)', lineHeight: 1.65, opacity: 0.65, fontWeight: 300, maxWidth: '420px' }}>
-                Si tu pregunta no está acá, escríbenos directo.
-              </p>
             </div>
           </div>
         </div>
@@ -172,18 +165,10 @@ export default function FAQPage() {
         <div className="max-container">
           {/* Mobile — apilado */}
           <div className="flex flex-col gap-10 md:hidden">
-            <div className="flex flex-col gap-6" style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
-              <div className="flex flex-col gap-1">
-                <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', lineHeight: 1.2 }}>
-                  Preguntado y respondido
-                </p>
-                <p className="text-sm opacity-55">Las preguntas más frecuentes de clientes potenciales antes de empezar.</p>
+            <div style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
+              <div style={{ aspectRatio: '4/3', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
               </div>
-              <Link href="/#contacto"
-                className="label inline-flex items-center gap-2 border px-5 py-3 w-fit hover:opacity-60 transition-opacity"
-                style={{ borderColor: 'rgba(0,0,0,0.3)' }}>
-                Escríbenos →
-              </Link>
             </div>
             <div>
               {preguntas.map(p => (
@@ -194,18 +179,10 @@ export default function FAQPage() {
 
           {/* Desktop — dos columnas con divisor */}
           <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
-            <div className="flex flex-col gap-8" style={{ paddingRight: '3rem', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
-              <div className="flex flex-col gap-2">
-                <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.4rem, 2.4vw, 2.2rem)', lineHeight: 1.15 }}>
-                  Preguntado y respondido
-                </p>
-                <p className="text-sm opacity-55" style={{ maxWidth: '380px' }}>Las preguntas más frecuentes de clientes potenciales antes de empezar.</p>
+            <div style={{ paddingRight: '3rem', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
+              <div style={{ aspectRatio: '4/3', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
               </div>
-              <Link href="/#contacto"
-                className="label inline-flex items-center gap-2 border px-5 py-3 w-fit hover:opacity-60 transition-opacity"
-                style={{ borderColor: 'rgba(0,0,0,0.3)' }}>
-                Escríbenos →
-              </Link>
             </div>
 
             <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', height: '100%', width: '1px' }} />

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flahoolick · Pulso 04 · Cadencia</title>
+  <style>
+    :root {
+      --grid-size: min(360px, 76vw);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: transparent;
+    }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .dot-matrix {
+      width: var(--grid-size);
+      aspect-ratio: 1;
+      position: relative;
+    }
+
+    .dot-matrix canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div
+    class="dot-matrix"
+    role="img"
+    aria-label="Un núcleo produce y distribuye piezas de contenido con una cadencia continua."
+  >
+    <canvas id="pulso-cadencia"></canvas>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const canvas = document.querySelector('#pulso-cadencia');
+      const context = canvas.getContext('2d');
+      const matrix = canvas.parentElement;
+
+      const ROWS = 10;
+      const COLS = 10;
+      const LOOP_MS = 9600;
+
+      // Proporciones de la matriz original de la home.
+      const SOURCE_SIZE = 622;
+      const SOURCE_RADIUS = 1.82725;
+      const SOURCE_STEP = 68.7;
+      const SOURCE_FIRST_CENTER = 1.82725;
+      const DOT_RGB = '0, 0, 0';
+
+      const CORE = [
+        [4, 4], [4, 5],
+        [5, 4], [5, 5]
+      ];
+
+      // Cuatro líneas editoriales salen del mismo sistema con ritmos constantes.
+      const LANES = [
+        [[4, 4], [3, 3], [2, 2], [1, 1], [0, 0]],
+        [[4, 5], [3, 6], [2, 7], [1, 8], [0, 9]],
+        [[5, 4], [6, 3], [7, 2], [8, 1], [9, 0]],
+        [[5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]
+      ];
+
+      // Piezas publicadas: formatos distintos construidos con el mismo lenguaje.
+      const OUTPUTS = [
+        [[0, 0], [0, 1], [1, 0], [1, 1]],
+        [[0, 8], [0, 9], [1, 9], [2, 9]],
+        [[7, 0], [8, 0], [9, 0], [9, 1]],
+        [[8, 8], [8, 9], [9, 8], [9, 9]]
+      ];
+
+      let cssSize = 360;
+      let deviceScale = 1;
+      let animationFrame = 0;
+      let startTime = performance.now();
+      let visible = true;
+
+      const clamp = (value, min = 0, max = 1) =>
+        Math.max(min, Math.min(max, value));
+
+      const smoothstep = (value) => {
+        const x = clamp(value);
+        return x * x * (3 - 2 * x);
+      };
+
+      const gaussian = (distance, spread) =>
+        Math.exp(-(distance * distance) / spread);
+
+      const key = (row, col) => row * COLS + col;
+
+      function resize() {
+        const bounds = matrix.getBoundingClientRect();
+        cssSize = Math.max(1, bounds.width);
+        deviceScale = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(cssSize * deviceScale);
+        canvas.height = Math.round(cssSize * deviceScale);
+        context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+      }
+
+      function setMax(values, row, col, intensity) {
+        const point = key(row, col);
+        values[point] = Math.max(values[point], intensity);
+      }
+
+      function beatAt(loop, center, width = 0.022) {
+        let distance = Math.abs(loop - center);
+        distance = Math.min(distance, 1 - distance);
+        return gaussian(distance, width * width);
+      }
+
+      function pulsePath(values, path, head, strength = 1) {
+        path.forEach(([row, col], index) => {
+          const primary = gaussian(head - index, 0.26);
+          const tail = gaussian(head - index - 1.15, 0.68) * 0.24;
+          setMax(values, row, col, (primary + tail) * strength);
+        });
+      }
+
+      function revealOutput(values, output, amount, beat, strength = 1) {
+        output.forEach(([row, col], index) => {
+          const delay = index * 0.07;
+          const reveal = smoothstep(amount * 1.28 - delay);
+          setMax(values, row, col, reveal * (0.34 + beat * 0.66) * strength);
+        });
+      }
+
+      function intensities(time) {
+        const values = new Float32Array(ROWS * COLS);
+        const loop = (time % LOOP_MS) / LOOP_MS;
+
+        // Presencia mínima de los 100 dots.
+        for (let row = 0; row < ROWS; row += 1) {
+          for (let col = 0; col < COLS; col += 1) {
+            const phase = time * 0.00082 + row * 0.47 + col * 0.59;
+            values[key(row, col)] = 0.034 + 0.011 * (0.5 + 0.5 * Math.sin(phase));
+          }
+        }
+
+        // El núcleo sostiene un compás de cuatro tiempos durante todo el loop.
+        const beats = [0.08, 0.30, 0.52, 0.74];
+        const coreBeat = Math.max(...beats.map((center) => beatAt(loop, center, 0.031)));
+        const corePresence = 0.18 + coreBeat * 0.82;
+
+        CORE.forEach(([row, col], index) => {
+          const microDelay = index * 0.005;
+          const delayedBeat = Math.max(
+            ...beats.map((center) => beatAt((loop - microDelay + 1) % 1, center, 0.031))
+          );
+          setMax(values, row, col, Math.max(corePresence * 0.76, delayedBeat));
+        });
+
+        // Cada beat crea una pieza y la envía por una ruta diferente.
+        beats.forEach((center, index) => {
+          let elapsed = loop - center;
+          if (elapsed < 0) elapsed += 1;
+
+          const travelWindow = 0.19;
+          if (elapsed < travelWindow) {
+            const local = elapsed / travelWindow;
+            const head = smoothstep(local) * (LANES[index].length + 1.5) - 0.7;
+            const fade = 1 - smoothstep((local - 0.78) / 0.22);
+            pulsePath(values, LANES[index], head, fade);
+          }
+
+          // La pieza permanece activa hasta que el ciclo completo vuelve a comenzar.
+          const published = smoothstep(elapsed / 0.055);
+          const expiry = 1 - smoothstep((elapsed - 0.70) / 0.20);
+          const outputBeat = 0.18 + beatAt(loop, (center + 0.19) % 1, 0.040) * 0.82;
+          revealOutput(values, OUTPUTS[index], published, outputBeat, expiry);
+        });
+
+        // En el último tramo, todas las piezas trabajan juntas con pulsos escalonados.
+        if (loop > 0.78) {
+          const local = (loop - 0.78) / 0.22;
+          const ensemble = smoothstep(local / 0.18) * (1 - smoothstep((local - 0.73) / 0.27));
+
+          OUTPUTS.forEach((output, index) => {
+            const staggered = Math.pow(
+              0.5 + 0.5 * Math.sin(local * Math.PI * 8 - index * Math.PI * 0.5),
+              7
+            );
+            revealOutput(values, output, 1, 0.28 + staggered * 0.72, ensemble);
+          });
+        }
+
+        return values;
+      }
+
+      function draw(time) {
+        const values = intensities(time);
+        const scale = cssSize / SOURCE_SIZE;
+        const baseRadius = SOURCE_RADIUS * scale;
+        const step = SOURCE_STEP * scale;
+        const firstCenter = SOURCE_FIRST_CENTER * scale;
+
+        context.clearRect(0, 0, cssSize, cssSize);
+
+        for (let row = 0; row < ROWS; row += 1) {
+          for (let col = 0; col < COLS; col += 1) {
+            const intensity = clamp(values[key(row, col)]);
+            const eased = smoothstep(intensity);
+            const x = firstCenter + col * step;
+            const y = firstCenter + row * step;
+            const radius = baseRadius * (1 + eased * 0.42);
+
+            if (intensity > 0.2) {
+              context.save();
+              context.beginPath();
+              context.arc(x, y, radius * (2.3 + eased * 1.7), 0, Math.PI * 2);
+              context.fillStyle = `rgba(${DOT_RGB}, ${eased * 0.075})`;
+              context.shadowColor = `rgba(${DOT_RGB}, ${eased * 0.34})`;
+              context.shadowBlur = (4 + eased * 8) * scale;
+              context.fill();
+              context.restore();
+            }
+
+            context.beginPath();
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.fillStyle = `rgba(${DOT_RGB}, ${0.20 + eased * 0.80})`;
+            context.fill();
+          }
+        }
+      }
+
+      function animate(now) {
+        draw(now - startTime);
+        if (visible) animationFrame = requestAnimationFrame(animate);
+      }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function start() {
+        cancelAnimationFrame(animationFrame);
+        if (reducedMotion.matches) {
+          draw(7200);
+          return;
+        }
+        startTime = performance.now();
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      const observer = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting && !document.hidden;
+        if (visible) start();
+        else cancelAnimationFrame(animationFrame);
+      }, { threshold: 0.05 });
+
+      new ResizeObserver(() => {
+        resize();
+        draw(performance.now() - startTime);
+      }).observe(matrix);
+
+      document.addEventListener('visibilitychange', () => {
+        visible = !document.hidden;
+        if (visible) start();
+        else cancelAnimationFrame(animationFrame);
+      });
+
+      reducedMotion.addEventListener('change', start);
+      observer.observe(matrix);
+      resize();
+      start();
+    })();
+  </script>
+</body>
+</html>

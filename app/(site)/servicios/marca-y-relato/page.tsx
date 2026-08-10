@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { ServicioCards } from '@/components/servicio-cards'
-import { DotGrid } from '@/components/dot-grid'
+import { PulsoUnisono } from '@/components/pulso-unisono'
 
 export const metadata: Metadata = { title: 'Marca y Relato — Flahoolick' }
 
@@ -36,7 +36,7 @@ export default function MarcaYRelato() {
         description="La idea central y la arquitectura de mensajes que unifica cómo tu empresa habla."
         heroBg="#F09DB6"
         heroText={NEGRO}
-        illustrationNode={<DotGrid behavior="morphing" color={NEGRO} />}
+        illustrationNode={<PulsoUnisono />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
       >

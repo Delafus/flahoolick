@@ -78,7 +78,7 @@ export default function SistemasDeContenidoConIA() {
                 <div key={p.titulo} className="flex flex-row gap-4 p-8" style={{ backgroundColor: NEGRO }}>
                   <div style={{ height: 'calc(1.3em * 2)', width: 'calc(1.3em * 2)', border: '1px solid rgba(255,255,255,0.2)', flexShrink: 0 }} />
                   <div className="flex flex-col gap-3">
-                    <h3 className="text-lg font-semibold" style={{ fontFamily: 'var(--font-bricolage)' }}>{p.titulo}</h3>
+                    <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
                     <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
                   </div>
                 </div>

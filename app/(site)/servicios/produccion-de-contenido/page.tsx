@@ -61,7 +61,7 @@ export default function ProduccionDeContenido() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
               {problemas.map(p => (
                 <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
-                  <h3 className="text-lg font-semibold">{p.titulo}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
                   <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
                 </div>
               ))}

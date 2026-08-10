@@ -82,7 +82,7 @@ export default function Servicios() {
                     <p className="label opacity-40">{s.numero}</p>
                     <div style={{ height: '2.75rem', width: '2.75rem', border: '1px solid rgba(0,0,0,0.15)' }} />
                   </div>
-                  <h3 className="text-base font-semibold">{s.titulo}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{s.titulo}</h3>
                   <p className="text-sm leading-relaxed opacity-65 flex-1">{s.desc}</p>
                   <span className="btn-invert label inline-flex items-center gap-2 px-4 py-2 w-fit"
                     style={{ '--btn-bg': BEIGE_BOTON, '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>

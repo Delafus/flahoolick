@@ -91,7 +91,8 @@
   .btn-invert {
     background-color: var(--btn-bg);
     color: var(--btn-fg);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid currentColor;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .btn-invert:hover,
   .group:hover .btn-invert {

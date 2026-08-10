@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, HowList, FontMix } from '@/components/page-layout'
 import { ServicioCards } from '@/components/servicio-cards'
-import { DotGrid } from '@/components/dot-grid'
 
 export const metadata: Metadata = { title: 'Sistemas de Contenido con IA — Flahoolick' }
 
@@ -46,7 +45,6 @@ export default function SistemasDeContenidoConIA() {
         description="La infraestructura que captura, prioriza y distribuye tu conocimiento todos los meses."
         heroBg="#F09DB6"
         heroText={NEGRO}
-        illustrationNode={<DotGrid behavior="respiracion-fijo" color={NEGRO} />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
       >
@@ -72,7 +70,9 @@ export default function SistemasDeContenidoConIA() {
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
-            <p className="label opacity-50">Qué resolvemos</p>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" resolvemos" />
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
               {problemas.map(p => (
                 <div key={p.titulo} className="flex flex-row gap-4 p-8" style={{ backgroundColor: NEGRO }}>
@@ -88,13 +88,23 @@ export default function SistemasDeContenidoConIA() {
         </BodySection>
 
         {/* Qué construimos */}
-        <BodySection title="Qué construimos">
-          <ServicioCards items={construimos} />
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" construimos" />
+            </h2>
+            <ServicioCards items={construimos} />
+          </div>
         </BodySection>
 
         {/* Cómo usamos la IA nosotros mismos */}
-        <BodySection title="Así usamos la IA nosotros">
-          <HowList items={comoUsamosIA} />
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Así usamos" italic=" la IA" />
+            </h2>
+            <HowList items={comoUsamosIA} />
+          </div>
         </BodySection>
 
       </PageLayout>

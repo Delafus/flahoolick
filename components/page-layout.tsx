@@ -184,7 +184,7 @@ export function HowList({ items }: { items: { titulo: string; desc: string }[] }
           style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
           <p className="label opacity-25 md:col-span-1">{String(i + 1).padStart(2, '0')}</p>
           <div className="md:col-span-11 flex flex-col md:flex-row gap-6">
-            <h3 className="text-base font-semibold md:w-72 shrink-0">{item.titulo}</h3>
+            <h3 className="md:w-72 shrink-0" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.1rem, 1.6vw, 1.375rem)', lineHeight: 1.15 }}>{item.titulo}</h3>
             <p className="text-sm leading-relaxed opacity-60">{item.desc}</p>
           </div>
         </div>

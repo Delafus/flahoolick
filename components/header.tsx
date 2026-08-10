@@ -276,12 +276,12 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
         {menu.items.map(item => (
           <Link key={item.href} href={item.href} onClick={onClose} className="group relative flex flex-col gap-3 pl-8">
             <span
-              className="absolute left-0 top-0 bottom-0 w-px transition-opacity duration-200 opacity-100 group-hover:opacity-0"
-              style={{ backgroundColor: divColor }}
+              className="absolute left-0 top-0 bottom-0 transition-opacity duration-200 opacity-100 group-hover:opacity-0"
+              style={{ width: '2px', backgroundColor: divColor }}
             />
             <span
-              className="absolute left-0 top-0 bottom-0 w-px transition-opacity duration-200 opacity-0 group-hover:opacity-100"
-              style={{ backgroundColor: textColor }}
+              className="absolute left-0 top-0 bottom-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+              style={{ width: '2px', backgroundColor: textColor }}
             />
             <h3 className="label font-bold group-hover:opacity-60 transition-opacity" style={{ color: textColor }}>
               {item.title}

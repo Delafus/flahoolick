@@ -57,23 +57,13 @@ const preguntas = [
   },
   {
     q: '¿Qué necesito entregarles para empezar?',
-    a: 'Menos de lo que crees. SENSOR está diseñado para extraer conocimiento de material que ya existe: manuales técnicos, propuestas anteriores, grabaciones de reuniones de ventas, fichas de producto. El 70% de la materia prima la sacamos de ahí. El 30% restante lo obtenemos con notas de voz de 10 minutos de tus expertos. No necesitas redactar briefs ni liberar tiempo de tu equipo para reuniones de briefing.',
-    link: { label: 'Conocer SENSOR →', href: '/metodologia#sensor' },
+    a: 'Menos de lo que crees. Extraemos conocimiento de material que ya existe: manuales técnicos, propuestas anteriores, grabaciones de reuniones de ventas, fichas de producto. El 70% de la materia prima la sacamos de ahí. El 30% restante lo obtenemos con notas de voz de 10 minutos de tus expertos. No necesitas redactar briefs ni liberar tiempo de tu equipo para reuniones de briefing.',
+    link: { label: 'Cómo trabajamos →', href: '/metodologia#como-trabajamos' },
   },
   {
     q: '¿Qué es FrecuenciA?',
     a: 'FrecuenciA convierte el conocimiento de tu empresa en herramientas públicas que venden: dossiers interactivos, simuladores, blogs y agentes conectados a tus datos. Construido con IA, publicado en semanas.',
     link: { label: 'Conoce FrecuenciA →', href: '/frecuencia' },
-  },
-  {
-    q: '¿Qué es SENSOR?',
-    a: 'SENSOR es el módulo de captura e inteligencia de conocimiento de Flahoolick. Procesa documentación técnica, conversaciones comerciales, objeciones de mercado y señales en plataformas de IA para convertir ese material en materia prima estratégica lista para trabajar. No lo opera el cliente — lo opera el equipo de Flahoolick.',
-    link: { label: 'Conocer SENSOR →', href: '/metodologia#sensor' },
-  },
-  {
-    q: '¿Qué es DECK?',
-    a: 'DECK es el módulo de producción de presentaciones ejecutivas de Flahoolick. Tomas múltiples fuentes — documentos, datos, contexto estratégico — y producimos una presentación estructurada, visualmente consistente y lista para entregar. Diseñado para pitches de directorio, propuestas técnicas, decks comerciales y keynotes. Sin el resultado genérico que los generadores de IA producen en tres minutos.',
-    link: { label: 'Conocer DECK →', href: '/metodologia#deck' },
   },
   {
     q: '¿Tienen casos de referencia?',

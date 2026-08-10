@@ -42,8 +42,6 @@ const MET_MENU: MegaMenuData = {
     { title: 'Encontramos',            desc: 'Entramos al negocio y detectamos dónde está el valor.',           href: '/metodologia#paso-encontramos' },
     { title: 'Ordenamos',              desc: 'Convertimos eso en mensajes, temas y prioridades claras.',         href: '/metodologia#paso-ordenamos' },
     { title: 'Ponemos en circulación', desc: 'Construimos la pieza y la conectamos con el mercado.',             href: '/metodologia#paso-circulacion' },
-    { title: 'SENSOR',                 desc: 'La materia prima sale de lo que tu empresa ya tiene.',              href: '/metodologia#sensor' },
-    { title: 'DECK',                   desc: 'Información compleja convertida en piezas que deciden.',            href: '/metodologia#deck' },
   ],
 }
 

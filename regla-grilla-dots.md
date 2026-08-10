@@ -66,6 +66,6 @@ Las tres violaciones de trazo (`<line>`/`<circle stroke>`) de `components/dot-pa
 
 `components/dot-grid.tsx` es el reemplazo que sí cumple la invariante — motor único, grilla 10×10 fija, seis comportamientos (`cascada-clusters`, `cursor-magnetico`, `morphing`, `cascada-direccional`, `respiracion-fijo`, `ondas-concentricas`). Ya está en uso en Servicios, las 4 subpáginas de servicios y FrecuenciA.
 
-`components/dot-pattern.tsx` sigue existiendo solo porque Metodología (`#sensor` con `pattern="captura"`, `#deck` con `pattern="pieza"`) todavía lo usa — esa migración queda pendiente junto con el resto de los cambios de Metodología (Parte 6.3 del sitemap), no se tocó en esta pasada.
+`components/dot-pattern.tsx` y `components/grilla-proceso.tsx` ya no tienen ningún uso en el sitio (SENSOR/DECK se retiraron de Metodología, y el módulo de pasos pasó a franjas independientes con `microgrilla-metodologia.tsx`). Se dejan guardados por si sirven más adelante — no se borraron a propósito.
 
 Cumplen: `trapped-dots.tsx`, `circulation-dots.tsx`, `megamenu-dots.tsx`, `grilla-proceso.tsx`, `dot-grid.tsx`.

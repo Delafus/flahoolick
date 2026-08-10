@@ -5,7 +5,7 @@ import { CasoImagenBrief } from './caso-imagen-brief'
 const NEGRO = '#000000'
 const BLANCO = '#ffffff'
 
-/** Versión comprimida del caso Dunamis (el completo vive en /frecuencia) — prueba social temprana en el home. */
+/** Caso Dunamis — prueba social temprana en el home. */
 export function ModuloCasoDunamis() {
   return (
     <section className="page-px section-py" style={{ backgroundColor: NEGRO, color: BLANCO }}>
@@ -30,11 +30,6 @@ export function ModuloCasoDunamis() {
         />
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/frecuencia"
-            className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
-            style={{ '--btn-bg': BLANCO, '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>
-            Conoce FrecuenciA →
-          </Link>
           <Link href="https://dunamis.agency" target="_blank" rel="noopener noreferrer"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
             style={{ border: '1px solid rgba(255,255,255,0.3)', color: BLANCO, borderRadius: '999px' }}>

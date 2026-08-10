@@ -15,7 +15,7 @@ export function ModuloComoTrabajamos() {
     <section className="page-px section-py" style={{ backgroundColor: GRIS, color: NEGRO }}>
       <div className="max-container flex flex-col gap-12">
         <div className="flex flex-col items-center text-center gap-4">
-          <p className="label opacity-50">Qué hacemos</p>
+          <p className="label opacity-50">En qué nos especializamos</p>
           <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.0 }}>
             <FontMix bold="Cuatro disciplinas." italic=" Un sistema." />
           </h2>

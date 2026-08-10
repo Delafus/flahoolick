@@ -113,18 +113,12 @@ export default function SobreFlahoolick() {
       >
         <div className="max-container flex flex-col gap-16">
           <h2 className="text-display"><FontMix bold="Más sobre Flahoolick" /></h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
             {[
               {
                 titulo: 'SERVICIOS',
                 desc: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
                 href: '/servicios',
-                cta: 'Explorar →',
-              },
-              {
-                titulo: 'FRECUENCIA',
-                desc: 'Herramientas públicas que venden por ti — dossiers, simuladores, blogs y agentes conectados a tus datos.',
-                href: '/frecuencia',
                 cta: 'Explorar →',
               },
               {

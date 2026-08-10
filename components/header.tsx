@@ -51,7 +51,6 @@ const PANEL_BG = '#403D37'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
-  { label: 'FrecuenciA',  href: '/frecuencia' },
   { label: 'Metodología', href: '/metodologia' },
   { label: 'JERGA',       href: '/jerga' },
 ]

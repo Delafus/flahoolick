@@ -34,8 +34,8 @@ export function ModuloComoTrabajamos() {
         </div>
 
         <Link href="/servicios"
-          className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit mx-auto hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: NEGRO, color: GRIS, borderRadius: '999px' }}>
+          className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit mx-auto"
+          style={{ '--btn-bg': NEGRO, '--btn-fg': GRIS, borderRadius: '999px' } as React.CSSProperties}>
           Explorar servicios →
         </Link>
       </div>

@@ -86,8 +86,8 @@ export default function FrecuenciaPage() {
             <div className="flex flex-col items-center gap-2 text-center">
               <p className="text-base opacity-70">¿Quieres esto para tu empresa?</p>
               <Link href="#contacto"
-                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+                className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+                style={{ '--btn-bg': NEGRO, '--btn-fg': '#ffffff', borderRadius: '999px' } as React.CSSProperties}>
                 Agenda una demo →
               </Link>
             </div>

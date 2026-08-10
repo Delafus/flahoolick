@@ -31,8 +31,8 @@ export function ModuloCasoDunamis() {
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/frecuencia"
-            className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '999px' }}>
+            className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+            style={{ '--btn-bg': BLANCO, '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>
             Conoce FrecuenciA →
           </Link>
           <Link href="https://dunamis.agency" target="_blank" rel="noopener noreferrer"

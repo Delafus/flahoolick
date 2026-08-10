@@ -61,8 +61,8 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
             <div className="md:col-span-6">
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <Link href={`/jerga/categoria/${pieza.categoria}`}
-                  className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
+                  className="btn-invert label px-4 py-2"
+                  style={{ '--btn-bg': heroText, '--btn-fg': heroBg, borderRadius: '999px' } as React.CSSProperties}>
                   {cat?.nombre}
                 </Link>
                 <span className="label" style={{ opacity: 0.45 }}>{ETIQUETA_TIPO[pieza.tipo]}</span>

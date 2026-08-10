@@ -123,8 +123,8 @@ function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string;
           <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7, opacity: 0.65, maxWidth: '680px' }}>{a}</p>
           {link && (link.tipo === 'comercial' ? (
             <Link href={link.href}
-              className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: 'var(--brand-ink)', color: 'var(--brand-chalk)', borderRadius: '999px' }}>
+              className="btn-invert label inline-flex items-center gap-2 px-5 py-3 w-fit"
+              style={{ '--btn-bg': 'var(--brand-ink)', '--btn-fg': 'var(--brand-chalk)', borderRadius: '999px' } as React.CSSProperties}>
               {link.label}
             </Link>
           ) : (

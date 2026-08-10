@@ -37,18 +37,21 @@ export const DISCIPLINAS: Disciplina[] = [
   },
 ]
 
-/** Módulo "Qué puede producir" — activos agrupados por función, no como lista plana de formatos. */
+/** Módulo "Lo que podemos producir" — activos agrupados por función, no como lista plana de formatos. */
 export const GRUPOS_ACTIVOS = [
   {
     titulo: 'Autoridad de mercado',
-    desc: 'Artículos, guías, reportes, casos, newsletters y series editoriales.',
+    desc: 'Contenido que convierte el conocimiento de tu empresa en una voz reconocida dentro de su industria.',
+    ejemplos: 'Artículos, guías, reportes, casos, newsletters y series editoriales.',
   },
   {
-    titulo: 'Habilitación comercial',
-    desc: 'Decks, one-pagers, battlecards, sales playbooks y propuestas ejecutivas.',
+    titulo: 'Herramientas comerciales',
+    desc: 'Materiales que explican tu oferta, responden objeciones y ayudan a avanzar decisiones complejas.',
+    ejemplos: 'Decks, one-pagers, battlecards, sales playbooks y propuestas ejecutivas.',
   },
   {
-    titulo: 'Distribución y descubrimiento',
-    desc: 'LinkedIn, campañas B2B y contenido preparado para buscadores y plataformas de IA.',
+    titulo: 'Presencia de marca',
+    desc: 'Contenido que mantiene a tu empresa visible y reconocible mientras el mercado investiga y forma criterio.',
+    ejemplos: 'LinkedIn, campañas B2B y contenido para buscadores y plataformas de IA.',
   },
 ]

@@ -100,8 +100,8 @@ export function ContactForm({
               </div>
               <button
                 type="submit" disabled={loading}
-                className="label mt-2 py-4 px-8 hover:opacity-70 disabled:opacity-30 transition-opacity w-fit"
-                style={{ background: text, color: bg, borderRadius: '999px' }}
+                className="btn-invert label mt-2 py-4 px-8 disabled:opacity-30 w-fit"
+                style={{ '--btn-bg': text, '--btn-fg': bg, borderRadius: '999px' } as React.CSSProperties}
               >
                 {loading ? 'Enviando...' : submitLabel}
               </button>

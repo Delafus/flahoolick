@@ -122,8 +122,8 @@ export default function EstrategiaDeContenido() {
             <div className="flex flex-col gap-4 items-start" style={{ maxWidth: '18rem' }}>
               <p className="text-sm opacity-60">¿Necesitas algo específico de esta lista?</p>
               <Link href="#contacto"
-                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+                className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+                style={{ '--btn-bg': NEGRO, '--btn-fg': '#ffffff', borderRadius: '999px' } as React.CSSProperties}>
                 Agenda una llamada →
               </Link>
             </div>
@@ -175,8 +175,8 @@ export default function EstrategiaDeContenido() {
               </p>
             </div>
             <Link href="#contacto"
-              className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-              style={{ backgroundColor: NEGRO, color: '#ffffff', borderRadius: '999px' }}>
+              className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+              style={{ '--btn-bg': NEGRO, '--btn-fg': '#ffffff', borderRadius: '999px' } as React.CSSProperties}>
               Agenda una llamada →
             </Link>
           </div>

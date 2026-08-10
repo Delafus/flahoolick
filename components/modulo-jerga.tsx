@@ -28,8 +28,8 @@ function Card({ pieza, nombreCategoria }: { pieza: Pieza; nombreCategoria?: stri
         </p>
       </div>
       <Link href={`/jerga/${pieza.slug}`}
-        className="label inline-flex items-center gap-2 px-5 py-3 w-fit hover:opacity-80 transition-opacity"
-        style={{ backgroundColor: BLANCO, color: AZUL, borderRadius: '999px' }}>
+        className="btn-invert label inline-flex items-center gap-2 px-5 py-3 w-fit"
+        style={{ '--btn-bg': BLANCO, '--btn-fg': AZUL, borderRadius: '999px' } as React.CSSProperties}>
         {CTA_TIPO[pieza.tipo].toUpperCase()}
       </Link>
     </div>

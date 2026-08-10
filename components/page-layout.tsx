@@ -72,8 +72,8 @@ export function PageLayout({
             )}
             {ctaHref && ctaLabel && (
               <Link href={ctaHref}
-                className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
+                className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+                style={{ '--btn-bg': heroText, '--btn-fg': heroBg, borderRadius: '999px' } as React.CSSProperties}>
                 {ctaLabel}
               </Link>
             )}
@@ -133,8 +133,8 @@ export function PageLayout({
               )}
               {ctaHref && ctaLabel && (
                 <Link href={ctaHref}
-                  className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity mt-2"
-                  style={{ backgroundColor: heroText, color: heroBg, borderRadius: '999px' }}>
+                  className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-2"
+                  style={{ '--btn-bg': heroText, '--btn-fg': heroBg, borderRadius: '999px' } as React.CSSProperties}>
                   {ctaLabel}
                 </Link>
               )}

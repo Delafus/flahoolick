@@ -85,6 +85,20 @@
     font-weight: 500;
   }
 
+  /* Botones sólidos: al hover invierten fondo/texto (negativo), nunca solo opacity.
+     --btn-bg/--btn-fg se definen inline por instancia. Dentro de una card con
+     className="group", el hover de TODA la card dispara la inversión del botón. */
+  .btn-invert {
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .btn-invert:hover,
+  .group:hover .btn-invert {
+    background-color: var(--btn-fg);
+    color: var(--btn-bg);
+  }
+
   /* TIPOGRAFÍA — mobile first */
   .text-hero {
     font-family: var(--font-display);

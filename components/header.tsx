@@ -150,8 +150,8 @@ export function Header() {
             <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
           </nav>
           <Link href="#contacto"
-            className="label hidden md:inline-flex items-center px-5 py-2.5 hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: text, color: bg, borderRadius: '999px' }}
+            className="btn-invert label hidden md:inline-flex items-center px-5 py-2.5"
+            style={{ '--btn-bg': text, '--btn-fg': bg, borderRadius: '999px' } as React.CSSProperties}
             onClick={() => setActive(null)}>
             Agenda una llamada
           </Link>
@@ -213,8 +213,8 @@ export function Header() {
             <button
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
-              className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-70 transition-opacity"
-              style={{ backgroundColor: '#ffffff', color: '#403D37', borderRadius: '999px' }}>
+              className="btn-invert label inline-flex items-center gap-3 px-5 py-3"
+              style={{ '--btn-bg': '#ffffff', '--btn-fg': '#403D37', borderRadius: '999px' } as React.CSSProperties}>
               CERRAR ✕
             </button>
           </div>
@@ -262,16 +262,16 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
       <div className="col-span-4 flex flex-col justify-between gap-12">
         <p className="text-2xl font-light leading-snug" style={{ color: textColor }}>{menu.tagline}</p>
         <Link href={menu.ctaHref} onClick={onClose}
-          className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-70 transition-opacity"
+          className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
           style={{
-            backgroundColor: textColor,
-            color: textColor.toLowerCase() === '#000000'
+            '--btn-bg': textColor,
+            '--btn-fg': textColor.toLowerCase() === '#000000'
               ? '#ffffff'
               : textColor.toLowerCase() === '#083ea7'
               ? '#1FDE91'
               : '#000000',
             borderRadius: '999px',
-          }}>
+          } as React.CSSProperties}>
           {menu.ctaLabel} →
         </Link>
       </div>

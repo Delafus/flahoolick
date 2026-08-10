@@ -23,8 +23,8 @@ export function ModuloMetodologia() {
             <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}> a un sistema que trabaja.</span>
           </h2>
           <Link href="/metodologia"
-            className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
-            style={{ backgroundColor: BLANCO, color: NEGRO, borderRadius: '999px' }}>
+            className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+            style={{ '--btn-bg': BLANCO, '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>
             Explorar metodología →
           </Link>
         </div>

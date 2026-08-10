@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { ServicioCards } from '@/components/servicio-cards'
-import { DotGrid } from '@/components/dot-grid'
+import { PulsoCoordenadas } from '@/components/pulso-coordenadas'
 import Link from 'next/link'
 
 export const metadata: Metadata = { title: 'Estrategia de Contenido — Flahoolick' }
@@ -57,7 +57,7 @@ export default function EstrategiaDeContenido() {
         description="Definimos qué decir, a quién, cuándo y por qué canal — antes de producir nada."
         heroBg="#F09DB6"
         heroText={NEGRO}
-        illustrationNode={<DotGrid behavior="cursor-magnetico" color={NEGRO} />}
+        illustrationNode={<PulsoCoordenadas />}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"
         contact={{ headline: <FontMix bold="Empecemos" italic=" por el diagnóstico." /> }}

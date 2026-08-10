@@ -73,7 +73,7 @@ export default function EstrategiaDeContenido() {
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
               <FontMix bold="Qué" italic=" construimos" />
             </h2>
-            <ServicioCards items={construimos} color={NEGRO} />
+            <ServicioCards items={construimos} />
           </div>
         </BodySection>
 

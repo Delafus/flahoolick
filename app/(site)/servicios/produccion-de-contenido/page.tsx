@@ -55,7 +55,9 @@ export default function ProduccionDeContenido() {
         {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
         <BodySection dark>
           <div className="flex flex-col gap-10">
-            <p className="label opacity-50">Qué resolvemos</p>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" resolvemos" />
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
               {problemas.map(p => (
                 <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
@@ -68,15 +70,20 @@ export default function ProduccionDeContenido() {
         </BodySection>
 
         {/* Qué producimos — 4 grupos con tags */}
-        <BodySection title="Qué producimos">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {producimos.map(g => (
-              <div key={g.titulo} className="flex flex-col gap-4 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{g.titulo}</h3>
-                <p className="text-sm leading-relaxed opacity-65">{g.desc}</p>
-                <Tags items={g.items} />
-              </div>
-            ))}
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" producimos" />
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              {producimos.map(g => (
+                <div key={g.titulo} className="flex flex-col gap-4 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{g.titulo}</h3>
+                  <p className="text-sm leading-relaxed opacity-65">{g.desc}</p>
+                  <Tags items={g.items} />
+                </div>
+              ))}
+            </div>
           </div>
         </BodySection>
 

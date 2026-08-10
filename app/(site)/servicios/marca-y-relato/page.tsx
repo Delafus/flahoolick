@@ -64,7 +64,7 @@ export default function MarcaYRelato() {
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
               <FontMix bold="Qué" italic=" construimos" />
             </h2>
-            <ServicioCards items={pasos} color={NEGRO} />
+            <ServicioCards items={pasos} />
           </div>
         </BodySection>
 

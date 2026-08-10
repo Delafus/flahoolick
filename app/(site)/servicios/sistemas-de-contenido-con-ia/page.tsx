@@ -89,7 +89,7 @@ export default function SistemasDeContenidoConIA() {
 
         {/* Qué construimos */}
         <BodySection title="Qué construimos">
-          <ServicioCards items={construimos} color={NEGRO} />
+          <ServicioCards items={construimos} />
         </BodySection>
 
         {/* Cómo usamos la IA nosotros mismos */}

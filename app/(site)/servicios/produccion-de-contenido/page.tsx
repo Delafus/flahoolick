@@ -80,21 +80,17 @@ export default function ProduccionDeContenido() {
           </div>
         </BodySection>
 
-        {/* Qué recibes — mockup del sistema de activos */}
+        {/* Qué recibes */}
         <BodySection dark>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.12, transform: 'rotate(-6deg) translate(14px, 10px)', borderRadius: '8px' }} />
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', opacity: 0.18, transform: 'rotate(3deg) translate(-8px, -6px)', borderRadius: '8px' }} />
-              <div style={{
-                position: 'absolute', inset: 0, backgroundColor: '#ffffff', borderRadius: '8px',
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem 2rem',
-              }}>
-                <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Sistema</p>
-                <h3 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, color: NEGRO }}>
-                  <FontMix bold="Producción de Contenido" />
-                </h3>
-              </div>
+            <div
+              className="hidden md:flex"
+              style={{
+                position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto',
+                border: '1px solid rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              <span className="label" style={{ color: '#ffffff', opacity: 0.25 }}>Ilustración</span>
             </div>
             <div className="flex flex-col gap-6">
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
@@ -110,15 +106,15 @@ export default function ProduccionDeContenido() {
           </div>
         </BodySection>
 
-        {/* Cierre — sin CTA repetido, el contacto está justo debajo */}
-        <BodySection dark>
-          <div className="flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0 }}>
+        {/* Cierre — mensaje de Flahoolick, verde de marca. Sin CTA repetido, el contacto está justo debajo */}
+        <section className="page-px section-py" style={{ backgroundColor: '#1FDE91', color: NEGRO }}>
+          <div className="max-container flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
+            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0, color: NEGRO }}>
               <FontMix bold="El conocimiento inmóvil" italic=" pierde valor." />
             </h2>
-            <p className="text-lead opacity-70">Pongamos el tuyo a recorrer el mercado.</p>
+            <p className="text-lead opacity-70" style={{ color: NEGRO }}>Pongamos el tuyo a recorrer el mercado.</p>
           </div>
-        </BodySection>
+        </section>
       </PageLayout>
     </>
   )

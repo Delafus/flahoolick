@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flahoolick · Eje central que construye · V6</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f1eee7;
+      --ink: #080808;
+      --soft-ink: rgba(8, 8, 8, 0.58);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      margin: 0;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .story {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .system-canvas {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .chapter {
+      position: relative;
+      z-index: 2;
+      min-height: 168svh;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      padding: 12svh clamp(24px, 6vw, 104px);
+    }
+
+    .copy {
+      position: relative;
+      z-index: 4;
+      width: min(1200px, 100%);
+      text-align: center;
+    }
+
+    .copy::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -42px -3vw;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(241, 238, 231, 0.98) 0%,
+        rgba(241, 238, 231, 0.96) 54%,
+        rgba(241, 238, 231, 0) 82%
+      );
+      pointer-events: none;
+    }
+
+    h1,
+    h2 {
+      max-width: 1180px;
+      margin: 0 auto;
+      font-size: clamp(54px, 7.6vw, 132px);
+      font-weight: 500;
+      line-height: 0.88;
+      letter-spacing: -0.068em;
+      text-wrap: balance;
+    }
+
+    .support {
+      max-width: 720px;
+      margin: clamp(28px, 4.5vh, 52px) auto 0;
+      font-size: clamp(19px, 1.65vw, 28px);
+      line-height: 1.25;
+      letter-spacing: -0.026em;
+      text-wrap: balance;
+    }
+
+    .grid-zone {
+      position: relative;
+      z-index: 2;
+      min-height: 68svh;
+      pointer-events: none;
+    }
+
+    @media (max-width: 760px) {
+      .chapter { min-height: 146svh; }
+
+      .hero {
+        min-height: 92svh;
+        padding: 11svh 20px 8svh;
+      }
+
+      .grid-zone { min-height: 54svh; }
+
+      .copy::before {
+        inset: -28px -12px;
+      }
+
+      h1,
+      h2 {
+        font-size: clamp(45px, 13vw, 68px);
+        line-height: 0.91;
+      }
+
+      .support {
+        margin-top: 24px;
+        font-size: 18px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <!--
+    NOTA DE INTEGRACIÓN PARA CLAUDE
+
+    ARQUITECTURA
+    La composición conserva el orden vertical de la home. Cada capítulo contiene
+    primero su hero de copy y después su matriz. La matriz nunca aparece al lado
+    del texto. El eje de dots está fijo en left: 50% de la página completa.
+
+    PRINCIPIO FÍSICO
+    Existe una sola corriente de dots. Al bajar, el dot que encabeza la corriente
+    llega al centro superior de la matriz y se abre hacia ambos lados para formar
+    la primera fila. Después baja un paso y forma la fila siguiente. Al terminar
+    diez filas, la corriente reaparece desde el centro inferior y sigue hacia el
+    capítulo siguiente. Al subir, toda la secuencia se recoge en orden inverso.
+
+    SCROLL
+    La posición del scroll controla el progreso. La animación se detiene al parar
+    el scroll y responde inmediatamente al cambio de dirección. El canvas es uno
+    solo, transparente y del alto total de los tres capítulos.
+  -->
+
+  <main class="story">
+    <canvas
+      class="system-canvas"
+      role="img"
+      aria-label="Una corriente central de puntos atraviesa tres heroes y construye una matriz debajo de cada uno. La primera contiene puntos atrapados dentro de un círculo."
+    ></canvas>
+
+    <section class="chapter" data-kind="trapped">
+      <div class="hero">
+        <div class="copy">
+          <h1>Tu empresa sabe demasiado para comunicar como cualquiera.</h1>
+          <p class="support">Gran parte de ese conocimiento queda atrapado.</p>
+        </div>
+      </div>
+      <div class="grid-zone" aria-hidden="true"></div>
+    </section>
+
+    <section class="chapter" data-kind="market">
+      <div class="hero">
+        <div class="copy">
+          <h2>Solo el 5% de tu mercado está listo para comprar hoy.</h2>
+          <p class="support">El 95% restante lo hará mañana, el otro mes, o en seis meses.</p>
+        </div>
+      </div>
+      <div class="grid-zone" aria-hidden="true"></div>
+    </section>
+
+    <section class="chapter" data-kind="circulation">
+      <div class="hero">
+        <div class="copy">
+          <h2>Tu ventaja competitiva ya existe.</h2>
+          <p class="support">El sistema que la pone en circulación, todavía no.</p>
+        </div>
+      </div>
+      <div class="grid-zone" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const ROWS = 10;
+      const COLS = 10;
+      const DOT_RGB = '8, 8, 8';
+      const TRAPPED_DISC_RADIUS_RATIO = 0.225;
+      const story = document.querySelector('.story');
+      const canvas = document.querySelector('.system-canvas');
+      const context = canvas.getContext('2d');
+      const chapters = [...document.querySelectorAll('.chapter')];
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      let width = 1;
+      let height = 1;
+      let viewportHeight = 1;
+      let dpr = 1;
+      let scrollY = 0;
+      let previousScrollY = 0;
+      let stages = [];
+      let particles = [];
+      let lastFrame = performance.now();
+
+      const clamp = (value, min = 0, max = 1) =>
+        Math.max(min, Math.min(max, value));
+
+      const smooth = (value) => {
+        const x = clamp(value);
+        return x * x * (3 - 2 * x);
+      };
+
+      const range = (value, start, end) =>
+        smooth(clamp((value - start) / Math.max(0.0001, end - start)));
+
+      function drawDot(x, y, radius, alpha = 1, scale = 1, rgb = DOT_RGB) {
+        if (alpha < 0.002) return;
+        context.beginPath();
+        context.arc(x, y, Math.max(0.25, radius * scale), 0, Math.PI * 2);
+        context.fillStyle = `rgba(${rgb}, ${clamp(alpha)})`;
+        context.fill();
+      }
+
+      function createParticles() {
+        const seeds = [
+          [0.50, 0.19,  0.080,  0.116],
+          [0.63, 0.23, -0.124,  0.084],
+          [0.74, 0.34, -0.132, -0.076],
+          [0.78, 0.50, -0.148,  0.052],
+          [0.71, 0.64, -0.104, -0.120],
+          [0.60, 0.75,  0.076, -0.140],
+          [0.43, 0.78,  0.132, -0.092],
+          [0.29, 0.68,  0.140,  0.076],
+          [0.22, 0.52,  0.152, -0.036],
+          [0.28, 0.36,  0.112,  0.124],
+          [0.39, 0.26, -0.088,  0.144],
+          [0.49, 0.40,  0.124, -0.104],
+          [0.61, 0.45, -0.116, -0.096],
+          [0.56, 0.59, -0.080,  0.132],
+          [0.41, 0.61,  0.108,  0.116],
+          [0.35, 0.47,  0.120, -0.128]
+        ];
+
+        return seeds.map(([x, y, vx, vy], index) => ({
+          x, y, vx, vy, scale: 1.10 + (index % 3) * 0.12
+        }));
+      }
+
+      function buildMetrics() {
+        const mobile = window.innerWidth <= 760;
+        width = Math.max(1, story.getBoundingClientRect().width);
+        height = Math.max(1, story.scrollHeight);
+        viewportHeight = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+
+        canvas.style.height = `${height}px`;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const targetSize = mobile
+          ? clamp(width * 0.66, 224, 288)
+          : clamp(width * 0.255, 300, 390);
+        const size = targetSize;
+        const step = size / (COLS - 1);
+        // Diámetro visual: hasta 4 px en escritorio. El límite mínimo evita
+        // que el antialiasing del canvas neutralice el ajuste en mobile.
+        const radius = clamp(step * 0.058, 1.28, 2.00);
+        const centerX = width * 0.5;
+        const left = centerX - size * 0.5;
+        const maxScroll = Math.max(1, story.scrollHeight - viewportHeight);
+
+        stages = chapters.map((chapter, index) => {
+          const zone = chapter.querySelector('.grid-zone');
+          const zoneTop = chapter.offsetTop + zone.offsetTop;
+          const top = zoneTop + Math.max(step * 1.5, (zone.offsetHeight - size) * 0.35);
+          const triggerStart = clamp(
+            chapter.offsetTop - viewportHeight * (index === 0 ? 0 : 0.58),
+            0,
+            maxScroll
+          );
+          const triggerEnd = clamp(
+            top + size - viewportHeight * 0.32,
+            triggerStart + 1,
+            maxScroll
+          );
+
+          return {
+            index,
+            kind: chapter.dataset.kind,
+            left,
+            top,
+            size,
+            step,
+            radius,
+            centerX,
+            triggerStart,
+            triggerEnd
+          };
+        });
+
+        particles = createParticles();
+      }
+
+      function stageProgress(stage) {
+        if (reducedMotion.matches) return 1;
+        return range(scrollY, stage.triggerStart, stage.triggerEnd);
+      }
+
+      function drawStreamSegment(x, fromY, toY, radius, step, revealY) {
+        if (toY <= fromY) return;
+        const first = Math.ceil(fromY / step) * step;
+        for (let y = first; y <= toY + 0.1; y += step) {
+          const distance = revealY - y;
+          const reveal = smooth(clamp(distance / Math.max(1, step) + 0.55));
+          const head = Math.exp(-Math.pow(distance / Math.max(1, step), 2) / 2.4);
+          drawDot(x, y, radius, reveal * (0.78 + head * 0.22), 1 + head * 0.16);
+        }
+      }
+
+      function buildFormationPath() {
+        const path = [{ row: 0, col: 4.5, virtual: true }];
+
+        // La corriente llega al centro y busca el extremo izquierdo.
+        for (let col = 4; col >= 0; col -= 1) {
+          path.push({ row: 0, col });
+        }
+
+        // Desde ahí imprime la primera fila y continúa en zigzag.
+        for (let col = 1; col < COLS; col += 1) {
+          path.push({ row: 0, col });
+        }
+
+        for (let row = 1; row < ROWS; row += 1) {
+          if (row % 2 === 1) {
+            for (let col = COLS - 1; col >= 0; col -= 1) {
+              path.push({ row, col });
+            }
+          } else {
+            for (let col = 0; col < COLS; col += 1) {
+              path.push({ row, col });
+            }
+          }
+        }
+
+        return path;
+      }
+
+      const FORMATION_PATH = buildFormationPath();
+
+      function firstRevealIndex(row, col) {
+        return FORMATION_PATH.findIndex(
+          point => !point.virtual && point.row === row && point.col === col
+        );
+      }
+
+      function drawGridFormation(stage, progress) {
+        const formation = range(progress, 0.42, 0.96);
+        const total = FORMATION_PATH.length - 1;
+        const cursor = formation * total;
+
+        for (let row = 0; row < ROWS; row += 1) {
+          for (let col = 0; col < COLS; col += 1) {
+            const index = firstRevealIndex(row, col);
+            const reveal = smooth(clamp(cursor - index + 0.42));
+            const settled = 0.26;
+            drawDot(
+              stage.left + col * stage.step,
+              stage.top + row * stage.step,
+              stage.radius,
+              reveal * settled,
+              0.94
+            );
+          }
+        }
+
+        const headIndex = Math.min(
+          FORMATION_PATH.length - 1,
+          Math.max(0, Math.floor(cursor))
+        );
+        const head = FORMATION_PATH[headIndex];
+        const headX = stage.left + head.col * stage.step;
+        const headY = stage.top + head.row * stage.step;
+        const headPresence = smooth(clamp(formation * total + 0.15));
+        const headFade = 1 - range(formation, 0.965, 1);
+        const settledAlpha = 0.26;
+        const headAlpha = headPresence * (
+          settledAlpha + (1 - settledAlpha) * headFade
+        );
+        const headScale = 0.94 + (1.34 - 0.94) * headFade;
+        drawDot(headX, headY, stage.radius, headAlpha, headScale);
+
+        return formation;
+      }
+
+      function drawIncoming(stage, progress) {
+        const previous = stages[stage.index - 1];
+        const fromY = previous ? previous.top + previous.size : 0;
+        const toY = stage.top;
+        const incoming = range(progress, 0, 0.44);
+        const headY = fromY + (toY - fromY) * incoming;
+        drawStreamSegment(
+          stage.centerX,
+          fromY,
+          toY,
+          stage.radius,
+          stage.step,
+          headY
+        );
+      }
+
+      function updateParticles(stage, deltaSeconds) {
+        const center = 0.5;
+        const boundaryRadius = TRAPPED_DISC_RADIUS_RATIO;
+
+        particles.forEach((particle) => {
+          particle.x += particle.vx * deltaSeconds;
+          particle.y += particle.vy * deltaSeconds;
+
+          const particleRadius = stage.radius * particle.scale / stage.size;
+          const dx = particle.x - center;
+          const dy = particle.y - center;
+          const distance = Math.hypot(dx, dy) || 0.0001;
+          const limit = boundaryRadius - particleRadius;
+
+          if (distance > limit) {
+            const nx = dx / distance;
+            const ny = dy / distance;
+            particle.x = center + nx * limit;
+            particle.y = center + ny * limit;
+
+            const velocityAlongNormal = particle.vx * nx + particle.vy * ny;
+            if (velocityAlongNormal > 0) {
+              particle.vx -= 2 * velocityAlongNormal * nx;
+              particle.vy -= 2 * velocityAlongNormal * ny;
+            }
+          }
+        });
+
+        for (let first = 0; first < particles.length; first += 1) {
+          for (let second = first + 1; second < particles.length; second += 1) {
+            const a = particles[first];
+            const b = particles[second];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distance = Math.hypot(dx, dy) || 0.0001;
+            const minDistance = (
+              stage.radius * (a.scale + b.scale) / stage.size
+            ) * 1.08;
+
+            if (distance >= minDistance) continue;
+
+            const nx = dx / distance;
+            const ny = dy / distance;
+            const overlap = (minDistance - distance) * 0.5;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+
+            const relativeVelocity = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+            if (relativeVelocity < 0) {
+              a.vx += relativeVelocity * nx;
+              a.vy += relativeVelocity * ny;
+              b.vx -= relativeVelocity * nx;
+              b.vy -= relativeVelocity * ny;
+            }
+          }
+        }
+      }
+
+      function buildDiscRevealPath(stage, formation) {
+        const path = new Path2D();
+        const cursor = formation * (FORMATION_PATH.length - 1);
+        const bandHeight = stage.step * 1.08;
+
+        for (let row = 0; row < ROWS; row += 1) {
+          const indices = [];
+          for (let col = 0; col < COLS; col += 1) {
+            indices.push(firstRevealIndex(row, col));
+          }
+
+          const rowStart = Math.min(...indices);
+          const rowEnd = Math.max(...indices);
+          const rowReveal = smooth(clamp(
+            (cursor - rowStart) / Math.max(1, rowEnd - rowStart)
+          ));
+
+          if (rowReveal <= 0) continue;
+
+          const y = stage.top + row * stage.step - bandHeight * 0.5;
+          const revealWidth = stage.size * rowReveal;
+          const travelsRight = row === 0 || row % 2 === 0;
+          const x = travelsRight
+            ? stage.left
+            : stage.left + stage.size - revealWidth;
+
+          path.rect(x, y, revealWidth, bandHeight);
+        }
+
+        return path;
+      }
+
+      function drawTrapped(stage, formation, now, deltaSeconds) {
+        if (formation < 0.002) return;
+        updateParticles(stage, Math.min(deltaSeconds, 0.03));
+
+        const centerX = stage.centerX;
+        const centerY = stage.top + stage.size * 0.5;
+        const boundaryRadius = stage.size * TRAPPED_DISC_RADIUS_RATIO;
+        const revealPath = buildDiscRevealPath(stage, formation);
+
+        // El mismo barrido que imprime la grilla revela el disco fila por fila.
+        context.save();
+        context.beginPath();
+        context.arc(centerX, centerY, boundaryRadius, 0, Math.PI * 2);
+        context.clip();
+        context.fillStyle = '#080808';
+        context.fill(revealPath);
+        context.restore();
+
+        context.save();
+        context.beginPath();
+        context.arc(
+          centerX,
+          centerY,
+          boundaryRadius - stage.radius * 1.6,
+          0,
+          Math.PI * 2
+        );
+        context.clip();
+        context.clip(revealPath);
+
+        particles.forEach((particle, index) => {
+          const x = stage.left + particle.x * stage.size;
+          const y = stage.top + particle.y * stage.size;
+          const flicker = 0.90 + 0.10 * Math.sin(now * 0.0018 + index * 0.67);
+          drawDot(
+            x,
+            y,
+            stage.radius,
+            flicker,
+            particle.scale * 1.12,
+            '241, 238, 231'
+          );
+        });
+
+        context.restore();
+      }
+
+      // Cinco puntos contiguos convierten el 5% en un bloque legible de 5 sobre 100.
+      const ACTIVE_FIVE = [[4, 3], [4, 4], [4, 5], [4, 6], [4, 7]];
+
+      function drawMarket(stage, alpha, now) {
+        if (alpha < 0.002) return;
+        const beat = 0.86 + 0.14 * Math.sin(now * 0.0012);
+        ACTIVE_FIVE.forEach(([row, col]) => {
+          drawDot(
+            stage.left + col * stage.step,
+            stage.top + row * stage.step,
+            stage.radius,
+            alpha * beat,
+            1.7 + beat * 0.22
+          );
+        });
+      }
+
+      const ROUTES = [
+        [[9, 0], [8, 0], [7, 0], [7, 1], [6, 1], [6, 2], [5, 2], [5, 3], [4, 3], [4, 4], [3, 4], [3, 5], [2, 5], [2, 6], [1, 6], [1, 7], [0, 7]],
+        [[0, 2], [1, 2], [2, 2], [2, 3], [3, 3], [4, 3], [4, 4], [4, 5], [5, 5], [6, 5], [6, 6], [7, 6], [8, 6], [8, 7], [9, 7]],
+        [[9, 9], [8, 9], [7, 9], [7, 8], [6, 8], [6, 7], [5, 7], [5, 6], [4, 6], [4, 5], [3, 5], [3, 4], [2, 4], [1, 4], [0, 4]]
+      ];
+
+      function drawCirculation(stage, alpha, now) {
+        if (alpha < 0.002) return;
+        ROUTES.forEach((route, routeIndex) => {
+          const head = ((now * 0.00018 + routeIndex * 0.31) % 1) * (route.length + 5) - 2;
+          route.forEach(([row, col], index) => {
+            const wave = Math.exp(-Math.pow(index - head, 2) / 3.4);
+            drawDot(
+              stage.left + col * stage.step,
+              stage.top + row * stage.step,
+              stage.radius,
+              alpha * (0.08 + wave * 0.92),
+              1 + wave * 0.68
+            );
+          });
+        });
+      }
+
+      function drawStage(stage, progress, now, deltaSeconds) {
+        drawIncoming(stage, progress);
+        const formation = drawGridFormation(stage, progress);
+        const internalAlpha = range(formation, 0.94, 1);
+
+        if (stage.kind === 'trapped') {
+          drawTrapped(stage, formation, now, deltaSeconds);
+        } else if (stage.kind === 'market') {
+          drawMarket(stage, internalAlpha, now);
+        } else {
+          drawCirculation(stage, internalAlpha, now);
+        }
+      }
+
+      function drawFinalTail(progress) {
+        const stage = stages[stages.length - 1];
+        if (!stage) return;
+        const tail = range(progress, 0.96, 1);
+        const fromY = stage.top + stage.size;
+        const toY = Math.min(height, fromY + viewportHeight * 0.38);
+        const headY = fromY + (toY - fromY) * tail;
+        drawStreamSegment(
+          stage.centerX,
+          fromY,
+          toY,
+          stage.radius,
+          stage.step,
+          headY
+        );
+      }
+
+      function frame(now) {
+        const deltaSeconds = (now - lastFrame) / 1000;
+        lastFrame = now;
+        context.clearRect(0, 0, width, height);
+
+        stages.forEach((stage) => {
+          drawStage(stage, stageProgress(stage), now, deltaSeconds);
+        });
+
+        if (stages.length) {
+          drawFinalTail(stageProgress(stages[stages.length - 1]));
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function updateScroll() {
+        previousScrollY = scrollY;
+        scrollY = Math.max(0, window.scrollY);
+      }
+
+      let resizeTimer = 0;
+      function queueResize() {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          buildMetrics();
+          updateScroll();
+        }, 100);
+      }
+
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      window.addEventListener('resize', queueResize);
+      reducedMotion.addEventListener?.('change', buildMetrics);
+
+      buildMetrics();
+      updateScroll();
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>

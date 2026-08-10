@@ -74,7 +74,7 @@ export default function ProduccionDeContenido() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {producimos.map(g => (
               <div key={g.titulo} className="flex flex-col gap-4 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                <h3 className="text-lg font-semibold">{g.titulo}</h3>
+                <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{g.titulo}</h3>
                 <p className="text-sm leading-relaxed opacity-65">{g.desc}</p>
                 <Tags items={g.items} />
               </div>

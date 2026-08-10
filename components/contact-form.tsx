@@ -56,19 +56,15 @@ export function ContactForm({
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { id: 'nombre',  label: 'Nombre',  ph: 'Tu nombre' },
-                  { id: 'empresa', label: 'Empresa', ph: 'Tu empresa' },
+                  { id: 'nombre',  label: 'Nombre' },
+                  { id: 'empresa', label: 'Empresa' },
                 ].map(f => (
                   <div key={f.id} className="flex flex-col gap-2">
                     <label className="label opacity-50" htmlFor={f.id} style={{ color: text }}>{f.label}</label>
                     <input
-                      id={f.id} name={f.id} type="text" required placeholder={f.ph}
+                      id={f.id} name={f.id} type="text" required
                       className="w-full py-3 px-4 text-sm outline-none"
-                      style={{
-                        background: 'transparent',
-                        border: `1px solid ${text === 'var(--brand-chalk)' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
-                        color: text,
-                      }}
+                      style={{ background: '#ffffff', border: 'none', color: '#000000' }}
                     />
                   </div>
                 ))}
@@ -76,26 +72,17 @@ export function ContactForm({
               <div className="flex flex-col gap-2">
                 <label className="label opacity-50" htmlFor="email" style={{ color: text }}>Email</label>
                 <input
-                  id="email" name="email" type="email" required placeholder="tu@empresa.com"
+                  id="email" name="email" type="email" required
                   className="w-full py-3 px-4 text-sm outline-none"
-                  style={{
-                    background: 'transparent',
-                    border: `1px solid ${text === 'var(--brand-chalk)' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
-                    color: text,
-                  }}
+                  style={{ background: '#ffffff', border: 'none', color: '#000000' }}
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="label opacity-50" htmlFor="mensaje" style={{ color: text }}>Mensaje</label>
                 <textarea
                   id="mensaje" name="mensaje" rows={4} required
-                  placeholder="Cuéntanos sobre tu empresa y el desafío que enfrentas."
                   className="w-full py-3 px-4 text-sm outline-none resize-none"
-                  style={{
-                    background: 'transparent',
-                    border: `1px solid ${text === 'var(--brand-chalk)' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
-                    color: text,
-                  }}
+                  style={{ background: '#ffffff', border: 'none', color: '#000000' }}
                 />
               </div>
               <button

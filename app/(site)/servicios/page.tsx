@@ -28,8 +28,8 @@ const QUE_HACEMOS = [
   },
   {
     numero: '03',
-    titulo: 'Sistemas de contenido con IA',
-    desc: 'Creamos playbooks, flujos y herramientas con IA que capturan conocimiento experto, ordenan la producción y permiten reutilizar cada hallazgo.',
+    titulo: 'Herramientas de IA para marketing',
+    desc: 'Diseñamos e implementamos herramientas con IA para investigar audiencias, aprovechar el conocimiento interno y acelerar la producción de contenido.',
     href: '/servicios/sistemas-de-contenido-con-ia',
   },
   {
@@ -58,7 +58,7 @@ export default function Servicios() {
         }}
       >
         {/* Qué hacemos — los cuatro servicios */}
-        <BodySection title="Servicios">
+        <BodySection>
           <div className="flex flex-col gap-10">
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.0 }}>
               <FontMix bold="Qué" italic=" hacemos" />
@@ -76,10 +76,7 @@ export default function Servicios() {
                 <Link key={s.numero} href={s.href}
                   className="group flex flex-col gap-4 p-8"
                   style={{ backgroundColor: 'var(--section-body-bg)' }}>
-                  <div className="flex items-center justify-between">
-                    <p className="label opacity-40">{s.numero}</p>
-                    <div style={{ height: '2.75rem', width: '2.75rem', border: '1px solid rgba(0,0,0,0.15)' }} />
-                  </div>
+                  <div style={{ height: '2.75rem', width: '2.75rem', border: '1px solid rgba(0,0,0,0.15)' }} />
                   <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{s.titulo}</h3>
                   <p className="text-sm leading-relaxed opacity-65 flex-1">{s.desc}</p>
                   <span className="btn-invert label inline-flex items-center gap-2 px-4 py-2 w-fit"

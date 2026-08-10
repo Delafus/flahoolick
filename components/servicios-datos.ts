@@ -31,8 +31,8 @@ export const DISCIPLINAS: Disciplina[] = [
   },
   {
     id: 'sistemas-de-contenido-con-ia',
-    nombre: 'Sistemas de contenido con IA',
-    desc: 'Infraestructura que captura y distribuye conocimiento a escala, con criterio senior.',
+    nombre: 'Herramientas de IA para marketing',
+    desc: 'Diseñamos e implementamos herramientas con IA para investigar, producir y acelerar tu contenido.',
     href: '/servicios/sistemas-de-contenido-con-ia',
   },
 ]

@@ -441,6 +441,13 @@ export function FhFlow() {
     window.addEventListener('resize', queueResize)
     reducedMotion.addEventListener('change', onReducedMotionChange)
 
+    // El alto real del contenedor puede cambiar sin un 'resize' de window (fuentes que
+    // terminan de cargar, la barra de direcciones del navegador móvil apareciendo o
+    // escondiéndose y afectando 100dvh). Sin esto, canvas.style.height puede quedar
+    // desactualizado y el canvas "sangra" sobre el contenido que viene después.
+    const resizeObserver = new ResizeObserver(queueResize)
+    resizeObserver.observe(container)
+
     buildMetrics()
     updateScroll()
 
@@ -456,6 +463,7 @@ export function FhFlow() {
       window.removeEventListener('scroll', updateScroll)
       window.removeEventListener('resize', queueResize)
       reducedMotion.removeEventListener('change', onReducedMotionChange)
+      resizeObserver.disconnect()
     }
   }, [])
 

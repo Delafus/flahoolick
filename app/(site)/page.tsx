@@ -50,7 +50,7 @@ export default function HomePage() {
       {/* Scroll sections — sin snap, scroll normal. Eje central único (FhFlow) reemplaza
           la línea (ScrollConnector) y las animaciones (TrappedDots/CirculationDots) que
           vivían dentro de cada hero — ver flahoolick-home-eje-central-scroll-v3.html */}
-      <div className="fh-flow" style={{ position: 'relative', backgroundColor: '#D8D8D7' }}>
+      <div className="fh-flow" style={{ position: 'relative', backgroundColor: '#D8D8D7', overflow: 'hidden' }}>
         <FhFlow />
         {SCROLLS.map((s, i) => (
           <section

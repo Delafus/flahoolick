@@ -68,8 +68,13 @@ export default function EstrategiaDeContenido() {
         </BodySection>
 
         {/* Qué construimos */}
-        <BodySection title="Qué construimos">
-          <ServicioCards items={construimos} color={NEGRO} />
+        <BodySection>
+          <div className="flex flex-col gap-10">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
+              <FontMix bold="Qué" italic=" construimos" />
+            </h2>
+            <ServicioCards items={construimos} color={NEGRO} />
+          </div>
         </BodySection>
 
         {/* Cómo lo hacemos */}

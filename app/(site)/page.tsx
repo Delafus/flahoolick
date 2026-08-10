@@ -141,7 +141,7 @@ export default function HomePage() {
         style={{ backgroundColor: '#1FDE91', color: '#000000', padding: '6rem 0' }}
       >
         {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700 }}>Marcas que nos formaron</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700, textTransform: 'none' }}>Marcas que nos formaron</p>
 
         {/* Marquee */}
         <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
@@ -160,7 +160,7 @@ export default function HomePage() {
           <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
         </div>
 
-        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700 }}>Con quién trabajamos</p>
+        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700, textTransform: 'none' }}>Con quién trabajamos</p>
 
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[

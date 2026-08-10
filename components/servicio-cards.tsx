@@ -19,7 +19,7 @@ export function ServicioCards({ items, color = '#000000' }: ServicioCardsProps) 
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: color, flexShrink: 0 }} />
             <span className="label" style={{ color, opacity: 0.6 }}>PASO {item.numero ?? String(i + 1).padStart(2, '0')}</span>
           </div>
-          <h3 className="text-xl font-semibold" style={{ color: '#000000' }}>{item.titulo}</h3>
+          <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1, color: '#000000' }}>{item.titulo}</h3>
           <p className="text-sm leading-relaxed" style={{ color: '#000000', opacity: 0.6 }}>{item.desc}</p>
         </div>
       ))}

@@ -166,17 +166,23 @@ export function FhFlow() {
         const copyEndRect = copyEnds[index]?.getBoundingClientRect()
         const copyEnd = copyEndRect ? copyEndRect.bottom - containerRect.top : sectionTop
 
-        const sectionDocTop = (sectionRect?.top ?? zoneRect.top) + window.scrollY
         const zoneDocTop = zoneRect.top + window.scrollY
 
-        const triggerStart = clamp(sectionDocTop - viewportHeight * (index === 0 ? 0 : 0.58), 0, maxScroll)
         // El armado (grilla + efecto del círculo) debe terminar justo cuando la zona
         // queda centrada verticalmente en el viewport — no más abajo del scroll.
-        const triggerEnd = clamp(zoneDocTop + size / 2 - viewportHeight * 0.5, triggerStart + 1, maxScroll)
+        const triggerEnd = clamp(zoneDocTop + size / 2 - viewportHeight * 0.5, 0, maxScroll)
 
         const kind: Kind = index === 0 ? 'trapped' : index === 1 ? 'market' : 'circulation'
 
-        return { index, kind, left, top, size, step, radius, centerX: left + size / 2, triggerStart, triggerEnd, sectionTop, copyEnd }
+        // triggerStart se completa en un segundo paso, encadenado al triggerEnd del stage
+        // anterior — así nunca hay un tramo de scroll "muerto" entre el final de un hero
+        // y el inicio del siguiente.
+        return { index, kind, left, top, size, step, radius, centerX: left + size / 2, triggerStart: 0, triggerEnd, sectionTop, copyEnd }
+      })
+
+      stages.forEach((stage, i) => {
+        stage.triggerStart = i === 0 ? 0 : stages[i - 1].triggerEnd
+        stage.triggerEnd = Math.max(stage.triggerEnd, stage.triggerStart + 1)
       })
     }
 

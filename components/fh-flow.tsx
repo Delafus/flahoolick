@@ -170,7 +170,9 @@ export function FhFlow() {
         const zoneDocTop = zoneRect.top + window.scrollY
 
         const triggerStart = clamp(sectionDocTop - viewportHeight * (index === 0 ? 0 : 0.58), 0, maxScroll)
-        const triggerEnd = clamp(zoneDocTop + size - viewportHeight * 0.32, triggerStart + 1, maxScroll)
+        // El armado (grilla + efecto del círculo) debe terminar justo cuando la zona
+        // queda centrada verticalmente en el viewport — no más abajo del scroll.
+        const triggerEnd = clamp(zoneDocTop + size / 2 - viewportHeight * 0.5, triggerStart + 1, maxScroll)
 
         const kind: Kind = index === 0 ? 'trapped' : index === 1 ? 'market' : 'circulation'
 
@@ -228,9 +230,26 @@ export function FhFlow() {
       const fromY = previous ? previous.top + previous.size : 0
       const toY = stage.top
       const incoming = range(progress, 0, 0.44)
-      const headY = fromY + (toY - fromY) * incoming
-      // Nunca se dibuja un dot del stream sobre el copy del hero actual — solo en el
-      // tramo conector, antes y después de ese bloque de texto.
+
+      // El tramo [sectionTop, copyEnd] nunca dibuja (ahí vive el copy del hero). En vez
+      // de repartir el avance de forma pareja sobre TODO fromY→toY (lo que hace que el
+      // "head" pase la mayor parte del recorrido invisible, detrás del texto), el avance
+      // se reparte solo entre los dos tramos visibles: antes del texto y después de él.
+      // Así la línea es visible desde el instante en que arranca el stage, y el tramo
+      // que conecta con el hero siguiente también queda visible (no se lo come el skip).
+      const gapABegin = fromY
+      const gapAEnd = clamp(stage.sectionTop, fromY, toY)
+      const gapBBegin = clamp(stage.copyEnd, gapAEnd, toY)
+      const gapBEnd = toY
+      const gapALen = Math.max(0, gapAEnd - gapABegin)
+      const gapBLen = Math.max(0, gapBEnd - gapBBegin)
+      const visibleTotal = Math.max(1, gapALen + gapBLen)
+
+      const traveled = incoming * visibleTotal
+      const headY = traveled <= gapALen
+        ? gapABegin + traveled
+        : gapBBegin + (traveled - gapALen)
+
       drawStreamSegment(stage.centerX, fromY, toY, stage.radius, stage.step, headY, stage.sectionTop, stage.copyEnd)
     }
 

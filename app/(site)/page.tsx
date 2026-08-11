@@ -112,7 +112,7 @@ export default function HomePage() {
                 <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
               </span>
             </h1>
-            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
               {s.sub}
             </p>
             {i !== 2 && (

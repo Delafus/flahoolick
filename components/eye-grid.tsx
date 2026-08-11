@@ -14,7 +14,13 @@ interface PupilData {
   currentY: number
   targetX: number
   targetY: number
+  speed: number
 }
+
+/** La inercia de cada ojo, no un valor único: el primero reacciona casi al toque, cada uno
+ *  siguiente un poco más lento, hasta el último — se nota como una ola en cadena. */
+const SPEED_MAX = 0.11
+const SPEED_MIN = 0.035
 
 export function EyeGrid() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -24,13 +30,14 @@ export function EyeGrid() {
     if (!container) return
 
     const eyes = Array.from(container.querySelectorAll<HTMLDivElement>('[data-eye]'))
-    const data: PupilData[] = eyes.map(eye => ({
+    const data: PupilData[] = eyes.map((eye, i) => ({
       parent: eye,
       element: eye.querySelector<HTMLDivElement>('[data-pupil]')!,
       currentX: 0,
       currentY: 0,
       targetX: 0,
       targetY: 0,
+      speed: SPEED_MAX - (i / Math.max(1, eyes.length - 1)) * (SPEED_MAX - SPEED_MIN),
     }))
 
     let mouseX = window.innerWidth / 2
@@ -61,9 +68,8 @@ export function EyeGrid() {
         d.targetX = Math.cos(angle) * currentMax
         d.targetY = Math.sin(angle) * currentMax
 
-        const speed = 0.07
-        d.currentX += (d.targetX - d.currentX) * speed
-        d.currentY += (d.targetY - d.currentY) * speed
+        d.currentX += (d.targetX - d.currentX) * d.speed
+        d.currentY += (d.targetY - d.currentY) * d.speed
 
         d.element.style.transform = `translate(${d.currentX}px, ${d.currentY}px)`
       })
@@ -104,7 +110,6 @@ export function EyeGrid() {
               height: '100%',
               borderRadius: '50%',
               backgroundColor: 'transparent',
-              border: '1px solid rgba(0,0,0,0.1)',
               position: 'relative',
             }}
           >

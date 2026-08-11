@@ -14,6 +14,8 @@ interface Scroll {
   h1Base: string
   h1Emphasis: string
   breakBeforeEmphasis?: boolean
+  /** Solo desktop: fuerza un salto de línea dentro del base, justo antes de esta palabra. */
+  baseBreakBefore?: string
   /** Solo desktop: fuerza un salto de línea dentro del énfasis, justo después de esta palabra. */
   emphasisBreakAfter?: string
   sub: string
@@ -28,7 +30,7 @@ const SCROLLS: Scroll[] = [
   {
     h1Base: 'Solo el 5% de tu mercado ',
     h1Emphasis: 'está listo para comprar hoy.',
-    breakBeforeEmphasis: true,
+    baseBreakBefore: 'mercado',
     emphasisBreakAfter: 'listo',
     sub: 'El 95% restante está formando opinión.',
   },
@@ -39,6 +41,19 @@ const SCROLLS: Scroll[] = [
     sub: 'Necesita un sistema que la ponga en circulación.',
   },
 ]
+
+/** Corta el texto base en dos líneas (solo desktop) justo antes de la palabra indicada. */
+function BaseText({ text, breakBefore }: { text: string; breakBefore?: string }) {
+  if (!breakBefore) return <>{text}</>
+  const cut = text.indexOf(breakBefore)
+  return (
+    <>
+      {text.slice(0, cut)}
+      <br className="hidden md:block" />
+      {text.slice(cut)}
+    </>
+  )
+}
 
 /** Corta el texto de énfasis en dos líneas (solo desktop) justo después de la palabra indicada. */
 function EmphasisText({ text, breakAfter }: { text: string; breakAfter?: string }) {
@@ -86,7 +101,7 @@ export default function HomePage() {
           <div className="max-container w-full text-center flex flex-col gap-6">
             <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
               <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
-                {s.h1Base}
+                <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} />
               </span>
               {s.breakBeforeEmphasis && <br className="hidden md:block" />}
               <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>

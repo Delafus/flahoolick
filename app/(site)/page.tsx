@@ -10,7 +10,16 @@ import { ScrollConnector } from '@/components/scroll-connector'
 import { FhFlow } from '@/components/fh-flow'
 import Link from 'next/link'
 
-const SCROLLS = [
+interface Scroll {
+  h1Base: string
+  h1Emphasis: string
+  breakBeforeEmphasis?: boolean
+  /** Solo desktop: fuerza un salto de línea dentro del énfasis, justo después de esta palabra. */
+  emphasisBreakAfter?: string
+  sub: string
+}
+
+const SCROLLS: Scroll[] = [
   {
     h1Base: 'Tu empresa sabe demasiado ',
     h1Emphasis: 'para comunicar como cualquiera.',
@@ -19,6 +28,8 @@ const SCROLLS = [
   {
     h1Base: 'Solo el 5% de tu mercado ',
     h1Emphasis: 'está listo para comprar hoy.',
+    breakBeforeEmphasis: true,
+    emphasisBreakAfter: 'listo',
     sub: 'El 95% restante está formando opinión.',
   },
   {
@@ -28,6 +39,19 @@ const SCROLLS = [
     sub: 'Necesita un sistema que la ponga en circulación.',
   },
 ]
+
+/** Corta el texto de énfasis en dos líneas (solo desktop) justo después de la palabra indicada. */
+function EmphasisText({ text, breakAfter }: { text: string; breakAfter?: string }) {
+  if (!breakAfter) return <>{text}</>
+  const cut = text.indexOf(breakAfter) + breakAfter.length
+  return (
+    <>
+      {text.slice(0, cut)}
+      <br className="hidden md:block" />
+      {text.slice(cut)}
+    </>
+  )
+}
 
 const LAYERS = [
   { name: 'Signal Capture',     desc: 'Capturamos las señales que viven en tu operación técnica y comercial.' },
@@ -55,7 +79,7 @@ export default function HomePage() {
         {SCROLLS.map((s, i) => (
           <section
             key={i}
-            className={`fh-flow__section flex flex-col items-center justify-center page-px pt-24 ${i === 0 ? 'md:pt-[220px]' : ''}`}
+            className={`fh-flow__section flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
             style={{
               position: 'relative',
               zIndex: 2,
@@ -71,7 +95,7 @@ export default function HomePage() {
                 </span>
                 {s.breakBeforeEmphasis && <br className="hidden md:block" />}
                 <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
-                  {s.h1Emphasis}
+                  <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
                 </span>
               </h1>
               <p className="fh-flow__copy-end text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>

@@ -7,7 +7,7 @@ import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
-import { FhFlow } from '@/components/fh-flow'
+import { TrappedDots } from '@/components/trapped-dots'
 import Link from 'next/link'
 
 interface Scroll {
@@ -71,62 +71,65 @@ export default function HomePage() {
     <>
       <PageColorSetter bg="#000000" text="#ffffff" />
 
-      {/* Scroll sections — sin snap, scroll normal. Eje central único (FhFlow) reemplaza
-          la línea (ScrollConnector) y las animaciones (TrappedDots/CirculationDots) que
-          vivían dentro de cada hero — ver flahoolick-home-eje-central-scroll-v3.html */}
-      <div className="fh-flow" style={{ position: 'relative', backgroundColor: '#D8D8D7', overflow: 'hidden' }}>
-        <FhFlow />
-        {SCROLLS.map((s, i) => (
-          <section
-            key={i}
-            className={`fh-flow__section flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
-            style={{
-              position: 'relative',
-              zIndex: 2,
-              minHeight: '100dvh',
-              paddingBottom: '2rem',
-              color: '#000000',
-            }}
-          >
-            <div className="max-container w-full text-center flex flex-col gap-6">
-              <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
-                <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
-                  {s.h1Base}
-                </span>
-                {s.breakBeforeEmphasis && <br className="hidden md:block" />}
-                <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
-                  <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
-                </span>
-              </h1>
-              <p className="fh-flow__copy-end text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
-                {s.sub}
-              </p>
-              <div className="md:hidden" style={{ height: '90px' }} />
-              <div className="hidden md:block" style={{ height: '140px' }} />
-              <div
-                className="fh-flow__grid-zone w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto"
-                style={{ position: 'relative', aspectRatio: '1' }}
-                aria-hidden="true"
-              />
-            </div>
-            {i < SCROLLS.length - 1 && (
-              <>
-                <div className="md:hidden" style={{ height: '130px' }} />
-                <div className="hidden md:block" style={{ height: '200px' }} />
-              </>
-            )}
-          </section>
-        ))}
-      </div>
+      {/* Scroll sections — sin snap, scroll normal */}
+      {SCROLLS.map((s, i) => (
+        <section
+          key={i}
+          className={`flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
+          style={{
+            minHeight: '100dvh',
+            paddingBottom: '2rem',
+            backgroundColor: '#D8D8D7',
+            color: '#000000',
+          }}
+        >
+          <div className="max-container w-full text-center flex flex-col gap-6">
+            <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
+              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
+                {s.h1Base}
+              </span>
+              {s.breakBeforeEmphasis && <br className="hidden md:block" />}
+              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
+                <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
+              </span>
+            </h1>
+            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+              {s.sub}
+            </p>
+            <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} dotShape="shield" /></div>
+            <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} dotShape="shield" /></div>
 
-      {/* Conector que cruza el límite gris → verde: dots que se funden hacia el verde */}
+            {i === 0 ? (
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
+                <TrappedDots diameterPercent={80} dotColor="#F1EEE7" />
+              </div>
+            ) : (
+              <div
+                className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto"
+                style={{ position: 'relative', aspectRatio: '1', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+              </div>
+            )}
+          </div>
+          {i < SCROLLS.length - 1 && (
+            <>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} dotShape="shield" /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} dotShape="shield" /></div>
+            </>
+          )}
+        </section>
+      ))}
+
+      {/* Conector que cruza el límite gris → verde, cambiando de color a la mitad */}
       <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
         <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={7} dotCount={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={1.5} dotSize={9} dotShape="shield" />
         </div>
         <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} dotSize={10} dotCount={9} />
+          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={3} dotSize={16} dotShape="shield" />
         </div>
       </div>
 

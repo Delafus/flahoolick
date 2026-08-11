@@ -25,6 +25,8 @@ const SCROLLS: Scroll[] = [
   {
     h1Base: 'Tu empresa sabe demasiado ',
     h1Emphasis: 'para comunicar como cualquiera.',
+    baseBreakBefore: 'demasiado',
+    emphasisBreakAfter: 'comunicar',
     sub: 'Gran parte de ese conocimiento queda atrapado.',
   },
   {

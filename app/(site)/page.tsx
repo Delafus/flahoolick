@@ -9,6 +9,7 @@ import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
 import { TrappedDots } from '@/components/trapped-dots'
 import { EyeGrid } from '@/components/eye-grid'
+import { FunnelDots } from '@/components/funnel-dots'
 import Link from 'next/link'
 
 interface Scroll {
@@ -144,15 +145,11 @@ export default function HomePage() {
         </section>
       ))}
 
-      {/* Conector que cruza el límite gris → verde, cambiando de color a la mitad */}
-      <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
-        <div style={{ position: 'relative' }} className="md:hidden">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={1.5} dotSize={9} dotShape="shield" />
-        </div>
-        <div style={{ position: 'relative' }} className="hidden md:block">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={220} thickness={3} dotSize={16} dotShape="shield" />
-        </div>
+      {/* Conector que cruza el límite gris → verde: embudo de 10 dots que convergen y se
+          difuminan justo antes del módulo Somos Flahoolick */}
+      <div style={{ position: 'relative', height: '320px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 80%, #1FDE91 80%)' }} />
+        <FunnelDots color="#403D37" />
       </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}

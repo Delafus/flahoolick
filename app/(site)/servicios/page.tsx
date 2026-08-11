@@ -28,8 +28,8 @@ const QUE_HACEMOS = [
   },
   {
     numero: '03',
-    titulo: 'Herramientas de IA para marketing',
-    desc: 'Diseñamos e implementamos herramientas con IA para investigar audiencias, aprovechar el conocimiento interno y acelerar la producción de contenido.',
+    titulo: 'Herramientas de IA para marketing y ventas',
+    desc: 'Diseñamos e implementamos herramientas y agentes con IA para investigar, organizar conocimiento, automatizar tareas y ejecutar procesos de marketing y ventas.',
     href: '/servicios/herramientas-de-ia-para-marketing',
   },
   {

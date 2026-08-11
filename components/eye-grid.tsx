@@ -19,8 +19,8 @@ interface PupilData {
 
 /** La inercia de cada ojo, no un valor único: el primero reacciona casi al toque, cada uno
  *  siguiente un poco más lento, hasta el último — se nota como una ola en cadena. */
-const SPEED_MAX = 0.11
-const SPEED_MIN = 0.035
+const SPEED_MAX = 0.18
+const SPEED_MIN = 0.012
 
 export function EyeGrid() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -110,6 +110,7 @@ export function EyeGrid() {
               height: '100%',
               borderRadius: '50%',
               backgroundColor: 'transparent',
+              border: '1px solid rgba(0,0,0,0.1)',
               position: 'relative',
             }}
           >

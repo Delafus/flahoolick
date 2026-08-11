@@ -8,7 +8,7 @@ import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
 import { TrappedDots } from '@/components/trapped-dots'
-import Image from 'next/image'
+import { EyeGrid } from '@/components/eye-grid'
 import Link from 'next/link'
 
 interface Scroll {
@@ -123,8 +123,8 @@ export default function HomePage() {
                 <TrappedDots diameterPercent={80} dotColor="#F1EEE7" />
               </div>
             ) : i === 1 ? (
-              <div className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <Image src="/95-5-dots.svg" alt="" fill style={{ objectFit: 'contain' }} />
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+                <EyeGrid />
               </div>
             ) : (
               <div

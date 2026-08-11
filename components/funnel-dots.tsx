@@ -81,14 +81,6 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
       const baseRadius = Math.max(1.5, width * BASE_RADIUS_RATIO)
 
       dots.forEach((dot, i) => {
-        // Línea guía sutil de fondo
-        ctx!.beginPath()
-        ctx!.moveTo(dot.start.x, dot.start.y)
-        ctx!.bezierCurveTo(dot.cp1.x, dot.cp1.y, dot.cp2.x, dot.cp2.y, dot.end.x, dot.end.y)
-        ctx!.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.06)`
-        ctx!.lineWidth = 1
-        ctx!.stroke()
-
         dot.t += dot.speed
         if (dot.t > 1) dots[i] = randomizeDot(i)
 

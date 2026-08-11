@@ -94,10 +94,10 @@ export default function HomePage() {
       {SCROLLS.map((s, i) => (
         <section
           key={i}
-          className={`flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
+          className={`flex flex-col items-center page-px ${i === 2 ? 'justify-end' : 'justify-center'} ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
           style={{
             minHeight: '100dvh',
-            paddingBottom: '2rem',
+            paddingBottom: i === 2 ? 0 : '2rem',
             backgroundColor: '#D8D8D7',
             color: '#000000',
           }}
@@ -115,8 +115,12 @@ export default function HomePage() {
             <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#55524C', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
               {s.sub}
             </p>
-            <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} dotShape="shield" /></div>
-            <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} dotShape="shield" /></div>
+            {i !== 2 && (
+              <>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} dotShape="shield" /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} dotShape="shield" /></div>
+              </>
+            )}
 
             {i === 0 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
@@ -128,11 +132,8 @@ export default function HomePage() {
                 <EyeGrid />
               </div>
             ) : (
-              <div
-                className="w-full max-w-[240px] md:max-w-[360px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto"
-                style={{ position: 'relative', aspectRatio: '1', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-4 mx-auto" style={{ position: 'relative', height: 'clamp(320px, 45vh, 520px)' }}>
+                <FunnelDots color="#403D37" />
               </div>
             )}
           </div>
@@ -145,11 +146,10 @@ export default function HomePage() {
         </section>
       ))}
 
-      {/* Conector que cruza el límite gris → verde: embudo de 10 dots que convergen y se
-          difuminan justo antes del módulo Somos Flahoolick */}
-      <div style={{ position: 'relative', height: '320px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 80%, #1FDE91 80%)' }} />
-        <FunnelDots color="#403D37" />
+      {/* Transición gris → verde: el embudo de dots del hero 3 ya se difuminó justo antes
+          de acá, esto es solo el cambio de color hacia el módulo Somos Flahoolick */}
+      <div style={{ position: 'relative', height: '120px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }} />
       </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}

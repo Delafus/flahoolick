@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
-import { ServicioCards } from '@/components/servicio-cards'
 
 export const metadata: Metadata = { title: 'Estrategia de Contenido — Flahoolick' }
 
@@ -73,7 +72,14 @@ export default function EstrategiaDeContenido() {
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
               <FontMix bold="Qué" italic=" construimos" />
             </h2>
-            <ServicioCards items={construimos} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+              {construimos.map(item => (
+                <div key={item.numero} className="flex flex-col gap-3">
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{item.titulo}</h3>
+                  <p className="text-sm leading-relaxed opacity-65">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </BodySection>
 
@@ -87,9 +93,8 @@ export default function EstrategiaDeContenido() {
               {comoLoHacemos.map(p => (
                 <div key={p.numero} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8"
                   style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                  <p className="label opacity-40 md:col-span-1">{p.numero}</p>
-                  <h3 className="md:col-span-3" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)', lineHeight: 1.1 }}>
-                    {p.titulo}
+                  <h3 className="md:col-span-4" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)', lineHeight: 1.1 }}>
+                    {p.numero} {p.titulo}
                   </h3>
                   <p className="md:col-span-8 text-sm leading-relaxed opacity-65">{p.texto}</p>
                 </div>
@@ -109,9 +114,12 @@ export default function EstrategiaDeContenido() {
                 <FontMix bold="Recibes una estrategia" italic=" lista para usar." />
               </h2>
               <p className="text-base opacity-70">Entregamos un playbook que reúne:</p>
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-2">
                 {recibes.map(r => (
-                  <p key={r} className="text-base py-3" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>{r}</p>
+                  <p key={r} className="text-base" style={{ paddingLeft: '1.25rem', position: 'relative' }}>
+                    <span style={{ position: 'absolute', left: 0, opacity: 0.5 }}>—</span>
+                    {r}
+                  </p>
                 ))}
               </div>
               <p className="text-sm leading-relaxed opacity-60 mt-2">

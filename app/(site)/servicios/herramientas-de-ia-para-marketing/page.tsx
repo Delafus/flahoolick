@@ -1,120 +1,39 @@
 import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, HowList, Tags, FontMix } from '@/components/page-layout'
+import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 
 export const metadata: Metadata = { title: 'Herramientas de IA para marketing y ventas — Flahoolick' }
 
 const NEGRO = '#000000'
 
-const aperturaTexto = [
-  'En cada empresa existen tareas que consumen horas, procesos que dependen de información dispersa y oportunidades que necesitan seguimiento.',
-  'Partimos desde ese trabajo. Entendemos cómo funciona, qué información necesita, qué decisiones involucra y qué resultado debería producir.',
-  'Luego construimos una herramienta capaz de integrarse a la forma real en que trabaja tu equipo.',
+const agenteBullets = [
+  'Responden llamadas.',
+  'Contactan leads.',
+  'Hacen preguntas y califican oportunidades.',
+  'Resuelven consultas frecuentes.',
+  'Agendan reuniones.',
+  'Hacen seguimiento.',
+  'Reactivan leads.',
+  'Derivan conversaciones al equipo.',
 ]
 
-const quePodemosConstruir = [
-  {
-    titulo: 'Agentes comerciales con IA',
-    desc: 'Agentes capaces de conversar con prospectos y ejecutar una parte concreta del proceso comercial. Pueden contactar leads, responder consultas, hacer preguntas, calificar oportunidades, agendar reuniones, enviar información, activar pagos y realizar seguimiento.',
-    bullets: [
-      'Trabajan con los argumentos, reglas, audiencias y conocimiento comercial de tu empresa.',
-      'Pueden operar por correo, teléfono y otros canales conectados al sistema.',
-      'Cuando una conversación requiere criterio humano, derivan la oportunidad a una persona.',
-    ],
-  },
-  {
-    titulo: 'Inteligencia de audiencias',
-    desc: 'Herramientas que reúnen investigación, datos, entrevistas, señales del mercado y conocimiento interno para ayudar a comprender mejor a clientes y prospectos. Permiten consultar audiencias, detectar necesidades, explorar objeciones y encontrar oportunidades para campañas, contenidos y propuestas comerciales.',
-    bullets: [],
-  },
-  {
-    titulo: 'Asistentes de conocimiento',
-    desc: 'Sistemas que conectan documentos, presentaciones, manuales, investigaciones, reuniones y otras fuentes internas.',
-    bullets: [
-      'El equipo puede consultar ese conocimiento utilizando lenguaje natural.',
-      'La información queda disponible para marketing, ventas y equipos técnicos en un mismo entorno.',
-    ],
-  },
-  {
-    titulo: 'Sistemas de producción de contenido',
-    desc: 'Herramientas que convierten conocimiento existente en briefs, borradores, adaptaciones, estructuras y piezas para diferentes audiencias y canales. Pueden conectarse con fuentes internas, reglas editoriales y criterios de marca para acelerar procesos de producción recurrentes.',
-    bullets: [],
-  },
-  {
-    titulo: 'Sistemas de revisión',
-    desc: 'Herramientas que analizan contenidos, presentaciones, campañas o materiales comerciales utilizando criterios definidos por la organización. Pueden revisar tono, mensajes, estructura, argumentos, consistencia de marca y otros parámetros específicos.',
-    bullets: [],
-  },
-]
-
-const agenteProceso = [
-  'Un lead entra al sistema.',
-  'El agente identifica quién es y reúne contexto disponible.',
-  'Inicia la conversación.',
-  'Hace las preguntas necesarias.',
-  'Califica la oportunidad.',
-  'Responde utilizando el conocimiento de la empresa.',
-  'Agenda una reunión cuando corresponde.',
-  'Puede enviar una propuesta o un link de pago.',
-  'Hace seguimiento si la acción sigue pendiente.',
-  'Registra cada interacción.',
-  'Actualiza el estado de la oportunidad.',
-  'Entrega la conversación a una persona cuando necesita intervención humana.',
-]
-
-const conocimientoTags = [
-  'Oferta', 'Productos', 'Audiencias', 'Casos', 'Argumentos', 'Preguntas frecuentes',
-  'Objeciones', 'Políticas comerciales', 'Documentos', 'Procesos', 'Reglas', 'Permisos',
-  'Criterios de escalamiento',
-]
-
-const formasHerramienta = [
-  'Puede ser un agente que habla con clientes.',
-  'Una aplicación interna.',
-  'Un asistente privado.',
-  'Un panel de inteligencia.',
-  'Una herramienta conectada al CRM.',
-  'Un flujo automatizado.',
-  'Un sistema que combina diferentes modelos y servicios de inteligencia artificial.',
-  'Diseñamos la solución alrededor del trabajo que necesita resolver.',
-]
-
-const comoLaConstruimos = [
-  { titulo: 'Encontramos el trabajo', desc: 'Identificamos una tarea frecuente, relevante y suficientemente definida. Entendemos quién la realiza, cuánto tiempo consume, qué información utiliza y qué resultado necesita producir.' },
-  { titulo: 'Definimos cómo debe actuar', desc: 'Ordenamos conocimiento, fuentes, reglas, decisiones, permisos, conversaciones y puntos de control. También definimos qué puede resolver autónomamente y qué situaciones necesitan intervención humana.' },
-  { titulo: 'Construimos la solución', desc: 'Diseñamos la herramienta, los agentes, las integraciones y la interfaz necesaria. Conectamos los servicios y plataformas que requiere el flujo.' },
-  { titulo: 'La ponemos a trabajar', desc: 'Probamos la herramienta con situaciones reales. Observamos resultados. Ajustamos instrucciones, conocimiento y reglas. Documentamos su funcionamiento para que pueda operar dentro del equipo.' },
-]
-
-const criterioTexto = [
-  'Cada herramienta trabaja con fuentes, reglas y permisos definidos.',
-  'Un agente comercial conoce la oferta que representa.',
-  'Un asistente interno conoce los documentos autorizados.',
-  'Un sistema de contenido conoce la voz y los criterios de la marca.',
-  'Un flujo automatizado conoce las condiciones necesarias para ejecutar una acción.',
-  'El criterio forma parte del sistema desde su diseño.',
-]
-
-const casoConcretoEjemplos = [
-  'Un agente que califique y agende.',
-  'Una herramienta que ordene conocimiento.',
-  'Un sistema que acelere contenido.',
-  'Un asistente que responda preguntas internas.',
-  'Una tarea.',
-  'Un resultado.',
-  'Una herramienta trabajando.',
+const herramientas = [
+  { titulo: 'Inteligencia de audiencias', desc: 'Sistemas que reúnen investigación, datos y señales del mercado para entender audiencias, explorar preguntas y detectar oportunidades.' },
+  { titulo: 'Asistentes de conocimiento', desc: 'Herramientas que conectan documentos, presentaciones, reuniones y conocimiento interno para que los equipos puedan consultarlo y utilizarlo.' },
+  { titulo: 'Producción de contenido', desc: 'Sistemas que convierten conocimiento existente en briefs, borradores, adaptaciones y materiales para diferentes audiencias y canales.' },
+  { titulo: 'Revisión de marca y contenido', desc: 'Herramientas que revisan piezas según tono, mensajes, criterios editoriales y reglas definidas por la organización.' },
 ]
 
 function Bullets({ items, dark = false }: { items: string[]; dark?: boolean }) {
   return (
-    <div className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-2.5">
       {items.map(item => (
-        <p key={item} className="text-sm leading-relaxed" style={{ opacity: dark ? 0.65 : 0.65, paddingLeft: '1.25rem', position: 'relative' }}>
-          <span style={{ position: 'absolute', left: 0, opacity: 0.5 }}>—</span>
-          {item}
-        </p>
+        <li key={item} className="text-sm leading-relaxed flex items-start gap-3" style={{ opacity: dark ? 0.75 : 0.65 }}>
+          <span aria-hidden="true" style={{ flexShrink: 0, opacity: 0.5, fontSize: '1.1em', lineHeight: 1.3 }}>•</span>
+          <span>{item}</span>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -124,8 +43,8 @@ export default function HerramientasDeIAParaMarketing() {
       <PageColorSetter bg="#F09DB6" text={NEGRO} />
       <PageLayout
         tagline="Herramientas de IA para marketing y ventas"
-        headline={<FontMix bold="Pon la IA a trabajar" italic=" en tareas reales." />}
-        description="Diseñamos e implementamos herramientas y agentes con IA para investigar, organizar conocimiento, automatizar tareas y ejecutar procesos de marketing y ventas."
+        headline={<FontMix bold="IA que" italic=" trabaja." />}
+        description="Diseñamos herramientas y agentes que investigan, organizan conocimiento, automatizan tareas y ejecutan procesos de marketing y ventas."
         heroBg="#F09DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
@@ -134,136 +53,86 @@ export default function HerramientasDeIAParaMarketing() {
           submitLabel: 'Cuéntanos qué quieres resolver →',
         }}
       >
-        {/* Bloque de apertura */}
+        {/* Bloque 02 — Idea */}
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="flex flex-col gap-6">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-                <FontMix bold="La IA genera valor" italic=" cuando resuelve un trabajo concreto." />
-              </h2>
-              <p className="text-base leading-relaxed opacity-65">
-                Desde un agente que califica leads y agenda reuniones hasta una herramienta interna que convierte documentos dispersos en conocimiento disponible para todo el equipo.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              {aperturaTexto.map((p, i) => (
-                <p key={p} className={i === 0 ? 'text-lead opacity-80' : 'text-base leading-relaxed opacity-65'}>{p}</p>
-              ))}
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
+              <FontMix bold="La IA genera valor" italic=" cuando resuelve un trabajo concreto." />
+            </h2>
+            <p className="text-base leading-relaxed opacity-65">
+              Partimos por una tarea real de tu empresa. Definimos qué necesita saber, qué acciones puede ejecutar y qué resultado debe producir.
+            </p>
+          </div>
+        </BodySection>
+
+        {/* Bloque 03 — Producto destacado: Agentes de voz con IA */}
+        <BodySection dark>
+          <div className="flex flex-col gap-10">
+            <p className="label" style={{ opacity: 0.5 }}>Agentes de voz con IA</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="flex flex-col gap-4">
+                <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', lineHeight: 1.0 }}>
+                  <FontMix bold="Pon un agente" italic=" al teléfono." />
+                </h2>
+                <p className="text-lead opacity-75">
+                  Diseñamos agentes que atienden, llaman, califican, agendan y hacen seguimiento usando el conocimiento y las reglas de tu empresa.
+                </p>
+                <a href="#contacto"
+                  className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit mt-2"
+                  style={{ '--btn-bg': '#ffffff', '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>
+                  Quiero probar un agente →
+                </a>
+              </div>
+              <Bullets items={agenteBullets} dark />
             </div>
           </div>
         </BodySection>
 
-        {/* Qué podemos construir — 5 bloques planos, sin cards de IA */}
-        <BodySection dark>
+        {/* Bloque 04 — Herramientas para trabajos cotidianos */}
+        <BodySection>
           <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué podemos" italic=" construir" />
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }} className="max-w-2xl">
+              <FontMix bold="Herramientas para trabajos" italic=" que tu equipo hace todos los días." />
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
-              {quePodemosConstruir.map(p => (
-                <div key={p.titulo} className="flex flex-col gap-4 p-8" style={{ backgroundColor: NEGRO }}>
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
-                  {p.bullets.length > 0 && <Bullets items={p.bullets} dark />}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+              {herramientas.map(h => (
+                <div key={h.titulo} className="flex flex-col gap-3">
+                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{h.titulo}</h3>
+                  <p className="text-sm leading-relaxed opacity-65">{h.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </BodySection>
 
-        {/* Un agente puede hacerse cargo de todo el proceso */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(1.75rem, 3.2vw, 2.75rem)', lineHeight: 1.05 }} className="max-w-3xl">
-              <FontMix bold="Un agente puede hacerse cargo" italic=" de una parte completa del proceso comercial." />
-            </h2>
-            <div className="flex flex-col" style={{ maxWidth: '38rem' }}>
-              {agenteProceso.map((paso, i) => (
-                <div key={paso} className="flex flex-row gap-4 py-4" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
-                  <p className="label opacity-30" style={{ flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</p>
-                  <p className="text-sm leading-relaxed opacity-70">{paso}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Cada agente aprende cómo funciona tu negocio */}
-        <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="flex flex-col gap-4">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-                <FontMix bold="Cada agente aprende" italic=" cómo funciona tu negocio." />
-              </h2>
-              <p className="text-base leading-relaxed opacity-65">
-                Una herramienta genérica conoce una tarea. Una herramienta construida para tu empresa incorpora además tu forma de trabajar.
-              </p>
-            </div>
-            <Tags items={conocimientoTags} dark />
-          </div>
-        </BodySection>
-
-        {/* La herramienta toma la forma que el trabajo necesita */}
+        {/* Bloque 05 — La forma que el trabajo necesita */}
         <BodySection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
               <FontMix bold="La herramienta toma la forma" italic=" que el trabajo necesita." />
             </h2>
-            <Bullets items={formasHerramienta} />
-          </div>
-        </BodySection>
-
-        {/* Cómo la construimos */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Cómo" italic=" la construimos" />
-            </h2>
-            <HowList items={comoLaConstruimos} />
-          </div>
-        </BodySection>
-
-        {/* IA con criterio incorporado */}
-        <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="IA con criterio" italic=" incorporado." />
-            </h2>
-            <div className="flex flex-col gap-3">
-              {criterioTexto.map(t => (
-                <p key={t} className="text-base leading-relaxed opacity-65">{t}</p>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Tecnología al servicio de una tarea */}
-        <BodySection>
-          <div className="flex flex-col gap-4" style={{ maxWidth: '42rem' }}>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.1 }}>
-              <FontMix bold="Tecnología" italic=" al servicio de una tarea." />
-            </h2>
             <p className="text-base leading-relaxed opacity-65">
-              Trabajamos con modelos, plataformas y APIs existentes para construir la combinación adecuada para cada proyecto. La solución puede integrar inteligencia artificial, automatización, voz, correo, CRM, calendarios, bases de conocimiento, sistemas de pago y herramientas internas.
-            </p>
-            <p className="text-base leading-relaxed opacity-65">
-              Elegimos la arquitectura según el problema, el volumen, el riesgo y el nivel de autonomía requerido.
+              Puede ser un agente de voz, un asistente privado, una aplicación interna, un panel de consulta o un flujo automatizado conectado a las herramientas que ya utiliza tu empresa.
             </p>
           </div>
         </BodySection>
 
-        {/* Empecemos por un caso concreto */}
+        {/* Bloque 06 — Cierre */}
         <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="flex flex-col gap-4">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-                <FontMix bold="Empecemos por" italic=" un caso concreto." />
+          <div className="flex flex-col items-center text-center gap-6">
+            <div className="flex flex-col gap-3" style={{ maxWidth: '38rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', lineHeight: 1.0 }}>
+                <FontMix bold="Empecemos" italic=" por una tarea." />
               </h2>
-              <p className="text-base leading-relaxed opacity-65">
-                No necesitas transformar toda la empresa para comenzar. Podemos tomar un proceso específico y construir una primera solución funcional.
+              <p className="text-lead opacity-70">
+                Elegimos un trabajo concreto, incorporamos el conocimiento y las reglas necesarias y construimos una primera versión funcional.
               </p>
             </div>
-            <Bullets items={casoConcretoEjemplos} dark />
+            <a href="#contacto"
+              className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
+              style={{ '--btn-bg': 'var(--section-dark-text)', '--btn-fg': 'var(--section-dark-bg)', borderRadius: '999px' } as React.CSSProperties}>
+              Cuéntanos qué quieres resolver →
+            </a>
           </div>
         </BodySection>
 

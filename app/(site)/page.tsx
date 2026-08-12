@@ -36,7 +36,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'está listo para comprar hoy.',
     baseBreakBefore: 'mercado',
     emphasisBreakAfter: 'listo',
-    sub: 'El 95% restante está formando opinión.',
+    sub: 'El 95% restante está atento a lo que dices.',
   },
   {
     h1Base: 'Tu ventaja competitiva ',

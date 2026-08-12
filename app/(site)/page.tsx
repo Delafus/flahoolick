@@ -210,13 +210,23 @@ export default function HomePage() {
 
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
           {[
-            'Tecnología', 'Servicios financieros', 'Ingeniería industrial',
-            'Energía', 'Minería', 'Infraestructura', 'Logística', 'Salud',
-            'Educación', 'Activos inmobiliarios', 'Manufactura',
-            'Servicios profesionales', 'Sector público'
-          ].map(tag => (
+            { tag: 'Tecnología', icon: null },
+            { tag: 'Servicios financieros', icon: '/icons/icon-bank.svg' },
+            { tag: 'Ingeniería industrial', icon: null },
+            { tag: 'Energía', icon: '/icons/icon-energy.svg' },
+            { tag: 'Minería', icon: '/icons/icon-mining.svg' },
+            { tag: 'Infraestructura', icon: null },
+            { tag: 'Logística', icon: null },
+            { tag: 'Salud', icon: '/icons/icon-medicine.svg' },
+            { tag: 'Educación', icon: null },
+            { tag: 'Activos inmobiliarios', icon: null },
+            { tag: 'Manufactura', icon: null },
+            { tag: 'Servicios profesionales', icon: null },
+            { tag: 'Sector público', icon: null },
+          ].map(({ tag, icon }) => (
             <span key={tag} className="text-sm px-3 py-1.5"
-              style={{ border: '1px solid #000000', color: '#000000', opacity: 0.7, borderRadius: '4px' }}>
+              style={{ border: '1px solid #000000', color: '#000000', opacity: 0.7, borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              {icon && <img src={icon} alt="" style={{ width: '14px', height: '14px' }} />}
               {tag}
             </span>
           ))}

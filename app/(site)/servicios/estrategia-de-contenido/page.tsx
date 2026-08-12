@@ -7,10 +7,10 @@ export const metadata: Metadata = { title: 'Estrategia de Contenido — Flahooli
 const NEGRO = '#000000'
 
 const construimos = [
-  { numero: '01', titulo: 'Territorios de autoridad', desc: 'Definimos los temas donde tu empresa reúne conocimiento, credenciales y una oportunidad real de liderar la conversación.' },
-  { numero: '02', titulo: 'Mapa de audiencias y decisiones', desc: 'Identificamos quién participa, qué necesita entender y qué preguntas aparecen durante el ciclo comercial.' },
-  { numero: '03', titulo: 'Arquitectura de mensajes', desc: 'Ordenamos la promesa central, los argumentos técnicos y las pruebas que sostienen el relato.' },
-  { numero: '04', titulo: 'Roadmap de contenido', desc: 'Priorizamos temas, formatos, canales y momentos de publicación para los próximos 90 días.' },
+  { numero: '01', titulo: 'Territorios de autoridad', desc: 'Definimos los temas donde tu empresa reúne conocimiento, credenciales y una oportunidad real de liderar la conversación.', icon: '/icons/icon-territorio-autoridad.svg' },
+  { numero: '02', titulo: 'Mapa de audiencias y decisiones', desc: 'Identificamos quién participa, qué necesita entender y qué preguntas aparecen durante el ciclo comercial.', icon: '/icons/icon-mapa-audiencias.svg' },
+  { numero: '03', titulo: 'Arquitectura de mensajes', desc: 'Ordenamos la promesa central, los argumentos técnicos y las pruebas que sostienen el relato.', icon: '/icons/icon-arquitectura-mensajes.svg' },
+  { numero: '04', titulo: 'Roadmap de contenido', desc: 'Priorizamos temas, formatos, canales y momentos de publicación para los próximos 90 días.', icon: '/icons/icon-roadmap-contenido.svg' },
 ]
 
 const comoLoHacemos = [
@@ -75,8 +75,13 @@ export default function EstrategiaDeContenido() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
               {construimos.map(item => (
                 <div key={item.numero} className="flex flex-col gap-3">
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{item.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{item.desc}</p>
+                  <div className="flex flex-col items-start md:flex-row md:items-center gap-2 md:gap-3">
+                    <div style={{ width: '32px', height: '28px', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                      <img src={item.icon} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                    </div>
+                    <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{item.titulo}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed opacity-65 md:pl-11">{item.desc}</p>
                 </div>
               ))}
             </div>

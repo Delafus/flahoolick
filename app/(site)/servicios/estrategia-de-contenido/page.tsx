@@ -119,14 +119,14 @@ export default function EstrategiaDeContenido() {
                 <FontMix bold="Recibes una estrategia" italic=" lista para usar." />
               </h2>
               <p className="text-base opacity-70">Entregamos un playbook que reúne:</p>
-              <div className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2">
                 {recibes.map(r => (
-                  <p key={r} className="text-base" style={{ paddingLeft: '1.25rem', position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: 0, opacity: 0.5 }}>—</span>
-                    {r}
-                  </p>
+                  <li key={r} className="text-base flex items-start gap-3">
+                    <span aria-hidden="true" style={{ flexShrink: 0, opacity: 0.5, fontSize: '1.1em', lineHeight: 1.3 }}>•</span>
+                    <span>{r}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
               <p className="text-sm leading-relaxed opacity-60 mt-2">
                 Un proyecto típico toma entre cuatro y seis semanas. El alcance considera mercados, unidades de negocio, audiencias y material disponible.
               </p>

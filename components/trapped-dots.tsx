@@ -7,9 +7,15 @@ interface TrappedDotsProps {
   diameterPercent?: number
   dotCount?: number
   dotColor?: string
+  /** Si se pasa, dibuja estos iconos (rutas SVG) en vez de puntos de color — cíclico si hay más dots que iconos. */
+  icons?: string[]
+  /** Lado del cuadrado de cada icono, en px. */
+  iconSize?: number
+  /** Multiplicador de velocidad. Los iconos necesitan ir más lento que los puntos para poder leerse. */
+  speedFactor?: number
 }
 
-export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = '#EE3F4A' }: TrappedDotsProps) {
+export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = '#EE3F4A', icons, iconSize = 26, speedFactor = 1 }: TrappedDotsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -19,15 +25,16 @@ export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = 
     if (!ctx) return
 
     let frameId: number
+    let cancelled = false
     let width = 0
     let height = 0
     let containerRadius = 0
     let dotRadius = 3
 
-    interface Dot { x: number; y: number; vx: number; vy: number }
+    interface Dot { x: number; y: number; vx: number; vy: number; icon?: HTMLImageElement }
     let dots: Dot[] = []
 
-    function setup() {
+    function setup(loadedIcons: HTMLImageElement[]) {
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
       const dpr = window.devicePixelRatio || 1
@@ -38,20 +45,21 @@ export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = 
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       containerRadius = width / 2
-      // Tamaño fijo (6px de diámetro) para que se note bien, sin escalar con el contenedor.
-      dotRadius = 3
+      // Tamaño fijo para que se note bien, sin escalar con el contenedor.
+      dotRadius = loadedIcons.length ? iconSize / 2 : 3
 
       dots = []
       for (let i = 0; i < dotCount; i++) {
         const angle = Math.random() * Math.PI * 2
         const r = Math.random() * (containerRadius - dotRadius * 4)
-        const speed = width * (3 / 160)
+        const speed = width * (3 / 160) * speedFactor
         const a2 = Math.random() * Math.PI * 2
         dots.push({
           x: width / 2 + Math.cos(angle) * r,
           y: height / 2 + Math.sin(angle) * r,
           vx: Math.cos(a2) * speed,
           vy: Math.sin(a2) * speed,
+          icon: loadedIcons.length ? loadedIcons[i % loadedIcons.length] : undefined,
         })
       }
     }
@@ -111,27 +119,49 @@ export function TrappedDots({ diameterPercent = 44.8, dotCount = 20, dotColor = 
           dot.vy = dot.vy - 2 * dotProduct * ny
         }
 
-        ctx!.beginPath()
-        ctx!.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2)
-        ctx!.fillStyle = dotColor
-        ctx!.fill()
-        ctx!.closePath()
+        if (dot.icon) {
+          ctx!.drawImage(dot.icon, dot.x - iconSize / 2, dot.y - iconSize / 2, iconSize, iconSize)
+        } else {
+          ctx!.beginPath()
+          ctx!.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2)
+          ctx!.fillStyle = dotColor
+          ctx!.fill()
+          ctx!.closePath()
+        }
       })
 
       frameId = requestAnimationFrame(animate)
     }
 
-    setup()
-    animate()
+    if (icons && icons.length) {
+      Promise.all(
+        icons.map(
+          src =>
+            new Promise<HTMLImageElement>(resolve => {
+              const img = new Image()
+              img.onload = () => resolve(img)
+              img.src = src
+            }),
+        ),
+      ).then(loadedIcons => {
+        if (cancelled) return
+        setup(loadedIcons)
+        animate()
+      })
+    } else {
+      setup([])
+      animate()
+    }
 
-    const onResize = () => setup()
+    const onResize = () => setup(dots.map(d => d.icon).filter((i): i is HTMLImageElement => !!i))
     window.addEventListener('resize', onResize)
 
     return () => {
+      cancelled = true
       cancelAnimationFrame(frameId)
       window.removeEventListener('resize', onResize)
     }
-  }, [dotCount, dotColor])
+  }, [dotCount, dotColor, icons, iconSize, speedFactor])
 
   return (
     <div

@@ -14,13 +14,27 @@ interface PupilData {
   currentY: number
   targetX: number
   targetY: number
+  /** Inercia individual de cada ojo. */
   speed: number
+  /** Cuánto se desvía del cursor puro — más distracción, más "busca" en vez de mirar fijo. */
+  distraccion: number
+  /** Desfasa el vaivén de cada ojo para que no oscilen todos en sincronía. */
+  offsetFase: number
 }
 
 /** La inercia de cada ojo, no un valor único: el primero reacciona casi al toque, cada uno
- *  siguiente un poco más lento, hasta el último — se nota como una ola en cadena. */
+ *  siguiente un poco más lento, hasta el último — se nota como una ola en cadena. Además cada
+ *  ojo tiene un factor aleatorio propio, así ninguno se mueve exactamente igual. */
 const SPEED_MAX = 0.18
 const SPEED_MIN = 0.012
+const DISTRACCION_MIN = 0.12
+const DISTRACCION_MAX = 0.55
+/** Velocidad del vaivén errático (independiente de la velocidad de reacción al cursor). */
+const WOBBLE_FREQ = 0.0015
+
+function randomRange(min: number, max: number) {
+  return Math.random() * (max - min) + min
+}
 
 export function EyeGrid() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -30,15 +44,21 @@ export function EyeGrid() {
     if (!container) return
 
     const eyes = Array.from(container.querySelectorAll<HTMLDivElement>('[data-eye]'))
-    const data: PupilData[] = eyes.map((eye, i) => ({
-      parent: eye,
-      element: eye.querySelector<HTMLDivElement>('[data-pupil]')!,
-      currentX: 0,
-      currentY: 0,
-      targetX: 0,
-      targetY: 0,
-      speed: SPEED_MAX - (i / Math.max(1, eyes.length - 1)) * (SPEED_MAX - SPEED_MIN),
-    }))
+    const data: PupilData[] = eyes.map((eye, i) => {
+      const cascadeSpeed = SPEED_MAX - (i / Math.max(1, eyes.length - 1)) * (SPEED_MAX - SPEED_MIN)
+      return {
+        parent: eye,
+        element: eye.querySelector<HTMLDivElement>('[data-pupil]')!,
+        currentX: 0,
+        currentY: 0,
+        targetX: 0,
+        targetY: 0,
+        // La ola en cadena se mantiene, pero cada ojo la vive a su propio ritmo.
+        speed: cascadeSpeed * randomRange(0.8, 1.2),
+        distraccion: randomRange(DISTRACCION_MIN, DISTRACCION_MAX),
+        offsetFase: randomRange(0, Math.PI * 2),
+      }
+    })
 
     let mouseX = window.innerWidth / 2
     let mouseY = window.innerHeight / 2
@@ -49,7 +69,7 @@ export function EyeGrid() {
     window.addEventListener('mousemove', onMouseMove)
 
     let raf = 0
-    function animate() {
+    function animate(now: number) {
       data.forEach(d => {
         const rect = d.parent.getBoundingClientRect()
         const eyeX = rect.left + rect.width / 2
@@ -57,8 +77,13 @@ export function EyeGrid() {
 
         const deltaX = mouseX - eyeX
         const deltaY = mouseY - eyeY
-        const angle = Math.atan2(deltaY, deltaX)
+        const cursorAngle = Math.atan2(deltaY, deltaX)
         const distance = Math.hypot(deltaX, deltaY)
+
+        // Mezcla el ángulo real del cursor con un vaivén errático propio de cada ojo —
+        // buscan alternativas en vez de apuntar todos en perfecta sincronía al mouse.
+        const wobble = Math.sin(now * WOBBLE_FREQ + d.offsetFase) * d.distraccion
+        const angle = cursorAngle + wobble
 
         // El recorrido máximo de la pupila se escala con el tamaño real del ojo
         // (el original usaba 12px fijos, pensado para ojos de 40px).
@@ -75,7 +100,7 @@ export function EyeGrid() {
       })
       raf = requestAnimationFrame(animate)
     }
-    animate()
+    raf = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(raf)

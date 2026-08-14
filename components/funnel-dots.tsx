@@ -107,7 +107,9 @@ export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { col
         if (dot.t >= 0) {
           const pos = bezierPoint(dot.t, dot.start, dot.cp1, dot.cp2, dot.end)
           let opacity = 0.85
-          let radius = baseRadius
+          // Crece al doble a lo largo del recorrido — al llegar de color verde
+          // también se siente más grande, como si se hiciera parte del módulo.
+          let radius = baseRadius * (1 + dot.t)
           let dotRgb = rgb
 
           // Desde el 55% del camino, el color vira hacia el verde del módulo
@@ -121,8 +123,8 @@ export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { col
             }
           }
 
-          // En el último 20% del camino se funde hasta desaparecer, sin encogerse
-          // — el tamaño se mantiene, solo cambia de color y se desvanece.
+          // En el último 20% del camino se funde hasta desaparecer en opacidad
+          // (el tamaño sigue creciendo hasta el final, no se encoge).
           if (dot.t > 0.8) {
             const fade = (dot.t - 0.8) / 0.2
             opacity = 0.85 * (1 - fade)

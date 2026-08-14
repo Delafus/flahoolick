@@ -147,7 +147,7 @@ export default function HomePage() {
 
       {/* Transición gris → verde: el embudo de dots del hero 3 ya se difuminó justo antes
           de acá, esto es solo el cambio de color hacia el módulo Somos Flahoolick */}
-      <div style={{ position: 'relative', height: '60px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: '24px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 30%, #1FDE91 30%)' }} />
       </div>
 

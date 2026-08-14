@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { FontMix } from './page-layout'
-import { CasoImagenBrief } from './caso-imagen-brief'
 
 const NEGRO = '#000000'
 const BLANCO = '#ffffff'
@@ -21,13 +20,20 @@ export function ModuloCasoDunamis() {
           </p>
         </div>
 
-        <CasoImagenBrief
-          src="/dee-chat.svg"
-          alt="Conversación real con Dee, el agente de Dunamis Agency"
-          label="AGENTE AUTOMATIZADO · DUNAMIS AGENCY"
-          resultadoTexto="Cada conversación termina en una visita agendada o un dato de contacto capturado."
-          color={NEGRO}
-        />
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '320px',
+            aspectRatio: '1/1',
+            border: '1px solid rgba(255,255,255,0.18)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span className="label" style={{ color: BLANCO, opacity: 0.25 }}>Ilustración</span>
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="https://dunamis.agency" target="_blank" rel="noopener noreferrer"

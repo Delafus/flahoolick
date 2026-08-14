@@ -6,49 +6,37 @@ interface KnowledgeClusterProps {
   /** Diámetro del círculo madre (el borde nítido), como % del wrapper. */
   diameterPercent?: number
   color?: string
-  /** Color de fondo detrás — debe calzar con el fondo real de la sección
-   *  para que la capa líquida se funda sin dejar un recuadro visible. */
+  /** Color de fondo detrás del círculo — debe calzar con el fondo real de
+   *  la sección para que no se note ningún recuadro. */
   bgColor?: string
 }
 
-interface NodoConfig { xFrac: number; yFrac: number; retardo: number; radioMaxFrac: number }
+/** Tamaños de bolita como fracción del radio de la ventana — puerto directo
+ *  de las proporciones del prototipo del usuario (16/26/44 sobre radio 150). */
+const SIZE_FRACS = [16 / 150, 26 / 150, 44 / 150]
+const MAX_DOTS = 48
+const SPAWN_INTERVAL = 8
 
-/** Nodos de "conocimiento" — posición y radio máximo como fracción del ancho
- *  del canvas, puerto directo de los valores del prototipo del usuario
- *  (originalmente sobre un canvas de 500px). */
-const NODOS: NodoConfig[] = [
-  { xFrac: -0.12, yFrac: -0.10, retardo: 20, radioMaxFrac: 0.22 },
-  { xFrac: 0.14, yFrac: -0.06, retardo: 60, radioMaxFrac: 0.20 },
-  { xFrac: -0.08, yFrac: 0.14, retardo: 110, radioMaxFrac: 0.26 },
-  { xFrac: 0.10, yFrac: 0.12, retardo: 150, radioMaxFrac: 0.23 },
-  { xFrac: -0.18, yFrac: -0.02, retardo: 200, radioMaxFrac: 0.18 },
-  { xFrac: 0.02, yFrac: -0.18, retardo: 240, radioMaxFrac: 0.21 },
-  { xFrac: 0, yFrac: 0, retardo: 300, radioMaxFrac: 0.42 }, // masa crítica central
-]
+// Constantes de movimiento tuneadas para un canvas de referencia de 500px —
+// se escalan según el tamaño real del contenedor para que el movimiento se
+// sienta igual en el círculo chico de mobile y en el grande de desktop.
+const REF_WIDTH = 500
+const GRAVITY_REF = 0.42
+const BOUNCE = 0.85
+const FRICTION = 0.985
 
-interface ForcejeoConfig { angle: number; phase: number; speed: number; bulgeFrac: number }
+interface DotPhysics {
+  x: number; y: number; vx: number; vy: number
+  radius: number
+  isFrozen: boolean
+  stillFrames: number
+  prevX: number; prevY: number
+}
 
-/** Puntos donde la masa, ya atrapada, forcejea contra el borde — nunca
- *  logra salir (la ventana de recorte se lo impide), solo empuja y cede,
- *  en un ciclo continuo sin reinicio. */
-const FORCEJEOS: ForcejeoConfig[] = [
-  { angle: 0.3, phase: 0.0, speed: 0.007, bulgeFrac: 0.11 },
-  { angle: 1.9, phase: 1.4, speed: 0.0055, bulgeFrac: 0.14 },
-  { angle: 3.1, phase: 2.7, speed: 0.008, bulgeFrac: 0.09 },
-  { angle: 4.4, phase: 4.0, speed: 0.006, bulgeFrac: 0.13 },
-  { angle: 5.6, phase: 5.2, speed: 0.0065, bulgeFrac: 0.10 },
-]
-
-// Más chico que el borde de recorte (diameterPercent/2 ≈ 0.32) a propósito:
-// deja margen para que el forcejeo empuje visiblemente contra el vidrio.
-const RADIO_MADRE_FRAC = 0.26
-const FASE_SATURACION_INICIO = 480
-
-/** Estilo Yugo Nakamura: nodos que crecen y se funden como líquido (blur +
- *  contraste alto) hasta saturar el círculo madre por completo. A partir de
- *  ahí no colapsa ni reinicia — el conocimiento ya quedó atrapado, así que
- *  se queda forcejeando contra el borde para siempre, sin lograr salir.
- *  Puerto del prototipo canvas del usuario, con el final rediseñado. */
+/** Bolitas que caen y se apilan dentro de una ventana circular — física real
+ *  con gravedad, rebote y colisión, hasta asentarse (congelarse) cuando su
+ *  desplazamiento por frame cae bajo el umbral. Puerto del prototipo canvas
+ *  del usuario ("Conocimiento Atrapado"), adaptado a tamaño responsive. */
 export function KnowledgeCluster({ diameterPercent = 64, color = '#000000', bgColor = '#D8D8D7' }: KnowledgeClusterProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -60,66 +48,171 @@ export function KnowledgeCluster({ diameterPercent = 64, color = '#000000', bgCo
 
     let width = 0
     let height = 0
+    let scale = 1
+    let windowRadius = 0
     let frameId: number
-    let fotograma = 0
+    let frame = 0
+    let dots: DotPhysics[] = []
+
+    function spawnDot() {
+      const count = dots.length
+      let sizeType: number
+      if (count === 6 || count === 14 || count === 22) sizeType = 2
+      else if (count % 2 === 0) sizeType = 1
+      else sizeType = 0
+
+      const radius = windowRadius * SIZE_FRACS[sizeType]
+      const cx = width / 2
+      const cy = height / 2
+      dots.push({
+        x: cx + (Math.random() - 0.5) * (windowRadius * 1.2),
+        y: cy - windowRadius - 100 * scale,
+        vx: (Math.random() - 0.5) * 4 * scale,
+        vy: (Math.random() * 3 + 5) * scale,
+        radius,
+        isFrozen: false,
+        stillFrames: 0,
+        prevX: 0,
+        prevY: 0,
+      })
+    }
+
+    function updateDot(d: DotPhysics) {
+      if (d.isFrozen) return
+      d.vy += GRAVITY_REF * scale
+      d.vx *= FRICTION
+      d.vy *= FRICTION
+      d.x += d.vx
+      d.y += d.vy
+
+      const distMoved = Math.hypot(d.x - d.prevX, d.y - d.prevY)
+      d.prevX = d.x
+      d.prevY = d.y
+
+      if (distMoved < 0.35 * scale) {
+        d.stillFrames++
+        if (d.stillFrames > 10) {
+          d.isFrozen = true
+          d.vx = 0
+          d.vy = 0
+        }
+      } else {
+        d.stillFrames = 0
+      }
+    }
+
+    function constrainToWindow(d: DotPhysics) {
+      if (d.isFrozen) return
+      const cx = width / 2
+      const cy = height / 2
+      const dx = d.x - cx
+      const dy = d.y - cy
+      const dist = Math.hypot(dx, dy)
+
+      let maxDist = windowRadius - d.radius
+      if (d.y < cy) maxDist = windowRadius + d.radius * 0.3
+
+      if (dist > maxDist) {
+        const nx = dx / dist
+        const ny = dy / dist
+        d.x = cx + nx * maxDist
+        d.y = cy + ny * maxDist
+        const dot = d.vx * nx + d.vy * ny
+        if (dot > 0) {
+          d.vx -= (1 + BOUNCE) * dot * nx
+          d.vy -= (1 + BOUNCE) * dot * ny
+        }
+      }
+    }
+
+    function resolveCollisions() {
+      for (let k = 0; k < 4; k++) {
+        for (let i = 0; i < dots.length; i++) {
+          for (let j = i + 1; j < dots.length; j++) {
+            const d1 = dots[i]
+            const d2 = dots[j]
+            if (d1.isFrozen && d2.isFrozen) continue
+
+            const dx = d2.x - d1.x
+            const dy = d2.y - d1.y
+            const dist = Math.hypot(dx, dy)
+            const minDist = d1.radius + d2.radius
+
+            if (dist < minDist && dist > 0) {
+              const overlap = minDist - dist
+              const nx = dx / dist
+              const ny = dy / dist
+
+              if (d1.isFrozen) {
+                d2.x += nx * overlap * 0.3
+                d2.y += ny * overlap * 0.3
+                const p = nx * d2.vx + ny * d2.vy
+                if (p < 0) {
+                  d2.vx -= (1 + BOUNCE) * p * nx * 0.5
+                  d2.vy -= (1 + BOUNCE) * p * ny * 0.5
+                }
+              } else if (d2.isFrozen) {
+                d1.x -= nx * overlap * 0.3
+                d1.y -= ny * overlap * 0.3
+                const p = nx * d1.vx + ny * d1.vy
+                if (p > 0) {
+                  d1.vx -= (1 + BOUNCE) * p * nx * 0.5
+                  d1.vy -= (1 + BOUNCE) * p * ny * 0.5
+                }
+              } else {
+                d1.x -= nx * overlap * 0.3
+                d1.y -= ny * overlap * 0.3
+                d2.x += nx * overlap * 0.3
+                d2.y += ny * overlap * 0.3
+
+                const p = nx * (d1.vx - d2.vx) + ny * (d1.vy - d2.vy)
+                if (p > 0) {
+                  const impulse = p * BOUNCE
+                  d1.vx -= impulse * nx * 0.5
+                  d1.vy -= impulse * ny * 0.5
+                  d2.vx += impulse * nx * 0.5
+                  d2.vy += impulse * ny * 0.5
+                }
+              }
+            }
+          }
+        }
+        dots.forEach(constrainToWindow)
+      }
+    }
 
     function setup() {
       if (!canvas) return
+      dots = []
+      frame = 0
       const rect = canvas.getBoundingClientRect()
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       width = Math.max(1, rect.width)
       height = Math.max(1, rect.height)
+      scale = width / REF_WIDTH
+      windowRadius = width / 2 - 1
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
     function draw() {
-      fotograma++
-      const cx = width / 2
-      const cy = height / 2
-      const radioMadre = width * RADIO_MADRE_FRAC
-
+      frame++
+      ctx!.clearRect(0, 0, width, height)
       ctx!.fillStyle = bgColor
       ctx!.fillRect(0, 0, width, height)
 
-      if (fotograma < FASE_SATURACION_INICIO) {
-        // Fase 1: crecimiento orgánico y deformación progresiva de cada nodo.
-        NODOS.forEach(n => {
-          if (fotograma > n.retardo) {
-            const tiempoVida = fotograma - n.retardo
-            const progreso = Math.min(tiempoVida / 120, 1)
-            const radioActual = width * n.radioMaxFrac * (1 - Math.pow(1 - progreso, 3))
-            const x = cx + width * n.xFrac
-            const y = cy + width * n.yFrac
-            ctx!.beginPath()
-            ctx!.arc(x, y, radioActual, 0, Math.PI * 2)
-            ctx!.fillStyle = color
-            ctx!.fill()
-          }
-        })
-      } else {
-        // Fase 2: ya atrapado — la masa base se queda sólida para siempre y
-        // forcejea contra el borde en varios puntos (empuja, no logra salir,
-        // cede, vuelve a empujar en otro punto). Sin reinicio.
+      if (frame % SPAWN_INTERVAL === 0 && dots.length < MAX_DOTS) spawnDot()
+
+      dots.forEach(updateDot)
+      resolveCollisions()
+
+      dots.forEach(d => {
         ctx!.beginPath()
-        ctx!.arc(cx, cy, radioMadre, 0, Math.PI * 2)
+        ctx!.arc(d.x, d.y, d.radius, 0, Math.PI * 2)
         ctx!.fillStyle = color
         ctx!.fill()
-
-        FORCEJEOS.forEach(f => {
-          const pulso = (Math.sin(fotograma * f.speed + f.phase) + 1) / 2
-          const bulgeRadius = width * f.bulgeFrac * pulso
-          if (bulgeRadius < 0.5) return
-          const edgeR = radioMadre * 0.88
-          const x = cx + Math.cos(f.angle) * edgeR
-          const y = cy + Math.sin(f.angle) * edgeR
-          ctx!.beginPath()
-          ctx!.arc(x, y, bulgeRadius, 0, Math.PI * 2)
-          ctx!.fillStyle = color
-          ctx!.fill()
-        })
-      }
+      })
 
       frameId = requestAnimationFrame(draw)
     }
@@ -138,8 +231,8 @@ export function KnowledgeCluster({ diameterPercent = 64, color = '#000000', bgCo
 
   return (
     <div aria-hidden="true" style={{ position: 'absolute', inset: 0 }}>
-      {/* Ventana de recorte — el círculo madre es una frontera real, nada de
-          la masa líquida se dibuja fuera de ella. */}
+      {/* Ventana circular — el clip lo hace este div (overflow:hidden +
+          border-radius:50%), el canvas dibuja un cuadrado exacto adentro. */}
       <div
         style={{
           position: 'absolute',
@@ -153,30 +246,9 @@ export function KnowledgeCluster({ diameterPercent = 64, color = '#000000', bgCo
           zIndex: 1,
         }}
       >
-        {/* Capa líquida: blur + contraste alto funde los círculos entre sí.
-            Va más grande que la ventana de recorte (equivalente al ancho
-            completo del wrapper) para que el blur tenga margen y no se
-            note su propio borde recto — solo se ve lo que cae dentro del
-            círculo recortado. El contraste tan alto empuja el fondo a
-            blanco puro (no calza con el gris real de la página) —
-            mix-blend-mode:multiply lo vuelve invisible (blanco × cualquier
-            color = ese mismo color) y deja pasar solo el negro. */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: `${10000 / diameterPercent}%`,
-            aspectRatio: '1/1',
-            transform: 'translate(-50%, -50%)',
-            filter: 'blur(10px) contrast(22)',
-            mixBlendMode: 'multiply',
-          }}
-        >
-          <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
-        </div>
+        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
       </div>
-      {/* Círculo madre — línea nítida, siempre por encima de la masa líquida. */}
+      {/* Borde nítido, siempre por encima. */}
       <div
         style={{
           position: 'absolute',

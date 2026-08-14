@@ -117,8 +117,8 @@ export default function HomePage() {
             </p>
             {i !== 2 && (
               <>
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} dotShape="shield" /></div>
-                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} dotShape="shield" /></div>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={9} /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} /></div>
               </>
             )}
 
@@ -139,8 +139,8 @@ export default function HomePage() {
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} dotShape="shield" /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} dotShape="shield" /></div>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1.5} dotSize={9} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} /></div>
             </>
           )}
         </section>

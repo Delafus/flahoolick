@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const TOTAL_DOTS = 10
+const TOTAL_DOTS = 6
 const BASE_RADIUS_RATIO = 0.014 // relativo al ancho del canvas
 
 interface Point { x: number; y: number }
@@ -54,16 +54,15 @@ export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { col
     let raf = 0
 
     function randomizeDot(index: number): DotPath {
-      const endX = width * (0.1 + index * (0.8 / (TOTAL_DOTS - 1)))
-      const centerX = width / 2
-      const start = { x: centerX, y: 0 }
-      const end = { x: endX, y: height * 0.94 }
-      // cp1/cp2 sobre la misma recta start→end: la curva bezier queda una línea
-      // perfectamente recta (nada de la forma "cebolla" que daba la curva anterior).
+      // Líneas paralelas, verticales, parejo de arriba a abajo — como carriles de
+      // una carretera, no un abanico que converge en un punto.
+      const x = width * (0.15 + index * (0.7 / (TOTAL_DOTS - 1)))
+      const start = { x, y: 0 }
+      const end = { x, y: height * 0.94 }
       return {
         start,
-        cp1: { x: start.x + (end.x - start.x) / 3, y: start.y + (end.y - start.y) / 3 },
-        cp2: { x: start.x + (end.x - start.x) * (2 / 3), y: start.y + (end.y - start.y) * (2 / 3) },
+        cp1: { x, y: height * 0.31 },
+        cp2: { x, y: height * 0.63 },
         end,
         t: randomRange(-1.5, 0),
         speed: randomRange(0.0025, 0.008),

@@ -42,7 +42,7 @@ const SCROLLS: Scroll[] = [
     h1Base: 'Tu ventaja competitiva ',
     h1Emphasis: 'ya existe.',
     breakBeforeEmphasis: true,
-    sub: 'Necesita un sistema que la ponga en circulación.',
+    sub: 'Necesitas un sistema que la ponga en circulación.',
   },
 ]
 

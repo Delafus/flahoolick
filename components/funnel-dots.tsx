@@ -53,13 +53,13 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
     let raf = 0
 
     function randomizeDot(index: number): DotPath {
-      const startX = width * (0.1 + index * (0.8 / (TOTAL_DOTS - 1)))
-      const endPoint = { x: width / 2, y: height * 0.94 }
+      const endX = width * (0.1 + index * (0.8 / (TOTAL_DOTS - 1)))
+      const centerX = width / 2
       return {
-        start: { x: startX, y: 0 },
-        cp1: { x: startX, y: height * 0.5 },
-        cp2: { x: width / 2, y: height * 0.74 },
-        end: endPoint,
+        start: { x: centerX, y: 0 },
+        cp1: { x: centerX, y: height * 0.26 },
+        cp2: { x: endX, y: height * 0.5 },
+        end: { x: endX, y: height * 0.94 },
         t: randomRange(-1.5, 0),
         speed: randomRange(0.0025, 0.008),
       }
@@ -79,6 +79,16 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
     function draw() {
       ctx!.clearRect(0, 0, width, height)
       const baseRadius = Math.max(1.5, width * BASE_RADIUS_RATIO)
+
+      // Líneas guía — el trazado de cada dot, tenue, para que se lea el embudo abriéndose.
+      dots.forEach(dot => {
+        ctx!.beginPath()
+        ctx!.moveTo(dot.start.x, dot.start.y)
+        ctx!.bezierCurveTo(dot.cp1.x, dot.cp1.y, dot.cp2.x, dot.cp2.y, dot.end.x, dot.end.y)
+        ctx!.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15)`
+        ctx!.lineWidth = 1
+        ctx!.stroke()
+      })
 
       dots.forEach((dot, i) => {
         dot.t += dot.speed

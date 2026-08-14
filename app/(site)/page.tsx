@@ -7,7 +7,7 @@ import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
-import { TrappedDots } from '@/components/trapped-dots'
+import { KnowledgeCluster } from '@/components/knowledge-cluster'
 import { EyeGrid } from '@/components/eye-grid'
 import { FunnelDots } from '@/components/funnel-dots'
 import Link from 'next/link'
@@ -125,7 +125,7 @@ export default function HomePage() {
             {i === 0 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
                 <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
-                <TrappedDots diameterPercent={80} dotColor="#F1EEE7" speedFactor={0.5} />
+                <KnowledgeCluster diameterPercent={80} color="#F1EEE7" />
               </div>
             ) : i === 1 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>

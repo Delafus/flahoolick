@@ -21,13 +21,29 @@ export function ContactForm({
 }) {
   const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError]     = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 900))
-    setSent(true)
-    setLoading(false)
+    setError(false)
+
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+
+    try {
+      const res = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) throw new Error('request failed')
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -91,6 +107,11 @@ export function ContactForm({
               >
                 {loading ? 'Enviando...' : submitLabel}
               </button>
+              {error && (
+                <p className="text-sm" style={{ color: text, opacity: 0.7 }}>
+                  No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directo.
+                </p>
+              )}
             </form>
           )}
         </div>

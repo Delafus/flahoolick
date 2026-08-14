@@ -36,7 +36,7 @@ function hexToRgb(hex: string) {
 
 /** 10 dots que bajan por líneas distintas y convergen en un embudo, difuminándose al llegar
  *  al final — puerto del prototipo canvas del usuario, adaptado a tamaño responsivo. */
-export function FunnelDots({ color = '#403D37' }: { color?: string }) {
+export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { color?: string; fadeToColor?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -45,6 +45,7 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
     const rgb = hexToRgb(color)
+    const fadeRgb = hexToRgb(fadeToColor)
 
     let width = 1
     let height = 1
@@ -55,11 +56,15 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
     function randomizeDot(index: number): DotPath {
       const endX = width * (0.1 + index * (0.8 / (TOTAL_DOTS - 1)))
       const centerX = width / 2
+      const start = { x: centerX, y: 0 }
+      const end = { x: endX, y: height * 0.94 }
+      // cp1/cp2 sobre la misma recta start→end: la curva bezier queda una línea
+      // perfectamente recta (nada de la forma "cebolla" que daba la curva anterior).
       return {
-        start: { x: centerX, y: 0 },
-        cp1: { x: centerX, y: height * 0.26 },
-        cp2: { x: endX, y: height * 0.5 },
-        end: { x: endX, y: height * 0.94 },
+        start,
+        cp1: { x: start.x + (end.x - start.x) / 3, y: start.y + (end.y - start.y) / 3 },
+        cp2: { x: start.x + (end.x - start.x) * (2 / 3), y: start.y + (end.y - start.y) * (2 / 3) },
+        end,
         t: randomRange(-1.5, 0),
         speed: randomRange(0.0025, 0.008),
       }
@@ -98,18 +103,30 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
           const pos = bezierPoint(dot.t, dot.start, dot.cp1, dot.cp2, dot.end)
           let opacity = 0.85
           let radius = baseRadius
+          let dotRgb = rgb
 
-          // En el último 20% del camino se funde y encoge hasta desaparecer.
+          // Desde el 55% del camino, el color vira hacia el verde del módulo
+          // siguiente — para que se sienta que el dot "llega" al verde.
+          if (dot.t > 0.55) {
+            const colorT = Math.min(1, (dot.t - 0.55) / 0.35)
+            dotRgb = {
+              r: rgb.r + (fadeRgb.r - rgb.r) * colorT,
+              g: rgb.g + (fadeRgb.g - rgb.g) * colorT,
+              b: rgb.b + (fadeRgb.b - rgb.b) * colorT,
+            }
+          }
+
+          // En el último 20% del camino se funde hasta desaparecer, sin encogerse
+          // — el tamaño se mantiene, solo cambia de color y se desvanece.
           if (dot.t > 0.8) {
             const fade = (dot.t - 0.8) / 0.2
             opacity = 0.85 * (1 - fade)
-            radius = baseRadius * (1 - fade)
           }
 
           if (radius > 0.3) {
             ctx!.beginPath()
             ctx!.arc(pos.x, pos.y, radius, 0, Math.PI * 2)
-            ctx!.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`
+            ctx!.fillStyle = `rgba(${dotRgb.r}, ${dotRgb.g}, ${dotRgb.b}, ${opacity})`
             ctx!.fill()
           }
         }

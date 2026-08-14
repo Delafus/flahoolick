@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const TOTAL_DOTS = 6
+const TOTAL_DOTS = 7
 const BASE_RADIUS_RATIO = 0.014 // relativo al ancho del canvas
 
 interface Point { x: number; y: number }
@@ -52,11 +52,16 @@ export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { col
     let dpr = 1
     let dots: DotPath[] = []
     let raf = 0
+    // Desvío horizontal fijo por carril — separación irregular entre líneas,
+    // para que no se vean parejas como trastes de guitarra (Guitar Hero).
+    // Se recalcula solo al armar/redimensionar, nunca al reciclar un dot.
+    let laneJitter: number[] = []
 
     function randomizeDot(index: number): DotPath {
       // Líneas paralelas, verticales, parejo de arriba a abajo — como carriles de
       // una carretera, no un abanico que converge en un punto.
-      const x = width * (0.15 + index * (0.7 / (TOTAL_DOTS - 1)))
+      const baseX = width * (0.15 + index * (0.7 / (TOTAL_DOTS - 1)))
+      const x = baseX + width * (laneJitter[index] ?? 0)
       const start = { x, y: 0 }
       const end = { x, y: height * 0.94 }
       return {
@@ -77,6 +82,7 @@ export function FunnelDots({ color = '#403D37', fadeToColor = '#1FDE91' }: { col
       canvas!.width = Math.round(width * dpr)
       canvas!.height = Math.round(height * dpr)
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+      laneJitter = Array.from({ length: TOTAL_DOTS }, () => randomRange(-0.035, 0.035))
       dots = Array.from({ length: TOTAL_DOTS }, (_, i) => randomizeDot(i))
     }
 

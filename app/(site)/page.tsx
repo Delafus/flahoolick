@@ -124,7 +124,7 @@ export default function HomePage() {
 
             {i === 0 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <KnowledgeCluster diameterPercent={72} color="#000000" />
+                <KnowledgeCluster diameterPercent={64} color="#000000" bgColor="#D8D8D7" />
               </div>
             ) : i === 1 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>

@@ -116,19 +116,19 @@ export default function SobreFlahoolick() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.1)' }}>
             {[
               {
-                titulo: 'SERVICIOS',
+                titulo: 'Servicios',
                 desc: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
                 href: '/servicios',
                 cta: 'Explorar →',
               },
               {
-                titulo: 'METODOLOGÍA',
+                titulo: 'Metodología',
                 desc: 'El cómo y el qué de nuestro trabajo — el sistema diseñado para ciclos de decisión complejos y refinado durante cientos de proyectos.',
                 href: '/metodologia',
                 cta: 'Explorar →',
               },
               {
-                titulo: 'JERGA',
+                titulo: 'Jerga',
                 desc: 'Lo aprendido en el trabajo — estrategia de contenido, marketing B2B y autoridad de mercado. Ideas para líderes que necesitan que el mercado los recuerde cuando decida comprar.',
                 href: '/jerga',
                 cta: 'Leer JERGA →',
@@ -136,7 +136,7 @@ export default function SobreFlahoolick() {
             ].map(card => (
               <div key={card.href} className="flex flex-col gap-8 p-10" style={{ backgroundColor: 'var(--section-dark-bg)' }}>
                 <div className="flex flex-col gap-4 flex-1">
-                  <p style={card.titulo === 'JERGA' ? {
+                  <p style={card.titulo === 'Jerga' ? {
                     fontFamily: 'var(--font-display)',
                     fontWeight: 400,
                     fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)',

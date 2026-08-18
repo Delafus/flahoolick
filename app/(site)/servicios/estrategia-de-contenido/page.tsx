@@ -42,7 +42,18 @@ export default function EstrategiaDeContenido() {
         ctaHref="#contacto"
         ctaLabel="Diseñemos la estrategia →"
         contact={{
-          headline: <FontMix bold="Tu empresa ya tiene conocimiento." italic=" Démosle dirección." />,
+          headline: (
+            <FontMix
+              bold="Tu empresa ya tiene conocimiento."
+              italic={
+                <>
+                  <span className="md:hidden"> </span>
+                  <br className="hidden md:block" />
+                  Démosle dirección.
+                </>
+              }
+            />
+          ),
           submitLabel: 'Agenda una conversación →',
         }}
       >

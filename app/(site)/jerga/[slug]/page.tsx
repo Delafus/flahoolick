@@ -7,13 +7,11 @@ import { ContactForm } from '@/components/contact-form'
 import { CuerpoJerga } from '@/components/portable-text-jerga'
 import { TocSidebar } from '@/components/toc-sidebar'
 import { PinnedGuidesBar } from '@/components/pinned-guides-bar'
+import { JergaDuotoneFilters } from '@/components/jerga-duotone-filters'
 import { extraerToc } from '@/lib/toc'
+import { getJergaTheme } from '@/lib/jerga-theme'
 import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
 import { todas, porSlug, categoria, categorias, relacionadas } from '@/sanity/lib/jerga'
-import { esClaro } from '@/lib/color'
-
-const CREMA = '#F9F0E2'
-const NEGRO = '#000000'
 
 export const revalidate = 60
 
@@ -42,18 +40,19 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
   ])
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
   const toc = pieza.tipo === 'guia' ? extraerToc(pieza.cuerpo) : []
-
-  const heroBg = pieza.tipo === 'guia' && pieza.color ? pieza.color : CREMA
-  const heroText = heroBg !== CREMA ? (esClaro(heroBg) ? NEGRO : '#FFFFFF') : NEGRO
+  const theme = getJergaTheme(pieza.theme || cat?.colorTheme)
+  const heroBg = theme.light
+  const heroText = theme.dark
 
   return (
     <>
       <PageColorSetter bg={heroBg} text={heroText} />
+      <JergaDuotoneFilters />
 
       {pieza.tipo === 'guia' && <PinnedGuidesBar bg={heroBg} text={heroText} />}
 
       {/* Cabecera — split: texto | foto */}
-      <section className="page-px" style={{ backgroundColor: heroBg, color: heroText, paddingTop: pieza.tipo === 'guia' ? '3rem' : 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
+      <section className={`page-px jerga-theme ${theme.className}`} style={{ backgroundColor: heroBg, color: heroText, paddingTop: pieza.tipo === 'guia' ? '3rem' : 'calc(64px + 4rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
 
@@ -81,7 +80,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
                 {pieza.bajada}
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: `1px solid ${heroText === NEGRO ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.25)'}`, paddingTop: '1.5rem' }}>
+              <div className="flex flex-wrap items-center gap-6 label" style={{ opacity: 0.45, borderTop: '1px solid var(--jerga-line)', paddingTop: '1.5rem' }}>
                 <span>{pieza.autor}</span>
                 <span>{fechaLegible(pieza.fecha)}</span>
                 <span>{pieza.lectura} min de lectura</span>
@@ -104,6 +103,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
                     alt={pieza.imagenDestacadaAlt ?? pieza.titulo}
                     fill
                     priority
+                    className="jerga-duotone-image"
                     style={{ objectFit: 'cover' }}
                   />
                 ) : (
@@ -117,7 +117,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
       </section>
 
       {/* Cuerpo */}
-      <section className="page-px section-py" style={{ backgroundColor: CREMA, color: NEGRO }}>
+      <section className={`page-px section-py jerga-theme ${theme.className}`} style={{ backgroundColor: theme.light, color: theme.dark }}>
         <div className="max-container">
           <div className={toc.length > 0 ? 'grid grid-cols-1 md:grid-cols-12 gap-12' : ''}>
             {toc.length > 0 && (
@@ -142,7 +142,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
       </section>
 
       {/* Relacionadas */}
-      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
+      <section className={`page-px section-py jerga-theme ${theme.className}`} style={{ backgroundColor: theme.light, color: theme.dark, borderTop: '1px solid var(--jerga-line)' }}>
         <div className="max-container flex flex-col gap-12">
           <h2 className="text-headline">Seguir leyendo</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -150,7 +150,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
               <Link key={p.slug} href={`/jerga/${p.slug}`} className="group flex flex-col gap-4">
                 <div style={{ position: 'relative', aspectRatio: '3/2', backgroundColor: 'rgba(255,255,255,0.06)', display: p.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {p.imagenDestacadaUrl ? (
-                    <NextImage src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill style={{ objectFit: 'cover' }} />
+                    <NextImage src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill className="jerga-duotone-image" style={{ objectFit: 'cover' }} />
                   ) : (
                     <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
                   )}

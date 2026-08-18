@@ -46,6 +46,27 @@
 }
 
 /* ============================================================
+   JERGA — PALETAS EDITORIALES Y DUOTONO
+   ============================================================ */
+
+.tema-rosa {
+  --jerga-light: #EF9DB6;
+  --jerga-dark: #000000;
+  --jerga-line: rgba(0, 0, 0, 0.16);
+  --jerga-soft: rgba(0, 0, 0, 0.06);
+  --jerga-duotone-filter: url('#jerga-duotone-rosa');
+}
+
+.jerga-theme {
+  background-color: var(--jerga-light);
+  color: var(--jerga-dark);
+}
+
+.jerga-duotone-image {
+  filter: var(--jerga-duotone-filter);
+}
+
+/* ============================================================
    BASE
    ============================================================ */
 

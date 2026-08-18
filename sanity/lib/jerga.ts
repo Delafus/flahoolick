@@ -5,6 +5,7 @@ export interface Categoria {
   slug: string
   nombre: string
   descripcion: string
+  colorTheme: string
 }
 
 export interface Pieza {
@@ -21,6 +22,7 @@ export interface Pieza {
   color?: string
   fijadaEnBarra?: boolean
   etiquetaBarra?: string
+  theme: string
   imagenDestacadaUrl?: string
   imagenDestacadaAlt?: string
   cuerpo: any[]
@@ -40,6 +42,7 @@ const PIEZA_PROYECCION = `{
   color,
   fijadaEnBarra,
   etiquetaBarra,
+  "theme": coalesce(categoria->colorTheme, "rosa"),
   "imagenDestacadaUrl": imagenDestacada.asset->url,
   "imagenDestacadaAlt": imagenDestacada.alt,
   cuerpo,
@@ -76,13 +79,13 @@ export async function destacada(): Promise<Pieza | null> {
 
 export async function categorias(): Promise<Categoria[]> {
   return client.fetch(
-    `*[_type == "categoria"] | order(nombre asc){ "slug": slug.current, nombre, descripcion }`,
+    `*[_type == "categoria"] | order(nombre asc){ "slug": slug.current, nombre, descripcion, "colorTheme": coalesce(colorTheme, "rosa") }`,
   )
 }
 
 export async function categoria(slug: string): Promise<Categoria | null> {
   return client.fetch(
-    `*[_type == "categoria" && slug.current == $slug][0]{ "slug": slug.current, nombre, descripcion }`,
+    `*[_type == "categoria" && slug.current == $slug][0]{ "slug": slug.current, nombre, descripcion, "colorTheme": coalesce(colorTheme, "rosa") }`,
     { slug },
   )
 }

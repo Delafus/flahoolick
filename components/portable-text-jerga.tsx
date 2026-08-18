@@ -103,6 +103,7 @@ const componentes: PortableTextComponents = {
               src={urlFor(value.image).width(1600).url()}
               alt={value.alt ?? ''}
               fill
+              className="jerga-duotone-image"
               style={{ objectFit: 'cover' }}
             />
           )}

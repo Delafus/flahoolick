@@ -276,6 +276,16 @@ El documento `articulo` permite los tipos:
 - Paso numerado.
 - Imagen dentro del cuerpo.
 
+### Paletas editoriales por categoría
+
+JERGA cuenta con un sistema de paletas seleccionables desde cada categoría de Sanity. La primera paleta implementada es **Rosa**:
+
+- Luz y fondo: `#EF9DB6`.
+- Sombra y texto: `#000000`.
+- Fotografías remapeadas a duotono según su luminancia, conservando detalle, volumen y textura.
+
+El tema se aplica al hero, eyebrow, titular, bajada, metadatos, cuerpo, imágenes y página de categoría. El contenido anterior que todavía no tenga una paleta asignada usa Rosa como fallback. Las claves de las paletas son independientes de los nombres de las categorías, por lo que la taxonomía editorial puede cambiar sin rehacer el sistema visual.
+
 ### Funciones activas
 
 - Listado total.

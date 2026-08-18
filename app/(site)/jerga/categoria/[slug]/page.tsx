@@ -4,11 +4,10 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { ContactForm } from '@/components/contact-form'
+import { JergaDuotoneFilters } from '@/components/jerga-duotone-filters'
 import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
 import { categoria, categorias, porCategoria } from '@/sanity/lib/jerga'
-
-const CHARTREUSE = '#F5FD92'
-const NEGRO = '#000000'
+import { getJergaTheme } from '@/lib/jerga-theme'
 
 export const revalidate = 60
 
@@ -31,13 +30,15 @@ export default async function CategoriaPage({ params }: { params: { slug: string
     porCategoria(cat.slug),
     categorias(),
   ])
+  const theme = getJergaTheme(cat.colorTheme)
 
   return (
     <>
-      <PageColorSetter bg={CHARTREUSE} text={NEGRO} />
+      <PageColorSetter bg={theme.light} text={theme.dark} />
+      <JergaDuotoneFilters />
 
       {/* Cabecera */}
-      <section className="page-px" style={{ backgroundColor: CHARTREUSE, color: NEGRO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
+      <section className={`page-px jerga-theme ${theme.className}`} style={{ backgroundColor: theme.light, color: theme.dark, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem' }}>
         <div className="max-container">
           <Link href="/jerga" className="label hover:opacity-60 transition-opacity" style={{ opacity: 0.5 }}>
             ← JERGA
@@ -63,7 +64,7 @@ export default async function CategoriaPage({ params }: { params: { slug: string
               <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
                 className="label px-4 py-2 hover:opacity-60 transition-opacity"
                 style={c.slug === cat.slug
-                  ? { backgroundColor: NEGRO, color: CHARTREUSE, borderRadius: '999px' }
+                  ? { backgroundColor: theme.dark, color: theme.light, borderRadius: '999px' }
                   : { border: '1px solid rgba(0,0,0,0.25)', borderRadius: '999px' }}>
                 {c.nombre}
               </Link>
@@ -73,7 +74,7 @@ export default async function CategoriaPage({ params }: { params: { slug: string
       </section>
 
       {/* Listado */}
-      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}>
+      <section className={`page-px section-py jerga-theme ${theme.className}`} style={{ backgroundColor: theme.light, color: theme.dark }}>
         <div className="max-container flex flex-col">
           {piezas.map(p => (
             <Link key={p.slug} href={`/jerga/${p.slug}`}
@@ -82,7 +83,7 @@ export default async function CategoriaPage({ params }: { params: { slug: string
               <div className="md:col-span-4">
                 <div style={{ position: 'relative', aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: p.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {p.imagenDestacadaUrl ? (
-                    <NextImage src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill style={{ objectFit: 'cover' }} />
+                    <NextImage src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill className="jerga-duotone-image" style={{ objectFit: 'cover' }} />
                   ) : (
                     <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
                   )}

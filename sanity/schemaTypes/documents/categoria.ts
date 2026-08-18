@@ -25,6 +25,20 @@ export const categoria = defineType({
       rows: 3,
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'colorTheme',
+      title: 'Paleta de color',
+      description: 'Define el color editorial y el duotono fotográfico de toda la categoría.',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Rosa', value: 'rosa'},
+        ],
+        layout: 'dropdown',
+      },
+      initialValue: 'rosa',
+      validation: (Rule) => Rule.required(),
+    }),
   ],
   preview: {
     select: {title: 'nombre', subtitle: 'descripcion'},

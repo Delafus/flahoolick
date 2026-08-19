@@ -439,4 +439,5 @@ Estos archivos no deben moverse, borrarse ni integrarse automáticamente. Primer
 - Mantener la ruta vigente `herramientas-de-ia-para-marketing` y su redirección histórica.
 - Mantener botones principales con forma de píldora salvo nueva decisión explícita.
 - Conservar el lenguaje visual de dots conforme a `regla-grilla-dots.md`.
+- Usar listas HTML con bullets reales en todo el contenido. No simular bullets con guiones largos ni cerrar ítems breves con punto y coma.
 - Antes de eliminar componentes o prototipos sin uso, confirmar que no sean referencias reservadas.

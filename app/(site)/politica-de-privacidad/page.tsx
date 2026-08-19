@@ -47,17 +47,14 @@ function P({ children }: { children: React.ReactNode }) {
 
 function Lista({ items }: { items: string[] }) {
   return (
-    <ul style={{ marginBottom: '1.5rem', paddingLeft: 0, listStyle: 'none' }}>
+    <ul style={{ marginBottom: '1.5rem', paddingLeft: '1.25rem', listStyle: 'disc outside' }}>
       {items.map(i => (
         <li key={i} style={{
           fontSize: 'clamp(1rem, 1.15vw, 1.0625rem)',
           lineHeight: 1.7,
           opacity: 0.75,
-          paddingLeft: '1.25rem',
-          position: 'relative',
           marginBottom: '0.5rem',
         }}>
-          <span style={{ position: 'absolute', left: 0, opacity: 0.5 }}>—</span>
           {i}
         </li>
       ))}

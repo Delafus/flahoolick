@@ -102,6 +102,17 @@
   margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
+.jerga-content-list {
+  list-style: disc outside;
+  margin: 0 0 2rem;
+  padding-left: 1.35rem;
+}
+
+.jerga-content-list li::marker {
+  color: var(--jerga-dark);
+  font-size: 0.8em;
+}
+
 /* ============================================================
    BASE
    ============================================================ */

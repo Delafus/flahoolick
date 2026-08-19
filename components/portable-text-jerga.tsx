@@ -1,8 +1,32 @@
 import Image from 'next/image'
+import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
 
 const NEGRO = '#000000'
+
+function limpiarCierreDeItem(node: ReactNode): ReactNode {
+  const items = Children.toArray(node)
+
+  for (let index = items.length - 1; index >= 0; index -= 1) {
+    const item = items[index]
+
+    if (typeof item === 'string') {
+      if (!item.trim()) continue
+      items[index] = item.replace(/[;,.]\s*$/, '')
+      break
+    }
+
+    if (isValidElement(item)) {
+      const element = item as ReactElement<{ children?: ReactNode }>
+      if (element.props.children == null) continue
+      items[index] = cloneElement(element, undefined, limpiarCierreDeItem(element.props.children))
+      break
+    }
+  }
+
+  return items
+}
 
 const componentes: PortableTextComponents = {
   block: {
@@ -26,7 +50,7 @@ const componentes: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul style={{ margin: '0 0 2rem', padding: 0, listStyle: 'none' }}>{children}</ul>
+      <ul className="jerga-content-list">{children}</ul>
     ),
   },
   listItem: {
@@ -35,12 +59,9 @@ const componentes: PortableTextComponents = {
         fontSize: 'clamp(1.0625rem, 1.35vw, 1.25rem)',
         lineHeight: 1.7,
         opacity: 0.8,
-        paddingLeft: '1.5rem',
-        position: 'relative',
         marginBottom: '0.75rem',
       }}>
-        <span style={{ position: 'absolute', left: 0, opacity: 0.4 }}>—</span>
-        {children}
+        {limpiarCierreDeItem(children)}
       </li>
     ),
   },

@@ -104,14 +104,11 @@ export default function ProduccionDeContenido() {
                 <FontMix bold="Un sistema de activos" italic=" en circulación" />
               </h2>
               <p className="text-base opacity-70">Contenido preparado para:</p>
-              <div className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2 list-disc" style={{ paddingLeft: '1.25rem' }}>
                 {recibes.map(r => (
-                  <p key={r} className="text-base" style={{ paddingLeft: '1.25rem', position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: 0, opacity: 0.5 }}>—</span>
-                    {r}
-                  </p>
+                  <li key={r} className="text-base">{r}</li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </BodySection>

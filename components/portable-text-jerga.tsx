@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
+import { JergaRecorridoCompra } from '@/components/jerga-recorrido-compra'
 
 const NEGRO = '#000000'
 
@@ -28,13 +29,30 @@ function limpiarCierreDeItem(node: ReactNode): ReactNode {
   return items
 }
 
+function textoPlanoDelBloque(value: { children?: unknown[] }) {
+  return value.children?.map(child => (
+    typeof child === 'object' && child !== null && 'text' in child && typeof child.text === 'string'
+      ? child.text
+      : ''
+  )).join('') ?? ''
+}
+
 const componentes: PortableTextComponents = {
   block: {
-    normal: ({ children }) => (
-      <p style={{ fontSize: 'clamp(1.0625rem, 1.35vw, 1.25rem)', lineHeight: 1.75, opacity: 0.8, marginBottom: '1.5rem' }}>
-        {children}
-      </p>
-    ),
+    normal: ({ children, value }) => {
+      const mostrarRecorrido = textoPlanoDelBloque(value).startsWith(
+        'La lista de proveedores suele comenzar a formarse antes del contacto comercial',
+      )
+
+      return (
+        <>
+          <p style={{ fontSize: 'clamp(1.0625rem, 1.35vw, 1.25rem)', lineHeight: 1.75, opacity: 0.8, marginBottom: '1.5rem' }}>
+            {children}
+          </p>
+          {mostrarRecorrido && <JergaRecorridoCompra />}
+        </>
+      )
+    },
     h2: ({ children, value }) => (
       <h2 id={value._key} className="jerga-guide-section-title" style={{
         fontFamily: 'var(--font-display)',

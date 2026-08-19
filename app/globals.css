@@ -62,6 +62,16 @@
   color: var(--jerga-dark);
 }
 
+.jerga-theme ::selection {
+  background-color: var(--jerga-dark);
+  color: var(--jerga-light);
+}
+
+.jerga-theme ::-moz-selection {
+  background-color: var(--jerga-dark);
+  color: var(--jerga-light);
+}
+
 .jerga-duotone-image {
   filter: var(--jerga-duotone-filter);
 }

@@ -127,7 +127,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
             )}
 
             <div className={toc.length > 0 ? 'md:col-span-9' : ''}>
-              <article style={{ maxWidth: '720px' }}>
+              <article className={toc.length > 0 ? 'jerga-guide-body' : undefined} style={{ maxWidth: toc.length > 0 ? '860px' : '720px' }}>
                 <CuerpoJerga value={pieza.cuerpo} />
               </article>
 

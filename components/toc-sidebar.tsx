@@ -30,9 +30,19 @@ export function TocSidebar({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null
 
   return (
-    <nav aria-label="Tabla de contenidos" style={{ position: 'sticky', top: 'calc(64px + 3rem)' }}>
-      <p className="label" style={{ opacity: 0.4, marginBottom: '1.25rem', fontSize: '0.85rem' }}>Tabla de contenidos</p>
-      <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', borderLeft: '1px solid rgba(0,0,0,0.15)' }}>
+    <nav aria-label="Tabla de contenidos" style={{ position: 'sticky', top: 'calc(64px + 6rem)' }}>
+      <p style={{
+        fontFamily: 'var(--font-bricolage)',
+        fontWeight: 800,
+        fontSize: 'clamp(1rem, 1.35vw, 1.25rem)',
+        lineHeight: 1.1,
+        letterSpacing: '0.04em',
+        textTransform: 'uppercase',
+        marginBottom: '2rem',
+      }}>
+        Tabla de contenidos
+      </p>
+      <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', borderLeft: '2px solid var(--jerga-line)' }}>
         {items.map(item => {
           const esActivo = item.id === activo
           return (
@@ -41,13 +51,14 @@ export function TocSidebar({ items }: { items: TocItem[] }) {
                 href={`#${item.id}`}
                 style={{
                   display: 'block',
-                  paddingLeft: '1rem',
-                  marginLeft: '-1px',
-                  borderLeft: esActivo ? '2px solid #000000' : '1px solid transparent',
-                  fontSize: '1.05rem',
-                  lineHeight: 1.4,
-                  opacity: esActivo ? 1 : 0.5,
-                  transition: 'opacity 0.15s ease',
+                  padding: '0.9rem 1rem 0.9rem 1.5rem',
+                  marginLeft: '-2px',
+                  borderLeft: esActivo ? '6px solid var(--jerga-dark)' : '2px solid transparent',
+                  fontSize: 'clamp(1rem, 1.25vw, 1.125rem)',
+                  lineHeight: 1.35,
+                  fontWeight: esActivo ? 600 : 400,
+                  opacity: esActivo ? 1 : 0.48,
+                  transition: 'opacity 0.2s ease, border-color 0.2s ease, font-weight 0.2s ease',
                 }}
               >
                 {item.texto}

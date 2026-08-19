@@ -12,7 +12,7 @@ const componentes: PortableTextComponents = {
       </p>
     ),
     h2: ({ children, value }) => (
-      <h2 id={value._key} style={{
+      <h2 id={value._key} className="jerga-guide-section-title" style={{
         fontFamily: 'var(--font-display)',
         fontWeight: 400,
         fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',

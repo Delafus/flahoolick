@@ -226,6 +226,7 @@ Está implementada y conectada a Sanity. Incluye:
 - Páginas dinámicas por pieza y categoría.
 - Imágenes servidas desde el CDN de Sanity.
 - Portable Text, tabla de contenidos y guías fijadas.
+- Las guías largas usan capítulos numerados automáticamente y una tabla de contenidos sticky con indicador activo durante el scroll.
 
 No tiene placeholders visuales detectados en la portada publicada.
 
@@ -331,7 +332,7 @@ El formulario:
 
 ### Animaciones activas
 
-- Home: `KnowledgeCluster`, `EyeGrid`, `FunnelDots` y `ScrollConnector`.
+- Home: `TrappedDots`, `EyeGrid`, `FunnelDots` y `ScrollConnector`.
 - Header: `MegamenuDots`.
 - Logos: marquee continuo e `IdeaGenerosaLogo`.
 - Navegación editorial: observadores de intersección para tabla de contenidos y conectores.

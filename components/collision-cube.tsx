@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { drawGlossySolid, type GlossySolidKind } from '@/components/canvas-glossy-solids'
 
 interface Point3D {
   x: number
@@ -8,11 +9,18 @@ interface Point3D {
   z: number
 }
 
-interface Dot3D extends Point3D {
+interface Solid3D extends Point3D {
   vx: number
   vy: number
   vz: number
   r: number
+  kind: GlossySolidKind
+  rotationX: number
+  rotationY: number
+  rotationZ: number
+  spinX: number
+  spinY: number
+  spinZ: number
 }
 
 const EDGES = [
@@ -45,7 +53,7 @@ export function CollisionCube() {
     let lastPointerX = 0
     let lastPointerY = 0
     let previousTime = performance.now()
-    let dots: Dot3D[] = []
+    let solids: Solid3D[] = []
     let vertices: Point3D[] = []
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -71,9 +79,19 @@ export function CollisionCube() {
         { x: half, y: half, z: half }, { x: -half, y: half, z: half },
       ]
 
-      dots = [
-        { x: -40 * scale, y: -20 * scale, z: 10 * scale, vx: 2.2 * scale, vy: 1.7 * scale, vz: 1.9 * scale, r: 16 * scale },
-        { x: 40 * scale, y: 30 * scale, z: -20 * scale, vx: -1.8 * scale, vy: 2.1 * scale, vz: -1.5 * scale, r: 16 * scale },
+      solids = [
+        {
+          kind: 'cube', x: -40 * scale, y: -20 * scale, z: 10 * scale,
+          vx: 2.2 * scale, vy: 1.7 * scale, vz: 1.9 * scale, r: 17 * scale,
+          rotationX: 0.4, rotationY: 0.7, rotationZ: 0.15,
+          spinX: 0.012, spinY: 0.018, spinZ: 0.008,
+        },
+        {
+          kind: 'triangle', x: 40 * scale, y: 30 * scale, z: -20 * scale,
+          vx: -1.8 * scale, vy: 2.1 * scale, vz: -1.5 * scale, r: 18 * scale,
+          rotationX: -0.25, rotationY: 0.35, rotationZ: -0.15,
+          spinX: -0.014, spinY: 0.011, spinZ: -0.01,
+        },
       ]
 
       draw()
@@ -104,28 +122,31 @@ export function CollisionCube() {
       }
     }
 
-    function updateDots(step: number) {
-      dots.forEach(dot => {
-        dot.x += dot.vx * step
-        dot.y += dot.vy * step
-        dot.z += dot.vz * step
+    function updateSolids(step: number) {
+      solids.forEach(solid => {
+        solid.x += solid.vx * step
+        solid.y += solid.vy * step
+        solid.z += solid.vz * step
+        solid.rotationX += solid.spinX * step
+        solid.rotationY += solid.spinY * step
+        solid.rotationZ += solid.spinZ * step
 
-        if (dot.x - dot.r < -half || dot.x + dot.r > half) {
-          dot.vx *= -1
-          dot.x = Math.max(-half + dot.r, Math.min(half - dot.r, dot.x))
+        if (solid.x - solid.r < -half || solid.x + solid.r > half) {
+          solid.vx *= -1
+          solid.x = Math.max(-half + solid.r, Math.min(half - solid.r, solid.x))
         }
-        if (dot.y - dot.r < -half || dot.y + dot.r > half) {
-          dot.vy *= -1
-          dot.y = Math.max(-half + dot.r, Math.min(half - dot.r, dot.y))
+        if (solid.y - solid.r < -half || solid.y + solid.r > half) {
+          solid.vy *= -1
+          solid.y = Math.max(-half + solid.r, Math.min(half - solid.r, solid.y))
         }
-        if (dot.z - dot.r < -half || dot.z + dot.r > half) {
-          dot.vz *= -1
-          dot.z = Math.max(-half + dot.r, Math.min(half - dot.r, dot.z))
+        if (solid.z - solid.r < -half || solid.z + solid.r > half) {
+          solid.vz *= -1
+          solid.z = Math.max(-half + solid.r, Math.min(half - solid.r, solid.z))
         }
       })
 
-      const first = dots[0]
-      const second = dots[1]
+      const first = solids[0]
+      const second = solids[1]
       const dx = second.x - first.x
       const dy = second.y - first.y
       const dz = second.z - first.z
@@ -160,7 +181,10 @@ export function CollisionCube() {
       const projectedVertices = vertices.map(vertex => project(rotate(vertex)))
       const renderItems: Array<
         | { type: 'line'; start: (typeof projectedVertices)[number]; end: (typeof projectedVertices)[number]; z: number }
-        | { type: 'dot'; x: number; y: number; radius: number; z: number }
+        | {
+          type: 'solid'; kind: GlossySolidKind; x: number; y: number; size: number; z: number
+          rotationX: number; rotationY: number; rotationZ: number
+        }
       > = []
 
       EDGES.forEach(([startIndex, endIndex]) => {
@@ -169,15 +193,19 @@ export function CollisionCube() {
         renderItems.push({ type: 'line', start, end, z: (start.z + end.z) / 2 })
       })
 
-      dots.forEach(dot => {
-        const rotated = rotate(dot)
+      solids.forEach(solid => {
+        const rotated = rotate(solid)
         const projected = project(rotated)
         renderItems.push({
-          type: 'dot',
+          type: 'solid',
+          kind: solid.kind,
           x: projected.x,
           y: projected.y,
-          radius: Math.max(0.1, dot.r * projected.factor),
+          size: Math.max(0.1, solid.r * projected.factor),
           z: projected.z,
+          rotationX: solid.rotationX + angleX,
+          rotationY: solid.rotationY + angleY,
+          rotationZ: solid.rotationZ,
         })
       })
 
@@ -194,21 +222,15 @@ export function CollisionCube() {
           return
         }
 
-        ctx!.beginPath()
-        ctx!.arc(item.x, item.y, item.radius, 0, Math.PI * 2)
-        const gradient = ctx!.createRadialGradient(
-          item.x - item.radius * 0.3,
-          item.y - item.radius * 0.3,
-          item.radius * 0.1,
-          item.x,
-          item.y,
-          item.radius,
-        )
-        gradient.addColorStop(0, '#ffffff')
-        gradient.addColorStop(0.2, '#555555')
-        gradient.addColorStop(1, '#000000')
-        ctx!.fillStyle = gradient
-        ctx!.fill()
+        drawGlossySolid(ctx!, {
+          kind: item.kind,
+          x: item.x,
+          y: item.y,
+          size: item.size,
+          rotationX: item.rotationX,
+          rotationY: item.rotationY,
+          rotationZ: item.rotationZ,
+        })
       })
     }
 
@@ -224,7 +246,7 @@ export function CollisionCube() {
         angleY += rotationVelocityY * step
       }
 
-      updateDots(step)
+      updateSolids(step)
       draw()
       frameId = requestAnimationFrame(animate)
     }

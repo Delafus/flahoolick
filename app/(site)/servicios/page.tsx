@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { GRUPOS_ACTIVOS } from '@/components/servicios-datos'
-import { ServiciosHeroGrid } from '@/components/servicios-hero-grid'
+import { ServiciosAuthorityHero } from '@/components/servicios-authority-hero'
 
 export const metadata: Metadata = {
   title: 'Servicios — Flahoolick',
@@ -50,7 +50,7 @@ export default function Servicios() {
         description="Diseñamos estrategia, identidad, sistemas con IA y contenido para mantener tu marca presente durante todo el ciclo de decisión B2B."
         heroBg="#000000"
         heroText="#ffffff"
-        illustrationNode={<ServiciosHeroGrid />}
+        illustrationNode={<ServiciosAuthorityHero />}
         heroDivider={false}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"

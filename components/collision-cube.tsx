@@ -92,6 +92,18 @@ export function CollisionCube() {
           rotationX: -0.25, rotationY: 0.35, rotationZ: -0.15,
           spinX: -0.014, spinY: 0.011, spinZ: -0.01,
         },
+        {
+          kind: 'cube', x: 20 * scale, y: -60 * scale, z: -45 * scale,
+          vx: -1.6 * scale, vy: -1.5 * scale, vz: 2 * scale, r: 16 * scale,
+          rotationX: -0.5, rotationY: 0.2, rotationZ: 0.55,
+          spinX: -0.01, spinY: 0.015, spinZ: -0.009,
+        },
+        {
+          kind: 'triangle', x: -35 * scale, y: 65 * scale, z: 45 * scale,
+          vx: 1.7 * scale, vy: -1.9 * scale, vz: -1.6 * scale, r: 17 * scale,
+          rotationX: 0.3, rotationY: -0.45, rotationZ: 0.4,
+          spinX: 0.013, spinY: -0.012, spinZ: 0.011,
+        },
       ]
 
       draw()
@@ -145,33 +157,37 @@ export function CollisionCube() {
         }
       })
 
-      const first = solids[0]
-      const second = solids[1]
-      const dx = second.x - first.x
-      const dy = second.y - first.y
-      const dz = second.z - first.z
-      const distance = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.0001
-      const minimumDistance = first.r + second.r
+      for (let firstIndex = 0; firstIndex < solids.length - 1; firstIndex += 1) {
+        for (let secondIndex = firstIndex + 1; secondIndex < solids.length; secondIndex += 1) {
+          const first = solids[firstIndex]
+          const second = solids[secondIndex]
+          const dx = second.x - first.x
+          const dy = second.y - first.y
+          const dz = second.z - first.z
+          const distance = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.0001
+          const minimumDistance = first.r + second.r
 
-      if (distance < minimumDistance) {
-        const velocity = { x: first.vx, y: first.vy, z: first.vz }
-        first.vx = second.vx
-        first.vy = second.vy
-        first.vz = second.vz
-        second.vx = velocity.x
-        second.vy = velocity.y
-        second.vz = velocity.z
+          if (distance >= minimumDistance) continue
 
-        const overlap = (minimumDistance - distance) / 2
-        const separateX = (dx / distance) * overlap
-        const separateY = (dy / distance) * overlap
-        const separateZ = (dz / distance) * overlap
-        first.x -= separateX
-        first.y -= separateY
-        first.z -= separateZ
-        second.x += separateX
-        second.y += separateY
-        second.z += separateZ
+          const velocity = { x: first.vx, y: first.vy, z: first.vz }
+          first.vx = second.vx
+          first.vy = second.vy
+          first.vz = second.vz
+          second.vx = velocity.x
+          second.vy = velocity.y
+          second.vz = velocity.z
+
+          const overlap = (minimumDistance - distance) / 2
+          const separateX = (dx / distance) * overlap
+          const separateY = (dy / distance) * overlap
+          const separateZ = (dz / distance) * overlap
+          first.x -= separateX
+          first.y -= separateY
+          first.z -= separateZ
+          second.x += separateX
+          second.y += separateY
+          second.z += separateZ
+        }
       }
     }
 

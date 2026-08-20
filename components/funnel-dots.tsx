@@ -46,10 +46,6 @@ function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
-function gravityProgress(progress: number) {
-  return progress * (0.42 + 0.58 * progress)
-}
-
 function buildDescendingGeometry(pathData: string): MotionGeometry {
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
   path.setAttribute('d', pathData)
@@ -128,7 +124,7 @@ export function FunnelDots() {
         pathIndex: index,
         kind,
         t: reducedMotion ? 0.08 + index * 0.13 : index * 0.13,
-        speed: randomRange(0.0038, 0.0055),
+        speed: 0.0046,
         rotationX: kind === 'triangle' ? -0.35 : -0.5,
         rotationY: kind === 'triangle' ? 0.55 : 0.65,
         rotationZ: randomRange(-Math.PI, Math.PI),
@@ -176,7 +172,7 @@ export function FunnelDots() {
         if (activeSolid.t < 0 || activeSolid.t > 1) return
 
         const geometry = geometries[activeSolid.pathIndex]
-        const point = pointOnGeometry(geometry, gravityProgress(activeSolid.t))
+        const point = pointOnGeometry(geometry, activeSolid.t)
         const x = offsetX + point.x * scale
         const y = offsetY + point.y * scale
         const size = activeSolid.kind === 'triangle' ? baseSize * 2.05 : baseSize * 1.65

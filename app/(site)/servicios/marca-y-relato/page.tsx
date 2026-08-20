@@ -27,12 +27,12 @@ const recibes = ['Sitios', 'Presentaciones', 'Campañas', 'Redes sociales', 'Ven
 export default function MarcaYRelato() {
   return (
     <>
-      <PageColorSetter bg="#F09DB6" text={NEGRO} />
+      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
       <PageLayout
         tagline="Marca y Relato"
         headline={<FontMix bold="Que todo tu equipo" italic=" cuente la misma historia." />}
         description="La idea central y la arquitectura de mensajes que unifica cómo tu empresa habla."
-        heroBg="#F09DB6"
+        heroBg="#EF9DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"

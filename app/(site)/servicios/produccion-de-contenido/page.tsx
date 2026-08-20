@@ -25,12 +25,12 @@ const recibes = ['Construir autoridad', 'Explicar soluciones', 'Responder pregun
 export default function ProduccionDeContenido() {
   return (
     <>
-      <PageColorSetter bg="#F09DB6" text={NEGRO} />
+      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
       <PageLayout
         tagline="Producción de Contenido"
         headline={<FontMix bold="Piezas que construyen" italic=" presencia y cierran ventas." />}
         description="Contenido de autoridad y herramientas comerciales, producidos en cadencia."
-        heroBg="#F09DB6"
+        heroBg="#EF9DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Agenda una llamada →"

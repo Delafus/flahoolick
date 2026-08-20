@@ -40,12 +40,12 @@ function Bullets({ items, dark = false }: { items: string[]; dark?: boolean }) {
 export default function HerramientasDeIAParaMarketing() {
   return (
     <>
-      <PageColorSetter bg="#F09DB6" text={NEGRO} />
+      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
       <PageLayout
         tagline="Herramientas de IA para marketing y ventas"
         headline={<FontMix bold="IA que" italic=" trabaja." />}
         description="Diseñamos herramientas y agentes que investigan, organizan conocimiento, automatizan tareas y ejecutan procesos de marketing y ventas."
-        heroBg="#F09DB6"
+        heroBg="#EF9DB6"
         heroText={NEGRO}
         ctaHref="#contacto"
         ctaLabel="Cuéntanos qué quieres resolver →"

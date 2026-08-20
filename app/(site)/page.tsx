@@ -47,14 +47,30 @@ const SCROLLS: Scroll[] = [
 ]
 
 /** Corta el texto base en dos líneas (solo desktop) justo antes de la palabra indicada. */
-function BaseText({ text, breakBefore }: { text: string; breakBefore?: string }) {
-  if (!breakBefore) return <>{text}</>
+function HighlightedBaseSegment({ text, highlight }: { text: string; highlight?: string }) {
+  if (!highlight) return <>{text}</>
+  const highlightStart = text.indexOf(highlight)
+  if (highlightStart === -1) return <>{text}</>
+
+  return (
+    <>
+      {text.slice(0, highlightStart)}
+      <span style={{ backgroundColor: '#1FDE91', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone', padding: '0 0.08em' }}>
+        {highlight}
+      </span>
+      {text.slice(highlightStart + highlight.length)}
+    </>
+  )
+}
+
+function BaseText({ text, breakBefore, highlight }: { text: string; breakBefore?: string; highlight?: string }) {
+  if (!breakBefore) return <HighlightedBaseSegment text={text} highlight={highlight} />
   const cut = text.indexOf(breakBefore)
   return (
     <>
-      {text.slice(0, cut)}
+      <HighlightedBaseSegment text={text.slice(0, cut)} highlight={highlight} />
       <br className="hidden md:block" />
-      {text.slice(cut)}
+      <HighlightedBaseSegment text={text.slice(cut)} highlight={highlight} />
     </>
   )
 }
@@ -105,7 +121,7 @@ export default function HomePage() {
           <div className="max-container w-full text-center flex flex-col gap-6">
             <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
               <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
-                <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} />
+                <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} highlight={i === 1 ? '5%' : undefined} />
               </span>
               {s.breakBeforeEmphasis && <br className="hidden md:block" />}
               <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>

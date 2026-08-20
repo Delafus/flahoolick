@@ -44,21 +44,25 @@ export function ServiciosHero3D() {
     rimLight.position.set(-5, -2, 4)
     scene.add(rimLight)
 
-    const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.22, metalness: 0.08 })
-    const greenMaterial = new THREE.MeshStandardMaterial({ color: 0x1fde91, roughness: 0.24, metalness: 0.08 })
-    const pinkMaterial = new THREE.MeshStandardMaterial({ color: 0xef9db6, roughness: 0.24, metalness: 0.08 })
+    const greenMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1fde91,
+      emissive: 0x063d2a,
+      emissiveIntensity: 0.28,
+      roughness: 0.24,
+      metalness: 0.08,
+    })
 
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(1.05, 32, 32), whiteMaterial)
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(1.05, 32, 32), greenMaterial)
     sphere.position.set(-2.15, 1.15, 0)
 
     const pyramid = new THREE.Mesh(new THREE.TetrahedronGeometry(1.3), greenMaterial)
     pyramid.position.set(2.05, 1.5, -0.75)
 
-    const cylinder = new THREE.Mesh(new THREE.CylinderGeometry(0.72, 0.72, 1.85, 32), pinkMaterial)
+    const cylinder = new THREE.Mesh(new THREE.CylinderGeometry(0.72, 0.72, 1.85, 32), greenMaterial)
     cylinder.position.set(2.35, -1.35, 0.65)
     cylinder.rotation.x = Math.PI / 4
 
-    const cube = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4), whiteMaterial)
+    const cube = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4), greenMaterial)
     cube.position.set(-2.35, -1.3, 0.4)
 
     const objects: FloatingObject[] = [
@@ -133,9 +137,7 @@ export function ServiciosHero3D() {
       container.removeEventListener('pointermove', onPointerMove)
       container.removeEventListener('pointerleave', onPointerLeave)
       objects.forEach(object => object.mesh.geometry.dispose())
-      whiteMaterial.dispose()
       greenMaterial.dispose()
-      pinkMaterial.dispose()
       renderer.dispose()
     }
   }, [])
@@ -144,17 +146,18 @@ export function ServiciosHero3D() {
     <div ref={containerRef} aria-hidden="true" style={{ height: '100%', position: 'relative', width: '100%' }}>
       <div
         style={{
-          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.14) 1px, transparent 1px)',
-          backgroundSize: '38px 38px',
-          height: '180%',
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.32) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.32) 1px, transparent 1px)',
+          backgroundSize: '36px 36px',
+          height: '190%',
           left: '50%',
-          maskImage: 'radial-gradient(ellipse at center, #000 14%, transparent 62%)',
+          maskImage: 'radial-gradient(ellipse at center, #000 24%, transparent 76%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, #000 24%, transparent 76%)',
           pointerEvents: 'none',
           position: 'absolute',
           top: '50%',
           transform: 'translate(-50%, -45%) perspective(700px) rotateX(68deg)',
           transformOrigin: 'center',
-          width: '180%',
+          width: '190%',
         }}
       />
       <canvas ref={canvasRef} style={{ display: 'block', height: '100%', position: 'relative', width: '100%' }} />

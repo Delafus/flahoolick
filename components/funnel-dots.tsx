@@ -31,8 +31,68 @@ interface FallingSolid {
   spinZ: number
 }
 
+interface MotionPoint {
+  x: number
+  y: number
+  distance: number
+}
+
+interface MotionGeometry {
+  points: MotionPoint[]
+  length: number
+}
+
 function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
+}
+
+function buildDescendingGeometry(pathData: string): MotionGeometry {
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  path.setAttribute('d', pathData)
+  const sourceLength = path.getTotalLength()
+  const points: MotionPoint[] = []
+  let greatestY = Number.NEGATIVE_INFINITY
+  let distance = 0
+
+  for (let index = 0; index <= 1200; index += 1) {
+    const point = path.getPointAtLength(sourceLength * (index / 1200))
+    if (point.y < greatestY - 0.5) continue
+
+    const y = Math.max(greatestY, point.y)
+    const previous = points[points.length - 1]
+    if (previous) {
+      const segmentLength = Math.hypot(point.x - previous.x, y - previous.y)
+      if (segmentLength < 0.05) continue
+      distance += segmentLength
+    }
+
+    points.push({ x: point.x, y, distance })
+    greatestY = y
+  }
+
+  return { points, length: distance }
+}
+
+function pointOnGeometry(geometry: MotionGeometry, progress: number) {
+  const target = geometry.length * progress
+  let low = 0
+  let high = geometry.points.length - 1
+
+  while (low < high) {
+    const middle = Math.floor((low + high) / 2)
+    if (geometry.points[middle].distance < target) low = middle + 1
+    else high = middle
+  }
+
+  const next = geometry.points[low]
+  const previous = geometry.points[Math.max(0, low - 1)]
+  const segmentLength = next.distance - previous.distance
+  const segmentProgress = segmentLength > 0 ? (target - previous.distance) / segmentLength : 0
+
+  return {
+    x: previous.x + (next.x - previous.x) * segmentProgress,
+    y: previous.y + (next.y - previous.y) * segmentProgress,
+  }
 }
 
 /** Usa las rutas exactas del SVG LINEAS-hero3 como guía para los sólidos. */
@@ -46,11 +106,7 @@ export function FunnelDots() {
     if (!ctx) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const geometries = MOTION_PATHS.map(pathDefinition => {
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-      path.setAttribute('d', pathDefinition)
-      return { path, length: path.getTotalLength() }
-    })
+    const geometries = MOTION_PATHS.map(buildDescendingGeometry)
 
     let width = 1
     let height = 1
@@ -114,10 +170,10 @@ export function FunnelDots() {
         if (activeSolid.t < 0 || activeSolid.t > 1) return
 
         const geometry = geometries[activeSolid.pathIndex]
-        const point = geometry.path.getPointAtLength(geometry.length * activeSolid.t)
+        const point = pointOnGeometry(geometry, activeSolid.t)
         const x = offsetX + point.x * scale
         const y = offsetY + point.y * scale
-        const size = baseSize * (1 + activeSolid.t * 0.45)
+        const size = activeSolid.kind === 'triangle' ? baseSize * 2.05 : baseSize * 1.65
         let opacity = 0.94
 
         if (activeSolid.t > 0.84) {
@@ -133,6 +189,7 @@ export function FunnelDots() {
           rotationY: activeSolid.rotationY,
           rotationZ: activeSolid.rotationZ,
           opacity: Math.max(0, opacity),
+          normalizeSilhouette: true,
         })
       })
     }

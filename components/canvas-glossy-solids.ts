@@ -15,6 +15,7 @@ interface GlossySolidOptions {
   rotationY: number
   rotationZ: number
   opacity?: number
+  normalizeSilhouette?: boolean
 }
 
 const CUBE_VERTICES: Vector3[] = [
@@ -95,11 +96,24 @@ export function drawGlossySolid(ctx: CanvasRenderingContext2D, options: GlossySo
     rotationY,
     rotationZ,
     opacity = 1,
+    normalizeSilhouette = false,
   } = options
 
   const sourceVertices = kind === 'cube' ? CUBE_VERTICES : TRIANGLE_VERTICES
   const faces = kind === 'cube' ? CUBE_FACES : TRIANGLE_FACES
-  const vertices = sourceVertices.map(vertex => rotate(vertex, rotationX, rotationY, rotationZ))
+  const rotatedVertices = sourceVertices.map(vertex => rotate(vertex, rotationX, rotationY, rotationZ))
+  const minX = Math.min(...rotatedVertices.map(vertex => vertex.x))
+  const maxX = Math.max(...rotatedVertices.map(vertex => vertex.x))
+  const minY = Math.min(...rotatedVertices.map(vertex => vertex.y))
+  const maxY = Math.max(...rotatedVertices.map(vertex => vertex.y))
+  const silhouetteScale = normalizeSilhouette
+    ? 2 / Math.max(maxX - minX, maxY - minY, 0.001)
+    : 1
+  const vertices = rotatedVertices.map(vertex => ({
+    x: vertex.x * silhouetteScale,
+    y: vertex.y * silhouetteScale,
+    z: vertex.z * silhouetteScale,
+  }))
 
   const visibleFaces = faces
     .map(indices => {

@@ -3,9 +3,9 @@
 import { useEffect, useRef } from 'react'
 
 const SPHERES = [
-  { phase: 0.15, scale: 1.2 },
-  { phase: 2.25, scale: 0.92 },
-  { phase: 4.35, scale: 0.7 },
+  { phase: 0.15 },
+  { phase: 2.25 },
+  { phase: 4.35 },
 ]
 
 export function ServiciosAuthorityHero() {
@@ -23,7 +23,7 @@ export function ServiciosAuthorityHero() {
 
     function draw(time: number) {
       const elapsed = reducedMotion ? 0 : (time - startTime) / 1000
-      const suspension = Math.sin(elapsed * 0.72) * 4
+      const suspension = Math.sin(elapsed * 0.55) * 10
       scene!.setAttribute('transform', `translate(0 ${suspension.toFixed(2)})`)
 
       SPHERES.forEach((sphere, index) => {
@@ -31,8 +31,8 @@ export function ServiciosAuthorityHero() {
         const depth = Math.sin(angle)
         const x = 260 + Math.cos(angle) * 181
         const y = 218 + depth * 36
-        const depthScale = 0.84 + (depth + 1) * 0.13
-        const transform = `translate(${x.toFixed(2)} ${y.toFixed(2)}) scale(${(sphere.scale * depthScale).toFixed(3)})`
+        const depthScale = 0.62 + (depth + 1) * 0.38
+        const transform = `translate(${x.toFixed(2)} ${y.toFixed(2)}) scale(${depthScale.toFixed(3)})`
         const isFront = depth >= 0
         const backSphere = backSphereRefs.current[index]
         const frontSphere = frontSphereRefs.current[index]
@@ -116,17 +116,6 @@ export function ServiciosAuthorityHero() {
             <path d="M129.919 0V243.599L259.839 178.639L129.919 0Z" fill="#15A067" />
             <path opacity="0.1" d="M0 178.64L129.92 243.6L259.839 178.64L129.92 146.16L0 178.64Z" fill="#000000" />
           </g>
-
-          {/* Órbita visible: conserva el trazo original abierto detrás de la pirámide. */}
-          <path
-            d="M126.5 0.498535C62 5.99854 0.5 19.5708 0.5 33.2585C0.5 54.9302 81.5365 72.4985 181.5 72.4985C281.464 72.4985 362.5 54.9302 362.5 33.2585C362.5 19.5708 313 5.99854 235.5 0.498535"
-            fill="none"
-            stroke="#FFFFFF"
-            strokeDasharray="2 2"
-            strokeWidth="1"
-            transform="translate(78.5 182)"
-            vectorEffect="non-scaling-stroke"
-          />
 
           {/* Mitad frontal: estas esferas cruzan por delante de la pirámide. */}
           <g>{SPHERES.map((_, index) => sphere(index, 'front'))}</g>

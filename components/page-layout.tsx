@@ -18,6 +18,8 @@ interface PageLayoutProps {
   illustration?: { src: string; alt: string; ratio?: string }
   /** Alternativa a `illustration` para contenido custom (ej. una animación) en vez de una imagen estática. */
   illustrationNode?: React.ReactNode
+  /** Permite retirar el divisor vertical entre la ilustración y el texto. */
+  heroDivider?: boolean
   /** Sobrescribe el copy del formulario de contacto al pie de la página. */
   contact?: { headline?: React.ReactNode; description?: string; note?: string; submitLabel?: string }
   children: React.ReactNode
@@ -34,6 +36,7 @@ export function PageLayout({
   ctaNote,
   illustration,
   illustrationNode,
+  heroDivider = true,
   contact,
   children,
 }: PageLayoutProps) {
@@ -84,7 +87,7 @@ export function PageLayout({
 
           {/* DESKTOP — split: ilustración | divisor | texto */}
           <div className="hidden md:grid items-end"
-            style={{ gridTemplateColumns: '5fr 1px 6fr', gap: 0 }}>
+            style={{ gridTemplateColumns: heroDivider ? '5fr 1px 6fr' : '5fr 6fr', gap: 0 }}>
 
             {/* Ilustración */}
             <div style={{
@@ -111,7 +114,7 @@ export function PageLayout({
             </div>
 
             {/* Divisor */}
-            <div style={{ backgroundColor: divColor, height: '100%', width: '1px' }} />
+            {heroDivider && <div style={{ backgroundColor: divColor, height: '100%', width: '1px' }} />}
 
             {/* Texto — H1 masivo → label → HR → descripción */}
             <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>

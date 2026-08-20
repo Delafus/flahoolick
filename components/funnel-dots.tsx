@@ -46,6 +46,21 @@ function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
+function createDistributedPhases(count: number) {
+  const phases = Array.from({ length: count }, (_, index) => (
+    (index + 0.5) / count + randomRange(-0.035, 0.035)
+  ))
+
+  for (let index = phases.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1))
+    const current = phases[index]
+    phases[index] = phases[swapIndex]
+    phases[swapIndex] = current
+  }
+
+  return phases
+}
+
 function buildDescendingGeometry(pathData: string): MotionGeometry {
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
   path.setAttribute('d', pathData)
@@ -107,6 +122,7 @@ export function FunnelDots() {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const geometries = MOTION_PATHS.map(buildDescendingGeometry)
+    const initialPhases = createDistributedPhases(MOTION_PATHS.length)
 
     let width = 1
     let height = 1
@@ -117,13 +133,13 @@ export function FunnelDots() {
     let previousTime = performance.now()
     let solids: FallingSolid[] = []
 
-    function createSolid(index: number): FallingSolid {
+    function createSolid(index: number, progress = initialPhases[index]): FallingSolid {
       const kind: GlossySolidKind = index % 2 === 0 ? 'cube' : 'triangle'
 
       return {
         pathIndex: index,
         kind,
-        t: reducedMotion ? 0.08 + index * 0.13 : index * 0.13,
+        t: progress,
         speed: 0.0046,
         rotationX: kind === 'triangle' ? -0.35 : -0.5,
         rotationY: kind === 'triangle' ? 0.55 : 0.65,
@@ -149,10 +165,8 @@ export function FunnelDots() {
       drawFrame(0, false)
     }
 
-    function recycleSolid(index: number) {
-      const next = createSolid(index)
-      next.t = randomRange(-0.75, -0.08)
-      solids[index] = next
+    function recycleSolid(index: number, overflow: number) {
+      solids[index] = createSolid(index, overflow)
     }
 
     function drawFrame(step: number, advance: boolean) {
@@ -165,11 +179,10 @@ export function FunnelDots() {
           solid.rotationX += solid.spinX * step
           solid.rotationY += solid.spinY * step
           solid.rotationZ += solid.spinZ * step
-          if (solid.t > 1) recycleSolid(index)
+          if (solid.t > 1) recycleSolid(index, solid.t - 1)
         }
 
         const activeSolid = solids[index]
-        if (activeSolid.t < 0 || activeSolid.t > 1) return
 
         const geometry = geometries[activeSolid.pathIndex]
         const point = pointOnGeometry(geometry, activeSolid.t)

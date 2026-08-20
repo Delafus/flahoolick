@@ -47,7 +47,7 @@ const MET_MENU: MegaMenuData = {
 
 type ActiveMenu = 'srv' | 'met' | null
 
-const PANEL_BG = '#403D37'
+const PANEL_BG = '#1FDE91'
 
 const PANEL_MAIN = [
   { label: 'Servicios',   href: '/servicios' },
@@ -197,9 +197,8 @@ export function Header() {
         className="fixed top-0 right-0 h-screen w-full md:w-1/2 overflow-y-auto transition-transform duration-300 ease-out"
         style={{
           backgroundColor: PANEL_BG,
-          color: '#ffffff',
-          // Separa el panel de las páginas de fondo negro, donde si no se funde.
-          borderLeft: '1px solid rgba(255,255,255,0.2)',
+          color: '#000000',
+          borderLeft: '1px solid rgba(0,0,0,0.2)',
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
@@ -210,8 +209,8 @@ export function Header() {
             <button
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
-              className="btn-invert label inline-flex items-center gap-3 px-5 py-3"
-              style={{ '--btn-bg': '#ffffff', '--btn-fg': '#403D37', borderRadius: '999px' } as React.CSSProperties}>
+              className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-60 transition-opacity"
+              style={{ backgroundColor: 'transparent', border: '1px solid #000000', borderRadius: '999px', color: '#000000' }}>
               CERRAR ✕
             </button>
           </div>
@@ -222,13 +221,15 @@ export function Header() {
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="hover:opacity-60 transition-opacity"
                 style={{
-                  fontFamily: 'var(--font-instrument-serif)',
-                  fontStyle: 'italic',
-                  fontWeight: 400,
+                  fontFamily: l.label === 'JERGA'
+                    ? 'var(--font-instrument-serif)'
+                    : 'var(--font-bricolage)',
+                  fontStyle: l.label === 'JERGA' ? 'italic' : 'normal',
+                  fontWeight: l.label === 'JERGA' ? 400 : 800,
                   fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
                   lineHeight: 1.05,
                   padding: '1.75rem 0',
-                  borderTop: '1px solid rgba(255,255,255,0.2)',
+                  borderTop: '1px solid rgba(0,0,0,0.2)',
                 }}>
                 {l.label}
               </Link>
@@ -237,7 +238,7 @@ export function Header() {
 
           {/* Links secundarios */}
           <nav className="flex flex-col gap-4 pt-10"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+            style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }}>
             {PANEL_SECONDARY.map(l => (
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="text-base hover:opacity-60 transition-opacity w-fit">

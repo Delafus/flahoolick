@@ -118,16 +118,18 @@ export function FunnelDots() {
     let solids: FallingSolid[] = []
 
     function createSolid(index: number): FallingSolid {
+      const kind: GlossySolidKind = index % 2 === 0 ? 'cube' : 'triangle'
+
       return {
         pathIndex: index,
-        kind: index % 2 === 0 ? 'cube' : 'triangle',
+        kind,
         t: reducedMotion ? 0.08 + index * 0.13 : index * 0.13,
         speed: randomRange(0.0025, 0.0054),
-        rotationX: randomRange(-Math.PI, Math.PI),
-        rotationY: randomRange(-Math.PI, Math.PI),
+        rotationX: kind === 'triangle' ? -0.35 : -0.5,
+        rotationY: kind === 'triangle' ? 0.55 : 0.65,
         rotationZ: randomRange(-Math.PI, Math.PI),
-        spinX: randomRange(-0.016, 0.016),
-        spinY: randomRange(-0.019, 0.019),
+        spinX: 0,
+        spinY: 0,
         spinZ: randomRange(-0.012, 0.012),
       }
     }
@@ -189,7 +191,6 @@ export function FunnelDots() {
           rotationY: activeSolid.rotationY,
           rotationZ: activeSolid.rotationZ,
           opacity: Math.max(0, opacity),
-          normalizeSilhouette: true,
         })
       })
     }

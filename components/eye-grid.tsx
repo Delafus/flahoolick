@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 
 const COLS = 10
 const ROWS = 10
-/** Los 5 últimos círculos de la primera fila quedan negros y estáticos (el 5% del mercado). */
-const STATIC_BLACK = new Set([5, 6, 7, 8, 9])
+/** Los 5 últimos círculos de la primera fila quedan verdes y estáticos (el 5% del mercado). */
+const STATIC_GREEN = new Set([5, 6, 7, 8, 9])
 
 interface PupilData {
   parent: HTMLDivElement
@@ -124,8 +124,8 @@ export function EyeGrid() {
       }}
     >
       {cells.map(i =>
-        STATIC_BLACK.has(i) ? (
-          <div key={i} style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: '#000000' }} />
+        STATIC_GREEN.has(i) ? (
+          <div key={i} style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: '#1FDE91' }} />
         ) : (
           <div
             key={i}

@@ -132,7 +132,7 @@ export default function HomePage() {
               </div>
             ) : (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-4 mx-auto" style={{ position: 'relative', height: 'clamp(320px, 45vh, 520px)' }}>
-                <FunnelDots color="#403D37" />
+                <FunnelDots />
               </div>
             )}
           </div>

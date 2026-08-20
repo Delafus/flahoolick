@@ -3,26 +3,23 @@
 import { useEffect, useRef } from 'react'
 import { drawGlossySolid, type GlossySolidKind } from '@/components/canvas-glossy-solids'
 
+const VIEWBOX_WIDTH = 1324
+const VIEWBOX_HEIGHT = 1882
 const BASE_SIZE_RATIO = 0.014
 
-interface Point {
-  x: number
-  y: number
-}
+// El archivo contiene nueve <path>, pero visualmente forman seis recorridos.
+// Los segmentos que nacen a mitad de altura se unen aquí con su línea superior.
+const MOTION_PATHS = [
+  'M1.5041 3C1.50384 906.593 1.5 -104.721 1.5 730.65C1.5 847.198 1.49797 847.198 87.9971 847.198C140.186 847.198 164 847.198 207 847.198C250 847.198 246.75 870.65 246.75 943.65C246.75 979.65 246.75 999.65 246.75 1050.65V1826.5',
+  'M246.653 51C246.653 280.09 246.651 280.09 333.042 280.09C385.166 280.09 408.951 280.09 451.897 280.09C494.843 280.09 491.597 326.187 491.597 469.678C491.597 540.441 491.597 579.753 491.597 680V1860',
+  'M491.5 13C491.5 999.534 491.5 654.347 491.5 1860',
+  'M735.5 13L735.803 873.65C735.803 1777.24 735.807 285.281 735.807 1120.65C735.807 1237.2 735.809 1237.2 649.31 1237.2C597.12 1237.2 573.307 1237.2 530.307 1237.2C487.307 1237.2 490.556 1260.65 490.556 1333.65C490.556 1369.65 490.556 1389.65 490.556 1440.65V1826.5',
+  'M868.5 0C868.5 903.593 868.5 -236.371 868.5 599C868.5 715.548 889.002 715.548 974.5 715.548C1026.69 715.548 991 715.548 1034 715.548C1077 715.548 1073.75 739 1073.75 812C1073.75 848 1073.75 868 1073.75 919V1737.5',
+  'M1076.5 13L1076.5 1058.65C1076.5 1962.24 1076.5 470.281 1076.5 1305.65C1076.5 1422.2 1076.5 1422.2 1163 1422.2C1215.19 1422.2 1239 1422.2 1282 1422.2C1325 1422.2 1321.75 1445.65 1321.75 1518.65C1321.75 1554.65 1321.75 1574.65 1321.75 1625.65V1881.65',
+]
 
-interface RouteSpec {
-  startX: number
-  cp1X: number
-  cp2X: number
-  endX: number
-  opacity: number
-}
-
-interface ShapePath {
-  start: Point
-  cp1: Point
-  cp2: Point
-  end: Point
+interface FallingSolid {
+  pathIndex: number
   kind: GlossySolidKind
   t: number
   speed: number
@@ -32,42 +29,14 @@ interface ShapePath {
   spinX: number
   spinY: number
   spinZ: number
-  lineOpacity: number
 }
-
-// Cuatro recorridos centrales se cruzan varias veces. Los tres exteriores
-// acompañan el movimiento con curvas más serenas para conservar aire visual.
-const ROUTES: RouteSpec[] = [
-  { startX: 0.11, cp1X: 0.16, cp2X: 0.34, endX: 0.45, opacity: 0.11 },
-  { startX: 0.27, cp1X: 0.60, cp2X: 0.22, endX: 0.48, opacity: 0.17 },
-  { startX: 0.39, cp1X: 0.18, cp2X: 0.69, endX: 0.52, opacity: 0.14 },
-  { startX: 0.51, cp1X: 0.79, cp2X: 0.31, endX: 0.47, opacity: 0.18 },
-  { startX: 0.63, cp1X: 0.35, cp2X: 0.76, endX: 0.54, opacity: 0.15 },
-  { startX: 0.77, cp1X: 0.76, cp2X: 0.63, endX: 0.55, opacity: 0.12 },
-  { startX: 0.90, cp1X: 0.85, cp2X: 0.68, endX: 0.57, opacity: 0.10 },
-]
 
 function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
-function bezierPoint(t: number, p0: Point, p1: Point, p2: Point, p3: Point): Point {
-  const mt = 1 - t
-  return {
-    x: mt * mt * mt * p0.x + 3 * mt * mt * t * p1.x + 3 * mt * t * t * p2.x + t * t * t * p3.x,
-    y: mt * mt * mt * p0.y + 3 * mt * mt * t * p1.y + 3 * mt * t * t * p2.y + t * t * t * p3.y,
-  }
-}
-
-function hexToRgb(hex: string) {
-  const clean = hex.replace('#', '')
-  const num = parseInt(clean, 16)
-  return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 }
-}
-
-/** Los sólidos del primer héroe reaparecen en circulación: siguen rutas curvas,
- *  cambian de dirección y convergen hacia la salida inferior. */
-export function FunnelDots({ color = '#403D37' }: { color?: string }) {
+/** Usa las rutas exactas del SVG LINEAS-hero3 como guía para los sólidos. */
+export function FunnelDots() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -76,95 +45,93 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const lineRgb = hexToRgb(color)
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const geometries = MOTION_PATHS.map(pathDefinition => {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+      path.setAttribute('d', pathDefinition)
+      return { path, length: path.getTotalLength() }
+    })
 
     let width = 1
     let height = 1
-    let dpr = 1
-    let shapes: ShapePath[] = []
+    let scale = 1
+    let offsetX = 0
+    let offsetY = 0
     let frameId = 0
     let previousTime = performance.now()
+    let solids: FallingSolid[] = []
 
-    function createShape(index: number, staticPosition = false): ShapePath {
-      const route = ROUTES[index]
+    function createSolid(index: number): FallingSolid {
       return {
-        start: { x: width * route.startX, y: 0 },
-        cp1: { x: width * route.cp1X, y: height * 0.29 },
-        cp2: { x: width * route.cp2X, y: height * 0.66 },
-        end: { x: width * route.endX, y: height * 0.95 },
+        pathIndex: index,
         kind: index % 2 === 0 ? 'cube' : 'triangle',
-        t: staticPosition ? 0.12 + index * 0.115 : randomRange(-1.35, -0.05),
-        speed: randomRange(0.0028, 0.0062),
+        t: reducedMotion ? 0.08 + index * 0.13 : index * 0.13,
+        speed: randomRange(0.0025, 0.0054),
         rotationX: randomRange(-Math.PI, Math.PI),
         rotationY: randomRange(-Math.PI, Math.PI),
         rotationZ: randomRange(-Math.PI, Math.PI),
-        spinX: randomRange(-0.018, 0.018),
-        spinY: randomRange(-0.021, 0.021),
-        spinZ: randomRange(-0.014, 0.014),
-        lineOpacity: route.opacity,
+        spinX: randomRange(-0.016, 0.016),
+        spinY: randomRange(-0.019, 0.019),
+        spinZ: randomRange(-0.012, 0.012),
       }
     }
 
     function setup() {
       const rect = canvas!.getBoundingClientRect()
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       width = Math.max(1, rect.width)
       height = Math.max(1, rect.height)
+      scale = Math.min(width / VIEWBOX_WIDTH, height / VIEWBOX_HEIGHT)
+      offsetX = (width - VIEWBOX_WIDTH * scale) / 2
+      offsetY = (height - VIEWBOX_HEIGHT * scale) / 2
       canvas!.width = Math.round(width * dpr)
       canvas!.height = Math.round(height * dpr)
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      shapes = ROUTES.map((_, index) => createShape(index, reducedMotion))
+      solids = MOTION_PATHS.map((_, index) => createSolid(index))
       drawFrame(0, false)
     }
 
-    function recycleShape(index: number) {
-      const next = createShape(index)
-      next.t = randomRange(-1.1, -0.15)
-      shapes[index] = next
+    function recycleSolid(index: number) {
+      const next = createSolid(index)
+      next.t = randomRange(-0.75, -0.08)
+      solids[index] = next
     }
 
     function drawFrame(step: number, advance: boolean) {
       ctx!.clearRect(0, 0, width, height)
-      const baseSize = Math.max(2.5, width * BASE_SIZE_RATIO)
+      const baseSize = Math.max(2.75, width * BASE_SIZE_RATIO)
 
-      shapes.forEach(shape => {
-        ctx!.beginPath()
-        ctx!.moveTo(shape.start.x, shape.start.y)
-        ctx!.bezierCurveTo(shape.cp1.x, shape.cp1.y, shape.cp2.x, shape.cp2.y, shape.end.x, shape.end.y)
-        ctx!.strokeStyle = `rgba(${lineRgb.r}, ${lineRgb.g}, ${lineRgb.b}, ${shape.lineOpacity})`
-        ctx!.lineWidth = 1
-        ctx!.stroke()
-      })
-
-      shapes.forEach((shape, index) => {
+      solids.forEach((solid, index) => {
         if (advance) {
-          shape.t += shape.speed * step
-          shape.rotationX += shape.spinX * step
-          shape.rotationY += shape.spinY * step
-          shape.rotationZ += shape.spinZ * step
-          if (shape.t > 1) recycleShape(index)
+          solid.t += solid.speed * step
+          solid.rotationX += solid.spinX * step
+          solid.rotationY += solid.spinY * step
+          solid.rotationZ += solid.spinZ * step
+          if (solid.t > 1) recycleSolid(index)
         }
 
-        const activeShape = shapes[index]
-        if (activeShape.t < 0 || activeShape.t > 1) return
+        const activeSolid = solids[index]
+        if (activeSolid.t < 0 || activeSolid.t > 1) return
 
-        const position = bezierPoint(activeShape.t, activeShape.start, activeShape.cp1, activeShape.cp2, activeShape.end)
-        const size = baseSize * (1 + activeShape.t * 0.55)
-        let opacity = 0.92
+        const geometry = geometries[activeSolid.pathIndex]
+        const point = geometry.path.getPointAtLength(geometry.length * activeSolid.t)
+        const x = offsetX + point.x * scale
+        const y = offsetY + point.y * scale
+        const size = baseSize * (1 + activeSolid.t * 0.45)
+        let opacity = 0.94
 
-        if (activeShape.t > 0.82) {
-          opacity *= 1 - (activeShape.t - 0.82) / 0.18
+        if (activeSolid.t > 0.84) {
+          opacity *= 1 - (activeSolid.t - 0.84) / 0.16
         }
 
         drawGlossySolid(ctx!, {
-          kind: activeShape.kind,
-          x: position.x,
-          y: position.y,
+          kind: activeSolid.kind,
+          x,
+          y,
           size,
-          rotationX: activeShape.rotationX,
-          rotationY: activeShape.rotationY,
-          rotationZ: activeShape.rotationZ,
+          rotationX: activeSolid.rotationX,
+          rotationY: activeSolid.rotationY,
+          rotationZ: activeSolid.rotationZ,
           opacity: Math.max(0, opacity),
         })
       })
@@ -187,13 +154,21 @@ export function FunnelDots({ color = '#403D37' }: { color?: string }) {
       cancelAnimationFrame(frameId)
       resizeObserver.disconnect()
     }
-  }, [color])
+  }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
+    <div
       aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-    />
+      style={{
+        backgroundImage: "url('/lineas-hero3.svg')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
+        inset: 0,
+        position: 'absolute',
+      }}
+    >
+      <canvas ref={canvasRef} style={{ display: 'block', height: '100%', width: '100%' }} />
+    </div>
   )
 }

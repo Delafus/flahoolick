@@ -95,10 +95,10 @@ export function PageLayout({
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: '3rem',
-              overflow: 'hidden',
+              overflow: illustrationNode ? 'visible' : 'hidden',
             }}>
               {illustrationNode ? (
-                <div style={{ position: 'relative', width: '70%', height: '70%' }}>
+                <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                   {illustrationNode}
                 </div>
               ) : illustration ? (

@@ -9,7 +9,6 @@ import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
 import { CollisionCube } from '@/components/collision-cube'
 import { EyeGrid } from '@/components/eye-grid'
-import { FunnelDots } from '@/components/funnel-dots'
 import Link from 'next/link'
 
 interface Scroll {
@@ -36,7 +35,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'está listo para comprar hoy.',
     baseBreakBefore: 'mercado',
     emphasisBreakAfter: 'listo',
-    sub: 'El 95% restante está atento a lo que dices.',
+    sub: 'El 95% restante podría estar atento a lo que dices.',
   },
   {
     h1Base: 'Tu ventaja competitiva ',
@@ -133,8 +132,8 @@ export default function HomePage() {
             </p>
             {i !== 2 && (
               <>
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1} dotSize={7} /></div>
-                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} thickness={1} dotSize={7} /></div>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
               </>
             )}
 
@@ -146,23 +145,18 @@ export default function HomePage() {
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
                 <EyeGrid />
               </div>
-            ) : (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-4 mx-auto" style={{ position: 'relative', height: 'clamp(320px, 45vh, 520px)' }}>
-                <FunnelDots />
-              </div>
-            )}
+            ) : null}
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 130} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 200} thickness={1} dotSize={7} /></div>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 100} thickness={1} dotSize={7} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 160} thickness={1} dotSize={7} /></div>
             </>
           )}
         </section>
       ))}
 
-      {/* Transición gris → verde: el embudo de dots del hero 3 ya se difuminó justo antes
-          de acá, esto es solo el cambio de color hacia el módulo Somos Flahoolick */}
+      {/* Transición gris → verde hacia el módulo Somos Flahoolick */}
       <div style={{ position: 'relative', height: '24px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 30%, #1FDE91 30%)' }} />
       </div>

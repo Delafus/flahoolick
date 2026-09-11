@@ -7,7 +7,6 @@ import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
-import { CollisionCube } from '@/components/collision-cube'
 import { EyeGrid } from '@/components/eye-grid'
 import { FunnelDots } from '@/components/funnel-dots'
 import Link from 'next/link'
@@ -29,7 +28,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'para comunicar como cualquiera.',
     baseBreakBefore: 'demasiado',
     emphasisBreakAfter: 'comunicar',
-    sub: 'Gran parte de ese conocimiento queda atrapado.',
+    sub: 'Pero gran parte de eso nunca llega al mercado.',
   },
   {
     h1Base: 'Solo el 5% de tu mercado ',
@@ -138,11 +137,7 @@ export default function HomePage() {
               </>
             )}
 
-            {i === 0 ? (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <CollisionCube />
-              </div>
-            ) : i === 1 ? (
+            {i === 1 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
                 <EyeGrid />
               </div>

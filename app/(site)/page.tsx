@@ -139,7 +139,7 @@ export default function HomePage() {
             )}
 
             {i === 0 ? (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
                 <CollisionCube />
               </div>
             ) : i === 1 ? (
@@ -154,8 +154,8 @@ export default function HomePage() {
           </div>
           {i < SCROLLS.length - 1 && (
             <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={130} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={200} thickness={1} dotSize={7} /></div>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 130} thickness={1} dotSize={7} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 200} thickness={1} dotSize={7} /></div>
             </>
           )}
         </section>

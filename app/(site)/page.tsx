@@ -35,13 +35,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'está listo para comprar hoy.',
     baseBreakBefore: 'mercado',
     emphasisBreakAfter: 'listo',
-    sub: 'El 95% restante podría estar atento a lo que dices.',
-  },
-  {
-    h1Base: 'Tu ventaja competitiva ',
-    h1Emphasis: 'ya existe.',
-    breakBeforeEmphasis: true,
-    sub: 'Necesitas un sistema que la ponga en circulación.',
+    sub: 'Construye disponibilidad mental para el 95% restante.',
   },
 ]
 
@@ -109,10 +103,10 @@ export default function HomePage() {
       {SCROLLS.map((s, i) => (
         <section
           key={i}
-          className={`flex flex-col items-center page-px ${i === 2 ? 'justify-end' : 'justify-center'} ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
+          className={`flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
           style={{
             minHeight: '100dvh',
-            paddingBottom: i === 2 ? 0 : '2rem',
+            paddingBottom: '2rem',
             backgroundColor: '#D8D8D7',
             color: '#000000',
           }}
@@ -130,12 +124,10 @@ export default function HomePage() {
             <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
               {s.sub}
             </p>
-            {i !== 2 && (
-              <>
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
-                <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
-              </>
-            )}
+            <>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
+            </>
 
             {i === 0 ? (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
@@ -155,11 +147,6 @@ export default function HomePage() {
           )}
         </section>
       ))}
-
-      {/* Transición gris → verde hacia el módulo Somos Flahoolick */}
-      <div style={{ position: 'relative', height: '24px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #D8D8D7 30%, #1FDE91 30%)' }} />
-      </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section

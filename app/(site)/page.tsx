@@ -28,7 +28,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'para comunicar como cualquiera.',
     baseBreakBefore: 'demasiado',
     emphasisBreakAfter: 'comunicar',
-    sub: 'Pero gran parte de eso nunca llega al mercado.',
+    sub: 'Ese conocimiento casi nunca sale afuera.',
   },
   {
     h1Base: 'Solo el 5% de tu mercado ',
@@ -157,7 +157,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
           <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en autoridad de mercado.</span>
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Lo que sabes, hecho autoridad.</span>
           </h2>
         </div>
 

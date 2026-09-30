@@ -316,6 +316,19 @@
     }
   }
 
+  /* Hero 2 del home: layout de dos columnas, el H1 comparte ancho con el
+     grid de ojos — necesita un tamaño más chico que el resto para no
+     cortarse en demasiadas líneas dentro de la mitad del ancho. */
+  .text-hero.scroll-hero-h1-split {
+    font-size: clamp(2rem, 3.6vw, 4.25rem);
+  }
+
+  @media (max-width: 767px) {
+    .text-hero.scroll-hero-h1-split {
+      font-size: 3.25rem;
+    }
+  }
+
   .text-display {
     font-family: var(--font-display);
     font-weight: 400;

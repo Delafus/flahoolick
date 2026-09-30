@@ -81,6 +81,22 @@ function EmphasisText({ text, breakAfter }: { text: string; breakAfter?: string 
   )
 }
 
+/** H1 de un hero — comparte la lógica de BaseText/EmphasisText entre el
+ *  layout centrado (hero 0) y el de dos columnas (hero 1). */
+function HeroHeadline({ s, highlight, compact }: { s: Scroll; highlight?: string; compact?: boolean }) {
+  return (
+    <h1 className={`text-hero ${compact ? 'scroll-hero-h1-split' : 'scroll-hero-h1'}`} style={{ color: '#000000' }}>
+      <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
+        <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} highlight={highlight} />
+      </span>
+      {s.breakBeforeEmphasis && <br className="hidden md:block" />}
+      <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
+        <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
+      </span>
+    </h1>
+  )
+}
+
 const LAYERS = [
   { name: 'Signal Capture',     desc: 'Capturamos las señales que viven en tu operación técnica y comercial.' },
   { name: 'Knowledge Modeling', desc: 'Convertimos conocimiento disperso en estructura de autoridad.' },
@@ -111,34 +127,37 @@ export default function HomePage() {
             color: '#000000',
           }}
         >
-          <div className="max-container w-full text-center flex flex-col gap-6">
-            <h1 className="text-hero scroll-hero-h1" style={{ color: '#000000' }}>
-              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
-                <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} highlight={i === 1 ? '5%' : undefined} />
-              </span>
-              {s.breakBeforeEmphasis && <br className="hidden md:block" />}
-              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
-                <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
-              </span>
-            </h1>
-            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
-              {s.sub}
-            </p>
-            <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
-            </>
-
-            {i === 0 ? (
+          {i === 1 ? (
+            <div className="max-container w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center text-center md:text-left">
+              <div className="flex flex-col gap-6">
+                <HeroHeadline s={s} highlight="5%" compact />
+                <p className="text-base md:text-2xl max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+                  {s.sub}
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 items-center md:items-start">
+                <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
+                <div className="w-full max-w-[300px] md:max-w-[360px]" style={{ position: 'relative', aspectRatio: '1' }}>
+                  <EyeGrid />
+                </div>
+                <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />
+              </div>
+            </div>
+          ) : (
+            <div className="max-container w-full text-center flex flex-col gap-6">
+              <HeroHeadline s={s} />
+              <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+                {s.sub}
+              </p>
+              <>
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1} dotSize={7} /></div>
+                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} thickness={1} dotSize={7} /></div>
+              </>
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
                 <CollisionCube />
               </div>
-            ) : i === 1 ? (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <EyeGrid />
-              </div>
-            ) : null}
-          </div>
+            </div>
+          )}
           {i < SCROLLS.length - 1 && (
             <>
               <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 100} thickness={1} dotSize={7} /></div>

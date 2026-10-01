@@ -48,6 +48,10 @@ export function CollisionCube() {
     let angleY = 0
     let rotationVelocityX = 0.005
     let rotationVelocityY = 0.01
+    // El cubo nunca debe quedarse quieto del todo: cuando no lo arrastran, la
+    // velocidad se relaja hacia este giro base en vez de hacia cero.
+    const idleRotationVelocityX = 0.0012
+    const idleRotationVelocityY = 0.0022
     let dragging = false
     let pointerId: number | null = null
     let lastPointerX = 0
@@ -255,9 +259,9 @@ export function CollisionCube() {
       previousTime = time
 
       if (!dragging) {
-        const friction = Math.pow(0.98, step)
-        rotationVelocityX *= friction
-        rotationVelocityY *= friction
+        const ease = 1 - Math.pow(0.98, step)
+        rotationVelocityX += (idleRotationVelocityX - rotationVelocityX) * ease
+        rotationVelocityY += (idleRotationVelocityY - rotationVelocityY) * ease
         angleX += rotationVelocityX * step
         angleY += rotationVelocityY * step
       }

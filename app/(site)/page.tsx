@@ -6,7 +6,6 @@ import { ModuloMetodologia } from '@/components/modulo-metodologia'
 import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
-import { ScrollConnector } from '@/components/scroll-connector'
 import { CollisionCube } from '@/components/collision-cube'
 import { EyeGrid } from '@/components/eye-grid'
 import Link from 'next/link'
@@ -134,40 +133,16 @@ export default function HomePage() {
                 {s.sub}
               </p>
             </div>
-            <div className="flex flex-col gap-4 items-center md:items-start w-full md:max-w-[360px]">
+            <div className="flex flex-col gap-4 items-center md:items-start w-full">
               {i === 1 && <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />}
-              <div className="w-full max-w-[300px] md:max-w-[360px]" style={{ position: 'relative', aspectRatio: '1' }}>
+              <div className="w-full max-w-[300px] md:max-w-none mx-auto md:mx-0" style={{ position: 'relative', aspectRatio: '1' }}>
                 {i === 0 ? <CollisionCube /> : <EyeGrid />}
               </div>
               {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />}
             </div>
           </div>
-          {i < SCROLLS.length - 1 && (
-            <div className="max-container w-full grid grid-cols-1 md:grid-cols-2">
-              <div className="hidden md:block" />
-              <div className="flex justify-center md:max-w-[360px]">
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={100} thickness={1} dotSize={7} /></div>
-                <div className="hidden md:block w-full"><ScrollConnector color="#403D37" height={160} thickness={1} dotSize={7} /></div>
-              </div>
-            </div>
-          )}
         </section>
       ))}
-
-      {/* Conector hacia el módulo verde — la línea pasa de gris a verde justo en el cruce */}
-      <div className="md:hidden" style={{ position: 'relative', height: '100px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <div className="max-container w-full h-full flex justify-center">
-          <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1} dotSize={7} />
-        </div>
-      </div>
-      <div className="hidden md:block" style={{ position: 'relative', height: '160px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <div className="max-container w-full h-full grid grid-cols-2">
-          <div />
-          <div className="flex justify-center max-w-[360px]">
-            <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1} dotSize={7} />
-          </div>
-        </div>
-      </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section

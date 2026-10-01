@@ -127,45 +127,47 @@ export default function HomePage() {
             color: '#000000',
           }}
         >
-          {i === 1 ? (
-            <div className="max-container w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center text-center md:text-left">
-              <div className="flex flex-col gap-6">
-                <HeroHeadline s={s} highlight="5%" compact />
-                <p className="text-base md:text-2xl max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
-                  {s.sub}
-                </p>
-              </div>
-              <div className="flex flex-col gap-4 items-center md:items-start">
-                <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
-                <div className="w-full max-w-[300px] md:max-w-[360px]" style={{ position: 'relative', aspectRatio: '1' }}>
-                  <EyeGrid />
-                </div>
-                <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />
-              </div>
-            </div>
-          ) : (
-            <div className="max-container w-full text-center flex flex-col gap-6">
-              <HeroHeadline s={s} />
-              <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+          <div className="max-container w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center text-center md:text-left">
+            <div className="flex flex-col gap-6">
+              <HeroHeadline s={s} highlight={i === 1 ? '5%' : undefined} compact />
+              <p className="text-base md:text-2xl max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
                 {s.sub}
               </p>
-              <>
-                <div className="md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1} dotSize={7} /></div>
-                <div className="hidden md:block"><ScrollConnector color="#403D37" height={140} thickness={1} dotSize={7} /></div>
-              </>
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <CollisionCube />
+            </div>
+            <div className="flex flex-col gap-4 items-center md:items-start w-full md:max-w-[360px]">
+              {i === 1 && <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />}
+              <div className="w-full max-w-[300px] md:max-w-[360px]" style={{ position: 'relative', aspectRatio: '1' }}>
+                {i === 0 ? <CollisionCube /> : <EyeGrid />}
+              </div>
+              {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />}
+            </div>
+          </div>
+          {i < SCROLLS.length - 1 && (
+            <div className="max-container w-full grid grid-cols-1 md:grid-cols-2">
+              <div className="hidden md:block" />
+              <div className="flex justify-center md:max-w-[360px]">
+                <div className="md:hidden"><ScrollConnector color="#403D37" height={100} thickness={1} dotSize={7} /></div>
+                <div className="hidden md:block w-full"><ScrollConnector color="#403D37" height={160} thickness={1} dotSize={7} /></div>
               </div>
             </div>
-          )}
-          {i < SCROLLS.length - 1 && (
-            <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 100} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 160} thickness={1} dotSize={7} /></div>
-            </>
           )}
         </section>
       ))}
+
+      {/* Conector hacia el módulo verde — la línea pasa de gris a verde justo en el cruce */}
+      <div className="md:hidden" style={{ position: 'relative', height: '100px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
+        <div className="max-container w-full h-full flex justify-center">
+          <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1} dotSize={7} />
+        </div>
+      </div>
+      <div className="hidden md:block" style={{ position: 'relative', height: '160px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
+        <div className="max-container w-full h-full grid grid-cols-2">
+          <div />
+          <div className="flex justify-center max-w-[360px]">
+            <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1} dotSize={7} />
+          </div>
+        </div>
+      </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section
@@ -176,7 +178,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
           <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Lo que sabes, hecho autoridad.</span>
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en autoridad.</span>
           </h2>
         </div>
 
@@ -186,7 +188,7 @@ export default function HomePage() {
           className="label pill-somos-flahoolick px-8 py-4"
           style={{ borderRadius: '999px' }}
         >
-          APRENDE SOBRE NOSOTROS
+          SOBRE NOSOTROS
         </Link>
       </section>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { usePageColor } from '@/context/page-color'
 import { DISCIPLINAS } from './servicios-datos'
 import { MegamenuDots } from './megamenu-dots'
@@ -67,6 +68,8 @@ export function Header() {
   const [mobileOpen, setMobile] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const { bg, text } = usePageColor()
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -107,7 +110,7 @@ export function Header() {
     <header
       ref={ref}
       className="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
-      style={{ backgroundColor: bg }}
+      style={{ backgroundColor: bg, borderBottom: `3px solid ${isHome ? '#1FDE91' : '#000000'}` }}
       onMouseLeave={() => setActive(null)}
     >
       <div className="flex items-center justify-between page-px" style={{ height: '64px', color: text }}>

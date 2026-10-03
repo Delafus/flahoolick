@@ -126,16 +126,19 @@ export default function HomePage() {
             color: '#000000',
           }}
         >
-          <div className="max-container w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center text-center md:text-left">
-            <div className="flex flex-col gap-6">
+          <div className="max-container w-full grid grid-cols-1 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-10 md:gap-16 items-center text-center md:text-left">
+            <div className="flex flex-col gap-6 md:gap-8">
               <HeroHeadline s={s} highlight={i === 1 ? '5%' : undefined} compact />
-              <p className="text-base md:text-2xl max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+              <p className="text-base md:text-[clamp(1.25rem,2vw,1.875rem)] max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
                 {s.sub}
               </p>
             </div>
-            <div className="flex flex-col gap-4 items-center md:items-start w-full">
+            {/* La animación es un elemento acompañante: tamaño moderado atado al viewport y
+                pegada al borde derecho del contenedor (margen simétrico con el texto). El
+                que manda en escala es el titular, no la imagen. */}
+            <div className="flex flex-col gap-4 items-center md:items-start w-full max-w-[300px] md:max-w-none md:w-[clamp(300px,28vw,440px)] mx-auto md:mr-0 md:ml-auto">
               {i === 1 && <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />}
-              <div className="w-full max-w-[300px] md:max-w-none mx-auto md:mx-0" style={{ position: 'relative', aspectRatio: '1' }}>
+              <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
                 {i === 0 ? <CollisionCube /> : <EyeGrid />}
               </div>
               {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />}

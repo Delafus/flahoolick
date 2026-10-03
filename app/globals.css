@@ -321,7 +321,7 @@
      ancho completo para no cortarse en demasiadas líneas dentro de la
      mitad del ancho, pero sin quedar enano. */
   .text-hero.scroll-hero-h1-split {
-    font-size: clamp(2.25rem, 4.6vw, 5.5rem);
+    font-size: clamp(2.5rem, 5.6vw, 7.5rem);
   }
 
   @media (max-width: 767px) {

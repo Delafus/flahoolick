@@ -4,8 +4,10 @@ import { useEffect, useRef } from 'react'
 
 const COLS = 10
 const ROWS = 10
-/** Los 5 últimos círculos de la primera fila quedan verdes y estáticos (el 5% del mercado). */
-const STATIC_GREEN = new Set([5, 6, 7, 8, 9])
+/** Los 5 últimos círculos de la primera fila son verdes y son los únicos "ojos" (el 5% del mercado
+ *  que está listo para comprar): cada uno con su pupila siguiendo al cursor. Los otros 95 son
+ *  círculos estáticos, sin pupila. */
+const GREEN_EYES = new Set([5, 6, 7, 8, 9])
 
 interface PupilData {
   parent: HTMLDivElement
@@ -124,9 +126,7 @@ export function EyeGrid() {
       }}
     >
       {cells.map(i =>
-        STATIC_GREEN.has(i) ? (
-          <div key={i} style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: '#1FDE91' }} />
-        ) : (
+        GREEN_EYES.has(i) ? (
           <div
             key={i}
             data-eye
@@ -134,8 +134,7 @@ export function EyeGrid() {
               width: '100%',
               height: '100%',
               borderRadius: '50%',
-              backgroundColor: 'transparent',
-              border: '1px solid rgba(0,0,0,0.1)',
+              backgroundColor: '#1FDE91',
               position: 'relative',
             }}
           >
@@ -155,6 +154,17 @@ export function EyeGrid() {
               }}
             />
           </div>
+        ) : (
+          <div
+            key={i}
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              backgroundColor: 'transparent',
+              border: '1px solid rgba(0,0,0,0.1)',
+            }}
+          />
         ),
       )}
     </div>

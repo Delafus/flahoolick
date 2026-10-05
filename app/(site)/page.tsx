@@ -141,7 +141,7 @@ export default function HomePage() {
               <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
                 {i === 0 ? <CollisionCube /> : <EyeGrid />}
               </div>
-              {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '34px', width: 'auto', alignSelf: 'flex-end' }} />}
+              {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '66px', width: 'auto' }} />}
             </div>
           </div>
         </section>

@@ -162,7 +162,7 @@ export function EyeGrid() {
               height: '100%',
               borderRadius: '50%',
               backgroundColor: 'transparent',
-              border: '1px solid rgba(0,0,0,0.1)',
+              border: '1.5px solid rgba(0,0,0,0.22)',
             }}
           />
         ),

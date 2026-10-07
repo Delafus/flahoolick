@@ -6,6 +6,7 @@ import { ModuloMetodologia } from '@/components/modulo-metodologia'
 import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
+import { ScrollConnector } from '@/components/scroll-connector'
 import { CollisionCube } from '@/components/collision-cube'
 import { EyeGrid } from '@/components/eye-grid'
 import Link from 'next/link'
@@ -27,7 +28,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'para comunicar como cualquiera.',
     baseBreakBefore: 'demasiado',
     emphasisBreakAfter: 'comunicar',
-    sub: 'Ese conocimiento casi nunca sale afuera.',
+    sub: 'Gran parte de ese conocimiento no llega a tu mercado.',
   },
   {
     h1Base: 'Solo el 5% de tu mercado ',
@@ -126,24 +127,36 @@ export default function HomePage() {
             color: '#000000',
           }}
         >
-          <div className="max-container w-full grid grid-cols-1 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-10 md:gap-16 items-center text-center md:text-left">
-            <div className="flex flex-col gap-6 md:gap-8">
-              <HeroHeadline s={s} highlight={i === 1 ? '5%' : undefined} compact />
-              <p className="text-base md:text-[clamp(1.25rem,2vw,1.875rem)] max-w-2xl mx-auto md:mx-0 leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
-                {s.sub}
-              </p>
-            </div>
-            {/* La animación es un elemento acompañante: tamaño moderado atado al viewport y
-                pegada al borde derecho del contenedor (margen simétrico con el texto). El
-                que manda en escala es el titular, no la imagen. */}
-            <div className="flex flex-col gap-4 items-center md:items-start w-full max-w-[300px] md:max-w-none md:w-[clamp(300px,28vw,440px)] mx-auto md:mr-0 md:ml-auto">
-              {i === 1 && <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />}
-              <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
-                {i === 0 ? <CollisionCube /> : <EyeGrid />}
+          <div className="max-container w-full text-center flex flex-col gap-6">
+            <HeroHeadline s={s} highlight={i === 1 ? '5%' : undefined} />
+            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
+              {s.sub}
+            </p>
+            <>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
+            </>
+
+            {i === 0 ? (
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+                <CollisionCube />
               </div>
-              {i === 1 && <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '66px', width: 'auto' }} />}
-            </div>
+            ) : (
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto flex flex-col items-center gap-4">
+                <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
+                <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
+                  <EyeGrid />
+                </div>
+                <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '66px', width: 'auto' }} />
+              </div>
+            )}
           </div>
+          {i < SCROLLS.length - 1 && (
+            <>
+              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 100} thickness={1} dotSize={7} /></div>
+              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 160} thickness={1} dotSize={7} /></div>
+            </>
+          )}
         </section>
       ))}
 
@@ -156,7 +169,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
           <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en autoridad.</span>
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en contenido de valor.</span>
           </h2>
         </div>
 

@@ -7,7 +7,7 @@ import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
 import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
 import { ModuloJerga } from '@/components/modulo-jerga'
 import { ScrollConnector } from '@/components/scroll-connector'
-import { CollisionCube } from '@/components/collision-cube'
+import { TrappedDots } from '@/components/trapped-dots'
 import { EyeGrid } from '@/components/eye-grid'
 import Link from 'next/link'
 
@@ -138,16 +138,13 @@ export default function HomePage() {
             </>
 
             {i === 0 ? (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-[20px] mb-[20px] md:mt-[50px] md:mb-[50px] mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <CollisionCube />
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
+                <TrappedDots diameterPercent={80} dotColor="#F1EEE7" speedFactor={0.5} />
               </div>
             ) : (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto flex flex-col items-center gap-4">
-                <img className="self-start" src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
-                <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
-                  <EyeGrid />
-                </div>
-                <img src="/icons/dots-95-5-legend.svg" alt="5% listo para comprar hoy, 95% restante" style={{ height: '66px', width: 'auto' }} />
+              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-2 md:mt-20 md:mb-6 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
+                <EyeGrid />
               </div>
             )}
           </div>
@@ -170,14 +167,14 @@ export default function HomePage() {
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section
-        className="flex flex-col items-center text-center pt-16 md:pt-[300px]"
+        className="flex flex-col items-center text-center pt-12 md:pt-[180px]"
         style={{ backgroundColor: '#1FDE91', color: '#000000', paddingBottom: '6rem' }}
       >
         {/* Titular */}
         <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
           <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en contenido de valor.</span>
+            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en autoridad de mercado.</span>
           </h2>
         </div>
 

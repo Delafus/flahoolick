@@ -9,7 +9,7 @@ import { todas, porTipo, destacada, categorias, conteoPorCategoria } from '@/san
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'JERGA — Flahoolick',
+  title: 'JERGA | Flahoolick',
   description: 'Estrategia de contenido, marketing B2B y autoridad de mercado. Lo que importa, dicho como hay que decirlo.',
 }
 

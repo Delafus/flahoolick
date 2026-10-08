@@ -22,9 +22,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const pieza = await porSlug(params.slug)
-  if (!pieza) return { title: 'JERGA — Flahoolick' }
+  if (!pieza) return { title: 'JERGA | Flahoolick' }
   return {
-    title: `${pieza.titulo} — JERGA`,
+    title: `${pieza.titulo} | JERGA`,
     description: pieza.bajada,
   }
 }

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 
-export const metadata: Metadata = { title: 'Herramientas de IA para marketing y ventas — Flahoolick' }
+export const metadata: Metadata = { title: 'Herramientas de IA para marketing y ventas | Flahoolick' }
 
 const NEGRO = '#000000'
 

@@ -4,7 +4,7 @@ import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 import { MetodologiaPasos } from '@/components/metodologia-pasos'
 
 export const metadata: Metadata = {
-  title: 'Metodología — Flahoolick',
+  title: 'Metodología | Flahoolick',
   description: 'Entramos al negocio, encontramos lo que vale, lo convertimos en mensajes, contenidos y herramientas, y lo ponemos frente al mercado.',
 }
 

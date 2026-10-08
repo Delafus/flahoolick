@@ -67,7 +67,7 @@ export default function SobreFlahoolick() {
           <div className="flex flex-col gap-10 md:hidden">
             <h2 className="text-display" style={{ color: '#F9F0E2' }}><FontMix bold="Por qué existimos" /></h2>
             <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
-              El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
+              El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso, instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
             </p>
             <div style={{ aspectRatio: '4/3', border: '1px solid rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
@@ -79,7 +79,7 @@ export default function SobreFlahoolick() {
             <div className="flex flex-col gap-10" style={{ paddingRight: '3rem' }}>
               <h2 className="text-display" style={{ color: '#F9F0E2' }}><FontMix bold="Por qué existimos" /></h2>
               <p className="text-lead opacity-70" style={{ color: '#F9F0E2' }}>
-                El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso — instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
+                El conocimiento que distingue a una empresa B2B compleja raramente llega al mercado en la forma que debería. Vive en reuniones que no dejan registro, en manuales que nadie lee y en la cabeza de los expertos que no tienen tiempo de escribir. Flahoolick existe para cambiar eso, instalando el sistema que convierte ese conocimiento en autoridad visible antes de la decisión de compra.
               </p>
             </div>
 
@@ -123,13 +123,13 @@ export default function SobreFlahoolick() {
               },
               {
                 titulo: 'Metodología',
-                desc: 'El cómo y el qué de nuestro trabajo — el sistema diseñado para ciclos de decisión complejos y refinado durante cientos de proyectos.',
+                desc: 'El cómo y el qué de nuestro trabajo: el sistema diseñado para ciclos de decisión complejos y refinado durante cientos de proyectos.',
                 href: '/metodologia',
                 cta: 'Explorar →',
               },
               {
                 titulo: 'Jerga',
-                desc: 'Lo aprendido en el trabajo — estrategia de contenido, marketing B2B y autoridad de mercado. Ideas para líderes que necesitan que el mercado los recuerde cuando decida comprar.',
+                desc: 'Lo aprendido en el trabajo: estrategia de contenido, marketing B2B y autoridad de mercado. Ideas para líderes que necesitan que el mercado los recuerde cuando decida comprar.',
                 href: '/jerga',
                 cta: 'Leer JERGA →',
               },

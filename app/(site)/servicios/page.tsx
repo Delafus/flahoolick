@@ -6,7 +6,7 @@ import { GRUPOS_ACTIVOS } from '@/components/servicios-datos'
 import { ServiciosAuthorityHero } from '@/components/servicios-authority-hero'
 
 export const metadata: Metadata = {
-  title: 'Servicios — Flahoolick',
+  title: 'Servicios | Flahoolick',
   description: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
 }
 

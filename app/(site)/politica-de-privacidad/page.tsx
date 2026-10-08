@@ -5,7 +5,7 @@ const CREMA = '#F9F0E2'
 const NEGRO = '#000000'
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidad — Flahoolick',
+  title: 'Política de Privacidad | Flahoolick',
   description: 'Cómo Flahoolick recopila, usa y protege los datos personales de quienes visitan este sitio.',
 }
 

@@ -16,7 +16,7 @@ export function ModuloCasoDunamis() {
             <FontMix bold="Dunamis nos mandó un audio de 8 minutos." italic=" Hoy un agente les agenda visitas solo." />
           </h2>
           <p className="text-lead opacity-70">
-            De esa conversación salieron un dossier, un simulador, un blog y Dee — el agente que su equipo de ventas usa a diario.
+            De esa conversación salieron un dossier, un simulador, un blog y Dee, el agente que su equipo de ventas usa a diario.
           </p>
         </div>
 

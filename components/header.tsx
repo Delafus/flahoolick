@@ -37,7 +37,7 @@ const SRV_MENU: MegaMenuData = {
 }
 
 const MET_MENU: MegaMenuData = {
-  tagline: 'Del conocimiento disperso a un sistema que trabaja — así operamos detrás de los cuatro servicios.',
+  tagline: 'Del conocimiento disperso a un sistema que trabaja. Así lo hacemos.',
   ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
   items: [
     { title: 'Encontramos',            desc: 'Entramos al negocio y detectamos dónde está el valor.',           href: '/metodologia#paso-encontramos' },

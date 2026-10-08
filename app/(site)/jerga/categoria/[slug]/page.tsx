@@ -18,8 +18,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const cat = await categoria(params.slug)
-  if (!cat) return { title: 'JERGA — Flahoolick' }
-  return { title: `${cat.nombre} — JERGA`, description: cat.descripcion }
+  if (!cat) return { title: 'JERGA | Flahoolick' }
+  return { title: `${cat.nombre} | JERGA`, description: cat.descripcion }
 }
 
 export default async function CategoriaPage({ params }: { params: { slug: string } }) {

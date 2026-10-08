@@ -17,17 +17,17 @@ const preguntas = [
   },
   {
     q: '¿Qué hace exactamente Flahoolick?',
-    a: 'Instalamos el sistema que convierte el conocimiento técnico y comercial de una empresa B2B en presencia de mercado continua. Trabajamos en tres frentes simultáneos: definimos el relato de marca, instalamos el sistema operativo de contenido y producimos los activos que construyen presencia antes de la decisión de compra. El resultado es un flujo continuo de contenido con criterio, gobernanza y medición — que funciona mientras el equipo comercial está en la calle cerrando negocios.',
+    a: 'Instalamos el sistema que convierte el conocimiento técnico y comercial de una empresa B2B en presencia de mercado continua. Trabajamos en tres frentes simultáneos: definimos el relato de marca, instalamos el sistema operativo de contenido y producimos los activos que construyen presencia antes de la decisión de compra. El resultado es un flujo continuo de contenido con criterio, gobernanza y medición, que funciona mientras el equipo comercial está en la calle cerrando negocios.',
     link: { label: 'Explorar Servicios →', href: '/servicios' },
   },
   {
     q: '¿Qué tipo de problemas resuelven exactamente?',
-    a: 'Trabajamos con empresas que enfrentan alguna de estas situaciones: el mercado no ve todo lo que la empresa sabe hacer; cada vendedor explica el servicio distinto; el contenido que producen no genera conversaciones comerciales reales; o llevan meses "trabajando en el marketing" sin que nada se acumule. Son empresas que ya tienen una ventaja real — el problema es que esa ventaja no está visible antes de que el comprador decida buscar.',
+    a: 'Trabajamos con empresas que enfrentan alguna de estas situaciones: el mercado no ve todo lo que la empresa sabe hacer; cada vendedor explica el servicio distinto; el contenido que producen no genera conversaciones comerciales reales; o llevan meses "trabajando en el marketing" sin que nada se acumule. Son empresas que ya tienen una ventaja real. El problema es que esa ventaja no está visible antes de que el comprador decida buscar.',
     link: { label: 'Ver nuestros Servicios →', href: '/servicios' },
   },
   {
     q: '¿En qué se diferencia esto de contratar una agencia de contenido?',
-    a: 'Una agencia de contenido produce cuando alguien le dice qué hacer. Flahoolick llega antes — define la estrategia, captura el conocimiento existente, modela las audiencias y sus tensiones, y entonces produce. La diferencia es de orden: el resultado tiene la firma de lo que tu empresa realmente sabe, algo que ninguna otra empresa de tu industria puede reproducir. Eso es lo que construye autoridad de mercado real.',
+    a: 'Una agencia de contenido produce cuando alguien le dice qué hacer. Flahoolick llega antes: define la estrategia, captura el conocimiento existente, modela las audiencias y sus tensiones, y entonces produce. La diferencia es de orden: el resultado tiene la firma de lo que tu empresa realmente sabe, algo que ninguna otra empresa de tu industria puede reproducir. Eso es lo que construye autoridad de mercado real.',
     link: { label: 'Conocer nuestra Metodología →', href: '/metodologia' },
   },
   {
@@ -42,17 +42,17 @@ const preguntas = [
   },
   {
     q: '¿Quién dentro de mi empresa debería contratarnos?',
-    a: 'Generalmente nos llama el Gerente General, el Director Comercial o el Director de Marketing cuando sienten que el mercado no refleja lo que la empresa realmente vale. En algunos casos también nos llama quien lidera ventas, porque nota que el equipo comercial tiene que explicar demasiado antes de generar interés real. El trabajo termina siendo transversal — estrategia, contenido y ventas operan sobre el mismo sistema.',
+    a: 'Generalmente nos llama el Gerente General, el Director Comercial o el Director de Marketing cuando sienten que el mercado no refleja lo que la empresa realmente vale. En algunos casos también nos llama quien lidera ventas, porque nota que el equipo comercial tiene que explicar demasiado antes de generar interés real. El trabajo termina siendo transversal: estrategia, contenido y ventas operan sobre el mismo sistema.',
     link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
   },
   {
     q: '¿Cómo es un engagement típico?',
-    a: 'Empieza con un Diagnóstico de Visibilidad — cinco días de trabajo donde auditamos qué sabe tu empresa, cómo responden los modelos de IA cuando tu comprador busca en tu categoría y dónde están los vacíos más urgentes. Ese diagnóstico tiene valor propio: te quedas con él independientemente de lo que decidas después. Si confirma que hay trabajo estructural por hacer, diseñamos el sistema completo. La mayoría de nuestros clientes trabajan con nosotros entre 6 y 18 meses en ciclos mensuales.',
+    a: 'Empieza con un Diagnóstico de Visibilidad: cinco días de trabajo donde auditamos qué sabe tu empresa, cómo responden los modelos de IA cuando tu comprador busca en tu categoría y dónde están los vacíos más urgentes. Ese diagnóstico tiene valor propio: te quedas con él independientemente de lo que decidas después. Si confirma que hay trabajo estructural por hacer, diseñamos el sistema completo. La mayoría de nuestros clientes trabajan con nosotros entre 6 y 18 meses en ciclos mensuales.',
     link: { label: 'Cómo funciona el sistema →', href: '/metodologia#como-trabajamos' },
   },
   {
     q: '¿Cuánto tiempo tarda en verse resultados?',
-    a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental — que el mercado te recuerde cuando decida buscar — es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
+    a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental (que el mercado te recuerde cuando decida buscar) es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
     link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
   },
   {

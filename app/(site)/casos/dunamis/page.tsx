@@ -14,7 +14,7 @@ const GRIS = '#D8D8D7'
 const NEGRO = '#000000'
 const BLANCO = '#ffffff'
 
-const SERVICIOS = ['Marca y relato', 'Estrategia de contenido', 'Producción de contenido', 'Herramientas de IA']
+const SERVICIOS = ['Marca y relato', 'Estrategia de contenido', 'Producción de contenido', 'IA para marketing y ventas']
 
 /** Espacio reservado para una imagen del caso. Muestra el tamaño que hay que exportar. */
 function Imagen({ ratio, tamano, nombre, oscuro = false }: { ratio: string; tamano: string; nombre: string; oscuro?: boolean }) {

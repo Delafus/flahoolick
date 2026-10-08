@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
 
-export const metadata: Metadata = { title: 'Herramientas de IA para marketing y ventas | Flahoolick' }
+export const metadata: Metadata = { title: 'IA para marketing y ventas | Flahoolick' }
 
 const NEGRO = '#000000'
 
@@ -42,7 +42,7 @@ export default function HerramientasDeIAParaMarketing() {
     <>
       <PageColorSetter bg="#EF9DB6" text={NEGRO} />
       <PageLayout
-        tagline="Herramientas de IA para marketing y ventas"
+        tagline="IA para marketing y ventas"
         headline={<FontMix bold="IA que" italic=" trabaja." />}
         description="Diseñamos herramientas y agentes que investigan, organizan conocimiento, automatizan tareas y ejecutan procesos de marketing y ventas."
         heroBg="#EF9DB6"

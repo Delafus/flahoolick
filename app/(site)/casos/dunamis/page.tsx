@@ -109,7 +109,7 @@ export default function CasoDunamis() {
           <div className="flex flex-col gap-10">
             <Texto titulo={<FontMix bold="Primero," italic=" sistematizar el conocimiento." />}>
               <p>
-                Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los corredores en terreno.
+                Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los agentes en terreno.
               </p>
               <p>
                 A partir de ese material identificamos los puntos de entrada a la categoría (CEPs): las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esos CEPs orientan la planificación de contenido.
@@ -165,7 +165,7 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Herramientas que el inversionista usa" italic=" antes de contactar a un corredor." />}>
+            <Texto titulo={<FontMix bold="Herramientas que el inversionista usa" italic=" antes de contactar a un agente." />}>
               <p>
                 Valor estima el valor de mercado de una propiedad a partir de la UF del día, el cap rate de la zona y la vacancia del trimestre. La Decisión es un diagnóstico de tres minutos para quien evalúa comprar o arrendar. Ambas herramientas cierran con una invitación a conversar con el equipo de Dunamis.
               </p>
@@ -215,7 +215,7 @@ export default function CasoDunamis() {
           <div className="flex flex-col gap-10">
             <Texto oscuro titulo={<FontMix bold="Dee," italic=" asistente virtual de dunamis.agency." />}>
               <p>
-                Dee está conectado a la base de propiedades y servicios de Dunamis. Responde consultas, presenta las propiedades publicadas según los criterios de cada usuario, agenda visitas y deriva el contacto a un corredor.
+                Dee está conectado a la base de propiedades y servicios de Dunamis. Responde consultas, presenta las propiedades publicadas según los criterios de cada usuario, agenda visitas y deriva el contacto a un agente.
               </p>
             </Texto>
             <Imagen oscuro ratio="3 / 2" tamano="2400 × 1600" nombre="Conversación con Dee" />

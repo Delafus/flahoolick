@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FontMix } from './page-layout'
-import { CasoDunamisMazo } from './caso-dunamis-mazo'
+import { AudioBriefPlayer } from './audio-brief-player'
 
 const NEGRO = '#000000'
 const BLANCO = '#ffffff'
@@ -14,20 +14,22 @@ export function ModuloCasoDunamis() {
 
         <div className="flex flex-col gap-4" style={{ maxWidth: '46rem' }}>
           <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', lineHeight: 1.05 }}>
-            <FontMix bold="Dunamis nos mandó un audio de 8 minutos." italic=" Hoy un agente les agenda visitas." />
+            <FontMix bold="Dunamis nos pidió" italic=" un PDF en Canva." />
           </h2>
           <p className="text-lead opacity-70">
-            De esa conversación salieron un dossier, un simulador, un blog y Dee, el asistente que su equipo de ventas usa a diario.
+            Hoy su equipo no explica nada desde cero.
           </p>
         </div>
 
-        <CasoDunamisMazo />
+        <div style={{ width: '100%', maxWidth: '300px' }}>
+          <AudioBriefPlayer src="/audio/dunamis-brief.mp3" />
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="#contacto"
+          <Link href="/casos/dunamis"
             className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
             style={{ border: '1px solid rgba(255,255,255,0.3)', color: BLANCO, borderRadius: '999px' }}>
-            Quiero algo así →
+            Ver caso →
           </Link>
         </div>
       </div>

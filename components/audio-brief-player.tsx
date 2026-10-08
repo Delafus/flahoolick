@@ -35,7 +35,7 @@ function formatTime(s: number) {
 
 /** Ilustración del audio de Dunamis: el play del dibujo reproduce el audio real,
  *  la onda se pinta con el avance y se puede hacer clic en ella para saltar. */
-export function AudioBriefPlayer({ src }: { src: string }) {
+export function AudioBriefPlayer({ src, active = true }: { src: string; active?: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
   const [started, setStarted] = useState(false)
@@ -62,6 +62,11 @@ export function AudioBriefPlayer({ src }: { src: string }) {
       audio.removeEventListener('play', onPlay)
     }
   }, [])
+
+  // Si la tarjeta deja de estar visible (carrusel), el audio se pausa
+  useEffect(() => {
+    if (!active) audioRef.current?.pause()
+  }, [active])
 
   const toggle = () => {
     const audio = audioRef.current

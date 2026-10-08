@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FontMix } from './page-layout'
+import { AudioBriefPlayer } from './audio-brief-player'
 
 const NEGRO = '#000000'
 const BLANCO = '#ffffff'
@@ -20,19 +21,12 @@ export function ModuloCasoDunamis() {
           </p>
         </div>
 
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '320px',
-            aspectRatio: '1/1',
-            border: '1px solid rgba(255,255,255,0.18)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <span className="label" style={{ color: BLANCO, opacity: 0.25 }}>Ilustración</span>
+        <div className="flex flex-col items-center gap-5 w-full">
+          <p className="label inline-flex items-center gap-2.5" style={{ color: BLANCO, opacity: 0.7 }}>
+            <span className="animate-dot-pulse" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#1FDE91' }} />
+            Fragmento real · sin editar
+          </p>
+          <AudioBriefPlayer src="/audio/dunamis-brief.mp3" />
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">

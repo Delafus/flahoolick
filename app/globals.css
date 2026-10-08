@@ -378,4 +378,13 @@
     animation: marquee 30s linear infinite;
     width: max-content;
   }
+
+  /* Dot que late — etiqueta "Audio real · sin editar" */
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+  }
+  .animate-dot-pulse {
+    animation: dot-pulse 1.6s ease-in-out infinite;
+  }
 }

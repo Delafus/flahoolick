@@ -28,7 +28,7 @@ const SCROLLS: Scroll[] = [
     h1Emphasis: 'para comunicar como cualquiera.',
     baseBreakBefore: 'demasiado',
     emphasisBreakAfter: 'comunicar',
-    sub: 'Gran parte de ese conocimiento no llega a tu mercado.',
+    sub: 'Gran parte de ese conocimiento queda atrapado.',
   },
   {
     h1Base: 'Solo el 5% de tu mercado ',

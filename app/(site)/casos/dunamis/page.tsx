@@ -96,7 +96,7 @@ export default function CasoDunamis() {
               Dunamis es una empresa de servicios inmobiliarios fundada por Jessica Hupat, con dos verticales: Dunamis Agency, corredora especializada en Chicureo, y Dunamis Brokers, que opera compra, arriendo y venta de todo tipo de activos.
             </p>
             <p>
-              Somos la agencia a cargo de su estrategia de marca y comunicación. El trabajo cubre la marca, los dos sitios, el contenido, el liderazgo de opinión de Jessica y productos digitales para audiencias de inversión. El objetivo es que Dunamis sea el operador de referencia para quienes gestionan o buscan activos inmobiliarios de mayor inversión.
+              Lo que hace distinto a Dunamis estaba repartido en reuniones, catálogos, conversaciones con clientes y en la experiencia de sus corredores. Lo primero fue sacarlo de ahí para convertirlo en marca, sitios, contenido y herramientas.
             </p>
           </div>
         </div>
@@ -105,6 +105,18 @@ export default function CasoDunamis() {
       {/* Piezas */}
       <section className="page-px section-py" style={{ backgroundColor: GRIS, color: NEGRO, borderTop: '1px solid rgba(0,0,0,0.15)' }}>
         <div className="max-container flex flex-col gap-24 md:gap-32">
+
+          <div className="flex flex-col gap-10">
+            <Texto titulo={<FontMix bold="Antes de producir," italic=" escuchamos." />}>
+              <p>
+                Transcribimos reuniones con Jessica y su equipo, revisamos sus catálogos de propiedades y servicios, leímos conversaciones con clientes y recogimos lo que sus corredores escuchan en terreno.
+              </p>
+              <p>
+                De ese material sacamos los puntos de entrada a la categoría (CEPs): las situaciones y preguntas que llevan a alguien a pensar en comprar, vender, arrendar o invertir. Cada pieza de contenido que vino después parte de uno de ellos.
+              </p>
+            </Texto>
+            <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Del material a los CEPs" />
+          </div>
 
           <div className="flex flex-col gap-10">
             <Texto titulo={<FontMix bold="Dos públicos," italic=" una sola marca." />}>

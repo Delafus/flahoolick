@@ -30,10 +30,10 @@ export const DISCIPLINAS: Disciplina[] = [
     href: '/servicios/produccion-de-contenido',
   },
   {
-    id: 'herramientas-de-ia-para-marketing',
+    id: 'ia-para-marketing-y-ventas',
     nombre: 'IA para marketing y ventas',
     desc: 'Diseñamos e implementamos herramientas y agentes con IA para investigar, automatizar y ejecutar procesos de marketing y ventas.',
-    href: '/servicios/herramientas-de-ia-para-marketing',
+    href: '/servicios/ia-para-marketing-y-ventas',
   },
 ]
 

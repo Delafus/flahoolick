@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-// Todo en coordenadas del viewBox 490×455 de /audio-brief-dunamis.svg.
+// Todo en coordenadas de un lienzo de 490×455 (/audio-brief-dunamis.png exportado a 2x: 980×910).
 // Si se re-exporta el dibujo con la burbuja de audio en otro lugar, hay que
 // ajustar estas posiciones.
 const VB = '0 0 490 455'
@@ -92,7 +92,7 @@ export function AudioBriefPlayer({ src, active = true }: { src: string; active?:
   return (
     <div style={{ position: 'relative', width: '100%' }}>
       <img
-        src="/audio-brief-dunamis.svg"
+        src="/audio-brief-dunamis.png"
         alt="Audio de 8 minutos enviado por Dunamis por chat"
         style={{ width: '100%', height: 'auto', display: 'block' }}
       />

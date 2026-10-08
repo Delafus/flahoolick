@@ -93,10 +93,10 @@ export default function CasoDunamis() {
         <div className="max-container">
           <div className="text-lead flex flex-col gap-4" style={{ maxWidth: '46rem' }}>
             <p>
-              Dunamis es una empresa de servicios inmobiliarios fundada por Jessica Hupat, con dos verticales: Dunamis Agency, corredora especializada en Chicureo, y Dunamis Brokers, que opera compra, arriendo y venta de todo tipo de activos.
+              Dunamis es una empresa de servicios inmobiliarios con dos verticales: Dunamis Agency, corredora especializada en propiedades de alto valor en Chicureo, y Dunamis Brokers, que opera compraventa, arriendo y administración de activos de distinto tipo y escala.
             </p>
             <p>
-              Lo que hace distinto a Dunamis estaba repartido en reuniones, catálogos, conversaciones con clientes y en la experiencia de sus corredores. Lo primero fue sacarlo de ahí para convertirlo en marca, sitios, contenido y herramientas.
+              El conocimiento que diferencia a Dunamis estaba distribuido en reuniones, catálogos, conversaciones con clientes y en la experiencia de su equipo comercial. El trabajo comenzó por sistematizar ese conocimiento, para luego traducirlo en marca, sitios, contenido y herramientas.
             </p>
           </div>
         </div>
@@ -107,30 +107,30 @@ export default function CasoDunamis() {
         <div className="max-container flex flex-col gap-24 md:gap-32">
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Antes de producir," italic=" escuchamos." />}>
+            <Texto titulo={<FontMix bold="Primero," italic=" sistematizar el conocimiento." />}>
               <p>
-                Transcribimos reuniones con Jessica y su equipo, revisamos sus catálogos de propiedades y servicios, leímos conversaciones con clientes y recogimos lo que sus corredores escuchan en terreno.
+                Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los corredores en terreno.
               </p>
               <p>
-                De ese material sacamos los puntos de entrada a la categoría (CEPs): las situaciones y preguntas que llevan a alguien a pensar en comprar, vender, arrendar o invertir. Cada pieza de contenido que vino después parte de uno de ellos.
+                A partir de ese material identificamos los puntos de entrada a la categoría (CEPs): las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esos CEPs orientan la planificación de contenido.
               </p>
             </Texto>
             <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Del material a los CEPs" />
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Dos públicos," italic=" una sola marca." />}>
+            <Texto titulo={<FontMix bold="Dos públicos," italic=" una identidad." />}>
               <p>
-                Agency le habla a un comprador de alto valor en una zona acotada. Brokers atiende a un público amplio con activos de todos los tamaños. La identidad tenía que sostener las dos cosas sin diluirse: logotipo, íconos, paleta, moodboard y un banco de imágenes propio.
+                Dunamis Agency se dirige a compradores de alto valor en una zona acotada; Dunamis Brokers, a un público amplio con activos de todos los tamaños. La identidad debía servir a ambas verticales con coherencia: logotipo, iconografía, paleta, moodboard y banco de imágenes.
               </p>
             </Texto>
             <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Marca" />
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Dos sitios," italic=" cada uno para su público." />}>
+            <Texto titulo={<FontMix bold="Dos sitios," italic=" cada uno con su audiencia." />}>
               <p>
-                dunamis.agency y dunamis.broker, cada uno con su CMS para que el equipo de Dunamis publique propiedades y contenido sin depender de nosotros.
+                Desarrollamos dunamis.agency y dunamis.broker, ambos con gestor de contenidos para que el equipo publique propiedades y artículos de forma autónoma.
               </p>
             </Texto>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -140,9 +140,9 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Lo que el mercado" italic=" no te va a explicar." />}>
+            <Texto titulo={<FontMix bold="Dunamistas:" italic=" lo que el mercado no te va a explicar." />}>
               <p>
-                Dunamistas es el blog de Dunamis Brokers: artículos, contenido corto para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana.
+                Dunamistas es la plataforma editorial de Dunamis Brokers: artículos, contenido breve para Instagram y un glosario inmobiliario que incorpora un concepto nuevo cada semana.
               </p>
             </Texto>
             <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Blog y glosario" />
@@ -153,9 +153,9 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="La voz de Jessica," italic=" donde están los inversionistas." />}>
+            <Texto titulo={<FontMix bold="Liderazgo de opinión" italic=" para la dirección de Dunamis." />}>
               <p>
-                Liderazgo de opinión para la founder en LinkedIn, charlas y eventos del sector.
+                Contenido de posicionamiento para la fundadora en LinkedIn y participación en charlas y eventos del sector.
               </p>
             </Texto>
             <div className="grid grid-cols-2 gap-6">
@@ -165,9 +165,9 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Herramientas que el inversionista usa" italic=" antes de hablar con un corredor." />}>
+            <Texto titulo={<FontMix bold="Herramientas que el inversionista usa" italic=" antes de contactar a un corredor." />}>
               <p>
-                Valor estima el valor de mercado de una propiedad con la UF del día, el cap rate de la zona y la vacancia del trimestre. La Decisión es un diagnóstico de 3 minutos para quien duda entre comprar o arrendar. Las dos terminan en una conversación con Jessica.
+                Valor estima el valor de mercado de una propiedad a partir de la UF del día, el cap rate de la zona y la vacancia del trimestre. La Decisión es un diagnóstico de tres minutos para quien evalúa comprar o arrendar. Ambas herramientas cierran con una invitación a conversar con el equipo de Dunamis.
               </p>
             </Texto>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
@@ -192,11 +192,10 @@ export default function CasoDunamis() {
         <div className="max-container flex flex-col gap-24 md:gap-32">
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <Texto oscuro titulo={<FontMix bold="Nos pidieron" italic=" un PDF en Canva." />}>
+            <Texto oscuro titulo={<FontMix bold="El requerimiento:" italic=" un PDF en Canva." />}>
               <p>
-                Las corredoras necesitaban algo simple para mandar por WhatsApp o mostrar en el iPad en una reunión o en terreno: servicios, compraventa, valores y un resumen del stock. Algo para no explicar todo desde cero en cada llamada.
+                El equipo comercial necesitaba material simple para enviar por WhatsApp o presentar en iPad durante reuniones y visitas: servicios, compraventa, valores y un resumen del stock. El objetivo era dejar de explicar todo desde cero en cada llamada.
               </p>
-              <p>Así llegó el pedido.</p>
             </Texto>
             <div className="w-full mx-auto" style={{ maxWidth: '360px' }}>
               <AudioBriefPlayer src="/audio/dunamis-brief.mp3" />
@@ -204,9 +203,9 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto oscuro titulo={<FontMix bold="Les entregamos" italic=" un dossier web." />}>
+            <Texto oscuro titulo={<FontMix bold="La respuesta:" italic=" un dossier web." />}>
               <p>
-                Servicios, honorarios y condiciones de cada uno, explicados con claridad. Se abre desde un link, se ve bien en el celular y en el iPad, y se actualiza sin rehacer un archivo.
+                Servicios, honorarios y condiciones de cada uno, presentados con claridad. Se comparte con un enlace, funciona en celular y tablet, y se actualiza sin rehacer documentos.
               </p>
             </Texto>
             <Imagen oscuro ratio="16 / 9" tamano="2400 × 1350" nombre="Dossier de servicios" />
@@ -214,9 +213,9 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto oscuro titulo={<FontMix bold="Dee," italic=" el asistente de dunamis.agency." />}>
+            <Texto oscuro titulo={<FontMix bold="Dee," italic=" asistente virtual de dunamis.agency." />}>
               <p>
-                Dee está conectado a la base de propiedades y servicios de Dunamis. Responde consultas, muestra las propiedades publicadas que calzan con lo que busca cada persona, agenda visitas y deriva el contacto a un corredor.
+                Dee está conectado a la base de propiedades y servicios de Dunamis. Responde consultas, presenta las propiedades publicadas según los criterios de cada usuario, agenda visitas y deriva el contacto a un corredor.
               </p>
             </Texto>
             <Imagen oscuro ratio="3 / 2" tamano="2400 × 1600" nombre="Conversación con Dee" />

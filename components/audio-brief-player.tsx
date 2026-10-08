@@ -85,7 +85,7 @@ export function AudioBriefPlayer({ src }: { src: string }) {
   const progressX = WAVE_X0 + progress * (WAVE_X1 - WAVE_X0)
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '300px' }}>
+    <div style={{ position: 'relative', width: '100%' }}>
       <img
         src="/audio-brief-dunamis.svg"
         alt="Audio de 8 minutos enviado por Dunamis por chat"

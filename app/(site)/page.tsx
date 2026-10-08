@@ -143,7 +143,7 @@ export default function HomePage() {
               </div>
             ) : (
               <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto flex flex-col items-center gap-4">
-                <img src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
+                <img className="self-start" src="/icons/regla-95-5-john-dawes.svg" alt="Regla 95/5, John Dawes" style={{ height: '16px', width: 'auto' }} />
                 <div className="w-full" style={{ position: 'relative', aspectRatio: '1' }}>
                   <EyeGrid />
                 </div>
@@ -159,6 +159,14 @@ export default function HomePage() {
           )}
         </section>
       ))}
+
+      {/* Conector hacia el módulo verde: la línea pasa de gris a negro justo en el cruce de fondos */}
+      <div className="md:hidden flex justify-center" style={{ height: '100px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
+        <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1} dotSize={7} />
+      </div>
+      <div className="hidden md:flex justify-center" style={{ height: '160px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
+        <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1} dotSize={7} />
+      </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}
       <section

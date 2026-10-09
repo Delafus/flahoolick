@@ -27,7 +27,7 @@ export function ModuloComoTrabajamos() {
               className="group flex flex-col gap-3 p-8 hover:bg-[#EF9DB6] transition-colors"
               style={{ backgroundColor: GRIS }}>
               <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{d.nombre}</h3>
-              <p className="text-sm leading-relaxed opacity-65 flex-1">{d.desc}</p>
+              <p className="text-[15px] leading-relaxed opacity-65 flex-1">{d.desc}</p>
               <span className="label opacity-40 group-hover:opacity-80 transition-opacity">Explorar →</span>
             </Link>
           ))}

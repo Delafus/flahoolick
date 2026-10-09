@@ -348,9 +348,9 @@
 
   /* Lead paragraph — para texto editorial grande */
   .text-lead {
-    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-    line-height: 1.65;
-    font-weight: 300;
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   /* Layout */

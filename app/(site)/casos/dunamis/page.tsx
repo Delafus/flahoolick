@@ -170,6 +170,21 @@ export default function CasoDunamis() {
                 Valor estima el valor de mercado de una propiedad a partir de la UF del día, el cap rate de la zona y la vacancia del trimestre. La Decisión es un diagnóstico de tres minutos para quien evalúa comprar o arrendar. Ambas herramientas cierran con una invitación a conversar con el equipo de Dunamis.
               </p>
             </Texto>
+
+            {/* Ejemplo del recorrido completo: CEP → artículo → herramienta */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center py-4" style={{ borderTop: '1px solid rgba(0,0,0,0.15)', borderBottom: '1px solid rgba(0,0,0,0.15)' }}>
+              <div className="flex flex-col gap-5">
+                <h3 style={{ fontSize: 'clamp(1.375rem, 2.2vw, 1.875rem)', lineHeight: 1.1 }}>
+                  <FontMix bold="Del CEP" italic=" a la herramienta." />
+                </h3>
+                <p className="text-lead" style={{ opacity: 0.75 }}>
+                  &ldquo;Cada precio es autobiográfico&rdquo; parte de una situación frecuente: el propietario que fija su precio por su historia con el activo y no por el mercado. El artículo desarrolla esa tensión y cierra con Valor, que contrasta ese número con la UF del día, el cap rate de la zona y la vacancia del trimestre.
+                </p>
+                <LinkExterno href="https://www.dunamis.broker/blog/cada-precio-es-autobiografico">Leer el artículo →</LinkExterno>
+              </div>
+              <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Artículo + Valor" />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-center" style={{ aspectRatio: '3 / 2', backgroundColor: '#EFE9DD' }}>

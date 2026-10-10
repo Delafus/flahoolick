@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 import { FontMix } from '@/components/page-layout'
 import { ContactForm } from '@/components/contact-form'
-import { AudioBriefPlayer } from '@/components/audio-brief-player'
 
 export const metadata: Metadata = {
   title: 'Caso Dunamis | Flahoolick',
@@ -206,15 +205,12 @@ export default function CasoDunamis() {
       <section className="page-px section-py" style={{ backgroundColor: NEGRO, color: BLANCO }}>
         <div className="max-container flex flex-col gap-24 md:gap-32">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="flex flex-col gap-10">
             <Texto oscuro titulo={<FontMix bold="El requerimiento:" italic=" un PDF en Canva." />}>
               <p>
                 El equipo comercial necesitaba material simple para enviar por WhatsApp o presentar en iPad durante reuniones y visitas: servicios, compraventa, valores y un resumen del stock. El objetivo era dejar de explicar todo desde cero en cada llamada.
               </p>
             </Texto>
-            <div className="w-full mx-auto" style={{ maxWidth: '360px' }}>
-              <AudioBriefPlayer src="/audio/dunamis-brief.mp3" />
-            </div>
           </div>
 
           <div className="flex flex-col gap-10">

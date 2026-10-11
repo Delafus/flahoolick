@@ -156,7 +156,7 @@ export default function CasoDunamis() {
                 De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.
               </p>
             </Texto>
-            <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Transición" />
+            <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Transición de la marca Dunamis a sus dos verticales, Agency y Broker" src="/casos/dunamis/transicion.webp" />
             <p className="text-lead" style={{ maxWidth: '46rem', opacity: 0.75 }}>
               Cada vertical recibió su propio sitio: dunamis.agency y dunamis.broker. Ambos cuentan con un gestor de contenidos que permite al equipo publicar propiedades y artículos de forma autónoma.
             </p>

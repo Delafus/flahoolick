@@ -16,8 +16,11 @@ const BLANCO = '#ffffff'
 const SERVICIOS = ['Marca y relato', 'Estrategia de contenido', 'Producción de contenido', 'IA para marketing y ventas']
 
 /** Espacio reservado para una imagen del caso. Muestra el tamaño que hay que exportar. */
-function Imagen({ ratio, tamano, nombre, oscuro = false }: { ratio: string; tamano: string; nombre: string; oscuro?: boolean }) {
+function Imagen({ ratio, tamano, nombre, src, oscuro = false }: { ratio: string; tamano: string; nombre: string; src?: string; oscuro?: boolean }) {
   const color = oscuro ? BLANCO : NEGRO
+  if (src) {
+    return <img src={src} alt={nombre} style={{ aspectRatio: ratio, width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
+  }
   return (
     <div
       style={{
@@ -108,7 +111,7 @@ export default function CasoDunamis() {
               </p>
             ))}
           </div>
-          <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Portada" />
+          <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Caso Dunamis" src="/casos/dunamis/portada.webp" />
         </div>
       </section>
 

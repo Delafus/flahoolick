@@ -194,7 +194,7 @@ export default function CasoDunamis() {
             </Texto>
             <LinkExterno href="https://www.dunamis.broker/blog/cada-precio-es-autobiografico">Leer el artículo →</LinkExterno>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Artículo + Valor" />
+              <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Artículo Cada precio es autobiográfico junto al simulador Valor" src="/casos/dunamis/articulo-valor.webp" />
               <div className="flex items-center justify-center" style={{ aspectRatio: '3 / 2', backgroundColor: '#EFE9DD' }}>
                 <img src="/valor-calculadora.svg" alt="Simulador Valor de Dunamis Broker" style={{ width: '70%', height: 'auto' }} />
               </div>

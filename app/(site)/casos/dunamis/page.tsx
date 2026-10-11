@@ -172,7 +172,7 @@ export default function CasoDunamis() {
                 Dunamistas es la plataforma editorial de Dunamis Brokers: artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana.
               </p>
             </Texto>
-            <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Blog y glosario" />
+            <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Dunamistas, plataforma editorial de Dunamis Brokers" src="/casos/dunamis/blog.webp" />
             <div className="grid grid-cols-2 gap-6">
               <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Instagram" />
               <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Instagram" />

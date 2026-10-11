@@ -111,7 +111,17 @@ export default function CasoDunamis() {
               </p>
             ))}
           </div>
-          <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Caso Dunamis" src="/casos/dunamis/portada.webp" />
+          <video
+            src="/casos/dunamis/portada.mp4"
+            poster="/casos/dunamis/portada.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Caso Dunamis"
+            style={{ aspectRatio: '16 / 9', width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
+          />
         </div>
       </section>
 

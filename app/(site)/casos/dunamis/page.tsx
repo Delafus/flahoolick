@@ -201,7 +201,7 @@ export default function CasoDunamis() {
             <p className="text-lead" style={{ maxWidth: '46rem', opacity: 0.75 }}>
               La Decisión acompaña a quien evalúa comprar o arrendar con un diagnóstico de tres minutos. Ambas herramientas cierran con una invitación a conversar con el equipo de Dunamis.
             </p>
-            <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="La Decisión" />
+            <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Diagnóstico La Decisión de Dunamis Broker" src="/casos/dunamis/decision.webp" />
             <LinkExterno href="https://decision.dunamis.broker/">Probar La Decisión →</LinkExterno>
           </div>
 

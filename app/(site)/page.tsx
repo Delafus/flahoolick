@@ -119,10 +119,10 @@ export default function HomePage() {
       {SCROLLS.map((s, i) => (
         <section
           key={i}
-          className={`flex flex-col items-center justify-center page-px ${i === 0 ? 'pt-32 md:pt-[220px]' : 'pt-24'}`}
+          className={`flex flex-col items-center page-px ${i === 0 ? 'justify-center pt-32 md:pt-[220px]' : 'justify-end pt-24'}`}
           style={{
             minHeight: '100dvh',
-            paddingBottom: '2rem',
+            paddingBottom: i === 0 ? '2rem' : 0,
             backgroundColor: '#D8D8D7',
             color: '#000000',
           }}
@@ -132,37 +132,46 @@ export default function HomePage() {
             <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
               {s.sub}
             </p>
-            <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 70} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 110} thickness={1} dotSize={7} /></div>
-            </>
+            {/* Conectores pegados a la animación: dot → línea que entra en el círculo/grilla,
+                y abajo una línea que nace desde dentro. Las líneas quedan detrás (z-index). */}
+            <div className="flex flex-col items-center w-full">
+              <div className="w-full md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={10} dot="top" flush /></div>
+              <div className="w-full hidden md:block"><ScrollConnector color="#403D37" height={140} thickness={1.5} dotSize={10} dot="top" flush /></div>
 
-            {i === 0 ? (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-8 md:mt-20 md:mb-20 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
-                <TrappedDots diameterPercent={80} dotColor="#F1EEE7" speedFactor={0.5} />
-              </div>
-            ) : (
-              <div className="w-full max-w-[300px] md:max-w-[440px] mt-8 mb-2 md:mt-20 md:mb-6 mx-auto" style={{ position: 'relative', aspectRatio: '1' }}>
-                <EyeGrid />
-              </div>
-            )}
+              {i === 0 ? (
+                <div className="w-full max-w-[300px] md:max-w-[440px] mx-auto -mt-3 md:-mt-4" style={{ position: 'relative', zIndex: 1, aspectRatio: '1' }}>
+                  <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
+                  <TrappedDots diameterPercent={80} dotColor="#F1EEE7" speedFactor={0.5} />
+                </div>
+              ) : (
+                <div className="w-full max-w-[300px] md:max-w-[440px] mx-auto" style={{ position: 'relative', zIndex: 1, aspectRatio: '1' }}>
+                  <EyeGrid />
+                </div>
+              )}
+
+              {i === 0 ? (
+                <>
+                  <div className="w-full md:hidden -mt-3"><ScrollConnector color="#403D37" height={100} thickness={1.5} dotSize={10} dot="bottom" flush /></div>
+                  <div className="w-full hidden md:block -mt-4"><ScrollConnector color="#403D37" height={160} thickness={1.5} dotSize={10} dot="bottom" flush /></div>
+                </>
+              ) : (
+                /* Hero 2: la línea sigue sin cortar hasta el cruce con el módulo verde */
+                <>
+                  <div className="w-full md:hidden"><ScrollConnector color="#403D37" height={60} thickness={1.5} dotSize={10} dot="none" flush /></div>
+                  <div className="w-full hidden md:block"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={10} dot="none" flush /></div>
+                </>
+              )}
+            </div>
           </div>
-          {i < SCROLLS.length - 1 && (
-            <>
-              <div className="md:hidden"><ScrollConnector color="#403D37" height={i === 0 ? 90 : 100} thickness={1} dotSize={7} /></div>
-              <div className="hidden md:block"><ScrollConnector color="#403D37" height={i === 0 ? 140 : 160} thickness={1} dotSize={7} /></div>
-            </>
-          )}
         </section>
       ))}
 
       {/* Conector hacia el módulo verde: la línea pasa de gris a negro justo en el cruce de fondos */}
       <div className="md:hidden flex justify-center" style={{ height: '100px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1} dotSize={7} />
+        <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1.5} dotSize={10} flush />
       </div>
       <div className="hidden md:flex justify-center" style={{ height: '160px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1} dotSize={7} />
+        <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1.5} dotSize={10} flush />
       </div>
 
       {/* PRESENTACIÓN — Somos FLAHOOLICK */}

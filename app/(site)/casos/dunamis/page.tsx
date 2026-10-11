@@ -151,14 +151,14 @@ export default function CasoDunamis() {
           </div>
 
           <div className="flex flex-col gap-10">
-            <Texto titulo={<FontMix bold="Una sola identidad aprendió a hablarle a dos públicos." />}>
+            <Texto titulo={<FontMix bold="Una nueva identidad para dos públicos." />}>
               <p>
-                Dunamis Agency conversa con compradores de alto valor en una zona acotada. Dunamis Brokers atiende a un público amplio, con activos de todos los tamaños. Diseñamos un sistema de identidad que sirve a ambas: logotipo, iconografía, paleta y banco de imágenes.
+                De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.
               </p>
             </Texto>
-            <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Marca" />
+            <Imagen ratio="16 / 9" tamano="2400 × 1350" nombre="Transición" />
             <p className="text-lead" style={{ maxWidth: '46rem', opacity: 0.75 }}>
-              Cada vertical recibió su sitio, dunamis.agency y dunamis.broker. Ambos tienen un gestor de contenidos que deja al equipo publicando propiedades y artículos por su cuenta.
+              Cada vertical recibió su propio sitio: dunamis.agency y dunamis.broker. Ambos cuentan con un gestor de contenidos que permite al equipo publicar propiedades y artículos de forma autónoma.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="dunamis.agency" />

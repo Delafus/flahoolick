@@ -174,8 +174,8 @@ export default function CasoDunamis() {
             </Texto>
             <Imagen ratio="3 / 2" tamano="2400 × 1600" nombre="Dunamistas, plataforma editorial de Dunamis Brokers" src="/casos/dunamis/blog.webp" />
             <div className="grid grid-cols-2 gap-6">
-              <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Instagram" />
-              <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Instagram" />
+              <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Contenido de Dunamistas para Instagram" src="/casos/dunamis/instagram-1.webp" />
+              <Imagen ratio="3 / 4" tamano="1200 × 1600" nombre="Contenido de Dunamistas para Instagram" src="/casos/dunamis/instagram-2.webp" />
             </div>
             <p className="text-lead" style={{ maxWidth: '46rem', opacity: 0.75 }}>
               La fundadora lleva esas mismas ideas a LinkedIn y a charlas del sector, con su propia voz.

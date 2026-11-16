@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { todas } from '@/sanity/lib/jerga'
+import { JERGA_VISIBLE } from '@/components/jerga-visible'
 
 const BASE = 'https://www.flahoolick.com'
 
@@ -14,7 +15,7 @@ const RUTAS = [
   '/casos/dunamis',
   '/sobre-flahoolick',
   '/faq',
-  '/jerga',
+  ...(JERGA_VISIBLE ? ['/jerga'] : []),
   '/politica-de-privacidad',
 ]
 

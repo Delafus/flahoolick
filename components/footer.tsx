@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import { JERGA_VISIBLE } from './jerga-visible'
 
 const LINKS = [
   { label: 'Servicios', href: '/servicios' },
   { label: 'Metodología', href: '/metodologia' },
   { label: 'Caso Dunamis', href: '/casos/dunamis' },
   { label: 'Sobre Flahoolick', href: '/sobre-flahoolick' },
-  { label: 'JERGA', href: '/jerga' },
+  ...(JERGA_VISIBLE ? [{ label: 'JERGA', href: '/jerga' }] : []),
   { label: 'FAQ', href: '/faq' },
   { label: 'Contacto', href: '/#contacto' },
   { label: 'Política de Privacidad', href: '/politica-de-privacidad' },

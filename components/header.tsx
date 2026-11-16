@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePageColor } from '@/context/page-color'
 import { DISCIPLINAS } from './servicios-datos'
+import { JERGA_VISIBLE } from './jerga-visible'
 
 interface MegaMenuItem {
   title: string
@@ -52,7 +53,7 @@ const PANEL_MAIN = [
   { label: 'Servicios',    href: '/servicios' },
   { label: 'Metodología',  href: '/metodologia' },
   { label: 'Caso Dunamis', href: '/casos/dunamis' },
-  { label: 'JERGA',        href: '/jerga' },
+  ...(JERGA_VISIBLE ? [{ label: 'JERGA', href: '/jerga' }] : []),
 ]
 
 const PANEL_SECONDARY = [
@@ -144,7 +145,7 @@ export function Header() {
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
             <NavLink href="/casos/dunamis" color={text} onClick={() => setActive(null)}>Caso Dunamis</NavLink>
-            <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
+            {JERGA_VISIBLE && <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>}
           </nav>
           <Link href="#contacto"
             className="btn-invert label hidden md:inline-flex items-center px-5 py-2.5"

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Pagina, Bloque, Cierre, ENLACE } from '@/components/minimal'
 import { CTA_TIPO } from '@/content/jerga'
+import { JERGA_VISIBLE } from '@/components/jerga-visible'
 import { todas, porTipo, destacada, categorias } from '@/sanity/lib/jerga'
 
 export const revalidate = 60
@@ -10,6 +11,7 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'JERGA | Estrategia, contenido y decisiones B2B',
   description: 'Ideas, guías y herramientas de Flahoolick para convertir conocimiento complejo en presencia de marca y apoyo para ventas.',
+  ...(JERGA_VISIBLE ? {} : { robots: { index: false } }),
 }
 
 export default async function JergaPage() {

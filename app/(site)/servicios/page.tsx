@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, Cierre } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Servicios de estrategia, marca, contenido e IA | Flahoolick',
@@ -35,7 +34,6 @@ export default function Servicios() {
     <Pagina>
       <Hero
         color="rosa"
-        visual={<DotPattern pattern="constelaciones" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Servicios"
         titulo="Cuatro servicios, un mismo sistema."
         bajada="Estrategia, marca, contenido e IA para que tu empresa esté presente durante todo el ciclo de decisión de tu comprador."

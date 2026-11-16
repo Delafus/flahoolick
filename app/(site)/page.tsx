@@ -97,7 +97,10 @@ export default function HomePage() {
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
           <div>
             <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
-            <Marquee color="#000000" excluir={['Dunamis']} />
+            {/* A todo el ancho de la pantalla, fuera de la columna de texto. */}
+            <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
+              <Marquee color="#000000" excluir={['Dunamis']} />
+            </div>
           </div>
           <p><Link href="/sobre-flahoolick" className={ENLACE}>Sobre Flahoolick →</Link></p>
         </Bloque>

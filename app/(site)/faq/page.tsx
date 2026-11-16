@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Cierre } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Preguntas frecuentes | Flahoolick',
@@ -32,7 +31,6 @@ export default function FAQ() {
     <Pagina>
       <Hero
         color="menta"
-        visual={<DotPattern pattern="origen" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Preguntas frecuentes"
         titulo="Lo que probablemente quieras saber antes de conversar."
         bajada="También puedes escribirnos directamente. Una conversación basta para empezar."

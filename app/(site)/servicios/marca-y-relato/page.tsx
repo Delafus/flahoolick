@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Posicionamiento, marca y relato B2B | Flahoolick',
@@ -25,7 +24,6 @@ export default function MarcaYRelato() {
     <Pagina>
       <Hero
         color="rosa"
-        visual={<DotPattern pattern="convergencia" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Marca y relato"
         titulo="Una historia que tu mercado puede entender y repetir."
         bajada="Definimos la posición de tu empresa y los mensajes que todo el equipo cuenta igual."

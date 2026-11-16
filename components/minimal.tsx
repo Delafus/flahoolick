@@ -33,7 +33,7 @@ function banda(tono?: Tono): React.CSSProperties {
 /** Fondo blanco y texto negro, sin columna: para páginas que mezclan texto e imágenes anchas. */
 export function Lienzo({ children }: { children: React.ReactNode }) {
   return (
-    <div className="page-px text-lg leading-relaxed" style={{ backgroundColor: '#ffffff', color: '#000000', fontFamily: 'var(--font-inter)' }}>
+    <div className="page-px text-lg leading-relaxed" style={{ backgroundColor: '#ffffff', color: '#000000', fontFamily: 'var(--font-inter)', overflowX: 'clip' }}>
       <PageColorSetter bg="#ffffff" text="#000000" />
       {children}
     </div>
@@ -69,7 +69,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
   nota?: string
   /** Ocupa toda la pantalla (portada). */
   completo?: boolean
-  /** Hero grande de color, de borde a borde, con el titular a la izquierda y `visual` a la derecha. */
+  /** Hero grande de color, de borde a borde, con el texto centrado y `visual` debajo. */
   color?: Cabecera
   /** Imagen o ilustración del hero de color. */
   visual?: React.ReactNode
@@ -78,7 +78,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
     const { fondo, texto } = CABECERAS[color]
     return (
       <section
-        className={`relative grid grid-cols-1 items-center gap-12 ${visual ? 'lg:grid-cols-2 lg:gap-16' : ''}`}
+        className="relative flex flex-col items-center justify-center gap-14 text-center"
         style={{
           left: '50%', transform: 'translateX(-50%)', width: ANCHO_HERO,
           minHeight: '100dvh', paddingTop: 'calc(64px + 3.5rem)', paddingBottom: '4rem',
@@ -86,14 +86,14 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
         }}
       >
         <PageColorSetter bg={fondo} text={texto} />
-        <div className="flex flex-col gap-8" style={visual ? undefined : { maxWidth: '60rem' }}>
+        <div className="flex flex-col items-center gap-8" style={{ maxWidth: '64rem' }}>
           {eyebrow && <p className="label">{eyebrow}</p>}
-          <h1 style={{ ...FUENTE, fontWeight: 500, fontSize: 'clamp(2.75rem, 5.4vw, 5.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
+          <h1 style={{ ...FUENTE, fontWeight: 500, fontSize: 'clamp(2.75rem, 6.2vw, 6.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
             {titulo}
           </h1>
-          {bajada && <p className="text-xl md:text-2xl" style={{ lineHeight: 1.35, maxWidth: '34rem' }}>{bajada}</p>}
+          {bajada && <p className="text-xl md:text-2xl" style={{ lineHeight: 1.35, maxWidth: '40rem' }}>{bajada}</p>}
           {cta && (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col items-center gap-3">
               <Link href="#contacto" className="btn-invert label inline-flex w-fit items-center px-7 py-4"
                 style={{ '--btn-bg': texto, '--btn-fg': fondo, borderRadius: '999px' } as React.CSSProperties}>
                 {cta}
@@ -102,11 +102,8 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
             </div>
           )}
         </div>
-        {visual && (
-          <div className="mx-auto w-full lg:mr-0" style={{ maxWidth: '34rem', aspectRatio: '1 / 1' }}>
-            {visual}
-          </div>
-        )}
+        {/* La imagen, si la hay, va debajo del texto. */}
+        {visual && <div className="w-full" style={{ maxWidth: '26rem', aspectRatio: '1 / 1' }}>{visual}</div>}
       </section>
     )
   }

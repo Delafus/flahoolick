@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Estrategia de contenido B2B | Flahoolick',
@@ -19,7 +18,6 @@ export default function EstrategiaDeContenido() {
     <Pagina>
       <Hero
         color="rosa"
-        visual={<DotPattern pattern="mapa" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Estrategia de contenido"
         titulo="Un plan que dice qué publicar, para quién y cuándo."
         bajada="En cuatro a seis semanas recibes un playbook con territorios, audiencias, mensajes y roadmap."

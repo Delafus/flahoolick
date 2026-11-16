@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Metodología | Del conocimiento disperso a un sistema que trabaja | Flahoolick',
@@ -41,7 +40,6 @@ export default function Metodologia() {
     <Pagina>
       <Hero
         color="amarillo"
-        visual={<DotPattern pattern="captura" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Metodología"
         titulo="Del conocimiento disperso a un sistema que trabaja."
         bajada="Entendemos cómo tu empresa crea valor, definimos la posición que puede defender y convertimos esa dirección en contenido y herramientas para el mercado."

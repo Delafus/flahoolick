@@ -99,7 +99,7 @@ export default function HomePage() {
             <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
             <Marquee color="#000000" excluir={['Dunamis']} />
           </div>
-          <p><Link href="/sobre-flahoolick" className={ENLACE}>Conoce al equipo →</Link></p>
+          <p><Link href="/sobre-flahoolick" className={ENLACE}>Sobre Flahoolick →</Link></p>
         </Bloque>
 
         <Bloque titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">

@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, Cierre } from '@/components/minimal'
-import { logos } from '@/components/marquee'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick | Estrategia y contenido B2B',
@@ -28,18 +27,6 @@ export default function SobreFlahoolick() {
       </Bloque>
       <Bloque titulo="Qué creemos">
         <Items items={CREEMOS} />
-      </Bloque>
-      <Bloque titulo="Cuatro profesionales senior.">
-        <p>Venimos de medios de comunicación, grupos publicitarios globales, estrategia, creatividad y producción editorial. Hemos trabajado con compañías de distintas industrias y escalas, traduciendo problemas complejos en ideas, sistemas y piezas que las personas pueden utilizar.</p>
-        <p>En Flahoolick ese oficio se concentra en construir presencia de marca para empresas con un valor rico, técnico y complejo.</p>
-        <p className="text-base" style={{ opacity: 0.5 }}>Organizaciones en las que nuestro equipo ha trabajado</p>
-        <ul className="flex flex-wrap items-center gap-x-10 gap-y-6">
-          {logos.map(l => (
-            <li key={l.alt}>
-              <img src={l.src} alt={l.alt} style={{ height: '28px', width: 'auto', maxWidth: '110px', filter: 'brightness(0)', display: 'block' }} />
-            </li>
-          ))}
-        </ul>
       </Bloque>
       <Cierre
         titulo="Generosidad también es hacer circular lo que uno sabe."

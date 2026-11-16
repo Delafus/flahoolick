@@ -63,7 +63,7 @@ export default function HomePage() {
           </p>
         </Pantalla>
 
-        <Pantalla titulo="Tu empresa sabe muchísimo. Tu mercado ve una parte mínima.">
+        <Pantalla titulo="Tu empresa sabe mucho más de lo que tu mercado conoce de ella.">
           <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Nosotros entramos ahí.</p>
         </Pantalla>
 

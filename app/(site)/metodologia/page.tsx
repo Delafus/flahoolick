@@ -10,20 +10,20 @@ const PASOS = [
   {
     id: 'paso-entendemos',
     titulo: '1. Encontramos',
-    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Identificamos qué problemas reales resuelves y a qué clientes les importa más. Revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas. Identificamos el conocimiento que distingue a la empresa y las brechas que dificultan explicarlo.',
-    resultado: 'Un diagnóstico con los argumentos y evidencias que hacen que un cliente te elija.',
+    texto: 'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, cuál es el conocimiento que distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
+    resultado: 'Un diagnóstico con hallazgos, prioridades y los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
     id: 'paso-posicion',
     titulo: '2. Ordenamos',
-    texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Definimos a quién hablarle, con qué mensaje y sobre qué temas. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
-    resultado: 'Una propuesta de valor y un mapa de mensajes que toda la empresa cuenta igual.',
+    texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
+    resultado: 'Una propuesta de valor clara y un mapa de mensajes que toda la empresa cuenta igual, ordenado por audiencias y momentos de decisión.',
   },
   {
     id: 'paso-circulacion',
     titulo: '3. Ponemos en circulación',
-    texto: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar. Convertimos esa dirección en una operación concreta: temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
-    resultado: 'Piezas publicadas, con resultados que revisamos junto a marketing y ventas.',
+    texto: 'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: definimos temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
+    resultado: 'Piezas publicadas y medidas junto a marketing y ventas, con una hoja de ruta para producir, evaluar y mejorar de forma continua.',
   },
 ]
 
@@ -43,16 +43,20 @@ export default function Metodologia() {
         titulo="Del conocimiento disperso a un sistema que trabaja."
         bajada="Entendemos cómo tu empresa crea valor, definimos la posición que puede defender y convertimos esa dirección en contenido y herramientas para el mercado."
       />
-      <Bloque titulo="Una comunicación clara nace de comprender profundamente el negocio.">
-        <p>Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa. Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió.</p>
-        <p>Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de la decisión de compra.</p>
+      <Bloque titulo="Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa.">
+        <p>Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió. Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de salir a comprar.</p>
       </Bloque>
-      {PASOS.map(p => (
-        <Bloque key={p.id} id={p.id} titulo={p.titulo}>
-          <p>{p.texto}</p>
-          <p><span style={{ fontWeight: 500 }}>Recibes:</span> {p.resultado}</p>
-        </Bloque>
-      ))}
+      <Bloque titulo="Cómo lo llevamos a la práctica.">
+        <div className="flex flex-col gap-10">
+          {PASOS.map(p => (
+            <div key={p.id} id={p.id} className="flex flex-col gap-3" style={{ scrollMarginTop: '96px' }}>
+              <h3 className="text-[1.375rem]" style={{ fontWeight: 500, lineHeight: 1.25 }}>{p.titulo}</h3>
+              <p>{p.texto}</p>
+              <p><span style={{ fontWeight: 500 }}>Recibes:</span> {p.resultado}</p>
+            </div>
+          ))}
+        </div>
+      </Bloque>
       <Bloque titulo="Cinco principios para producir comunicación con sustancia.">
         <Items items={PRINCIPIOS} />
       </Bloque>

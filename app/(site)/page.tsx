@@ -56,7 +56,7 @@ export default function HomePage() {
           nota={NOTA}
         />
 
-        <Pantalla verde titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+        <Pantalla tono="negro" titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
           <p className="text-base">
             <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}
@@ -82,11 +82,11 @@ export default function HomePage() {
           <p><Link href="/metodologia" className={ENLACE}>Ver la metodología →</Link></p>
         </Bloque>
 
-        <Bloque titulo="Para qué te sirve.">
+        <Bloque tono="gris" titulo="Para qué te sirve.">
           <Items items={BENEFICIOS} />
         </Bloque>
 
-        <Bloque titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
+        <Bloque tono="negro" titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
           <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
           <p><Link href="/casos/dunamis" className={ENLACE}>Ver el caso Dunamis →</Link></p>
         </Bloque>
@@ -95,7 +95,7 @@ export default function HomePage() {
           <Items items={SERVICIOS} />
         </Bloque>
 
-        <Bloque verde visual={<IdeaGenerosaLogo className="w-40 md:w-52 mb-6" />} titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
+        <Bloque tono="verde" visual={<IdeaGenerosaLogo className="w-40 md:w-52 mb-6" />} titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
           <div>
             <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>

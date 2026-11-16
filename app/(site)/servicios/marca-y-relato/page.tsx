@@ -35,7 +35,7 @@ export default function MarcaYRelato() {
       <Bloque titulo="Una marca sólida nace de comprender profundamente el negocio.">
         <p>Partimos de cómo la empresa crea valor, de las decisiones que la distinguen y de las razones por las que sus clientes la eligen. Desde ahí construimos una historia que el mercado puede comprender y que los equipos pueden aplicar.</p>
       </Bloque>
-      <Bloque titulo="Qué construimos">
+      <Bloque tono="gris" titulo="Qué construimos">
         <Items items={CONSTRUIMOS} />
       </Bloque>
       <Bloque titulo="Qué cambia">

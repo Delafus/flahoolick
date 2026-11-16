@@ -43,7 +43,7 @@ export default function Metodologia() {
         titulo="Del conocimiento disperso a un sistema que trabaja."
         bajada="Entendemos cómo tu empresa crea valor, definimos la posición que puede defender y convertimos esa dirección en contenido y herramientas para el mercado."
       />
-      <Bloque verde titulo="Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa.">
+      <Bloque tono="negro" titulo="Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa.">
         <p>Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió. Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de salir a comprar.</p>
       </Bloque>
       <Bloque titulo="Cómo lo llevamos a la práctica.">
@@ -57,7 +57,7 @@ export default function Metodologia() {
           ))}
         </div>
       </Bloque>
-      <Bloque titulo="Cinco principios para producir comunicación con sustancia.">
+      <Bloque tono="gris" titulo="Cinco principios para producir comunicación con sustancia.">
         <Items items={PRINCIPIOS} />
       </Bloque>
       <Bloque titulo="Tus expertos pueden concentrarse en su trabajo.">

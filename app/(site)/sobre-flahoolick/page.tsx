@@ -18,7 +18,7 @@ export default function SobreFlahoolick() {
   return (
     <Pagina>
       <Hero
-        verde
+        tono="verde"
         visual={<IdeaGenerosaLogo className="w-48 md:w-64" />}
         titulo="Nacimos de una idea generosa."
         bajada={<>Del irlandés <em>flaithiúil</em>: generoso, espléndido, abundante. Flahoolick es un estudio de estrategia y contenido para empresas B2B con ciclos de decisión complejos.</>}
@@ -28,7 +28,7 @@ export default function SobreFlahoolick() {
         <p>Flahoolick conecta ese conocimiento con la forma en que la empresa se presenta, se explica y vende.</p>
         <p>Entendemos el negocio, definimos una posición y construimos el sistema que permite a marca, contenido y ventas trabajar desde una misma dirección.</p>
       </Bloque>
-      <Bloque titulo="Qué creemos">
+      <Bloque tono="negro" titulo="Qué creemos">
         <Items items={CREEMOS} />
       </Bloque>
       <Cierre

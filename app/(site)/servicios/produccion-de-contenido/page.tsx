@@ -35,7 +35,7 @@ export default function ProduccionDeContenido() {
       <Bloque titulo="Qué resolvemos">
         <Items items={RESOLVEMOS} />
       </Bloque>
-      <Bloque titulo="Tres tipos de activos">
+      <Bloque tono="gris" titulo="Tres tipos de activos">
         <Items items={ACTIVOS} />
       </Bloque>
       <Bloque titulo="Una idea puede cumplir más de un trabajo.">

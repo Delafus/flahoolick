@@ -30,7 +30,7 @@ export default function EstrategiaDeContenido() {
         <p>Estudiamos el modelo de negocio, el proceso comercial y las preguntas que el comprador necesita resolver. Luego contrastamos ese conocimiento con el mercado, la competencia, las búsquedas y las conversaciones que ya están ocurriendo.</p>
         <p>Elegimos las conversaciones que tu empresa merece liderar.</p>
       </Bloque>
-      <Bloque titulo="Qué construimos">
+      <Bloque tono="gris" titulo="Qué construimos">
         <Items items={CONSTRUIMOS} />
       </Bloque>
       <Bloque titulo="Partimos de lo que tu empresa ya sabe.">

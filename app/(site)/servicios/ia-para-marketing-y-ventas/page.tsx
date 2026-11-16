@@ -36,7 +36,7 @@ export default function HerramientasDeIAParaMarketing() {
       <Bloque titulo="La herramienta forma parte del negocio.">
         <p>La conectamos con documentos, conversaciones, reglas comerciales, mensajes de marca y sistemas existentes. Así trabaja con el contexto propio de la empresa y produce respuestas pertinentes.</p>
       </Bloque>
-      <Bloque titulo="Aplicaciones">
+      <Bloque tono="gris" titulo="Aplicaciones">
         <Items items={APLICACIONES} />
       </Bloque>
       <CasoEnlace titulo="De lo que sabía un equipo a un asistente que agenda visitas.">

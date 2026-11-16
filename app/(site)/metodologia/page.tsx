@@ -10,7 +10,7 @@ const PASOS = [
   {
     id: 'paso-entendemos',
     titulo: '1. Encontramos',
-    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Vemos qué valor entregas y a qué clientes les importa más. Revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas. Identificamos el conocimiento que distingue a la empresa y las brechas que dificultan explicarlo.',
+    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Identificamos qué problemas reales resuelves y a qué clientes les importa más. Revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas. Identificamos el conocimiento que distingue a la empresa y las brechas que dificultan explicarlo.',
     resultado: 'Un diagnóstico con los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
@@ -45,7 +45,7 @@ export default function Metodologia() {
       />
       <Bloque titulo="Una comunicación clara nace de comprender profundamente el negocio.">
         <p>Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa. Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió.</p>
-        <p>Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero y con qué mensaje.</p>
+        <p>Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de la decisión de compra.</p>
       </Bloque>
       {PASOS.map(p => (
         <Bloque key={p.id} id={p.id} titulo={p.titulo}>

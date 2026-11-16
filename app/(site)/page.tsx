@@ -15,7 +15,7 @@ const NOTA = 'Sin presentaciones ni decks de venta.'
 const PASOS = [
   {
     titulo: '01 Encontramos',
-    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Vemos qué valor entregas y a qué clientes les importa más.',
+    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Identificamos qué problemas reales resuelves y a qué clientes les importa más.',
     recibes: 'un diagnóstico con los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
@@ -38,8 +38,8 @@ const BENEFICIOS = [
 ]
 
 const SERVICIOS = [
-  { titulo: 'Estrategia de contenido', texto: 'Qué busca tu comprador y qué temas puede liderar tu empresa.', href: '/servicios/estrategia-de-contenido' },
   { titulo: 'Marca y relato', texto: 'Una idea central y mensajes que todo el equipo cuenta igual.', href: '/servicios/marca-y-relato' },
+  { titulo: 'Estrategia de contenido', texto: 'Qué busca tu comprador y qué temas puede liderar tu empresa.', href: '/servicios/estrategia-de-contenido' },
   { titulo: 'Producción de contenido', texto: 'Piezas de autoridad y herramientas de venta, en cadencia mensual.', href: '/servicios/produccion-de-contenido' },
   { titulo: 'IA para marketing y ventas', texto: 'Herramientas y agentes que investigan, automatizan y atienden.', href: '/servicios/ia-para-marketing-y-ventas' },
 ]

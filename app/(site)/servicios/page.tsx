@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 
 const SERVICIOS = [
   {
+    titulo: 'Marca y relato: articular tu propuesta de valor para que toda la empresa hable igual.',
+    texto: 'Cruzamos lo que ofreces con lo que tu comprador necesita resolver. Definimos la propuesta de valor, la idea central, la voz, las señales visuales y un mapa de mensajes que permiten explicar el negocio de forma clara y consistente.',
+    href: '/servicios/marca-y-relato',
+  },
+  {
     titulo: 'Estrategia de contenido: darle dirección a lo que publicas.',
     texto: 'Conectamos objetivos de negocio, audiencias, preguntas, temas y canales. El resultado es un playbook que permite decidir qué producir, para quién y con qué función.',
     href: '/servicios/estrategia-de-contenido',
-  },
-  {
-    titulo: 'Marca y relato: hacer que la empresa ocupe una posición propia.',
-    texto: 'Definimos la idea central, los mensajes, la voz y las señales visuales que permiten explicar el negocio de forma clara, reconocible y consistente.',
-    href: '/servicios/marca-y-relato',
   },
   {
     titulo: 'Producción de contenido: mantener el conocimiento en circulación.',
@@ -24,16 +24,9 @@ const SERVICIOS = [
   },
   {
     titulo: 'IA para marketing y ventas: convertir tareas repetidas en sistemas útiles.',
-    texto: 'Diseñamos agentes y aplicaciones que utilizan el conocimiento y las reglas de la empresa para investigar, producir, responder y ejecutar procesos concretos.',
+    texto: 'Diseñamos agentes y aplicaciones entrenados con el conocimiento y las reglas de tu empresa para investigar, producir, responder y ejecutar procesos concretos sin perder el criterio ni la voz de tu marca.',
     href: '/servicios/ia-para-marketing-y-ventas',
   },
-]
-
-const FORMAS = [
-  { titulo: 'Proyecto estratégico', texto: 'Define una posición, ordena el relato o construye una estrategia aplicable.' },
-  { titulo: 'Producción continua', texto: 'Mantiene una cadencia de contenido y herramientas con una participación eficiente del equipo interno.' },
-  { titulo: 'Solución con IA', texto: 'Automatiza una tarea concreta utilizando el conocimiento de la empresa.' },
-  { titulo: 'Sistema integrado', texto: 'Conecta estrategia, marca, contenido, ventas e IA bajo una misma dirección.' },
 ]
 
 export default function Servicios() {
@@ -51,14 +44,11 @@ export default function Servicios() {
       <Bloque titulo="Cuatro disciplinas. Un solo sistema.">
         <Items items={SERVICIOS} />
       </Bloque>
-      <Bloque titulo="Una forma de trabajo para cada desafío.">
-        <Items items={FORMAS} />
-      </Bloque>
       <Bloque titulo="Empezamos con un diagnóstico de cinco días.">
-        <p>Auditamos qué sabe tu empresa, cómo te muestran los modelos de IA cuando tu comprador busca y dónde están los vacíos.</p>
+        <p>Auditamos qué sabe tu empresa, cómo habla hoy tu equipo, cómo te muestran los modelos de IA cuando tu comprador busca y dónde están los vacíos.</p>
         <p>Te quedas con el diagnóstico, decidas lo que decidas después.</p>
       </Bloque>
-      <Cierre titulo="Haz que cada esfuerzo trabaje en la misma dirección." cta="Agenda una llamada de 30 minutos →" />
+      <Cierre titulo="Ordena lo que tu empresa sabe y conviértelo en ventaja comercial." cta="Agenda una llamada de 30 minutos →" />
     </Pagina>
   )
 }

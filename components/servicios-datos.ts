@@ -12,16 +12,16 @@ export interface Disciplina {
 /** Los cuatro servicios de Flahoolick, cada uno con su propia página bajo /servicios. */
 export const DISCIPLINAS: Disciplina[] = [
   {
-    id: 'estrategia-de-contenido',
-    nombre: 'Estrategia de contenido',
-    desc: 'Decidimos qué necesita saber el mercado, qué puede liderar tu empresa y qué función debe cumplir cada contenido durante la decisión.',
-    href: '/servicios/estrategia-de-contenido',
-  },
-  {
     id: 'marca-y-relato',
     nombre: 'Marca y relato',
     desc: 'Definimos una posición, una idea central y un lenguaje común para que dirección, marketing y ventas expliquen el mismo negocio.',
     href: '/servicios/marca-y-relato',
+  },
+  {
+    id: 'estrategia-de-contenido',
+    nombre: 'Estrategia de contenido',
+    desc: 'Decidimos qué necesita saber el mercado, qué puede liderar tu empresa y qué función debe cumplir cada contenido durante la decisión.',
+    href: '/servicios/estrategia-de-contenido',
   },
   {
     id: 'produccion-de-contenido',

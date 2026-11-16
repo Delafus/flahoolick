@@ -24,11 +24,14 @@ const bricolageGrotesque = Bricolage_Grotesque({
 })
 
 export const metadata: Metadata = {
-  title: 'Flahoolick | Estrategia y contenido para empresas B2B',
-  description: 'Convertimos conocimiento empresarial en presencia de marca y capacidad comercial para compañías B2B con decisiones complejas.',
+  metadataBase: new URL('https://www.flahoolick.com'),
+  title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
+  description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos. Santiago, Chile.',
   openGraph: {
     title: 'Flahoolick',
-    description: 'Convertimos conocimiento empresarial en presencia de marca y capacidad comercial para compañías B2B con decisiones complejas.',
+    description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos.',
+    url: 'https://www.flahoolick.com',
+    siteName: 'Flahoolick',
     locale: 'es_CL',
     type: 'website',
   },

@@ -55,7 +55,7 @@ export default function HomePage() {
         />
 
         <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
-          <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
+          <p>El 95% restante lo hará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
           <p className="text-base">
             <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}
             <Link href="/jerga/john-dawes-y-su-regla-del-95-5" className={ENLACE}>Leer la guía de la regla 95:5 →</Link>

@@ -1,135 +1,54 @@
 import { Metadata } from 'next'
-import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
 
-export const metadata: Metadata = { title: 'Marca y Relato | Flahoolick' }
+export const metadata: Metadata = {
+  title: 'Posicionamiento, marca y relato B2B | Flahoolick',
+  description: 'Definimos la posición, la idea central y el sistema verbal y visual que permite explicar negocios B2B complejos.',
+}
 
-const NEGRO = '#000000'
-
-const palabrasComunes = ['Innovación.', 'Experiencia.', 'Tecnología.', 'Compromiso.', 'Excelencia.']
-
-const problemas = [
-  { titulo: 'Tu empresa cuesta explicar', desc: 'Ordenamos el negocio y construimos una historia que el mercado puede entender y repetir.' },
-  { titulo: 'Tu marca se confunde con la categoría', desc: 'Definimos una posición, un lenguaje y unas señales capaces de distinguirla.' },
-  { titulo: 'Cada equipo cuenta una historia distinta', desc: 'Creamos una arquitectura común para marketing, ventas, dirección y equipos técnicos.' },
-  { titulo: 'La identidad pierde fuerza al aplicarse', desc: 'Diseñamos herramientas que permiten ejecutar la marca con claridad y consistencia.' },
+const CONSTRUIMOS = [
+  { titulo: 'Posición', texto: 'El lugar que la empresa puede ocupar y defender en la mente del mercado.' },
+  { titulo: 'Idea central', texto: 'La afirmación que organiza lo que la empresa hace, cree y promete.' },
+  { titulo: 'Arquitectura de mensajes', texto: 'La relación entre promesa, argumentos, pruebas, audiencias y situaciones comerciales.' },
+  { titulo: 'Voz e identidad', texto: 'El lenguaje y las señales visuales que vuelven reconocible la estrategia en cada punto de contacto.' },
 ]
 
-const pasos = [
-  { numero: '01', titulo: 'Posición', desc: 'Definimos el lugar que tu empresa quiere ocupar en la mente del mercado.' },
-  { numero: '02', titulo: 'Relato', desc: 'Construimos la historia que organiza lo que haces, crees y prometes.' },
-  { numero: '03', titulo: 'Voz', desc: 'Creamos un lenguaje reconocible para cada punto de contacto.' },
-  { numero: '04', titulo: 'Identidad', desc: 'Diseñamos las señales visuales que vuelven tangible la estrategia.' },
+const CAMBIA = [
+  { titulo: 'La empresa se vuelve más fácil de explicar', texto: 'Dirección, marketing y ventas cuentan una historia que el mercado puede comprender y repetir.' },
+  { titulo: 'La marca gana un lugar propio en la categoría', texto: 'La posición, el lenguaje y las señales expresan algo que la empresa puede sostener como propio.' },
+  { titulo: 'Las herramientas comparten un punto de partida', texto: 'Sitios, propuestas, campañas y presentaciones se construyen desde una misma arquitectura.' },
 ]
-
-const recibes = ['Sitios', 'Presentaciones', 'Campañas', 'Redes sociales', 'Ventas', 'Licitaciones', 'Comunicación interna', 'Experiencias digitales']
 
 export default function MarcaYRelato() {
   return (
-    <>
-      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
-      <PageLayout
-        tagline="Marca y Relato"
-        headline={<FontMix bold="Que todo tu equipo" italic=" cuente la misma historia." />}
-        description="La idea central y la arquitectura de mensajes que unifica cómo tu empresa habla."
-        heroBg="#EF9DB6"
-        heroText={NEGRO}
-        ctaHref="#contacto"
-        ctaLabel="Agenda una llamada →"
-      >
-        {/* Bloque de apertura */}
-        <BodySection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Ocupar un lugar" italic=" exige definirlo." />
-            </h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-lead opacity-80">Las empresas complejas suelen describirse con las mismas palabras.</p>
-              <div className="flex flex-wrap gap-x-2">
-                {palabrasComunes.map(p => (
-                  <span key={p} className="text-base opacity-40">{p}</span>
-                ))}
-              </div>
-              <p className="text-base leading-relaxed opacity-65">
-                Encontramos la idea que tu empresa puede defender y la convertimos en una posición visible.
-              </p>
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué construimos — secuencia de pasos con scroll-reveal */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué" italic=" construimos" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-              {pasos.map(p => (
-                <div key={p.numero} className="flex flex-col gap-3">
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
-        <BodySection dark>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué" italic=" resolvemos" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
-              {problemas.map(p => (
-                <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué recibes */}
-        <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div
-              className="hidden md:flex"
-              style={{
-                position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto',
-                border: '1px solid rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              <span className="label" style={{ color: '#ffffff', opacity: 0.25 }}>Ilustración</span>
-            </div>
-            <div className="flex flex-col gap-6">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-                <FontMix bold="Sistema" italic=" de marca" />
-              </h2>
-              <p className="text-base opacity-70">Una plataforma estratégica, verbal y visual preparada para funcionar en:</p>
-              <ul className="flex flex-col gap-2">
-                {recibes.map(r => (
-                  <li key={r} className="text-base flex items-start gap-3">
-                    <span aria-hidden="true" style={{ flexShrink: 0, opacity: 0.5, fontSize: '1.1em', lineHeight: 1.3 }}>•</span>
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Cierre — mensaje de Flahoolick, verde de marca. Sin CTA repetido, el contacto está justo debajo */}
-        <section className="page-px section-py" style={{ backgroundColor: '#1FDE91', color: NEGRO }}>
-          <div className="max-container flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0, color: NEGRO }}>
-              <FontMix bold="Tu mercado está lleno de empresas" italic=" diciendo lo mismo con distinto logo." />
-            </h2>
-            <p className="text-lead opacity-70" style={{ color: NEGRO }}>Démosle a tu marca algo propio que decir.</p>
-          </div>
-        </section>
-      </PageLayout>
-    </>
+    <Pagina>
+      <Hero
+        eyebrow="Marca y relato"
+        titulo="Una historia que tu mercado puede entender y repetir."
+        bajada="Definimos la posición de tu empresa y los mensajes que todo el equipo cuenta igual."
+        cta="Conversemos sobre tu marca →"
+      />
+      <Bloque titulo="Ocupar un lugar exige elegirlo.">
+        <p>Las empresas complejas suelen describirse con las mismas palabras: innovación, experiencia y compromiso.</p>
+        <p>Una posición define qué valor puede defender la empresa, para quién importa y qué pruebas la vuelven creíble.</p>
+      </Bloque>
+      <Bloque titulo="Una marca sólida nace de comprender profundamente el negocio.">
+        <p>Partimos de cómo la empresa crea valor, de las decisiones que la distinguen y de las razones por las que sus clientes la eligen. Desde ahí construimos una historia que el mercado puede comprender y que los equipos pueden aplicar.</p>
+      </Bloque>
+      <Bloque titulo="Qué construimos">
+        <Items items={CONSTRUIMOS} />
+      </Bloque>
+      <Bloque titulo="Qué cambia">
+        <Items items={CAMBIA} />
+      </Bloque>
+      <Bloque titulo="Una estrategia preparada para entrar en contacto con el mercado.">
+        <p>Entregamos una plataforma estratégica, verbal y visual aplicable en comunicación corporativa, marketing, ventas, licitaciones y experiencias digitales.</p>
+        <p>La entrega incluye las herramientas necesarias para llevar la estrategia a la práctica.</p>
+      </Bloque>
+      <CasoEnlace titulo="Una nueva identidad para dos públicos.">
+        <p>De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.</p>
+      </CasoEnlace>
+      <Cierre titulo="Dale a tu empresa una posición que pueda demostrar." cta="Trabajemos el relato →" />
+    </Pagina>
   )
 }

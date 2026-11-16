@@ -1,4 +1,4 @@
-const logos = [
+export const logos = [
   { src: '/logo-grey.svg',    alt: 'Grey' },
   { src: '/logo-mccann.svg',  alt: 'McCann' },
   { src: '/logo-bbdo.svg',    alt: 'BBDO' },
@@ -13,7 +13,8 @@ const logos = [
   { src: '/logo-dunamis.svg', alt: 'Dunamis' },
 ]
 
-export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
+export function Marquee({ color = '#3B0B2C', excluir = [] }: { color?: string; /** Logos (por alt) que no se muestran. */ excluir?: string[] }) {
+  const visibles = logos.filter(l => !excluir.includes(l.alt))
   const filter = color === '#3B0B2C'
     ? 'brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(2000%) hue-rotate(280deg) brightness(40%)'
     : color === '#083EA7'
@@ -26,7 +27,7 @@ export function Marquee({ color = '#3B0B2C' }: { color?: string }) {
   return (
     <div style={{ width: '100%', overflow: 'hidden', padding: '1.5rem 0' }}>
       <div className="animate-marquee" style={{ alignItems: 'center' }}>
-        {[...logos, ...logos].map((logo, i) => (
+        {[...visibles, ...visibles].map((logo, i) => (
           <div
             key={i}
             style={{

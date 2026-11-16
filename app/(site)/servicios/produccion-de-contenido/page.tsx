@@ -1,128 +1,55 @@
 import { Metadata } from 'next'
-import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, Tags, FontMix } from '@/components/page-layout'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
 
-export const metadata: Metadata = { title: 'Producción de Contenido | Flahoolick' }
+export const metadata: Metadata = {
+  title: 'Producción de contenido B2B y herramientas para ventas | Flahoolick',
+  description: 'Convertimos conocimiento técnico en contenido de autoridad, activos de decisión y herramientas comerciales.',
+}
 
-const NEGRO = '#000000'
-
-const problemas = [
-  { titulo: 'Tu conocimiento se queda dentro de la empresa', desc: 'Convertimos la experiencia de tus especialistas en contenido que el mercado puede encontrar y entender.' },
-  { titulo: 'Publicas contenido que pasa de largo', desc: 'Encontramos las preguntas, historias y puntos de vista capaces de ganar atención.' },
-  { titulo: 'Tu equipo comercial improvisa sus herramientas', desc: 'Creamos activos que ayudan a presentar, explicar y defender una solución.' },
-  { titulo: 'Cada canal empieza desde cero', desc: 'Diseñamos piezas capaces de adaptarse, dividirse y circular en múltiples formatos.' },
+const RESOLVEMOS = [
+  { titulo: 'El conocimiento se queda dentro de la empresa', texto: 'Creamos una forma eficiente de trabajar con especialistas y convertir su experiencia en materiales claros y utilizables.' },
+  { titulo: 'El contenido pasa de largo', texto: 'Encontramos preguntas, evidencias, historias y puntos de vista propios de la empresa.' },
+  { titulo: 'Ventas necesita mejores herramientas', texto: 'Transformamos argumentos, pruebas y objeciones en activos que permiten explicar y defender mejor la oferta.' },
+  { titulo: 'Los canales necesitan continuidad', texto: 'Diseñamos ideas capaces de adaptarse y circular conservando consistencia y profundidad.' },
 ]
 
-const producimos = [
-  { titulo: 'Autoridad', desc: 'Creamos contenido que demuestra experiencia y amplía la conversación.', items: ['Artículos', 'Opinión experta', 'Estudios', 'Informes', 'Guías', 'White papers', 'Newsletters'] },
-  { titulo: 'Consideración', desc: 'Creamos contenido que ayuda a investigar, comparar y avanzar.', items: ['Casos de éxito', 'Páginas de solución', 'Comparativos', 'Videos explicativos', 'Webinars', 'Preguntas frecuentes', 'Experiencias interactivas'] },
-  { titulo: 'Venta', desc: 'Creamos herramientas que ayudan a presentar, defender y cerrar oportunidades.', items: ['Presentaciones', 'One-pagers', 'Battlecards', 'Propuestas', 'Material para licitaciones', 'Demos', 'Herramientas comerciales'] },
-  { titulo: 'Circulación', desc: 'Adaptamos cada idea para que viaje por el mercado.', items: ['LinkedIn', 'Email', 'Sitios web', 'Campañas', 'Video', 'Motion graphics', 'Medios propios', 'Paid media'] },
+const ACTIVOS = [
+  { titulo: 'Contenido de autoridad', texto: 'Desarrolla las ideas y el conocimiento que el mercado puede llegar a asociar con la empresa. Artículos, estudios, guías, informes, opinión experta y newsletters.' },
+  { titulo: 'Activos de decisión', texto: 'Ayudan a investigar una solución, comparar alternativas, comprender una propuesta y resolver objeciones. Casos, páginas de solución, comparativos, preguntas frecuentes, webinars y experiencias interactivas.' },
+  { titulo: 'Herramientas comerciales', texto: 'Ayudan a presentar, demostrar, defender y avanzar una oportunidad. Presentaciones, one-pagers, propuestas, battlecards, demos y materiales para licitaciones.' },
 ]
-
-const recibes = ['Construir autoridad', 'Explicar soluciones', 'Responder preguntas', 'Apoyar a ventas', 'Alimentar campañas', 'Mantener presencia', 'Extender la vida de cada idea']
 
 export default function ProduccionDeContenido() {
   return (
-    <>
-      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
-      <PageLayout
-        tagline="Producción de Contenido"
-        headline={<FontMix bold="Piezas que construyen" italic=" presencia y cierran ventas." />}
-        description="Contenido de autoridad y herramientas comerciales, producidos en cadencia."
-        heroBg="#EF9DB6"
-        heroText={NEGRO}
-        ctaHref="#contacto"
-        ctaLabel="Agenda una llamada →"
-      >
-        {/* Bloque de apertura */}
-        <BodySection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Lo que sabes" italic=" necesita viajar." />
-            </h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-lead opacity-80">
-                Tu empresa acumula experiencia en reuniones, documentos, datos y conversaciones comerciales.
-              </p>
-              <p className="text-base leading-relaxed opacity-65">
-                Extraemos ese conocimiento. Le damos una forma clara, atractiva y útil. Lo ponemos frente a las personas que investigan, comparan, recomiendan y deciden.
-              </p>
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué resolvemos — título + 4 cards en 2 columnas (1 en mobile) */}
-        <BodySection dark>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué" italic=" resolvemos" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.15)' }}>
-              {problemas.map(p => (
-                <div key={p.titulo} className="flex flex-col gap-3 p-8" style={{ backgroundColor: NEGRO }}>
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{p.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué producimos — 4 grupos con tags */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué" italic=" producimos" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {producimos.map(g => (
-                <div key={g.titulo} className="flex flex-col gap-4 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-                  <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{g.titulo}</h3>
-                  <p className="text-sm leading-relaxed opacity-65">{g.desc}</p>
-                  <Tags items={g.items} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué recibes */}
-        <BodySection dark>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div
-              className="hidden md:flex"
-              style={{
-                position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto',
-                border: '1px solid rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              <span className="label" style={{ color: '#ffffff', opacity: 0.25 }}>Ilustración</span>
-            </div>
-            <div className="flex flex-col gap-6">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-                <FontMix bold="Un sistema de activos" italic=" en circulación" />
-              </h2>
-              <p className="text-base opacity-70">Contenido preparado para:</p>
-              <ul className="flex flex-col gap-2 list-disc" style={{ paddingLeft: '1.25rem' }}>
-                {recibes.map(r => (
-                  <li key={r} className="text-base">{r}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Cierre — mensaje de Flahoolick, verde de marca. Sin CTA repetido, el contacto está justo debajo */}
-        <section className="page-px section-py" style={{ backgroundColor: '#1FDE91', color: NEGRO }}>
-          <div className="max-container flex flex-col items-center text-center gap-4" style={{ maxWidth: '40rem', margin: '0 auto' }}>
-            <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: 1.0, color: NEGRO }}>
-              <FontMix bold="El conocimiento inmóvil" italic=" pierde valor." />
-            </h2>
-            <p className="text-lead opacity-70" style={{ color: NEGRO }}>Pongamos el tuyo a recorrer el mercado.</p>
-          </div>
-        </section>
-      </PageLayout>
-    </>
+    <Pagina>
+      <Hero
+        eyebrow="Producción de contenido"
+        titulo="Lo que saben tus especialistas, publicado cada mes."
+        bajada="Artículos, guías, casos y herramientas de venta, producidos por un equipo senior."
+        cta="Pongámoslo en circulación →"
+      />
+      <Bloque titulo="El conocimiento inmóvil pierde valor.">
+        <p>Tu empresa acumula experiencia en reuniones, documentos, proyectos, datos y conversaciones comerciales. Una parte valiosa todavía espera llegar a quienes investigan, recomiendan y deciden.</p>
+        <p>Encontramos ese conocimiento, conservamos su singularidad y le damos la forma que necesita para cumplir un trabajo en el mercado.</p>
+      </Bloque>
+      <Bloque titulo="Qué resolvemos">
+        <Items items={RESOLVEMOS} />
+      </Bloque>
+      <Bloque titulo="Tres tipos de activos">
+        <Items items={ACTIVOS} />
+      </Bloque>
+      <Bloque titulo="Una idea puede cumplir más de un trabajo.">
+        <p>Una conversación con un experto puede convertirse en una guía, una presentación, una serie para LinkedIn, respuestas comerciales o una experiencia digital. Diseñamos el recorrido antes de producir las piezas.</p>
+        <p>Elegimos cada formato según el trabajo que debe cumplir.</p>
+      </Bloque>
+      <Bloque titulo="Un equipo editorial que aprende sobre tu negocio.">
+        <p>Trabajamos en ciclos de planificación, captura, producción, distribución y revisión. Con cada ciclo aumenta el conocimiento acumulado, mejora la operación y disminuye la necesidad de comenzar desde cero.</p>
+      </Bloque>
+      <CasoEnlace titulo="El equipo comercial pidió un PDF en Canva. Recibió un dossier que se comparte con un enlace.">
+        <p>Un PDF queda viejo cada vez que cambian el stock o los honorarios. El dossier web funciona en celular y tablet, y se actualiza una sola vez para todo el equipo.</p>
+        <p>Para el mercado, Dunamistas reúne artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana.</p>
+      </CasoEnlace>
+      <Cierre titulo="Hagamos trabajar mejor lo que tu empresa sabe." cta="Conversemos sobre tu operación →" />
+    </Pagina>
   )
 }

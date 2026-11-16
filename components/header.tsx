@@ -3,10 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { usePageColor } from '@/context/page-color'
 import { DISCIPLINAS } from './servicios-datos'
-import { MegamenuDots } from './megamenu-dots'
 
 interface MegaMenuItem {
   title: string
@@ -26,7 +24,7 @@ interface MegaMenuData {
 // Las tarjetas del megamenú salen de la misma fuente que la página
 // /servicios, para que nunca queden desincronizadas.
 const SRV_MENU: MegaMenuData = {
-  tagline: 'Estrategia, marca, producción y sistemas con IA para convertir conocimiento técnico en autoridad de mercado.',
+  tagline: 'Estrategia, marca, contenido e IA para que tu empresa esté presente durante todo el ciclo de decisión de tu comprador.',
   ctaLabel: 'Explorar servicios', ctaHref: '/servicios',
   items: DISCIPLINAS.map(d => ({
     title: d.nombre,
@@ -37,23 +35,24 @@ const SRV_MENU: MegaMenuData = {
 }
 
 const MET_MENU: MegaMenuData = {
-  tagline: 'Del conocimiento disperso a un sistema que trabaja. Así lo hacemos.',
-  ctaLabel: 'Explorar Metodología', ctaHref: '/metodologia',
+  tagline: 'Del conocimiento disperso a un sistema que trabaja.',
+  ctaLabel: 'Explorar metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Encontramos',            desc: 'Entramos al negocio y detectamos dónde está el valor.',           href: '/metodologia#paso-encontramos' },
-    { title: 'Ordenamos',              desc: 'Convertimos eso en mensajes, temas y prioridades claras.',         href: '/metodologia#paso-ordenamos' },
-    { title: 'Ponemos en circulación', desc: 'Construimos la pieza y la conectamos con el mercado.',             href: '/metodologia#paso-circulacion' },
+    { title: 'Encontramos', desc: 'Entendemos tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.', href: '/metodologia#paso-entendemos' },
+    { title: 'Ordenamos', desc: 'Definimos audiencias, mensajes y temas según su valor para el mercado.', href: '/metodologia#paso-posicion' },
+    { title: 'Ponemos en circulación', desc: 'Lo convertimos en contenido y herramientas que tus audiencias pueden encontrar, entender y recordar.', href: '/metodologia#paso-circulacion' },
   ],
 }
 
 type ActiveMenu = 'srv' | 'met' | null
 
-const PANEL_BG = '#1FDE91'
+const PANEL_BG = '#ffffff'
 
 const PANEL_MAIN = [
-  { label: 'Servicios',   href: '/servicios' },
-  { label: 'Metodología', href: '/metodologia' },
-  { label: 'JERGA',       href: '/jerga' },
+  { label: 'Servicios',    href: '/servicios' },
+  { label: 'Metodología',  href: '/metodologia' },
+  { label: 'Caso Dunamis', href: '/casos/dunamis' },
+  { label: 'JERGA',        href: '/jerga' },
 ]
 
 const PANEL_SECONDARY = [
@@ -68,8 +67,6 @@ export function Header() {
   const [mobileOpen, setMobile] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const { bg, text } = usePageColor()
-  const pathname = usePathname()
-  const isHome = pathname === '/'
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -110,7 +107,7 @@ export function Header() {
     <header
       ref={ref}
       className="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
-      style={{ backgroundColor: bg, borderBottom: `3px solid ${isHome ? '#1FDE91' : '#000000'}` }}
+      style={{ backgroundColor: bg }}
       onMouseLeave={() => setActive(null)}
     >
       <div className="flex items-center justify-between page-px" style={{ height: '64px', color: text }}>
@@ -146,6 +143,7 @@ export function Header() {
         {/* Right nav + CTA + hamburguesa */}
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
+            <NavLink href="/casos/dunamis" color={text} onClick={() => setActive(null)}>Caso Dunamis</NavLink>
             <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>
           </nav>
           <Link href="#contacto"
@@ -180,7 +178,6 @@ export function Header() {
           position: 'relative',
         }}
       >
-        <MegamenuDots color={text} active={active !== null} />
         {active === 'srv' && <MegaMenu menu={SRV_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
         {active === 'met' && <MegaMenu menu={MET_MENU} textColor={text} divColor={divColor} onClose={() => setActive(null)} />}
       </div>
@@ -224,11 +221,9 @@ export function Header() {
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="hover:opacity-60 transition-opacity"
                 style={{
-                  fontFamily: l.label === 'JERGA'
-                    ? 'var(--font-instrument-serif)'
-                    : 'var(--font-bricolage)',
-                  fontStyle: l.label === 'JERGA' ? 'italic' : 'normal',
-                  fontWeight: l.label === 'JERGA' ? 400 : 800,
+                  fontFamily: 'var(--font-inter)',
+                  fontWeight: 500,
+                  letterSpacing: '-0.02em',
                   fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
                   lineHeight: 1.05,
                   padding: '1.75rem 0',

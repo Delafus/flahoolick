@@ -1,202 +1,49 @@
-'use client'
+import { Metadata } from 'next'
+import { Pagina, Hero, Cierre } from '@/components/minimal'
 
-import { useState } from 'react'
-import { PageColorSetter } from '@/components/page-color-setter'
-import { ContactForm } from '@/components/contact-form'
-import Link from 'next/link'
-import { FontMix } from '@/components/page-layout'
-
-const FRESH = '#8FE8BB'
-const NEGRO = '#000000'
-
-const preguntas = [
-  {
-    q: '¿Cómo empezamos?',
-    a: 'Con una llamada de 30 minutos. Sin presentaciones ni decks de venta. Solo una conversación para entender tu situación y ver si tiene sentido seguir. Si el diagnóstico confirma que hay trabajo por hacer, te presentamos una propuesta en la semana siguiente.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
-  },
-  {
-    q: '¿Qué hace exactamente Flahoolick?',
-    a: 'Instalamos el sistema que convierte el conocimiento técnico y comercial de una empresa B2B en presencia de mercado continua. Trabajamos en tres frentes simultáneos: definimos el relato de marca, instalamos el sistema operativo de contenido y producimos los activos que construyen presencia antes de la decisión de compra. El resultado es un flujo continuo de contenido con criterio, gobernanza y medición, que funciona mientras el equipo comercial está en la calle cerrando negocios.',
-    link: { label: 'Explorar Servicios →', href: '/servicios' },
-  },
-  {
-    q: '¿Qué tipo de problemas resuelven exactamente?',
-    a: 'Trabajamos con empresas que enfrentan alguna de estas situaciones: el mercado no ve todo lo que la empresa sabe hacer; cada vendedor explica el servicio distinto; el contenido que producen no genera conversaciones comerciales reales; o llevan meses "trabajando en el marketing" sin que nada se acumule. Son empresas que ya tienen una ventaja real. El problema es que esa ventaja no está visible antes de que el comprador decida buscar.',
-    link: { label: 'Ver nuestros Servicios →', href: '/servicios' },
-  },
-  {
-    q: '¿En qué se diferencia esto de contratar una agencia de contenido?',
-    a: 'Una agencia de contenido produce cuando alguien le dice qué hacer. Flahoolick llega antes: define la estrategia, captura el conocimiento existente, modela las audiencias y sus tensiones, y entonces produce. La diferencia es de orden: el resultado tiene la firma de lo que tu empresa realmente sabe, algo que ninguna otra empresa de tu industria puede reproducir. Eso es lo que construye autoridad de mercado real.',
-    link: { label: 'Conocer nuestra Metodología →', href: '/metodologia' },
-  },
-  {
-    q: '¿Con quién nos comparan?',
-    a: 'Nos comparan con agencias de contenido, firmas de marketing B2B y productoras de contenido especializado. La diferencia concreta es de arquitectura: esas opciones producen activos individuales. Flahoolick instala un sistema. El sistema captura conocimiento, lo modela con criterio editorial, lo produce y mide la respuesta del mercado para calibrar el ciclo siguiente. Con el tiempo, ese activo crece y se vuelve difícil de replicar.',
-    link: { label: 'Cómo trabajamos con IA →', href: '/servicios/ia-para-marketing-y-ventas' },
-  },
-  {
-    q: '¿Con qué tipo de empresas trabajan?',
-    a: 'Con empresas B2B que tienen ciclos de venta de 6 a 18 meses y decisiones de compra que involucran a múltiples personas. Nuestros clientes típicos son empresas de entre 50 y 500 empleados donde el Gerente General o el Director Comercial tiene claro que el mercado los conoce menos de lo que deberían. Sectores con más experiencia: tecnología B2B, servicios financieros especializados, ingeniería y servicios industriales, salud corporativa y educación ejecutiva.',
-    link: null,
-  },
-  {
-    q: '¿Quién dentro de mi empresa debería contratarnos?',
-    a: 'Generalmente nos llama el Gerente General, el Director Comercial o el Director de Marketing cuando sienten que el mercado no refleja lo que la empresa realmente vale. En algunos casos también nos llama quien lidera ventas, porque nota que el equipo comercial tiene que explicar demasiado antes de generar interés real. El trabajo termina siendo transversal: estrategia, contenido y ventas operan sobre el mismo sistema.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
-  },
-  {
-    q: '¿Cómo es un engagement típico?',
-    a: 'Empieza con un Diagnóstico de Visibilidad: cinco días de trabajo donde auditamos qué sabe tu empresa, cómo responden los modelos de IA cuando tu comprador busca en tu categoría y dónde están los vacíos más urgentes. Ese diagnóstico tiene valor propio: te quedas con él independientemente de lo que decidas después. Si confirma que hay trabajo estructural por hacer, diseñamos el sistema completo. La mayoría de nuestros clientes trabajan con nosotros entre 6 y 18 meses en ciclos mensuales.',
-    link: { label: 'Cómo funciona el sistema →', href: '/metodologia#como-trabajamos' },
-  },
-  {
-    q: '¿Cuánto tiempo tarda en verse resultados?',
-    a: 'Las primeras piezas de autoridad salen en las primeras tres semanas. El equipo comercial empieza a usar herramientas de cierre dentro del primer mes. La disponibilidad mental (que el mercado te recuerde cuando decida buscar) es un activo que se construye en ciclos de 12 a 24 meses. Ese horizonte de tiempo es la naturaleza del mercado B2B complejo. Las empresas que lo entienden son las que terminan siendo las que el mercado recuerda.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
-  },
-  {
-    q: '¿Qué necesito entregarles para empezar?',
-    a: 'Menos de lo que crees. Extraemos conocimiento de material que ya existe: manuales técnicos, propuestas anteriores, grabaciones de reuniones de ventas, fichas de producto. El 70% de la materia prima la sacamos de ahí. El 30% restante lo obtenemos con notas de voz de 10 minutos de tus expertos. No necesitas redactar briefs ni liberar tiempo de tu equipo para reuniones de briefing.',
-    link: { label: 'Cómo trabajamos →', href: '/metodologia#como-trabajamos' },
-  },
-  {
-    q: '¿Tienen casos de referencia?',
-    a: 'Sí. Por razones de confidencialidad, los casos que compartimos públicamente son anonimizados o requieren autorización del cliente. En una conversación podemos mostrarte los casos relevantes para tu industria con detalle. Algunas empresas con las que hemos trabajado: Claro Empresas, UNAB, Cajas de Chile, Diario Financiero, Consorcio Ciencia e Innovación 2030, Adidas.',
-    link: { label: 'Agenda una llamada →', href: '/#contacto', tipo: 'comercial' as const },
-  },
-  {
-    q: '¿Trabajan con empresas fuera de Chile?',
-    a: 'Sí. Operamos en español para empresas en Chile y América Latina. Lo que importa es que la empresa tenga ciclos de decisión complejos y conocimiento técnico que el mercado todavía no ve.',
-    link: null,
-  },
-]
-
-function Acordeon({ q, a, link }: { q: string; a: string; link: { label: string; href: string; tipo?: 'comercial' } | null }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
-      <button
-        onClick={() => setOpen(p => !p)}
-        className="w-full flex items-start justify-between text-left group py-6 gap-6"
-      >
-        <span style={{
-          fontFamily: 'var(--font-bricolage)',
-          fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
-          fontWeight: 700,
-          letterSpacing: '-0.01em',
-          lineHeight: 1.3,
-          transition: 'opacity 0.2s',
-        }}
-          className="group-hover:opacity-60 transition-opacity"
-        >{q}</span>
-        <span style={{
-          fontSize: '1.4rem',
-          lineHeight: 1,
-          flexShrink: 0,
-          marginTop: '2px',
-          transition: 'transform 0.3s ease',
-          display: 'inline-block',
-          transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
-        }}>+</span>
-      </button>
-      <div style={{
-        maxHeight: open ? '800px' : '0px',
-        overflow: 'hidden',
-        transition: 'max-height 0.4s ease, opacity 0.3s ease',
-        opacity: open ? 1 : 0,
-      }}>
-        <div className="pb-8 flex flex-col gap-4">
-          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7, opacity: 0.65, maxWidth: '680px' }}>{a}</p>
-          {link && (link.tipo === 'comercial' ? (
-            <Link href={link.href}
-              className="btn-invert label inline-flex items-center gap-2 px-5 py-3 w-fit"
-              style={{ '--btn-bg': 'var(--brand-ink)', '--btn-fg': 'var(--brand-chalk)', borderRadius: '999px' } as React.CSSProperties}>
-              {link.label}
-            </Link>
-          ) : (
-            <Link href={link.href}
-              className="label inline-flex items-center gap-2 w-fit hover:opacity-60 transition-opacity"
-              style={{ opacity: 0.55 }}>
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
+export const metadata: Metadata = {
+  title: 'Preguntas frecuentes | Flahoolick',
+  description: 'Cómo trabaja Flahoolick y cómo conecta estrategia, contenido, IA y ventas en empresas B2B.',
 }
 
-export default function FAQPage() {
+const PREGUNTAS = [
+  { q: '¿Qué hace exactamente Flahoolick?', a: 'Ayudamos a empresas B2B a explicar mejor negocios complejos y a mantener ese conocimiento activo durante todo el ciclo comercial. Entendemos cómo funciona la empresa, definimos una posición y convertimos el conocimiento de sus equipos en estrategias, relatos, contenidos, herramientas para ventas y soluciones con IA.' },
+  { q: '¿Qué tipo de empresa es Flahoolick?', a: 'Somos un estudio de estrategia y contenido. Reunimos pensamiento estratégico y capacidad de producción en un solo equipo. Conectamos la definición con su ejecución continua.' },
+  { q: '¿Por qué necesitan entender nuestro negocio?', a: 'Porque una comunicación clara nace de hacer explícito el valor de la empresa. Revisamos la oferta, las audiencias, el proceso comercial, las razones por las que los clientes eligen y las pruebas que vuelven creíble a la organización.' },
+  { q: '¿Quiénes participan en un proyecto?', a: 'Nuestros proyectos suelen involucrar a dirección, marketing, ventas y especialistas técnicos. Diseñamos una participación acotada y eficiente para conectar sus conocimientos.' },
+  { q: '¿Con qué empresas trabajan?', a: 'Principalmente con empresas B2B que tienen ciclos de venta largos, varios participantes en la decisión y ofertas que requieren explicación o confianza técnica.' },
+  { q: '¿En qué etapa podemos contratarlos?', a: 'Podemos comenzar desde una hoja en blanco, revisar una estrategia existente o trabajar sobre un sistema que ya está en marcha. El diagnóstico inicial permite identificar qué conviene conservar, definir, fortalecer o retirar.' },
+  { q: '¿Podemos contratar un solo servicio?', a: 'Sí. Cada empresa contrata las capacidades que su desafío requiere. Cuando el problema atraviesa varias áreas, proponemos un sistema integrado.' },
+  { q: '¿Cómo comienza un proyecto?', a: 'Comenzamos con una conversación de 30 minutos. Cuando existe encaje, proponemos un diagnóstico acotado para revisar el negocio, la comunicación actual, el proceso comercial y las principales brechas.' },
+  { q: '¿Cuánto dura un proyecto?', a: 'Un diagnóstico inicial toma cinco días. Un proyecto de estrategia suele durar entre cuatro y seis semanas. La producción de contenido y la mejora de herramientas funcionan en ciclos continuos.' },
+  { q: '¿Qué necesitan de nuestro equipo?', a: 'Acceso a dirección, ventas, especialistas y materiales relevantes. Capturamos el conocimiento mediante instancias breves, mientras tus expertos permanecen concentrados en su trabajo.' },
+  { q: '¿Qué entregan?', a: 'Según el desafío, entregamos diagnósticos, playbooks estratégicos, plataformas de marca, roadmaps editoriales, contenido terminado, herramientas comerciales y soluciones funcionales con IA. Cada entrega desarrolla una capacidad acordada con el cliente.' },
+  { q: '¿También producen el contenido?', a: 'Sí. Podemos entregar la estrategia para que la ejecute tu equipo o asumir la producción de manera continua. Elegimos cada formato según la función que debe cumplir.' },
+  { q: '¿Cómo utilizan inteligencia artificial?', a: 'La utilizamos para investigar, analizar audiencias, ordenar conocimiento, acelerar procesos y construir herramientas que ejecutan tareas concretas. El criterio humano senior guía la estrategia, las decisiones editoriales y la redacción final.' },
+  { q: '¿Construyen herramientas de IA a medida?', a: 'Sí. Desarrollamos agentes de voz, asistentes de conocimiento, sistemas de investigación, flujos de contenido y herramientas de revisión. Cada proyecto comienza con un trabajo concreto y una primera versión funcional.' },
+  { q: '¿Cómo se mide el trabajo?', a: 'Definimos indicadores según la función del proyecto. Medimos la contribución del sistema a que la empresa sea encontrada, comprendida y considerada a lo largo de una venta compleja.' },
+  { q: '¿Trabajan fuera de Chile?', a: 'Sí. Estamos en Santiago y trabajamos de forma remota con organizaciones de otros países. Las sesiones presenciales se acuerdan según ubicación y alcance.' },
+  { q: '¿Cuánto cuesta trabajar con Flahoolick?', a: 'El valor depende del alcance, la cantidad de audiencias o unidades de negocio, la profundidad de la investigación y el nivel de producción requerido. Después de una primera conversación recomendamos el alcance más eficiente y entregamos una propuesta clara.' },
+]
+
+export default function FAQ() {
   return (
-    <>
-      <PageColorSetter bg={FRESH} text={NEGRO} />
-
-      {/* Hero — verde menta */}
-      <section className="page-hero page-px" style={{ backgroundColor: FRESH, color: NEGRO }}>
-        <div className="max-container w-full">
-          {/* Mobile */}
-          <div className="flex flex-col gap-6 md:hidden">
-            <h1 style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', lineHeight: 0.92, color: NEGRO }}>
-              <FontMix bold="Las preguntas" italic=" de siempre." />
-            </h1>
-            <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
-            <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
-          </div>
-          {/* Desktop */}
-          <div className="hidden md:grid items-end gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
-            <div style={{ aspectRatio: '4/3', border: '1px solid rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '3rem' }}>
-              <span className="label" style={{ color: NEGRO, opacity: 0.2 }}>Ilustración</span>
-            </div>
-            <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', height: '100%', width: '1px' }} />
-            <div className="flex flex-col gap-6" style={{ paddingLeft: '3rem' }}>
-              <h1 style={{ fontSize: 'clamp(3.5rem, 8vw, 11rem)', lineHeight: 0.92, color: NEGRO }}>
-                <FontMix bold="Las preguntas" italic=" de siempre." />
-              </h1>
-              <p className="label" style={{ color: NEGRO, opacity: 0.5 }}>Lo que más nos preguntan antes de trabajar juntos</p>
-              <hr style={{ borderColor: NEGRO, borderTopWidth: '1px', opacity: 0.2 }} />
-            </div>
-          </div>
-        </div>
+    <Pagina>
+      <Hero
+        eyebrow="Preguntas frecuentes"
+        titulo="Lo que probablemente quieras saber antes de conversar."
+        bajada="También puedes escribirnos directamente. Una conversación basta para empezar."
+        cta="Escríbenos →"
+      />
+      <section className="flex flex-col py-16 md:py-24">
+        {PREGUNTAS.map(p => (
+          <details key={p.q} className="py-4" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
+            <summary className="cursor-pointer" style={{ fontWeight: 500 }}>{p.q}</summary>
+            <p className="mt-3">{p.a}</p>
+          </details>
+        ))}
       </section>
-
-      {/* Intro + acordeón — crema */}
-      <section className="page-px section-py" style={{ backgroundColor: 'var(--brand-ground)', color: 'var(--brand-ink)' }}>
-        <div className="max-container">
-          {/* Mobile — apilado */}
-          <div className="flex flex-col gap-10 md:hidden">
-            <div style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
-              <div style={{ aspectRatio: '4/3', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
-              </div>
-            </div>
-            <div>
-              {preguntas.map(p => (
-                <Acordeon key={p.q} q={p.q} a={p.a} link={p.link} />
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop — dos columnas con divisor */}
-          <div className="hidden md:grid items-start gap-0" style={{ gridTemplateColumns: '5fr 1px 6fr' }}>
-            <div style={{ paddingRight: '3rem', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '2rem' }}>
-              <div style={{ aspectRatio: '4/3', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
-              </div>
-            </div>
-
-            <div style={{ backgroundColor: 'rgba(0,0,0,0.12)', height: '100%', width: '1px' }} />
-
-            <div style={{ paddingLeft: '3rem' }}>
-              {preguntas.map(p => (
-                <Acordeon key={p.q} q={p.q} a={p.a} link={p.link} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <ContactForm bg="#403D37" text="#ffffff" />
-    </>
+      <Cierre titulo="¿Qué quieres poner sobre la mesa?" cta="Escríbenos →" />
+    </Pagina>
   )
 }

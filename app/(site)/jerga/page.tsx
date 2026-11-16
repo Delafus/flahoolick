@@ -1,242 +1,76 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { PageColorSetter } from '@/components/page-color-setter'
-import { ContactForm } from '@/components/contact-form'
-import { fechaLegible, ETIQUETA_TIPO, CTA_TIPO } from '@/content/jerga'
-import { todas, porTipo, destacada, categorias, conteoPorCategoria } from '@/sanity/lib/jerga'
+import { Pagina, Bloque, Cierre, ENLACE } from '@/components/minimal'
+import { CTA_TIPO } from '@/content/jerga'
+import { todas, porTipo, destacada, categorias } from '@/sanity/lib/jerga'
 
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'JERGA | Flahoolick',
-  description: 'Estrategia de contenido, marketing B2B y autoridad de mercado. Lo que importa, dicho como hay que decirlo.',
+  title: 'JERGA | Estrategia, contenido y decisiones B2B',
+  description: 'Ideas, guías y herramientas de Flahoolick para convertir conocimiento complejo en presencia de marca y apoyo para ventas.',
 }
 
-const AZUL = '#105E9C'
-const NEGRO = '#000000'
-const BLANCO = '#ffffff'
-
 export default async function JergaPage() {
-  const [featured, guias, todasLasPiezas, conteos, cats] = await Promise.all([
+  const [featured, guias, todasLasPiezas, cats] = await Promise.all([
     destacada(),
     porTipo('guia'),
     todas(),
-    conteoPorCategoria(),
     categorias(),
   ])
-  const recientes = todasLasPiezas.filter(p => p.slug !== featured?.slug).slice(0, 6)
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
-    <>
-      <PageColorSetter bg={AZUL} text={BLANCO} />
-
-      {/* ── Cabecera del medio ── */}
-      <section className="page-px" style={{ backgroundColor: AZUL, color: BLANCO, paddingTop: 'calc(64px + 5rem)', paddingBottom: '4rem', position: 'relative', overflow: 'hidden' }}>
-        {/* Cuadrícula de plano de patente — sutil, solo arriba, se desvanece hacia abajo */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '420px',
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)
-            `,
-            backgroundSize: '28px 28px',
-            WebkitMaskImage: 'linear-gradient(to bottom, black, transparent)',
-            maskImage: 'linear-gradient(to bottom, black, transparent)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div className="max-container" style={{ position: 'relative' }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div>
-              <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}
-                style={{ width: 'clamp(220px, 26vw, 340px)', height: 'auto', filter: 'brightness(0) invert(1)' }} priority />
-            </div>
-            <div className="flex flex-col gap-8 md:pt-4">
-              <p style={{
-                fontFamily: 'var(--font-display)', fontStyle: 'italic',
-                fontSize: 'clamp(1.25rem, 2.1vw, 1.75rem)', lineHeight: 1.35,
-              }}>
-                Ideas, guías y puntos de vista para convertir conocimiento técnico en autoridad de mercado.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {cats.map(c => (
-                  <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
-                    className="label px-4 py-2 hover:opacity-60 transition-opacity"
-                    style={{ border: '1px solid rgba(255,255,255,0.35)', borderRadius: '999px' }}>
-                    {c.nombre}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+    <Pagina>
+      <section className="flex flex-col justify-center gap-8" style={{ minHeight: '75dvh', paddingTop: '64px' }}>
+        <h1>
+          <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}
+            style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', filter: 'brightness(0)' }} priority />
+        </h1>
+        <p>Ideas, guías y herramientas para convertir conocimiento complejo en una ventaja visible.</p>
+        <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          {cats.map(c => (
+            <li key={c.slug}><Link href={`/jerga/categoria/${c.slug}`} className={ENLACE}>{c.nombre}</Link></li>
+          ))}
+        </ul>
       </section>
 
-      {/* ── Destacada ── */}
       {featured && (
-        <section style={{ backgroundColor: 'var(--section-dark-bg)', color: 'var(--section-dark-text)' }}>
-          <div className="max-container page-px">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
-              <div style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'rgba(255,255,255,0.06)', display: featured.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {featured.imagenDestacadaUrl ? (
-                  <Image src={featured.imagenDestacadaUrl} alt={featured.imagenDestacadaAlt ?? featured.titulo} fill style={{ objectFit: 'cover' }} />
-                ) : (
-                  <span className="label" style={{ opacity: 0.2 }}>Imagen destacada</span>
-                )}
-              </div>
-              <div className="flex flex-col justify-center gap-6 py-12 md:pl-16">
-                <p className="label" style={{ opacity: 0.4 }}>Destacado · {nombreCategoria(featured.categoria)}</p>
-                <Link href={`/jerga/${featured.slug}`}>
-                  <h2 style={{
-                    fontFamily: 'var(--font-display)', fontWeight: 400,
-                    fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em',
-                  }} className="hover:opacity-60 transition-opacity">{featured.titulo}</h2>
-                </Link>
-                <p style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', lineHeight: 1.6, opacity: 0.65 }}>{featured.bajada}</p>
-                <div className="flex gap-6 label" style={{ opacity: 0.4 }}>
-                  <span>{featured.autor}</span>
-                  <span>{featured.lectura} min</span>
-                </div>
-                <Link href={`/jerga/${featured.slug}`}
-                  className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
-                  style={{ '--btn-bg': '#ffffff', '--btn-fg': NEGRO, borderRadius: '999px' } as React.CSSProperties}>
-                  {CTA_TIPO[featured.tipo]}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Bloque titulo={featured.titulo}>
+          <p className="text-base" style={{ opacity: 0.5 }}>Destacado · {nombreCategoria(featured.categoria)}</p>
+          <p>{featured.bajada}</p>
+          <p><Link href={`/jerga/${featured.slug}`} className={ENLACE}>{CTA_TIPO[featured.tipo]}</Link></p>
+        </Bloque>
       )}
 
-      {/* ── Guías ── */}
       {guias.length > 0 && (
-        <section className="page-px section-py" style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)' }}>
-          <div className="max-container flex flex-col gap-12">
-            <div className="flex flex-col gap-3">
-              <h2 className="text-display">Guías</h2>
-              <p className="text-sm" style={{ opacity: 0.55, maxWidth: '520px' }}>
-                Documentos largos para leer completos. Pensados para llevar a una conversación de comité.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(0,0,0,0.12)' }}>
-              {guias.map(g => (
-                <Link key={g.slug} href={`/jerga/${g.slug}`}
-                  className="group flex flex-col gap-6 p-10"
-                  style={{ backgroundColor: 'var(--section-body-bg)' }}>
-                  <span style={{
-                    fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-                    lineHeight: 1, opacity: 0.18,
-                  }}>{String(g.orden ?? 0).padStart(2, '0')}</span>
-                  <div className="flex flex-col gap-3 flex-1">
-                    <p className="label" style={{ opacity: 0.4 }}>{nombreCategoria(g.categoria)}</p>
-                    <h3 style={{
-                      fontFamily: 'var(--font-display)', fontWeight: 400,
-                      fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.15,
-                    }} className="group-hover:opacity-60 transition-opacity">{g.titulo}</h3>
-                    <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{g.bajada}</p>
-                  </div>
-                  <span className="label" style={{ opacity: 0.35 }}>{g.lectura} min · Leer guía →</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Bloque titulo="Guías">
+          <p>Documentos para trabajar un problema completo y llevar mejores preguntas a una conversación de equipo.</p>
+          <ul className="flex flex-col gap-4">
+            {guias.map(g => (
+              <li key={g.slug}><Link href={`/jerga/${g.slug}`} className={ENLACE}>{g.titulo}</Link></li>
+            ))}
+          </ul>
+        </Bloque>
       )}
 
-      {/* ── Recientes ── */}
-      <section className="page-px section-py" style={{ backgroundColor: 'var(--section-body-bg)', color: 'var(--section-body-text)', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-display">Lo último</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {recientes.map(p => (
-              <Link key={p.slug} href={`/jerga/${p.slug}`} className="group flex flex-col gap-4">
-                <div style={{ position: 'relative', aspectRatio: '3/2', backgroundColor: 'rgba(0,0,0,0.07)', display: p.imagenDestacadaUrl ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {p.imagenDestacadaUrl ? (
-                    <Image src={p.imagenDestacadaUrl} alt={p.imagenDestacadaAlt ?? p.titulo} fill style={{ objectFit: 'cover' }} />
-                  ) : (
-                    <span className="label" style={{ opacity: 0.2 }}>Imagen</span>
-                  )}
-                </div>
-                <div className="flex items-center gap-4 label" style={{ opacity: 0.4 }}>
-                  <span>{ETIQUETA_TIPO[p.tipo]}</span>
-                  <span>{nombreCategoria(p.categoria)}</span>
-                </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-display)', fontWeight: 400,
-                  fontSize: 'clamp(1.25rem, 1.9vw, 1.625rem)', lineHeight: 1.15,
-                }} className="group-hover:opacity-60 transition-opacity">{p.titulo}</h3>
-                <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{p.bajada}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Bloque titulo="Todo">
+        <ul className="flex flex-col gap-4">
+          {todasLasPiezas.map(p => (
+            <li key={p.slug}>
+              <Link href={`/jerga/${p.slug}`} className={ENLACE}>{p.titulo}</Link>
+              <span className="block text-base" style={{ opacity: 0.5 }}>{nombreCategoria(p.categoria)} · {p.lectura} min</span>
+            </li>
+          ))}
+        </ul>
+      </Bloque>
 
-      {/* ── Explorar por categoría ── */}
-      <section className="page-px section-py" style={{ backgroundColor: AZUL, color: BLANCO }}>
-        <div className="max-container flex flex-col gap-12">
-          <h2 className="text-display">Explorar por categoría</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.2)' }}>
-            {conteos.map(({ categoria: c, total }) => (
-              <Link key={c.slug} href={`/jerga/categoria/${c.slug}`}
-                className="group flex flex-col gap-3 p-10"
-                style={{ backgroundColor: AZUL }}>
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)', fontWeight: 400,
-                    fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)', lineHeight: 1.1,
-                  }} className="group-hover:opacity-60 transition-opacity">{c.nombre}</h3>
-                  <span className="label shrink-0" style={{ opacity: 0.45 }}>{total}</span>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ opacity: 0.65, maxWidth: '420px' }}>{c.descripcion}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Archivo completo ── */}
-      <section className="page-px section-py" style={{ backgroundColor: AZUL, color: BLANCO }}>
-        <div className="max-container flex flex-col gap-12">
-          <div className="flex items-baseline gap-6">
-            <h2 className="text-display">Todo</h2>
-            <span className="label" style={{ opacity: 0.4 }}>{todasLasPiezas.length} publicaciones</span>
-          </div>
-          <div className="flex flex-col">
-            {todasLasPiezas.map(p => (
-              <Link key={p.slug} href={`/jerga/${p.slug}`}
-                className="group grid grid-cols-1 md:grid-cols-12 gap-6 py-7"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-                <div className="md:col-span-2 label flex items-center" style={{ opacity: 0.35 }}>
-                  {fechaLegible(p.fecha).replace(' de ' + p.fecha.slice(0, 4), '')}
-                </div>
-                <div className="md:col-span-2 label flex items-center" style={{ opacity: 0.35 }}>
-                  {nombreCategoria(p.categoria)}
-                </div>
-                <div className="md:col-span-7 flex items-center">
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)', fontWeight: 400,
-                    fontSize: 'clamp(1.125rem, 1.6vw, 1.5rem)', lineHeight: 1.2,
-                  }} className="group-hover:opacity-60 transition-opacity">{p.titulo}</h3>
-                </div>
-                <div className="md:col-span-1 label flex items-center justify-end" style={{ opacity: 0.3 }}>
-                  {p.lectura}′
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <ContactForm bg="#403D37" text="#ffffff" />
-    </>
+      <Cierre
+        titulo="Tráenos el manual más técnico o el problema de comunicación más árido de tu empresa."
+        texto="En 30 minutos podemos encontrar una primera forma de desarmarlo y convertirlo en una oportunidad de comunicación."
+        cta="Pongámoslo sobre la mesa →"
+      />
+    </Pagina>
   )
 }

@@ -1,150 +1,50 @@
 import { Metadata } from 'next'
-import { PageColorSetter } from '@/components/page-color-setter'
-import { PageLayout, BodySection, FontMix } from '@/components/page-layout'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
 
-export const metadata: Metadata = { title: 'Estrategia de Contenido | Flahoolick' }
+export const metadata: Metadata = {
+  title: 'Estrategia de contenido B2B | Flahoolick',
+  description: 'Diseñamos la lógica que conecta negocio, audiencias, temas, canales y momentos de decisión en empresas B2B.',
+}
 
-const NEGRO = '#000000'
-
-const construimos = [
-  { numero: '01', titulo: 'Territorios de autoridad', desc: 'Definimos los temas donde tu empresa reúne conocimiento, credenciales y una oportunidad real de liderar la conversación.', icon: '/icons/icon-territorio-autoridad.svg' },
-  { numero: '02', titulo: 'Mapa de audiencias y decisiones', desc: 'Identificamos quién participa, qué necesita entender y qué preguntas aparecen durante el ciclo comercial.', icon: '/icons/icon-mapa-audiencias.svg' },
-  { numero: '03', titulo: 'Arquitectura de mensajes', desc: 'Ordenamos la promesa central, los argumentos técnicos y las pruebas que sostienen el relato.', icon: '/icons/icon-arquitectura-mensajes.svg' },
-  { numero: '04', titulo: 'Roadmap de contenido', desc: 'Priorizamos temas, formatos, canales y momentos de publicación para los próximos 90 días.', icon: '/icons/icon-roadmap-contenido.svg' },
-]
-
-const comoLoHacemos = [
-  { numero: '01', titulo: 'Leemos', texto: 'Auditamos el contenido existente, revisamos a la competencia y entrevistamos a quienes concentran conocimiento técnico y comercial.' },
-  { numero: '02', titulo: 'Definimos', texto: 'Tomamos decisiones sobre audiencias, territorios, mensajes, canales y formatos.' },
-  { numero: '03', titulo: 'Ordenamos', texto: 'Convertimos esas decisiones en una hoja de ruta que marketing, ventas y los equipos técnicos pueden aplicar.' },
-]
-
-const recibes = [
-  'Audiencias y momentos de decisión.',
-  'Territorios de autoridad.',
-  'Arquitectura de mensajes.',
-  'Argumentos y pruebas.',
-  'Canales y formatos.',
-  'Roadmap de 90 días.',
-  'Indicadores de seguimiento.',
+const CONSTRUIMOS = [
+  { titulo: 'Territorios de autoridad', texto: 'Los temas donde la empresa reúne conocimiento, credenciales y una oportunidad real de desarrollar una voz propia.' },
+  { titulo: 'Mapa de audiencias y decisiones', texto: 'Quién participa, qué necesita comprender y qué preguntas aparecen a lo largo de la oportunidad comercial.' },
+  { titulo: 'Arquitectura editorial', texto: 'La relación entre temas, argumentos, pruebas y formatos para que cada contenido contribuya a una historia mayor.' },
+  { titulo: 'Roadmap de 90 días', texto: 'Una secuencia priorizada de contenidos, canales, responsables e indicadores preparada para ejecutarse.' },
 ]
 
 export default function EstrategiaDeContenido() {
   return (
-    <>
-      <PageColorSetter bg="#EF9DB6" text={NEGRO} />
-      <PageLayout
-        tagline="Estrategia de contenido"
-        headline={<FontMix bold="Ponle cerebro" italic=" al calendario." />}
-        description="Diseñamos la lógica que conecta objetivos, audiencias, temas, canales y momentos de decisión."
-        heroBg="#EF9DB6"
-        heroText={NEGRO}
-        ctaHref="#contacto"
-        ctaLabel="Diseñemos la estrategia →"
-        contact={{
-          headline: (
-            <FontMix
-              bold="Tu empresa ya tiene conocimiento."
-              italic={
-                <>
-                  <span className="md:hidden"> </span>
-                  <br className="hidden md:block" />
-                  Démosle dirección.
-                </>
-              }
-            />
-          ),
-          submitLabel: 'Agenda una conversación →',
-        }}
-      >
-        {/* Apertura */}
-        <BodySection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="La frecuencia" italic=" necesita dirección." />
-            </h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-lead opacity-80">
-                Tu empresa produce artículos, presentaciones, casos, campañas y materiales de venta.
-              </p>
-              <p className="text-base leading-relaxed opacity-65">
-                La estrategia asigna a cada pieza una audiencia, una función y un momento.
-              </p>
-              <p className="text-base leading-relaxed opacity-65">
-                Así, el contenido acumula reconocimiento y construye una posición clara en el mercado.
-              </p>
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Qué construimos */}
-        <BodySection>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Qué" italic=" construimos" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-              {construimos.map(item => (
-                <div key={item.numero} className="flex flex-col gap-3">
-                  <div className="flex flex-col items-start md:flex-row md:items-center gap-2 md:gap-3">
-                    <div style={{ width: '32px', height: '28px', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-                      <img src={item.icon} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-                    </div>
-                    <h3 style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', lineHeight: 1.1 }}>{item.titulo}</h3>
-                  </div>
-                  <p className="text-sm leading-relaxed opacity-65 md:pl-11">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Cómo lo hacemos */}
-        <BodySection dark>
-          <div className="flex flex-col gap-10">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.0 }}>
-              <FontMix bold="Partimos desde lo que" italic=" tu empresa ya sabe." />
-            </h2>
-            <div className="flex flex-col">
-              {comoLoHacemos.map(p => (
-                <div key={p.numero} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8"
-                  style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                  <h3 className="md:col-span-4" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)', lineHeight: 1.1 }}>
-                    {p.numero} {p.titulo}
-                  </h3>
-                  <p className="md:col-span-8 text-sm leading-relaxed opacity-65">{p.texto}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BodySection>
-
-        {/* Entrega — mockup del playbook + qué recibes */}
-        <BodySection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div style={{ position: 'relative', width: '100%', maxWidth: '320px', aspectRatio: '3/4', margin: '0 auto', border: '1px solid rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span className="label" style={{ opacity: 0.25 }}>Ilustración</span>
-            </div>
-            <div className="flex flex-col gap-6">
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.0 }}>
-                <FontMix bold="Recibes una estrategia" italic=" lista para usar." />
-              </h2>
-              <p className="text-base opacity-70">Entregamos un playbook que reúne:</p>
-              <ul className="flex flex-col gap-2">
-                {recibes.map(r => (
-                  <li key={r} className="text-base flex items-start gap-3">
-                    <span aria-hidden="true" style={{ flexShrink: 0, opacity: 0.5, fontSize: '1.1em', lineHeight: 1.3 }}>•</span>
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-sm leading-relaxed opacity-60 mt-2">
-                Un proyecto típico toma entre cuatro y seis semanas. El alcance considera mercados, unidades de negocio, audiencias y material disponible.
-              </p>
-            </div>
-          </div>
-        </BodySection>
-      </PageLayout>
-    </>
+    <Pagina>
+      <Hero
+        eyebrow="Estrategia de contenido"
+        titulo="Un plan que dice qué publicar, para quién y cuándo."
+        bajada="En cuatro a seis semanas recibes un playbook con territorios, audiencias, mensajes y roadmap."
+        cta="Diseñemos la estrategia →"
+      />
+      <Bloque titulo="La frecuencia necesita dirección.">
+        <p>La regularidad adquiere valor cuando ayuda al mercado a comprender mejor a tu empresa.</p>
+        <p>Una estrategia asigna a cada contenido una audiencia, una pregunta y una función. Así, las piezas acumulan reconocimiento y ayudan a que la empresa ocupe una posición clara.</p>
+      </Bloque>
+      <Bloque titulo="Empezamos por el negocio y las preguntas del comprador.">
+        <p>Estudiamos el modelo de negocio, el proceso comercial y las preguntas que el comprador necesita resolver. Luego contrastamos ese conocimiento con el mercado, la competencia, las búsquedas y las conversaciones que ya están ocurriendo.</p>
+        <p>Elegimos las conversaciones que tu empresa merece liderar.</p>
+      </Bloque>
+      <Bloque titulo="Qué construimos">
+        <Items items={CONSTRUIMOS} />
+      </Bloque>
+      <Bloque titulo="Partimos de lo que tu empresa ya sabe.">
+        <p>Auditamos el contenido existente, revisamos el mercado y entrevistamos a las personas que concentran conocimiento técnico y comercial.</p>
+        <p>Tomamos decisiones sobre audiencias, territorios, preguntas y canales. Después las convertimos en un playbook que marketing, ventas y los equipos técnicos pueden aplicar.</p>
+      </Bloque>
+      <Bloque titulo="Una estrategia lista para utilizar.">
+        <p>Recibes un playbook aplicable que reúne la dirección editorial, las audiencias, los territorios, la arquitectura de contenidos, el roadmap inicial y los criterios para evaluar qué producir.</p>
+        <p>Un proyecto típico toma entre cuatro y seis semanas, según el número de mercados, unidades de negocio y audiencias involucradas.</p>
+      </Bloque>
+      <CasoEnlace titulo="Dunamis ordenó su contenido desde las preguntas reales de sus clientes.">
+        <p>De reuniones, catálogos y conversaciones con clientes salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
+      </CasoEnlace>
+      <Cierre titulo="Tu empresa ya tiene conocimiento. Convirtámoslo en una posición editorial." cta="Construyamos la estrategia →" />
+    </Pagina>
   )
 }

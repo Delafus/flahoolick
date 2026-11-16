@@ -1,7 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { FontMix } from './font-mix'
+
+const CAMPOS_MINIMAL = [
+  { id: 'nombre', label: 'Nombre', type: 'text', placeholder: '¿Cómo te llamas?' },
+  { id: 'empresa', label: 'Empresa', type: 'text', placeholder: '¿Dónde trabajas?' },
+  { id: 'email', label: 'Correo', type: 'email', placeholder: 'tu@empresa.com' },
+]
+const CAMPO_MINIMAL = 'w-full py-2 bg-transparent outline-none focus:shadow-[0_1px_0_0_#000]'
+const CAMPO_MINIMAL_ESTILO = { borderBottom: '1px solid #000000', borderRadius: 0, color: '#000000' }
 
 export function ContactForm({
   bg = 'var(--brand-depth)',
@@ -10,7 +19,10 @@ export function ContactForm({
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
   submitLabel = 'Agenda una llamada →',
+  minimal = false,
 }: {
+  /** Solo el formulario, sin titular ni fondo, con campos de línea simple. */
+  minimal?: boolean
   bg?: string
   text?: string
   headline?: React.ReactNode
@@ -44,6 +56,44 @@ export function ContactForm({
     } finally {
       setLoading(false)
     }
+  }
+
+  if (minimal) {
+    return (
+      <div id="contacto" className="pt-6" style={{ scrollMarginTop: '96px' }}>
+        {sent ? (
+          <div className="flex flex-col gap-2">
+            <p style={{ fontWeight: 500 }}>Recibido.</p>
+            <p>Te escribiremos para coordinar la llamada de 30 minutos.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            {CAMPOS_MINIMAL.map(c => (
+              <div key={c.id} className="flex flex-col">
+                <label htmlFor={c.id}>{c.label}</label>
+                <input id={c.id} name={c.id} type={c.type} required placeholder={c.placeholder}
+                  className={CAMPO_MINIMAL} style={CAMPO_MINIMAL_ESTILO} />
+              </div>
+            ))}
+            <div className="flex flex-col">
+              <label htmlFor="mensaje">El desafío</label>
+              <textarea id="mensaje" name="mensaje" rows={3} required
+                placeholder="Cuéntanos qué cuesta explicar, producir o vender."
+                className={`${CAMPO_MINIMAL} resize-none`} style={CAMPO_MINIMAL_ESTILO} />
+            </div>
+            <button type="submit" disabled={loading}
+              className="w-fit underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity disabled:opacity-30">
+              {loading ? 'Enviando...' : submitLabel}
+            </button>
+            {error && <p>No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directo.</p>}
+            <p className="text-sm" style={{ opacity: 0.5 }}>
+              Usaremos tus datos únicamente para responder esta conversación. Consulta nuestra{' '}
+              <Link href="/politica-de-privacidad" className="underline underline-offset-2">Política de Privacidad</Link>.
+            </p>
+          </form>
+        )}
+      </div>
+    )
   }
 
   return (

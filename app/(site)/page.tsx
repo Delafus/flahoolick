@@ -1,270 +1,111 @@
-import { PageColorSetter } from '@/components/page-color-setter'
-import { ContactForm } from '@/components/contact-form'
-import { FontMix } from '@/components/page-layout'
-import { Marquee } from '@/components/marquee'
-import { ModuloMetodologia } from '@/components/modulo-metodologia'
-import { ModuloComoTrabajamos } from '@/components/modulo-como-trabajamos'
-import { ModuloCasoDunamis } from '@/components/modulo-caso-dunamis'
-import { ModuloJerga } from '@/components/modulo-jerga'
-import { ScrollConnector } from '@/components/scroll-connector'
-import { TrappedDots } from '@/components/trapped-dots'
-import { EyeGrid } from '@/components/eye-grid'
+import { Metadata } from 'next'
 import Link from 'next/link'
+import { ContactForm } from '@/components/contact-form'
+import { Marquee } from '@/components/marquee'
+import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE } from '@/components/minimal'
 
-interface Scroll {
-  h1Base: string
-  h1Emphasis: string
-  breakBeforeEmphasis?: boolean
-  /** Solo desktop: fuerza un salto de línea dentro del base, justo antes de esta palabra. */
-  baseBreakBefore?: string
-  /** Solo desktop: fuerza un salto de línea dentro del énfasis, justo después de esta palabra. */
-  emphasisBreakAfter?: string
-  sub: string
+export const metadata: Metadata = {
+  title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
+  description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos. Santiago, Chile.',
 }
 
-const SCROLLS: Scroll[] = [
+const CTA = 'Agenda una llamada de 30 minutos →'
+const NOTA = 'Sin presentaciones ni decks de venta.'
+
+const PASOS = [
   {
-    h1Base: 'Tu empresa sabe demasiado ',
-    h1Emphasis: 'para comunicar como cualquiera.',
-    baseBreakBefore: 'demasiado',
-    emphasisBreakAfter: 'comunicar',
-    sub: 'Gran parte de ese conocimiento queda atrapado.',
+    titulo: '01 Encontramos',
+    texto: 'Entendemos tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.',
+    recibes: 'los argumentos, conocimientos y evidencias que ayudan a que un cliente te elija.',
   },
   {
-    h1Base: 'Solo el 5% de tu mercado ',
-    h1Emphasis: 'está listo para comprar hoy.',
-    baseBreakBefore: 'mercado',
-    emphasisBreakAfter: 'listo',
-    sub: 'Construye disponibilidad mental para el 95% restante.',
+    titulo: '02 Ordenamos',
+    texto: 'Definimos audiencias, mensajes y temas según su valor para el mercado.',
+    recibes: 'un mapa que orienta a marketing, ventas y equipos técnicos.',
+  },
+  {
+    titulo: '03 Ponemos en circulación',
+    texto: 'Lo convertimos en contenido y herramientas que tus audiencias pueden encontrar, entender y recordar.',
+    recibes: 'piezas publicadas y medidas junto a marketing y ventas.',
   },
 ]
 
-/** Corta el texto base en dos líneas (solo desktop) justo antes de la palabra indicada. */
-function HighlightedBaseSegment({ text, highlight }: { text: string; highlight?: string }) {
-  if (!highlight) return <>{text}</>
-  const highlightStart = text.indexOf(highlight)
-  if (highlightStart === -1) return <>{text}</>
-
-  return (
-    <>
-      {text.slice(0, highlightStart)}
-      <span style={{ backgroundColor: '#1FDE91', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone', padding: '0 0.08em' }}>
-        {highlight}
-      </span>
-      {text.slice(highlightStart + highlight.length)}
-    </>
-  )
-}
-
-function BaseText({ text, breakBefore, highlight }: { text: string; breakBefore?: string; highlight?: string }) {
-  if (!breakBefore) return <HighlightedBaseSegment text={text} highlight={highlight} />
-  const cut = text.indexOf(breakBefore)
-  return (
-    <>
-      <HighlightedBaseSegment text={text.slice(0, cut)} highlight={highlight} />
-      <br className="hidden md:block" />
-      <HighlightedBaseSegment text={text.slice(cut)} highlight={highlight} />
-    </>
-  )
-}
-
-/** Corta el texto de énfasis en dos líneas (solo desktop) justo después de la palabra indicada. */
-function EmphasisText({ text, breakAfter }: { text: string; breakAfter?: string }) {
-  if (!breakAfter) return <>{text}</>
-  const cut = text.indexOf(breakAfter) + breakAfter.length
-  return (
-    <>
-      {text.slice(0, cut)}
-      <br className="hidden md:block" />
-      {text.slice(cut)}
-    </>
-  )
-}
-
-/** H1 de un hero — comparte la lógica de BaseText/EmphasisText entre el
- *  layout centrado (hero 0) y el de dos columnas (hero 1). */
-function HeroHeadline({ s, highlight, compact }: { s: Scroll; highlight?: string; compact?: boolean }) {
-  return (
-    <h1 className={`text-hero ${compact ? 'scroll-hero-h1-split' : 'scroll-hero-h1'}`} style={{ color: '#000000' }}>
-      <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>
-        <BaseText text={s.h1Base} breakBefore={s.baseBreakBefore} highlight={highlight} />
-      </span>
-      {s.breakBeforeEmphasis && <br className="hidden md:block" />}
-      <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>
-        <EmphasisText text={s.h1Emphasis} breakAfter={s.emphasisBreakAfter} />
-      </span>
-    </h1>
-  )
-}
-
-const LAYERS = [
-  { name: 'Signal Capture',     desc: 'Capturamos las señales que viven en tu operación técnica y comercial.' },
-  { name: 'Knowledge Modeling', desc: 'Convertimos conocimiento disperso en estructura de autoridad.' },
-  { name: 'Authority Output',   desc: 'Producimos los activos que construyen presencia antes de la decisión de compra.' },
-  { name: 'Feedback Loop',      desc: 'Calibramos el sistema con cada ciclo y cada señal del mercado.' },
+const BENEFICIOS = [
+  { titulo: 'Dirección', texto: 'El conocimiento que tu empresa acumuló durante años empieza a trabajar comercialmente.' },
+  { titulo: 'Marketing', texto: 'Una fuente constante de temas relevantes para tu mercado.' },
+  { titulo: 'Ventas', texto: 'Mejores argumentos y herramientas para cada conversación.' },
+  { titulo: 'Especialistas', texto: 'Aportan lo que saben en una conversación. Nosotros lo convertimos en contenido.' },
 ]
 
-const INDUSTRIES = [
-  'Tecnología B2B', 'Servicios financieros especializados',
-  'Ingeniería y servicios industriales', 'Salud corporativa',
-  'Educación ejecutiva', 'Infraestructura y concesiones',
+const SERVICIOS = [
+  { titulo: 'Estrategia de contenido', texto: 'Qué busca tu comprador y qué temas puede liderar tu empresa.', href: '/servicios/estrategia-de-contenido' },
+  { titulo: 'Marca y relato', texto: 'Una idea central y mensajes que todo el equipo cuenta igual.', href: '/servicios/marca-y-relato' },
+  { titulo: 'Producción de contenido', texto: 'Piezas de autoridad y herramientas de venta, en cadencia mensual.', href: '/servicios/produccion-de-contenido' },
+  { titulo: 'IA para marketing y ventas', texto: 'Herramientas y agentes que investigan, automatizan y atienden.', href: '/servicios/ia-para-marketing-y-ventas' },
 ]
 
 export default function HomePage() {
   return (
-    <>
-      <PageColorSetter bg="#000000" text="#ffffff" />
+    <Pagina>
+        <Hero
+          completo
+          titulo="Convertimos lo que tu empresa sabe en contenido y herramientas que venden."
+          bajada="Para empresas B2B con ventas largas y decisiones complejas."
+          cta={CTA}
+          nota={NOTA}
+        />
 
-      {/* Scroll sections — sin snap, scroll normal */}
-      {SCROLLS.map((s, i) => (
-        <section
-          key={i}
-          className={`flex flex-col items-center page-px ${i === 0 ? 'justify-center pt-32 md:pt-[220px]' : 'justify-end pt-24'}`}
-          style={{
-            minHeight: '100dvh',
-            paddingBottom: i === 0 ? '2rem' : 0,
-            backgroundColor: '#D8D8D7',
-            color: '#000000',
-          }}
-        >
-          <div className="max-container w-full text-center flex flex-col gap-6">
-            <HeroHeadline s={s} highlight={i === 1 ? '5%' : undefined} />
-            <p className="text-base md:text-2xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#000000', fontFamily: 'var(--font-bricolage)', fontWeight: 400 }}>
-              {s.sub}
-            </p>
-            {/* Conectores pegados a la animación: dot → línea que entra en el círculo/grilla,
-                y abajo una línea que nace desde dentro. Las líneas quedan detrás (z-index). */}
-            <div className="flex flex-col items-center w-full">
-              <div className="w-full md:hidden"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={10} dot="top" flush /></div>
-              <div className="w-full hidden md:block"><ScrollConnector color="#403D37" height={140} thickness={1.5} dotSize={10} dot="top" flush /></div>
-
-              {i === 0 ? (
-                <div className="w-full max-w-[300px] md:max-w-[440px] mx-auto -mt-3 md:-mt-4" style={{ position: 'relative', zIndex: 1, aspectRatio: '1' }}>
-                  <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', backgroundColor: '#000000' }} />
-                  <TrappedDots diameterPercent={80} dotColor="#F1EEE7" speedFactor={0.5} />
-                </div>
-              ) : (
-                <div className="w-full max-w-[300px] md:max-w-[440px] mx-auto" style={{ position: 'relative', zIndex: 1, aspectRatio: '1' }}>
-                  <EyeGrid />
-                </div>
-              )}
-
-              {i === 0 ? (
-                <>
-                  <div className="w-full md:hidden -mt-3"><ScrollConnector color="#403D37" height={100} thickness={1.5} dotSize={10} dot="bottom" flush /></div>
-                  <div className="w-full hidden md:block -mt-4"><ScrollConnector color="#403D37" height={160} thickness={1.5} dotSize={10} dot="bottom" flush /></div>
-                </>
-              ) : (
-                /* Hero 2: la línea sigue sin cortar hasta el cruce con el módulo verde */
-                <>
-                  <div className="w-full md:hidden"><ScrollConnector color="#403D37" height={60} thickness={1.5} dotSize={10} dot="none" flush /></div>
-                  <div className="w-full hidden md:block"><ScrollConnector color="#403D37" height={90} thickness={1.5} dotSize={10} dot="none" flush /></div>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* Conector hacia el módulo verde: la línea pasa de gris a negro justo en el cruce de fondos */}
-      <div className="md:hidden flex justify-center" style={{ height: '100px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <ScrollConnector color="#403D37" colorTo="#000000" height={100} thickness={1.5} dotSize={10} flush />
-      </div>
-      <div className="hidden md:flex justify-center" style={{ height: '160px', background: 'linear-gradient(to bottom, #D8D8D7 50%, #1FDE91 50%)' }}>
-        <ScrollConnector color="#403D37" colorTo="#000000" height={160} thickness={1.5} dotSize={10} flush />
-      </div>
-
-      {/* PRESENTACIÓN — Somos FLAHOOLICK */}
-      <section
-        className="flex flex-col items-center text-center pt-12 md:pt-[180px]"
-        style={{ backgroundColor: '#1FDE91', color: '#000000', paddingBottom: '6rem' }}
-      >
-        {/* Titular */}
-        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', marginBottom: '5rem' }}>
-          <h2 className="text-hero" style={{ color: '#000000', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-            <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, fontSize: '1.04em', letterSpacing: '-0.03em' }}>Somos FLAHOOLICK.</span><br />
-            <span style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '1.04em' }}>Convertimos lo que sabes en autoridad de mercado.</span>
-          </h2>
-        </div>
-
-        {/* Botón */}
-        <Link
-          href="/sobre-flahoolick"
-          className="label pill-somos-flahoolick px-8 py-4"
-          style={{ borderRadius: '999px' }}
-        >
-          SOBRE NOSOTROS
-        </Link>
-      </section>
-
-      {/* Caso Dunamis */}
-      <ModuloCasoDunamis />
-
-      {/* Módulo Servicios — en qué nos especializamos */}
-      <ModuloComoTrabajamos />
-
-      {/* EVIDENCIA — marcas, experiencia e industrias */}
-      <section
-        className="flex flex-col items-center text-center"
-        style={{ backgroundColor: '#1FDE91', color: '#000000', padding: '6rem 0' }}
-      >
-        {/* Marcas que nos formaron */}
-        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700, textTransform: 'none' }}>Marcas que nos formaron</p>
-
-        {/* Marquee */}
-        <div style={{ width: '100%', overflow: 'hidden', marginBottom: '3rem' }}>
-          <Marquee color="#000000" />
-        </div>
-
-        {/* Párrafo */}
-        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)' }}>
-          <p className="text-lead mx-auto" style={{ color: '#000000', opacity: 0.75, maxWidth: '52rem' }}>
-            Tenemos más de 25 años de experiencia en grupos publicitarios y medios de comunicación globales que hoy ponemos al servicio de empresas B2B que necesitan ordenar, producir y hacer circular conocimiento complejo.
+        <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+          <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
+          <p className="text-base">
+            <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}
+            <Link href="/jerga/john-dawes-y-su-regla-del-95-5" className={ENLACE}>Leer la guía de la regla 95:5 →</Link>
           </p>
-        </div>
+        </Pantalla>
 
-        {/* Divisoria con aire */}
-        <div style={{ width: '100%', maxWidth: '80rem', padding: '0 var(--page-px)', margin: '4rem 0 3rem' }}>
-          <hr style={{ borderColor: '#000000', borderTopWidth: '1px', opacity: 0.3 }} />
-        </div>
+        <Pantalla titulo="Tu empresa sabe muchísimo. Tu mercado ve una parte mínima.">
+          <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Nosotros entramos ahí.</p>
+        </Pantalla>
 
-        <p className="label" style={{ color: '#000000', opacity: 0.6, marginBottom: '2rem', fontSize: '1rem', fontFamily: 'var(--font-bricolage)', fontWeight: 700, textTransform: 'none' }}>Con quién trabajamos</p>
+        <Bloque titulo="Cómo trabajamos.">
+          <div className="flex flex-col gap-6">
+            {PASOS.map(p => (
+              <div key={p.titulo}>
+                <h3 style={{ fontWeight: 500 }}>{p.titulo}</h3>
+                <p>{p.texto}</p>
+                <p><span style={{ fontWeight: 500 }}>Recibes:</span> {p.recibes}</p>
+              </div>
+            ))}
+          </div>
+          <p><Link href="/metodologia" className={ENLACE}>Ver la metodología →</Link></p>
+        </Bloque>
 
-        <div style={{ maxWidth: '80rem', width: '100%', padding: '0 var(--page-px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
-          {[
-            { tag: 'Tecnología', icon: null },
-            { tag: 'Servicios financieros', icon: '/icons/icon-bank.svg' },
-            { tag: 'Ingeniería industrial', icon: null },
-            { tag: 'Energía', icon: '/icons/icon-energy.svg' },
-            { tag: 'Minería', icon: '/icons/icon-mining.svg' },
-            { tag: 'Infraestructura', icon: null },
-            { tag: 'Logística', icon: null },
-            { tag: 'Salud', icon: '/icons/icon-medicine.svg' },
-            { tag: 'Educación', icon: null },
-            { tag: 'Activos inmobiliarios', icon: null },
-            { tag: 'Manufactura', icon: null },
-            { tag: 'Servicios profesionales', icon: null },
-            { tag: 'Sector público', icon: null },
-          ].map(({ tag, icon }) => (
-            <span key={tag} className="text-sm px-3 py-1.5"
-              style={{ border: '1px solid #000000', color: '#000000', opacity: 0.7, borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-              {icon && <img src={icon} alt="" style={{ width: '14px', height: '14px' }} />}
-              {tag}
-            </span>
-          ))}
-        </div>
-      </section>
+        <Bloque titulo="Para qué te sirve.">
+          <Items items={BENEFICIOS} />
+        </Bloque>
 
-      {/* Módulo Metodología */}
-      <ModuloMetodologia />
+        <Bloque titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
+          <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
+          <p><Link href="/casos/dunamis" className={ENLACE}>Ver el caso Dunamis →</Link></p>
+        </Bloque>
 
-      {/* Módulo JERGA */}
-      <ModuloJerga />
+        <Bloque titulo="Servicios.">
+          <Items items={SERVICIOS} />
+        </Bloque>
 
-      {/* Contacto */}
-      <ContactForm bg="#403D37" text="#ffffff"
-        headline={<FontMix bold="¿Empezamos" italic=" por una llamada?" />}
-        note="30 minutos. Sin presentaciones ni decks de venta." />
-    </>
+        <Bloque titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
+          <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
+          <div>
+            <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
+            <Marquee color="#000000" excluir={['Dunamis']} />
+          </div>
+          <p><Link href="/sobre-flahoolick" className={ENLACE}>Conoce al equipo →</Link></p>
+        </Bloque>
+
+        <Bloque titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">
+          <ContactForm minimal submitLabel={CTA} />
+          <p className="text-base" style={{ opacity: 0.5 }}>{NOTA}</p>
+        </Bloque>
+    </Pagina>
   )
 }

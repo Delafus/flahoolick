@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
 import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE } from '@/components/minimal'
-import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -50,7 +49,6 @@ export default function HomePage() {
     <Pagina>
         <Hero
           color="negro"
-          visual={<DotPattern pattern="malla" color="#ffffff" accentColor="#1FDE91" />}
           titulo="Convertimos lo que tu empresa sabe en contenido y herramientas que venden."
           bajada="Para empresas B2B con ventas largas y decisiones complejas."
           nota={NOTA}

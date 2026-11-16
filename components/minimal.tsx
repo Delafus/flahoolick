@@ -78,7 +78,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
     const { fondo, texto } = CABECERAS[color]
     return (
       <section
-        className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16"
+        className={`relative grid grid-cols-1 items-center gap-12 ${visual ? 'lg:grid-cols-2 lg:gap-16' : ''}`}
         style={{
           left: '50%', transform: 'translateX(-50%)', width: ANCHO_HERO,
           minHeight: '100dvh', paddingTop: 'calc(64px + 3.5rem)', paddingBottom: '4rem',
@@ -86,7 +86,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
         }}
       >
         <PageColorSetter bg={fondo} text={texto} />
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8" style={visual ? undefined : { maxWidth: '60rem' }}>
           {eyebrow && <p className="label">{eyebrow}</p>}
           <h1 style={{ ...FUENTE, fontWeight: 500, fontSize: 'clamp(2.75rem, 5.4vw, 5.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
             {titulo}

@@ -49,7 +49,7 @@ export default function HomePage() {
     <Pagina>
         <Hero
           color="negro"
-          titulo="Convertimos lo que tu empresa sabe en contenido y herramientas que venden."
+          titulo="Convertimos lo que sabes en autoridad de mercado."
           bajada="Para empresas B2B con ventas largas y decisiones complejas."
           nota={NOTA}
         />

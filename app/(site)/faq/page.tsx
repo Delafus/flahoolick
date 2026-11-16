@@ -36,7 +36,6 @@ export default function FAQ() {
         eyebrow="Preguntas frecuentes"
         titulo="Lo que probablemente quieras saber antes de conversar."
         bajada="También puedes escribirnos directamente. Una conversación basta para empezar."
-        cta="Escríbenos →"
       />
       <section className="flex flex-col py-16 md:py-24">
         {PREGUNTAS.map(p => (
@@ -46,7 +45,7 @@ export default function FAQ() {
           </details>
         ))}
       </section>
-      <Cierre titulo="¿Qué quieres poner sobre la mesa?" cta="Escríbenos →" />
+      <Cierre titulo="¿Qué quieres poner sobre la mesa?" cta="Agenda una llamada" />
     </Pagina>
   )
 }

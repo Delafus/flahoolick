@@ -23,7 +23,6 @@ export default function EstrategiaDeContenido() {
         eyebrow="Estrategia de contenido"
         titulo="Un plan que dice qué publicar, para quién y cuándo."
         bajada="En cuatro a seis semanas recibes un playbook con territorios, audiencias, mensajes y roadmap."
-        cta="Diseñemos la estrategia →"
       />
       <Bloque titulo="La frecuencia necesita dirección.">
         <p>La regularidad adquiere valor cuando ayuda al mercado a comprender mejor a tu empresa.</p>
@@ -47,7 +46,7 @@ export default function EstrategiaDeContenido() {
       <CasoEnlace titulo="Dunamis ordenó su contenido desde las preguntas reales de sus clientes.">
         <p>De reuniones, catálogos y conversaciones con clientes salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
       </CasoEnlace>
-      <Cierre titulo="Tu empresa ya tiene conocimiento. Convirtámoslo en una posición editorial." cta="Construyamos la estrategia →" />
+      <Cierre titulo="Tu empresa ya tiene conocimiento. Convirtámoslo en una posición editorial." cta="Agenda una llamada" />
     </Pagina>
   )
 }

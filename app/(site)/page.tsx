@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos. Santiago, Chile.',
 }
 
-const CTA = 'Agenda una llamada de 30 minutos →'
+const CTA = 'Agenda una llamada'
 const NOTA = 'Sin presentaciones ni decks de venta.'
 
 const PASOS = [
@@ -53,7 +53,6 @@ export default function HomePage() {
           visual={<DotPattern pattern="malla" color="#ffffff" accentColor="#1FDE91" />}
           titulo="Convertimos lo que tu empresa sabe en contenido y herramientas que venden."
           bajada="Para empresas B2B con ventas largas y decisiones complejas."
-          cta={CTA}
           nota={NOTA}
         />
 

@@ -41,7 +41,7 @@ export function Footer() {
             </p>
             <p>
               <Link href="/#contacto" className={`underline underline-offset-4 decoration-1 ${ENLACE}`}>
-                Agenda una llamada de 30 minutos →
+                Agenda una llamada
               </Link>
             </p>
           </div>

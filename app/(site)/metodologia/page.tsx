@@ -69,7 +69,7 @@ export default function Metodologia() {
       <CasoEnlace titulo="El sistema en acción: Dunamis.">
         <p>Su equipo comercial explicaba lo mismo desde cero en cada llamada. Sistematizamos lo que sabía y lo convertimos en una identidad, dos sitios, una plataforma editorial, herramientas digitales y un asistente virtual.</p>
       </CasoEnlace>
-      <Cierre titulo="El conocimiento adquiere valor cuando encuentra una función en el mercado." cta="Conversemos sobre tu empresa →" />
+      <Cierre titulo="El conocimiento adquiere valor cuando encuentra una función en el mercado." cta="Agenda una llamada" />
     </Pagina>
   )
 }

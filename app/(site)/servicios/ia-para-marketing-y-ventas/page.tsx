@@ -31,7 +31,6 @@ export default function HerramientasDeIAParaMarketing() {
         eyebrow="IA para marketing y ventas"
         titulo="IA que conoce el trabajo."
         bajada="Herramientas y agentes que atienden, califican, agendan y responden con el conocimiento de tu empresa."
-        cta="Cuéntanos qué quieres resolver →"
       />
       <Bloque titulo="La IA genera valor cuando resuelve un trabajo concreto.">
         <p>Empezamos por una tarea, una decisión o una fricción real. Definimos qué debe saber la herramienta, qué acciones puede ejecutar, cuándo necesita intervención humana y qué resultado debe producir.</p>
@@ -48,7 +47,7 @@ export default function HerramientasDeIAParaMarketing() {
       <Bloque titulo="Cómo lo hacemos">
         <Items items={PROCESO} />
       </Bloque>
-      <Cierre titulo="La mejor oportunidad para aplicar IA comienza con un trabajo concreto." cta="Cuéntanos cuál →" />
+      <Cierre titulo="La mejor oportunidad para aplicar IA comienza con un trabajo concreto." cta="Agenda una llamada" />
     </Pagina>
   )
 }

@@ -34,7 +34,7 @@ export default function SobreFlahoolick() {
       <Cierre
         titulo="Generosidad también es hacer circular lo que uno sabe."
         texto="Ayudamos a que el conocimiento de una empresa encuentre una forma, una audiencia y una función en el mercado."
-        cta="Conversemos →"
+        cta="Agenda una llamada"
       />
     </Pagina>
   )

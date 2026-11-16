@@ -29,7 +29,6 @@ export default function ProduccionDeContenido() {
         eyebrow="Producción de contenido"
         titulo="Lo que saben tus especialistas, publicado cada mes."
         bajada="Artículos, guías, casos y herramientas de venta, producidos por un equipo senior."
-        cta="Pongámoslo en circulación →"
       />
       <Bloque titulo="El conocimiento inmóvil pierde valor.">
         <p>Tu empresa acumula experiencia en reuniones, documentos, proyectos, datos y conversaciones comerciales. Una parte valiosa todavía espera llegar a quienes investigan, recomiendan y deciden.</p>
@@ -52,7 +51,7 @@ export default function ProduccionDeContenido() {
         <p>Un PDF queda viejo cada vez que cambian el stock o los honorarios. El dossier web funciona en celular y tablet, y se actualiza una sola vez para todo el equipo.</p>
         <p>Para el mercado, Dunamistas reúne artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana.</p>
       </CasoEnlace>
-      <Cierre titulo="Hagamos trabajar mejor lo que tu empresa sabe." cta="Conversemos sobre tu operación →" />
+      <Cierre titulo="Hagamos trabajar mejor lo que tu empresa sabe." cta="Agenda una llamada" />
     </Pagina>
   )
 }

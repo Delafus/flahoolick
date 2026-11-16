@@ -39,7 +39,6 @@ export default function Servicios() {
         eyebrow="Servicios"
         titulo="Cuatro servicios, un mismo sistema."
         bajada="Estrategia, marca, contenido e IA para que tu empresa esté presente durante todo el ciclo de decisión de tu comprador."
-        cta="Agenda una llamada de 30 minutos →"
       />
       <Bloque titulo="La comunicación funciona mejor cuando parte de la misma lógica que el negocio.">
         <p>Entendemos la oferta, las audiencias, el proceso comercial y las pruebas que hacen creíble a la empresa. Cada proyecto reúne las capacidades que necesita para hacer visible su valor durante la decisión.</p>
@@ -51,7 +50,7 @@ export default function Servicios() {
         <p>Auditamos qué sabe tu empresa, cómo habla hoy tu equipo, cómo te muestran los modelos de IA cuando tu comprador busca y dónde están los vacíos.</p>
         <p>Te quedas con el diagnóstico, decidas lo que decidas después.</p>
       </Bloque>
-      <Cierre titulo="Ordena lo que tu empresa sabe y conviértelo en ventaja comercial." cta="Agenda una llamada de 30 minutos →" />
+      <Cierre titulo="Ordena lo que tu empresa sabe y conviértelo en ventaja comercial." cta="Agenda una llamada" />
     </Pagina>
   )
 }

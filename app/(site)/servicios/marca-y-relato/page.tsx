@@ -29,7 +29,6 @@ export default function MarcaYRelato() {
         eyebrow="Marca y relato"
         titulo="Una historia que tu mercado puede entender y repetir."
         bajada="Definimos la posición de tu empresa y los mensajes que todo el equipo cuenta igual."
-        cta="Conversemos sobre tu marca →"
       />
       <Bloque titulo="Ocupar un lugar exige elegirlo.">
         <p>Las empresas complejas suelen describirse con las mismas palabras: innovación, experiencia y compromiso.</p>
@@ -51,7 +50,7 @@ export default function MarcaYRelato() {
       <CasoEnlace titulo="Una nueva identidad para dos públicos.">
         <p>De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.</p>
       </CasoEnlace>
-      <Cierre titulo="Dale a tu empresa una posición que pueda demostrar." cta="Trabajemos el relato →" />
+      <Cierre titulo="Dale a tu empresa una posición que pueda demostrar." cta="Agenda una llamada" />
     </Pagina>
   )
 }

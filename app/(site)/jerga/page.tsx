@@ -24,7 +24,7 @@ export default async function JergaPage() {
   const nombreCategoria = (slug: string) => cats.find(c => c.slug === slug)?.nombre
 
   return (
-    <Pagina>
+    <Pagina angosta>
       <section className="flex flex-col justify-center gap-8" style={{ minHeight: '75dvh', paddingTop: '64px' }}>
         <h1>
           <Image src="/logotipo-jerga.svg" alt="JERGA" width={340} height={190}

@@ -6,6 +6,7 @@ export const FUENTE = { fontFamily: 'var(--font-inter)', letterSpacing: '-0.02em
 export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity'
 
 const ANCHO_TEXTO = '40rem'
+const ANCHO_PAGINA = '80rem'
 
 /** Verde de Flahoolick. Solo como fondo con texto negro, o como acento sobre fondo oscuro: sobre blanco no se lee. */
 export const VERDE = '#1FDE91'
@@ -40,12 +41,18 @@ export function Lienzo({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function Columna({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto flex flex-col" style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>
+/** Columna de contenido. Angosta por defecto (lectura corrida). Con `ancha`, cada Bloque se abre en dos columnas
+    en escritorio: titular a la izquierda y texto a la derecha (ver `.columna-ancha` en globals.css). */
+export function Columna({ ancha = false, children }: { ancha?: boolean; children: React.ReactNode }) {
+  return (
+    <div className={`mx-auto flex flex-col ${ancha ? 'columna-ancha' : ''}`} style={{ maxWidth: ancha ? ANCHO_PAGINA : ANCHO_TEXTO }}>
+      {children}
+    </div>
+  )
 }
 
-export function Pagina({ children }: { children: React.ReactNode }) {
-  return <Lienzo><Columna>{children}</Columna></Lienzo>
+export function Pagina({ angosta = false, children }: { angosta?: boolean; children: React.ReactNode }) {
+  return <Lienzo><Columna ancha={!angosta}>{children}</Columna></Lienzo>
 }
 
 /** Colores de cabecera: cada sección del sitio abre con un gran hero de su color y el resto de la página va en blanco.
@@ -128,10 +135,10 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
 export function Pantalla({ titulo, tono, children }: { titulo: React.ReactNode; tono?: Tono; children?: React.ReactNode }) {
   return (
     <section className="flex flex-col justify-center gap-8 py-16" style={{ minHeight: '100dvh', ...banda(tono) }}>
-      <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+      <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
         {titulo}
       </h2>
-      {children}
+      <div className="flex flex-col gap-8" style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>
     </section>
   )
 }
@@ -147,13 +154,15 @@ export function Bloque({ titulo, id, etiqueta, tono, visual, children }: {
   children: React.ReactNode
 }) {
   return (
-    <section id={id} className="flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px', ...banda(tono) }}>
-      {visual}
-      {etiqueta && <p className="text-base" style={{ opacity: 0.5, marginBottom: '-0.75rem' }}>{etiqueta}</p>}
-      <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
-        {titulo}
-      </h2>
-      {children}
+    <section id={id} className="bloque flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px', ...banda(tono) }}>
+      <div className="bloque-titulo flex flex-col gap-6">
+        {visual}
+        {etiqueta && <p className="text-base" style={{ opacity: 0.5, marginBottom: '-0.75rem' }}>{etiqueta}</p>}
+        <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
+          {titulo}
+        </h2>
+      </div>
+      <div className="bloque-cuerpo flex flex-col gap-6">{children}</div>
     </section>
   )
 }

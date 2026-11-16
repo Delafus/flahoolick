@@ -35,7 +35,7 @@ export default function FAQ() {
         titulo="Lo que probablemente quieras saber antes de conversar."
         bajada="También puedes escribirnos directamente. Una conversación basta para empezar."
       />
-      <section className="flex flex-col py-16 md:py-24">
+      <section className="bloque-derecha flex flex-col py-16 md:py-24">
         {PREGUNTAS.map(p => (
           <details key={p.q} className="py-4" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
             <summary className="cursor-pointer" style={{ fontWeight: 500 }}>{p.q}</summary>

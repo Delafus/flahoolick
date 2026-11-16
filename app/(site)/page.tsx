@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 }
 
 const CTA = 'Agenda una llamada'
-const NOTA = 'Sin presentaciones ni decks de venta.'
 
 const PASOS = [
   {
@@ -51,7 +50,6 @@ export default function HomePage() {
           color="negro"
           titulo="Convertimos lo que sabes en autoridad de mercado."
           bajada="Para empresas B2B con ventas largas, donde gana la marca que el comprador ya conoce."
-          nota={NOTA}
         />
 
         <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
@@ -95,19 +93,19 @@ export default function HomePage() {
 
         <Bloque titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
-          <div>
-            <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
-            {/* A todo el ancho de la pantalla, fuera de la columna de texto. */}
-            <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
-              <Marquee color="#000000" excluir={['Dunamis']} />
-            </div>
-          </div>
           <p><Link href="/sobre-flahoolick" className={ENLACE}>Sobre Flahoolick →</Link></p>
         </Bloque>
 
+        {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}
+        <div className="pb-16 md:pb-24">
+          <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
+          <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
+            <Marquee color="#000000" excluir={['Dunamis']} />
+          </div>
+        </div>
+
         <Bloque titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">
           <ContactForm minimal submitLabel={CTA} />
-          <p className="text-base" style={{ opacity: 0.5 }}>{NOTA}</p>
         </Bloque>
     </Pagina>
   )

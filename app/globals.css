@@ -379,3 +379,17 @@
     width: max-content;
   }
 }
+
+/* Cuerpo ancho de las páginas: en escritorio cada bloque va en dos columnas,
+   titular a la izquierda y texto a la derecha. Ver Columna/Bloque en components/minimal.tsx. */
+@media (min-width: 1024px) {
+  .columna-ancha .bloque {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 5rem;
+    align-items: start;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .columna-ancha .bloque-titulo h2 { font-size: 2.5rem; line-height: 1.1; letter-spacing: -0.03em; }
+  .columna-ancha .bloque-derecha { margin-left: auto; width: calc((100% - 5rem) * 7 / 12); }
+}

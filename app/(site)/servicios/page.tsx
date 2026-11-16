@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, Cierre } from '@/components/minimal'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Servicios de estrategia, marca, contenido e IA | Flahoolick',
@@ -33,18 +34,20 @@ export default function Servicios() {
   return (
     <Pagina>
       <Hero
+        color="rosa"
+        visual={<DotPattern pattern="constelaciones" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Servicios"
         titulo="Cuatro servicios, un mismo sistema."
         bajada="Estrategia, marca, contenido e IA para que tu empresa esté presente durante todo el ciclo de decisión de tu comprador."
         cta="Agenda una llamada de 30 minutos →"
       />
-      <Bloque tono="gris" titulo="La comunicación funciona mejor cuando parte de la misma lógica que el negocio.">
+      <Bloque titulo="La comunicación funciona mejor cuando parte de la misma lógica que el negocio.">
         <p>Entendemos la oferta, las audiencias, el proceso comercial y las pruebas que hacen creíble a la empresa. Cada proyecto reúne las capacidades que necesita para hacer visible su valor durante la decisión.</p>
       </Bloque>
       <Bloque titulo="Cuatro disciplinas. Un solo sistema.">
         <Items items={SERVICIOS} />
       </Bloque>
-      <Bloque tono="negro" titulo="Empezamos con un diagnóstico de cinco días.">
+      <Bloque titulo="Empezamos con un diagnóstico de cinco días.">
         <p>Auditamos qué sabe tu empresa, cómo habla hoy tu equipo, cómo te muestran los modelos de IA cuando tu comprador busca y dónde están los vacíos.</p>
         <p>Te quedas con el diagnóstico, decidas lo que decidas después.</p>
       </Bloque>

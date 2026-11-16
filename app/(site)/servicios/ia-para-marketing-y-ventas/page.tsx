@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Herramientas y agentes de IA para marketing y ventas | Flahoolick',
@@ -25,6 +26,8 @@ export default function HerramientasDeIAParaMarketing() {
   return (
     <Pagina>
       <Hero
+        color="rosa"
+        visual={<DotPattern pattern="ondas" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="IA para marketing y ventas"
         titulo="IA que conoce el trabajo."
         bajada="Herramientas y agentes que atienden, califican, agendan y responden con el conocimiento de tu empresa."
@@ -36,7 +39,7 @@ export default function HerramientasDeIAParaMarketing() {
       <Bloque titulo="La herramienta forma parte del negocio.">
         <p>La conectamos con documentos, conversaciones, reglas comerciales, mensajes de marca y sistemas existentes. Así trabaja con el contexto propio de la empresa y produce respuestas pertinentes.</p>
       </Bloque>
-      <Bloque tono="gris" titulo="Aplicaciones">
+      <Bloque titulo="Aplicaciones">
         <Items items={APLICACIONES} />
       </Bloque>
       <CasoEnlace titulo="De lo que sabía un equipo a un asistente que agenda visitas.">

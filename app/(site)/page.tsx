@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
-import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE } from '@/components/minimal'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -49,14 +49,15 @@ export default function HomePage() {
   return (
     <Pagina>
         <Hero
-          completo
+          color="negro"
+          visual={<DotPattern pattern="malla" color="#ffffff" accentColor="#1FDE91" />}
           titulo="Convertimos lo que tu empresa sabe en contenido y herramientas que venden."
           bajada="Para empresas B2B con ventas largas y decisiones complejas."
           cta={CTA}
           nota={NOTA}
         />
 
-        <Pantalla tono="negro" titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+        <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
           <p className="text-base">
             <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}
@@ -82,11 +83,11 @@ export default function HomePage() {
           <p><Link href="/metodologia" className={ENLACE}>Ver la metodología →</Link></p>
         </Bloque>
 
-        <Bloque tono="gris" titulo="Para qué te sirve.">
+        <Bloque titulo="Para qué te sirve.">
           <Items items={BENEFICIOS} />
         </Bloque>
 
-        <Bloque tono="negro" titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
+        <Bloque titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
           <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
           <p><Link href="/casos/dunamis" className={ENLACE}>Ver el caso Dunamis →</Link></p>
         </Bloque>
@@ -95,7 +96,7 @@ export default function HomePage() {
           <Items items={SERVICIOS} />
         </Bloque>
 
-        <Bloque tono="verde" visual={<IdeaGenerosaLogo className="w-40 md:w-52 mb-6" />} titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
+        <Bloque titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
           <div>
             <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>

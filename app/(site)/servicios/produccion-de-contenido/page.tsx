@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import { DotPattern } from '@/components/dot-pattern'
 
 export const metadata: Metadata = {
   title: 'Producción de contenido B2B y herramientas para ventas | Flahoolick',
@@ -23,6 +24,8 @@ export default function ProduccionDeContenido() {
   return (
     <Pagina>
       <Hero
+        color="rosa"
+        visual={<DotPattern pattern="cadencia" color={'#000000'} accentColor={'#ffffff'} />}
         eyebrow="Producción de contenido"
         titulo="Lo que saben tus especialistas, publicado cada mes."
         bajada="Artículos, guías, casos y herramientas de venta, producidos por un equipo senior."
@@ -35,7 +38,7 @@ export default function ProduccionDeContenido() {
       <Bloque titulo="Qué resolvemos">
         <Items items={RESOLVEMOS} />
       </Bloque>
-      <Bloque tono="gris" titulo="Tres tipos de activos">
+      <Bloque titulo="Tres tipos de activos">
         <Items items={ACTIVOS} />
       </Bloque>
       <Bloque titulo="Una idea puede cumplir más de un trabajo.">

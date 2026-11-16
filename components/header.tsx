@@ -171,7 +171,7 @@ export function Header() {
       <div
         className="hidden md:block w-full overflow-hidden transition-all duration-300 ease-out"
         style={{
-          maxHeight: active ? '520px' : '0px',
+          maxHeight: active ? '720px' : '0px',
           opacity: active ? 1 : 0,
           backgroundColor: bg,
           borderTop: active ? `1px solid ${divColor}` : 'none',
@@ -257,7 +257,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
   return (
     <div className="page-px py-12 max-container w-full mx-auto grid grid-cols-12 gap-8">
       <div className="col-span-4 flex flex-col justify-between gap-12">
-        <p className="text-2xl font-light leading-snug" style={{ color: textColor }}>{menu.tagline}</p>
+        <p style={{ color: textColor, fontFamily: 'var(--font-inter)', fontSize: 'clamp(1.75rem, 2.5vw, 2.75rem)', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.025em' }}>{menu.tagline}</p>
         <Link href={menu.ctaHref} onClick={onClose}
           className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
           style={{
@@ -283,13 +283,13 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
               className="absolute left-0 top-0 bottom-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
               style={{ width: '2px', backgroundColor: textColor }}
             />
-            <h3 className="label font-bold group-hover:opacity-60 transition-opacity" style={{ color: textColor }}>
+            <h3 className="group-hover:opacity-60 transition-opacity" style={{ color: textColor, fontFamily: 'var(--font-inter)', fontSize: '1.125rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               {item.title}
             </h3>
-            <p className="text-sm leading-relaxed opacity-60" style={{ color: textColor }}>{item.desc}</p>
+            <p className="text-base leading-relaxed" style={{ color: textColor, opacity: 0.85 }}>{item.desc}</p>
             {item.linkLabel && (
               <span className="label transition-opacity"
-                style={{ color: textColor, fontSize: '0.65rem' }}>
+                style={{ color: textColor, fontSize: '0.75rem' }}>
                 {item.linkLabel}
               </span>
             )}

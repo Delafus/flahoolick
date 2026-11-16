@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { DISCIPLINAS } from './servicios-datos'
 import { JERGA_VISIBLE } from './jerga-visible'
-import { VERDE } from './minimal'
 
 const FONDO = '#1C1C1C'
 const TEXTO = '#ffffff'
@@ -63,7 +62,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-8">
           <div role="img" aria-label="Flahoolick" style={{
-            width: '100%', aspectRatio: '744 / 184', backgroundColor: VERDE,
+            width: '100%', aspectRatio: '744 / 184', backgroundColor: TEXTO,
             WebkitMask: 'url(/logo-flahoolick-hrztl.svg) center / contain no-repeat',
             mask: 'url(/logo-flahoolick-hrztl.svg) center / contain no-repeat',
           }} />

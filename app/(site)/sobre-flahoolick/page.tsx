@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Bloque, Items, Cierre } from '@/components/minimal'
+import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick | Estrategia y contenido B2B',
@@ -17,6 +18,8 @@ export default function SobreFlahoolick() {
   return (
     <Pagina>
       <Hero
+        verde
+        visual={<IdeaGenerosaLogo className="w-48 md:w-64" />}
         titulo="Nacimos de una idea generosa."
         bajada={<>Del irlandés <em>flaithiúil</em>: generoso, espléndido, abundante. Flahoolick es un estudio de estrategia y contenido para empresas B2B con ciclos de decisión complejos.</>}
       />

@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
+import { IdeaGenerosaLogo } from '@/components/idea-generosa-logo'
 import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE } from '@/components/minimal'
 
 export const metadata: Metadata = {
@@ -94,7 +95,7 @@ export default function HomePage() {
           <Items items={SERVICIOS} />
         </Bloque>
 
-        <Bloque titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
+        <Bloque verde visual={<IdeaGenerosaLogo className="w-40 md:w-52 mb-6" />} titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
           <div>
             <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>

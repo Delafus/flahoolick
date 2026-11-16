@@ -35,7 +35,7 @@ export function Pagina({ children }: { children: React.ReactNode }) {
   return <Lienzo><Columna>{children}</Columna></Lienzo>
 }
 
-export function Hero({ eyebrow, titulo, bajada, cta = 'Conversemos →', nota, completo = false }: {
+export function Hero({ eyebrow, titulo, bajada, cta = 'Conversemos →', nota, completo = false, verde = false, visual }: {
   eyebrow?: string
   titulo: React.ReactNode
   bajada?: React.ReactNode
@@ -43,9 +43,14 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Conversemos →', nota, c
   nota?: string
   /** Ocupa toda la pantalla (portada). */
   completo?: boolean
+  /** Fondo verde de borde a borde. */
+  verde?: boolean
+  /** Ilustración sobre el titular, ej. el sello giratorio. */
+  visual?: React.ReactNode
 }) {
   return (
-    <section className="flex flex-col justify-center gap-8" style={{ minHeight: completo ? '100dvh' : '75dvh', paddingTop: '64px' }}>
+    <section className="flex flex-col justify-center gap-8" style={{ minHeight: completo ? '100dvh' : '75dvh', paddingTop: verde ? '128px' : '64px', paddingBottom: verde ? '64px' : undefined, ...(verde ? BANDA_VERDE : {}) }}>
+      {visual}
       {eyebrow && <p className="text-base" style={{ opacity: 0.5 }}>{eyebrow}</p>}
       <h1 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
         {titulo}
@@ -73,8 +78,10 @@ export function Pantalla({ titulo, verde = false, children }: { titulo: React.Re
   )
 }
 
-export function Bloque({ titulo, id, etiqueta, verde = false, children }: {
+export function Bloque({ titulo, id, etiqueta, verde = false, visual, children }: {
   titulo: React.ReactNode
+  /** Ilustración sobre el titular. */
+  visual?: React.ReactNode
   id?: string
   /** Fondo verde de borde a borde. */
   verde?: boolean
@@ -84,6 +91,7 @@ export function Bloque({ titulo, id, etiqueta, verde = false, children }: {
 }) {
   return (
     <section id={id} className="flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px', ...(verde ? BANDA_VERDE : {}) }}>
+      {visual}
       {etiqueta && <p className="text-base" style={{ opacity: 0.5, marginBottom: '-0.75rem' }}>{etiqueta}</p>}
       <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
         {titulo}

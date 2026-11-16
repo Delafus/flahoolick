@@ -7,6 +7,16 @@ export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-5
 
 const ANCHO_TEXTO = '40rem'
 
+/** Verde de Flahoolick. Solo como fondo con texto negro, o como acento sobre fondo oscuro: sobre blanco no se lee. */
+export const VERDE = '#1FDE91'
+
+/** Fondo verde de borde a borde sin cambiar el ancho del contenido. Regla: un módulo verde por página. */
+const BANDA_VERDE: React.CSSProperties = {
+  backgroundColor: VERDE,
+  boxShadow: `0 0 0 100vmax ${VERDE}`,
+  clipPath: 'inset(0 -100vmax)',
+}
+
 /** Fondo blanco y texto negro, sin columna: para páginas que mezclan texto e imágenes anchas. */
 export function Lienzo({ children }: { children: React.ReactNode }) {
   return (
@@ -52,9 +62,9 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Conversemos →', nota, c
 }
 
 /** Sección a pantalla completa con titular de portada (h2): para las portadas secundarias de la home. */
-export function Pantalla({ titulo, children }: { titulo: React.ReactNode; children?: React.ReactNode }) {
+export function Pantalla({ titulo, verde = false, children }: { titulo: React.ReactNode; verde?: boolean; children?: React.ReactNode }) {
   return (
-    <section className="flex flex-col justify-center gap-8 py-16" style={{ minHeight: '100dvh' }}>
+    <section className="flex flex-col justify-center gap-8 py-16" style={{ minHeight: '100dvh', ...(verde ? BANDA_VERDE : {}) }}>
       <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
         {titulo}
       </h2>
@@ -63,9 +73,18 @@ export function Pantalla({ titulo, children }: { titulo: React.ReactNode; childr
   )
 }
 
-export function Bloque({ titulo, id, children }: { titulo: React.ReactNode; id?: string; children: React.ReactNode }) {
+export function Bloque({ titulo, id, etiqueta, verde = false, children }: {
+  titulo: React.ReactNode
+  id?: string
+  /** Fondo verde de borde a borde. */
+  verde?: boolean
+  /** Línea pequeña sobre el titular, ej. "El problema". */
+  etiqueta?: string
+  children: React.ReactNode
+}) {
   return (
-    <section id={id} className="flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px' }}>
+    <section id={id} className="flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px', ...(verde ? BANDA_VERDE : {}) }}>
+      {etiqueta && <p className="text-base" style={{ opacity: 0.5, marginBottom: '-0.75rem' }}>{etiqueta}</p>}
       <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
         {titulo}
       </h2>

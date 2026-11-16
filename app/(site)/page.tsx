@@ -55,7 +55,7 @@ export default function HomePage() {
           nota={NOTA}
         />
 
-        <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+        <Pantalla verde titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
           <p className="text-base">
             <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}

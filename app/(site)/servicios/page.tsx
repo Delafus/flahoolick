@@ -44,7 +44,7 @@ export default function Servicios() {
       <Bloque titulo="Cuatro disciplinas. Un solo sistema.">
         <Items items={SERVICIOS} />
       </Bloque>
-      <Bloque titulo="Empezamos con un diagnóstico de cinco días.">
+      <Bloque verde titulo="Empezamos con un diagnóstico de cinco días.">
         <p>Auditamos qué sabe tu empresa, cómo habla hoy tu equipo, cómo te muestran los modelos de IA cuando tu comprador busca y dónde están los vacíos.</p>
         <p>Te quedas con el diagnóstico, decidas lo que decidas después.</p>
       </Bloque>

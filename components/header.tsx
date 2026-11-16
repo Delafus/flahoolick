@@ -39,9 +39,9 @@ const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que trabaja.',
   ctaLabel: 'Explorar metodología', ctaHref: '/metodologia',
   items: [
-    { title: 'Encontramos', desc: 'Entendemos tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.', href: '/metodologia#paso-entendemos' },
-    { title: 'Ordenamos', desc: 'Definimos audiencias, mensajes y temas según su valor para el mercado.', href: '/metodologia#paso-posicion' },
-    { title: 'Ponemos en circulación', desc: 'Lo convertimos en contenido y herramientas que tus audiencias pueden encontrar, entender y recordar.', href: '/metodologia#paso-circulacion' },
+    { title: 'Encontramos', desc: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.', href: '/metodologia#paso-entendemos' },
+    { title: 'Ordenamos', desc: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver.', href: '/metodologia#paso-posicion' },
+    { title: 'Ponemos en circulación', desc: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar.', href: '/metodologia#paso-circulacion' },
   ],
 }
 

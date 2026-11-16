@@ -15,18 +15,18 @@ const NOTA = 'Sin presentaciones ni decks de venta.'
 const PASOS = [
   {
     titulo: '01 Encontramos',
-    texto: 'Entendemos tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.',
-    recibes: 'los argumentos, conocimientos y evidencias que ayudan a que un cliente te elija.',
+    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Vemos qué valor entregas y a qué clientes les importa más.',
+    recibes: 'un diagnóstico con los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
     titulo: '02 Ordenamos',
-    texto: 'Definimos audiencias, mensajes y temas según su valor para el mercado.',
-    recibes: 'un mapa que orienta a marketing, ventas y equipos técnicos.',
+    texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Definimos a quién hablarle, con qué mensaje y sobre qué temas.',
+    recibes: 'una propuesta de valor y un mapa de mensajes que toda la empresa cuenta igual.',
   },
   {
     titulo: '03 Ponemos en circulación',
-    texto: 'Lo convertimos en contenido y herramientas que tus audiencias pueden encontrar, entender y recordar.',
-    recibes: 'piezas publicadas y medidas junto a marketing y ventas.',
+    texto: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar.',
+    recibes: 'piezas publicadas, con resultados que revisamos junto a marketing y ventas.',
   },
 ]
 
@@ -68,6 +68,7 @@ export default function HomePage() {
         </Pantalla>
 
         <Bloque titulo="Cómo trabajamos.">
+          <p>En la mayoría de las empresas, cada persona explica el valor de la oferta a su manera. Partimos por ordenar eso.</p>
           <div className="flex flex-col gap-6">
             {PASOS.map(p => (
               <div key={p.titulo}>

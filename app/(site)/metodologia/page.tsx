@@ -10,20 +10,20 @@ const PASOS = [
   {
     id: 'paso-entendemos',
     titulo: '1. Encontramos',
-    texto: 'Entendemos tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas. Identificamos el conocimiento que distingue a la empresa y las brechas que dificultan explicarlo.',
-    resultado: 'Los argumentos, conocimientos y evidencias que ayudan a que un cliente te elija, en un diagnóstico con hallazgos y prioridades.',
+    texto: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Vemos qué valor entregas y a qué clientes les importa más. Revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas. Identificamos el conocimiento que distingue a la empresa y las brechas que dificultan explicarlo.',
+    resultado: 'Un diagnóstico con los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
     id: 'paso-posicion',
     titulo: '2. Ordenamos',
-    texto: 'Definimos audiencias, mensajes y temas según su valor para el mercado. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
-    resultado: 'Un mapa que orienta a marketing, ventas y equipos técnicos: posición, audiencias, mensajes y momentos de decisión.',
+    texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Definimos a quién hablarle, con qué mensaje y sobre qué temas. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
+    resultado: 'Una propuesta de valor y un mapa de mensajes que toda la empresa cuenta igual.',
   },
   {
     id: 'paso-circulacion',
     titulo: '3. Ponemos en circulación',
-    texto: 'Lo convertimos en contenido y herramientas que tus audiencias pueden encontrar, entender y recordar. Convertimos esa dirección en una operación concreta: temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
-    resultado: 'Piezas publicadas y medidas junto a marketing y ventas, con una hoja de ruta para producir, medir y mejorar.',
+    texto: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar. Convertimos esa dirección en una operación concreta: temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
+    resultado: 'Piezas publicadas, con resultados que revisamos junto a marketing y ventas.',
   },
 ]
 
@@ -44,8 +44,8 @@ export default function Metodologia() {
         bajada="Entendemos cómo tu empresa crea valor, definimos la posición que puede defender y convertimos esa dirección en contenido y herramientas para el mercado."
       />
       <Bloque titulo="Una comunicación clara nace de comprender profundamente el negocio.">
-        <p>Una oferta clara sostiene la estrategia de contenido. Una posición definida orienta la identidad. Un relato compartido da coherencia a las herramientas comerciales.</p>
-        <p>Estudiamos cómo la empresa crea valor, quién interviene en la decisión, qué necesita comprender el mercado y qué pruebas puede sostener la organización.</p>
+        <p>Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa. Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió.</p>
+        <p>Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero y con qué mensaje.</p>
       </Bloque>
       {PASOS.map(p => (
         <Bloque key={p.id} id={p.id} titulo={p.titulo}>

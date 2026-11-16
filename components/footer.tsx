@@ -37,7 +37,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           <div className="flex flex-col gap-8" style={{ maxWidth: '34rem' }}>
             <p className="text-[1.75rem] md:text-[2.5rem]" style={{ fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
-              Convertimos lo que tu empresa sabe en contenido y herramientas que venden.
+              Convertimos lo que sabes en autoridad de mercado.
             </p>
             <p>
               <Link href="/#contacto" className={`underline underline-offset-4 decoration-1 ${ENLACE}`}>

@@ -50,7 +50,7 @@ export default function HomePage() {
         <Hero
           color="negro"
           titulo="Convertimos lo que sabes en autoridad de mercado."
-          bajada="Para empresas B2B con ventas largas y decisiones complejas."
+          bajada="Para empresas B2B con ventas largas, donde gana la marca que el comprador ya conoce."
           nota={NOTA}
         />
 

@@ -193,7 +193,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
   return (
     <Bloque titulo={titulo}>
       {children}
-      <p><Link href="/casos/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
+      <p><Link href="/clientes/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
     </Bloque>
   )
 }

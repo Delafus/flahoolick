@@ -15,7 +15,7 @@ const COLUMNAS: { titulo: string; enlaces: { label: string; href: string; extern
     titulo: 'Estudio',
     enlaces: [
       { label: 'Metodología', href: '/metodologia' },
-      { label: 'Historias de clientes', href: '/casos/dunamis' },
+      { label: 'Historias de clientes', href: '/clientes/dunamis' },
       { label: 'Sobre Flahoolick', href: '/sobre-flahoolick' },
       ...(JERGA_VISIBLE ? [{ label: 'JERGA', href: '/jerga' }] : []),
       { label: 'FAQ', href: '/faq' },

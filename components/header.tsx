@@ -52,7 +52,7 @@ const PANEL_BG = '#ffffff'
 const PANEL_MAIN = [
   { label: 'Servicios',    href: '/servicios' },
   { label: 'Metodología',  href: '/metodologia' },
-  { label: 'Historias de clientes', href: '/casos/dunamis' },
+  { label: 'Historias de clientes', href: '/clientes/dunamis' },
   ...(JERGA_VISIBLE ? [{ label: 'JERGA', href: '/jerga' }] : []),
 ]
 
@@ -145,7 +145,7 @@ export function Header() {
         <div className="flex items-center gap-10">
           {/* Solo desde 1280 px: en anchos menores choca con el logo centrado. Sigue en el menú lateral. */}
           <nav className="hidden xl:flex items-center gap-10">
-            <NavLink href="/casos/dunamis" color={text} onClick={() => setActive(null)}>Historias de clientes</NavLink>
+            <NavLink href="/clientes/dunamis" color={text} onClick={() => setActive(null)}>Historias de clientes</NavLink>
             {JERGA_VISIBLE && <NavLink href="/jerga" color={text} onClick={() => setActive(null)}>JERGA</NavLink>}
           </nav>
           <Link href="#contacto"

@@ -54,7 +54,7 @@ export function ModuloCasoDunamis() {
           ))}
         </div>
 
-        <Link href="/casos/dunamis"
+        <Link href="/clientes/dunamis"
           className="label inline-flex items-center gap-2 px-6 py-3.5 w-fit hover:opacity-80 transition-opacity"
           style={{ border: '1px solid rgba(255,255,255,0.3)', color: BLANCO, borderRadius: '999px' }}>
           Recorre el caso Dunamis →

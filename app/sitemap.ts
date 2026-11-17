@@ -12,7 +12,7 @@ const RUTAS = [
   '/servicios/produccion-de-contenido',
   '/servicios/ia-para-marketing-y-ventas',
   '/metodologia',
-  '/casos/dunamis',
+  '/clientes/dunamis',
   '/sobre-flahoolick',
   '/faq',
   ...(JERGA_VISIBLE ? ['/jerga'] : []),

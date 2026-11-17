@@ -4,7 +4,7 @@ import { Lienzo, Columna, Hero, Bloque, Cierre, ENLACE } from '@/components/mini
 import { ResultadosClave, type Resultado } from '@/components/resultados-clave'
 
 export const metadata: Metadata = {
-  title: 'Caso Dunamis | Flahoolick',
+  title: 'Dunamis | Historias de clientes | Flahoolick',
   description: 'Cómo sistematizamos el conocimiento de Dunamis y lo convertimos en identidad, sitios, contenido, herramientas digitales y un asistente virtual.',
 }
 
@@ -46,7 +46,7 @@ export default function CasoDunamis() {
     <Lienzo>
       <Columna>
         <Hero
-          eyebrow="Caso · Dunamis"
+          eyebrow="Historias de clientes / Dunamis"
           titulo="Lo que Dunamis sabía vivía en su equipo. Hoy está frente al mercado."
           bajada={SERVICIOS.join(' · ')}
           cta={null}
@@ -67,7 +67,7 @@ export default function CasoDunamis() {
           loop
           playsInline
           preload="metadata"
-          aria-label="Caso Dunamis"
+          aria-label="Historia de Dunamis"
           style={{ aspectRatio: '16 / 9', width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
         />
       </div>
@@ -142,7 +142,7 @@ export default function CasoDunamis() {
             </figure>
           )}
         </Bloque>
-        <Cierre titulo="Tu empresa ya tiene el conocimiento." texto="Construyamos el sistema que lo pone frente al mercado." cta="Agenda una llamada de 30 minutos →" />
+        <Cierre titulo="Tu empresa ya tiene el conocimiento." texto="Construyamos el sistema que lo pone frente al mercado." cta="Agenda una llamada" />
       </Columna>
     </Lienzo>
   )

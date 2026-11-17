@@ -203,11 +203,13 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
   )
 }
 
-export function Cierre({ titulo, texto, cta }: { titulo: string; texto?: string; cta: string }) {
+/** Módulo de contacto de todo el sitio: el de la versión anterior (gris cálido, titular mixto, campos blancos y botón blanco),
+    a todo el ancho de la pantalla. Los textos de cada página ya no se usan aquí: el módulo es el mismo en todo el sitio. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function Cierre(_props: { titulo?: string; texto?: string; cta?: string }) {
   return (
-    <Bloque tono="verde" titulo={titulo}>
-      {texto && <p>{texto}</p>}
-      <ContactForm minimal submitLabel={cta} />
-    </Bloque>
+    <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
+      <ContactForm bg="#403D37" text="#ffffff" submitLabel="Agenda una llamada" />
+    </div>
   )
 }

@@ -19,7 +19,7 @@ export function ContactForm({
   headline = <FontMix bold="Tu empresa ya" italic=" tiene el conocimiento." />,
   description = 'Construyamos el sistema que lo pone frente al mercado.',
   note,
-  submitLabel = 'Agenda una llamada →',
+  submitLabel = 'Agenda una llamada',
   minimal = false,
 }: {
   /** Solo el formulario, sin titular ni fondo, con campos de línea simple. */

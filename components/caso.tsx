@@ -240,13 +240,12 @@ export function ResultadosCaso({ titulo = 'Resultados', items }: {
   )
 }
 
-/** Cierre con titular grande y formulario de contacto (ancla #contacto), en el módulo verde de todo el sitio. */
-export function CierreCaso({ titulo }: { titulo: string }) {
+/** Cierre: el mismo módulo de contacto de todo el sitio, a todo el ancho. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function CierreCaso(_props: { titulo?: string }) {
   return (
-    <section className="mt-24 grid grid-cols-1 gap-10 py-16 md:py-24 lg:grid-cols-[299px_minmax(0,621px)] lg:gap-x-[41px]"
-      style={{ backgroundColor: VERDE, color: '#000000', boxShadow: `0 0 0 100vmax ${VERDE}`, clipPath: 'inset(0 -100vmax)' }}>
-      <h2 style={{ fontWeight: 400, fontSize: 'clamp(2.25rem, 3.5vw, 3.125rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}>{titulo}</h2>
-      <ContactForm minimal submitLabel="Agenda una llamada" />
-    </section>
+    <div className="mt-24" style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
+      <ContactForm bg="#403D37" text="#ffffff" submitLabel="Agenda una llamada" />
+    </div>
   )
 }

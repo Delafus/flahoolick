@@ -1,15 +1,13 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { ContactForm } from '@/components/contact-form'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE, Cierre } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
   description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos. Santiago, Chile.',
 }
 
-const CTA = 'Agenda una llamada'
 
 const PASOS = [
   {
@@ -104,9 +102,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <Bloque tono="verde" titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">
-          <ContactForm minimal submitLabel={CTA} />
-        </Bloque>
+        <Cierre />
     </Pagina>
   )
 }

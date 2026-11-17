@@ -157,7 +157,7 @@ export function Bloque({ titulo, id, etiqueta, tono, visual, children }: {
     <section id={id} className="bloque flex flex-col gap-6 py-16 md:py-24" style={{ scrollMarginTop: '64px', ...banda(tono) }}>
       <div className="bloque-titulo flex flex-col gap-6">
         {visual}
-        {etiqueta && <p className="text-base" style={{ opacity: 0.5, marginBottom: '-0.75rem' }}>{etiqueta}</p>}
+        {etiqueta && <p className="label w-fit px-3 py-1.5" style={{ backgroundColor: '#000000', color: VERDE, borderRadius: '999px' }}>{etiqueta}</p>}
         <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
           {titulo}
         </h2>
@@ -188,12 +188,12 @@ export function Items({ items }: { items: Item[] }) {
   )
 }
 
-/** Lleva el caso Dunamis a la página de cada servicio. */
+/** Lleva la historia de Dunamis a la página de cada servicio. */
 export function CasoEnlace({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
     <Bloque titulo={titulo}>
       {children}
-      <p><Link href="/casos/dunamis" className={ENLACE}>Recorre el caso Dunamis →</Link></p>
+      <p><Link href="/casos/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
     </Bloque>
   )
 }

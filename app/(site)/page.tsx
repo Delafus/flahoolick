@@ -84,7 +84,7 @@ export default function HomePage() {
 
         <Bloque titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
           <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
-          <p><Link href="/casos/dunamis" className={ENLACE}>Ver el caso Dunamis →</Link></p>
+          <p><Link href="/casos/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
         </Bloque>
 
         <Bloque titulo="Servicios.">

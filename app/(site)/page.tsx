@@ -82,7 +82,7 @@ export default function HomePage() {
           <Items items={BENEFICIOS} />
         </Bloque>
 
-        <Bloque titulo="Los agentes de Dunamis llegan a la primera reunión con la conversación empezada.">
+        <Bloque titulo="En Dunamis, la conversación con el cliente empieza antes de la primera reunión.">
           <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
           <p><Link href="/clientes/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
         </Bloque>

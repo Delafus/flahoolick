@@ -25,7 +25,7 @@ export default function ProduccionDeContenido() {
       <Hero
         color="rosa"
         eyebrow="Producción de contenido"
-        titulo="Lo que saben tus especialistas, publicado cada mes."
+        titulo="Lo que saben tus especialistas, como contenido de valor."
         bajada="Artículos, guías, casos y herramientas de venta, producidos por un equipo senior."
       />
       <Bloque titulo="El conocimiento inmóvil pierde valor.">

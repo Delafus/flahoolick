@@ -59,7 +59,7 @@ const CITA_AGENTE: Cita = {
 const CITA_RELACIONES: Cita = {
   texto: 'La visita, la orden en PDF y la oferta de compra ya salen del sitio. Yo me concentro en atender bien a cada cliente, no en perseguir papeles.',
   nombre: 'Francisco De La Fuente',
-  cargo: 'Relaciones con clientes, Dunamis Brokers',
+  cargo: 'Client Experience, Dunamis Brokers',
   retrato: '/casos/dunamis/retrato-francisco-de-la-fuente.jpg',
 }
 

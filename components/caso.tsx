@@ -128,8 +128,9 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
   const visibles = ficha.filter(c => c.valores.length > 0)
   return (
     <article className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-[299px_minmax(0,621px)] lg:gap-x-[41px]">
-      {/* No va fija al bajar: la ficha es más alta que la pantalla y quedaría cortada. */}
-      <aside className="flex flex-col gap-8 self-start">
+      {/* La ficha no va fija (es más alta que la pantalla). La columna se estira a todo el relato
+          para que el botón, al final de la ficha, quede fijo arriba mientras se baja. */}
+      <aside className="flex flex-col gap-8">
         <dl className="flex flex-col gap-5 lg:pl-4">
           {visibles.map(c => (
             <div key={c.nombre} className="flex flex-col gap-1">
@@ -150,8 +151,8 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
             </div>
           ))}
         </dl>
-        <Link href="#contacto" className="inline-flex w-fit items-center px-5 py-2.5 transition-opacity hover:opacity-80"
-          style={{ ...MONO, backgroundColor: VERDE, color: '#000000', borderRadius: '999px' }}>
+        <Link href="#contacto" className="inline-flex w-fit items-center px-5 py-2.5 transition-opacity hover:opacity-80 lg:sticky"
+          style={{ ...MONO, backgroundColor: VERDE, color: '#000000', borderRadius: '999px', top: '100px' }}>
           Agenda una llamada
         </Link>
       </aside>

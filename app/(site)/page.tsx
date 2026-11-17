@@ -26,7 +26,6 @@ export default function HomePage() {
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese momento, tu marca necesita estar entre las que el comprador conoce, recuerda y considera.</p>
           <p>Construimos disponibilidad mental durante todo ese tiempo.</p>
           <p className="text-base" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
-          <Boton href="/jerga/john-dawes-y-su-regla-del-95-5">Leer la guía de la regla 95:5</Boton>
         </Pantalla>
 
         <Pantalla titulo="Tu empresa sabe mucho más de lo que tu mercado conoce.">

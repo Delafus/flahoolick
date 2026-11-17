@@ -26,6 +26,7 @@ const FICHA: CampoFicha[] = [
   { nombre: 'Desafío', valores: ['El conocimiento del equipo vivía en reuniones, catálogos y la experiencia de cada agente. Cada llamada partía de cero.'] },
   { nombre: 'Servicios', valores: ['Marca y relato', 'Estrategia de contenido', 'Producción de contenido', 'IA para marketing y ventas'] },
   { nombre: 'Entregables', valores: ['Identidad para dos verticales', 'Dos sitios', 'Plataforma editorial Dunamistas', 'Simulador Valor', 'Diagnóstico La Decisión', 'Dossier comercial', 'Asistente virtual Dee'] },
+  { nombre: 'Metodología', valores: ['Value Proposition Canvas (Strategyzer)', 'Testing cards', 'Learning cards'] },
   { nombre: 'Tecnología', valores: [
     { texto: 'Vercel', icono: '/iconos-tecnologia/vercel.svg' },
     { texto: 'Next.js', icono: '/iconos-tecnologia/nextdotjs.svg' },
@@ -90,6 +91,7 @@ export default function BorradorDunamis() {
         <SeccionCaso titulo="La solución: empezamos por escuchar lo que Dunamis ya sabía.">
           <p>Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los agentes en terreno.</p>
           <p>De ese material salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
+          <p>Con el equipo de Dunamis trabajamos el Value Proposition Canvas de Strategyzer completo. Definimos los segmentos a los que hablarle y descartamos otros, formulamos la propuesta de valor y la pusimos a prueba con testing cards y learning cards antes de convertirla en marca y contenido.</p>
         </SeccionCaso>
         <CitaCaso logo={LOGO} {...CITA_FUNDADORA} />
 
@@ -133,6 +135,12 @@ export default function BorradorDunamis() {
         <SeccionCaso titulo="Dee atiende, muestra propiedades y agenda la visita.">
           <p>Dee es el asistente virtual de dunamis.agency. Está conectado a la base de propiedades y servicios, responde consultas, presenta las propiedades publicadas que calzan con cada persona, agenda la visita y deriva el contacto a un agente.</p>
           <EnlaceCaso href="https://dunamis.agency">Habla con Dee →</EnlaceCaso>
+        </SeccionCaso>
+
+        <SeccionCaso titulo="Del interés a la visita, sin pasos de más.">
+          <p>Desde los sitios y los simuladores, el contacto abre directo el WhatsApp del agente.</p>
+          <p>Quien quiere ver una propiedad agenda la visita en línea: recibe su orden de visita en PDF, y el sistema envía la confirmación por correo al cliente y al agente.</p>
+          <p>Quien decide comprar completa un formulario y genera su Carta Oferta de Compra.</p>
         </SeccionCaso>
 
         <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación empezada." items={RESULTADOS} />

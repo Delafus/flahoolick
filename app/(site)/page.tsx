@@ -32,8 +32,9 @@ export default function HomePage() {
           <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Entramos a tu negocio, encontramos lo que tiene valor para tus clientes y lo transformamos en una fuente continua de comunicación, contenido y herramientas comerciales.</p>
         </Pantalla>
 
-        {/* Metodología: a todo el ancho de la columna, con el gráfico de puntos que cambia con el scroll. */}
-        <section className="flex flex-col gap-10 py-16 md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+        {/* Metodología: fondo amarillo a todo el ancho de la pantalla, con el gráfico de puntos que cambia con el scroll. */}
+        <section className="flex flex-col gap-10 py-16 md:py-24"
+          style={{ backgroundColor: '#F5FD92', boxShadow: '0 0 0 100vmax #F5FD92', clipPath: 'inset(0 -100vmax)' }}>
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Del conocimiento disperso a un sistema que trabaja.</h2>

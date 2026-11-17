@@ -52,7 +52,7 @@ const CITA_AGENTE: Cita = {
   texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
   nombre: 'Andre Ibarra',
   cargo: 'Agente, Dunamis Brokers · Valparaíso',
-  // PENDIENTE: retrato de Andre Ibarra.
+  retrato: '/casos/dunamis/retrato-andre-ibarra.jpg',
 }
 
 /** Hechos verificables del caso. */

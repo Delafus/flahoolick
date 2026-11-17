@@ -43,9 +43,8 @@ export function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-flahoolick-hrztl.svg" alt="Flahoolick" style={{ height: '30px', width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0) invert(1)' }} />
             <p style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4.85rem)', lineHeight: 0.95, letterSpacing: '-0.03em', maxWidth: '12ch' }}>
-              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Convertimos lo que sabes en </span>
-              <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, color: VERDE }}>autoridad</em>
-              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}> de mercado.</span>
+              <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Convertimos lo que sabes </span>
+              <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, color: VERDE }}>en autoridad de mercado.</em>
             </p>
           </div>
 

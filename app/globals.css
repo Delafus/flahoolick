@@ -417,7 +417,8 @@
 .grafico-punto { transition: transform 900ms cubic-bezier(0.65, 0, 0.35, 1), fill 600ms ease; }
 .grafico-gira { animation: grafico-gira 40s linear infinite; }
 @keyframes grafico-gira { to { transform: rotate(360deg); } }
+.grafico-gira-inversa { animation: grafico-gira 40s linear infinite reverse; }
 @media (prefers-reduced-motion: reduce) {
   .grafico-punto { transition: none; }
-  .grafico-gira { animation: none; }
+  .grafico-gira, .grafico-gira-inversa { animation: none; }
 }

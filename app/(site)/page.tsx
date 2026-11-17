@@ -19,7 +19,7 @@ export default function HomePage() {
         <Hero
           color="negro"
           titulo="Tu empresa sabe mucho. Haz que cuente."
-          bajada="Somos un estudio de estrategia, creatividad e inteligencia artificial para empresas B2B. Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
+          bajada="Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
         />
 
         <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
@@ -34,13 +34,13 @@ export default function HomePage() {
 
         {/* Metodología: a todo el ancho de la columna, con el gráfico de puntos que cambia con el scroll. */}
         <section className="flex flex-col gap-10 py-16 md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
-          <div className="flex flex-col gap-6" style={{ maxWidth: '44rem' }}>
+          <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Del conocimiento disperso a un sistema que trabaja.</h2>
             <p>En muchas empresas, cada persona explica el valor de la oferta a su manera. Partimos por ordenar ese conocimiento y convertirlo en una estrategia que toda la organización pueda activar.</p>
           </div>
-          <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))} />
-          <Boton href="/metodologia">Ver metodología</Boton>
+          <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}
+            pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 
         <Bloque titulo="Historias de clientes.">
@@ -64,8 +64,7 @@ export default function HomePage() {
             Veinticinco años explicando lo complejo.
           </h2>
           <p>Venimos de medios de comunicación y grupos publicitarios globales. Somos profesionales de estrategia, periodismo, creatividad y comunicación.</p>
-          <p>Hoy ponemos esa experiencia al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado. Somos un equipo de cuatro profesionales senior que combina criterio estratégico, oficio editorial, creatividad e inteligencia artificial.</p>
-          <p>Trabajamos desde Santiago, Chile.</p>
+          <p>Hoy ponemos esa experiencia al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>
           <Boton href="/sobre-flahoolick">Sobre Flahoolick</Boton>
         </section>
 

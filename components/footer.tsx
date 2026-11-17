@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { JERGA_VISIBLE } from './jerga-visible'
 import { VERDE } from './minimal'
 
-/** Footer en la línea de superadd.org: fondo de marca profundo; a la izquierda logo y claim grande con una palabra
-    destacada; a la derecha los clientes actuales en grilla; debajo, enlaces en fila y una línea final. */
+/** Footer en la línea de superadd.org: fondo de marca profundo; logo y claim grande con una parte
+    destacada; debajo, enlaces en fila y una línea final. */
 
 const FONDO = '#3B0B2C'
 const TEXTO = '#ffffff'
@@ -14,15 +14,6 @@ const MONO: React.CSSProperties = {
   letterSpacing: '0.06em',
   textTransform: 'uppercase',
 }
-
-/** Clientes actuales. Los que todavía no tienen logo en el sitio se muestran con su nombre en texto
-    hasta que llegue el archivo: basta con agregarle `logo` (ruta en /public). */
-const CLIENTES: { nombre: string; logo?: string }[] = [
-  { nombre: 'Dunamis', logo: '/logo-dunamis.svg' },
-  { nombre: 'Rameau' },
-  { nombre: 'Ocus' },
-  { nombre: 'Innolcon' },
-]
 
 const ENLACES: { label: string; href: string; externo?: boolean }[] = [
   { label: 'Servicios', href: '/servicios' },
@@ -40,7 +31,7 @@ export function Footer() {
   return (
     <footer className="page-px pt-16 pb-10 md:pt-20" style={{ backgroundColor: FONDO, color: TEXTO, fontFamily: 'var(--font-inter)' }}>
       <div className="mx-auto flex flex-col gap-14" style={{ maxWidth: '81rem' }}>
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
+        <div>
           {/* Logo y claim */}
           <div className="flex flex-col gap-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -51,20 +42,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Clientes actuales */}
-          <div className="flex flex-col gap-8">
-            <p style={{ ...MONO, color: TENUE }}>Marcas que atendemos hoy</p>
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-10">
-              {CLIENTES.map(c => (
-                <li key={c.nombre} className="flex items-center" style={{ height: '56px' }}>
-                  {c.logo
-                    // eslint-disable-next-line @next/next/no-img-element
-                    ? <img src={c.logo} alt={c.nombre} style={{ maxHeight: '36px', maxWidth: '150px', width: 'auto', height: 'auto', filter: 'brightness(0) invert(1)' }} />
-                    : <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 700, fontSize: '1.625rem', letterSpacing: '-0.02em' }}>{c.nombre}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.25)' }}>

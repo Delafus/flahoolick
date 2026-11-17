@@ -30,6 +30,7 @@ const FICHA: CampoFicha[] = [
     { texto: 'Vercel', icono: '/iconos-tecnologia/vercel.svg' },
     { texto: 'Next.js', icono: '/iconos-tecnologia/nextdotjs.svg' },
     { texto: 'Supabase', icono: '/iconos-tecnologia/supabase.svg' },
+    { texto: 'WhatsApp', icono: '/iconos-tecnologia/whatsapp.svg' },
     { texto: 'Claude Code', icono: '/iconos-tecnologia/claude.svg' },
     { texto: 'Figma', icono: '/iconos-tecnologia/figma.svg' },
     { texto: 'Midjourney', icono: '/iconos-tecnologia/imagen.svg' },

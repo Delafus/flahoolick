@@ -192,9 +192,9 @@ export function CitaCaso({ texto, nombre, cargo, retrato, logo }: Cita & { logo?
       <figcaption className="flex items-center gap-3">
         {retrato ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={retrato} alt={`Retrato de ${nombre}`} style={{ width: '64px', height: '64px', objectFit: 'cover', filter: BN }} />
+          <img src={retrato} alt={`Retrato de ${nombre}`} style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', filter: BN }} />
         ) : (
-          <span aria-hidden="true" style={{ width: '64px', height: '64px', backgroundColor: '#2A2A2A', flexShrink: 0 }} />
+          <span aria-hidden="true" style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: '#2A2A2A', flexShrink: 0 }} />
         )}
         <span className="flex flex-col">
           <span style={MONO}>{nombre}</span>

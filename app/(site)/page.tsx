@@ -22,7 +22,7 @@ export default function HomePage() {
           bajada="Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
         />
 
-        <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+        <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese momento, tu marca necesita estar entre las que el comprador conoce, recuerda y considera.</p>
           <p>Construimos disponibilidad mental durante todo ese tiempo.</p>
           <p className="text-base" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>

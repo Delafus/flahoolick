@@ -138,13 +138,14 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
 }
 
 /** Sección a pantalla completa con titular de portada (h2): para las portadas secundarias de la home. */
-export function Pantalla({ titulo, tono, children }: { titulo: React.ReactNode; tono?: Tono; children?: React.ReactNode }) {
+export function Pantalla({ titulo, tono, centrado = false, children }: { titulo: React.ReactNode; tono?: Tono; centrado?: boolean; children?: React.ReactNode }) {
+  const centrar = centrado ? 'mx-auto' : ''
   return (
-    <section className="flex flex-col justify-center gap-8 py-16" style={{ minHeight: '100dvh', ...banda(tono) }}>
-      <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
+    <section className={`flex flex-col justify-center gap-8 py-16 ${centrado ? 'items-center text-center' : ''}`} style={{ minHeight: '100dvh', ...banda(tono) }}>
+      <h2 className={`text-[2.5rem] md:text-[3.75rem] ${centrar}`} style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
         {titulo}
       </h2>
-      <div className="flex flex-col gap-8" style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>
+      <div className={`flex flex-col gap-8 ${centrar}`} style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>
     </section>
   )
 }

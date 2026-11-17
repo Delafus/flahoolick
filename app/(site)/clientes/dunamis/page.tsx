@@ -142,7 +142,7 @@ export default function HistoriaDunamis() {
           <p>Quien decide comprar completa un formulario y genera su Carta Oferta de Compra.</p>
         </SeccionCaso>
 
-        <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación empezada." items={RESULTADOS} />
+        <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación iniciada." items={RESULTADOS} />
       </CuerpoCaso>
 
       <CierreCaso titulo="Tu empresa ya tiene el conocimiento." />

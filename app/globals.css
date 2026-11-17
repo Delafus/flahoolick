@@ -404,3 +404,7 @@
 @media (min-width: 1024px) {
   .imagenes-caso { margin-left: -15px; width: calc(100% + 197px); max-width: none; }
 }
+
+/* Botones de enlace en historias de clientes: al pasar el cursor se invierten. */
+.enlace-caso { transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.enlace-caso:hover { background-color: #ffffff; color: #000000; border-color: #ffffff !important; }

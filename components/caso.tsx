@@ -183,8 +183,17 @@ export function ImagenesCaso({ items }: { items: { src: string; alt: string; rat
   )
 }
 
+/** Enlace externo como botón de contorno en letra monoespaciada (como "View the guide" en Sanity). Sin la flecha del texto. */
 export function EnlaceCaso({ href, children }: { href: string; children: React.ReactNode }) {
-  return <p><Link href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">{children}</Link></p>
+  const texto = typeof children === 'string' ? children.replace(/\s*→\s*$/, '') : children
+  return (
+    <Link href={href} target="_blank" rel="noopener noreferrer"
+      className="enlace-caso inline-flex w-fit items-center gap-2 px-5 py-2.5"
+      style={{ ...MONO, border: '1px solid rgba(255,255,255,0.5)', borderRadius: '999px' }}>
+      {texto}
+      <span aria-hidden="true">↗</span>
+    </Link>
+  )
 }
 
 /** Cita con logo del cliente, texto y retrato en blanco y negro con nombre y cargo. No se muestra hasta tener texto y nombre. */

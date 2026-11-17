@@ -69,7 +69,7 @@ export default function HomePage() {
         {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
         <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
           <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>
-            Veinticinco años explicando lo complejo.
+            Veinticinco años en el negocio de la atención.
           </h2>
           <p>Venimos de medios de comunicación y grupos publicitarios globales. Somos profesionales de estrategia, periodismo, creatividad y comunicación.</p>
           <p>Hoy ponemos esa experiencia al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>

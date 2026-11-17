@@ -10,6 +10,7 @@ export const logos = [
   { src: '/logo-df.svg',      alt: 'Diario Financiero' },
   { src: '/logo-lider.svg',   alt: 'Líder' },
   { src: '/logo-pg.svg',      alt: 'P&G' },
+  { src: '/logo-febreze.png', alt: 'Febreze' },
   { src: '/logo-dunamis.svg', alt: 'Dunamis' },
 ]
 

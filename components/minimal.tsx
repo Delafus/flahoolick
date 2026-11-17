@@ -170,20 +170,25 @@ export function Bloque({ titulo, id, etiqueta, tono, visual, children }: {
 export interface Item {
   titulo: string
   texto: string
+  /** Con enlace, el ítem completo es clicable; al pasar el cursor se subraya el título. Sin botón aparte. */
   href?: string
-  cta?: string
 }
 
 export function Items({ items }: { items: Item[] }) {
   return (
     <div className="flex flex-col gap-6">
-      {items.map(i => (
-        <div key={i.titulo}>
-          <h3 style={{ ...FUENTE, fontWeight: 500, letterSpacing: 'normal', fontSize: 'inherit', lineHeight: 'inherit' }}>{i.titulo}</h3>
-          <p>{i.texto}</p>
-          {i.href && <p className="mt-2"><Link href={i.href} className={ENLACE}>{i.cta ?? 'Explorar →'}</Link></p>}
-        </div>
-      ))}
+      {items.map(i => {
+        const contenido = (
+          <>
+            <h3 className={i.href ? 'underline-offset-4 decoration-1 group-hover:underline' : undefined}
+              style={{ ...FUENTE, fontWeight: 500, letterSpacing: 'normal', fontSize: 'inherit', lineHeight: 'inherit' }}>{i.titulo}</h3>
+            <p>{i.texto}</p>
+          </>
+        )
+        return i.href
+          ? <Link key={i.titulo} href={i.href} className="group block transition-opacity hover:opacity-70">{contenido}</Link>
+          : <div key={i.titulo}>{contenido}</div>
+      })}
     </div>
   )
 }

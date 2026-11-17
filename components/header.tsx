@@ -32,7 +32,6 @@ const SRV_MENU: MegaMenuData = {
     title: d.nombre,
     desc: d.desc,
     href: d.href,
-    linkLabel: 'Explorar →',
   })),
 }
 
@@ -40,7 +39,7 @@ const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que trabaja.',
   ctaLabel: 'Explorar metodología', ctaHref: '/metodologia',
   // Cada etapa tiene su propia página (/metodologia/[slug]).
-  items: ETAPAS.map(e => ({ title: e.nombre, desc: e.resumen, href: `/metodologia/${e.slug}`, linkLabel: 'Ver la etapa →' })),
+  items: ETAPAS.map(e => ({ title: e.nombre, desc: e.resumen, href: `/metodologia/${e.slug}` })),
 }
 
 type ActiveMenu = 'srv' | 'met' | null

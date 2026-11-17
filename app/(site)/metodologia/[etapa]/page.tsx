@@ -63,8 +63,8 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
       )}
       <Bloque titulo="Las otras etapas.">
         <Items items={[
-          ...otras.map(o => ({ titulo: `${o.numero} ${o.nombre}`, texto: o.resumen, href: `/metodologia/${o.slug}`, cta: 'Ver la etapa →' })),
-          { titulo: 'La metodología completa', texto: 'Las tres etapas, los principios con que trabajamos y un caso real.', href: '/metodologia', cta: 'Ver la metodología →' },
+          ...otras.map(o => ({ titulo: `${o.numero} ${o.nombre}`, texto: o.resumen, href: `/metodologia/${o.slug}` })),
+          { titulo: 'La metodología completa', texto: 'Las tres etapas, los principios con que trabajamos y un caso real.', href: '/metodologia' },
         ]} />
       </Bloque>
       <Cierre titulo="El conocimiento adquiere valor cuando encuentra una función en el mercado." cta="Agenda una llamada" />

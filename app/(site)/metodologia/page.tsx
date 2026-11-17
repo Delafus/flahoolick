@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, ENLACE } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 
 export const metadata: Metadata = {
@@ -56,10 +56,11 @@ export default function Metodologia() {
         <div className="flex flex-col gap-10">
           {PASOS.map(p => (
             <div key={p.id} id={p.id} className="flex flex-col gap-3" style={{ scrollMarginTop: '96px' }}>
-              <h3 className="text-[1.375rem]" style={{ fontWeight: 500, lineHeight: 1.25 }}>{p.titulo}</h3>
+              <h3 className="text-[1.375rem]" style={{ fontWeight: 500, lineHeight: 1.25 }}>
+                <Link href={`/metodologia/${p.slug}`} className="underline-offset-4 decoration-1 hover:underline">{p.titulo}</Link>
+              </h3>
               <p>{p.texto}</p>
               <p><span style={{ fontWeight: 500 }}>Recibes:</span> {p.resultado}</p>
-              <p><Link href={`/metodologia/${p.slug}`} className={ENLACE}>Ver la etapa →</Link></p>
             </div>
           ))}
         </div>

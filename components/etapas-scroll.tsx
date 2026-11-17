@@ -6,7 +6,8 @@ import { VERDE } from './minimal'
 
 /** Las tres etapas en la home con un gráfico de puntos que cambia con el scroll (versión simple, mientras llega el definitivo).
     Escritorio: gráfico fijo a la izquierda y etapas a la derecha; la etapa que está al centro de la pantalla manda.
-    Teléfono: cada etapa lleva su propio gráfico, quieto, sobre el texto.
+    Teléfono: la sección queda fija en pantalla durante tres pantallas de scroll; arriba el gráfico a todo el ancho y abajo el texto
+      de la etapa, que entra y sale con fade. Al subir, las etapas vuelven en orden inverso.
     Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla, en bloques de 2×2 que alternan verde y negro como un tablero;
     3 los puntos forman un círculo de anillos concéntricos; cada anillo gira en sentido contrario al anterior y a su propia velocidad,
       y los colores se intercalan desde afuera hacia adentro: negro, verde, negro, verde. */
@@ -21,6 +22,8 @@ export interface EtapaScroll {
 const N = 64
 const CENTRO = 150
 const GRIS = '#403D37'
+/** Alto del header fijo. */
+const HEADER = 64
 
 /** Pseudoaleatorio fijo, para que el servidor y el navegador dibujen lo mismo. */
 function azar(n: number) {
@@ -92,12 +95,23 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
 export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: ReactNode }) {
   const [activa, setActiva] = useState(0)
   const refs = useRef<(HTMLDivElement | null)[]>([])
+  const pista = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    // Manda la etapa cuyo centro está más cerca del centro de la pantalla.
+    // Escritorio: manda la etapa cuyo centro está más cerca del centro de la pantalla.
     let cuadro = 0
     const medir = () => {
       cuadro = 0
+      // Teléfono: la etapa sale del avance dentro de la pista (tercio a tercio).
+      if (!window.matchMedia('(min-width: 1024px)').matches) {
+        const el = pista.current
+        if (!el) return
+        const r = el.getBoundingClientRect()
+        const recorrido = r.height - (window.innerHeight - HEADER)
+        const avance = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
+        setActiva(Math.min(etapas.length - 1, Math.floor(avance * etapas.length)))
+        return
+      }
       const centro = window.innerHeight / 2
       let mejor = 0, distancia = Infinity
       refs.current.forEach((el, i) => {
@@ -113,10 +127,37 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
     window.addEventListener('scroll', alMover, { passive: true })
     window.addEventListener('resize', alMover)
     return () => { window.removeEventListener('scroll', alMover); window.removeEventListener('resize', alMover); cancelAnimationFrame(cuadro) }
-  }, [])
+  }, [etapas.length])
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20">
+    <>
+    {/* Teléfono */}
+    <div className="lg:hidden">
+      <div ref={pista} style={{ height: `${etapas.length * 100}svh` }}>
+        <div className="sticky flex flex-col justify-center gap-6"
+          style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
+          <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 40svh)' }}>
+            <GraficoEtapas estado={activa} className="w-full" />
+          </div>
+          <div className="grid">
+            {etapas.map((e, i) => (
+              <div key={e.slug} aria-hidden={i !== activa} className="flex flex-col gap-4"
+                style={{ gridArea: '1 / 1', opacity: i === activa ? 1 : 0, transition: 'opacity 500ms ease', pointerEvents: i === activa ? 'auto' : 'none' }}>
+                <h3 className="text-[1.75rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                  <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{e.nombre}</Link>
+                </h3>
+                <p>{e.texto}</p>
+                <p><span style={{ fontWeight: 500 }}>Recibes:</span> {e.recibes.charAt(0).toLowerCase() + e.recibes.slice(1)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {pie && <div className="mt-10 flex justify-center">{pie}</div>}
+    </div>
+
+    {/* Escritorio */}
+    <div className="hidden lg:grid lg:grid-cols-2 lg:gap-20">
       <div className="hidden lg:block">
         <div className="sticky" style={{ top: 'calc(50vh - 13rem)' }}>
           <GraficoEtapas estado={activa} className="w-full" />
@@ -126,7 +167,6 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
         {etapas.map((e, i) => (
           <div key={e.slug} ref={el => { refs.current[i] = el }} data-indice={i}
             className="flex flex-col justify-center gap-4 py-10 lg:min-h-[70vh] lg:py-0">
-            <GraficoEtapas estado={i} className="mb-2 w-48 lg:hidden" />
             <h3 className="text-[1.75rem] md:text-[2.25rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
               <Link href={`/metodologia/${e.slug}`} className="underline-offset-4 decoration-1 hover:underline">{e.nombre}</Link>
             </h3>
@@ -137,5 +177,6 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
         ))}
       </div>
     </div>
+    </>
   )
 }

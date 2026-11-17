@@ -48,7 +48,7 @@ export interface Cita {
 /** Fondo negro de borde a borde para toda la página. El header del sitio toma el mismo negro. */
 export function PaginaCaso({ children }: { children: React.ReactNode }) {
   return (
-    <div className="page-px pb-24" style={{ backgroundColor: FONDO, color: '#ffffff', ...SANS, overflowX: 'clip' }}>
+    <div className="page-px" style={{ backgroundColor: FONDO, color: '#ffffff', ...SANS, overflowX: 'clip' }}>
       <PageColorSetter bg={FONDO} text="#ffffff" />
       <div className="mx-auto" style={{ maxWidth: ANCHO }}>{children}</div>
     </div>
@@ -240,11 +240,11 @@ export function ResultadosCaso({ titulo = 'Resultados', items }: {
   )
 }
 
-/** Cierre con titular grande y formulario de contacto (ancla #contacto). */
+/** Cierre con titular grande y formulario de contacto (ancla #contacto), en el módulo verde de todo el sitio. */
 export function CierreCaso({ titulo }: { titulo: string }) {
   return (
-    <section className="mt-24 grid grid-cols-1 gap-10 pt-16 lg:grid-cols-[299px_minmax(0,621px)] lg:gap-x-[41px]"
-      style={{ borderTop: `1px solid ${GRIS}` }}>
+    <section className="mt-24 grid grid-cols-1 gap-10 py-16 md:py-24 lg:grid-cols-[299px_minmax(0,621px)] lg:gap-x-[41px]"
+      style={{ backgroundColor: VERDE, color: '#000000', boxShadow: `0 0 0 100vmax ${VERDE}`, clipPath: 'inset(0 -100vmax)' }}>
       <h2 style={{ fontWeight: 400, fontSize: 'clamp(2.25rem, 3.5vw, 3.125rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}>{titulo}</h2>
       <ContactForm minimal submitLabel="Agenda una llamada" />
     </section>

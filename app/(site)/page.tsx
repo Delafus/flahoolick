@@ -104,7 +104,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <Bloque titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">
+        <Bloque tono="verde" titulo="Tú ya hiciste la parte difícil: aprender. Nosotros hacemos que ese conocimiento trabaje.">
           <ContactForm minimal submitLabel={CTA} />
         </Bloque>
     </Pagina>

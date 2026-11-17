@@ -200,7 +200,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
 
 export function Cierre({ titulo, texto, cta }: { titulo: string; texto?: string; cta: string }) {
   return (
-    <Bloque titulo={titulo}>
+    <Bloque tono="verde" titulo={titulo}>
       {texto && <p>{texto}</p>}
       <ContactForm minimal submitLabel={cta} />
     </Bloque>

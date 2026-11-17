@@ -9,8 +9,9 @@ const CAMPOS_MINIMAL = [
   { id: 'empresa', label: 'Empresa', type: 'text', placeholder: '¿Dónde trabajas?' },
   { id: 'email', label: 'Correo', type: 'email', placeholder: 'tu@empresa.com' },
 ]
-const CAMPO_MINIMAL = 'w-full py-2 bg-transparent outline-none focus:shadow-[0_1px_0_0_currentColor]'
-const CAMPO_MINIMAL_ESTILO = { borderBottom: '1px solid currentColor', borderRadius: 0, color: 'inherit' }
+/** Campos en caja: fondo blanco y borde negro, para que se note dónde escribir. Pensado para el módulo verde de contacto. */
+const CAMPO_MINIMAL = 'w-full px-4 py-3 outline-none transition-shadow focus:shadow-[0_0_0_2px_#000]'
+const CAMPO_MINIMAL_ESTILO = { backgroundColor: '#ffffff', color: '#000000', border: '1px solid #000000', borderRadius: 0 }
 
 export function ContactForm({
   bg = 'var(--brand-depth)',
@@ -67,26 +68,26 @@ export function ContactForm({
             <p>Te escribiremos para coordinar la llamada de 30 minutos.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-x-4 gap-y-5 md:grid-cols-2">
             {CAMPOS_MINIMAL.map(c => (
-              <div key={c.id} className="flex flex-col">
-                <label htmlFor={c.id}>{c.label}</label>
+              <div key={c.id} className={`flex flex-col gap-2 ${c.id === 'email' ? 'md:col-span-2' : ''}`}>
+                <label htmlFor={c.id} className="label">{c.label}</label>
                 <input id={c.id} name={c.id} type={c.type} required placeholder={c.placeholder}
                   className={CAMPO_MINIMAL} style={CAMPO_MINIMAL_ESTILO} />
               </div>
             ))}
-            <div className="flex flex-col">
-              <label htmlFor="mensaje">El desafío</label>
-              <textarea id="mensaje" name="mensaje" rows={3} required
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <label htmlFor="mensaje" className="label">El desafío</label>
+              <textarea id="mensaje" name="mensaje" rows={4} required
                 placeholder="Cuéntanos qué cuesta explicar, producir o vender."
                 className={`${CAMPO_MINIMAL} resize-none`} style={CAMPO_MINIMAL_ESTILO} />
             </div>
             <button type="submit" disabled={loading}
-              className="w-fit underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity disabled:opacity-30">
+              className="pill-somos-flahoolick label mt-2 w-fit px-7 py-4 disabled:opacity-40 md:col-span-2" style={{ borderRadius: '999px' }}>
               {loading ? 'Enviando...' : submitLabel}
             </button>
-            {error && <p>No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directo.</p>}
-            <p className="text-sm" style={{ opacity: 0.5 }}>
+            {error && <p className="md:col-span-2">No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directo.</p>}
+            <p className="text-sm md:col-span-2" style={{ opacity: 0.7 }}>
               Usaremos tus datos únicamente para responder esta conversación. Consulta nuestra{' '}
               <Link href="/politica-de-privacidad" className="underline underline-offset-2">Política de Privacidad</Link>.
             </p>

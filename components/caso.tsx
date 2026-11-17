@@ -132,7 +132,7 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
         <dl className="flex flex-col gap-5 lg:pl-4">
           {visibles.map(c => (
             <div key={c.nombre} className="flex flex-col gap-2">
-              <dt style={{ ...MONO, color: GRIS }}>{c.nombre}</dt>
+              <dt style={{ ...MONO, color: VERDE }}>{c.nombre}</dt>
               {c.valores.map(v => (
                 <dd key={typeof v === 'string' ? v : v.href} style={{ ...MONO, textTransform: 'none', lineHeight: 1.5 }}>
                   {typeof v === 'string'

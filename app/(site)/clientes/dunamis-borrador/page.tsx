@@ -49,6 +49,14 @@ const CITA_FUNDADORA: Cita = {
   retrato: '/casos/dunamis/retrato-jessica-hupat.jpg',
 }
 
+/** Cita de una agente, editada a partir de su testimonio. PENDIENTE: que Ingrid apruebe esta versión antes de pasar a la página real. */
+const CITA_AGENTE: Cita = {
+  texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
+  nombre: 'Ingrid Hupat',
+  cargo: 'Agente, Dunamis Brokers · Valparaíso',
+  retrato: '/casos/dunamis/retrato-ingrid-hupat.jpg',
+}
+
 const CITAS: [Cita, Cita, Cita] = [
   { texto: 'Ejemplo: cada agente explicaba Dunamis a su manera, y cada llamada partía de cero.', nombre: 'Nombre Apellido', cargo: 'Cargo' },
   { texto: 'Ejemplo: por primera vez lo que sabemos del mercado está escrito, ordenado y trabajando por nosotros.', nombre: 'Nombre Apellido', cargo: 'Cargo' },
@@ -108,7 +116,6 @@ export default function BorradorDunamis() {
             { src: '/casos/dunamis/instagram-2.webp', alt: 'Contenido de Dunamistas para Instagram, segunda pieza', ratio: '3 / 4' },
           ]} />
         </SeccionCaso>
-        <CitaCaso logo={LOGO} {...CITAS[1]} />
 
         <SeccionCaso titulo="El inversionista saca sus cuentas antes de hablar con un agente.">
           <p>Un punto de entrada frecuente: el propietario que fija su precio según su historia con el activo. El artículo &ldquo;Cada precio es autobiográfico&rdquo; desarrolla esa tensión y cierra con Valor, un simulador que estima el valor de mercado de una propiedad con la UF del día, el cap rate de la zona y la vacancia del trimestre.</p>
@@ -125,6 +132,7 @@ export default function BorradorDunamis() {
           <EnlaceCaso href="https://decision.dunamis.broker/">Probar La Decisión →</EnlaceCaso>
           <ImagenesCaso items={[{ src: '/casos/dunamis/decision.webp', alt: 'Diagnóstico La Decisión de Dunamis Broker', ratio: '3 / 2' }]} />
         </SeccionCaso>
+        <CitaCaso logo={LOGO} {...CITA_AGENTE} />
 
         <SeccionCaso titulo="El equipo comercial pidió un PDF en Canva. Recibió un dossier que se comparte con un enlace.">
           <p>Los agentes necesitaban material simple para enviar por WhatsApp o mostrar en iPad durante reuniones y visitas: servicios, honorarios, condiciones y un resumen del stock.</p>
@@ -144,7 +152,6 @@ export default function BorradorDunamis() {
         </SeccionCaso>
 
         <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación empezada." items={RESULTADOS} />
-        <CitaCaso logo={LOGO} {...CITAS[2]} />
       </CuerpoCaso>
 
       <CierreCaso titulo="Tu empresa ya tiene el conocimiento." />

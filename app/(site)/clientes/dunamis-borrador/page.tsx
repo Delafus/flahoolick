@@ -31,11 +31,12 @@ const FICHA: CampoFicha[] = [
 ]
 
 /** EJEMPLO: tres citas inventadas para ver el formato. Reemplazar por citas reales con nombre, cargo y retrato. */
-/** Cita real de la fundadora. PENDIENTE: retrato (ruta de la foto en `retrato`). */
+/** Cita real de la fundadora. */
 const CITA_FUNDADORA: Cita = {
   texto: 'Estuvimos con una agencia de marketing que nunca logró articular nuestra propuesta de valor. Flahoolick la encontró en lo que nosotros mismos decíamos todos los días y hoy la vemos trabajando en cada canal.',
   nombre: 'Jessica Hupat',
   cargo: 'Founder, Dunamis',
+  retrato: '/casos/dunamis/retrato-jessica-hupat.jpg',
 }
 
 const CITAS: [Cita, Cita, Cita] = [

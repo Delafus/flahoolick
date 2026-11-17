@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Pagina, Hero, Bloque, Items, Cierre, FUENTE } from '@/components/minimal'
 import { ETAPAS, etapaPorSlug } from '@/components/etapas-datos'
+import { ModuloOtrasEtapas } from '@/components/modulo-otras-etapas'
 
 /** Una página por etapa de la metodología, con la estructura de nobl.io/methodology/methodology-process:
     hero de color, qué hacemos, cómo, qué recibes, cita de cliente, las otras etapas y contacto. */
@@ -66,12 +67,10 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
           </figure>
         </Bloque>
       )}
-      <Bloque titulo="Las otras etapas.">
-        <Items items={[
-          ...otras.map(o => ({ titulo: `${o.numero} ${o.nombre}`, texto: o.resumen, href: `/metodologia/${o.slug}` })),
-          { titulo: 'La metodología completa', texto: 'Las tres etapas, los principios con que trabajamos y un caso real.', href: '/metodologia' },
-        ]} />
-      </Bloque>
+      <ModuloOtrasEtapas tarjetas={[
+        ...otras.map(o => ({ titulo: o.nombre, texto: o.resumen, href: `/metodologia/${o.slug}`, puntos: Number(o.numero) })),
+        { titulo: 'La metodología completa', texto: 'Las tres etapas, los principios con que trabajamos y un caso real.', href: '/metodologia', puntos: 9 },
+      ]} />
       <Cierre titulo="El conocimiento adquiere valor cuando encuentra una función en el mercado." cta="Agenda una llamada" />
     </Pagina>
   )

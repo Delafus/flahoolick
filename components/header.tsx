@@ -26,8 +26,8 @@ interface MegaMenuData {
 // Las tarjetas del megamenú salen de la misma fuente que la página
 // /servicios, para que nunca queden desincronizadas.
 const SRV_MENU: MegaMenuData = {
-  tagline: 'Estrategia, marca, contenido e IA para que tu empresa esté presente durante todo el ciclo de decisión de tu comprador.',
-  ctaLabel: 'Explorar servicios', ctaHref: '/servicios',
+  tagline: 'Tres capacidades. Un sistema de contenido.',
+  ctaLabel: 'Ver servicios', ctaHref: '/servicios',
   items: DISCIPLINAS.map(d => ({
     title: d.nombre,
     desc: d.desc,
@@ -37,7 +37,7 @@ const SRV_MENU: MegaMenuData = {
 
 const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que trabaja.',
-  ctaLabel: 'Explorar metodología', ctaHref: '/metodologia',
+  ctaLabel: 'Ver metodología', ctaHref: '/metodologia',
   // Cada etapa tiene su propia página (/metodologia/[slug]).
   items: ETAPAS.map(e => ({ title: e.nombre, desc: e.resumen, href: `/metodologia/${e.slug}` })),
 }

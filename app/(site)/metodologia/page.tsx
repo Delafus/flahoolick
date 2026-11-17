@@ -12,23 +12,23 @@ const PASOS = [
   {
     id: 'paso-entendemos',
     slug: ETAPAS[0].slug,
+    resultado: ETAPAS[0].recibes,
     titulo: '1. Encontramos',
     texto: 'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, cuál es el conocimiento que distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
-    resultado: 'Un diagnóstico con hallazgos, prioridades y los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
     id: 'paso-posicion',
     slug: ETAPAS[1].slug,
+    resultado: ETAPAS[1].recibes,
     titulo: '2. Ordenamos',
     texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
-    resultado: 'Una propuesta de valor clara y un mapa de mensajes que toda la empresa cuenta igual, ordenado por audiencias y momentos de decisión.',
   },
   {
     id: 'paso-circulacion',
     slug: ETAPAS[2].slug,
+    resultado: ETAPAS[2].recibes,
     titulo: '3. Ponemos en circulación',
     texto: 'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: definimos temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
-    resultado: 'Piezas publicadas y medidas junto a marketing y ventas, con una hoja de ruta para producir, evaluar y mejorar de forma continua.',
   },
 ]
 

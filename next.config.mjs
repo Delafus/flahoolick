@@ -6,8 +6,13 @@ const nextConfig = {
       { source: '/clientes/dunamis-borrador', destination: '/clientes/dunamis', permanent: false },
       { source: '/sensor', destination: '/metodologia#sensor', permanent: true },
       { source: '/deck', destination: '/metodologia#deck', permanent: true },
-      { source: '/servicios/sistemas-de-contenido-con-ia', destination: '/servicios/ia-para-marketing-y-ventas', permanent: true },
-      { source: '/servicios/herramientas-de-ia-para-marketing', destination: '/servicios/ia-para-marketing-y-ventas', permanent: true },
+      // De cuatro servicios a tres capacidades.
+      { source: '/servicios/marca-y-relato', destination: '/servicios/estrategia-y-relato-de-marca', permanent: true },
+      { source: '/servicios/estrategia-de-contenido', destination: '/servicios/sistema-operativo-de-contenido', permanent: true },
+      { source: '/servicios/produccion-de-contenido', destination: '/servicios/estudio-creativo-e-inteligencia-artificial', permanent: true },
+      { source: '/servicios/ia-para-marketing-y-ventas', destination: '/servicios/estudio-creativo-e-inteligencia-artificial', permanent: true },
+      { source: '/servicios/sistemas-de-contenido-con-ia', destination: '/servicios/estudio-creativo-e-inteligencia-artificial', permanent: true },
+      { source: '/servicios/herramientas-de-ia-para-marketing', destination: '/servicios/estudio-creativo-e-inteligencia-artificial', permanent: true },
     ]
   },
   images: {

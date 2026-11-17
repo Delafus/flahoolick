@@ -204,7 +204,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
   return (
     <Bloque titulo={titulo}>
       {children}
-      <Boton href="/clientes/dunamis">Lee la historia de Dunamis</Boton>
+      <Boton href="/clientes/dunamis">Conoce la historia de Dunamis</Boton>
     </Bloque>
   )
 }

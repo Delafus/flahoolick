@@ -16,8 +16,8 @@ const CAMPO_MINIMAL_ESTILO = { backgroundColor: '#ffffff', color: '#000000', bor
 export function ContactForm({
   bg = 'var(--brand-depth)',
   text = 'var(--brand-chalk)',
-  headline = <FontMix bold="Tu empresa ya" italic=" tiene el conocimiento." />,
-  description = 'Construyamos el sistema que lo pone frente al mercado.',
+  headline = <FontMix bold="Tu empresa" italic=" tiene el conocimiento." />,
+  description = 'Construyamos el sistema que lo pone frente al mercado. Cuéntanos qué hace tu empresa y qué necesitas comunicar. Conversemos sobre cómo transformar ese conocimiento en una ventaja para tu negocio.',
   note,
   submitLabel = 'Agenda una llamada',
   minimal = false,
@@ -107,7 +107,7 @@ export function ContactForm({
         {/* Left */}
         <div className="flex flex-col gap-6">
           <h2 className="text-headline" style={{ color: text, lineHeight: 0.92 }}>{headline}</h2>
-          <p className="text-lead max-w-sm opacity-60">{description}</p>
+          <p className="text-lead max-w-md opacity-60">{description}</p>
           {note && <p className="text-sm opacity-45" style={{ maxWidth: '24rem' }}>{note}</p>}
         </div>
 

@@ -7,10 +7,9 @@ const BASE = 'https://www.flahoolick.com'
 const RUTAS = [
   '',
   '/servicios',
-  '/servicios/estrategia-de-contenido',
-  '/servicios/marca-y-relato',
-  '/servicios/produccion-de-contenido',
-  '/servicios/ia-para-marketing-y-ventas',
+  '/servicios/estrategia-y-relato-de-marca',
+  '/servicios/sistema-operativo-de-contenido',
+  '/servicios/estudio-creativo-e-inteligencia-artificial',
   '/metodologia',
   '/metodologia/encontramos',
   '/metodologia/ordenamos',

@@ -5,8 +5,11 @@ export interface Etapa {
   slug: string
   numero: string
   nombre: string
-  /** Una línea: va en el megamenú y como bajada del hero. */
+  /** Una línea: va en el megamenú y en las listas de etapas. */
   resumen: string
+  /** Titular y bajada del hero de la página de la etapa. */
+  titular: string
+  bajada: string
   /** Qué hacemos en esta etapa. */
   texto: string
   /** Cómo lo hacemos. */
@@ -22,6 +25,8 @@ export const ETAPAS: Etapa[] = [
     numero: '01',
     nombre: 'Encontramos',
     resumen: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.',
+    titular: 'Lo que te hace distinto ya existe. Solo hay que encontrarlo.',
+    bajada: 'Hablamos con quienes conocen tu negocio y revisamos lo que ya tienes, hasta dar con los argumentos y evidencias que hacen que un cliente te elija.',
     texto: 'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, cuál es el conocimiento que distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
     como: [
       { titulo: 'Conversaciones con quienes saben', texto: 'Entrevistas breves con dirección, ventas y especialistas. Aportan lo que saben en una conversación, sin convertirse en creadores de contenido.' },
@@ -35,6 +40,8 @@ export const ETAPAS: Etapa[] = [
     numero: '02',
     nombre: 'Ordenamos',
     resumen: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver.',
+    titular: 'Una propuesta de valor que toda la empresa cuenta igual.',
+    bajada: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver, elegimos a quién hablarle primero y ponemos a prueba el mensaje antes de publicarlo.',
     texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
     como: [
       { titulo: 'Value Proposition Canvas', texto: 'La herramienta de Strategyzer para cruzar lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver.' },
@@ -55,6 +62,8 @@ export const ETAPAS: Etapa[] = [
     numero: '03',
     nombre: 'Ponemos en circulación',
     resumen: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar.',
+    titular: 'Lo que sabes, trabajando cada semana frente a tu mercado.',
+    bajada: 'Lo convertimos en contenido y herramientas que tus clientes encuentran, entienden y recuerdan, y medimos con marketing y ventas qué está funcionando.',
     texto: 'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: definimos temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
     como: [
       { titulo: 'Plan editorial', texto: 'Qué publicar, para quién y cuándo, a partir de las preguntas reales de tus clientes.' },

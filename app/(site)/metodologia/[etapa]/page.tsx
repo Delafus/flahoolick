@@ -34,8 +34,8 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
           <span aria-hidden="true" style={{ margin: '0 0.6em', opacity: 0.5 }}>/</span>
           {e.nombre}
         </>}
-        titulo={`${e.nombre}.`}
-        bajada={e.resumen}
+        titulo={e.titular}
+        bajada={e.bajada}
       />
       <Bloque titulo="Qué hacemos.">
         <p>{e.texto}</p>

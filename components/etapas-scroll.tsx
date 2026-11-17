@@ -51,8 +51,10 @@ const RANGOS = ANILLOS.map((cantidad, a) => {
   return Array.from({ length: cantidad }, (_, k) => inicio + k)
 })
 /** El anillo exterior gira en el sentido del reloj y cada uno hacia adentro, al revés del anterior.
-    Cada anillo con su propia velocidad (segundos por vuelta, del centro hacia afuera), para que se desfasen entre sí. */
-const DURACIONES = [60, 14, 34, 19, 52]
+    Cada anillo con su propia velocidad (segundos por vuelta, del centro hacia afuera). Las velocidades están elegidas para que
+    la diferencia se vea en el recorrido de los puntos y no solo en los segundos: entre los dos anillos verdes, uno lento y uno rápido;
+    entre los negros, igual. */
+const DURACIONES = [60, 40, 12, 22, 120]
 const giro = (a: number) => ({
   className: (ANILLOS.length - 1 - a) % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa',
   duracion: `${DURACIONES[a]}s`,

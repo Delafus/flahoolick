@@ -9,8 +9,8 @@ const CAMPOS_MINIMAL = [
   { id: 'empresa', label: 'Empresa', type: 'text', placeholder: '¿Dónde trabajas?' },
   { id: 'email', label: 'Correo', type: 'email', placeholder: 'tu@empresa.com' },
 ]
-const CAMPO_MINIMAL = 'w-full py-2 bg-transparent outline-none focus:shadow-[0_1px_0_0_#000]'
-const CAMPO_MINIMAL_ESTILO = { borderBottom: '1px solid #000000', borderRadius: 0, color: '#000000' }
+const CAMPO_MINIMAL = 'w-full py-2 bg-transparent outline-none focus:shadow-[0_1px_0_0_currentColor]'
+const CAMPO_MINIMAL_ESTILO = { borderBottom: '1px solid currentColor', borderRadius: 0, color: 'inherit' }
 
 export function ContactForm({
   bg = 'var(--brand-depth)',

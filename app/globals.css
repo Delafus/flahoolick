@@ -393,3 +393,9 @@
   .columna-ancha .bloque-titulo h2 { font-size: 2.5rem; line-height: 1.1; letter-spacing: -0.03em; }
   .columna-ancha .bloque-derecha { margin-left: auto; width: calc((100% - 5rem) * 7 / 12); }
 }
+
+/* Portada de historias de clientes: cada foto se recorta según su foco (teléfono / escritorio). */
+.portada-caso-foto { object-position: var(--foco-movil, 50% 50%); }
+@media (min-width: 768px) {
+  .portada-caso-foto { object-position: var(--foco, 50% 50%); }
+}

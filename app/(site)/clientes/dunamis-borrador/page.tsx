@@ -26,6 +26,14 @@ const FICHA: CampoFicha[] = [
   { nombre: 'Desafío', valores: ['El conocimiento del equipo vivía en reuniones, catálogos y la experiencia de cada agente. Cada llamada partía de cero.'] },
   { nombre: 'Servicios', valores: ['Marca y relato', 'Estrategia de contenido', 'Producción de contenido', 'IA para marketing y ventas'] },
   { nombre: 'Entregables', valores: ['Identidad para dos verticales', 'Dos sitios', 'Plataforma editorial Dunamistas', 'Simulador Valor', 'Diagnóstico La Decisión', 'Dossier comercial', 'Asistente virtual Dee'] },
+  { nombre: 'Tecnología', valores: [
+    { texto: 'Vercel', icono: '/iconos-tecnologia/vercel.svg' },
+    { texto: 'Next.js', icono: '/iconos-tecnologia/nextdotjs.svg' },
+    { texto: 'Supabase', icono: '/iconos-tecnologia/supabase.svg' },
+    { texto: 'Claude Code', icono: '/iconos-tecnologia/claude.svg' },
+    { texto: 'Figma', icono: '/iconos-tecnologia/figma.svg' },
+    { texto: 'Midjourney', icono: '/iconos-tecnologia/imagen.svg' },
+  ] },
   { nombre: 'Duración', valores: ['6 meses (ejemplo)'] },
   { nombre: 'Sitios', valores: [{ texto: 'dunamis.agency', href: 'https://dunamis.agency' }, { texto: 'dunamis.broker', href: 'https://www.dunamis.broker' }] },
 ]

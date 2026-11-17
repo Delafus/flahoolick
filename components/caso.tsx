@@ -33,8 +33,8 @@ export interface Dato {
 
 export interface CampoFicha {
   nombre: string
-  /** Los campos sin valores no se muestran. */
-  valores: (string | { texto: string; href: string })[]
+  /** Los campos sin valores no se muestran. Con `icono` (ruta a un SVG), se muestra en blanco a la izquierda del texto. */
+  valores: (string | { texto: string; href: string } | { texto: string; icono: string })[]
 }
 
 export interface Cita {
@@ -134,10 +134,16 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
             <div key={c.nombre} className="flex flex-col gap-2">
               <dt style={{ ...MONO, color: VERDE }}>{c.nombre}</dt>
               {c.valores.map(v => (
-                <dd key={typeof v === 'string' ? v : v.href} style={{ ...MONO, textTransform: 'none', lineHeight: 1.5 }}>
+                <dd key={typeof v === 'string' ? v : v.texto} className="flex items-center gap-3" style={{ ...MONO, textTransform: 'none', lineHeight: 1.5 }}>
                   {typeof v === 'string'
                     ? v
-                    : <Link href={v.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">{v.texto}</Link>}
+                    : 'href' in v
+                    ? <Link href={v.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">{v.texto}</Link>
+                    : <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={v.icono} alt="" aria-hidden="true" style={{ width: '18px', height: '18px', filter: LOGO_BLANCO, flexShrink: 0 }} />
+                        {v.texto}
+                      </>}
                 </dd>
               ))}
             </div>

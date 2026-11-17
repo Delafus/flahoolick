@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePageColor } from '@/context/page-color'
 import { DISCIPLINAS } from './servicios-datos'
+import { ETAPAS } from './etapas-datos'
 import { JERGA_VISIBLE } from './jerga-visible'
 
 interface MegaMenuItem {
@@ -38,11 +39,8 @@ const SRV_MENU: MegaMenuData = {
 const MET_MENU: MegaMenuData = {
   tagline: 'Del conocimiento disperso a un sistema que trabaja.',
   ctaLabel: 'Explorar metodología', ctaHref: '/metodologia',
-  items: [
-    { title: 'Encontramos', desc: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.', href: '/metodologia#paso-entendemos' },
-    { title: 'Ordenamos', desc: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver.', href: '/metodologia#paso-posicion' },
-    { title: 'Ponemos en circulación', desc: 'Lo convertimos en contenido y herramientas que tus clientes pueden encontrar, entender y recordar.', href: '/metodologia#paso-circulacion' },
-  ],
+  // Cada etapa tiene su propia página (/metodologia/[slug]).
+  items: ETAPAS.map(e => ({ title: e.nombre, desc: e.resumen, href: `/metodologia/${e.slug}`, linkLabel: 'Ver la etapa →' })),
 }
 
 type ActiveMenu = 'srv' | 'met' | null

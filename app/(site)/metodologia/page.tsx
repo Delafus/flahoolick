@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import Link from 'next/link'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, ENLACE } from '@/components/minimal'
+import { ETAPAS } from '@/components/etapas-datos'
 
 export const metadata: Metadata = {
   title: 'Metodología | Del conocimiento disperso a un sistema que trabaja | Flahoolick',
@@ -9,18 +11,21 @@ export const metadata: Metadata = {
 const PASOS = [
   {
     id: 'paso-entendemos',
+    slug: ETAPAS[0].slug,
     titulo: '1. Encontramos',
     texto: 'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, cuál es el conocimiento que distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
     resultado: 'Un diagnóstico con hallazgos, prioridades y los argumentos y evidencias que hacen que un cliente te elija.',
   },
   {
     id: 'paso-posicion',
+    slug: ETAPAS[1].slug,
     titulo: '2. Ordenamos',
     texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
     resultado: 'Una propuesta de valor clara y un mapa de mensajes que toda la empresa cuenta igual, ordenado por audiencias y momentos de decisión.',
   },
   {
     id: 'paso-circulacion',
+    slug: ETAPAS[2].slug,
     titulo: '3. Ponemos en circulación',
     texto: 'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: definimos temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
     resultado: 'Piezas publicadas y medidas junto a marketing y ventas, con una hoja de ruta para producir, evaluar y mejorar de forma continua.',
@@ -54,6 +59,7 @@ export default function Metodologia() {
               <h3 className="text-[1.375rem]" style={{ fontWeight: 500, lineHeight: 1.25 }}>{p.titulo}</h3>
               <p>{p.texto}</p>
               <p><span style={{ fontWeight: 500 }}>Recibes:</span> {p.resultado}</p>
+              <p><Link href={`/metodologia/${p.slug}`} className={ENLACE}>Ver la etapa →</Link></p>
             </div>
           ))}
         </div>

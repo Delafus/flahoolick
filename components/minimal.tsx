@@ -74,7 +74,8 @@ export type Cabecera = keyof typeof CABECERAS
 const ANCHO_HERO = 'min(80rem, calc(100vw - 2 * var(--page-px)))'
 
 export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual }: {
-  eyebrow?: string
+  /** Línea pequeña sobre el titular. Puede ser una miga de pan con enlaces. */
+  eyebrow?: React.ReactNode
   titulo: React.ReactNode
   bajada?: React.ReactNode
   cta?: string | null

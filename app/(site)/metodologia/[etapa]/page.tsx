@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Pagina, Hero, Bloque, Items, Cierre, FUENTE } from '@/components/minimal'
 import { ETAPAS, etapaPorSlug } from '@/components/etapas-datos'
@@ -28,7 +29,11 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
     <Pagina>
       <Hero
         color="amarillo"
-        eyebrow={`Metodología · Etapa ${e.numero} de 03`}
+        eyebrow={<>
+          <Link href="/metodologia" className="underline-offset-4 decoration-1 hover:underline">Metodología</Link>
+          <span aria-hidden="true" style={{ margin: '0 0.6em', opacity: 0.5 }}>/</span>
+          {e.nombre}
+        </>}
         titulo={`${e.nombre}.`}
         bajada={e.resumen}
       />

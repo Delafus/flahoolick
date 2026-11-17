@@ -123,12 +123,13 @@ export function ResumenCaso({ children }: { children: React.ReactNode }) {
   return <p className="mt-8" style={{ fontSize: '24px', lineHeight: 1.2, letterSpacing: '-0.01em' }}>{children}</p>
 }
 
-/** Dos columnas: ficha fija con botón a la izquierda (299 px) y relato a la derecha (621 px). En teléfono, la ficha va primero. */
+/** Dos columnas: ficha con botón a la izquierda (299 px) y relato a la derecha (621 px). En teléfono, la ficha va primero. */
 export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children: React.ReactNode }) {
   const visibles = ficha.filter(c => c.valores.length > 0)
   return (
     <article className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-[299px_minmax(0,621px)] lg:gap-x-[41px]">
-      <aside className="flex flex-col gap-8 self-start lg:sticky" style={{ top: '100px' }}>
+      {/* No va fija al bajar: la ficha es más alta que la pantalla y quedaría cortada. */}
+      <aside className="flex flex-col gap-8 self-start">
         <dl className="flex flex-col gap-5 lg:pl-4">
           {visibles.map(c => (
             <div key={c.nombre} className="flex flex-col gap-2">

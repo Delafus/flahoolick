@@ -132,17 +132,17 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
       <aside className="flex flex-col gap-8 self-start">
         <dl className="flex flex-col gap-5 lg:pl-4">
           {visibles.map(c => (
-            <div key={c.nombre} className="flex flex-col gap-2">
+            <div key={c.nombre} className="flex flex-col gap-1">
               <dt style={{ ...MONO, color: VERDE }}>{c.nombre}</dt>
               {c.valores.map(v => (
-                <dd key={typeof v === 'string' ? v : v.texto} className="flex items-center gap-3" style={{ ...MONO, textTransform: 'none', lineHeight: 1.5 }}>
+                <dd key={typeof v === 'string' ? v : v.texto} className="flex items-center gap-2.5" style={{ ...MONO, textTransform: 'none', lineHeight: 1.3 }}>
                   {typeof v === 'string'
                     ? v
                     : 'href' in v
                     ? <Link href={v.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">{v.texto}</Link>
                     : <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={v.icono} alt="" aria-hidden="true" style={{ width: '18px', height: '18px', filter: LOGO_BLANCO, flexShrink: 0 }} />
+                        <img src={v.icono} alt="" aria-hidden="true" style={{ width: '14px', height: '14px', filter: LOGO_BLANCO, flexShrink: 0 }} />
                         {v.texto}
                       </>}
                 </dd>

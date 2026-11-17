@@ -281,7 +281,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
               className="absolute left-0 top-0 bottom-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
               style={{ width: '2px', backgroundColor: textColor }}
             />
-            <h3 className="group-hover:opacity-60 transition-opacity" style={{ color: textColor, fontFamily: 'var(--font-inter)', fontSize: '1.125rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            <h3 style={{ color: textColor, fontFamily: 'var(--font-inter)', fontSize: '1.125rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               {item.title}
             </h3>
             <p className="text-base leading-relaxed" style={{ color: textColor, opacity: 0.85 }}>{item.desc}</p>

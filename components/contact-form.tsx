@@ -64,8 +64,8 @@ export function ContactForm({
       <div id="contacto" className="pt-6" style={{ scrollMarginTop: '96px' }}>
         {sent ? (
           <div className="flex flex-col gap-2">
-            <p style={{ fontWeight: 500 }}>Recibido.</p>
-            <p>Te escribiremos para coordinar la llamada de 30 minutos.</p>
+            <p style={{ fontWeight: 500 }}>Primer paso, listo.</p>
+            <p>Te escribimos pronto para conversar sobre lo que tu organización sabe y el mercado todavía no conoce.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-x-4 gap-y-5 md:grid-cols-2">
@@ -115,8 +115,8 @@ export function ContactForm({
         <div>
           {sent ? (
             <div className="flex flex-col gap-4 py-12">
-              <p className="label opacity-40">Mensaje enviado</p>
-              <p className="text-xl font-light">Nos pondremos en contacto pronto.</p>
+              <p className="label opacity-60">Primer paso, listo.</p>
+              <p className="text-xl font-light">Te escribimos pronto para conversar sobre lo que tu organización sabe y el mercado todavía no conoce.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">

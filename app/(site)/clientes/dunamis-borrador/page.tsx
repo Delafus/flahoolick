@@ -60,7 +60,7 @@ export default function BorradorDunamis() {
         datos={DATOS_PORTADA}
       />
       <ResumenCaso>
-        Sistematizamos lo que sabía el equipo de Dunamis y lo convertimos en una identidad, dos sitios, una plataforma editorial, tres herramientas digitales y un asistente virtual.
+        Dunamis convirtió lo que su equipo sabía del mercado en marca, contenido y herramientas digitales. Hoy sus potenciales clientes calculan, resuelven dudas y agendan la visita antes de hablar con un agente.
       </ResumenCaso>
 
       <CuerpoCaso ficha={FICHA}>

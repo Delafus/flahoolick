@@ -183,7 +183,7 @@ export function EnlaceCaso({ href, children }: { href: string; children: React.R
 export function CitaCaso({ texto, nombre, cargo, retrato, logo }: Cita & { logo?: { src: string; alt: string } }) {
   if (!texto || !nombre) return null
   return (
-    <figure className="my-12 flex flex-col gap-6 md:pl-24" style={{ fontSize: '18px', lineHeight: 1.35 }}>
+    <figure className="my-12 flex flex-col gap-6 py-8 pl-6 md:py-10 md:pl-24" style={{ fontSize: '18px', lineHeight: 1.35, borderLeft: `4px solid ${VERDE}` }}>
       {logo && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={logo.src} alt={logo.alt} style={{ width: '144px', height: 'auto', filter: LOGO_BLANCO }} />

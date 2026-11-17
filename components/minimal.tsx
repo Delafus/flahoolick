@@ -5,6 +5,11 @@ import { ContactForm } from './contact-form'
 export const FUENTE = { fontFamily: 'var(--font-inter)', letterSpacing: '-0.02em' }
 export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity'
 
+/** Botón de contorno para llevar a otra página (en lugar de texto subrayado con flecha). Al pasar el cursor se rellena de negro. */
+export function Boton({ href, children }: { href: string; children: React.ReactNode }) {
+  return <Link href={href} className="boton-contorno label inline-flex w-fit items-center px-6 py-3">{children}</Link>
+}
+
 const ANCHO_TEXTO = '40rem'
 const ANCHO_PAGINA = '80rem'
 
@@ -198,7 +203,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
   return (
     <Bloque titulo={titulo}>
       {children}
-      <p><Link href="/clientes/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
+      <Boton href="/clientes/dunamis">Lee la historia de Dunamis</Boton>
     </Bloque>
   )
 }

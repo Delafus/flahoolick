@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE, FUENTE, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Bloque, Items, Boton, FUENTE, Cierre } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -52,10 +51,8 @@ export default function HomePage() {
 
         <Pantalla titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
           <p>El 95% restante lo hará en seis meses, un año o más. Cuando llegue ese día, elegirá a la empresa que ya conoce.</p>
-          <p className="text-base">
-            <span style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</span>{' '}
-            <Link href="/jerga/john-dawes-y-su-regla-del-95-5" className={ENLACE}>Leer la guía de la regla 95:5 →</Link>
-          </p>
+          <p className="text-base" style={{ opacity: 0.5 }}>Fuente: John Dawes, Ehrenberg-Bass Institute.</p>
+          <Boton href="/jerga/john-dawes-y-su-regla-del-95-5">Leer la guía de la regla 95:5</Boton>
         </Pantalla>
 
         <Pantalla titulo="Tu empresa sabe mucho más de lo que tu mercado conoce.">
@@ -73,7 +70,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <p><Link href="/metodologia" className={ENLACE}>Ver la metodología →</Link></p>
+          <Boton href="/metodologia">Ver la metodología</Boton>
         </Bloque>
 
         <Bloque titulo="Para qué te sirve.">
@@ -82,7 +79,7 @@ export default function HomePage() {
 
         <Bloque titulo="En Dunamis, la conversación con el cliente empieza antes de la primera reunión.">
           <p>Una identidad, dos sitios, una plataforma editorial, tres herramientas y un asistente virtual.</p>
-          <p><Link href="/clientes/dunamis" className={ENLACE}>Lee la historia de Dunamis →</Link></p>
+          <Boton href="/clientes/dunamis">Lee la historia de Dunamis</Boton>
         </Bloque>
 
         <Bloque titulo="Servicios.">
@@ -95,7 +92,7 @@ export default function HomePage() {
             Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.
           </h2>
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
-          <p><Link href="/sobre-flahoolick" className={ENLACE}>Sobre Flahoolick →</Link></p>
+          <Boton href="/sobre-flahoolick">Sobre Flahoolick</Boton>
         </section>
 
         {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}

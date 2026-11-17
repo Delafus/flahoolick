@@ -186,7 +186,7 @@ export function Items({ items }: { items: Item[] }) {
           </>
         )
         return i.href
-          ? <Link key={i.titulo} href={i.href} className="group block transition-opacity hover:opacity-70">{contenido}</Link>
+          ? <Link key={i.titulo} href={i.href} className="group block">{contenido}</Link>
           : <div key={i.titulo}>{contenido}</div>
       })}
     </div>

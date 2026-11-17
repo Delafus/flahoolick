@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Bloque, Items, ENLACE, FUENTE, Cierre } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -89,13 +89,17 @@ export default function HomePage() {
           <Items items={SERVICIOS} />
         </Bloque>
 
-        <Bloque titulo="Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.">
+        {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
+        <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+          <h2 className="text-[1.75rem] md:text-[2.5rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+            Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.
+          </h2>
           <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
           <p><Link href="/sobre-flahoolick" className={ENLACE}>Sobre Flahoolick →</Link></p>
-        </Bloque>
+        </section>
 
         {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}
-        <div className="pb-16 md:pb-24">
+        <div className="pb-16 text-center md:pb-24">
           <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
           <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
             <Marquee color="#000000" excluir={['Dunamis']} />

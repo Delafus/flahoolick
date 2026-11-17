@@ -7,7 +7,7 @@ import { VERDE } from './minimal'
 /** Las tres etapas en la home con un gráfico de puntos que cambia con el scroll (versión simple, mientras llega el definitivo).
     Escritorio: gráfico fijo a la izquierda y etapas a la derecha; la etapa que está al centro de la pantalla manda.
     Teléfono: cada etapa lleva su propio gráfico, quieto, sobre el texto.
-    Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla y una fila queda en verde;
+    Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla, en bloques de 2×2 que alternan verde y negro como un tablero;
     3 los puntos forman un círculo de anillos concéntricos; cada anillo gira en sentido contrario al anterior y a su propia velocidad,
       y los colores se intercalan desde afuera hacia adentro: negro, verde, negro, verde. */
 
@@ -63,7 +63,7 @@ const HALLAZGOS = new Set([3, 17, 26, 41, 50, 60])
 /** Anillo (0 = centro) al que pertenece cada punto. */
 const ANILLO_DE = ANILLOS.flatMap((cantidad, a) => Array.from({ length: cantidad }, () => a))
 const verde = (estado: number, i: number) =>
-  estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? i >= 32 && i < 40 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
+  estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? (Math.floor((i % 8) / 2) + Math.floor(i / 16)) % 2 === 1 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
 
 export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
   return (

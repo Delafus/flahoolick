@@ -28,7 +28,7 @@ export default function HomePage() {
           <p className="text-base" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
         </Pantalla>
 
-        <Pantalla titulo="Tu empresa sabe mucho más de lo que tu mercado conoce.">
+        <Pantalla centrado titulo="Tu empresa sabe mucho más de lo que tu mercado conoce.">
           <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Entramos a tu negocio, encontramos lo que tiene valor para tus clientes y lo transformamos en una fuente continua de comunicación, contenido y herramientas comerciales.</p>
         </Pantalla>
 
@@ -43,11 +43,10 @@ export default function HomePage() {
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 
-        {/* Historias de clientes: centrado. */}
+        {/* Caso Dunamis: centrado. */}
         <section className="flex flex-col items-center gap-6 py-16 text-center md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
-            <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Historias de clientes.</h2>
-            <p className="label" style={{ opacity: 0.5 }}>Dunamis</p>
+            <p className="label" style={{ opacity: 0.5 }}>Caso Dunamis</p>
             <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
               La conversación con el cliente empieza antes de la primera reunión.
             </h3>

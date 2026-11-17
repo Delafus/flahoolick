@@ -100,7 +100,7 @@ export default function BorradorDunamis() {
           <ImagenesCaso items={[{ src: '/casos/dunamis/transicion.webp', alt: 'Transición de la marca Dunamis a sus dos verticales, Agency y Broker', ratio: '16 / 9' }]} />
         </SeccionCaso>
 
-        <SeccionCaso titulo="Dunamistas responde lo que los clientes preguntan antes de comprar.">
+        <SeccionCaso titulo="Un mismo plan editorial para el blog, Instagram y un glosario semanal.">
           <p>Dunamistas es la plataforma editorial de Dunamis Brokers: artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana. La fundadora lleva esas mismas ideas a LinkedIn y a charlas del sector, con su propia voz.</p>
           <ImagenesCaso items={[{ src: '/casos/dunamis/blog.webp', alt: 'Dunamistas, plataforma editorial de Dunamis Brokers', ratio: '3 / 2' }]} />
           <ImagenesCaso items={[

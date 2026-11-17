@@ -89,9 +89,9 @@ export default function HomePage() {
         {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
         <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
           <h2 className="text-[1.75rem] md:text-[2.5rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
-            Somos FLAHOOLICK. Un equipo senior de medios y grupos publicitarios.
+            Veinticinco años explicando lo complejo.
           </h2>
-          <p>Más de 25 años convirtiendo conocimiento complejo en contenido que el mercado entiende. Hoy trabajamos para empresas B2B desde Santiago, Chile.</p>
+          <p>Venimos de medios de comunicación y grupos publicitarios globales. Hoy ponemos ese oficio al servicio del conocimiento de empresas B2B, desde Santiago.</p>
           <Boton href="/sobre-flahoolick">Sobre Flahoolick</Boton>
         </section>
 

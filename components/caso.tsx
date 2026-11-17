@@ -170,10 +170,11 @@ export function SeccionCaso({ titulo, children }: { titulo: string; children: Re
   )
 }
 
-/** Imagen dentro de la columna del relato. Con dos imágenes, van lado a lado. */
+/** Imágenes del relato. En escritorio son más anchas que el texto, como en Sanity: parten 15 px antes
+    y llegan hasta el borde derecho de la portada (818 px). Con dos imágenes, van lado a lado. */
 export function ImagenesCaso({ items }: { items: { src: string; alt: string; ratio: string }[] }) {
   return (
-    <div className={`mt-8 grid gap-4 ${items.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+    <div className={`imagenes-caso mt-8 grid gap-4 ${items.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
       {items.map(i => (
         // eslint-disable-next-line @next/next/no-img-element
         <img key={i.src} src={i.src} alt={i.alt} style={{ aspectRatio: i.ratio, width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />

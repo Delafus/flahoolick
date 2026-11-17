@@ -399,3 +399,8 @@
 @media (min-width: 768px) {
   .portada-caso-foto { object-position: var(--foco, 50% 50%); }
 }
+
+/* Imágenes del relato en historias de clientes: más anchas que la columna de texto (621 px → 818 px). */
+@media (min-width: 1024px) {
+  .imagenes-caso { margin-left: -15px; width: calc(100% + 197px); max-width: none; }
+}

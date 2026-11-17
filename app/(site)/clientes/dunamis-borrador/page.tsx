@@ -31,6 +31,13 @@ const FICHA: CampoFicha[] = [
 ]
 
 /** EJEMPLO: tres citas inventadas para ver el formato. Reemplazar por citas reales con nombre, cargo y retrato. */
+/** Cita real de la fundadora. PENDIENTE: retrato (ruta de la foto en `retrato`). */
+const CITA_FUNDADORA: Cita = {
+  texto: 'Estuvimos con una agencia de marketing que nunca logró articular nuestra propuesta de valor. Flahoolick la encontró en lo que nosotros mismos decíamos todos los días y hoy la vemos trabajando en cada canal.',
+  nombre: 'Jessica Hupat',
+  cargo: 'Founder, Dunamis',
+}
+
 const CITAS: [Cita, Cita, Cita] = [
   { texto: 'Ejemplo: cada agente explicaba Dunamis a su manera, y cada llamada partía de cero.', nombre: 'Nombre Apellido', cargo: 'Cargo' },
   { texto: 'Ejemplo: por primera vez lo que sabemos del mercado está escrito, ordenado y trabajando por nosotros.', nombre: 'Nombre Apellido', cargo: 'Cargo' },
@@ -74,6 +81,7 @@ export default function BorradorDunamis() {
           <p>Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los agentes en terreno.</p>
           <p>De ese material salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
         </SeccionCaso>
+        <CitaCaso logo={LOGO} {...CITA_FUNDADORA} />
 
         <SeccionCaso titulo="Una nueva identidad para dos públicos.">
           <p>De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.</p>

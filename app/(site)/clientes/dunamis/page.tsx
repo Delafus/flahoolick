@@ -55,11 +55,12 @@ const CITA_AGENTE: Cita = {
   retrato: '/casos/dunamis/retrato-andre-ibarra.jpg',
 }
 
-/** Cita validada por Francisco De La Fuente. PENDIENTE: retrato. */
+/** Cita validada por Francisco De La Fuente. */
 const CITA_RELACIONES: Cita = {
   texto: 'La visita, la orden en PDF y la oferta de compra ya salen del sitio. Yo me concentro en atender bien a cada cliente, no en perseguir papeles.',
   nombre: 'Francisco De La Fuente',
   cargo: 'Relaciones con clientes, Dunamis Brokers',
+  retrato: '/casos/dunamis/retrato-francisco-de-la-fuente.jpg',
 }
 
 /** Hechos verificables del caso. */

@@ -74,9 +74,9 @@ export const ETAPAS: Etapa[] = [
     recibes: 'Piezas publicadas y medidas junto a marketing y ventas, con una hoja de ruta para producir, evaluar y mejorar de forma continua.',
     cita: {
       texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
-      nombre: 'Ingrid Hupat',
+      nombre: 'Andre Ibarra',
       cargo: 'Agente, Dunamis Brokers · Valparaíso',
-      retrato: '/casos/dunamis/retrato-ingrid-hupat.jpg',
+      // PENDIENTE: retrato de Andre Ibarra.
     },
   },
 ]

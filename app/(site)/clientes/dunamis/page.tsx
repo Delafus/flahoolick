@@ -50,9 +50,9 @@ const CITA_FUNDADORA: Cita = {
 /** Cita de una agente, editada a partir de su testimonio. */
 const CITA_AGENTE: Cita = {
   texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
-  nombre: 'Ingrid Hupat',
+  nombre: 'Andre Ibarra',
   cargo: 'Agente, Dunamis Brokers · Valparaíso',
-  retrato: '/casos/dunamis/retrato-ingrid-hupat.jpg',
+  // PENDIENTE: retrato de Andre Ibarra.
 }
 
 /** Hechos verificables del caso. */

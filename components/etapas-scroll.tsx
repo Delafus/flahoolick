@@ -8,7 +8,8 @@ import { VERDE } from './minimal'
     Escritorio: gráfico fijo a la izquierda y etapas a la derecha; la etapa que está al centro de la pantalla manda.
     Teléfono: cada etapa lleva su propio gráfico, quieto, sobre el texto.
     Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla y una fila queda en verde;
-    3 los puntos forman un círculo de anillos concéntricos; cada anillo gira en sentido contrario al anterior, y uno queda en verde. */
+    3 los puntos forman un círculo de anillos concéntricos; cada anillo gira en sentido contrario al anterior y a su propia velocidad,
+      y los colores se intercalan desde afuera hacia adentro: negro, verde, negro, verde. */
 
 export interface EtapaScroll {
   slug: string
@@ -49,14 +50,18 @@ const RANGOS = ANILLOS.map((cantidad, a) => {
   const inicio = ANILLOS.slice(0, a).reduce((s, n) => s + n, 0)
   return Array.from({ length: cantidad }, (_, k) => inicio + k)
 })
-/** El anillo exterior gira en el sentido del reloj y cada uno hacia adentro, al revés del anterior. Los interiores van algo más rápido. */
+/** El anillo exterior gira en el sentido del reloj y cada uno hacia adentro, al revés del anterior.
+    Cada anillo con su propia velocidad (segundos por vuelta, del centro hacia afuera), para que se desfasen entre sí. */
+const DURACIONES = [60, 14, 34, 19, 52]
 const giro = (a: number) => ({
   className: (ANILLOS.length - 1 - a) % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa',
-  duracion: `${24 + a * 6}s`,
+  duracion: `${DURACIONES[a]}s`,
 })
 const HALLAZGOS = new Set([3, 17, 26, 41, 50, 60])
+/** Anillo (0 = centro) al que pertenece cada punto. */
+const ANILLO_DE = ANILLOS.flatMap((cantidad, a) => Array.from({ length: cantidad }, () => a))
 const verde = (estado: number, i: number) =>
-  estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? i >= 32 && i < 40 : i >= 19 && i < 37
+  estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? i >= 32 && i < 40 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
 
 export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
   return (
@@ -120,8 +125,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
           <div key={e.slug} ref={el => { refs.current[i] = el }} data-indice={i}
             className="flex flex-col justify-center gap-4 py-10 lg:min-h-[70vh] lg:py-0">
             <GraficoEtapas estado={i} className="mb-2 w-48 lg:hidden" />
-            <p className="label" style={{ opacity: 0.5 }}>{String(i + 1).padStart(2, '0')}</p>
-            <h3 className="text-[1.5rem] md:text-[2rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 500, lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+            <h3 className="text-[1.75rem] md:text-[2.25rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
               <Link href={`/metodologia/${e.slug}`} className="underline-offset-4 decoration-1 hover:underline">{e.nombre}</Link>
             </h3>
             <p>{e.texto}</p>

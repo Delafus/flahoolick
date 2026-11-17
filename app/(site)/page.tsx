@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Bloque, Boton, FUENTE, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Boton, FUENTE, Cierre } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
-import { Capacidades } from '@/components/capacidades'
+import { CapacidadesTarjetas } from '@/components/capacidades'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -43,20 +43,28 @@ export default function HomePage() {
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 
-        <Bloque titulo="Historias de clientes.">
-          <p className="label" style={{ opacity: 0.5 }}>Dunamis</p>
-          <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
-            La conversación con el cliente empieza antes de la primera reunión.
-          </h3>
-          <p>Dunamis es una agencia de asesoría inmobiliaria. Convertimos lo que su equipo sabe del mercado en sitios, contenidos y herramientas donde sus clientes calculan, resuelven dudas y agendan la visita antes de hablar con un agente.</p>
-          <Boton href="/clientes/dunamis">Conoce la historia de Dunamis</Boton>
-        </Bloque>
+        {/* Historias de clientes: centrado. */}
+        <section className="flex flex-col items-center gap-6 py-16 text-center md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+          <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
+            <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Historias de clientes.</h2>
+            <p className="label" style={{ opacity: 0.5 }}>Dunamis</p>
+            <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
+              La conversación con el cliente empieza antes de la primera reunión.
+            </h3>
+            <p>Dunamis es una agencia de asesoría inmobiliaria. Convertimos lo que su equipo sabe del mercado en sitios, contenidos y herramientas donde sus clientes calculan, resuelven dudas y agendan la visita antes de hablar con un agente.</p>
+            <Boton href="/clientes/dunamis">Conoce la historia de Dunamis</Boton>
+          </div>
+        </section>
 
-        <Bloque titulo="Tres capacidades. Un sistema de contenido.">
-          <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
-          <Capacidades />
+        {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas. */}
+        <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+          <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
+            <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Tres capacidades. Un sistema de contenido.</h2>
+            <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
+          </div>
+          <CapacidadesTarjetas />
           <Boton href="#contacto">Agenda una llamada</Boton>
-        </Bloque>
+        </section>
 
         {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
         <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem', borderTop: '1px solid rgba(0,0,0,0.12)' }}>

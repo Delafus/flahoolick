@@ -68,7 +68,8 @@ const ANILLO_DE = ANILLOS.flatMap((cantidad, a) => Array.from({ length: cantidad
 const verde = (estado: number, i: number) =>
   estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? (Math.floor((i % 8) / 2) + Math.floor(i / 16)) % 2 === 1 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
 
-export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
+/** `acento` reemplaza el verde de marca cuando el fondo no le da contraste (por ejemplo, sobre amarillo). */
+export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: number; className?: string; acento?: string }) {
   return (
     <svg viewBox="0 0 300 300" className={className} role="img"
       aria-label={['Puntos dispersos, algunos destacados', 'Puntos ordenados en una grilla', 'Puntos reunidos dentro de un círculo'][estado]}>
@@ -81,7 +82,7 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
               const p = POSICIONES[estado][i]
               return (
                 <circle key={i} cx={0} cy={0} r={1.6} className="grafico-punto"
-                  style={{ transform: `translate(${p.x}px, ${p.y}px)`, fill: verde(estado, i) ? VERDE : GRIS }} />
+                  style={{ transform: `translate(${p.x}px, ${p.y}px)`, fill: verde(estado, i) ? acento : GRIS }} />
               )
             })}
           </g>
@@ -92,7 +93,7 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
 }
 
 /** `pie` va al final de la columna de textos (por ejemplo, el botón a la metodología). */
-export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: ReactNode }) {
+export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; pie?: ReactNode; acento?: string }) {
   const [activa, setActiva] = useState(0)
   const refs = useRef<(HTMLDivElement | null)[]>([])
   const pista = useRef<HTMLDivElement | null>(null)
@@ -137,7 +138,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
         <div className="sticky flex flex-col justify-center gap-6"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 40svh)' }}>
-            <GraficoEtapas estado={activa} className="w-full" />
+            <GraficoEtapas estado={activa} className="w-full" acento={acento} />
           </div>
           <div className="grid">
             {etapas.map((e, i) => (
@@ -160,7 +161,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
     <div className="hidden lg:grid lg:grid-cols-2 lg:gap-20">
       <div className="hidden lg:block">
         <div className="sticky" style={{ top: 'calc(50vh - 13rem)' }}>
-          <GraficoEtapas estado={activa} className="w-full" />
+          <GraficoEtapas estado={activa} className="w-full" acento={acento} />
         </div>
       </div>
       <div className="flex flex-col">

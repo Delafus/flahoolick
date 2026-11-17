@@ -41,6 +41,7 @@ export default function HomePage() {
             <p>En muchas empresas, cada persona explica el valor de la oferta a su manera. Partimos por ordenar ese conocimiento y convertirlo en una estrategia que toda la organización pueda activar.</p>
           </div>
           <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}
+            acento="#0B8A5A"
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 

@@ -55,6 +55,13 @@ const CITA_AGENTE: Cita = {
   retrato: '/casos/dunamis/retrato-andre-ibarra.jpg',
 }
 
+/** Cita validada por Francisco De La Fuente. PENDIENTE: retrato. */
+const CITA_RELACIONES: Cita = {
+  texto: 'La visita, la orden en PDF y la oferta de compra ya salen del sitio. Yo me concentro en atender bien a cada cliente, no en perseguir papeles.',
+  nombre: 'Francisco De La Fuente',
+  cargo: 'Relaciones con clientes, Dunamis Brokers',
+}
+
 /** Hechos verificables del caso. */
 const RESULTADOS = [
   { valor: 'Antes', titulo: 'De hablar con un agente', texto: 'el inversionista saca sus cuentas, resuelve sus dudas y agenda su visita.' },
@@ -141,6 +148,7 @@ export default function HistoriaDunamis() {
           <p>Quien quiere ver una propiedad agenda la visita en línea: recibe su orden de visita en PDF, y el sistema envía la confirmación por correo al cliente y al agente.</p>
           <p>Quien decide comprar completa un formulario y genera su Carta Oferta de Compra.</p>
         </SeccionCaso>
+        <CitaCaso logo={LOGO} {...CITA_RELACIONES} />
 
         <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación iniciada." items={RESULTADOS} />
       </CuerpoCaso>

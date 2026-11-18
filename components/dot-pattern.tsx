@@ -58,7 +58,7 @@ function pointsAlong(a: { x: number; y: number }, b: { x: number; y: number }, c
 }
 
 /** Ilustraciones estáticas del sistema de dots — una por página, cada una con su propio significado. Solo GrillaProceso (Metodología) está animada. */
-export function DotPattern({ pattern, color = '#000000', accentColor = '#1FDE91' }: DotPatternProps) {
+export function DotPattern({ pattern, color = '#000000', accentColor = '#8FE8BB' }: DotPatternProps) {
   const rnd = seeded(pattern.length * 97)
 
   const els: React.ReactNode[] = []

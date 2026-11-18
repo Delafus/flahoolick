@@ -112,7 +112,7 @@ export function ServiciosAuthorityHero() {
 
           {/* Pirámide original de Flahoolick, centrada sobre la malla. */}
           <g transform="translate(150 82) scale(0.85)">
-            <path d="M129.92 0L0 178.639L129.92 243.599V0Z" fill="#1FDE91" />
+            <path d="M129.92 0L0 178.639L129.92 243.599V0Z" fill="#8FE8BB" />
             <path d="M129.919 0V243.599L259.839 178.639L129.919 0Z" fill="#15A067" />
             <path opacity="0.1" d="M0 178.64L129.92 243.6L259.839 178.64L129.92 146.16L0 178.64Z" fill="#000000" />
           </g>

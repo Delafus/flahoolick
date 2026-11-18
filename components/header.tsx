@@ -263,7 +263,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
             '--btn-fg': textColor.toLowerCase() === '#000000'
               ? '#ffffff'
               : textColor.toLowerCase() === '#083ea7'
-              ? '#1FDE91'
+              ? '#8FE8BB'
               : '#000000',
             borderRadius: '999px',
           } as React.CSSProperties}>

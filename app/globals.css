@@ -285,7 +285,7 @@
   /* Pill "Somos FLAHOOLICK": inactivo negro/verde, hover borde negro sin fondo y texto negro. */
   .pill-somos-flahoolick {
     background-color: #000000;
-    color: #1FDE91;
+    color: #8FE8BB;
     border: 1px solid #000000;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }

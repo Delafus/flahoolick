@@ -25,8 +25,8 @@ export function Boton({ href, children, claro }: { href: string; children: React
 const ANCHO_TEXTO = '40rem'
 const ANCHO_PAGINA = '80rem'
 
-/** Verde de Flahoolick. Solo como fondo con texto negro, o como acento sobre fondo oscuro: sobre blanco no se lee. */
-export const VERDE = '#1FDE91'
+/** Verde de Flahoolick: el menta (#8FE8BB), que reemplazó al #1FDE91 el 2026-11-18. Solo como fondo con texto negro, o como acento sobre fondo oscuro: sobre blanco no se lee. */
+export const VERDE = '#8FE8BB'
 
 export const NEGRO = '#1C1C1C'
 export const GRIS = '#EFEFEF'

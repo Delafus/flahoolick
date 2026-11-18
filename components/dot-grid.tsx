@@ -72,7 +72,7 @@ const MORPH_INDICES = [3, 7, 12, 16, 21, 25, 28, 32, 37, 41, 44, 48, 53, 57, 61,
 /* Casillas fijas en verde Flahoolick para 'respiracion-fijo' — no respiran. */
 const FIJO_INDICES = [11, 18, 45, 54, 81, 88]
 
-export function DotGrid({ behavior, color = '#000000', accentColor = '#1FDE91' }: DotGridProps) {
+export function DotGrid({ behavior, color = '#000000', accentColor = '#8FE8BB' }: DotGridProps) {
   const { r, g, b } = hexToRgb(color)
   const { r: ar, g: ag, b: ab } = hexToRgb(accentColor)
   const canvasRef = useRef<HTMLCanvasElement>(null)

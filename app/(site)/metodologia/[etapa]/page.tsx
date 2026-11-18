@@ -51,7 +51,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
       </Bloque>
       {e.cita && (
         <Bloque titulo="En palabras de un cliente.">
-          <figure className="flex flex-col gap-6 py-2 pl-6" style={{ borderLeft: '4px solid #1FDE91' }}>
+          <figure className="flex flex-col gap-6 py-2 pl-6" style={{ borderLeft: '4px solid #8FE8BB' }}>
             <blockquote className="text-[1.25rem] md:text-[1.5rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.35 }}>
               {e.cita.texto}
             </blockquote>

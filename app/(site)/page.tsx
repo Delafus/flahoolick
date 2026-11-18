@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Boton, FUENTE, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Boton, FUENTE, Cierre, CABECERAS } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const TITULO_SECCION = 'text-[1.75rem] md:text-[2.5rem]'
 const ESTILO_TITULO_SECCION = { ...FUENTE, fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em' }
+/** Fondo de color a todo el ancho de la pantalla para una sección que vive dentro de la columna. */
+const ANCHO_COMPLETO = (color: string) => ({ backgroundColor: color, boxShadow: `0 0 0 100vmax ${color}`, clipPath: 'inset(0 -100vmax)' })
 
 export default function HomePage() {
   return (
@@ -33,8 +35,7 @@ export default function HomePage() {
         </Pantalla>
 
         {/* Metodología: fondo amarillo a todo el ancho de la pantalla, con el gráfico de puntos que cambia con el scroll. */}
-        <section className="flex flex-col gap-10 py-16 md:py-24"
-          style={{ backgroundColor: '#F5FD92', boxShadow: '0 0 0 100vmax #F5FD92', clipPath: 'inset(0 -100vmax)' }}>
+        <section className="flex flex-col gap-10 py-16 md:py-24" style={ANCHO_COMPLETO(CABECERAS.amarillo.fondo)}>
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Del conocimiento disperso a un sistema que trabaja.</h2>
@@ -45,20 +46,21 @@ export default function HomePage() {
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 
-        {/* Caso Dunamis: centrado. */}
-        <section className="flex flex-col items-center gap-6 py-16 text-center md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+        {/* Caso Dunamis: centrado, en negro a todo el ancho de la pantalla. */}
+        <section className="flex flex-col items-center gap-6 py-16 text-center md:py-24"
+          style={{ ...ANCHO_COMPLETO('#000000'), color: '#ffffff' }}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
-            <p className="label" style={{ opacity: 0.5 }}>Caso Dunamis</p>
+            <p className="label" style={{ opacity: 0.6 }}>Caso Dunamis</p>
             <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
               La conversación con el cliente empieza antes de la primera reunión.
             </h3>
             <p>Dunamis es una agencia de asesoría inmobiliaria. Convertimos lo que su equipo sabe del mercado en sitios, contenidos y herramientas donde sus clientes calculan, resuelven dudas y agendan la visita antes de hablar con un agente.</p>
-            <Boton href="/clientes/dunamis">Conoce la historia de Dunamis</Boton>
+            <Boton href="/clientes/dunamis" claro>Conoce la historia de Dunamis</Boton>
           </div>
         </section>
 
-        {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas. */}
-        <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+        {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas, en rosa a todo el ancho. */}
+        <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={ANCHO_COMPLETO(CABECERAS.rosa.fondo)}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
             <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Tres capacidades. Un sistema de contenido.</h2>
             <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
@@ -68,7 +70,7 @@ export default function HomePage() {
         </section>
 
         {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
-        <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem', borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+        <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem' }}>
           <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>
             Veinticinco años en el negocio de la atención.
           </h2>

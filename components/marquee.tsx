@@ -8,6 +8,7 @@ export const logos = [
   { src: '/logo-unab.svg',    alt: 'UNAB' },
   { src: '/logo-cajas.svg',   alt: 'Cajas de Chile' },
   { src: '/logo-df.svg',      alt: 'Diario Financiero' },
+  { src: '/logo-consorcio.svg', alt: 'Consorcio' },
   { src: '/logo-lider.svg',   alt: 'Líder' },
   { src: '/logo-walmart.png', alt: 'Walmart' },
   { src: '/logo-pg.svg',      alt: 'P&G' },

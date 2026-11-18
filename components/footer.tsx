@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { JERGA_VISIBLE } from './jerga-visible'
 import { VERDE } from './minimal'
 
-/** Footer en la línea de superadd.org: fondo de marca profundo; logo y claim grande con una parte
-    destacada; debajo, enlaces en fila y una línea final. */
+/** Footer en verde Flahoolick con todo en negro: logo y claim grande (Bricolage + Instrument Serif);
+    debajo, enlaces en fila y una línea final. */
 
-const FONDO = '#3B0B2C'
-const TEXTO = '#ffffff'
-const TENUE = 'rgba(255, 255, 255, 0.6)'
+const FONDO = VERDE
+const TEXTO = '#000000'
+const TENUE = 'rgba(0, 0, 0, 0.6)'
 const MONO: React.CSSProperties = {
   fontFamily: 'var(--font-mono), ui-monospace, monospace',
   fontSize: '13px',
@@ -35,16 +35,16 @@ export function Footer() {
           {/* Logo y claim */}
           <div className="flex flex-col gap-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-flahoolick-hrztl.svg" alt="Flahoolick" style={{ height: '30px', width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0) invert(1)' }} />
+            <img src="/logo-flahoolick-hrztl.svg" alt="Flahoolick" style={{ height: '30px', width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0)' }} />
             <p style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4.85rem)', lineHeight: 0.95, letterSpacing: '-0.03em', maxWidth: '12ch' }}>
               <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Convertimos lo que sabes </span>
-              <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, color: VERDE }}>en autoridad de mercado.</em>
+              <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400 }}>en autoridad de mercado.</em>
             </p>
           </div>
 
         </div>
 
-        <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.25)' }}>
+        <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}>
           <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2" style={{ fontSize: '15px' }}>
             {ENLACES.map(l => (
               <Link key={l.href} href={l.href} className="underline-offset-4 decoration-1 hover:underline"

@@ -65,11 +65,11 @@ const DISPERSOS: Pieza[] = (() => {
   return pos
 })()
 
-/** 2 Ordenamos: formación vista desde arriba. 16 escuadras de 2×2 en una grilla de 4×4, con aire entre escuadras;
+/** 2 Ordenamos: grilla pareja de 8×8 (mismo espacio entre todas las piezas), leída como 16 escuadras de 2×2;
     4 escuadras de triángulos (en un patrón regular) y 12 de cuadrados. Cada pocos segundos, cada escuadra gira 90° como unidad. */
 const ESCUADRAS_TRIANGULO = [1, 7, 8, 14]
-const PASO = 11
-const ENTRE = 52
+const PASO = 30
+const ENTRE = 2 * PASO
 const INICIO = CENTRO - (3 * ENTRE + PASO) / 2
 const GRILLA: Pieza[] = (() => {
   const pos: Pieza[] = new Array(N)

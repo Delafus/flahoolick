@@ -8,9 +8,11 @@ import { VERDE } from './minimal'
     Escritorio: todo en una pantalla, gráfico a la izquierda y las tres etapas a la derecha; el mouse elige y, si nadie interactúa, avanza solo.
     Teléfono: la sección queda fija en pantalla durante tres pantallas de scroll; arriba el gráfico a todo el ancho y abajo el texto
       de la etapa, que entra y sale con fade. Al subir, las etapas vuelven en orden inverso.
-    Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla, en bloques de 2×2 que alternan verde y negro como un tablero;
-    3 los puntos forman un círculo de anillos concéntricos; cada anillo gira en sentido contrario al anterior y a su propia velocidad,
-      y los colores se intercalan desde afuera hacia adentro: negro, verde, negro, verde. */
+    Las piezas son conocimiento, no personas (los círculos del 95:5 son el mercado): cuadrados negros, el conocimiento en bruto;
+    triángulos de color, lo que tiene valor.
+    Estados: 1 todo suelto y girado, con los triángulos entre medio; 2 una grilla ordenada como un índice, con un triángulo al inicio
+    de cada fila; 3 el escudo de Flahoolick al centro, los cuadrados en anillos que giran a su alrededor (cada uno al revés del anterior)
+    y los 8 triángulos afuera, apuntando hacia afuera como las flechas del sello. */
 
 export interface EtapaScroll {
   slug: string
@@ -21,11 +23,17 @@ export interface EtapaScroll {
 
 const N = 64
 const CENTRO = 150
-const GRIS = '#403D37'
+const NEGRO = '#000000'
 /** Alto del header fijo. */
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
 const AVANCE_SOLO = 5000
+/** Piezas: los primeros 8 índices son triángulos (lo que tiene valor), el resto cuadrados (el conocimiento en bruto). */
+const TRIANGULOS = 8
+const esTriangulo = (i: number) => i < TRIANGULOS
+/** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300). */
+const CUADRADO = 1.5
+const TRIANGULO = 2.4
 
 /** Pseudoaleatorio fijo, para que el servidor y el navegador dibujen lo mismo. */
 function azar(n: number) {
@@ -34,73 +42,99 @@ function azar(n: number) {
 }
 const r1 = (n: number) => Math.round(n * 10) / 10
 
-const DISPERSOS = Array.from({ length: N }, (_, i) => ({ x: r1(22 + azar(i + 1) * 256), y: r1(22 + azar(i + 101) * 256) }))
-const GRILLA = Array.from({ length: N }, (_, i) => ({ x: 45 + (i % 8) * 30, y: 45 + Math.floor(i / 8) * 30 }))
-const ANILLOS = [1, 6, 12, 18, 27]
-const CIRCULO = (() => {
-  const pos: { x: number; y: number }[] = []
-  ANILLOS.forEach((cantidad, a) => {
-    const radio = a * 27
-    for (let k = 0; k < cantidad; k++) {
-      const ang = (k / cantidad) * Math.PI * 2 + a * 0.4
-      pos.push({ x: r1(CENTRO + radio * Math.cos(ang)), y: r1(CENTRO + radio * Math.sin(ang)) })
+interface Pieza { x: number; y: number; giro: number }
+
+/** 1 Encontramos: todo suelto y girado al azar; los triángulos (hallazgos) entre medio. */
+const DISPERSOS: Pieza[] = Array.from({ length: N }, (_, i) => ({
+  x: r1(22 + azar(i + 1) * 256), y: r1(22 + azar(i + 101) * 256), giro: Math.round(azar(i + 501) * 360),
+}))
+
+/** 2 Ordenamos: grilla de 8×8 como un índice; los triángulos en la primera columna, apuntando a su fila. */
+const GRILLA: Pieza[] = Array.from({ length: N }, (_, i) => {
+  const fila = esTriangulo(i) ? i : Math.floor((i - TRIANGULOS) / 7)
+  const columna = esTriangulo(i) ? 0 : 1 + ((i - TRIANGULOS) % 7)
+  return { x: 45 + columna * 30, y: 45 + fila * 30, giro: 0 }
+})
+
+/** 3 Activamos: el escudo al centro, los cuadrados en anillos a su alrededor y los 8 triángulos afuera,
+    apuntando hacia afuera como las flechas del sello. */
+const ANILLOS = [
+  { radio: 136, cantidad: TRIANGULOS, triangulos: true },
+  { radio: 62, cantidad: 14, triangulos: false },
+  { radio: 86, cantidad: 18, triangulos: false },
+  { radio: 110, cantidad: 24, triangulos: false },
+]
+const CIRCULO: Pieza[] = (() => {
+  const pos: Pieza[] = []
+  ANILLOS.forEach((a, n) => {
+    for (let k = 0; k < a.cantidad; k++) {
+      const ang = (k / a.cantidad) * Math.PI * 2 + (a.triangulos ? -Math.PI / 2 : n * 0.4)
+      const grados = Math.round((ang * 180) / Math.PI)
+      pos.push({ x: r1(CENTRO + a.radio * Math.cos(ang)), y: r1(CENTRO + a.radio * Math.sin(ang)), giro: a.triangulos ? grados : grados + 90 })
     }
   })
   return pos
 })()
 
 const POSICIONES = [DISPERSOS, GRILLA, CIRCULO]
-/** Índices de los puntos de cada anillo, del centro hacia afuera. */
-const RANGOS = ANILLOS.map((cantidad, a) => {
-  const inicio = ANILLOS.slice(0, a).reduce((s, n) => s + n, 0)
-  return Array.from({ length: cantidad }, (_, k) => inicio + k)
+/** Índices de las piezas de cada anillo (el primero, los triángulos). */
+const RANGOS = ANILLOS.map((a, n) => {
+  const inicio = ANILLOS.slice(0, n).reduce((s, b) => s + b.cantidad, 0)
+  return Array.from({ length: a.cantidad }, (_, k) => inicio + k)
 })
-/** El anillo exterior gira en el sentido del reloj y cada uno hacia adentro, al revés del anterior.
-    Cada anillo con su propia velocidad (segundos por vuelta, del centro hacia afuera). Las velocidades están elegidas para que
-    la diferencia se vea en el recorrido de los puntos y no solo en los segundos: entre los dos anillos verdes, uno lento y uno rápido;
-    entre los negros, igual. */
-const DURACIONES = [60, 40, 12, 22, 120]
-const giro = (a: number) => ({
-  className: (ANILLOS.length - 1 - a) % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa',
-  duracion: `${DURACIONES[a]}s`,
-})
-const HALLAZGOS = new Set([3, 17, 26, 41, 50, 60])
-/** Anillo (0 = centro) al que pertenece cada punto. */
-const ANILLO_DE = ANILLOS.flatMap((cantidad, a) => Array.from({ length: cantidad }, () => a))
-const verde = (estado: number, i: number) =>
-  estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? (Math.floor((i % 8) / 2) + Math.floor(i / 16)) % 2 === 1 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
+/** Cada anillo gira al revés del anterior y a su propia velocidad (segundos por vuelta). Los triángulos, lentos. */
+const DURACIONES = [90, 40, 22, 60]
+const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa', duracion: `${DURACIONES[n]}s` })
 
-/** Movimiento permanente de cada punto, según el estado (el tercero ya se mueve con el giro de los anillos).
-    Dispersos: cada punto flota a su ritmo y los hallazgos laten de vez en cuando.
-    Grilla: una ola recorre los bloques de 2×2 en diagonal, encendiéndolos en secuencia. */
+/** Movimiento permanente de cada pieza, según el estado (el tercero ya se mueve con el giro de los anillos).
+    Sueltas: cada pieza flota a su ritmo y los triángulos laten de vez en cuando.
+    Grilla: una ola recorre las filas en diagonal. */
 const vida = (estado: number, i: number) => {
   if (estado === 0) {
     const flota = `punto-flota ${r1(5 + azar(i + 201) * 4)}s ease-in-out -${r1(azar(i + 301) * 9)}s infinite`
-    return HALLAZGOS.has(i) ? `${flota}, punto-late 4s ease-in-out -${r1(azar(i + 401) * 4)}s infinite` : flota
+    return esTriangulo(i) ? `${flota}, punto-late 4s ease-in-out -${r1(azar(i + 401) * 4)}s infinite` : flota
   }
   if (estado === 1) {
-    const diagonal = Math.floor((i % 8) / 2) + Math.floor(i / 16)
-    return `punto-ola 3.5s ease-in-out ${r1(diagonal * 0.25)}s infinite`
+    const p = GRILLA[i]
+    const diagonal = Math.round((p.x - 45) / 30) + Math.round((p.y - 45) / 30)
+    return `punto-ola 3.5s ease-in-out ${r1(diagonal * 0.18)}s infinite`
   }
   return undefined
 }
 
-/** `acento` reemplaza el verde de marca cuando el fondo no le da contraste (por ejemplo, sobre amarillo). */
+/** Escudo de Flahoolick (el mismo del sello), centrado y a escala del dibujo. */
+const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.25V639.767H829.183V744.25Z'
+const ESCALA_ESCUDO = 0.3
+
+/** `acento` es el color de los triángulos (por defecto el verde de marca; sobre amarillo, uno con más contraste). */
 export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: number; className?: string; acento?: string }) {
   return (
     <svg viewBox="0 0 300 300" className={className} role="img"
-      aria-label={['Puntos dispersos, algunos destacados', 'Puntos ordenados en una grilla', 'Puntos reunidos dentro de un círculo'][estado]}>
-      {RANGOS.map((indices, a) => {
-        const g = giro(a)
+      aria-label={[
+        'Piezas sueltas y desordenadas; algunas, triángulos, destacan',
+        'Las piezas ordenadas en una grilla, con los triángulos al inicio de cada fila',
+        'Las piezas en anillos alrededor del escudo de Flahoolick, con los triángulos apuntando hacia afuera',
+      ][estado]}>
+      <path d={ESCUDO} fill={NEGRO}
+        transform={`translate(${CENTRO} ${CENTRO}) scale(${ESCALA_ESCUDO}) translate(-734.9 -738)`}
+        style={{ opacity: estado === 2 ? 1 : 0, transition: 'opacity 700ms ease' }} />
+      {RANGOS.map((indices, n) => {
+        const g = giro(n)
         return (
-          <g key={a} className={estado === 2 ? g.className : undefined}
+          <g key={n} className={estado === 2 ? g.className : undefined}
             style={{ transformOrigin: `${CENTRO}px ${CENTRO}px`, animationDuration: g.duracion }}>
             {indices.map(i => {
               const p = POSICIONES[estado][i]
+              const estilo = { rotate: `${p.giro}deg`, transition: 'fill 600ms ease, rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)', animation: vida(estado, i) }
               return (
                 <g key={i} className="grafico-punto" style={{ transform: `translate(${p.x}px, ${p.y}px)` }}>
-                  <circle cx={0} cy={0} r={1.6} className="grafico-relleno"
-                    style={{ fill: verde(estado, i) ? acento : GRIS, animation: vida(estado, i) }} />
+                  {esTriangulo(i) ? (
+                    <polygon className="grafico-relleno" fill={acento} style={estilo}
+                      points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />
+                  ) : (
+                    <rect className="grafico-relleno" fill={NEGRO} style={estilo}
+                      x={-CUADRADO} y={-CUADRADO} width={CUADRADO * 2} height={CUADRADO * 2} />
+                  )}
                 </g>
               )
             })}

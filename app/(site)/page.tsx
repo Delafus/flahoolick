@@ -41,7 +41,7 @@ export default function HomePage() {
             <p style={{ maxWidth: '44rem' }}>En muchas empresas, cada persona explica el valor de la oferta a su manera. Lo que saben está repartido entre personas, documentos, reuniones y equipos técnicos.</p>
           </div>
           <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}
-            acento="#0B8A5A"
+           
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 

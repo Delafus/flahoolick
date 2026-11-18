@@ -421,6 +421,31 @@
 @keyframes punto-flota { 0%, 100% { translate: 0 0; } 25% { translate: 3px -4px; } 50% { translate: -2px 3px; } 75% { translate: -4px -2px; } }
 @keyframes punto-late { 0%, 78%, 100% { scale: 1; } 86% { scale: 2.4; } }
 @keyframes punto-ola { 0%, 30%, 100% { scale: 1; } 12% { scale: 1.9; } }
+/* Etapa 2 del gráfico: cada escuadra de 4 piezas da un cuarto de vuelta, espera y da otro (4 en cada ciclo, así el ciclo cierra sin salto). */
+@keyframes escuadra-gira {
+  0%, 18% { rotate: 0deg; } 25%, 43% { rotate: 90deg; } 50%, 68% { rotate: 180deg; } 75%, 93% { rotate: 270deg; } 100% { rotate: 360deg; }
+}
+/* Cambio de etapa en el teléfono: giro sobre el eje horizontal, como la cara de un cubo. El título gira como bloque (fila 0);
+   el párrafo, palabra por palabra pero sincronizado por fila (--fila), así cada fila gira tras la anterior. */
+.volteo .voltea { display: block; backface-visibility: hidden; transform-origin: 50% 50%; }
+.volteo .palabra { display: inline-block; }
+.volteo[data-estado="oculto"] { visibility: hidden; }
+.volteo[data-estado="entra"] .voltea {
+  animation: voltea-entra 560ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--fila, 0) * 70ms + 160ms);
+}
+.volteo[data-estado="sale"] .voltea {
+  animation: voltea-sale 360ms cubic-bezier(0.5, 0, 0.75, 0) both;
+  animation-delay: calc(var(--fila, 0) * 45ms);
+}
+@keyframes voltea-entra {
+  from { transform: perspective(500px) rotateX(-90deg); opacity: 0; }
+  to { transform: perspective(500px) rotateX(0deg); opacity: 1; }
+}
+@keyframes voltea-sale {
+  from { transform: perspective(500px) rotateX(0deg); opacity: 1; }
+  to { transform: perspective(500px) rotateX(90deg); opacity: 0; }
+}
 .grafico-gira { animation: grafico-gira 40s linear infinite; }
 @keyframes grafico-gira { to { transform: rotate(360deg); } }
 .grafico-gira-inversa { animation: grafico-gira 40s linear infinite reverse; }
@@ -428,4 +453,6 @@
   .grafico-punto { transition: none; }
   .grafico-relleno { animation: none !important; }
   .grafico-gira, .grafico-gira-inversa { animation: none; }
+  .volteo .voltea, .grafico-punto > g { animation: none !important; }
+  .volteo[data-estado="sale"] { visibility: hidden; }
 }

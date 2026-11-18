@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { VERDE } from './minimal'
 
 /** Las tres etapas en la home con un gráfico de puntos que cambia con el scroll (versión simple, mientras llega el definitivo).
     Escritorio: todo en una pantalla, gráfico a la izquierda y las tres etapas a la derecha; el mouse elige y, si nadie interactúa, avanza solo.
@@ -28,12 +27,12 @@ const NEGRO = '#000000'
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
 const AVANCE_SOLO = 5000
-/** Piezas: los primeros 8 índices son triángulos (lo que tiene valor), el resto cuadrados (el conocimiento en bruto). */
-const TRIANGULOS = 8
+/** Piezas: los primeros 16 índices son triángulos (conocimiento con valor), los otros 48 cuadrados (información en bruto). */
+const TRIANGULOS = 16
 const esTriangulo = (i: number) => i < TRIANGULOS
-/** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300). */
-const CUADRADO = 1.5
-const TRIANGULO = 2.4
+/** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300): chicos, en la escala de las pupilas del 95:5. */
+const CUADRADO = 1.3
+const TRIANGULO = 2
 
 /** Pseudoaleatorio fijo, para que el servidor y el navegador dibujen lo mismo. */
 function azar(n: number) {
@@ -42,99 +41,122 @@ function azar(n: number) {
 }
 const r1 = (n: number) => Math.round(n * 10) / 10
 
-interface Pieza { x: number; y: number; giro: number }
+/** Posición, orientación y, en la etapa 2, el centro de la escuadra (para girarla como unidad). */
+interface Pieza { x: number; y: number; giro: number; escuadra?: { x: number; y: number; n: number } }
 
-/** 1 Encontramos: todo suelto y girado al azar; los triángulos (hallazgos) entre medio. */
-const DISPERSOS: Pieza[] = Array.from({ length: N }, (_, i) => ({
-  x: r1(22 + azar(i + 1) * 256), y: r1(22 + azar(i + 101) * 256), giro: Math.round(azar(i + 501) * 360),
-}))
-
-/** 2 Ordenamos: grilla de 8×8 como un índice; los triángulos en la primera columna, apuntando a su fila. */
-const GRILLA: Pieza[] = Array.from({ length: N }, (_, i) => {
-  const fila = esTriangulo(i) ? i : Math.floor((i - TRIANGULOS) / 7)
-  const columna = esTriangulo(i) ? 0 : 1 + ((i - TRIANGULOS) % 7)
-  return { x: 45 + columna * 30, y: 45 + fila * 30, giro: 0 }
-})
-
-/** 3 Activamos: el escudo al centro, los cuadrados en anillos a su alrededor y los 8 triángulos afuera,
-    apuntando hacia afuera como las flechas del sello. */
-const ANILLOS = [
-  { radio: 136, cantidad: TRIANGULOS, triangulos: true },
-  { radio: 62, cantidad: 14, triangulos: false },
-  { radio: 86, cantidad: 18, triangulos: false },
-  { radio: 110, cantidad: 24, triangulos: false },
-]
-const CIRCULO: Pieza[] = (() => {
-  const pos: Pieza[] = []
-  ANILLOS.forEach((a, n) => {
-    for (let k = 0; k < a.cantidad; k++) {
-      const ang = (k / a.cantidad) * Math.PI * 2 + (a.triangulos ? -Math.PI / 2 : n * 0.4)
-      const grados = Math.round((ang * 180) / Math.PI)
-      pos.push({ x: r1(CENTRO + a.radio * Math.cos(ang)), y: r1(CENTRO + a.radio * Math.sin(ang)), giro: a.triangulos ? grados : grados + 90 })
-    }
+/** 1 Encontramos: cuatro bloques sueltos (personas, documentos, reuniones, equipos técnicos). Cada uno es una malla de 4×4
+    algo desordenada, con 4 triángulos escondidos entre 12 cuadrados. */
+const BLOQUES = [{ x: 88, y: 84 }, { x: 214, y: 96 }, { x: 82, y: 210 }, { x: 206, y: 216 }]
+const DISPERSOS: Pieza[] = (() => {
+  const pos: Pieza[] = new Array(N)
+  BLOQUES.forEach((b, c) => {
+    const piezas = [...Array.from({ length: 4 }, (_, k) => 4 * c + k), ...Array.from({ length: 12 }, (_, k) => TRIANGULOS + 12 * c + k)]
+    // Reparte las 16 piezas del bloque en sus 16 casillas en un orden fijo pero mezclado.
+    const casillas = Array.from({ length: 16 }, (_, k) => k).sort((a, b) => azar(a + 31 * c + 7) - azar(b + 31 * c + 7))
+    piezas.forEach((i, k) => {
+      const casilla = casillas[k]
+      pos[i] = {
+        x: r1(b.x - 21 + (casilla % 4) * 14 + (azar(i + 1) - 0.5) * 7),
+        y: r1(b.y - 21 + Math.floor(casilla / 4) * 14 + (azar(i + 101) - 0.5) * 7),
+        giro: Math.round((azar(i + 501) - 0.5) * 70),
+      }
+    })
   })
   return pos
 })()
 
+/** 2 Ordenamos: formación vista desde arriba. 16 escuadras de 2×2 en una grilla de 4×4, con aire entre escuadras;
+    4 escuadras de triángulos (en un patrón regular) y 12 de cuadrados. Cada pocos segundos, cada escuadra gira 90° como unidad. */
+const ESCUADRAS_TRIANGULO = [1, 7, 8, 14]
+const PASO = 11
+const ENTRE = 52
+const INICIO = CENTRO - (3 * ENTRE + PASO) / 2
+const GRILLA: Pieza[] = (() => {
+  const pos: Pieza[] = new Array(N)
+  let t = 0
+  let q = TRIANGULOS
+  for (let n = 0; n < 16; n++) {
+    const fila = Math.floor(n / 4)
+    const columna = n % 4
+    const triangulos = ESCUADRAS_TRIANGULO.includes(n)
+    const x0 = INICIO + columna * ENTRE
+    const y0 = INICIO + fila * ENTRE
+    const centro = { x: x0 + PASO / 2, y: y0 + PASO / 2, n }
+    for (let k = 0; k < 4; k++) {
+      const i = triangulos ? t++ : q++
+      pos[i] = { x: x0 + (k % 2) * PASO, y: y0 + Math.floor(k / 2) * PASO, giro: 0, escuadra: centro }
+    }
+  }
+  return pos
+})()
+
+/** 3 Activamos: el escudo al centro y cuatro aros alrededor. Los dos de adentro, solo cuadrados; los dos de afuera
+    intercalan triángulos y cuadrados, con los triángulos apuntando hacia afuera como las flechas del sello. */
+const AROS: { radio: number; piezas: number[]; desfase: number }[] = (() => {
+  const sq = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
+  const intercalar = (tri: number[], cua: number[]) => tri.flatMap((t, k) => [t, cua[k]])
+  return [
+    { radio: 48, piezas: sq(0, 12), desfase: 0 },
+    { radio: 72, piezas: sq(12, 20), desfase: 0.3 },
+    { radio: 98, piezas: intercalar(Array.from({ length: 8 }, (_, k) => k), sq(32, 8)), desfase: Math.PI / 16 },
+    { radio: 124, piezas: intercalar(Array.from({ length: 8 }, (_, k) => 8 + k), sq(40, 8)), desfase: -Math.PI / 2 },
+  ]
+})()
+const CIRCULO: Pieza[] = (() => {
+  const pos: Pieza[] = new Array(N)
+  AROS.forEach(a => a.piezas.forEach((i, k) => {
+    const ang = (k / a.piezas.length) * Math.PI * 2 + a.desfase
+    const grados = Math.round((ang * 180) / Math.PI)
+    pos[i] = { x: r1(CENTRO + a.radio * Math.cos(ang)), y: r1(CENTRO + a.radio * Math.sin(ang)), giro: esTriangulo(i) ? grados : grados + 90 }
+  }))
+  return pos
+})()
+
 const POSICIONES = [DISPERSOS, GRILLA, CIRCULO]
-/** Índices de las piezas de cada anillo (el primero, los triángulos). */
-const RANGOS = ANILLOS.map((a, n) => {
-  const inicio = ANILLOS.slice(0, n).reduce((s, b) => s + b.cantidad, 0)
-  return Array.from({ length: a.cantidad }, (_, k) => inicio + k)
-})
-/** Cada anillo gira al revés del anterior y a su propia velocidad (segundos por vuelta). Los triángulos, lentos. */
-const DURACIONES = [90, 40, 22, 60]
+/** Cada aro gira al revés del anterior y a su propia velocidad (segundos por vuelta). */
+const DURACIONES = [40, 60, 90, 120]
 const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa', duracion: `${DURACIONES[n]}s` })
 
-/** Movimiento permanente de cada pieza, según el estado (el tercero ya se mueve con el giro de los anillos).
-    Sueltas: cada pieza flota a su ritmo y los triángulos laten de vez en cuando.
-    Grilla: una ola recorre las filas en diagonal. */
-const vida = (estado: number, i: number) => {
-  if (estado === 0) {
-    const flota = `punto-flota ${r1(5 + azar(i + 201) * 4)}s ease-in-out -${r1(azar(i + 301) * 9)}s infinite`
-    return esTriangulo(i) ? `${flota}, punto-late 4s ease-in-out -${r1(azar(i + 401) * 4)}s infinite` : flota
-  }
-  if (estado === 1) {
-    const p = GRILLA[i]
-    const diagonal = Math.round((p.x - 45) / 30) + Math.round((p.y - 45) / 30)
-    return `punto-ola 3.5s ease-in-out ${r1(diagonal * 0.18)}s infinite`
-  }
-  return undefined
-}
+/** Etapa 1: cada pieza flota a su ritmo, suave y sin latidos. */
+const flota = (i: number) => `punto-flota ${r1(6 + azar(i + 201) * 5)}s ease-in-out -${r1(azar(i + 301) * 11)}s infinite`
+/** Etapa 2: cada escuadra da cuartos de vuelta como unidad, en cadena por su número. */
+const marcha = (n: number) => `escuadra-gira 14s cubic-bezier(0.65, 0, 0.35, 1) ${r1(n * 0.18)}s infinite`
 
 /** Escudo de Flahoolick (el mismo del sello), centrado y a escala del dibujo. */
 const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.25V639.767H829.183V744.25Z'
-const ESCALA_ESCUDO = 0.3
+const ESCALA_ESCUDO = 0.24
 
-/** `acento` es el color de los triángulos (por defecto el verde de marca; sobre amarillo, uno con más contraste). */
-export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: number; className?: string; acento?: string }) {
+export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
   return (
     <svg viewBox="0 0 300 300" className={className} role="img"
       aria-label={[
-        'Piezas sueltas y desordenadas; algunas, triángulos, destacan',
-        'Las piezas ordenadas en una grilla, con los triángulos al inicio de cada fila',
-        'Las piezas en anillos alrededor del escudo de Flahoolick, con los triángulos apuntando hacia afuera',
+        'Piezas repartidas en cuatro bloques sueltos; entre los cuadrados, algunos triángulos',
+        'Las piezas ordenadas en escuadras de cuatro, como una formación vista desde arriba',
+        'Las piezas en aros alrededor del escudo de Flahoolick, con los triángulos apuntando hacia afuera',
       ][estado]}>
       <path d={ESCUDO} fill={NEGRO}
         transform={`translate(${CENTRO} ${CENTRO}) scale(${ESCALA_ESCUDO}) translate(-734.9 -738)`}
         style={{ opacity: estado === 2 ? 1 : 0, transition: 'opacity 700ms ease' }} />
-      {RANGOS.map((indices, n) => {
+      {AROS.map((a, n) => {
         const g = giro(n)
         return (
           <g key={n} className={estado === 2 ? g.className : undefined}
             style={{ transformOrigin: `${CENTRO}px ${CENTRO}px`, animationDuration: g.duracion }}>
-            {indices.map(i => {
+            {a.piezas.map(i => {
               const p = POSICIONES[estado][i]
-              const estilo = { rotate: `${p.giro}deg`, transition: 'fill 600ms ease, rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)', animation: vida(estado, i) }
+              const e = p.escuadra
+              const forma = { rotate: `${p.giro}deg`, transition: 'rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)', animation: estado === 0 ? flota(i) : undefined }
               return (
                 <g key={i} className="grafico-punto" style={{ transform: `translate(${p.x}px, ${p.y}px)` }}>
-                  {esTriangulo(i) ? (
-                    <polygon className="grafico-relleno" fill={acento} style={estilo}
-                      points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />
-                  ) : (
-                    <rect className="grafico-relleno" fill={NEGRO} style={estilo}
-                      x={-CUADRADO} y={-CUADRADO} width={CUADRADO * 2} height={CUADRADO * 2} />
-                  )}
+                  <g style={e ? { transformOrigin: `${r1(e.x - p.x)}px ${r1(e.y - p.y)}px`, animation: marcha(e.n) } : undefined}>
+                    {esTriangulo(i) ? (
+                      <polygon className="grafico-relleno" fill={NEGRO} style={forma}
+                        points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />
+                    ) : (
+                      <rect className="grafico-relleno" fill={NEGRO} style={forma}
+                        x={-CUADRADO} y={-CUADRADO} width={CUADRADO * 2} height={CUADRADO * 2} />
+                    )}
+                  </g>
                 </g>
               )
             })}
@@ -150,8 +172,11 @@ const TITULO = { fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeigh
 const numero = (i: number) => String(i + 1).padStart(2, '0')
 
 /** `pie` va al final de la columna de textos (por ejemplo, el botón a la metodología). */
-export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; pie?: ReactNode; acento?: string }) {
-  const [activa, setActiva] = useState(0)
+export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: ReactNode }) {
+  /** Teléfono: etapa activa y la que acaba de salir (para la animación de cambio). -1 = ninguna todavía. */
+  const [cambio, setCambio] = useState({ activa: 0, anterior: -1 })
+  const activa = cambio.activa
+  const textos = useRef<HTMLDivElement | null>(null)
   /** Avance (0 a 1) dentro de la pista del teléfono, para la línea bajo el header. */
   const [avance, setAvance] = useState(0)
   /** Escritorio: etapa activa (por el mouse, el teclado o el avance solo) y si el usuario la está eligiendo. */
@@ -172,7 +197,8 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
       const recorrido = r.height - (window.innerHeight - HEADER)
       const a = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
       setAvance(a)
-      setActiva(Math.min(etapas.length - 1, Math.floor(a * etapas.length)))
+      const nueva = Math.min(etapas.length - 1, Math.floor(a * etapas.length))
+      setCambio(c => (c.activa === nueva ? c : { activa: nueva, anterior: c.activa }))
     }
     const alMover = () => { if (!cuadro) cuadro = requestAnimationFrame(medir) }
     medir()
@@ -180,6 +206,24 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
     window.addEventListener('resize', alMover)
     return () => { window.removeEventListener('scroll', alMover); window.removeEventListener('resize', alMover); cancelAnimationFrame(cuadro) }
   }, [etapas.length])
+
+  // Teléfono: numera las filas de cada párrafo (por la altura de cada palabra) para que giren en cascada.
+  useLayoutEffect(() => {
+    const el = textos.current
+    if (!el) return
+    const numerar = () => el.querySelectorAll('p').forEach(p => {
+      let fila = 0
+      let alto: number | null = null
+      p.querySelectorAll<HTMLElement>('.palabra').forEach(w => {
+        if (alto !== null && w.offsetTop > alto + 2) fila++
+        alto = w.offsetTop
+        w.style.setProperty('--fila', String(fila + 1))
+      })
+    })
+    numerar()
+    window.addEventListener('resize', numerar)
+    return () => window.removeEventListener('resize', numerar)
+  }, [])
 
   // Escritorio: el bloque avanza solo mientras está en pantalla y nadie lo está eligiendo.
   useEffect(() => {
@@ -202,21 +246,24 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
       <div ref={pista} style={{ height: `${etapas.length * 100}svh` }}>
         <div className="sticky flex flex-col justify-center gap-5"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
-          {/* Línea de avance pegada bajo el header, a todo el ancho de la pantalla. */}
-          <div aria-hidden className="absolute top-0" style={{ left: 'calc(50% - 50vw)', width: '100vw', height: 3 }}>
-            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: VERDE }} />
+          {/* Barra de avance negra, separada del header por una franja de amarillo, a todo el ancho de la pantalla. */}
+          <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw', height: 4 }}>
+            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: '#000000' }} />
           </div>
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 34svh)' }}>
-            <GraficoEtapas estado={activa} className="w-full" acento={acento} />
+            <GraficoEtapas estado={activa} className="w-full" />
           </div>
-          <div className="grid">
+          {/* Textos apilados. Al cambiar de etapa, el que sale gira hacia arriba sobre su eje horizontal y el que entra llega
+              girando desde abajo: el título como un bloque y el párrafo fila por fila, en cascada (como las filas de un cubo Rubik). */}
+          <div ref={textos} className="grid">
             {etapas.map((e, i) => (
-              <div key={e.slug} aria-hidden={i !== activa} className="flex flex-col gap-3"
-                style={{ gridArea: '1 / 1', opacity: i === activa ? 1 : 0, transition: 'opacity 500ms ease', pointerEvents: i === activa ? 'auto' : 'none' }}>
-                <h3 className="text-[1.75rem]" style={TITULO}>
+              <div key={e.slug} aria-hidden={i !== activa} className="volteo flex flex-col gap-3"
+                data-estado={i === activa ? (cambio.anterior === -1 ? 'quieto' : 'entra') : i === cambio.anterior ? 'sale' : 'oculto'}
+                style={{ gridArea: '1 / 1', pointerEvents: i === activa ? 'auto' : 'none' }}>
+                <h3 className="voltea text-[1.75rem]" style={TITULO}>
                   <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{numero(i)} {e.nombre}</Link>
                 </h3>
-                <p>{e.texto}</p>
+                <p>{e.texto.split(' ').map((palabra, k) => <span key={k}><span className="voltea palabra">{palabra}</span> </span>)}</p>
               </div>
             ))}
           </div>
@@ -228,7 +275,7 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
     {/* Escritorio: las tres etapas en una pantalla; al pasar el mouse (o con tab) por una etapa, el gráfico cambia.
         Sin interacción, avanza solo. La etapa activa lleva el listón negro a la izquierda. */}
     <div ref={bloque} className="hidden items-center gap-16 lg:grid lg:grid-cols-[5fr_7fr]">
-      <GraficoEtapas estado={elegida} className="w-full" acento={acento} />
+      <GraficoEtapas estado={elegida} className="w-full" />
       <div className="flex flex-col"
         onMouseEnter={() => setEligiendo(true)} onMouseLeave={() => setEligiendo(false)}
         onFocus={() => setEligiendo(true)} onBlur={() => setEligiendo(false)}>

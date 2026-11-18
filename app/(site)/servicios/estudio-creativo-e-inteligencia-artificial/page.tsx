@@ -28,6 +28,7 @@ export default function EstudioCreativoEInteligenciaArtificial() {
         color="rosa"
         eyebrow="03. Estudio creativo e inteligencia artificial"
         titulo="Lo que saben tus especialistas, como contenido de valor."
+        cursiva="como contenido de valor."
         bajada="Convertimos la estrategia en contenidos, experiencias y herramientas que apoyan marketing y ventas."
       />
       <Bloque titulo="El conocimiento inmóvil pierde valor.">

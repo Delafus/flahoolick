@@ -47,6 +47,7 @@ export default function Metodologia() {
         color="amarillo"
         eyebrow="Metodología"
         titulo="Del conocimiento disperso a un sistema que trabaja."
+        cursiva="a un sistema que trabaja."
         bajada="Entendemos cómo tu empresa crea valor, definimos la posición que puede defender y convertimos esa dirección en contenido y herramientas para el mercado."
       />
       <Bloque titulo="Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa.">

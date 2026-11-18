@@ -11,6 +11,8 @@ export interface Etapa {
   intro: string
   /** Titular y bajada del hero de la página de la etapa. */
   titular: string
+  /** Remate del titular que va en cursiva (el final exacto de `titular`). */
+  cursiva: string
   bajada: string
   /** Qué hacemos en esta etapa. */
   texto: string
@@ -29,6 +31,7 @@ export const ETAPAS: Etapa[] = [
     resumen: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes.',
     intro: 'Entramos a tu negocio, hablamos con quienes lo conocen y revisamos lo que ya tienes. Identificamos qué problemas resuelves, qué te diferencia y qué clientes valoran más tu propuesta.',
     titular: 'Lo que te hace distinto ya existe. Solo hay que encontrarlo.',
+    cursiva: 'Solo hay que encontrarlo.',
     bajada: 'Hablamos con quienes conocen tu negocio y revisamos lo que ya tienes, hasta dar con los argumentos y evidencias que hacen que un cliente te elija.',
     texto: 'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, cuál es el conocimiento que distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
     como: [
@@ -45,6 +48,7 @@ export const ETAPAS: Etapa[] = [
     resumen: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver.',
     intro: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Definimos a quién hablarle, con qué mensajes y sobre qué temas puede liderar tu empresa.',
     titular: 'Una propuesta de valor que toda la empresa cuenta igual.',
+    cursiva: 'que toda la empresa cuenta igual.',
     bajada: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver, elegimos a quién hablarle primero y ponemos a prueba el mensaje antes de publicarlo.',
     texto: 'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
     como: [
@@ -68,6 +72,7 @@ export const ETAPAS: Etapa[] = [
     resumen: 'Transformamos la estrategia en contenidos y herramientas que tus clientes pueden encontrar, entender y recordar.',
     intro: 'Transformamos la estrategia en contenidos y herramientas que tus clientes pueden encontrar, entender y recordar. Organizamos su producción, distribución y evolución junto a marketing y ventas.',
     titular: 'Lo que sabes, trabajando cada semana frente a tu mercado.',
+    cursiva: 'trabajando cada semana frente a tu mercado.',
     bajada: 'Lo convertimos en contenido y herramientas que tus clientes encuentran, entienden y recuerdan, y medimos con marketing y ventas qué está funcionando.',
     texto: 'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: definimos temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
     como: [

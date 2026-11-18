@@ -21,6 +21,7 @@ export default function SistemaOperativoDeContenido() {
         color="rosa"
         eyebrow="02. Sistema operativo de contenido"
         titulo="Un plan que dice qué publicar, para quién y cuándo."
+        cursiva="qué publicar, para quién y cuándo."
         bajada="Diseñamos la estructura que permite producir y distribuir contenido relevante de manera continua."
       />
       <Bloque titulo="La frecuencia necesita dirección.">

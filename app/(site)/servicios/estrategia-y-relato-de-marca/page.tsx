@@ -27,6 +27,7 @@ export default function EstrategiaYRelatoDeMarca() {
         color="rosa"
         eyebrow="01. Estrategia y relato de marca"
         titulo="Una historia que tu mercado puede entender y repetir."
+        cursiva="puede entender y repetir."
         bajada="Definimos qué hace valiosa a tu empresa, cómo debe posicionarse y qué necesita escuchar cada audiencia."
       />
       <Bloque titulo="Ocupar un lugar exige elegirlo.">

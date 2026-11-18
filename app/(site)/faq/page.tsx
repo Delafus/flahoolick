@@ -33,6 +33,7 @@ export default function FAQ() {
         color="menta"
         eyebrow="Preguntas frecuentes"
         titulo="Lo que probablemente quieras saber antes de conversar."
+        cursiva="antes de conversar."
         bajada="También puedes escribirnos directamente. Una conversación basta para empezar."
       />
       <section className="bloque-derecha flex flex-col py-16 md:py-24">

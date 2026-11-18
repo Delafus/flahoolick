@@ -24,13 +24,13 @@ export default function HomePage() {
           bajada="Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
         />
 
-        <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy.">
+        <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese momento, tu marca necesita estar entre las que el comprador conoce, recuerda y considera.</p>
           <p>Construimos disponibilidad mental durante todo ese tiempo.</p>
           <p className="text-base" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
         </Pantalla>
 
-        <Pantalla centrado titulo="Tu empresa sabe mucho más de lo que tu mercado conoce.">
+        <Pantalla centrado titulo="Tu empresa sabe mucho más de lo que tu mercado conoce." cursiva="de lo que tu mercado conoce.">
           <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Entramos a tu negocio, encontramos lo que tiene valor para tus clientes y lo transformamos en una fuente continua de comunicación, contenido y herramientas comerciales.</p>
         </Pantalla>
 
@@ -62,7 +62,7 @@ export default function HomePage() {
         {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas, en rosa a todo el ancho. */}
         <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={ANCHO_COMPLETO(CABECERAS.rosa.fondo)}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
-            <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>Tres capacidades. Un sistema de contenido.</h2>
+            <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>Tres capacidades. <Italica>Un sistema de contenido.</Italica></h2>
             <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
           </div>
           <CapacidadesTarjetas />

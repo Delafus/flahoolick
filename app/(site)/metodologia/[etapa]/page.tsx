@@ -36,6 +36,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
           {e.nombre}
         </>}
         titulo={e.titular}
+        cursiva={e.cursiva}
         bajada={e.bajada}
       />
       <Bloque titulo="Qué hacemos.">

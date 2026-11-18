@@ -14,6 +14,7 @@ export default function Servicios() {
         color="rosa"
         eyebrow="Servicios"
         titulo="Tres capacidades. Un sistema de contenido."
+        cursiva="Un sistema de contenido."
         bajada="Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado."
       />
       <Bloque titulo="La comunicación funciona mejor cuando parte de la misma lógica que el negocio.">

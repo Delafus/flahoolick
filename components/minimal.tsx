@@ -9,6 +9,11 @@ export const DESTACADA = { fontFamily: 'var(--font-bricolage)', fontWeight: 800 
 export function Italica({ children }: { children: React.ReactNode }) {
   return <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, letterSpacing: '-0.02em' }}>{children}</em>
 }
+/** Pone en cursiva el remate de un titular: `cursiva` es el final exacto del texto. */
+function conCursiva(titulo: React.ReactNode, cursiva?: string) {
+  if (!cursiva || typeof titulo !== 'string' || !titulo.endsWith(cursiva)) return titulo
+  return <>{titulo.slice(0, -cursiva.length)}<Italica>{cursiva}</Italica></>
+}
 export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity'
 
 /** Botón de contorno para llevar a otra página (en lugar de texto subrayado con flecha). Al pasar el cursor se rellena de negro. */
@@ -80,10 +85,12 @@ export type Cabecera = keyof typeof CABECERAS
 
 const ANCHO_HERO = 'min(80rem, calc(100vw - 2 * var(--page-px)))'
 
-export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual }: {
+export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual }: {
   /** Línea pequeña sobre el titular. Puede ser una miga de pan con enlaces. */
   eyebrow?: React.ReactNode
   titulo: React.ReactNode
+  /** Remate del titular en Instrument Serif cursiva (el final exacto de `titulo`). */
+  cursiva?: string
   bajada?: React.ReactNode
   cta?: string | null
   nota?: string
@@ -109,7 +116,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
         <div className="flex flex-col items-center gap-8" style={{ maxWidth: '64rem' }}>
           {eyebrow && <p className="label">{eyebrow}</p>}
           <h1 style={{ ...DESTACADA, fontSize: 'clamp(2.75rem, 6.2vw, 6.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
-            {titulo}
+            {conCursiva(titulo, cursiva)}
           </h1>
           {bajada && <p className="text-xl md:text-2xl" style={{ lineHeight: 1.35, maxWidth: '40rem' }}>{bajada}</p>}
           {cta && (
@@ -131,7 +138,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
     <section className="flex flex-col justify-center gap-8" style={{ minHeight: completo ? '100dvh' : '75dvh', paddingTop: '64px' }}>
       {eyebrow && <p className="text-base" style={{ opacity: 0.5 }}>{eyebrow}</p>}
       <h1 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
-        {titulo}
+        {conCursiva(titulo, cursiva)}
       </h1>
       {bajada && <p>{bajada}</p>}
       {cta && (
@@ -145,12 +152,12 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
 }
 
 /** Sección a pantalla completa con titular de portada (h2): para las portadas secundarias de la home. */
-export function Pantalla({ titulo, tono, centrado = false, children }: { titulo: React.ReactNode; tono?: Tono; centrado?: boolean; children?: React.ReactNode }) {
+export function Pantalla({ titulo, cursiva, tono, centrado = false, children }: { titulo: React.ReactNode; cursiva?: string; tono?: Tono; centrado?: boolean; children?: React.ReactNode }) {
   const centrar = centrado ? 'mx-auto' : ''
   return (
     <section className={`flex flex-col justify-center gap-8 py-16 ${centrado ? 'items-center text-center' : ''}`} style={{ minHeight: '100dvh', ...banda(tono) }}>
       <h2 className={`text-[2.5rem] md:text-[3.75rem] ${centrar}`} style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
-        {titulo}
+        {conCursiva(titulo, cursiva)}
       </h2>
       <div className={`flex flex-col gap-8 ${centrar}`} style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>
     </section>

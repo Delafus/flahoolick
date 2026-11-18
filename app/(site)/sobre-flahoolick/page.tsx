@@ -21,6 +21,7 @@ export default function SobreFlahoolick() {
         color="verde"
         visual={<IdeaGenerosaLogo className="h-full w-full" />}
         titulo="Nacimos de una idea generosa."
+        cursiva="una idea generosa."
         bajada={<>Del irlandés <em>flaithiúil</em>: generoso, espléndido, abundante. Flahoolick es un estudio de estrategia y contenido para empresas B2B con ciclos de decisión complejos.</>}
       />
       <Bloque titulo="Las empresas saben mucho más de lo que consiguen poner en circulación.">

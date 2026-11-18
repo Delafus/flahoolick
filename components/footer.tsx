@@ -46,7 +46,7 @@ export function Footer() {
           <ShieldWheel color={TEXTO} className="hidden w-[16rem] md:block lg:w-[24rem]" />
         </div>
 
-        <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}>
+        <div className="flex flex-col gap-6">
           <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2" style={{ fontSize: '15px' }}>
             {ENLACES.map(l => (
               <Link key={l.href} href={l.href} className="underline-offset-4 decoration-1 hover:underline"

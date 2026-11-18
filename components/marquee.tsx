@@ -12,6 +12,7 @@ export const logos: { src: string; alt: string; escala?: number }[] = [
   { src: '/logo-cajas.svg',   alt: 'Cajas de Chile' },
   { src: '/logo-df.svg',      alt: 'Diario Financiero' },
   { src: '/logo-consorcio.svg', alt: 'Consorcio' },
+  { src: '/logo-crediautos.png', alt: 'Crediautos' },
   { src: '/logo-lider.svg',   alt: 'Líder' },
   { src: '/logo-walmart.png', alt: 'Walmart' },
   { src: '/logo-oxxo.png',    alt: 'OXXO', escala: 0.8 },

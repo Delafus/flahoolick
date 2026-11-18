@@ -32,17 +32,13 @@ export default function HomePage() {
           </div>
         </Pantalla>
 
-        <Pantalla centrado titulo="Tu empresa sabe mucho más de lo que tu mercado conoce." cursiva="de lo que tu mercado conoce.">
-          <p>Ese conocimiento está repartido entre personas, documentos, reuniones, presentaciones y equipos técnicos. Entramos a tu negocio, encontramos lo que tiene valor para tus clientes y lo transformamos en una fuente continua de comunicación, contenido y herramientas comerciales.</p>
-        </Pantalla>
-
         {/* Metodología: fondo amarillo a todo el ancho de la pantalla, con el gráfico de puntos que cambia con el scroll. */}
         <section className="flex flex-col gap-10 py-16 md:py-24" style={ANCHO_COMPLETO(CABECERAS.amarillo.fondo)}>
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '60rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             {/* Más ancho que el texto, para que en escritorio quede en dos líneas. */}
             <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', textWrap: 'balance' }}>Del conocimiento disperso <Italica>a un sistema que trabaja.</Italica></h2>
-            <p style={{ maxWidth: '44rem' }}>En muchas empresas, cada persona explica el valor de la oferta a su manera.</p>
+            <p style={{ maxWidth: '44rem' }}>En muchas empresas, cada persona explica el valor de la oferta a su manera. Lo que saben está repartido entre personas, documentos, reuniones y equipos técnicos.</p>
           </div>
           <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}
             acento="#0B8A5A"

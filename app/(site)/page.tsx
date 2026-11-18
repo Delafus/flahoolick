@@ -55,9 +55,9 @@ export default function HomePage() {
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.6 }}>Caso Dunamis</p>
             <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
-              La conversación con el cliente empieza antes de la primera reunión.
+              El cliente llega a la reunión con la tarea adelantada.
             </h3>
-            <p>Dunamis es una agencia de asesoría inmobiliaria. Convertimos lo que su equipo sabe del mercado en sitios, contenidos y herramientas donde sus clientes calculan, resuelven dudas y agendan la visita antes de hablar con un agente.</p>
+            <p>Dunamis puso su conocimiento inmobiliario al alcance de sus clientes. Hoy pueden evaluar opciones, calcular valores y resolver dudas antes de conversar con un especialista.</p>
             <Boton href="/clientes/dunamis" claro>Conoce la historia de Dunamis</Boton>
           </div>
         </section>

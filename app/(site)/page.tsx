@@ -4,6 +4,7 @@ import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Italica, Cierre, CABE
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
+import { Grafico955 } from '@/components/grafico-95-5'
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -26,6 +27,7 @@ export default function HomePage() {
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% restante comprará en seis meses, un año o más. Cuando llegue ese momento, tu marca necesita estar entre las que el comprador conoce, recuerda y considera.</p>
+          <Grafico955 className="mx-auto my-2 w-[14rem] md:w-[17rem]" />
           <p>Construimos disponibilidad mental durante todo ese tiempo.</p>
           <p className="text-base" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
         </Pantalla>

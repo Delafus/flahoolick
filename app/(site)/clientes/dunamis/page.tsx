@@ -52,7 +52,7 @@ const CITA_FUNDADORA: Cita = {
 const CITA_AGENTE: Cita = {
   texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
   nombre: 'Andre Ibarra',
-  cargo: 'Agente, Dunamis Brokers · Valparaíso',
+  cargo: 'Agente, Dunamis Broker · Valparaíso',
   retrato: '/casos/dunamis/retrato-andre-ibarra.jpg',
 }
 
@@ -60,7 +60,7 @@ const CITA_AGENTE: Cita = {
 const CITA_RELACIONES: Cita = {
   texto: 'La visita, la orden en PDF y la oferta de compra ya salen del sitio. Yo me concentro en atender bien a cada cliente, no en perseguir papeles.',
   nombre: 'Francisco De La Fuente',
-  cargo: 'Client Experience, Dunamis Brokers',
+  cargo: 'Client Experience, Dunamis Broker',
   retrato: '/casos/dunamis/retrato-francisco-de-la-fuente.jpg',
 }
 
@@ -92,7 +92,7 @@ export default function HistoriaDunamis() {
 
       <CuerpoCaso ficha={FICHA}>
         <SeccionCaso titulo="El problema: Dunamis explicaba lo mismo desde cero en cada llamada.">
-          <p>Dunamis opera con dos verticales: Dunamis Agency, corredora de propiedades de alto valor en Chicureo, y Dunamis Brokers, que gestiona compraventa, arriendo y administración de activos de distinto tipo y escala.</p>
+          <p>Dunamis opera con dos verticales: Dunamis Agency, corredora de propiedades de alto valor en Chicureo, y Dunamis Broker, que gestiona compraventa, arriendo y administración de activos de distinto tipo y escala.</p>
           <p>Lo que diferencia a la empresa es lo que su equipo sabe del mercado. Ese conocimiento vivía en reuniones, catálogos, conversaciones con clientes y en la experiencia de cada agente. Cada llamada partía de cero.</p>
         </SeccionCaso>
 
@@ -110,8 +110,8 @@ export default function HistoriaDunamis() {
         </SeccionCaso>
 
         <SeccionCaso titulo="Un mismo plan editorial para el blog, Instagram y un glosario semanal.">
-          <p>Dunamistas es la plataforma editorial de Dunamis Brokers: artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana. La fundadora lleva esas mismas ideas a LinkedIn y a charlas del sector, con su propia voz.</p>
-          <ImagenesCaso items={[{ src: '/casos/dunamis/blog.webp', alt: 'Dunamistas, plataforma editorial de Dunamis Brokers', ratio: '3 / 2' }]} />
+          <p>Dunamistas es la plataforma editorial de Dunamis Broker: artículos, contenido breve para Instagram y un glosario inmobiliario que suma un concepto nuevo cada semana. La fundadora lleva esas mismas ideas a LinkedIn y a charlas del sector, con su propia voz.</p>
+          <ImagenesCaso items={[{ src: '/casos/dunamis/blog.webp', alt: 'Dunamistas, plataforma editorial de Dunamis Broker', ratio: '3 / 2' }]} />
           <ImagenesCaso items={[
             { src: '/casos/dunamis/instagram-1.webp', alt: 'Contenido de Dunamistas para Instagram', ratio: '3 / 4' },
             { src: '/casos/dunamis/instagram-2.webp', alt: 'Contenido de Dunamistas para Instagram, segunda pieza', ratio: '3 / 4' },

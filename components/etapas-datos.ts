@@ -85,7 +85,7 @@ export const ETAPAS: Etapa[] = [
     cita: {
       texto: 'Uso los interactivos en cada conversación. Cuando llegamos a la reunión, el cliente ya entiende su situación y vamos directo a lo importante.',
       nombre: 'Andre Ibarra',
-      cargo: 'Agente, Dunamis Brokers · Valparaíso',
+      cargo: 'Agente, Dunamis Broker · Valparaíso',
       retrato: '/casos/dunamis/retrato-andre-ibarra.jpg',
     },
   },

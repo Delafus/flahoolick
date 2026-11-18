@@ -170,7 +170,7 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
           {/* Línea de avance pegada bajo el header, a todo el ancho de la pantalla. */}
           <div aria-hidden className="absolute top-0" style={{ left: 'calc(50% - 50vw)', width: '100vw', height: 3 }}>
-            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: '#000000' }} />
+            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: VERDE }} />
           </div>
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 34svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" acento={acento} />

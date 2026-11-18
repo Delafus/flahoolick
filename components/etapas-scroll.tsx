@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { VERDE } from './minimal'
 
 /** Las tres etapas en la home con un gráfico de puntos que cambia con el scroll (versión simple, mientras llega el definitivo).
-    Escritorio: gráfico fijo a la izquierda y etapas a la derecha; la etapa que está al centro de la pantalla manda.
+    Escritorio: todo en una pantalla, gráfico a la izquierda y las tres etapas a la derecha; el mouse elige y, si nadie interactúa, avanza solo.
     Teléfono: la sección queda fija en pantalla durante tres pantallas de scroll; arriba el gráfico a todo el ancho y abajo el texto
       de la etapa, que entra y sale con fade. Al subir, las etapas vuelven en orden inverso.
     Estados: 1 puntos dispersos con algunos hallazgos en verde; 2 los puntos se ordenan en grilla, en bloques de 2×2 que alternan verde y negro como un tablero;
@@ -24,6 +24,8 @@ const CENTRO = 150
 const GRIS = '#403D37'
 /** Alto del header fijo. */
 const HEADER = 64
+/** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
+const AVANCE_SOLO = 5000
 
 /** Pseudoaleatorio fijo, para que el servidor y el navegador dibujen lo mismo. */
 function azar(n: number) {
@@ -124,34 +126,25 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
   const [activa, setActiva] = useState(0)
   /** Avance (0 a 1) dentro de la pista del teléfono, para la línea bajo el header. */
   const [avance, setAvance] = useState(0)
-  const refs = useRef<(HTMLDivElement | null)[]>([])
+  /** Escritorio: etapa activa (por el mouse, el teclado o el avance solo) y si el usuario la está eligiendo. */
+  const [elegida, setElegida] = useState(0)
+  const [eligiendo, setEligiendo] = useState(false)
+  const [visible, setVisible] = useState(false)
   const pista = useRef<HTMLDivElement | null>(null)
+  const bloque = useRef<HTMLDivElement | null>(null)
 
+  // Teléfono: la etapa sale del avance dentro de la pista (tercio a tercio).
   useEffect(() => {
-    // Escritorio: manda la etapa cuyo centro está más cerca del centro de la pantalla.
     let cuadro = 0
     const medir = () => {
       cuadro = 0
-      // Teléfono: la etapa sale del avance dentro de la pista (tercio a tercio).
-      if (!window.matchMedia('(min-width: 1024px)').matches) {
-        const el = pista.current
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        const recorrido = r.height - (window.innerHeight - HEADER)
-        const a = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
-        setAvance(a)
-        setActiva(Math.min(etapas.length - 1, Math.floor(a * etapas.length)))
-        return
-      }
-      const centro = window.innerHeight / 2
-      let mejor = 0, distancia = Infinity
-      refs.current.forEach((el, i) => {
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        const d = Math.abs(r.top + r.height / 2 - centro)
-        if (d < distancia) { distancia = d; mejor = i }
-      })
-      setActiva(mejor)
+      const el = pista.current
+      if (!el || window.matchMedia('(min-width: 1024px)').matches) return
+      const r = el.getBoundingClientRect()
+      const recorrido = r.height - (window.innerHeight - HEADER)
+      const a = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
+      setAvance(a)
+      setActiva(Math.min(etapas.length - 1, Math.floor(a * etapas.length)))
     }
     const alMover = () => { if (!cuadro) cuadro = requestAnimationFrame(medir) }
     medir()
@@ -159,6 +152,20 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
     window.addEventListener('resize', alMover)
     return () => { window.removeEventListener('scroll', alMover); window.removeEventListener('resize', alMover); cancelAnimationFrame(cuadro) }
   }, [etapas.length])
+
+  // Escritorio: el bloque avanza solo mientras está en pantalla y nadie lo está eligiendo.
+  useEffect(() => {
+    const el = bloque.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.3 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  useEffect(() => {
+    if (!visible || eligiendo || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const t = setInterval(() => setElegida(i => (i + 1) % etapas.length), AVANCE_SOLO)
+    return () => clearInterval(t)
+  }, [visible, eligiendo, etapas.length])
 
   return (
     <>
@@ -192,26 +199,27 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
       {pie && <div className="mt-10 flex justify-center">{pie}</div>}
     </div>
 
-    {/* Escritorio */}
-    <div className="hidden lg:grid lg:grid-cols-2 lg:gap-20">
-      <div className="hidden lg:block">
-        <div className="sticky" style={{ top: 'calc(50vh - 13rem)' }}>
-          <GraficoEtapas estado={activa} className="w-full" acento={acento} />
-        </div>
-      </div>
-      <div className="flex flex-col">
+    {/* Escritorio: las tres etapas en una pantalla; al pasar el mouse (o con tab) por una etapa, el gráfico cambia.
+        Sin interacción, avanza solo. La etapa activa lleva el listón a la izquierda. */}
+    <div ref={bloque} className="hidden items-center gap-16 lg:grid lg:grid-cols-[5fr_7fr]">
+      <GraficoEtapas estado={elegida} className="w-full" acento={acento} />
+      <div className="flex flex-col"
+        onMouseEnter={() => setEligiendo(true)} onMouseLeave={() => setEligiendo(false)}
+        onFocus={() => setEligiendo(true)} onBlur={() => setEligiendo(false)}>
         {etapas.map((e, i) => (
-          <div key={e.slug} ref={el => { refs.current[i] = el }} data-indice={i}
-            className="flex flex-col justify-center gap-4 py-10 lg:min-h-[70vh] lg:py-0">
-            <Numero i={i} className="text-[4.5rem]" />
-            <h3 className="text-[1.75rem] md:text-[2.25rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+          <div key={e.slug} onMouseEnter={() => setElegida(i)} onFocus={() => setElegida(i)}
+            className="flex flex-col gap-2 py-5 pl-6"
+            style={{ borderLeft: `4px solid ${i === elegida ? (acento ?? VERDE) : 'transparent'}`, transition: 'border-color 300ms ease',
+              borderTop: i === 0 ? undefined : '1px solid rgba(0,0,0,0.12)' }}>
+            <Numero i={i} className="text-[3.5rem]" />
+            <h3 className="text-[2rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
               <Link href={`/metodologia/${e.slug}`} className="underline-offset-4 decoration-1 hover:underline">{e.nombre}</Link>
             </h3>
-            <p>{e.texto}</p>
-            <p><span style={{ fontWeight: 500 }}>Recibes:</span> {e.recibes.charAt(0).toLowerCase() + e.recibes.slice(1)}</p>
-            {i === etapas.length - 1 && pie && <div className="mt-6">{pie}</div>}
+            <p className="text-base">{e.texto}</p>
+            <p className="text-base"><span style={{ fontWeight: 500 }}>Recibes:</span> {e.recibes.charAt(0).toLowerCase() + e.recibes.slice(1)}</p>
           </div>
         ))}
+        {pie && <div className="mt-6 pl-7">{pie}</div>}
       </div>
     </div>
     </>

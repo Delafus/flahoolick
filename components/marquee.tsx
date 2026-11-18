@@ -1,7 +1,8 @@
-export const logos = [
-  { src: '/logo-grey.svg',    alt: 'Grey' },
-  { src: '/logo-mccann.svg',  alt: 'McCann' },
-  { src: '/logo-bbdo.svg',    alt: 'BBDO' },
+/** `escala` achica un logo que se ve más grande que el resto (1 = tamaño normal). */
+export const logos: { src: string; alt: string; escala?: number }[] = [
+  { src: '/logo-grey.svg',    alt: 'Grey', escala: 0.8 },
+  { src: '/logo-mccann.svg',  alt: 'McCann', escala: 0.8 },
+  { src: '/logo-bbdo.svg',    alt: 'BBDO', escala: 0.8 },
   { src: '/logo-heineken.svg',alt: 'Heineken' },
   { src: '/logo-adidas.svg',  alt: 'Adidas' },
   { src: '/logo-coca-cola.svg', alt: 'Coca-Cola' },
@@ -13,8 +14,8 @@ export const logos = [
   { src: '/logo-consorcio.svg', alt: 'Consorcio' },
   { src: '/logo-lider.svg',   alt: 'Líder' },
   { src: '/logo-walmart.png', alt: 'Walmart' },
-  { src: '/logo-oxxo.png',    alt: 'OXXO' },
-  { src: '/logo-pg.svg',      alt: 'P&G' },
+  { src: '/logo-oxxo.png',    alt: 'OXXO', escala: 0.8 },
+  { src: '/logo-pg.svg',      alt: 'P&G', escala: 0.8 },
   { src: '/logo-pantene.png', alt: 'Pantene' },
   { src: '/logo-febreze.png', alt: 'Febreze' },
   { src: '/logo-dunamis.svg', alt: 'Dunamis' },
@@ -52,9 +53,9 @@ export function Marquee({ color = '#3B0B2C', excluir = [] }: { color?: string; /
               src={logo.src}
               alt={logo.alt}
               style={{
-                height: '56px',
+                height: `${56 * (logo.escala ?? 1)}px`,
                 width: 'auto',
-                maxWidth: '160px',
+                maxWidth: `${160 * (logo.escala ?? 1)}px`,
                 objectFit: 'contain',
                 display: 'block',
                 filter,

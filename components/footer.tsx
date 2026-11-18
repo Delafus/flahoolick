@@ -43,7 +43,7 @@ export function Footer() {
             </p>
           </div>
           {/* Columna derecha: el sello girando (en el teléfono no va, para que el footer no crezca). */}
-          <ShieldWheel color={TEXTO} className="hidden w-[13rem] md:block lg:w-[16rem]" />
+          <ShieldWheel color={TEXTO} grosor={5} className="hidden w-[16rem] md:block lg:w-[24rem]" />
         </div>
 
         <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}>

@@ -414,11 +414,16 @@
 .boton-contorno:hover { background-color: #000000; color: #ffffff; }
 
 /* Gráfico de etapas en la home: los puntos viajan entre estados y en el último el círculo gira lento. */
-.grafico-punto { transition: transform 900ms cubic-bezier(0.65, 0, 0.35, 1), fill 600ms ease; }
+.grafico-punto { transition: transform 900ms cubic-bezier(0.65, 0, 0.35, 1); }
+.grafico-relleno { transition: fill 600ms ease; transform-box: fill-box; transform-origin: center; }
+@keyframes punto-flota { 0%, 100% { translate: 0 0; } 25% { translate: 3px -4px; } 50% { translate: -2px 3px; } 75% { translate: -4px -2px; } }
+@keyframes punto-late { 0%, 78%, 100% { scale: 1; } 86% { scale: 2.4; } }
+@keyframes punto-ola { 0%, 30%, 100% { scale: 1; } 12% { scale: 1.9; } }
 .grafico-gira { animation: grafico-gira 40s linear infinite; }
 @keyframes grafico-gira { to { transform: rotate(360deg); } }
 .grafico-gira-inversa { animation: grafico-gira 40s linear infinite reverse; }
 @media (prefers-reduced-motion: reduce) {
   .grafico-punto { transition: none; }
+  .grafico-relleno { animation: none !important; }
   .grafico-gira, .grafico-gira-inversa { animation: none; }
 }

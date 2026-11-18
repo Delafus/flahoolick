@@ -68,6 +68,21 @@ const ANILLO_DE = ANILLOS.flatMap((cantidad, a) => Array.from({ length: cantidad
 const verde = (estado: number, i: number) =>
   estado === 0 ? HALLAZGOS.has(i) : estado === 1 ? (Math.floor((i % 8) / 2) + Math.floor(i / 16)) % 2 === 1 : (ANILLOS.length - 1 - ANILLO_DE[i]) % 2 === 1
 
+/** Movimiento permanente de cada punto, según el estado (el tercero ya se mueve con el giro de los anillos).
+    Dispersos: cada punto flota a su ritmo y los hallazgos laten de vez en cuando.
+    Grilla: una ola recorre los bloques de 2×2 en diagonal, encendiéndolos en secuencia. */
+const vida = (estado: number, i: number) => {
+  if (estado === 0) {
+    const flota = `punto-flota ${r1(5 + azar(i + 201) * 4)}s ease-in-out -${r1(azar(i + 301) * 9)}s infinite`
+    return HALLAZGOS.has(i) ? `${flota}, punto-late 4s ease-in-out -${r1(azar(i + 401) * 4)}s infinite` : flota
+  }
+  if (estado === 1) {
+    const diagonal = Math.floor((i % 8) / 2) + Math.floor(i / 16)
+    return `punto-ola 3.5s ease-in-out ${r1(diagonal * 0.25)}s infinite`
+  }
+  return undefined
+}
+
 /** `acento` reemplaza el verde de marca cuando el fondo no le da contraste (por ejemplo, sobre amarillo). */
 export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: number; className?: string; acento?: string }) {
   return (
@@ -81,8 +96,10 @@ export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: n
             {indices.map(i => {
               const p = POSICIONES[estado][i]
               return (
-                <circle key={i} cx={0} cy={0} r={1.6} className="grafico-punto"
-                  style={{ transform: `translate(${p.x}px, ${p.y}px)`, fill: verde(estado, i) ? acento : GRIS }} />
+                <g key={i} className="grafico-punto" style={{ transform: `translate(${p.x}px, ${p.y}px)` }}>
+                  <circle cx={0} cy={0} r={1.6} className="grafico-relleno"
+                    style={{ fill: verde(estado, i) ? acento : GRIS, animation: vida(estado, i) }} />
+                </g>
               )
             })}
           </g>
@@ -92,9 +109,21 @@ export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: n
   )
 }
 
+/** Número de etapa (01, 02, 03), grande en Bricolage. */
+function Numero({ i, className }: { i: number; className: string }) {
+  return (
+    <p aria-hidden className={className}
+      style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.04em' }}>
+      {String(i + 1).padStart(2, '0')}
+    </p>
+  )
+}
+
 /** `pie` va al final de la columna de textos (por ejemplo, el botón a la metodología). */
 export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; pie?: ReactNode; acento?: string }) {
   const [activa, setActiva] = useState(0)
+  /** Avance (0 a 1) dentro de la pista del teléfono, para la línea bajo el header. */
+  const [avance, setAvance] = useState(0)
   const refs = useRef<(HTMLDivElement | null)[]>([])
   const pista = useRef<HTMLDivElement | null>(null)
 
@@ -109,8 +138,9 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
         if (!el) return
         const r = el.getBoundingClientRect()
         const recorrido = r.height - (window.innerHeight - HEADER)
-        const avance = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
-        setActiva(Math.min(etapas.length - 1, Math.floor(avance * etapas.length)))
+        const a = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
+        setAvance(a)
+        setActiva(Math.min(etapas.length - 1, Math.floor(a * etapas.length)))
         return
       }
       const centro = window.innerHeight / 2
@@ -135,15 +165,20 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
     {/* Teléfono */}
     <div className="lg:hidden">
       <div ref={pista} style={{ height: `${etapas.length * 100}svh` }}>
-        <div className="sticky flex flex-col justify-center gap-6"
+        <div className="sticky flex flex-col justify-center gap-5"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
-          <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 40svh)' }}>
+          {/* Línea de avance pegada bajo el header, a todo el ancho de la pantalla. */}
+          <div aria-hidden className="absolute top-0" style={{ left: 'calc(50% - 50vw)', width: '100vw', height: 3 }}>
+            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: '#000000' }} />
+          </div>
+          <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 34svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" acento={acento} />
           </div>
           <div className="grid">
             {etapas.map((e, i) => (
-              <div key={e.slug} aria-hidden={i !== activa} className="flex flex-col gap-4"
+              <div key={e.slug} aria-hidden={i !== activa} className="flex flex-col gap-3"
                 style={{ gridArea: '1 / 1', opacity: i === activa ? 1 : 0, transition: 'opacity 500ms ease', pointerEvents: i === activa ? 'auto' : 'none' }}>
+                <Numero i={i} className="text-[3rem]" />
                 <h3 className="text-[1.75rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
                   <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{e.nombre}</Link>
                 </h3>
@@ -168,6 +203,7 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
         {etapas.map((e, i) => (
           <div key={e.slug} ref={el => { refs.current[i] = el }} data-indice={i}
             className="flex flex-col justify-center gap-4 py-10 lg:min-h-[70vh] lg:py-0">
+            <Numero i={i} className="text-[4.5rem]" />
             <h3 className="text-[1.75rem] md:text-[2.25rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
               <Link href={`/metodologia/${e.slug}`} className="underline-offset-4 decoration-1 hover:underline">{e.nombre}</Link>
             </h3>

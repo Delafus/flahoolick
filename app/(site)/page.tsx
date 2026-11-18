@@ -25,8 +25,11 @@ export default function HomePage() {
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% de tu mercado comprará en seis meses, un año o más. Construimos disponibilidad mental para que tu marca esté entre las que conocen y recuerdan cuando decidan.</p>
-          <Grafico955 className="mx-auto my-2 w-[14rem] md:w-[17rem]" />
-          <p className="-mt-4 text-[0.8125rem]" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
+          {/* La caja de puntos toma el ancho de la fuente: la línea de la fuente manda y el gráfico se estira a su medida. */}
+          <div className="mx-auto flex w-fit flex-col gap-5">
+            <div style={{ width: 0, minWidth: '100%' }}><Grafico955 className="block w-full" /></div>
+            <p className="whitespace-nowrap text-[0.8125rem]" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
+          </div>
         </Pantalla>
 
         <Pantalla centrado titulo="Tu empresa sabe mucho más de lo que tu mercado conoce." cursiva="de lo que tu mercado conoce.">

@@ -14,9 +14,12 @@ const LADO = COLUMNAS * CELDA
 const COMPRADORES = [5, 6, 7, 8, 9]
 const ES_COMPRADOR = new Set(COMPRADORES)
 /** Cuánto se corre una pupila hacia donde mira (en unidades del dibujo). */
-const MIRADA = 2.5
+const MIRADA = 5.5
 const PAUSA_SIN_USO = 3000
 const CADA_MIRADA_SOLA = 3500
+/** Cada cuánto algunas pupilas se distraen y miran a cualquier lado. */
+const CADA_DISTRAIDA = 260
+const DISTRAIDAS = 4
 
 const PUNTOS = Array.from({ length: COLUMNAS * COLUMNAS }, (_, i) => ({
   x: CELDA / 2 + (i % COLUMNAS) * CELDA,
@@ -37,6 +40,15 @@ export function Grafico955({ className }: { className?: string }) {
     /** El gráfico está (al menos en parte) en pantalla. */
     const visible = () => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight }
 
+    // Cada pupila con su carácter: se desvía un poco del objetivo, mira más o menos lejos y reacciona a su propio ritmo.
+    const caracter = PUNTOS.map(() => ({ desvio: (Math.random() - 0.5) * 0.7, fuerza: 0.7 + Math.random() * 0.45 }))
+    pupilas.current.forEach(p => {
+      if (p) p.style.transition = `transform ${Math.round(140 + Math.random() * 460)}ms cubic-bezier(0.3, 0.7, 0.2, 1) ${Math.round(Math.random() * 140)}ms`
+    })
+    const correr = (p: SVGCircleElement, angulo: number, m: number) => {
+      p.style.transform = `translate(${Math.cos(angulo) * m}px, ${Math.sin(angulo) * m}px)`
+    }
+
     // Corre cada pupila hacia el objetivo (coordenadas de pantalla).
     const mirar = () => {
       cuadro = 0
@@ -49,10 +61,19 @@ export function Grafico955({ className }: { className?: string }) {
         const dx = objetivo!.x - (r.left + punto.x * escala)
         const dy = objetivo!.y - (r.top + punto.y * escala)
         const d = Math.hypot(dx, dy) || 1
-        const m = Math.min(MIRADA, d / (escala * 6))
-        p.style.transform = `translate(${(dx / d) * m}px, ${(dy / d) * m}px)`
+        correr(p, Math.atan2(dy, dx) + caracter[k].desvio, Math.min(MIRADA, d / (escala * 3)) * caracter[k].fuerza)
       })
     }
+
+    // Siempre hay algunas distraídas mirando a otro lado, para que el grupo nunca se vea quieto.
+    const distraerse = setInterval(() => {
+      if (!visible()) return
+      for (let n = 0; n < DISTRAIDAS; n++) {
+        const k = Math.floor(Math.random() * PUNTOS.length)
+        const p = pupilas.current[k]
+        if (p) correr(p, Math.random() * Math.PI * 2, MIRADA * (0.5 + Math.random() * 0.5))
+      }
+    }, CADA_DISTRAIDA)
     const pedirCuadro = () => { if (!cuadro) cuadro = requestAnimationFrame(mirar) }
 
     const alMover = (x: number, y: number) => {
@@ -79,6 +100,7 @@ export function Grafico955({ className }: { className?: string }) {
     window.addEventListener('touchmove', conDedo, { passive: true })
     return () => {
       clearInterval(mirarSolas)
+      clearInterval(distraerse)
       cancelAnimationFrame(cuadro)
       window.removeEventListener('pointermove', conMouse)
       window.removeEventListener('touchstart', conDedo)
@@ -96,8 +118,7 @@ export function Grafico955({ className }: { className?: string }) {
             style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 11 }}>$</text>
         </g>
       ) : (
-        <circle key={i} ref={c => { pupilas.current[i] = c }} cx={p.x} cy={p.y} r={1.6} fill="#000000"
-          style={{ transition: 'transform 180ms ease-out' }} />
+        <circle key={i} ref={c => { pupilas.current[i] = c }} cx={p.x} cy={p.y} r={1.6} fill="#000000" />
       ))}
     </svg>
   )

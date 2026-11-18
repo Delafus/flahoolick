@@ -200,8 +200,10 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
         onFocus={() => setEligiendo(true)} onBlur={() => setEligiendo(false)}>
         {etapas.map((e, i) => (
           <div key={e.slug} onMouseEnter={() => setElegida(i)} onFocus={() => setElegida(i)}
-            className="flex flex-col gap-2 py-5 pl-6"
-            style={{ borderLeft: `4px solid ${i === elegida ? '#000000' : 'transparent'}`, transition: 'border-color 300ms ease' }}>
+            className="relative flex flex-col gap-2 py-5 pl-7">
+            {/* Listón de la etapa activa: solo del alto del texto, sin el aire de arriba y abajo. */}
+            <span aria-hidden className="absolute left-0 top-5 bottom-5 w-1"
+              style={{ backgroundColor: '#000000', opacity: i === elegida ? 1 : 0, transition: 'opacity 300ms ease' }} />
             <h3 className="text-[2rem]" style={TITULO}>
               <Link href={`/metodologia/${e.slug}`}>{numero(i)} {e.nombre}</Link>
             </h3>

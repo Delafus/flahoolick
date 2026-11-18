@@ -201,8 +201,7 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
         {etapas.map((e, i) => (
           <div key={e.slug} onMouseEnter={() => setElegida(i)} onFocus={() => setElegida(i)}
             className="flex flex-col gap-2 py-5 pl-6"
-            style={{ borderLeft: `4px solid ${i === elegida ? '#000000' : 'transparent'}`, transition: 'border-color 300ms ease',
-              borderTop: i === 0 ? undefined : '1px solid rgba(0,0,0,0.12)' }}>
+            style={{ borderLeft: `4px solid ${i === elegida ? '#000000' : 'transparent'}`, transition: 'border-color 300ms ease' }}>
             <h3 className="text-[2rem]" style={TITULO}>
               <Link href={`/metodologia/${e.slug}`}>{numero(i)} {e.nombre}</Link>
             </h3>

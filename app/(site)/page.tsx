@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Boton, FUENTE, Cierre, CABECERAS } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Cierre, CABECERAS } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
@@ -62,7 +62,7 @@ export default function HomePage() {
         {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas, en rosa a todo el ancho. */}
         <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={ANCHO_COMPLETO(CABECERAS.rosa.fondo)}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
-            <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Tres capacidades. Un sistema de contenido.</h2>
+            <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>Tres capacidades. Un sistema de contenido.</h2>
             <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
           </div>
           <CapacidadesTarjetas />
@@ -80,7 +80,7 @@ export default function HomePage() {
         </section>
 
         {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}
-        <div className="pb-16 text-center md:pb-24">
+        <div className="pt-12 pb-16 text-center md:pt-20 md:pb-24">
           <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
           <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
             <Marquee color="#000000" excluir={['Dunamis']} />

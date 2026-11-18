@@ -22,6 +22,9 @@ export function Capacidades() {
   )
 }
 
+/** Puntos que no van en las tarjetas de la home (sí en /servicios). */
+const FUERA_DE_TARJETAS = ['Dossiers y casos de éxito.', 'Agentes de inteligencia artificial.']
+
 /** Las tres capacidades como tres tarjetas lado a lado (home), sin numeración. Cada tarjeta completa lleva a su página. */
 export function CapacidadesTarjetas() {
   return (
@@ -35,7 +38,7 @@ export function CapacidadesTarjetas() {
           </h3>
           <p>{d.desc}</p>
           <ul className="mt-auto flex flex-col gap-1 pt-5 text-base" style={{ borderTop: '1px solid rgba(0,0,0,0.15)', opacity: 0.75 }}>
-            {d.puntos.map(p => <li key={p}>{p}</li>)}
+            {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => <li key={p}>{p}</li>)}
           </ul>
         </Link>
       ))}

@@ -3,6 +3,8 @@ import { PageColorSetter } from './page-color-setter'
 import { ContactForm } from './contact-form'
 
 export const FUENTE = { fontFamily: 'var(--font-inter)', letterSpacing: '-0.02em' }
+/** Letra destacada de los titulares grandes (heroes y portadas): Bricolage Grotesque 800. */
+export const DESTACADA = { fontFamily: 'var(--font-bricolage)', fontWeight: 800 } as const
 export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity'
 
 /** Botón de contorno para llevar a otra página (en lugar de texto subrayado con flecha). Al pasar el cursor se rellena de negro. */
@@ -102,7 +104,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
         <PageColorSetter bg={fondo} text={texto} />
         <div className="flex flex-col items-center gap-8" style={{ maxWidth: '64rem' }}>
           {eyebrow && <p className="label">{eyebrow}</p>}
-          <h1 style={{ ...FUENTE, fontWeight: 500, fontSize: 'clamp(2.75rem, 6.2vw, 6.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
+          <h1 style={{ ...DESTACADA, fontSize: 'clamp(2.75rem, 6.2vw, 6.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
             {titulo}
           </h1>
           {bajada && <p className="text-xl md:text-2xl" style={{ lineHeight: 1.35, maxWidth: '40rem' }}>{bajada}</p>}
@@ -124,7 +126,7 @@ export function Hero({ eyebrow, titulo, bajada, cta = 'Agenda una llamada', nota
   return (
     <section className="flex flex-col justify-center gap-8" style={{ minHeight: completo ? '100dvh' : '75dvh', paddingTop: '64px' }}>
       {eyebrow && <p className="text-base" style={{ opacity: 0.5 }}>{eyebrow}</p>}
-      <h1 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+      <h1 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
         {titulo}
       </h1>
       {bajada && <p>{bajada}</p>}
@@ -143,7 +145,7 @@ export function Pantalla({ titulo, tono, centrado = false, children }: { titulo:
   const centrar = centrado ? 'mx-auto' : ''
   return (
     <section className={`flex flex-col justify-center gap-8 py-16 ${centrado ? 'items-center text-center' : ''}`} style={{ minHeight: '100dvh', ...banda(tono) }}>
-      <h2 className={`text-[2.5rem] md:text-[3.75rem] ${centrar}`} style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
+      <h2 className={`text-[2.5rem] md:text-[3.75rem] ${centrar}`} style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
         {titulo}
       </h2>
       <div className={`flex flex-col gap-8 ${centrar}`} style={{ maxWidth: ANCHO_TEXTO }}>{children}</div>

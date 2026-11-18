@@ -11,8 +11,6 @@ export const metadata: Metadata = {
   description: 'Convertimos el conocimiento de tu empresa en contenido y herramientas de venta para mercados B2B con ciclos largos. Santiago, Chile.',
 }
 
-const TITULO_SECCION = 'text-[1.75rem] md:text-[2.5rem]'
-const ESTILO_TITULO_SECCION = { ...FUENTE, fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em' }
 /** Fondo de color a todo el ancho de la pantalla para una sección que vive dentro de la columna. */
 const ANCHO_COMPLETO = (color: string) => ({ backgroundColor: color, boxShadow: `0 0 0 100vmax ${color}`, clipPath: 'inset(0 -100vmax)' })
 
@@ -72,8 +70,8 @@ export default function HomePage() {
 
         {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
         <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem' }}>
-          <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>
-            Veinticinco años en el negocio de la atención.
+          <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+            Veinticinco años <Italica>en el negocio de la atención.</Italica>
           </h2>
           <p>Venimos de medios de comunicación y grupos publicitarios globales. Somos profesionales de estrategia, periodismo, creatividad y comunicación.</p>
           <p>Hoy ponemos esa experiencia al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>

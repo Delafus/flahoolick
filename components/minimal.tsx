@@ -234,3 +234,14 @@ export function Cierre(_props: { titulo?: string; texto?: string; cta?: string }
     </div>
   )
 }
+
+/** Crédito del Value Proposition Canvas, como pide Strategyzer: identificar la fuente completa (Strategyzer.com y Strategyzer AG).
+    Va bajo cada mención de la herramienta, en el mismo estilo chico que la fuente de la regla 95:5. */
+export function CreditoStrategyzer() {
+  return (
+    <p className="text-[0.8125rem]" style={{ opacity: 0.5, fontSize: '0.8125rem', lineHeight: 1.4 }}>
+      Value Proposition Canvas · <a href="https://www.strategyzer.com" target="_blank" rel="noopener noreferrer"
+        className="underline underline-offset-2 decoration-1">Strategyzer.com</a> / Strategyzer AG.
+    </p>
+  )
+}

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Pagina, Hero, Bloque, Items, Cierre, FUENTE } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, Cierre, FUENTE, CreditoStrategyzer } from '@/components/minimal'
 import { ETAPAS, etapaPorSlug } from '@/components/etapas-datos'
 import { ModuloOtrasEtapas } from '@/components/modulo-otras-etapas'
 
@@ -44,6 +44,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
       </Bloque>
       <Bloque titulo="Cómo lo hacemos.">
         <Items items={e.como} />
+        {e.como.some(c => c.titulo === 'Value Proposition Canvas') && <CreditoStrategyzer />}
       </Bloque>
       <Bloque titulo="Qué recibes.">
         <p className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>{e.recibes}</p>

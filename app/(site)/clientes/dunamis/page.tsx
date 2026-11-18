@@ -3,6 +3,7 @@ import {
   PaginaCaso, EncabezadoCaso, PortadaCaso, ResumenCaso, CuerpoCaso, SeccionCaso, ImagenesCaso, EnlaceCaso,
   CitaCaso, ResultadosCaso, CierreCaso, type Dato, type CampoFicha, type Cita,
 } from '@/components/caso'
+import { CreditoStrategyzer } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Dunamis | Historias de clientes | Flahoolick',
@@ -99,6 +100,7 @@ export default function HistoriaDunamis() {
           <p>Transcribimos reuniones con la dirección y el equipo comercial, analizamos los catálogos de propiedades y servicios, revisamos conversaciones con clientes y documentamos la experiencia de los agentes en terreno.</p>
           <p>De ese material salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
           <p>Con el equipo de Dunamis trabajamos el Value Proposition Canvas de Strategyzer completo. Definimos los segmentos a los que hablarle y descartamos otros, formulamos la propuesta de valor y la pusimos a prueba con testing cards y learning cards antes de convertirla en marca y contenido.</p>
+          <CreditoStrategyzer />
         </SeccionCaso>
         <CitaCaso logo={LOGO} {...CITA_FUNDADORA} />
 

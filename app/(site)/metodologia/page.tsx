@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, CreditoStrategyzer } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 
 export const metadata: Metadata = {
@@ -52,6 +52,7 @@ export default function Metodologia() {
       />
       <Bloque titulo="Un buen vendedor quiere crear valor para su cliente. Lo difícil es que diga lo mismo que dice el resto de su empresa.">
         <p>Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió. Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de salir a comprar.</p>
+        <CreditoStrategyzer />
       </Bloque>
       <Bloque titulo="Cómo lo llevamos a la práctica.">
         <div className="flex flex-col gap-10">

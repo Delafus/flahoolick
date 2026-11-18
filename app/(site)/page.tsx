@@ -39,7 +39,7 @@ export default function HomePage() {
         <section className="flex flex-col gap-10 py-16 md:py-24" style={ANCHO_COMPLETO(CABECERAS.amarillo.fondo)}>
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
-            <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Del conocimiento disperso a un sistema que trabaja.</h2>
+            <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>Del conocimiento disperso <Italica>a un sistema que trabaja.</Italica></h2>
             <p>En muchas empresas, cada persona explica el valor de la oferta a su manera.</p>
           </div>
           <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}

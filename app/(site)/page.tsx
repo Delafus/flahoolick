@@ -24,7 +24,7 @@ export default function HomePage() {
         />
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
-          <p>El 95% de tu mercado comprará en seis meses, un año o más. Construimos disponibilidad mental para que tu marca esté entre las que conocen y recuerdan cuando decidan.</p>
+          <p>El otro 95% comprará en seis meses, un año o más. Construimos disponibilidad mental para que tu marca esté entre las que conocen y recuerdan cuando decidan.</p>
           {/* La caja de puntos toma el ancho de la fuente: la línea de la fuente manda y el gráfico se estira a su medida. */}
           <div className="mx-auto flex w-fit flex-col gap-5">
             <div style={{ width: 0, minWidth: '100%' }}><Grafico955 className="block w-full" /></div>

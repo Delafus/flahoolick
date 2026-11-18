@@ -5,6 +5,10 @@ import { ContactForm } from './contact-form'
 export const FUENTE = { fontFamily: 'var(--font-inter)', letterSpacing: '-0.02em' }
 /** Letra destacada de los titulares grandes (heroes y portadas): Bricolage Grotesque 800. */
 export const DESTACADA = { fontFamily: 'var(--font-bricolage)', fontWeight: 800 } as const
+/** Segunda voz de los titulares, como en el footer: Instrument Serif en cursiva, dentro de un titular en Bricolage. */
+export function Italica({ children }: { children: React.ReactNode }) {
+  return <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, letterSpacing: '-0.02em' }}>{children}</em>
+}
 export const ENLACE = 'underline underline-offset-4 decoration-1 hover:opacity-50 transition-opacity'
 
 /** Botón de contorno para llevar a otra página (en lugar de texto subrayado con flecha). Al pasar el cursor se rellena de negro. */

@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Cierre, CABECERAS } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Italica, Cierre, CABECERAS } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
@@ -20,7 +20,7 @@ export default function HomePage() {
     <Pagina>
         <Hero
           color="negro"
-          titulo="Tu empresa sabe mucho. Haz que cuente."
+          titulo={<>Tu empresa sabe mucho. <Italica>Haz que cuente.</Italica></>}
           bajada="Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
         />
 

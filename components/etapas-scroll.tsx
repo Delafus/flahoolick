@@ -111,15 +111,9 @@ export function GraficoEtapas({ estado, className, acento = VERDE }: { estado: n
   )
 }
 
-/** Número de etapa (01, 02, 03), grande en Bricolage. */
-function Numero({ i, className }: { i: number; className: string }) {
-  return (
-    <p aria-hidden className={className}
-      style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.04em' }}>
-      {String(i + 1).padStart(2, '0')}
-    </p>
-  )
-}
+/** Título de etapa: número y nombre en la misma línea y la misma letra (Bricolage 800). */
+const TITULO = { fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' } as const
+const numero = (i: number) => String(i + 1).padStart(2, '0')
 
 /** `pie` va al final de la columna de textos (por ejemplo, el botón a la metodología). */
 export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; pie?: ReactNode; acento?: string }) {
@@ -185,12 +179,10 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
             {etapas.map((e, i) => (
               <div key={e.slug} aria-hidden={i !== activa} className="flex flex-col gap-3"
                 style={{ gridArea: '1 / 1', opacity: i === activa ? 1 : 0, transition: 'opacity 500ms ease', pointerEvents: i === activa ? 'auto' : 'none' }}>
-                <Numero i={i} className="text-[3rem]" />
-                <h3 className="text-[1.75rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
-                  <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{e.nombre}</Link>
+                <h3 className="text-[1.75rem]" style={TITULO}>
+                  <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{numero(i)} {e.nombre}</Link>
                 </h3>
                 <p>{e.texto}</p>
-                <p><span style={{ fontWeight: 500 }}>Recibes:</span> {e.recibes.charAt(0).toLowerCase() + e.recibes.slice(1)}</p>
               </div>
             ))}
           </div>
@@ -200,7 +192,7 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
     </div>
 
     {/* Escritorio: las tres etapas en una pantalla; al pasar el mouse (o con tab) por una etapa, el gráfico cambia.
-        Sin interacción, avanza solo. La etapa activa lleva el listón a la izquierda. */}
+        Sin interacción, avanza solo. La etapa activa lleva el listón negro a la izquierda. */}
     <div ref={bloque} className="hidden items-center gap-16 lg:grid lg:grid-cols-[5fr_7fr]">
       <GraficoEtapas estado={elegida} className="w-full" acento={acento} />
       <div className="flex flex-col"
@@ -209,14 +201,12 @@ export function EtapasScroll({ etapas, pie, acento }: { etapas: EtapaScroll[]; p
         {etapas.map((e, i) => (
           <div key={e.slug} onMouseEnter={() => setElegida(i)} onFocus={() => setElegida(i)}
             className="flex flex-col gap-2 py-5 pl-6"
-            style={{ borderLeft: `4px solid ${i === elegida ? (acento ?? VERDE) : 'transparent'}`, transition: 'border-color 300ms ease',
+            style={{ borderLeft: `4px solid ${i === elegida ? '#000000' : 'transparent'}`, transition: 'border-color 300ms ease',
               borderTop: i === 0 ? undefined : '1px solid rgba(0,0,0,0.12)' }}>
-            <Numero i={i} className="text-[3.5rem]" />
-            <h3 className="text-[2rem]" style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
-              <Link href={`/metodologia/${e.slug}`} className="underline-offset-4 decoration-1 hover:underline">{e.nombre}</Link>
+            <h3 className="text-[2rem]" style={TITULO}>
+              <Link href={`/metodologia/${e.slug}`}>{numero(i)} {e.nombre}</Link>
             </h3>
             <p className="text-base">{e.texto}</p>
-            <p className="text-base"><span style={{ fontWeight: 500 }}>Recibes:</span> {e.recibes.charAt(0).toLowerCase() + e.recibes.slice(1)}</p>
           </div>
         ))}
         {pie && <div className="mt-6 pl-7">{pie}</div>}

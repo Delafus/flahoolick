@@ -38,7 +38,7 @@ export default function HomePage() {
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '44rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             <h2 className={TITULO_SECCION} style={ESTILO_TITULO_SECCION}>Del conocimiento disperso a un sistema que trabaja.</h2>
-            <p>En muchas empresas, cada persona explica el valor de la oferta a su manera. Partimos por ordenar ese conocimiento y convertirlo en una estrategia que toda la organización pueda activar.</p>
+            <p>En muchas empresas, cada persona explica el valor de la oferta a su manera.</p>
           </div>
           <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.intro, recibes: e.recibes }))}
             acento="#0B8A5A"

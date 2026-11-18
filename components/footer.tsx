@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { JERGA_VISIBLE } from './jerga-visible'
 import { VERDE } from './minimal'
+import { ShieldWheel } from './shield-wheel'
 
 /** Footer en verde Flahoolick con todo en negro: logo y claim grande (Bricolage + Instrument Serif);
     debajo, enlaces en fila y una línea final. */
@@ -31,7 +32,7 @@ export function Footer() {
   return (
     <footer className="page-px pt-16 pb-10 md:pt-20" style={{ backgroundColor: FONDO, color: TEXTO, fontFamily: 'var(--font-inter)' }}>
       <div className="mx-auto flex flex-col gap-14" style={{ maxWidth: '81rem' }}>
-        <div>
+        <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
           {/* Logo y claim */}
           <div className="flex flex-col gap-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -41,7 +42,8 @@ export function Footer() {
               <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400 }}>en autoridad de mercado.</em>
             </p>
           </div>
-
+          {/* Columna derecha: el sello girando (en el teléfono no va, para que el footer no crezca). */}
+          <ShieldWheel color={TEXTO} className="hidden w-[13rem] md:block lg:w-[16rem]" />
         </div>
 
         <div className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}>

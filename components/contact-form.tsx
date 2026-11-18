@@ -17,7 +17,7 @@ export function ContactForm({
   bg = 'var(--brand-depth)',
   text = 'var(--brand-chalk)',
   headline = <FontMix bold="Tu empresa" italic=" tiene el conocimiento." />,
-  description = 'Construyamos el sistema que lo pone frente al mercado. Cuéntanos qué hace tu empresa y qué necesitas comunicar. Conversemos sobre cómo transformar ese conocimiento en una ventaja para tu negocio.',
+  description = 'Construyamos el sistema que lo pone frente al mercado. Conversemos sobre cómo transformar ese conocimiento en una ventaja para tu negocio.',
   note,
   submitLabel = 'Agenda una llamada',
   minimal = false,

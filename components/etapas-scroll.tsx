@@ -35,6 +35,8 @@ const esTriangulo = (i: number) => i < TRIANGULOS
 /** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300): chicos, en la escala de las pupilas del 95:5. */
 const CUADRADO = 1.3
 const TRIANGULO = 2
+/** Orientación de los triángulos en las etapas 2 y 3: siempre con la punta hacia arriba (la figura base apunta a la derecha). */
+const ARRIBA = -90
 
 /** Pseudoaleatorio fijo, para que el servidor y el navegador dibujen lo mismo. */
 function azar(n: number) {
@@ -86,7 +88,7 @@ const GRILLA: Pieza[] = (() => {
     const centro = { x: x0 + PASO / 2, y: y0 + PASO / 2, n }
     for (let k = 0; k < 4; k++) {
       const i = triangulos ? t++ : q++
-      pos[i] = { x: x0 + (k % 2) * PASO, y: y0 + Math.floor(k / 2) * PASO, giro: 0, escuadra: centro }
+      pos[i] = { x: x0 + (k % 2) * PASO, y: y0 + Math.floor(k / 2) * PASO, giro: triangulos ? ARRIBA : 0, escuadra: centro }
     }
   }
   return pos
@@ -110,7 +112,7 @@ const CIRCULO: Pieza[] = (() => {
   AROS.forEach(a => a.piezas.forEach((i, k) => {
     const ang = (k / a.piezas.length) * Math.PI * 2 + a.desfase
     const grados = Math.round((ang * 180) / Math.PI)
-    pos[i] = { x: r1(CENTRO + a.radio * Math.cos(ang)), y: r1(CENTRO + a.radio * Math.sin(ang)), giro: esTriangulo(i) ? grados : grados + 90 }
+    pos[i] = { x: r1(CENTRO + a.radio * Math.cos(ang)), y: r1(CENTRO + a.radio * Math.sin(ang)), giro: esTriangulo(i) ? ARRIBA : grados + 90 }
   }))
   return pos
 })()
@@ -125,6 +127,8 @@ const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafic
 const flota = (i: number) => `punto-flota ${r1(6 + azar(i + 201) * 5)}s ease-in-out -${r1(azar(i + 301) * 11)}s infinite`
 /** Etapa 2: cada escuadra da cuartos de vuelta como unidad, en cadena por su número. */
 const marcha = (n: number) => `escuadra-gira 14s cubic-bezier(0.65, 0, 0.35, 1) ${r1(n * 0.18)}s infinite`
+/** Los triángulos de la escuadra giran al revés, al mismo ritmo: se trasladan con ella pero siguen apuntando hacia arriba. */
+const contramarcha = (n: number) => `escuadra-contra 14s cubic-bezier(0.65, 0, 0.35, 1) ${r1(n * 0.18)}s infinite`
 
 /** Escudo de Flahoolick (el mismo del sello), centrado y a escala del dibujo. */
 const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.25V639.767H829.183V744.25Z'
@@ -149,10 +153,18 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
             {a.piezas.map(i => {
               const p = POSICIONES[estado][i]
               const e = p.escuadra
-              const forma = { rotate: `${p.giro}deg`, transition: 'rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)', animation: estado === 0 ? flota(i) : undefined }
+              const forma = {
+                rotate: `${p.giro}deg`, transition: 'rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)',
+                animation: estado === 0 ? flota(i) : e && esTriangulo(i) ? contramarcha(e.n) : undefined,
+              }
+              // Etapa 3: los triángulos giran sobre sí mismos al revés de su aro y a su misma velocidad (traslación sin rotación).
+              const contraAro = estado === 2 && esTriangulo(i)
+                ? { className: n % 2 === 0 ? 'grafico-gira-inversa' : 'grafico-gira', style: { transformOrigin: '0px 0px', animationDuration: g.duracion } }
+                : null
               return (
                 <g key={i} className="grafico-punto" style={{ transform: `translate(${p.x}px, ${p.y}px)` }}>
-                  <g style={e ? { transformOrigin: `${r1(e.x - p.x)}px ${r1(e.y - p.y)}px`, animation: marcha(e.n) } : undefined}>
+                  <g className={contraAro?.className}
+                    style={e ? { transformOrigin: `${r1(e.x - p.x)}px ${r1(e.y - p.y)}px`, animation: marcha(e.n) } : contraAro?.style}>
                     {esTriangulo(i) ? (
                       <polygon className="grafico-relleno" fill={ROJO} style={forma}
                         points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />

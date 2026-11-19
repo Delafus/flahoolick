@@ -425,6 +425,10 @@
 @keyframes escuadra-gira {
   0%, 18% { rotate: 0deg; } 25%, 43% { rotate: 90deg; } 50%, 68% { rotate: 180deg; } 75%, 93% { rotate: 270deg; } 100% { rotate: 360deg; }
 }
+/* Contragiro de los triángulos de cada escuadra: parten en −90° (punta arriba) y restan lo que gira la escuadra. */
+@keyframes escuadra-contra {
+  0%, 18% { rotate: -90deg; } 25%, 43% { rotate: -180deg; } 50%, 68% { rotate: -270deg; } 75%, 93% { rotate: -360deg; } 100% { rotate: -450deg; }
+}
 /* Cambio de etapa en el teléfono: giro sobre el eje horizontal, como la cara de un cubo. El título gira como bloque (fila 0);
    el párrafo, palabra por palabra pero sincronizado por fila (--fila), así cada fila gira tras la anterior. */
 .volteo .voltea { display: block; backface-visibility: hidden; transform-origin: 50% 50%; }

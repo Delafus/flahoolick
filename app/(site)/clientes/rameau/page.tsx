@@ -6,13 +6,15 @@ import {
 import { CreditoStrategyzer } from '@/components/minimal'
 
 /** Caso Rameau, con la misma estructura del caso Dunamis. Proyecto en curso.
-    PENDIENTE (lo entrega el usuario): logo en SVG, foto de portada, imágenes del taller y de las piezas,
+    PENDIENTE (lo entrega el usuario): foto de portada, imágenes del taller y de las piezas,
     el retrato de Alexey Mitjaew, el segmento y el cargo al que le hablan, ejemplos de hipótesis, y resultados cuando los haya. */
 
 export const metadata: Metadata = {
   title: 'Rameau | Historias de clientes | Flahoolick',
   description: 'Cómo Rameau encontró su propuesta de valor con el Value Proposition Canvas, la probó con leads reales y construye sobre ella su marca, su sitio y su contenido.',
 }
+
+const LOGO = { src: '/logo-rameau.svg', alt: 'Rameau' }
 
 /** Hechos del proyecto (no son métricas: el proyecto está en curso). */
 const DATOS_PORTADA: Dato[] = [
@@ -42,7 +44,7 @@ export default function HistoriaRameau() {
   return (
     <PaginaCaso>
       <EncabezadoCaso cliente="Rameau" titulo="Una plataforma lista que todavía no sabía a quién hablarle." />
-      <PortadaCaso nombre="Rameau" datos={DATOS_PORTADA} />
+      <PortadaCaso logo={LOGO} datos={DATOS_PORTADA} />
       <ResumenCaso>
         Rameau tenía la plataforma lista y le faltaba el relato. Con el Value Proposition Canvas encontró su propuesta de valor, la probó con sus leads y hoy construye sobre ella su marca, su sitio y su contenido.
       </ResumenCaso>
@@ -63,7 +65,7 @@ export default function HistoriaRameau() {
           <p>Del trabajo con el segmento salieron hipótesis sobre el valor de la plataforma. El equipo de Rameau las llevó a conversaciones con sus leads potenciales.</p>
           <p>Así fue aprendiendo qué relato necesita la plataforma y a quién, dentro de cada organización, le tiene que hablar.</p>
         </SeccionCaso>
-        <CitaCaso {...CITA_FUNDADOR} />
+        <CitaCaso logo={LOGO} {...CITA_FUNDADOR} />
 
         <SeccionCaso titulo="Sobre esos aprendizajes construimos la marca, el sitio y el contenido.">
           <p>Estamos desarrollando la identidad visual y el sitio de Rameau, y la estrategia de contenidos que los alimenta: un blog de artículos y su página de LinkedIn, que manejamos nosotros.</p>

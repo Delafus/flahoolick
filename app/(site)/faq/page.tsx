@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Cierre, CuerpoCeleste, DESTACADA } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Preguntas frecuentes | Flahoolick',
@@ -36,14 +36,20 @@ export default function FAQ() {
         cursiva="antes de conversar."
         bajada="También puedes escribirnos directamente. Una conversación basta para empezar."
       />
-      <section className="bloque-derecha flex flex-col py-16 md:py-24">
-        {PREGUNTAS.map(p => (
-          <details key={p.q} className="py-4" style={{ borderTop: '1px solid rgba(0,0,0,0.15)' }}>
-            <summary className="cursor-pointer" style={{ fontWeight: 500 }}>{p.q}</summary>
-            <p className="mt-3">{p.a}</p>
-          </details>
-        ))}
-      </section>
+      <CuerpoCeleste>
+        <section className="bloque-derecha flex flex-col py-16 md:py-24">
+          {PREGUNTAS.map(p => (
+            <details key={p.q} className="group py-5" style={{ borderTop: '1px solid rgba(28, 24, 84, 0.2)' }}>
+              {/* Pregunta en Bricolage, con un + que gira a × al abrirse. */}
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 [&::-webkit-details-marker]:hidden">
+                <span className="text-[1.25rem] md:text-[1.375rem]" style={{ ...DESTACADA, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{p.q}</span>
+                <span aria-hidden className="shrink-0 text-[1.5rem] leading-none transition-transform duration-300 group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3" style={{ maxWidth: '44rem' }}>{p.a}</p>
+            </details>
+          ))}
+        </section>
+      </CuerpoCeleste>
       <Cierre titulo="¿Qué quieres poner sobre la mesa?" cta="Agenda una llamada" />
     </Pagina>
   )

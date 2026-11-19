@@ -42,7 +42,7 @@ export default function HomePage() {
           bajada="Ayudamos a articular el valor que creas para tus clientes y convertirlo en una estrategia de marca, contenido y comunicación comercial."
         />
 
-        <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
+        <Pantalla centrado tinta={CABECERAS.hielo.texto} titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
           {/* Caja de puntos de ancho fijo (el que tenía con la fuente larga); la fuente va abajo, alineada a su borde derecho. */}
           <div className="mx-auto flex w-full flex-col gap-5" style={{ maxWidth: '19.75rem' }}>

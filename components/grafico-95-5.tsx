@@ -134,12 +134,12 @@ export function Grafico955({ className }: { className?: string }) {
       aria-label="Cien puntos: cinco con signo peso, que ya compran, y noventa y cinco que miran.">
       {puntos.map((p, i) => ES_COMPRADOR.has(i) ? (
         <g key={i}>
-          <circle cx={p.x} cy={p.y} r={COMPRADOR} fill="#000000" />
+          <circle cx={p.x} cy={p.y} r={COMPRADOR} fill="currentColor" />
           <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="central" fill="#ffffff"
             style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: SIGNO }}>$</text>
         </g>
       ) : (
-        <circle key={i} ref={c => { pupilas.current[i] = c }} cx={p.x} cy={p.y} r={PUPILA} fill="#000000" />
+        <circle key={i} ref={c => { pupilas.current[i] = c }} cx={p.x} cy={p.y} r={PUPILA} fill="currentColor" />
       ))}
     </svg>
   )

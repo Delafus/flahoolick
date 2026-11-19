@@ -154,10 +154,11 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
 }
 
 /** Sección con titular de portada (h2) para las portadas secundarias de la home. Su alto lo da el contenido, sin aire de sobra. */
-export function Pantalla({ titulo, cursiva, tono, centrado = false, children }: { titulo: React.ReactNode; cursiva?: string; tono?: Tono; centrado?: boolean; children?: React.ReactNode }) {
+/** `tinta` cambia el color del texto (y de lo que use currentColor, como el gráfico del 95:5). */
+export function Pantalla({ titulo, cursiva, tono, tinta, centrado = false, children }: { titulo: React.ReactNode; cursiva?: string; tono?: Tono; tinta?: string; centrado?: boolean; children?: React.ReactNode }) {
   const centrar = centrado ? 'mx-auto' : ''
   return (
-    <section className={`flex flex-col justify-center gap-8 py-16 md:py-24 ${centrado ? 'items-center text-center' : ''}`} style={banda(tono)}>
+    <section className={`flex flex-col justify-center gap-8 py-16 md:py-24 ${centrado ? 'items-center text-center' : ''}`} style={{ ...banda(tono), ...(tinta ? { color: tinta } : {}) }}>
       <h2 className={`text-[2.5rem] md:text-[3.75rem] ${centrar}`} style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '22ch' }}>
         {conCursiva(titulo, cursiva)}
       </h2>

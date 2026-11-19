@@ -98,7 +98,7 @@ export default function HomePage() {
               Marcas que nos formaron
             </span>
           </p>
-          <Marquee color="#000000" excluir={['Dunamis']} />
+          <Marquee color={CABECERAS.hielo.texto} excluir={['Dunamis']} />
         </div>
 
         <Cierre />

@@ -5,7 +5,7 @@ export const logos: { src: string; alt: string; escala?: number }[] = [
   { src: '/logo-bbdo.svg',    alt: 'BBDO', escala: 0.8 },
   { src: '/logo-heineken.svg',alt: 'Heineken' },
   { src: '/logo-adidas.svg',  alt: 'Adidas', escala: 0.8 },
-  { src: '/logo-coca-cola.svg', alt: 'Coca-Cola' },
+  { src: '/logo-coca-cola.svg', alt: 'Coca-Cola', escala: 0.65 },
   { src: '/logo-claro.svg',   alt: 'Claro Empresas' },
   { src: '/logo-vtr.png',     alt: 'VTR', escala: 0.8 },
   { src: '/logo-unab.svg',    alt: 'UNAB' },
@@ -29,6 +29,9 @@ export function Marquee({ color = '#3B0B2C', excluir = [] }: { color?: string; /
     : color === '#083EA7'
     // Calibrado con canvas ctx.filter contra el RGB real (8,62,167): da (0,66,160), diferencia imperceptible.
     ? 'brightness(0) saturate(100%) invert(15%) sepia(90%) saturate(3000%) hue-rotate(210deg) brightness(90%)'
+    : color === '#1C1854'
+    // Azul noche de marca. Calibrado con canvas ctx.filter: da (27,23,81) contra (28,24,84).
+    ? 'brightness(0) saturate(100%) invert(23%) sepia(48%) saturate(6255%) hue-rotate(242deg) brightness(32%) contrast(98%)'
     : color === '#000000'
     ? 'brightness(0) saturate(100%)'
     : 'brightness(0) invert(1)'

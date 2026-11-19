@@ -92,8 +92,8 @@ export default function HomePage() {
           <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
             Veinticinco años <Italica>en el negocio de la atención.</Italica>
           </h2>
-          <p>Venimos de medios de comunicación y grupos publicitarios globales. Somos profesionales de estrategia, periodismo, creatividad y comunicación.</p>
-          <p>Hoy ponemos esa experiencia al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>
+          <p>Venimos de grupos publicitarios globales, medios de comunicación y consultoría. Somos profesionales de estrategia, tecnología, creatividad y comunicación.</p>
+          <p>Estamos al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>
           <Boton href="/sobre-flahoolick">Sobre Flahoolick</Boton>
         </section>
 

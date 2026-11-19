@@ -288,11 +288,15 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
       <div ref={pista} style={{ height: `${etapas.length * 100}svh` }}>
         <div className="sticky flex flex-col justify-center gap-5"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
-          {/* Barra de avance negra, separada del header por una franja de amarillo, a todo el ancho de la pantalla. */}
-          <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw', height: 4 }}>
-            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: NEGRO }} />
+          {/* Línea de avance fina, separada del header, a todo el ancho de la pantalla; bajo su punta, el nombre de la etapa
+              en chico (si la línea todavía es corta, el nombre no se sale: su caja nunca es más angosta que el texto). */}
+          <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw' }}>
+            <div style={{ height: 2, width: `${avance * 100}%`, backgroundColor: NEGRO }} />
+            <div className="pt-1 text-right lowercase" style={{ width: `${avance * 100}%`, minWidth: 'max-content', paddingLeft: 'var(--page-px, 16px)', fontSize: '12px', lineHeight: 1.2 }}>
+              {etapas[activa].nombre}
+            </div>
           </div>
-          <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 34svh)' }}>
+          <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 46svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" />
           </div>
           {/* Textos apilados. Al cambiar de etapa, el que sale gira hacia arriba sobre su eje horizontal y el que entra llega

@@ -30,8 +30,11 @@ const ROJO = '#E8432E'
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
 const AVANCE_SOLO = 5000
-/** Piezas: los primeros 16 índices son triángulos (conocimiento con valor), los otros 48 cuadrados (información en bruto). */
-const TRIANGULOS = 16
+/** Piezas: los primeros 24 índices son triángulos (conocimiento con valor), los otros 40 cuadrados (información en bruto). */
+const TRIANGULOS = 24
+/** Por cada uno de los 4 bloques de la etapa 1. */
+const TRI_BLOQUE = TRIANGULOS / 4
+const CUA_BLOQUE = 16 - TRI_BLOQUE
 const esTriangulo = (i: number) => i < TRIANGULOS
 /** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300): chicos, en la escala de las pupilas del 95:5. */
 const CUADRADO = 1.3
@@ -55,12 +58,16 @@ const BLOQUES = [{ x: 88, y: 84 }, { x: 214, y: 96 }, { x: 82, y: 210 }, { x: 20
 const DISPERSOS: Pieza[] = (() => {
   const pos: Pieza[] = new Array(N)
   BLOQUES.forEach((b, c) => {
-    const piezas = [...Array.from({ length: 4 }, (_, k) => 4 * c + k), ...Array.from({ length: 12 }, (_, k) => TRIANGULOS + 12 * c + k)]
-    // Dentro de cada bloque, lo encontrado queda aparte: los 4 triángulos en la columna derecha (casillas 3, 7, 11, 15)
-    // y los 12 cuadrados en las tres columnas de la izquierda, en un orden fijo pero mezclado.
-    const izquierda = Array.from({ length: 16 }, (_, k) => k).filter(k => k % 4 !== 3)
+    const piezas = [
+      ...Array.from({ length: TRI_BLOQUE }, (_, k) => TRI_BLOQUE * c + k),
+      ...Array.from({ length: CUA_BLOQUE }, (_, k) => TRIANGULOS + CUA_BLOQUE * c + k),
+    ]
+    // Dentro de cada bloque, lo encontrado queda aparte: los 6 triángulos a la derecha (la columna derecha completa y
+    // las dos casillas de arriba de la siguiente) y los 10 cuadrados a la izquierda, en un orden fijo pero mezclado.
+    const derecha = [3, 7, 11, 15, 2, 6]
+    const izquierda = Array.from({ length: 16 }, (_, k) => k).filter(k => !derecha.includes(k))
       .sort((a, b) => azar(a + 31 * c + 7) - azar(b + 31 * c + 7))
-    const casillas = [3, 7, 11, 15, ...izquierda]
+    const casillas = [...derecha, ...izquierda]
     piezas.forEach((i, k) => {
       const casilla = casillas[k]
       pos[i] = {
@@ -75,7 +82,7 @@ const DISPERSOS: Pieza[] = (() => {
 
 /** 2 Ordenamos: grilla pareja de 8×8 (mismo espacio entre todas las piezas), leída como 16 escuadras de 2×2;
     4 escuadras de triángulos (en un patrón regular) y 12 de cuadrados. Cada pocos segundos, cada escuadra gira 90° como unidad. */
-const ESCUADRAS_TRIANGULO = [1, 7, 8, 14]
+const ESCUADRAS_TRIANGULO = [1, 4, 6, 9, 11, 14]
 const PASO = 30
 const ENTRE = 2 * PASO
 const INICIO = CENTRO - (3 * ENTRE + PASO) / 2
@@ -98,17 +105,17 @@ const GRILLA: Pieza[] = (() => {
   return pos
 })()
 
-/** 3 Activamos: el escudo al centro y cinco aros alrededor, cada uno de una sola figura, alternando desde adentro:
-    cuadrados, triángulos, cuadrados, triángulos, cuadrados. Los triángulos apuntan hacia afuera como las flechas del sello. */
+/** 3 Activamos: el escudo al centro y cinco aros alrededor, cada uno de una sola figura: los dos de adentro de cuadrados
+    y los tres de afuera de triángulos (el conocimiento sale hacia afuera). Los triángulos siempre con la punta hacia arriba. */
 const AROS: { radio: number; piezas: number[]; desfase: number }[] = (() => {
   const cua = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
   const tri = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => desde + k)
   return [
-    { radio: 46, piezas: cua(0, 10), desfase: 0 },
-    { radio: 66, piezas: tri(0, 6), desfase: -Math.PI / 2 },
-    { radio: 88, piezas: cua(10, 16), desfase: 0.2 },
-    { radio: 110, piezas: tri(6, 10), desfase: -Math.PI / 2 + 0.3 },
-    { radio: 132, piezas: cua(26, 22), desfase: 0.1 },
+    { radio: 40, piezas: cua(0, 16), desfase: 0 },
+    { radio: 64, piezas: cua(16, 24), desfase: 0.2 },
+    { radio: 90, piezas: tri(0, 6), desfase: -Math.PI / 2 },
+    { radio: 112, piezas: tri(6, 8), desfase: -Math.PI / 2 + 0.3 },
+    { radio: 134, piezas: tri(14, 10), desfase: -Math.PI / 2 + 0.15 },
   ]
 })()
 const CIRCULO: Pieza[] = (() => {
@@ -136,7 +143,7 @@ const contramarcha = (n: number) => `escuadra-contra 14s cubic-bezier(0.65, 0, 0
 
 /** Escudo de Flahoolick (el mismo del sello), centrado y a escala del dibujo. */
 const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.25V639.767H829.183V744.25Z'
-const ESCALA_ESCUDO = 0.24
+const ESCALA_ESCUDO = 0.19
 
 export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
   /** El escudo ya apareció alguna vez: desde ahí, al salir de la etapa 3, se va girando. */

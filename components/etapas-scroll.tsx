@@ -25,7 +25,7 @@ const CENTRO = 150
 /** Piezas, escudo, barra y listón toman el color del texto del bloque. */
 const NEGRO = 'currentColor'
 /** Rojo de los triángulos (conocimiento con valor): el único color fuerte del gráfico. A prueba, de la referencia del usuario. */
-const ROJO = '#E8432E'
+const ROJO = '#FF1D00'
 /** Alto del header fijo. */
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */

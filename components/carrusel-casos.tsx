@@ -13,15 +13,18 @@ export function CarruselCasos({ casos, nombres }: { casos: ReactNode[]; nombres:
   const flecha = (direccion: -1 | 1) => (
     <button type="button" onClick={() => ir(actual + direccion)}
       aria-label={direccion < 0 ? 'Caso anterior' : 'Caso siguiente'}
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white hover:text-black"
-      style={{ border: '1px solid rgba(255,255,255,0.5)' }}>
-      <span aria-hidden style={{ fontSize: '18px', lineHeight: 1 }}>{direccion < 0 ? '←' : '→'}</span>
+      className="flex h-10 w-10 shrink-0 items-center justify-center transition-opacity hover:opacity-60">
+      {/* Flecha sin palo: solo la punta. */}
+      <svg aria-hidden width="14" height="24" viewBox="0 0 14 24" fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round">
+        <path d={direccion < 0 ? 'M12 2 L2 12 L12 22' : 'M2 2 L12 12 L2 22'} />
+      </svg>
     </button>
   )
 
   return (
-    <div className="flex w-full flex-col items-center gap-10" role="region" aria-roledescription="carrusel" aria-label="Historias de clientes">
-      <div className="flex w-full items-center justify-center gap-4 md:gap-10">
+    <div className="flex w-full flex-col items-center gap-6" role="region" aria-roledescription="carrusel" aria-label="Historias de clientes">
+      <div className="flex w-full items-center justify-center gap-2 md:gap-6">
         <div className="hidden md:block">{flecha(-1)}</div>
         <div className="grid w-full overflow-hidden" style={{ maxWidth: '44rem' }}
           onTouchStart={e => { inicioToque.current = e.touches[0].clientX }}
@@ -49,7 +52,7 @@ export function CarruselCasos({ casos, nombres }: { casos: ReactNode[]; nombres:
         <div className="hidden md:block">{flecha(1)}</div>
       </div>
       {/* Teléfono: las flechas van abajo, a los lados de los circulitos. */}
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-3">
         <div className="md:hidden">{flecha(-1)}</div>
         <div className="flex items-center gap-3">
           {casos.map((_, i) => (

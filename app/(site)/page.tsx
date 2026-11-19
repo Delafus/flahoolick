@@ -51,10 +51,10 @@ export default function HomePage() {
         </section>
 
         {/* Historias de clientes: un caso a la vez, con flechas y circulitos, en negro a todo el ancho de la pantalla. */}
-        <section className="flex flex-col items-center py-16 text-center md:py-24"
+        <section className="flex flex-col items-center py-10 text-center md:py-14"
           style={{ ...ANCHO_COMPLETO('#000000'), color: '#ffffff' }}>
           <CarruselCasos nombres={CASOS.map(c => c.nombre)} casos={CASOS.map(c => (
-            <div key={c.nombre} className="flex flex-col items-center gap-6">
+            <div key={c.nombre} className="flex flex-col items-center gap-4">
               <p className="label" style={{ opacity: 0.6 }}>Caso {c.nombre}</p>
               <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>{c.titulo}</h3>
               <p>{c.texto}</p>
@@ -87,10 +87,11 @@ export default function HomePage() {
         </section>
 
         {/* Logos: una franja blanca apretada a todo el ancho, pegada al bloque celeste de arriba. "Marcas que nos formaron"
-            va en una pestañita blanca que sale del borde superior de la franja, como la de una carpeta. */}
+            va en una pestañita blanca centrada, de esquinas redondeadas, que sale del borde superior de la franja. */}
         <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ffffff' }}>
-          <p className="page-px absolute bottom-full left-0">
-            <span className="inline-block px-3 pt-1.5 pb-1 text-[0.8125rem]" style={{ backgroundColor: '#ffffff', color: 'rgba(0,0,0,0.55)' }}>
+          <p className="absolute bottom-full left-1/2 -translate-x-1/2">
+            <span className="inline-block whitespace-nowrap px-4 pt-1.5 pb-1 text-[0.8125rem]"
+              style={{ backgroundColor: '#ffffff', color: 'rgba(0,0,0,0.55)', borderRadius: '12px 12px 0 0' }}>
               Marcas que nos formaron
             </span>
           </p>

@@ -34,7 +34,7 @@ export function Marquee({ color = '#3B0B2C', excluir = [] }: { color?: string; /
     : 'brightness(0) invert(1)'
 
   return (
-    <div style={{ width: '100%', overflow: 'hidden', padding: '0.875rem 0' }}>
+    <div style={{ width: '100%', overflow: 'hidden', padding: '0.25rem 0' }}>
       <div className="animate-marquee" style={{ alignItems: 'center' }}>
         {[...visibles, ...visibles].map((logo, i) => (
           <div

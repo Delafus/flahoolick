@@ -135,6 +135,9 @@ const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C
 const ESCALA_ESCUDO = 0.24
 
 export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
+  /** El escudo ya apareció alguna vez: desde ahí, al salir de la etapa 3, se va girando. */
+  const [escudoVisto, setEscudoVisto] = useState(false)
+  useEffect(() => { if (estado === 2) setEscudoVisto(true) }, [estado])
   return (
     <svg viewBox="0 0 300 300" className={className} role="img"
       aria-label={[
@@ -142,9 +145,12 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
         'Las piezas ordenadas en escuadras de cuatro, como una formación vista desde arriba',
         'Las piezas en aros alrededor del escudo de Flahoolick, con los triángulos apuntando hacia afuera',
       ][estado]}>
-      <path d={ESCUDO} fill={NEGRO}
-        transform={`translate(${CENTRO} ${CENTRO}) scale(${ESCALA_ESCUDO}) translate(-734.9 -738)`}
-        style={{ opacity: estado === 2 ? 1 : 0, transition: 'opacity 700ms ease' }} />
+      {/* El escudo entra y sale girando como un disco de Euler (ver .escudo-euler en globals.css).
+          Antes de la primera vez que aparece, queda oculto sin animar. */}
+      <g className={`escudo-giro ${estado === 2 ? 'escudo-aparece' : escudoVisto ? 'escudo-desaparece' : 'escudo-oculto'}`}>
+        <path d={ESCUDO} fill={NEGRO}
+          transform={`translate(${CENTRO} ${CENTRO}) scale(${ESCALA_ESCUDO}) translate(-734.9 -738)`} />
+      </g>
       {AROS.map((a, n) => {
         const g = giro(n)
         return (

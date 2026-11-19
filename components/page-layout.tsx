@@ -154,7 +154,7 @@ export function PageLayout({
         {children}
       </div>
 
-      <ContactForm bg="#403D37" text="#ffffff" {...contact} />
+      <ContactForm bg="#1C1854" text="#E1F2F0" {...contact} />
     </>
   )
 }

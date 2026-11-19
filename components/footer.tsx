@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import { JERGA_VISIBLE } from './jerga-visible'
-import { VERDE } from './minimal'
+import { CABECERAS } from './minimal'
 import { ShieldWheel } from './shield-wheel'
 
-/** Footer en verde Flahoolick con todo en negro: logo y claim grande (Bricolage + Instrument Serif);
+/** Footer en celeste con todo en azul noche: logo y claim grande (Bricolage + Instrument Serif);
     debajo, enlaces en fila y una línea final. */
 
-const FONDO = VERDE
-const TEXTO = '#000000'
-const TENUE = 'rgba(0, 0, 0, 0.6)'
+/** Celeste de marca con todo en azul noche (antes menta con negro). */
+const FONDO = CABECERAS.hielo.fondo
+const TEXTO = CABECERAS.hielo.texto
+const TENUE = 'rgba(28, 24, 84, 0.6)'
 const MONO: React.CSSProperties = {
   fontFamily: 'var(--font-mono), ui-monospace, monospace',
   fontSize: '13px',
@@ -36,7 +37,7 @@ export function Footer() {
           {/* Logo y claim */}
           <div className="flex flex-col gap-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-flahoolick-hrztl.svg" alt="Flahoolick" style={{ height: '30px', width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0)' }} />
+            <img src="/logo-flahoolick-hrztl.svg" alt="Flahoolick" style={{ height: '30px', width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0) saturate(100%) invert(23%) sepia(48%) saturate(6255%) hue-rotate(242deg) brightness(32%) contrast(98%)' }} />
             <p style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4.85rem)', lineHeight: 0.95, letterSpacing: '-0.03em', maxWidth: '12ch' }}>
               <span style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800 }}>Convertimos lo que sabes </span>
               <em style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400 }}>en autoridad de mercado.</em>

@@ -130,7 +130,7 @@ export function ContactForm({
                     <input
                       id={f.id} name={f.id} type="text" required
                       className="w-full py-3 px-4 text-sm outline-none"
-                      style={{ background: '#ffffff', border: 'none', color: '#000000' }}
+                      style={{ background: '#ffffff', border: 'none', color: '#1C1854' }}
                     />
                   </div>
                 ))}
@@ -140,7 +140,7 @@ export function ContactForm({
                 <input
                   id="email" name="email" type="email" required
                   className="w-full py-3 px-4 text-sm outline-none"
-                  style={{ background: '#ffffff', border: 'none', color: '#000000' }}
+                  style={{ background: '#ffffff', border: 'none', color: '#1C1854' }}
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -148,7 +148,7 @@ export function ContactForm({
                 <textarea
                   id="mensaje" name="mensaje" rows={4} required
                   className="w-full py-3 px-4 text-sm outline-none resize-none"
-                  style={{ background: '#ffffff', border: 'none', color: '#000000' }}
+                  style={{ background: '#ffffff', border: 'none', color: '#1C1854' }}
                 />
               </div>
               <button

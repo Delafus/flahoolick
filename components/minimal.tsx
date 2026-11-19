@@ -236,7 +236,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
 export function Cierre(_props: { titulo?: string; texto?: string; cta?: string }) {
   return (
     <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
-      <ContactForm bg="#403D37" text="#ffffff" submitLabel="Agenda una llamada" />
+      <ContactForm bg="#1C1854" text="#E1F2F0" submitLabel="Agenda una llamada" />
     </div>
   )
 }

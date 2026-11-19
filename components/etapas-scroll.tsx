@@ -10,8 +10,8 @@ import Link from 'next/link'
     Las piezas son conocimiento, no personas (los círculos del 95:5 son el mercado): cuadrados negros, el conocimiento en bruto;
     triángulos de color, lo que tiene valor.
     Estados: 1 todo suelto y girado, con los triángulos entre medio; 2 una grilla ordenada como un índice, con un triángulo al inicio
-    de cada fila; 3 el escudo de Flahoolick al centro, los cuadrados en anillos que giran a su alrededor (cada uno al revés del anterior)
-    y los 8 triángulos afuera, apuntando hacia afuera como las flechas del sello. */
+    de cada fila; 3 el escudo de Flahoolick al centro y cinco aros de una sola figura cada uno (cuadrados y triángulos alternados),
+    cada aro al revés del anterior y a su propia velocidad. */
 
 export interface EtapaScroll {
   slug: string
@@ -90,16 +90,17 @@ const GRILLA: Pieza[] = (() => {
   return pos
 })()
 
-/** 3 Activamos: el escudo al centro y cuatro aros alrededor. Los dos de adentro, solo cuadrados; los dos de afuera
-    intercalan triángulos y cuadrados, con los triángulos apuntando hacia afuera como las flechas del sello. */
+/** 3 Activamos: el escudo al centro y cinco aros alrededor, cada uno de una sola figura, alternando desde adentro:
+    cuadrados, triángulos, cuadrados, triángulos, cuadrados. Los triángulos apuntan hacia afuera como las flechas del sello. */
 const AROS: { radio: number; piezas: number[]; desfase: number }[] = (() => {
-  const sq = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
-  const intercalar = (tri: number[], cua: number[]) => tri.flatMap((t, k) => [t, cua[k]])
+  const cua = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
+  const tri = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => desde + k)
   return [
-    { radio: 48, piezas: sq(0, 12), desfase: 0 },
-    { radio: 72, piezas: sq(12, 20), desfase: 0.3 },
-    { radio: 98, piezas: intercalar(Array.from({ length: 8 }, (_, k) => k), sq(32, 8)), desfase: Math.PI / 16 },
-    { radio: 124, piezas: intercalar(Array.from({ length: 8 }, (_, k) => 8 + k), sq(40, 8)), desfase: -Math.PI / 2 },
+    { radio: 46, piezas: cua(0, 10), desfase: 0 },
+    { radio: 66, piezas: tri(0, 6), desfase: -Math.PI / 2 },
+    { radio: 88, piezas: cua(10, 16), desfase: 0.2 },
+    { radio: 110, piezas: tri(6, 10), desfase: -Math.PI / 2 + 0.3 },
+    { radio: 132, piezas: cua(26, 22), desfase: 0.1 },
   ]
 })()
 const CIRCULO: Pieza[] = (() => {
@@ -113,8 +114,9 @@ const CIRCULO: Pieza[] = (() => {
 })()
 
 const POSICIONES = [DISPERSOS, GRILLA, CIRCULO]
-/** Cada aro gira al revés del anterior y a su propia velocidad (segundos por vuelta). */
-const DURACIONES = [40, 60, 90, 120]
+/** Cada aro gira al revés del anterior y a una velocidad bien distinta de sus vecinos (segundos por vuelta, de adentro hacia afuera):
+    así se lee que cada figura va por su lado. */
+const DURACIONES = [20, 60, 32, 95, 48]
 const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa', duracion: `${DURACIONES[n]}s` })
 
 /** Etapa 1: cada pieza flota a su ritmo, suave y sin latidos. */

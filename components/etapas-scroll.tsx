@@ -293,7 +293,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
               <div key={e.slug} aria-hidden={i !== activa} className="volteo flex flex-col gap-3"
                 data-estado={i === activa ? (cambio.anterior === -1 ? 'quieto' : 'entra') : i === cambio.anterior ? 'sale' : 'oculto'}
                 style={{ gridArea: '1 / 1', pointerEvents: i === activa ? 'auto' : 'none' }}>
-                <h3 className="voltea text-[1.75rem]" style={TITULO}>
+                <h3 className="voltea text-[1.375rem]" style={TITULO}>
                   <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{numero(i)} {e.nombre}</Link>
                 </h3>
                 <p>{e.texto.split(' ').map((palabra, k) => <span key={k}><span className="voltea palabra">{palabra}</span> </span>)}</p>
@@ -318,7 +318,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
             {/* Listón de la etapa activa: solo del alto del texto, sin el aire de arriba y abajo. */}
             <span aria-hidden className="absolute left-0 top-5 bottom-5 w-1"
               style={{ backgroundColor: NEGRO, opacity: i === elegida ? 1 : 0, transition: 'opacity 300ms ease' }} />
-            <h3 className="text-[2rem]" style={TITULO}>
+            <h3 className="text-[1.5rem]" style={TITULO}>
               <Link href={`/metodologia/${e.slug}`}>{numero(i)} {e.nombre}</Link>
             </h3>
             <p className="text-base">{e.texto}</p>

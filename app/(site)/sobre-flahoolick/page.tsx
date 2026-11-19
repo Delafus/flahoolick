@@ -55,9 +55,8 @@ export default function SobreFlahoolick() {
 
       {/* Frase destacada: la idea clave en grande, como una cita al medio de la página. */}
       <section className="flex justify-center py-16 text-center md:py-24" style={{ color: AZUL }}>
-        <p className="text-[1.875rem] md:text-[3rem]"
-          style={{ fontFamily: 'var(--font-instrument-serif)', fontStyle: 'italic', lineHeight: 1.1, letterSpacing: '-0.01em', maxWidth: '24ch' }}>
-          Encontramos los argumentos, experiencias y evidencias que explican ese valor.
+        <p className="text-[1.875rem] md:text-[3rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '24ch' }}>
+          Encontramos los argumentos, experiencias y evidencias <Italica>que explican ese valor.</Italica>
         </p>
       </section>
 

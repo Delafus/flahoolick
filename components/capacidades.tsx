@@ -29,14 +29,15 @@ const EN_TARJETAS: Record<string, string> = { 'Narrativa de marca y liderazgo de
 
 /** Zigzag que separa la explicación de la lista: del color del fondo de la sección (rosa), de borde a borde de la tarjeta,
     como si el papel estuviera cortado con tijera de zigzag. */
-const ZIGZAG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='14' viewBox='0 0 22 14'%3E%3Cpath d='M0 12.5 L11 1.5 L22 12.5' fill='none' stroke='%23EF9DB6' stroke-width='3' stroke-linejoin='miter'/%3E%3C/svg%3E")`
+const zigzag = (color: string) => `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='14' viewBox='0 0 22 14'%3E%3Cpath d='M0 12.5 L11 1.5 L22 12.5' fill='none' stroke='${encodeURIComponent(color)}' stroke-width='3' stroke-linejoin='miter'/%3E%3C/svg%3E")`
 
 /** Lado del doblez de la esquina superior derecha, en px. */
 const DOBLEZ = 36
 
 /** Las tres capacidades como tres tarjetas lado a lado (home), sin numeración. Cada tarjeta completa lleva a su página.
     Fondo celeste sobre el rosa de la sección, con la esquina de arriba doblada; la lista lleva viñetas chicas. */
-export function CapacidadesTarjetas() {
+/** `fondo` es el color de la sección: el zigzag lo usa para que parezca un corte del papel. */
+export function CapacidadesTarjetas({ fondo = CABECERAS.rosa.fondo }: { fondo?: string }) {
   return (
     <div className="grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
       {DISCIPLINAS.map(d => (
@@ -51,7 +52,7 @@ export function CapacidadesTarjetas() {
           </h3>
           <p>{d.desc}</p>
           <div aria-hidden className="-mx-8 mt-auto md:-mx-10"
-            style={{ height: 14, backgroundImage: ZIGZAG, backgroundRepeat: 'repeat-x', backgroundSize: '22px 14px' }} />
+            style={{ height: 14, backgroundImage: zigzag(fondo), backgroundRepeat: 'repeat-x', backgroundSize: '22px 14px' }} />
           <ul className="flex flex-col gap-1.5 text-base" style={{ opacity: 0.75 }}>
             {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => EN_TARJETAS[p] ?? p).map(p => (
               <li key={p} className="flex items-baseline gap-2.5">

@@ -8,6 +8,9 @@ import { Grafico955 } from '@/components/grafico-95-5'
 import { CarruselCasos } from '@/components/carrusel-casos'
 import { CASOS } from '@/components/casos-datos'
 
+/** Rosa del bloque de servicios (prueba, 2026-11-19; antes CABECERAS.rosa #EF9DB6). */
+const ROSA_SERVICIOS = '#FFDAED'
+
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -64,12 +67,12 @@ export default function HomePage() {
         </section>
 
         {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas, en rosa a todo el ancho. */}
-        <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={{ ...ANCHO_COMPLETO(CABECERAS.rosa.fondo), color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto } as React.CSSProperties}>
+        <section className="flex flex-col items-center gap-12 py-16 text-center md:py-24" style={{ ...ANCHO_COMPLETO(ROSA_SERVICIOS), color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto } as React.CSSProperties}>
           <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
             <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>Tres capacidades. <Italica>Un sistema de contenido.</Italica></h2>
             <p>Combinamos estrategia, creatividad y tecnología para convertir el conocimiento de tu empresa en presencia de mercado.</p>
           </div>
-          <CapacidadesTarjetas />
+          <CapacidadesTarjetas fondo={ROSA_SERVICIOS} />
           <Boton href="#contacto">Agenda una llamada</Boton>
         </section>
 

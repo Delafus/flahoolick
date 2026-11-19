@@ -139,7 +139,7 @@ const ESCONDIDO: Pieza = { x: CENTRO, y: CENTRO, giro: ARRIBA }
 const posicion = (estado: number, i: number) => (esExtra(i) && estado !== 2 ? ESCONDIDO : POSICIONES[estado][i])
 /** Segundos por vuelta, de adentro hacia afuera. Los cuadrados circulan lento; los triángulos (el conocimiento en circulación),
     mucho más rápido. Cada aro gira al revés del anterior. */
-const DURACIONES = [90, 120, 12, 9, 15]
+const DURACIONES = [30, 45, 12, 9, 15]
 const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa', duracion: `${DURACIONES[n]}s` })
 
 /** Etapa 1: cada pieza flota a su ritmo, suave y sin latidos. */
@@ -151,7 +151,7 @@ const contramarcha = (n: number) => `escuadra-contra 14s cubic-bezier(0.65, 0, 0
 
 /** Escudo de Flahoolick (el mismo del sello), centrado y a escala del dibujo. */
 const ESCUDO = 'M829.183 744.25C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.25V639.767H829.183V744.25Z'
-const ESCALA_ESCUDO = 0.19
+const ESCALA_ESCUDO = 0.11
 
 export function GraficoEtapas({ estado, className }: { estado: number; className?: string }) {
   /** El escudo ya apareció alguna vez: desde ahí, al salir de la etapa 3, se va girando. */

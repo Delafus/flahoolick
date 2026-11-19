@@ -49,7 +49,7 @@ export function ShieldWheel({ color = '#FFFFFF', className }: { color?: string; 
         <polygon className="shield-wheel-flecha" style={{ '--dx': 0.707, '--dy': -0.707, animationDuration: '3.3s', animationDelay: '-0.3s' } as React.CSSProperties} points="954.3,515.4 943.7,547.2 922.5,526.0" fill="currentColor"/>
         <polygon className="shield-wheel-flecha" style={{ '--dx': -0.707, '--dy': 0.707, animationDuration: '4.0s', animationDelay: '-2.0s' } as React.CSSProperties} points="508.9,960.8 519.5,929.0 540.7,950.2" fill="currentColor"/>
       </g>
-      <path d="M829.183 744.251C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.251V639.767H829.183V744.251Z" fillRule="evenodd" clipRule="evenodd" fill="#1E1E1E"/>
+      <path d="M829.183 744.251C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.251V639.767H829.183V744.251Z" fillRule="evenodd" clipRule="evenodd" fill="currentColor"/>
       <mask id="shield-wheel-escudo" fill="#FFFFFF">
       <path d="M829.183 744.251C829.183 796.313 786.978 836.374 734.916 836.374C682.853 836.374 640.648 796.313 640.648 744.251V639.767H829.183V744.251Z" fillRule="evenodd" clipRule="evenodd"/>
       </mask>

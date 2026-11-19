@@ -74,8 +74,10 @@ export function EncabezadoCaso({ cliente, titulo }: { cliente: string; titulo: s
 
 /** Portada de 460 px de alto: foto en blanco y negro, logo del cliente arriba a la izquierda y hasta tres cifras abajo
     (en fila en escritorio, apiladas en teléfono). En escritorio usa la foto apaisada (`src`); en teléfono, la vertical (`srcMovil`). */
-export function PortadaCaso({ logo, imagen, datos }: {
-  logo: { src: string; alt: string }
+export function PortadaCaso({ logo, nombre, imagen, datos }: {
+  /** Logo del cliente. Mientras no lo tengamos, se muestra `nombre` en texto. */
+  logo?: { src: string; alt: string }
+  nombre?: string
   imagen?: {
     src: string
     srcMovil?: string
@@ -105,8 +107,12 @@ export function PortadaCaso({ logo, imagen, datos }: {
             style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 75%, rgba(0,0,0,0.85) 100%)' }} />
         </>
       )}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={logo.src} alt={logo.alt} className="absolute left-6 top-6" style={{ width: '144px', height: 'auto', filter: LOGO_BLANCO }} />
+      {logo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={logo.src} alt={logo.alt} className="absolute left-6 top-6" style={{ width: '144px', height: 'auto', filter: LOGO_BLANCO }} />
+      ) : (
+        <p className="absolute left-6 top-6" style={{ fontSize: '28px', fontWeight: 600, letterSpacing: '-0.03em' }}>{nombre}</p>
+      )}
       <ul className="absolute bottom-6 left-6 right-6 flex flex-col gap-4 md:flex-row md:gap-16">
         {datos.slice(0, 3).map(d => (
           <li key={d.etiqueta} className="flex flex-col gap-1">

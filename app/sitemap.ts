@@ -15,6 +15,7 @@ const RUTAS = [
   '/metodologia/ordenamos',
   '/metodologia/ponemos-en-circulacion',
   '/clientes/dunamis',
+  '/clientes/rameau',
   '/sobre-flahoolick',
   '/faq',
   ...(JERGA_VISIBLE ? ['/jerga'] : []),

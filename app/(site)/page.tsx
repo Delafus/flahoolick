@@ -5,6 +5,23 @@ import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
 import { Grafico955 } from '@/components/grafico-95-5'
+import { CarruselCasos } from '@/components/carrusel-casos'
+
+/** Casos del carrusel de la home, en orden. */
+const CASOS = [
+  {
+    nombre: 'Dunamis',
+    titulo: 'El cliente llega a la reunión con la tarea adelantada.',
+    texto: 'Dunamis puso su conocimiento inmobiliario al alcance de sus clientes. Hoy pueden evaluar opciones, calcular valores y resolver dudas antes de conversar con un especialista.',
+    href: '/clientes/dunamis',
+  },
+  {
+    nombre: 'Rameau',
+    titulo: 'Una plataforma lista que todavía no sabía a quién hablarle.',
+    texto: 'Con Rameau trabajamos el Value Proposition Canvas y pusimos a prueba sus hipótesis con leads reales. Hoy saben qué relato necesita la plataforma y a quién de la organización le habla.',
+    href: '/clientes/rameau',
+  },
+]
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -45,17 +62,17 @@ export default function HomePage() {
             pie={<Boton href="/metodologia">Ver metodología</Boton>} />
         </section>
 
-        {/* Caso Dunamis: centrado, en negro a todo el ancho de la pantalla. */}
-        <section className="flex flex-col items-center gap-6 py-16 text-center md:py-24"
+        {/* Historias de clientes: un caso a la vez, con flechas y circulitos, en negro a todo el ancho de la pantalla. */}
+        <section className="flex flex-col items-center py-16 text-center md:py-24"
           style={{ ...ANCHO_COMPLETO('#000000'), color: '#ffffff' }}>
-          <div className="flex flex-col items-center gap-6" style={{ maxWidth: '44rem' }}>
-            <p className="label" style={{ opacity: 0.6 }}>Caso Dunamis</p>
-            <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
-              El cliente llega a la reunión con la tarea adelantada.
-            </h3>
-            <p>Dunamis puso su conocimiento inmobiliario al alcance de sus clientes. Hoy pueden evaluar opciones, calcular valores y resolver dudas antes de conversar con un especialista.</p>
-            <Boton href="/clientes/dunamis" claro>Conoce la historia de Dunamis</Boton>
-          </div>
+          <CarruselCasos nombres={CASOS.map(c => c.nombre)} casos={CASOS.map(c => (
+            <div key={c.nombre} className="flex flex-col items-center gap-6">
+              <p className="label" style={{ opacity: 0.6 }}>Caso {c.nombre}</p>
+              <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>{c.titulo}</h3>
+              <p>{c.texto}</p>
+              <Boton href={c.href} claro>Conoce la historia de {c.nombre}</Boton>
+            </div>
+          ))} />
         </section>
 
         {/* Servicios: titular y bajada centrados, y las tres capacidades como tarjetas, en rosa a todo el ancho. */}

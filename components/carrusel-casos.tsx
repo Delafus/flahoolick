@@ -23,7 +23,7 @@ export function CarruselCasos({ casos, nombres }: { casos: ReactNode[]; nombres:
   )
 
   return (
-    <div className="flex w-full flex-col items-center gap-6" role="region" aria-roledescription="carrusel" aria-label="Historias de clientes">
+    <div className="flex w-full flex-col items-center gap-4" role="region" aria-roledescription="carrusel" aria-label="Historias de clientes">
       <div className="flex w-full items-center justify-center gap-2 md:gap-6">
         <div className="hidden md:block">{flecha(-1)}</div>
         <div className="grid w-full overflow-hidden" style={{ maxWidth: '44rem' }}

@@ -4,10 +4,10 @@ export const logos: { src: string; alt: string; escala?: number }[] = [
   { src: '/logo-mccann.svg',  alt: 'McCann', escala: 0.8 },
   { src: '/logo-bbdo.svg',    alt: 'BBDO', escala: 0.8 },
   { src: '/logo-heineken.svg',alt: 'Heineken' },
-  { src: '/logo-adidas.svg',  alt: 'Adidas' },
+  { src: '/logo-adidas.svg',  alt: 'Adidas', escala: 0.8 },
   { src: '/logo-coca-cola.svg', alt: 'Coca-Cola' },
   { src: '/logo-claro.svg',   alt: 'Claro Empresas' },
-  { src: '/logo-vtr.png',     alt: 'VTR' },
+  { src: '/logo-vtr.png',     alt: 'VTR', escala: 0.8 },
   { src: '/logo-unab.svg',    alt: 'UNAB' },
   { src: '/logo-cajas.svg',   alt: 'Cajas de Chile' },
   { src: '/logo-df.svg',      alt: 'Diario Financiero' },
@@ -18,7 +18,7 @@ export const logos: { src: string; alt: string; escala?: number }[] = [
   { src: '/logo-oxxo.png',    alt: 'OXXO', escala: 0.8 },
   { src: '/logo-pg.svg',      alt: 'P&G', escala: 0.8 },
   { src: '/logo-pantene.png', alt: 'Pantene' },
-  { src: '/logo-febreze.png', alt: 'Febreze' },
+  { src: '/logo-febreze.png', alt: 'Febreze', escala: 0.8 },
   { src: '/logo-dunamis.svg', alt: 'Dunamis' },
 ]
 

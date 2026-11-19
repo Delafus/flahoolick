@@ -51,10 +51,10 @@ export default function HomePage() {
         </section>
 
         {/* Historias de clientes: un caso a la vez, con flechas y circulitos, en negro a todo el ancho de la pantalla. */}
-        <section className="flex flex-col items-center py-10 text-center md:py-14"
+        <section className="flex flex-col items-center py-7 text-center md:py-9"
           style={{ ...ANCHO_COMPLETO('#000000'), color: '#ffffff' }}>
           <CarruselCasos nombres={CASOS.map(c => c.nombre)} casos={CASOS.map(c => (
-            <div key={c.nombre} className="flex flex-col items-center gap-4">
+            <div key={c.nombre} className="flex flex-col items-center gap-3">
               <p className="label" style={{ opacity: 0.6 }}>Caso {c.nombre}</p>
               <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>{c.titulo}</h3>
               <p>{c.texto}</p>

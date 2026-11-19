@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FUENTE, CABECERAS } from './minimal'
+import { CABECERAS } from './minimal'
 import { DISCIPLINAS } from './servicios-datos'
 
 /** Las tres capacidades con su descripción y lo que incluye cada una. Cada capacidad completa lleva a su página. */
@@ -8,13 +8,20 @@ export function Capacidades() {
     <div className="flex flex-col gap-10">
       {DISCIPLINAS.map(d => (
         <Link key={d.id} href={d.href} className="group flex flex-col gap-3">
-          <h3 className="underline-offset-4 decoration-1 group-hover:underline"
-            style={{ ...FUENTE, fontWeight: 500, letterSpacing: 'normal', fontSize: 'inherit', lineHeight: 'inherit' }}>
-            {d.numero}. {d.nombre}
+          {/* Número y nombre en Bricolage, como los títulos de etapa; el nombre se subraya al pasar el mouse (es un enlace). */}
+          <h3 className="text-[1.375rem] md:text-[1.5rem]"
+            style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+            {String(d.numero).padStart(2, '0')} <span className="underline-offset-4 decoration-2 group-hover:underline">{d.nombre}</span>
           </h3>
           <p>{d.desc}</p>
-          <ul className="flex flex-col gap-1 pl-5" style={{ listStyleType: 'disc', opacity: 0.7 }}>
-            {d.puntos.map(p => <li key={p}>{p}</li>)}
+          <ul className="flex flex-col gap-1.5 text-base" style={{ opacity: 0.75 }}>
+            {d.puntos.map(p => (
+              <li key={p} className="flex items-baseline gap-2.5">
+                <span aria-hidden className="shrink-0 rounded-full"
+                  style={{ width: 5, height: 5, backgroundColor: 'currentColor', transform: 'translateY(-0.2em)' }} />
+                {p}
+              </li>
+            ))}
           </ul>
         </Link>
       ))}

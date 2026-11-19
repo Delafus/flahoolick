@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, CuerpoCeleste } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Estudio creativo e inteligencia artificial para marketing y ventas B2B | Flahoolick',
@@ -31,6 +31,7 @@ export default function EstudioCreativoEInteligenciaArtificial() {
         cursiva="como contenido de valor."
         bajada="Convertimos la estrategia en contenidos, experiencias y herramientas que apoyan marketing y ventas."
       />
+      <CuerpoCeleste>
       <Bloque titulo="El conocimiento inmóvil pierde valor.">
         <p>Tu empresa acumula experiencia en reuniones, documentos, proyectos, datos y conversaciones comerciales. Una parte valiosa todavía espera llegar a quienes investigan, recomiendan y deciden.</p>
         <p>Encontramos ese conocimiento, conservamos su singularidad y le damos la forma que necesita para cumplir un trabajo en el mercado.</p>
@@ -49,6 +50,7 @@ export default function EstudioCreativoEInteligenciaArtificial() {
         <p>Un PDF queda viejo cada vez que cambian el stock o los honorarios. El dossier web funciona en celular y tablet, y se actualiza una sola vez para todo el equipo.</p>
         <p>Dee, el asistente virtual de Dunamis, está conectado a la base de propiedades y servicios: responde consultas, presenta las propiedades que calzan con cada persona, agenda la visita y deriva el contacto a un agente.</p>
       </CasoEnlace>
+      </CuerpoCeleste>
       <Cierre />
     </Pagina>
   )

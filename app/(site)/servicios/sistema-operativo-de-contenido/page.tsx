@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, CuerpoCeleste } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Sistema operativo de contenido B2B | Flahoolick',
@@ -24,6 +24,7 @@ export default function SistemaOperativoDeContenido() {
         cursiva="qué publicar, para quién y cuándo."
         bajada="Diseñamos la estructura que permite producir y distribuir contenido relevante de manera continua."
       />
+      <CuerpoCeleste>
       <Bloque titulo="La frecuencia necesita dirección.">
         <p>La regularidad adquiere valor cuando ayuda al mercado a comprender mejor a tu empresa.</p>
         <p>Un sistema asigna a cada contenido una audiencia, una pregunta y una función. Así, las piezas acumulan reconocimiento y ayudan a que la empresa ocupe una posición clara.</p>
@@ -42,6 +43,7 @@ export default function SistemaOperativoDeContenido() {
       <CasoEnlace titulo="Dunamis ordenó su contenido desde las preguntas reales de sus clientes.">
         <p>De reuniones, catálogos y conversaciones con clientes salieron las situaciones y preguntas que llevan a una persona a considerar comprar, vender, arrendar o invertir. Esas preguntas ordenaron todo el plan de contenido.</p>
       </CasoEnlace>
+      </CuerpoCeleste>
       <Cierre />
     </Pagina>
   )

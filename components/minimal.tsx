@@ -186,7 +186,7 @@ export function Bloque({ titulo, id, etiqueta, tono, visual, children }: {
       <div className="bloque-titulo flex flex-col gap-6">
         {visual}
         {etiqueta && <p className="label w-fit px-3 py-1.5" style={{ backgroundColor: '#000000', color: VERDE, borderRadius: '999px' }}>{etiqueta}</p>}
-        <h2 className="text-[1.75rem] md:text-[2.25rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.15 }}>
+        <h2 className="text-[1.875rem] md:text-[2.5rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
           {titulo}
         </h2>
       </div>
@@ -202,15 +202,16 @@ export interface Item {
   href?: string
 }
 
+/** Lista de ítems con número y título en Bricolage ("01 Título"), como los títulos de etapa de la home. */
 export function Items({ items }: { items: Item[] }) {
   return (
-    <div className="flex flex-col gap-6">
-      {items.map(i => {
+    <div className="flex flex-col gap-8">
+      {items.map((i, n) => {
         const contenido = (
           <>
-            <h3 className={i.href ? 'underline-offset-4 decoration-1 group-hover:underline' : undefined}
-              style={{ ...FUENTE, fontWeight: 500, letterSpacing: 'normal', fontSize: 'inherit', lineHeight: 'inherit' }}>{i.titulo}</h3>
-            <p>{i.texto}</p>
+            <h3 className="text-[1.375rem] md:text-[1.5rem]"
+              style={{ ...DESTACADA, lineHeight: 1.1, letterSpacing: '-0.03em' }}>{String(n + 1).padStart(2, '0')} {i.titulo}</h3>
+            <p className="mt-2">{i.texto}</p>
           </>
         )
         return i.href
@@ -218,6 +219,17 @@ export function Items({ items }: { items: Item[] }) {
           : <div key={i.titulo}>{contenido}</div>
       })}
     </div>
+  )
+}
+
+/** Cuerpo de una página bajo su hero: celeste de borde a borde con texto azul noche (el estilo de todo el sitio). */
+export function CuerpoCeleste({ children }: { children: React.ReactNode }) {
+  const { fondo, texto } = CABECERAS.hielo
+  return (
+    <div style={{
+      backgroundColor: fondo, color: texto, ['--tinta' as string]: texto,
+      boxShadow: `0 0 0 100vmax ${fondo}`, clipPath: 'inset(0 -100vmax)',
+    } as React.CSSProperties}>{children}</div>
   )
 }
 

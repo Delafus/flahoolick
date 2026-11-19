@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, FUENTE } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, FUENTE, CuerpoCeleste } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Estrategia y relato de marca B2B | Flahoolick',
@@ -30,6 +30,7 @@ export default function EstrategiaYRelatoDeMarca() {
         cursiva="puede entender y repetir."
         bajada="Definimos qué hace valiosa a tu empresa, cómo debe posicionarse y qué necesita escuchar cada audiencia."
       />
+      <CuerpoCeleste>
       <Bloque titulo="Ocupar un lugar exige elegirlo.">
         <p>Las empresas complejas suelen describirse con las mismas palabras: innovación, experiencia y compromiso.</p>
         <p>Una posición define qué valor puede defender la empresa, para quién importa y qué pruebas la vuelven creíble.</p>
@@ -52,6 +53,7 @@ export default function EstrategiaYRelatoDeMarca() {
       <CasoEnlace titulo="Una nueva identidad para dos públicos.">
         <p>De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.</p>
       </CasoEnlace>
+      </CuerpoCeleste>
       <Cierre />
     </Pagina>
   )

@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { Pagina, Hero, Cierre, CABECERAS, DESTACADA, Italica } from '@/components/minimal'
 import { ShieldWheel } from '@/components/shield-wheel'
-import { GRAFICOS_PRINCIPIOS } from '@/components/principios-graficos'
 
 export const metadata: Metadata = {
   title: 'Sobre Flahoolick | Estrategia y contenido B2B',
@@ -25,9 +24,6 @@ const CREEMOS = [
   { titulo: 'El criterio guía la tecnología', texto: 'Utilizamos inteligencia artificial para investigar, analizar y organizar conocimiento. La estrategia, las decisiones editoriales y la redacción final dependen de profesionales senior.' },
   { titulo: 'El trabajo queda instalado', texto: 'Creamos relatos, herramientas y sistemas de contenido que la organización puede utilizar, sostener y mejorar con el tiempo.' },
 ]
-
-/** Lado del doblez de la esquina de las tarjetas, en px (el mismo recurso de las tarjetas de servicios). */
-const DOBLEZ = 28
 
 export default function SobreFlahoolick() {
   return (
@@ -65,28 +61,21 @@ export default function SobreFlahoolick() {
         </p>
       </section>
 
-      {/* Qué creemos: cinco tarjetas numeradas, cada una con un mini gráfico de la iconografía del sitio. */}
+      {/* Qué creemos: cinco principios numerados, sin cajas, en dos columnas en escritorio. */}
       <section className="flex flex-col gap-10 py-16 md:gap-14 md:py-24" style={banda(ROSA)}>
         <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
           Qué <Italica>creemos.</Italica>
         </h2>
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
-          {CREEMOS.map((c, i) => {
-            const Grafico = GRAFICOS_PRINCIPIOS[i]
-            return (
-              <li key={c.titulo} className="group relative flex flex-col gap-5 p-8 md:p-10"
-                style={{ backgroundColor: CELESTE, clipPath: `polygon(0 0, calc(100% - ${DOBLEZ}px) 0, 100% ${DOBLEZ}px, 100% 100%, 0 100%)` }}>
-                <span aria-hidden className="absolute right-0 top-0"
-                  style={{ width: DOBLEZ, height: DOBLEZ, backgroundColor: '#ffffff', clipPath: 'polygon(0 0, 100% 100%, 0 100%)' }} />
-                <div className="flex items-start justify-between gap-4">
-                  <Grafico />
-                  <span className="label" style={{ opacity: 0.6 }}>{String(i + 1).padStart(2, '0')}</span>
-                </div>
-                <h3 className="text-[1.375rem] md:text-[1.5rem]" style={{ ...DESTACADA, lineHeight: 1.1, letterSpacing: '-0.03em' }}>{c.titulo}</h3>
-                <p className="text-base" style={{ opacity: 0.85 }}>{c.texto}</p>
-              </li>
-            )
-          })}
+        <ul className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+          {CREEMOS.map((c, i) => (
+            <li key={c.titulo} className="flex flex-col gap-3">
+              {/* Número y título en la misma línea y la misma letra, como los títulos de etapa de la home. */}
+              <h3 className="text-[1.5rem] md:text-[1.75rem]" style={{ ...DESTACADA, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+                {String(i + 1).padStart(2, '0')} {c.titulo}
+              </h3>
+              <p>{c.texto}</p>
+            </li>
+          ))}
         </ul>
       </section>
 

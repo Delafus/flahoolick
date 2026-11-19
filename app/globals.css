@@ -415,10 +415,6 @@
 .boton-contorno-claro { border: 1px solid #ffffff; color: #ffffff; border-radius: 999px; transition: background-color 0.2s ease, color 0.2s ease; }
 .boton-contorno-claro:hover { background-color: #ffffff; color: #000000; }
 
-/* Mini gráficos de "Qué creemos" (Sobre): las órbitas giran despacio al pasar el mouse por la tarjeta. */
-.group:hover .principio-orbita { animation: grafico-gira 10s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .group:hover .principio-orbita { animation: none; } }
-
 /* Gráfico 95:5 de la home: flota, sube y baja muy suave. */
 .flota-suave { animation: flota-suave 6s ease-in-out infinite; }
 @keyframes flota-suave { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }

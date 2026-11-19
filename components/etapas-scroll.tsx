@@ -153,7 +153,7 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
                       <polygon className="grafico-relleno" fill={NEGRO} style={forma}
                         points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />
                     ) : (
-                      <rect className="grafico-relleno" fill={NEGRO} style={forma}
+                      <rect className="grafico-relleno" fill={NEGRO} fillOpacity={0.6} style={forma}
                         x={-CUADRADO} y={-CUADRADO} width={CUADRADO * 2} height={CUADRADO * 2} />
                     )}
                   </g>

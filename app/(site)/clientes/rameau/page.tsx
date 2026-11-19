@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 import {
   PaginaCaso, EncabezadoCaso, PortadaCaso, ResumenCaso, CuerpoCaso, SeccionCaso, EnlaceCaso,
-  CierreCaso, type Dato, type CampoFicha,
+  CitaCaso, CierreCaso, type Dato, type CampoFicha, type Cita,
 } from '@/components/caso'
 import { CreditoStrategyzer } from '@/components/minimal'
 
 /** Caso Rameau, con la misma estructura del caso Dunamis. Proyecto en curso.
     PENDIENTE (lo entrega el usuario): logo en SVG, foto de portada, imágenes del taller y de las piezas,
-    una cita con nombre y cargo, el segmento y el cargo al que le hablan, ejemplos de hipótesis, y resultados cuando los haya. */
+    el retrato de Alexey Mitjaew, el segmento y el cargo al que le hablan, ejemplos de hipótesis, y resultados cuando los haya. */
 
 export const metadata: Metadata = {
   title: 'Rameau | Historias de clientes | Flahoolick',
@@ -30,6 +30,13 @@ const FICHA: CampoFicha[] = [
   { nombre: 'Estado', valores: ['En curso'] },
   { nombre: 'Sitios', valores: [{ texto: 'rameau.co', href: 'https://rameau.co/es' }] },
 ]
+
+/** Cita real del fundador. PENDIENTE: su retrato. */
+const CITA_FUNDADOR: Cita = {
+  texto: 'Necesitábamos claridad sobre a quién venderle, qué problema resolver y cómo diferenciarnos. Flahoolick nos ayudó a conectar estrategia, producto y comunicación en una propuesta comercial coherente.',
+  nombre: 'Alexey Mitjaew',
+  cargo: 'CEO & Founder, Rameau',
+}
 
 export default function HistoriaRameau() {
   return (
@@ -56,6 +63,7 @@ export default function HistoriaRameau() {
           <p>Del trabajo con el segmento salieron hipótesis sobre el valor de la plataforma. El equipo de Rameau las llevó a conversaciones con sus leads potenciales.</p>
           <p>Así fue aprendiendo qué relato necesita la plataforma y a quién, dentro de cada organización, le tiene que hablar.</p>
         </SeccionCaso>
+        <CitaCaso {...CITA_FUNDADOR} />
 
         <SeccionCaso titulo="Sobre esos aprendizajes construimos la marca, el sitio y el contenido.">
           <p>Estamos desarrollando la identidad visual y el sitio de Rameau, y la estrategia de contenidos que los alimenta: un blog de artículos y su página de LinkedIn, que manejamos nosotros.</p>

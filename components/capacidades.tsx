@@ -24,6 +24,8 @@ export function Capacidades() {
 
 /** Puntos que no van en las tarjetas de la home (sí en /servicios). */
 const FUERA_DE_TARJETAS = ['Dossiers y casos de éxito.', 'Agentes de inteligencia artificial.']
+/** Puntos que en las tarjetas de la home van más cortos (el liderazgo de opinión lo hacemos poco). */
+const EN_TARJETAS: Record<string, string> = { 'Narrativa de marca y liderazgo de opinión.': 'Narrativa de marca.' }
 
 /** Zigzag que separa la explicación de la lista: del color del fondo de la sección (rosa), de borde a borde de la tarjeta,
     como si el papel estuviera cortado con tijera de zigzag. */
@@ -51,7 +53,7 @@ export function CapacidadesTarjetas() {
           <div aria-hidden className="-mx-8 mt-auto md:-mx-10"
             style={{ height: 14, backgroundImage: ZIGZAG, backgroundRepeat: 'repeat-x', backgroundSize: '22px 14px' }} />
           <ul className="flex flex-col gap-1.5 text-base" style={{ opacity: 0.75 }}>
-            {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => (
+            {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => EN_TARJETAS[p] ?? p).map(p => (
               <li key={p} className="flex items-baseline gap-2.5">
                 <span aria-hidden className="shrink-0 rounded-full"
                   style={{ width: 5, height: 5, backgroundColor: 'currentColor', transform: 'translateY(-0.2em)' }} />

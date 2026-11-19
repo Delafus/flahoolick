@@ -87,9 +87,11 @@ export function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  /** Texto oscuro: negro o el azul noche de prueba (#1C1854). El logo va en negro y las líneas, oscuras. */
+  /** Texto oscuro: negro o el azul noche de prueba (#1C1854). Las líneas van oscuras. */
   const isDarkText = text === '#000000' || text === 'black' || text.toLowerCase() === '#1c1854'
   const isBlueText = text.toLowerCase() === '#083ea7'
+  /** Azul noche del hero celeste de la home: el logo va en ese mismo azul. */
+  const isNavyText = text.toLowerCase() === '#1c1854'
   const divColor = isDarkText
     ? 'rgba(0,0,0,0.12)'
     : isBlueText
@@ -132,11 +134,24 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="md:absolute md:left-1/2 md:-translate-x-1/2"
           onClick={() => { setActive(null); setMobile(false) }}>
-          <img
-            src="/logo-flahoolick-hrztl.svg"
-            alt="Flahoolick"
-            style={{ filter: logoFilter, height: '28px', width: 'auto', maxWidth: '160px', display: 'block' }}
-          />
+          {isNavyText ? (
+            // Azul noche exacto (hero celeste de la home): el logo hace de máscara sobre un fondo del color del texto.
+            // La imagen queda invisible solo para dar el tamaño.
+            <span role="img" aria-label="Flahoolick" style={{
+              display: 'block', backgroundColor: text,
+              WebkitMaskImage: 'url(/logo-flahoolick-hrztl.svg)', maskImage: 'url(/logo-flahoolick-hrztl.svg)',
+              WebkitMaskSize: 'contain', maskSize: 'contain', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat',
+            }}>
+              <img src="/logo-flahoolick-hrztl.svg" alt=""
+                style={{ visibility: 'hidden', height: '28px', width: 'auto', maxWidth: '160px', display: 'block' }} />
+            </span>
+          ) : (
+            <img
+              src="/logo-flahoolick-hrztl.svg"
+              alt="Flahoolick"
+              style={{ filter: logoFilter, height: '28px', width: 'auto', maxWidth: '160px', display: 'block' }}
+            />
+          )}
         </Link>
 
         {/* Right nav + CTA + hamburguesa */}

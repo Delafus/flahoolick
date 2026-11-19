@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FUENTE, GRIS } from './minimal'
+import { FUENTE, CABECERAS } from './minimal'
 import { DISCIPLINAS } from './servicios-datos'
 
 /** Las tres capacidades con su descripción y lo que incluye cada una. Cada capacidad completa lleva a su página. */
@@ -25,20 +25,33 @@ export function Capacidades() {
 /** Puntos que no van en las tarjetas de la home (sí en /servicios). */
 const FUERA_DE_TARJETAS = ['Dossiers y casos de éxito.', 'Agentes de inteligencia artificial.']
 
-/** Las tres capacidades como tres tarjetas lado a lado (home), sin numeración. Cada tarjeta completa lleva a su página. */
+/** Zigzag que separa la explicación de la lista: del color del fondo de la sección (rosa), de borde a borde de la tarjeta,
+    como si el papel estuviera cortado con tijera de zigzag. */
+const ZIGZAG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='14' viewBox='0 0 22 14'%3E%3Cpath d='M0 12.5 L11 1.5 L22 12.5' fill='none' stroke='%23EF9DB6' stroke-width='3' stroke-linejoin='miter'/%3E%3C/svg%3E")`
+
+/** Las tres capacidades como tres tarjetas lado a lado (home), sin numeración. Cada tarjeta completa lleva a su página.
+    Fondo celeste sobre el rosa de la sección; la lista lleva viñetas chicas. */
 export function CapacidadesTarjetas() {
   return (
     <div className="grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
       {DISCIPLINAS.map(d => (
         <Link key={d.id} href={d.href} className="group flex flex-col gap-5 p-8 transition-colors md:p-10"
-          style={{ backgroundColor: GRIS }}>
-          <h3 className="text-[1.5rem] underline-offset-4 decoration-1 group-hover:underline md:text-[1.75rem]"
+          style={{ backgroundColor: CABECERAS.hielo.fondo }}>
+          <h3 className="text-[1.5rem] md:text-[1.75rem]"
             style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
             {d.nombre}
           </h3>
           <p>{d.desc}</p>
-          <ul className="mt-auto flex flex-col gap-1 pt-5 text-base" style={{ borderTop: '1px solid rgba(0,0,0,0.15)', opacity: 0.75 }}>
-            {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => <li key={p}>{p}</li>)}
+          <div aria-hidden className="-mx-8 mt-auto md:-mx-10"
+            style={{ height: 14, backgroundImage: ZIGZAG, backgroundRepeat: 'repeat-x', backgroundSize: '22px 14px' }} />
+          <ul className="flex flex-col gap-1.5 text-base" style={{ opacity: 0.75 }}>
+            {d.puntos.filter(p => !FUERA_DE_TARJETAS.includes(p)).map(p => (
+              <li key={p} className="flex items-baseline gap-2.5">
+                <span aria-hidden className="shrink-0 rounded-full"
+                  style={{ width: 5, height: 5, backgroundColor: 'currentColor', transform: 'translateY(-0.2em)' }} />
+                {p}
+              </li>
+            ))}
           </ul>
         </Link>
       ))}

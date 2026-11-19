@@ -23,6 +23,8 @@ export interface EtapaScroll {
 const N = 64
 const CENTRO = 150
 const NEGRO = '#000000'
+/** Rojo de los triángulos (conocimiento con valor): el único color fuerte del gráfico. A prueba, de la referencia del usuario. */
+const ROJO = '#E8432E'
 /** Alto del header fijo. */
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
@@ -152,7 +154,7 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
                 <g key={i} className="grafico-punto" style={{ transform: `translate(${p.x}px, ${p.y}px)` }}>
                   <g style={e ? { transformOrigin: `${r1(e.x - p.x)}px ${r1(e.y - p.y)}px`, animation: marcha(e.n) } : undefined}>
                     {esTriangulo(i) ? (
-                      <polygon className="grafico-relleno" fill={NEGRO} style={forma}
+                      <polygon className="grafico-relleno" fill={ROJO} style={forma}
                         points={`${TRIANGULO},0 ${-TRIANGULO * 0.8},${-TRIANGULO * 0.85} ${-TRIANGULO * 0.8},${TRIANGULO * 0.85}`} />
                     ) : (
                       <rect className="grafico-relleno" fill={NEGRO} style={forma}

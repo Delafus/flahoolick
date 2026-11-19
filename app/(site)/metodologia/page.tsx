@@ -26,12 +26,19 @@ const TEXTOS = [
   'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
 ]
 
+/** Cinco principios basados en evidencia (Ehrenberg-Bass, Binet y Field), adaptados a B2B. Sin cifras hasta verificarlas. */
 const PRINCIPIOS = [
-  { titulo: 'El negocio va primero', texto: 'Cada recomendación parte de entender cómo la empresa crea valor y por qué alguien debería elegirla.' },
-  { titulo: 'El conocimiento interno aporta evidencia', texto: 'Buscamos experiencia, datos, decisiones y aprendizajes propios que la empresa puede afirmar con plena legitimidad.' },
-  { titulo: 'Cada activo cumple un trabajo', texto: 'Su función puede ser descubrir un problema, explicar una solución, comparar alternativas, resolver una objeción o avanzar una venta.' },
-  { titulo: 'Marketing y ventas comparten el relato', texto: 'Todo lo que el mercado encuentra y escucha construye la misma comprensión de la empresa.' },
-  { titulo: 'El criterio guía la tecnología', texto: 'La IA amplía nuestra capacidad para investigar, ordenar y ejecutar. El juicio humano senior dirige las decisiones estratégicas y editoriales.' },
+  { titulo: 'Al comprador no le importa tu marca.', texto: 'Le importan sus problemas. Cada mensaje parte de su situación, no de lo que la empresa quiere decir de sí misma.', fuente: 'Byron Sharp, How Brands Grow (2010).' },
+  { titulo: 'Que te reconozcan antes de que te entiendan.', texto: 'Colores, formas, tono y personajes que se repiten en cada pieza. La distintividad hace que el mercado te identifique sin esfuerzo.', fuente: 'Jenni Romaniuk, Building Distinctive Brand Assets (2018).' },
+  { titulo: 'Comunica para el 95% que todavía no compra.', texto: 'En B2B, solo el 5% del mercado está listo para comprar hoy. El resto decidirá más adelante y elegirá entre las marcas que recuerda.', fuente: 'John Dawes, Ehrenberg-Bass Institute y LinkedIn B2B Institute (2021).' },
+  { titulo: 'Habla de lo que el negocio resuelve.', texto: 'Las razones de compra están en el producto, el servicio y las situaciones en que alguien necesita tu categoría, no en un propósito inventado.', fuente: 'Jenni Romaniuk, Category Entry Points; Peter Field, IPA.' },
+  { titulo: 'Sé consistente por años, no por campañas.', texto: 'Las marcas se construyen con repetición. Cambiar el mensaje porque el equipo se aburrió borra lo que el mercado empezaba a recordar.', fuente: 'Les Binet y Peter Field, The Long and the Short of It (2013).' },
+]
+
+/** Charlas en que se basan los principios. */
+const CHARLAS = [
+  { texto: 'Byron Sharp: Busting myths about business growth', href: 'https://www.youtube.com/watch?v=JZ4TKKB28js' },
+  { texto: 'Byron Sharp vs Mark Ritson: 5 big marketing truths we agree on', href: 'https://www.youtube.com/watch?v=6tCo3UP1pYQ' },
 ]
 
 export default function Metodologia() {
@@ -66,7 +73,15 @@ export default function Metodologia() {
           <EtapasScroll etapas={ETAPAS.map((e, i) => ({ slug: e.slug, nombre: e.nombre, texto: TEXTOS[i], recibes: e.recibes }))} />
         </section>
 
-        {/* Principios: numerados, sin cajas, en dos columnas en escritorio. */}
+        {/* Bisagra: la propuesta de valor (lo que decir) y la distintividad (que te recuerden). */}
+        <section className="flex flex-col gap-6 pt-16 md:pt-24" style={{ maxWidth: '52rem' }}>
+          <h2 className="text-[2.25rem] md:text-[3.25rem]" style={TITULO}>
+            La propuesta de valor te da algo que decir. <Italica>La distintividad hace que te recuerden.</Italica>
+          </h2>
+          <p style={{ maxWidth: '44rem' }}>Ordenamos lo que tu empresa ofrece con el Value Proposition Canvas. Para ponerlo en circulación, seguimos lo que dice la evidencia sobre cómo crecen las marcas.</p>
+        </section>
+
+        {/* Principios basados en evidencia: numerados, sin cajas, en dos columnas en escritorio, cada uno con su fuente. */}
         <section className="flex flex-col gap-10 py-16 md:gap-14 md:py-24">
           <h2 className="text-[2.25rem] md:text-[3.25rem]" style={{ ...TITULO, maxWidth: '22ch' }}>
             Cinco principios para producir <Italica>comunicación con sustancia.</Italica>
@@ -78,9 +93,19 @@ export default function Metodologia() {
                   {String(i + 1).padStart(2, '0')} {p.titulo}
                 </h3>
                 <p>{p.texto}</p>
+                <p className="text-[0.8125rem]" style={{ opacity: 0.6, fontStyle: 'italic' }}>{p.fuente}</p>
               </li>
             ))}
           </ul>
+          <p className="text-[0.8125rem]" style={{ opacity: 0.6, lineHeight: 1.5 }}>
+            Basado en:{' '}
+            {CHARLAS.map((c, i) => (
+              <span key={c.href}>
+                <a href={c.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 decoration-1">{c.texto}</a>
+                {i < CHARLAS.length - 1 ? ' · ' : '.'}
+              </span>
+            ))}
+          </p>
         </section>
 
         {/* Expertos. */}

@@ -7,7 +7,7 @@ import { CreditoStrategyzer } from '@/components/minimal'
 
 /** Caso Rameau, con la misma estructura del caso Dunamis. Proyecto en curso.
     PENDIENTE (lo entrega el usuario): foto de portada, imágenes del taller y de las piezas,
-    el retrato de Alexey Mitjaew, el segmento y el cargo al que le hablan, ejemplos de hipótesis, y resultados cuando los haya. */
+    el segmento y el cargo al que le hablan, ejemplos de hipótesis, y resultados cuando los haya. */
 
 export const metadata: Metadata = {
   title: 'Rameau | Historias de clientes | Flahoolick',
@@ -33,11 +33,12 @@ const FICHA: CampoFicha[] = [
   { nombre: 'Sitios', valores: [{ texto: 'rameau.co', href: 'https://rameau.co/es' }] },
 ]
 
-/** Cita real del fundador. PENDIENTE: su retrato. */
+/** Cita real del fundador, con su foto de LinkedIn. */
 const CITA_FUNDADOR: Cita = {
   texto: 'Necesitábamos claridad sobre a quién venderle, qué problema resolver y cómo diferenciarnos. Flahoolick nos ayudó a conectar estrategia, producto y comunicación en una propuesta comercial coherente.',
   nombre: 'Alexey Mitjaew',
   cargo: 'CEO & Founder, Rameau',
+  retrato: '/casos/rameau/retrato-alexey-mitjaew.jpg',
 }
 
 export default function HistoriaRameau() {

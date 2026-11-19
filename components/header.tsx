@@ -92,7 +92,13 @@ export function Header() {
   const isBlueText = text.toLowerCase() === '#083ea7'
   /** Azul noche del hero celeste de la home: el logo va en ese mismo azul. */
   const isNavyText = text.toLowerCase() === '#1c1854'
-  const divColor = isDarkText
+  /** Rojo de los headers amarillos (metodología): logo, textos y menú en ese rojo. */
+  const isRedText = text.toLowerCase() === '#ff1d00'
+  /** Con azul noche o rojo, el logo se pinta exacto con una máscara del color del texto. */
+  const logoMascara = isNavyText || isRedText
+  const divColor = isRedText
+    ? 'rgba(255,29,0,0.3)'
+    : isDarkText
     ? 'rgba(0,0,0,0.12)'
     : isBlueText
     ? 'rgba(8,62,167,0.2)'
@@ -134,8 +140,8 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="md:absolute md:left-1/2 md:-translate-x-1/2"
           onClick={() => { setActive(null); setMobile(false) }}>
-          {isNavyText ? (
-            // Azul noche exacto (hero celeste de la home): el logo hace de máscara sobre un fondo del color del texto.
+          {logoMascara ? (
+            // Azul noche o rojo exactos: el logo hace de máscara sobre un fondo del color del texto.
             // La imagen queda invisible solo para dar el tamaño.
             <span role="img" aria-label="Flahoolick" style={{
               display: 'block', backgroundColor: text,
@@ -276,7 +282,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
           className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
           style={{
             '--btn-bg': textColor,
-            '--btn-fg': ['#000000', '#1c1854'].includes(textColor.toLowerCase())
+            '--btn-fg': ['#000000', '#1c1854', '#ff1d00'].includes(textColor.toLowerCase())
               ? '#ffffff'
               : textColor.toLowerCase() === '#083ea7'
               ? '#8FE8BB'

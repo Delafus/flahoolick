@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Boton, Cierre, CreditoStrategyzer, CABECERAS, DESTACADA, Italica } from '@/components/minimal'
+import { Pagina, Hero, Cierre, CreditoStrategyzer, CABECERAS, DESTACADA, Italica } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 
@@ -83,21 +83,12 @@ export default function Metodologia() {
           </ul>
         </section>
 
-        {/* Expertos y el caso, en dos columnas en escritorio. */}
-        <section className="grid grid-cols-1 gap-12 pb-16 md:grid-cols-2 md:gap-16 md:pb-24">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-[1.75rem] md:text-[2.25rem]" style={TITULO}>
-              Tus expertos pueden <Italica>concentrarse en su trabajo.</Italica>
-            </h2>
-            <p>Capturamos lo que saben mediante entrevistas breves, conversaciones de trabajo, documentos existentes, reuniones, datos y preguntas comerciales. Transformamos esa materia prima conservando su precisión y su carácter.</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <h2 className="text-[1.75rem] md:text-[2.25rem]" style={TITULO}>
-              El sistema en acción: <Italica>Dunamis.</Italica>
-            </h2>
-            <p>Su equipo comercial explicaba lo mismo desde cero en cada llamada. Sistematizamos lo que sabía y lo convertimos en una identidad, dos sitios, una plataforma editorial, herramientas digitales y un asistente virtual.</p>
-            <Boton href="/clientes/dunamis">Conoce la historia de Dunamis</Boton>
-          </div>
+        {/* Expertos. */}
+        <section className="flex flex-col gap-4 pb-16 md:pb-24" style={{ maxWidth: '44rem' }}>
+          <h2 className="text-[1.75rem] md:text-[2.25rem]" style={TITULO}>
+            Tus expertos pueden <Italica>concentrarse en su trabajo.</Italica>
+          </h2>
+          <p>Capturamos lo que saben mediante entrevistas breves, conversaciones de trabajo, documentos existentes, reuniones, datos y preguntas comerciales. Transformamos esa materia prima conservando su precisión y su carácter.</p>
         </section>
       </div>
 

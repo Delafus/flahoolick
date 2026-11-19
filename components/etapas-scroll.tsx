@@ -49,14 +49,17 @@ const r1 = (n: number) => Math.round(n * 10) / 10
 interface Pieza { x: number; y: number; giro: number; escuadra?: { x: number; y: number; n: number } }
 
 /** 1 Encontramos: cuatro bloques sueltos (personas, documentos, reuniones, equipos técnicos). Cada uno es una malla de 4×4
-    algo desordenada, con 4 triángulos escondidos entre 12 cuadrados. */
+    algo desordenada: 12 cuadrados a la izquierda y, ya separados a la derecha, los 4 triángulos encontrados. */
 const BLOQUES = [{ x: 88, y: 84 }, { x: 214, y: 96 }, { x: 82, y: 210 }, { x: 206, y: 216 }]
 const DISPERSOS: Pieza[] = (() => {
   const pos: Pieza[] = new Array(N)
   BLOQUES.forEach((b, c) => {
     const piezas = [...Array.from({ length: 4 }, (_, k) => 4 * c + k), ...Array.from({ length: 12 }, (_, k) => TRIANGULOS + 12 * c + k)]
-    // Reparte las 16 piezas del bloque en sus 16 casillas en un orden fijo pero mezclado.
-    const casillas = Array.from({ length: 16 }, (_, k) => k).sort((a, b) => azar(a + 31 * c + 7) - azar(b + 31 * c + 7))
+    // Dentro de cada bloque, lo encontrado queda aparte: los 4 triángulos en la columna derecha (casillas 3, 7, 11, 15)
+    // y los 12 cuadrados en las tres columnas de la izquierda, en un orden fijo pero mezclado.
+    const izquierda = Array.from({ length: 16 }, (_, k) => k).filter(k => k % 4 !== 3)
+      .sort((a, b) => azar(a + 31 * c + 7) - azar(b + 31 * c + 7))
+    const casillas = [3, 7, 11, 15, ...izquierda]
     piezas.forEach((i, k) => {
       const casilla = casillas[k]
       pos[i] = {

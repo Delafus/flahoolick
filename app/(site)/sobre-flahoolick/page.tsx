@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 
 const AZUL = CABECERAS.hielo.texto
 const CELESTE = CABECERAS.hielo.fondo
-const ROSA = '#FFDAED'
 
 /** Fondo de borde a borde sin cambiar el ancho del contenido, con el azul noche como color del texto. */
 const banda = (fondo: string): React.CSSProperties => ({
@@ -46,21 +45,14 @@ export default function SobreFlahoolick() {
             <p>El desafío está en conectar esas perspectivas y articular con claridad qué problemas resuelve la organización, para quién y qué valor crea para sus clientes.</p>
           </div>
           <div className="flex flex-col gap-5">
-            <p>Trabajamos con las personas que conocen el negocio y convertimos lo que saben en una propuesta compartida que orienta cómo la empresa se posiciona, comunica y vende.</p>
+            <p>Trabajamos con las personas que conocen el negocio. Encontramos los argumentos, experiencias y evidencias que explican ese valor y los convertimos en una propuesta compartida que orienta cómo la empresa se posiciona, comunica y vende.</p>
             <p>Construimos la estrategia, el relato y el sistema de contenido para llevar esa propuesta al mercado y mantenerla presente durante todo el ciclo de decisión.</p>
           </div>
         </div>
       </section>
 
-      {/* Frase destacada: la idea clave en grande, como una cita al medio de la página. */}
-      <section className="flex justify-center py-16 text-center md:py-24" style={{ color: AZUL }}>
-        <p className="text-[1.875rem] md:text-[3rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '24ch' }}>
-          Encontramos los argumentos, experiencias y evidencias <Italica>que explican ese valor.</Italica>
-        </p>
-      </section>
-
       {/* Qué creemos: cinco principios numerados, sin cajas, en dos columnas en escritorio. */}
-      <section className="flex flex-col gap-10 py-16 md:gap-14 md:py-24" style={banda(ROSA)}>
+      <section className="flex flex-col gap-10 py-16 md:gap-14 md:py-24" style={banda(CELESTE)}>
         <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
           Qué <Italica>creemos.</Italica>
         </h2>

@@ -284,7 +284,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
             <h3 style={{ color: textColor, fontFamily: 'var(--font-inter)', fontSize: '1.125rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               {item.title}
             </h3>
-            <p className="text-base leading-relaxed" style={{ color: textColor, opacity: 0.85 }}>{item.desc}</p>
+            <p className="text-base leading-relaxed" style={{ color: textColor, opacity: 0.7 }}>{item.desc}</p>
             {item.linkLabel && (
               <span className="label transition-opacity"
                 style={{ color: textColor, fontSize: '0.75rem' }}>

@@ -76,7 +76,8 @@ export function Pagina({ angosta = false, children }: { angosta?: boolean; child
     El header y el megamenú toman el mismo color. */
 export const CABECERAS = {
   negro: { fondo: '#000000', texto: '#ffffff' },
-  rosa: { fondo: '#EF9DB6', texto: '#000000' },
+  /** Rosa claro con texto azul noche (2026-11-19; antes #EF9DB6 con texto negro). */
+  rosa: { fondo: '#FFDAED', texto: '#1C1854' },
   amarillo: { fondo: '#F5FD92', texto: '#000000' },
   verde: { fondo: VERDE, texto: '#000000' },
   menta: { fondo: '#8FE8BB', texto: '#000000' },

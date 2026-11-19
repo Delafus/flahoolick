@@ -430,15 +430,21 @@
   0%, 18% { rotate: -90deg; } 25%, 43% { rotate: -180deg; } 50%, 68% { rotate: -270deg; } 75%, 93% { rotate: -360deg; } 100% { rotate: -450deg; }
 }
 /* Escudo de la etapa 3 de metodología: entra girando como una moneda sobre su eje vertical, una vuelta y media que se frena
-   hasta quedar quieto. Para salir, el mismo giro al revés. */
+   hasta quedar quieto. Para salir, el mismo giro al revés.
+   Entrada y salida son dos animaciones con nombre distinto: si compartieran nombre, el navegador no la repetiría al volver. */
 .escudo-giro { transform-box: view-box; transform-origin: 150px 150px; }
 .escudo-oculto { opacity: 0; }
-.escudo-aparece { animation: escudo-moneda 1.4s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
-.escudo-desaparece { animation: escudo-moneda 1s cubic-bezier(0.2, 0.6, 0.3, 1) reverse both; }
-@keyframes escudo-moneda {
+.escudo-aparece { animation: escudo-moneda-entra 1.4s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+.escudo-desaparece { animation: escudo-moneda-sale 1s cubic-bezier(0.7, 0, 0.8, 0.4) both; }
+@keyframes escudo-moneda-entra {
   0% { transform: rotateY(-540deg); opacity: 0; }
   20% { opacity: 1; }
   100% { transform: rotateY(0deg); opacity: 1; }
+}
+@keyframes escudo-moneda-sale {
+  0% { transform: rotateY(0deg); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: rotateY(-540deg); opacity: 0; }
 }
 /* Cambio de etapa en el teléfono: giro sobre el eje horizontal, como la cara de un cubo. El título gira como bloque (fila 0);
    el párrafo, palabra por palabra pero sincronizado por fila (--fila), así cada fila gira tras la anterior. */

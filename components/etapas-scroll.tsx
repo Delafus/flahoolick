@@ -30,8 +30,8 @@ const ROJO = '#E8432E'
 const HEADER = 64
 /** Escritorio: milisegundos entre etapas cuando nadie interactúa. */
 const AVANCE_SOLO = 5000
-/** Piezas: los primeros 24 índices son triángulos (conocimiento con valor), los otros 40 cuadrados (información en bruto). */
-const TRIANGULOS = 24
+/** Piezas: los primeros 32 índices son triángulos (conocimiento con valor), los otros 32 cuadrados (información en bruto). */
+const TRIANGULOS = 32
 /** Por cada uno de los 4 bloques de la etapa 1. */
 const TRI_BLOQUE = TRIANGULOS / 4
 const CUA_BLOQUE = 16 - TRI_BLOQUE
@@ -62,9 +62,9 @@ const DISPERSOS: Pieza[] = (() => {
       ...Array.from({ length: TRI_BLOQUE }, (_, k) => TRI_BLOQUE * c + k),
       ...Array.from({ length: CUA_BLOQUE }, (_, k) => TRIANGULOS + CUA_BLOQUE * c + k),
     ]
-    // Dentro de cada bloque, lo encontrado queda aparte: los 6 triángulos a la derecha (la columna derecha completa y
-    // las dos casillas de arriba de la siguiente) y los 10 cuadrados a la izquierda, en un orden fijo pero mezclado.
-    const derecha = [3, 7, 11, 15, 2, 6]
+    // Dentro de cada bloque, lo encontrado queda aparte: los 8 triángulos en las dos columnas de la derecha
+    // y los 8 cuadrados en las dos de la izquierda, en un orden fijo pero mezclado.
+    const derecha = [3, 7, 11, 15, 2, 6, 10, 14]
     const izquierda = Array.from({ length: 16 }, (_, k) => k).filter(k => !derecha.includes(k))
       .sort((a, b) => azar(a + 31 * c + 7) - azar(b + 31 * c + 7))
     const casillas = [...derecha, ...izquierda]
@@ -81,8 +81,8 @@ const DISPERSOS: Pieza[] = (() => {
 })()
 
 /** 2 Ordenamos: grilla pareja de 8×8 (mismo espacio entre todas las piezas), leída como 16 escuadras de 2×2;
-    4 escuadras de triángulos (en un patrón regular) y 12 de cuadrados. Cada pocos segundos, cada escuadra gira 90° como unidad. */
-const ESCUADRAS_TRIANGULO = [1, 4, 6, 9, 11, 14]
+    las 4 filas de arriba son triángulos y las 4 de abajo, cuadrados. Cada pocos segundos, cada escuadra gira 90° como unidad. */
+const ESCUADRAS_TRIANGULO = [0, 1, 2, 3, 4, 5, 6, 7]
 const PASO = 30
 const ENTRE = 2 * PASO
 const INICIO = CENTRO - (3 * ENTRE + PASO) / 2
@@ -111,11 +111,11 @@ const AROS: { radio: number; piezas: number[]; desfase: number }[] = (() => {
   const cua = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
   const tri = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => desde + k)
   return [
-    { radio: 40, piezas: cua(0, 16), desfase: 0 },
-    { radio: 64, piezas: cua(16, 24), desfase: 0.2 },
-    { radio: 90, piezas: tri(0, 6), desfase: -Math.PI / 2 },
-    { radio: 112, piezas: tri(6, 8), desfase: -Math.PI / 2 + 0.3 },
-    { radio: 134, piezas: tri(14, 10), desfase: -Math.PI / 2 + 0.15 },
+    { radio: 40, piezas: cua(0, 14), desfase: 0 },
+    { radio: 64, piezas: cua(14, 18), desfase: 0.2 },
+    { radio: 90, piezas: tri(0, 8), desfase: -Math.PI / 2 },
+    { radio: 112, piezas: tri(8, 10), desfase: -Math.PI / 2 + 0.3 },
+    { radio: 134, piezas: tri(18, 14), desfase: -Math.PI / 2 + 0.15 },
   ]
 })()
 const CIRCULO: Pieza[] = (() => {

@@ -22,7 +22,8 @@ export interface EtapaScroll {
 
 const N = 64
 const CENTRO = 150
-const NEGRO = '#000000'
+/** Piezas, escudo, barra y listón toman el color del texto del bloque. */
+const NEGRO = 'currentColor'
 /** Rojo de los triángulos (conocimiento con valor): el único color fuerte del gráfico. A prueba, de la referencia del usuario. */
 const ROJO = '#E8432E'
 /** Alto del header fijo. */
@@ -273,7 +274,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
           {/* Barra de avance negra, separada del header por una franja de amarillo, a todo el ancho de la pantalla. */}
           <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw', height: 4 }}>
-            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: '#000000' }} />
+            <div style={{ height: '100%', width: `${avance * 100}%`, backgroundColor: NEGRO }} />
           </div>
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 34svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" />
@@ -309,7 +310,7 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
             className="relative flex flex-col gap-2 py-5 pl-7">
             {/* Listón de la etapa activa: solo del alto del texto, sin el aire de arriba y abajo. */}
             <span aria-hidden className="absolute left-0 top-5 bottom-5 w-1"
-              style={{ backgroundColor: '#000000', opacity: i === elegida ? 1 : 0, transition: 'opacity 300ms ease' }} />
+              style={{ backgroundColor: NEGRO, opacity: i === elegida ? 1 : 0, transition: 'opacity 300ms ease' }} />
             <h3 className="text-[2rem]" style={TITULO}>
               <Link href={`/metodologia/${e.slug}`}>{numero(i)} {e.nombre}</Link>
             </h3>

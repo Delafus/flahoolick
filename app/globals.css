@@ -410,8 +410,8 @@
 .enlace-caso:hover { background-color: #ffffff; color: #000000; border-color: #ffffff !important; }
 
 /* Botón de contorno (Boton en components/minimal.tsx): borde negro; al pasar el cursor se rellena. */
-.boton-contorno { border: 1px solid #000000; color: #000000; border-radius: 999px; transition: background-color 0.2s ease, color 0.2s ease; }
-.boton-contorno:hover { background-color: #000000; color: #ffffff; }
+.boton-contorno { border: 1px solid var(--tinta, #000000); color: var(--tinta, #000000); border-radius: 999px; transition: background-color 0.2s ease, color 0.2s ease; }
+.boton-contorno:hover { background-color: var(--tinta, #000000); color: #ffffff; }
 .boton-contorno-claro { border: 1px solid #ffffff; color: #ffffff; border-radius: 999px; transition: background-color 0.2s ease, color 0.2s ease; }
 .boton-contorno-claro:hover { background-color: #ffffff; color: #000000; }
 

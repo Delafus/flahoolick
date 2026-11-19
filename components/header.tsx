@@ -87,7 +87,8 @@ export function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const isDarkText = text === '#000000' || text === 'black'
+  /** Texto oscuro: negro o el azul noche de prueba (#1C1854). El logo va en negro y las líneas, oscuras. */
+  const isDarkText = text === '#000000' || text === 'black' || text.toLowerCase() === '#1c1854'
   const isBlueText = text.toLowerCase() === '#083ea7'
   const divColor = isDarkText
     ? 'rgba(0,0,0,0.12)'
@@ -260,7 +261,7 @@ function MegaMenu({ menu, textColor, divColor, onClose }: {
           className="btn-invert label inline-flex items-center gap-2 px-6 py-3.5 w-fit"
           style={{
             '--btn-bg': textColor,
-            '--btn-fg': textColor.toLowerCase() === '#000000'
+            '--btn-fg': ['#000000', '#1c1854'].includes(textColor.toLowerCase())
               ? '#ffffff'
               : textColor.toLowerCase() === '#083ea7'
               ? '#8FE8BB'

@@ -80,6 +80,8 @@ export const CABECERAS = {
   amarillo: { fondo: '#F5FD92', texto: '#000000' },
   verde: { fondo: VERDE, texto: '#000000' },
   menta: { fondo: '#8FE8BB', texto: '#000000' },
+  /** Prueba de color (2026-11-19): fondo hielo con texto azul noche, en el hero de la home y el bloque de metodología. */
+  hielo: { fondo: '#E1F2F0', texto: '#1C1854' },
 } as const
 export type Cabecera = keyof typeof CABECERAS
 

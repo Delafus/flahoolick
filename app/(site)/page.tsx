@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <Pagina>
         <Hero
-          color="negro"
+          color="hielo"
           titulo={<>Tu empresa sabe mucho. <Italica>Haz que cuente.</Italica></>}
           bajada="Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales."
         />
@@ -50,7 +50,7 @@ export default function HomePage() {
         </Pantalla>
 
         {/* Metodología: fondo amarillo a todo el ancho de la pantalla, con el gráfico de puntos que cambia con el scroll. */}
-        <section className="flex flex-col gap-10 py-16 md:py-24" style={ANCHO_COMPLETO(CABECERAS.amarillo.fondo)}>
+        <section className="flex flex-col gap-10 py-16 md:py-24" style={{ ...ANCHO_COMPLETO(CABECERAS.hielo.fondo), color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto } as React.CSSProperties}>
           <div className="mx-auto flex flex-col items-center gap-6 text-center" style={{ maxWidth: '60rem' }}>
             <p className="label" style={{ opacity: 0.5 }}>Metodología</p>
             {/* Más ancho que el texto, para que en escritorio quede en dos líneas. */}

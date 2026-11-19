@@ -87,7 +87,7 @@ export type Cabecera = keyof typeof CABECERAS
 
 const ANCHO_HERO = 'min(80rem, calc(100vw - 2 * var(--page-px)))'
 
-export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual }: {
+export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual, compacto = false }: {
   /** Línea pequeña sobre el titular. Puede ser una miga de pan con enlaces. */
   eyebrow?: React.ReactNode
   titulo: React.ReactNode
@@ -102,6 +102,8 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
   color?: Cabecera
   /** Imagen o ilustración del hero de color. */
   visual?: React.ReactNode
+  /** Hero de color del alto de su contenido, sin ocupar la pantalla completa. */
+  compacto?: boolean
 }) {
   if (color) {
     const { fondo, texto } = CABECERAS[color]
@@ -110,7 +112,7 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
         className="relative flex flex-col items-center justify-center gap-14 text-center"
         style={{
           left: '50%', transform: 'translateX(-50%)', width: ANCHO_HERO,
-          minHeight: '100dvh', paddingTop: 'calc(64px + 3.5rem)', paddingBottom: '4rem',
+          minHeight: compacto ? undefined : '100dvh', paddingTop: 'calc(64px + 3.5rem)', paddingBottom: '4rem',
           backgroundColor: fondo, color: texto, boxShadow: `0 0 0 100vmax ${fondo}`, clipPath: 'inset(0 -100vmax)',
         }}
       >

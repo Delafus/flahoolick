@@ -219,6 +219,9 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
   const [cambio, setCambio] = useState({ activa: 0, anterior: -1 })
   const activa = cambio.activa
   const textos = useRef<HTMLDivElement | null>(null)
+  /** Nombre de la etapa bajo la línea de avance: se muestra solo cuando la línea ya lo cubre. */
+  const etiqueta = useRef<HTMLSpanElement | null>(null)
+  const [etiquetaVisible, setEtiquetaVisible] = useState(false)
   /** Avance (0 a 1) dentro de la pista del teléfono, para la línea bajo el header. */
   const [avance, setAvance] = useState(0)
   /** Escritorio: etapa activa (por el mouse, el teclado o el avance solo) y si el usuario la está eligiendo. */
@@ -239,6 +242,8 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
       const recorrido = r.height - (window.innerHeight - HEADER)
       const a = recorrido > 0 ? Math.min(1, Math.max(0, (HEADER - r.top) / recorrido)) : 0
       setAvance(a)
+      const ancho = etiqueta.current?.offsetWidth ?? 0
+      setEtiquetaVisible(ancho > 0 && a * window.innerWidth >= ancho + 16)
       const nueva = Math.min(etapas.length - 1, Math.floor(a * etapas.length))
       setCambio(c => (c.activa === nueva ? c : { activa: nueva, anterior: c.activa }))
     }
@@ -289,11 +294,12 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
         <div className="sticky flex flex-col justify-center gap-5"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
           {/* Línea de avance fina, separada del header, a todo el ancho de la pantalla; bajo su punta, el nombre de la etapa
-              en chico (si la línea todavía es corta, el nombre no se sale: su caja nunca es más angosta que el texto). */}
+              en chico. El nombre aparece recién cuando la línea ya es más larga que él (antes, no se ve). */}
           <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw' }}>
             <div style={{ height: 2, width: `${avance * 100}%`, backgroundColor: NEGRO }} />
-            <div className="pt-1 text-right lowercase" style={{ width: `${avance * 100}%`, minWidth: 'max-content', paddingLeft: 'var(--page-px, 16px)', fontSize: '12px', lineHeight: 1.2 }}>
-              {etapas[activa].nombre}
+            <div className="whitespace-nowrap pt-1 text-right lowercase"
+              style={{ width: `${avance * 100}%`, fontSize: '12px', lineHeight: 1.2, opacity: etiquetaVisible ? 1 : 0, transition: 'opacity 300ms ease' }}>
+              <span ref={etiqueta}>{etapas[activa].nombre}</span>
             </div>
           </div>
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 46svh)' }}>

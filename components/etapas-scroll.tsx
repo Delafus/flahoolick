@@ -145,7 +145,7 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
         'Las piezas ordenadas en escuadras de cuatro, como una formación vista desde arriba',
         'Las piezas en aros alrededor del escudo de Flahoolick, con los triángulos apuntando hacia afuera',
       ][estado]}>
-      {/* El escudo entra y sale girando como un disco de Euler (ver .escudo-euler en globals.css).
+      {/* El escudo entra y sale girando como una moneda (ver .escudo-moneda en globals.css).
           Antes de la primera vez que aparece, queda oculto sin animar. */}
       <g className={`escudo-giro ${estado === 2 ? 'escudo-aparece' : escudoVisto ? 'escudo-desaparece' : 'escudo-oculto'}`}>
         <path d={ESCUDO} fill={NEGRO}

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Cierre, CreditoStrategyzer, CABECERAS, DESTACADA, Italica } from '@/components/minimal'
+import { Pagina, Hero, Cierre, CreditoStrategyzer, CABECERAS, DESTACADA, Italica, ESTILO_FUENTE } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 
@@ -93,11 +93,11 @@ export default function Metodologia() {
                   {String(i + 1).padStart(2, '0')} {p.titulo}
                 </h3>
                 <p>{p.texto}</p>
-                <p className="text-[0.8125rem]" style={{ opacity: 0.6, fontStyle: 'italic' }}>{p.fuente}</p>
+                <p style={ESTILO_FUENTE}>{p.fuente}</p>
               </li>
             ))}
           </ul>
-          <p className="text-[0.8125rem]" style={{ opacity: 0.6, lineHeight: 1.5 }}>
+          <p style={ESTILO_FUENTE}>
             Basado en:{' '}
             {CHARLAS.map((c, i) => (
               <span key={c.href}>

@@ -254,11 +254,14 @@ export function Cierre(_props: { titulo?: string; texto?: string; cta?: string }
   )
 }
 
+/** Estilo único para citar fuentes en todo el sitio (créditos, referencias): chico, al 50% y sin cursiva. */
+export const ESTILO_FUENTE: React.CSSProperties = { fontSize: '0.8125rem', opacity: 0.5, lineHeight: 1.4 }
+
 /** Crédito del Value Proposition Canvas, como pide Strategyzer: identificar la fuente completa (Strategyzer.com y Strategyzer AG).
     Va bajo cada mención de la herramienta, en el mismo estilo chico que la fuente de la regla 95:5. */
 export function CreditoStrategyzer() {
   return (
-    <p className="text-[0.8125rem]" style={{ opacity: 0.5, fontSize: '0.8125rem', lineHeight: 1.4 }}>
+    <p style={ESTILO_FUENTE}>
       Value Proposition Canvas · <a href="https://www.strategyzer.com" target="_blank" rel="noopener noreferrer"
         className="underline underline-offset-2 decoration-1">Strategyzer.com</a> / Strategyzer AG.
     </p>

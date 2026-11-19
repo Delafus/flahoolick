@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Marquee } from '@/components/marquee'
-import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Italica, Cierre, CABECERAS } from '@/components/minimal'
+import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Italica, Cierre, CABECERAS, ESTILO_FUENTE } from '@/components/minimal'
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
@@ -38,7 +38,7 @@ export default function HomePage() {
               <Grafico955 className="block w-full" />
             </div>
             <div className="absolute bottom-0 right-0 flex flex-col items-start md:-right-16" style={{ rotate: '-8deg' }}>
-              <p className="whitespace-nowrap text-[0.8125rem]" style={{ opacity: 0.55 }}>Regla 95:5 · John Dawes</p>
+              <p className="whitespace-nowrap" style={ESTILO_FUENTE}>Regla 95:5 · John Dawes</p>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/flecha-curva.svg" alt="" aria-hidden className="-mt-0.5" style={{ width: '58px', height: 'auto', marginLeft: '-2.75rem' }} />
             </div>

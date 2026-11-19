@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import {
   PaginaCaso, EncabezadoCaso, PortadaCaso, ResumenCaso, CuerpoCaso, SeccionCaso, EnlaceCaso,
-  CitaCaso, CierreCaso, type Dato, type CampoFicha, type Cita,
+  CitaCaso, CierreCaso, MasHistorias, type Dato, type CampoFicha, type Cita,
 } from '@/components/caso'
 import { CreditoStrategyzer } from '@/components/minimal'
 
@@ -75,6 +75,7 @@ export default function HistoriaRameau() {
         </SeccionCaso>
       </CuerpoCaso>
 
+      <MasHistorias actual="rameau" />
       <CierreCaso />
     </PaginaCaso>
   )

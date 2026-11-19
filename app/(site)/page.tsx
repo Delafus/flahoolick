@@ -6,22 +6,8 @@ import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
 import { Grafico955 } from '@/components/grafico-95-5'
 import { CarruselCasos } from '@/components/carrusel-casos'
+import { CASOS } from '@/components/casos-datos'
 
-/** Casos del carrusel de la home, en orden. */
-const CASOS = [
-  {
-    nombre: 'Dunamis',
-    titulo: 'El cliente llega a la reunión con la tarea adelantada.',
-    texto: 'Dunamis puso su conocimiento inmobiliario al alcance de sus clientes. Hoy pueden evaluar opciones, calcular valores y resolver dudas antes de conversar con un especialista.',
-    href: '/clientes/dunamis',
-  },
-  {
-    nombre: 'Rameau',
-    titulo: 'Una plataforma lista que todavía no sabía a quién hablarle.',
-    texto: 'Con Rameau trabajamos el Value Proposition Canvas y pusimos a prueba sus hipótesis con leads reales. Hoy saben qué relato necesita la plataforma y a quién de la organización le habla.',
-    href: '/clientes/rameau',
-  },
-]
 
 export const metadata: Metadata = {
   title: 'Flahoolick | Contenido B2B que convierte conocimiento en ventas',
@@ -72,7 +58,7 @@ export default function HomePage() {
               <p className="label" style={{ opacity: 0.6 }}>Caso {c.nombre}</p>
               <h3 className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>{c.titulo}</h3>
               <p>{c.texto}</p>
-              <Boton href={c.href} claro>Conoce la historia de {c.nombre}</Boton>
+              <Boton href={`/clientes/${c.slug}`} claro>Conoce la historia de {c.nombre}</Boton>
             </div>
           ))} />
         </section>

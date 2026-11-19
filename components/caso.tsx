@@ -3,6 +3,7 @@ import { VERDE } from './minimal'
 import { PageColorSetter } from './page-color-setter'
 import { ContactForm } from './contact-form'
 import { FichaFija } from './ficha-fija'
+import { CASOS } from './casos-datos'
 
 /** Plantilla de historias de clientes, calcada de sanity.io/customers (ej. /customers/tecovas):
     página negra; miga de pan, titular y portada con foto, logo y cifras; frase resumen;
@@ -244,6 +245,37 @@ export function ResultadosCaso({ titulo = 'Resultados', items }: {
         ))}
       </ul>
     </SeccionCaso>
+  )
+}
+
+/** Más historias: al terminar de leer un caso, las otras historias como tarjetas (foto o logo, cliente y titular),
+    al estilo del "Show me more work" de Column Five. Va justo antes del contacto. */
+export function MasHistorias({ actual }: { actual: string }) {
+  const otras = CASOS.filter(c => c.slug !== actual)
+  if (!otras.length) return null
+  return (
+    <section className="mt-24 flex flex-col gap-8 pt-12" style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+      <h2 style={{ fontWeight: 400, fontSize: '30px', lineHeight: 1.1, letterSpacing: '-0.02em' }}>Más historias de clientes</h2>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {otras.map(c => (
+          <Link key={c.slug} href={`/clientes/${c.slug}`} className="group flex flex-col gap-4">
+            <div className="relative overflow-hidden" style={{ aspectRatio: '16 / 9', backgroundColor: '#1C1C1C' }}>
+              {c.imagen && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={c.imagen} alt="" className="absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectFit: 'cover', filter: BN }} />
+              )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.logo} alt="" className="absolute left-5 top-5" style={{ width: '112px', height: 'auto', filter: LOGO_BLANCO }} />
+            </div>
+            <span style={{ ...MONO, color: VERDE }}>{c.nombre}</span>
+            <span className="underline-offset-4 decoration-1 group-hover:underline" style={{ fontSize: '22px', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
+              {c.titulo} →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
   )
 }
 

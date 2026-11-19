@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import {
   PaginaCaso, EncabezadoCaso, PortadaCaso, ResumenCaso, CuerpoCaso, SeccionCaso, ImagenesCaso, EnlaceCaso,
-  CitaCaso, ResultadosCaso, CierreCaso, type Dato, type CampoFicha, type Cita,
+  CitaCaso, ResultadosCaso, CierreCaso, MasHistorias, type Dato, type CampoFicha, type Cita,
 } from '@/components/caso'
 import { CreditoStrategyzer } from '@/components/minimal'
 
@@ -156,6 +156,7 @@ export default function HistoriaDunamis() {
         <ResultadosCaso titulo="Resultados: hoy Dunamis llega a la primera reunión con la conversación iniciada." items={RESULTADOS} />
       </CuerpoCaso>
 
+      <MasHistorias actual="dunamis" />
       <CierreCaso titulo="Tu empresa ya tiene el conocimiento." />
     </PaginaCaso>
   )

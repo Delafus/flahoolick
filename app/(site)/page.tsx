@@ -33,10 +33,17 @@ export default function HomePage() {
 
         <Pantalla centrado tinta={CABECERAS.hielo.texto} titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
-          {/* Caja de puntos de ancho fijo (el que tenía con la fuente larga); la fuente va abajo, alineada a su borde derecho. */}
-          <div className="mx-auto flex w-full flex-col gap-5" style={{ maxWidth: '19.75rem' }}>
-            <Grafico955 className="block w-full" />
-            <p className="text-right text-[0.8125rem]" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes</p>
+          {/* El gráfico "flota": inclinado y subiendo y bajando suave. La fuente va chueca abajo a la derecha,
+              con una flecha punteada que apunta al gráfico. */}
+          <div className="relative mx-auto w-full pb-20" style={{ maxWidth: '19.75rem' }}>
+            <div className="flota-suave" style={{ rotate: '-8deg' }}>
+              <Grafico955 className="block w-full" />
+            </div>
+            <div className="absolute bottom-0 right-0 flex flex-col items-start md:-right-16" style={{ rotate: '-8deg' }}>
+              <p className="whitespace-nowrap text-[0.8125rem]" style={{ opacity: 0.55 }}>Regla 95:5 · John Dawes</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/flecha-curva.svg" alt="" aria-hidden className="mt-1" style={{ width: '58px', height: 'auto', marginLeft: '-2.75rem' }} />
+            </div>
           </div>
         </Pantalla>
 

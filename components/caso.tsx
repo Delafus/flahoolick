@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { VERDE } from './minimal'
+import { CABECERAS } from './minimal'
 import { PageColorSetter } from './page-color-setter'
 import { ContactForm } from './contact-form'
 import { FichaFija } from './ficha-fija'
@@ -8,10 +8,12 @@ import { CASOS } from './casos-datos'
 /** Plantilla de historias de clientes, calcada de sanity.io/customers (ej. /customers/tecovas):
     página negra; miga de pan, titular y portada con foto, logo y cifras; frase resumen;
     y debajo dos columnas: ficha fija con botón a la izquierda y relato con citas a la derecha.
-    Toques Flahoolick: verde en la miga de pan, las cifras y el botón.
+    Toques Flahoolick: celeste en la miga de pan, las cifras y el botón.
     Cada historia nueva llena estos componentes con sus datos; no se diseña otra página. */
 
 const FONDO = '#000000'
+/** Color de los detalles (miga de pan, cifras, etiquetas, botón, borde de las citas): el celeste de marca. */
+const ACENTO = CABECERAS.hielo.fondo
 const GRIS = 'rgb(185, 185, 185)'
 const ANCHO = '72.5rem'
 const BN = 'grayscale(1)'
@@ -62,7 +64,7 @@ export function EncabezadoCaso({ cliente, titulo }: { cliente: string; titulo: s
   return (
     <header className="flex flex-col gap-6" style={{ paddingTop: 'calc(64px + 2.5rem)' }}>
       <p style={MONO}>
-        <span style={{ color: VERDE }}>Historias de clientes</span>
+        <span style={{ color: ACENTO }}>Historias de clientes</span>
         <span aria-hidden="true" style={{ color: GRIS, margin: '0 0.6em' }}>/</span>
         <span>{cliente}</span>
       </p>
@@ -117,7 +119,7 @@ export function PortadaCaso({ logo, nombre, imagen, datos }: {
       <ul className="absolute bottom-6 left-6 right-6 flex flex-col gap-4 md:flex-row md:gap-16">
         {datos.slice(0, 3).map(d => (
           <li key={d.etiqueta} className="flex flex-col gap-1">
-            <span style={{ fontSize: '38px', lineHeight: 1.1, letterSpacing: '-0.03em', color: VERDE }}>{d.valor}</span>
+            <span style={{ fontSize: '38px', lineHeight: 1.1, letterSpacing: '-0.03em', color: ACENTO }}>{d.valor}</span>
             <span style={{ ...MONO, color: GRIS }}>{d.etiqueta}</span>
           </li>
         ))}
@@ -141,7 +143,7 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
         <dl className="flex flex-col gap-5 lg:pl-4">
           {visibles.map(c => (
             <div key={c.nombre} className="flex flex-col gap-1">
-              <dt style={{ ...MONO, color: VERDE }}>{c.nombre}</dt>
+              <dt style={{ ...MONO, color: ACENTO }}>{c.nombre}</dt>
               {c.valores.map(v => (
                 <dd key={typeof v === 'string' ? v : v.texto} className="flex items-center gap-2.5" style={{ ...MONO, textTransform: 'none', lineHeight: 1.3 }}>
                   {typeof v === 'string'
@@ -159,7 +161,7 @@ export function CuerpoCaso({ ficha, children }: { ficha: CampoFicha[]; children:
           ))}
         </dl>
         <Link href="#contacto" className="inline-flex w-fit items-center px-5 py-2.5 transition-opacity hover:opacity-80"
-          style={{ ...MONO, backgroundColor: VERDE, color: '#000000', borderRadius: '999px' }}>
+          style={{ ...MONO, backgroundColor: ACENTO, color: '#000000', borderRadius: '999px' }}>
           Agenda una llamada
         </Link>
       </FichaFija>
@@ -208,7 +210,7 @@ export function EnlaceCaso({ href, children }: { href: string; children: React.R
 export function CitaCaso({ texto, nombre, cargo, retrato, logo }: Cita & { logo?: { src: string; alt: string } }) {
   if (!texto || !nombre) return null
   return (
-    <figure className="my-12 flex flex-col gap-6 py-8 pl-6 md:py-10 md:pl-24" style={{ fontSize: '18px', lineHeight: 1.35, borderLeft: `4px solid ${VERDE}` }}>
+    <figure className="my-12 flex flex-col gap-6 py-8 pl-6 md:py-10 md:pl-24" style={{ fontSize: '18px', lineHeight: 1.35, borderLeft: `4px solid ${ACENTO}` }}>
       {logo && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={logo.src} alt={logo.alt} style={{ width: '144px', height: 'auto', filter: LOGO_BLANCO }} />
@@ -230,7 +232,7 @@ export function CitaCaso({ texto, nombre, cargo, retrato, logo }: Cita & { logo?
   )
 }
 
-/** Resultados como lista: "valor + título: texto", con la cifra en verde. */
+/** Resultados como lista: "valor + título: texto", con la cifra en celeste. */
 export function ResultadosCaso({ titulo = 'Resultados', items }: {
   titulo?: string
   items: { valor: string; titulo: string; texto: string }[]
@@ -240,7 +242,7 @@ export function ResultadosCaso({ titulo = 'Resultados', items }: {
       <ul className="flex list-disc flex-col gap-3 pl-5">
         {items.map(r => (
           <li key={r.titulo}>
-            <span style={{ color: VERDE }}>{r.valor} {r.titulo.charAt(0).toLowerCase() + r.titulo.slice(1)}:</span> {r.texto}
+            <span style={{ color: ACENTO }}>{r.valor} {r.titulo.charAt(0).toLowerCase() + r.titulo.slice(1)}:</span> {r.texto}
           </li>
         ))}
       </ul>
@@ -268,7 +270,7 @@ export function MasHistorias({ actual }: { actual: string }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={c.logo} alt="" className="absolute left-5 top-5" style={{ width: '112px', height: 'auto', filter: LOGO_BLANCO }} />
             </div>
-            <span style={{ ...MONO, color: VERDE }}>{c.nombre}</span>
+            <span style={{ ...MONO, color: ACENTO }}>{c.nombre}</span>
             <span className="underline-offset-4 decoration-1 group-hover:underline" style={{ fontSize: '22px', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
               {c.titulo} →
             </span>

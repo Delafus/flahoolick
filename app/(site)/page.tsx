@@ -39,7 +39,7 @@ export default function HomePage() {
           titulo={<>Tu empresa sabe mucho. <Italica>Haz que cuente.</Italica></>}
           /* Bajada anterior, guardada por si se vuelve a ella:
              "Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales." */
-          bajada="Ayudamos a tu empresa a articular el valor que crea para sus clientes y convertirlo en una estrategia de marca, contenido y comunicación comercial."
+          bajada="Ayudamos a articular el valor que creas para tus clientes y convertirlo en una estrategia de marca, contenido y comunicación comercial."
         />
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">

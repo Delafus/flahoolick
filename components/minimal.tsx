@@ -89,7 +89,7 @@ export type Cabecera = keyof typeof CABECERAS
 
 const ANCHO_HERO = 'min(80rem, calc(100vw - 2 * var(--page-px)))'
 
-export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual, compacto = false }: {
+export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual, compacto = false, dosColumnas = false }: {
   /** Línea pequeña sobre el titular. Puede ser una miga de pan con enlaces. */
   eyebrow?: React.ReactNode
   titulo: React.ReactNode
@@ -106,7 +106,41 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
   visual?: React.ReactNode
   /** Hero de color del alto de su contenido, sin ocupar la pantalla completa. */
   compacto?: boolean
+  /** En escritorio: `visual` a la izquierda y el texto a la derecha, alineado a su izquierda, separados por una línea fina.
+      En el teléfono, el texto arriba y el visual debajo. */
+  dosColumnas?: boolean
 }) {
+  if (color && dosColumnas) {
+    const { fondo, texto } = CABECERAS[color]
+    return (
+      <section
+        className="relative grid grid-cols-1 items-center gap-10 md:grid-cols-[5fr_1px_7fr] md:gap-12"
+        style={{
+          left: '50%', transform: 'translateX(-50%)', width: ANCHO_HERO,
+          minHeight: compacto ? undefined : '100dvh', paddingTop: 'calc(64px + 3.5rem)', paddingBottom: '4rem',
+          backgroundColor: fondo, color: texto, boxShadow: `0 0 0 100vmax ${fondo}`, clipPath: 'inset(0 -100vmax)',
+        }}
+      >
+        <PageColorSetter bg={fondo} text={texto} />
+        {visual && <div className="order-2 mx-auto w-full md:order-1" style={{ maxWidth: '26rem', aspectRatio: '1 / 1' }}>{visual}</div>}
+        {/* Línea fina que separa el gráfico del texto (solo escritorio). */}
+        <div aria-hidden className="hidden self-stretch md:order-2 md:block" style={{ backgroundColor: 'currentColor', opacity: 0.25 }} />
+        <div className="order-1 flex flex-col items-start gap-6 text-left md:order-3">
+          {eyebrow && <p className="label">{eyebrow}</p>}
+          <h1 style={{ ...DESTACADA, fontSize: 'clamp(2.5rem, 4.6vw, 4.75rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
+            {conCursiva(titulo, cursiva)}
+          </h1>
+          {bajada && <p className="text-xl md:text-2xl" style={{ lineHeight: 1.35, maxWidth: '36rem' }}>{bajada}</p>}
+          {cta && (
+            <Link href="#contacto" className="btn-invert label inline-flex w-fit items-center px-7 py-4"
+              style={{ '--btn-bg': texto, '--btn-fg': fondo, borderRadius: '999px' } as React.CSSProperties}>
+              {cta}
+            </Link>
+          )}
+        </div>
+      </section>
+    )
+  }
   if (color) {
     const { fondo, texto } = CABECERAS[color]
     return (

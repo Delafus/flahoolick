@@ -33,6 +33,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
     <Pagina>
       <Hero
         color="amarillo"
+        dosColumnas
         eyebrow={<>
           <Link href="/metodologia" className="underline-offset-4 decoration-1 hover:underline">Metodología</Link>
           <span aria-hidden="true" style={{ margin: '0 0.6em', opacity: 0.5 }}>/</span>

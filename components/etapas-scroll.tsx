@@ -35,7 +35,10 @@ const TRIANGULOS = 32
 /** Por cada uno de los 4 bloques de la etapa 1. */
 const TRI_BLOQUE = TRIANGULOS / 4
 const CUA_BLOQUE = 16 - TRI_BLOQUE
-const esTriangulo = (i: number) => i < TRIANGULOS
+/** Triángulos extra que solo existen en la etapa 3 (índices desde N): antes esperan escondidos bajo el escudo. */
+const EXTRA = 22
+const esExtra = (i: number) => i >= N
+const esTriangulo = (i: number) => i < TRIANGULOS || esExtra(i)
 /** Medio lado del cuadrado y medio largo del triángulo, en unidades del dibujo (300): chicos, en la escala de las pupilas del 95:5. */
 const CUADRADO = 1.3
 const TRIANGULO = 2
@@ -109,17 +112,19 @@ const GRILLA: Pieza[] = (() => {
     y los tres de afuera de triángulos (el conocimiento sale hacia afuera). Los triángulos siempre con la punta hacia arriba. */
 const AROS: { radio: number; piezas: number[]; desfase: number }[] = (() => {
   const cua = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => TRIANGULOS + desde + k)
-  const tri = (desde: number, cuantos: number) => Array.from({ length: cuantos }, (_, k) => desde + k)
+  // Todos los triángulos de la etapa 3: los 32 de siempre y los extra.
+  const todos = [...Array.from({ length: TRIANGULOS }, (_, k) => k), ...Array.from({ length: EXTRA }, (_, k) => N + k)]
+  const tri = (desde: number, cuantos: number) => todos.slice(desde, desde + cuantos)
   return [
     { radio: 40, piezas: cua(0, 14), desfase: 0 },
     { radio: 64, piezas: cua(14, 18), desfase: 0.2 },
-    { radio: 90, piezas: tri(0, 8), desfase: -Math.PI / 2 },
-    { radio: 112, piezas: tri(8, 10), desfase: -Math.PI / 2 + 0.3 },
-    { radio: 134, piezas: tri(18, 14), desfase: -Math.PI / 2 + 0.15 },
+    { radio: 90, piezas: tri(0, 14), desfase: -Math.PI / 2 },
+    { radio: 112, piezas: tri(14, 18), desfase: -Math.PI / 2 + 0.3 },
+    { radio: 134, piezas: tri(32, 22), desfase: -Math.PI / 2 + 0.15 },
   ]
 })()
 const CIRCULO: Pieza[] = (() => {
-  const pos: Pieza[] = new Array(N)
+  const pos: Pieza[] = new Array(N + EXTRA)
   AROS.forEach(a => a.piezas.forEach((i, k) => {
     const ang = (k / a.piezas.length) * Math.PI * 2 + a.desfase
     const grados = Math.round((ang * 180) / Math.PI)
@@ -129,9 +134,12 @@ const CIRCULO: Pieza[] = (() => {
 })()
 
 const POSICIONES = [DISPERSOS, GRILLA, CIRCULO]
-/** Cada aro gira al revés del anterior y a una velocidad bien distinta de sus vecinos (segundos por vuelta, de adentro hacia afuera):
-    así se lee que cada figura va por su lado. */
-const DURACIONES = [20, 60, 32, 95, 48]
+/** Fuera de la etapa 3, los triángulos extra esperan en el centro, bajo el escudo y transparentes. */
+const ESCONDIDO: Pieza = { x: CENTRO, y: CENTRO, giro: ARRIBA }
+const posicion = (estado: number, i: number) => (esExtra(i) && estado !== 2 ? ESCONDIDO : POSICIONES[estado][i])
+/** Segundos por vuelta, de adentro hacia afuera. Los cuadrados circulan lento; los triángulos (el conocimiento en circulación),
+    mucho más rápido. Cada aro gira al revés del anterior. */
+const DURACIONES = [90, 120, 12, 9, 15]
 const giro = (n: number) => ({ className: n % 2 === 0 ? 'grafico-gira' : 'grafico-gira-inversa', duracion: `${DURACIONES[n]}s` })
 
 /** Etapa 1: cada pieza flota a su ritmo, suave y sin latidos. */
@@ -168,10 +176,11 @@ export function GraficoEtapas({ estado, className }: { estado: number; className
           <g key={n} className={estado === 2 ? g.className : undefined}
             style={{ transformOrigin: `${CENTRO}px ${CENTRO}px`, animationDuration: g.duracion }}>
             {a.piezas.map(i => {
-              const p = POSICIONES[estado][i]
+              const p = posicion(estado, i)
               const e = p.escuadra
               const forma = {
-                rotate: `${p.giro}deg`, transition: 'rotate 900ms cubic-bezier(0.65, 0, 0.35, 1)',
+                rotate: `${p.giro}deg`, transition: 'rotate 900ms cubic-bezier(0.65, 0, 0.35, 1), opacity 600ms ease',
+                opacity: esExtra(i) && estado !== 2 ? 0 : 1,
                 animation: estado === 0 ? flota(i) : e && esTriangulo(i) ? contramarcha(e.n) : undefined,
               }
               // Etapa 3: los triángulos giran sobre sí mismos al revés de su aro y a su misma velocidad (traslación sin rotación).

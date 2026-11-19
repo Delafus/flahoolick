@@ -87,14 +87,17 @@ export default function HomePage() {
           <Boton href="#contacto">Agenda una llamada</Boton>
         </section>
 
-        {/* Quiénes somos: centrado, a diferencia de los bloques en dos columnas. */}
-        <section className="mx-auto flex flex-col items-center gap-6 pt-16 pb-12 text-center md:pt-24" style={{ maxWidth: '48rem' }}>
+        {/* Quiénes somos: centrado, en celeste con texto azul noche a todo el ancho. */}
+        <section className="flex flex-col items-center py-16 text-center md:py-24"
+          style={{ ...ANCHO_COMPLETO(CABECERAS.hielo.fondo), color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto } as React.CSSProperties}>
+          <div className="mx-auto flex flex-col items-center gap-6" style={{ maxWidth: '48rem' }}>
           <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
             Veinticinco años <Italica>en el negocio de la atención.</Italica>
           </h2>
           <p>Venimos de grupos publicitarios globales, medios de comunicación y consultoría. Somos profesionales de estrategia, tecnología, creatividad y comunicación.</p>
           <p>Estamos al servicio de empresas B2B que necesitan transformar su conocimiento en presencia de mercado.</p>
           <Boton href="/sobre-flahoolick">Sobre Flahoolick</Boton>
+          </div>
         </section>
 
         {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}

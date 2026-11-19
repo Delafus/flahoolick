@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Pagina, Hero, Bloque, Items, Cierre, FUENTE, CreditoStrategyzer } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, Cierre, FUENTE, CreditoStrategyzer, CABECERAS } from '@/components/minimal'
 import { ETAPAS, etapaPorSlug } from '@/components/etapas-datos'
 import { ModuloOtrasEtapas } from '@/components/modulo-otras-etapas'
 
@@ -39,6 +39,11 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
         cursiva={e.cursiva}
         bajada={e.bajada}
       />
+      {/* Bajo el hero amarillo: celeste con texto azul noche, a todo el ancho. */}
+      <div style={{
+        backgroundColor: CABECERAS.hielo.fondo, color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto,
+        boxShadow: `0 0 0 100vmax ${CABECERAS.hielo.fondo}`, clipPath: 'inset(0 -100vmax)',
+      } as React.CSSProperties}>
       <Bloque titulo="Qué hacemos.">
         <p>{e.texto}</p>
       </Bloque>
@@ -51,7 +56,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
       </Bloque>
       {e.cita && (
         <Bloque titulo="En palabras de un cliente.">
-          <figure className="flex flex-col gap-6 py-2 pl-6" style={{ borderLeft: '4px solid #8FE8BB' }}>
+          <figure className="flex flex-col gap-6 py-2 pl-6" style={{ borderLeft: '4px solid currentColor' }}>
             <blockquote className="text-[1.25rem] md:text-[1.5rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.35 }}>
               {e.cita.texto}
             </blockquote>
@@ -69,6 +74,7 @@ export default function EtapaMetodologia({ params }: { params: { etapa: string }
           </figure>
         </Bloque>
       )}
+      </div>
       <ModuloOtrasEtapas tarjetas={[
         ...otras.map(o => ({ titulo: o.nombre, texto: o.resumen, href: `/metodologia/${o.slug}`, puntos: Number(o.numero) })),
         { titulo: 'La metodología completa', texto: 'Las tres etapas, los principios con que trabajamos y un caso real.', href: '/metodologia', puntos: 9 },

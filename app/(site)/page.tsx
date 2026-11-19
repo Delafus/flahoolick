@@ -24,7 +24,7 @@ export default function HomePage() {
         />
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
-          <p>El 95% comprará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
+          <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
           {/* Caja de puntos de ancho fijo (el que tenía con la fuente larga); la fuente va abajo, alineada a su borde derecho. */}
           <div className="mx-auto flex w-full flex-col gap-5" style={{ maxWidth: '19.75rem' }}>
             <Grafico955 className="block w-full" />

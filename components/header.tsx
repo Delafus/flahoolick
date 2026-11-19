@@ -44,7 +44,11 @@ const MET_MENU: MegaMenuData = {
 
 type ActiveMenu = 'srv' | 'met' | null
 
-const PANEL_BG = '#ffffff'
+/** Menú del teléfono: la firma invertida, azul noche con letras amarillas; los links secundarios en celeste. */
+const PANEL_BG = '#1C1854'
+const PANEL_TEXTO = '#F5FD92'
+const PANEL_SECUNDARIO = '#E1F2F0'
+const PANEL_LINEA = 'rgba(245, 253, 146, 0.25)'
 
 const PANEL_MAIN = [
   { label: 'Servicios',    href: '/servicios' },
@@ -218,8 +222,8 @@ export function Header() {
         className="fixed top-0 right-0 h-screen w-full md:w-1/2 overflow-y-auto transition-transform duration-300 ease-out"
         style={{
           backgroundColor: PANEL_BG,
-          color: '#000000',
-          borderLeft: '1px solid rgba(0,0,0,0.2)',
+          color: PANEL_TEXTO,
+          borderLeft: `1px solid ${PANEL_LINEA}`,
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
@@ -231,7 +235,7 @@ export function Header() {
               onClick={() => setMobile(false)}
               aria-label="Cerrar menú"
               className="label inline-flex items-center gap-3 px-5 py-3 hover:opacity-60 transition-opacity"
-              style={{ backgroundColor: 'transparent', border: '1px solid #000000', borderRadius: '999px', color: '#000000' }}>
+              style={{ backgroundColor: 'transparent', border: `1px solid ${PANEL_TEXTO}`, borderRadius: '999px', color: PANEL_TEXTO }}>
               CERRAR ✕
             </button>
           </div>
@@ -242,13 +246,13 @@ export function Header() {
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="hover:opacity-60 transition-opacity"
                 style={{
-                  fontFamily: 'var(--font-inter)',
-                  fontWeight: 500,
-                  letterSpacing: '-0.02em',
-                  fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
-                  lineHeight: 1.05,
-                  padding: '1.75rem 0',
-                  borderTop: '1px solid rgba(0,0,0,0.2)',
+                  fontFamily: 'var(--font-bricolage)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.035em',
+                  fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)',
+                  lineHeight: 1,
+                  padding: '1.5rem 0',
+                  borderTop: `1px solid ${PANEL_LINEA}`,
                 }}>
                 {l.label}
               </Link>
@@ -257,7 +261,7 @@ export function Header() {
 
           {/* Links secundarios */}
           <nav className="flex flex-col gap-4 pt-10"
-            style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }}>
+            style={{ borderTop: `1px solid ${PANEL_LINEA}`, color: PANEL_SECUNDARIO }}>
             {PANEL_SECONDARY.map(l => (
               <Link key={l.href} href={l.href} onClick={() => setMobile(false)}
                 className="text-base hover:opacity-60 transition-opacity w-fit">

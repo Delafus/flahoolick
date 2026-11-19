@@ -86,12 +86,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Logos a todo el ancho de la pantalla, fuera de la columna. */}
-        <div className="pt-12 pb-16 text-center md:pt-20 md:pb-24">
-          <p className="text-base" style={{ opacity: 0.5 }}>Marcas que nos formaron</p>
-          <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
-            <Marquee color="#000000" excluir={['Dunamis']} />
-          </div>
+        {/* Logos: una franja blanca apretada a todo el ancho, pegada al bloque celeste de arriba. "Marcas que nos formaron"
+            va en una pestañita blanca que sale del borde superior de la franja, como la de una carpeta. */}
+        <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ffffff' }}>
+          <p className="page-px absolute bottom-full left-0">
+            <span className="inline-block px-3 pt-1.5 pb-1 text-[0.8125rem]" style={{ backgroundColor: '#ffffff', color: 'rgba(0,0,0,0.55)' }}>
+              Marcas que nos formaron
+            </span>
+          </p>
+          <Marquee color="#000000" excluir={['Dunamis']} />
         </div>
 
         <Cierre />

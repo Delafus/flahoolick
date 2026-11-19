@@ -24,11 +24,11 @@ export default function HomePage() {
         />
 
         <Pantalla centrado titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
-          <p>El otro 95% comprará en seis meses, un año o más. Construimos disponibilidad mental para que tu marca esté entre las que conocen y recuerdan cuando decidan.</p>
-          {/* La caja de puntos toma el ancho de la fuente: la línea de la fuente manda y el gráfico se estira a su medida. */}
-          <div className="mx-auto flex w-fit flex-col gap-5">
-            <div style={{ width: 0, minWidth: '100%' }}><Grafico955 className="block w-full" /></div>
-            <p className="whitespace-nowrap text-[0.8125rem]" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes, Ehrenberg-Bass Institute.</p>
+          <p>El 95% comprará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
+          {/* Caja de puntos de ancho fijo (el que tenía con la fuente larga); la fuente va abajo, alineada a su borde derecho. */}
+          <div className="mx-auto flex w-full flex-col gap-5" style={{ maxWidth: '19.75rem' }}>
+            <Grafico955 className="block w-full" />
+            <p className="text-right text-[0.8125rem]" style={{ opacity: 0.5 }}>Regla 95:5 · John Dawes</p>
           </div>
         </Pantalla>
 

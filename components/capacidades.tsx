@@ -34,7 +34,7 @@ const FUERA_DE_TARJETAS = ['Dossiers y casos de éxito.', 'Agentes de inteligenc
 /** Puntos que en las tarjetas de la home van más cortos (el liderazgo de opinión lo hacemos poco). */
 const EN_TARJETAS: Record<string, string> = { 'Narrativa de marca y liderazgo de opinión.': 'Narrativa de marca.' }
 
-/** Zigzag que separa la explicación de la lista: del color del fondo de la sección (rosa), de borde a borde de la tarjeta,
+/** Zigzag que separa la explicación de la lista: del color del fondo de la sección, de borde a borde de la tarjeta,
     como si el papel estuviera cortado con tijera de zigzag. */
 const zigzag = (color: string) => `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='14' viewBox='0 0 22 14'%3E%3Cpath d='M0 12.5 L11 1.5 L22 12.5' fill='none' stroke='${encodeURIComponent(color)}' stroke-width='3' stroke-linejoin='miter'/%3E%3C/svg%3E")`
 
@@ -42,9 +42,9 @@ const zigzag = (color: string) => `url("data:image/svg+xml,%3Csvg xmlns='http://
 const DOBLEZ = 36
 
 /** Las tres capacidades como tres tarjetas lado a lado (home), sin numeración. Cada tarjeta completa lleva a su página.
-    Fondo celeste sobre el rosa de la sección, con la esquina de arriba doblada; la lista lleva viñetas chicas. */
+    Fondo celeste sobre el fondo de la sección, con la esquina de arriba doblada; la lista lleva viñetas chicas. */
 /** `fondo` es el color de la sección: el zigzag lo usa para que parezca un corte del papel. */
-export function CapacidadesTarjetas({ fondo = CABECERAS.rosa.fondo }: { fondo?: string }) {
+export function CapacidadesTarjetas({ fondo = '#ffffff' }: { fondo?: string }) {
   return (
     <div className="grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
       {DISCIPLINAS.map(d => (

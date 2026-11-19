@@ -30,7 +30,7 @@ export default function FAQ() {
   return (
     <Pagina>
       <Hero
-        color="menta"
+        color="amarillo"
         eyebrow="Preguntas frecuentes"
         titulo="Lo que probablemente quieras saber antes de conversar."
         cursiva="antes de conversar."

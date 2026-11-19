@@ -18,7 +18,7 @@ export default function SistemaOperativoDeContenido() {
   return (
     <Pagina>
       <Hero
-        color="rosa"
+        color="amarillo"
         eyebrow="02. Sistema operativo de contenido"
         titulo="Un plan que dice qué publicar, para quién y cuándo."
         cursiva="qué publicar, para quién y cuándo."

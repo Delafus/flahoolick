@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <Pagina>
         <Hero
-          color="hielo"
+          color="amarillo"
           titulo={<>Tu empresa sabe mucho. <Italica>Haz que cuente.</Italica></>}
           /* Bajada anterior, guardada por si se vuelve a ella:
              "Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales." */

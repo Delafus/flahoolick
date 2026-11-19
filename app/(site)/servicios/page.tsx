@@ -11,7 +11,7 @@ export default function Servicios() {
   return (
     <Pagina>
       <Hero
-        color="rosa"
+        color="amarillo"
         eyebrow="Servicios"
         titulo="Tres capacidades. Un sistema de contenido."
         cursiva="Un sistema de contenido."

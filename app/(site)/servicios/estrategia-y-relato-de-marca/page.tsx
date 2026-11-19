@@ -24,7 +24,7 @@ export default function EstrategiaYRelatoDeMarca() {
   return (
     <Pagina>
       <Hero
-        color="rosa"
+        color="amarillo"
         eyebrow="01. Estrategia y relato de marca"
         titulo="Una historia que tu mercado puede entender y repetir."
         cursiva="puede entender y repetir."

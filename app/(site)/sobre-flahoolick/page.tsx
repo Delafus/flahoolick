@@ -27,7 +27,7 @@ export default function SobreFlahoolick() {
   return (
     <Pagina>
       <Hero
-        color="hielo"
+        color="amarillo"
         compacto
         titulo="Nacimos de una idea generosa."
         cursiva="una idea generosa."

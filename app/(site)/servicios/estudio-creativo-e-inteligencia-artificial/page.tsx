@@ -25,7 +25,7 @@ export default function EstudioCreativoEInteligenciaArtificial() {
   return (
     <Pagina>
       <Hero
-        color="rosa"
+        color="amarillo"
         eyebrow="03. Estudio creativo e inteligencia artificial"
         titulo="Lo que saben tus especialistas, como contenido de valor."
         cursiva="como contenido de valor."

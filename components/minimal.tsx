@@ -78,8 +78,8 @@ export const CABECERAS = {
   negro: { fondo: '#000000', texto: '#ffffff' },
   /** Rosa claro con texto azul noche (2026-11-19; antes #EF9DB6 con texto negro). */
   rosa: { fondo: '#FFDAED', texto: '#1C1854' },
-  /** Metodología: amarillo con todo en el rojo de los triángulos (prueba 2026-11-19; antes texto negro). */
-  amarillo: { fondo: '#F5FD92', texto: '#FF1D00' },
+  /** Firma de Flahoolick (distintividad): amarillo limón con azul noche. Todos los headers y el footer. */
+  amarillo: { fondo: '#F5FD92', texto: '#1C1854' },
   verde: { fondo: VERDE, texto: '#000000' },
   menta: { fondo: '#8FE8BB', texto: '#000000' },
   /** Prueba de color (2026-11-19): fondo hielo con texto azul noche, en el hero de la home y el bloque de metodología. */

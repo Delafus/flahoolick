@@ -3,12 +3,12 @@ import { JERGA_VISIBLE } from './jerga-visible'
 import { CABECERAS } from './minimal'
 import { ShieldWheel } from './shield-wheel'
 
-/** Footer en celeste con todo en azul noche: logo y claim grande (Bricolage + Instrument Serif);
+/** Footer en amarillo con todo en azul noche: logo y claim grande (Bricolage + Instrument Serif);
     debajo, enlaces en fila y una línea final. */
 
-/** Celeste de marca con todo en azul noche (antes menta con negro). */
-const FONDO = CABECERAS.hielo.fondo
-const TEXTO = CABECERAS.hielo.texto
+/** Firma de Flahoolick: amarillo limón con todo en azul noche (antes celeste; antes menta con negro). */
+const FONDO = CABECERAS.amarillo.fondo
+const TEXTO = CABECERAS.amarillo.texto
 const TENUE = 'rgba(28, 24, 84, 0.6)'
 const MONO: React.CSSProperties = {
   fontFamily: 'var(--font-mono), ui-monospace, monospace',

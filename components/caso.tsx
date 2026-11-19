@@ -8,12 +8,12 @@ import { CASOS } from './casos-datos'
 /** Plantilla de historias de clientes, calcada de sanity.io/customers (ej. /customers/tecovas):
     página negra; miga de pan, titular y portada con foto, logo y cifras; frase resumen;
     y debajo dos columnas: ficha fija con botón a la izquierda y relato con citas a la derecha.
-    Toques Flahoolick: celeste en la miga de pan, las cifras y el botón.
+    Toques Flahoolick: amarillo en la miga de pan, las cifras y el botón.
     Cada historia nueva llena estos componentes con sus datos; no se diseña otra página. */
 
 const FONDO = '#000000'
-/** Color de los detalles (miga de pan, cifras, etiquetas, botón, borde de las citas): el celeste de marca. */
-const ACENTO = CABECERAS.hielo.fondo
+/** Color de los detalles (miga de pan, cifras, etiquetas, botón, borde de las citas): el amarillo de la firma. */
+const ACENTO = CABECERAS.amarillo.fondo
 const GRIS = 'rgb(185, 185, 185)'
 const ANCHO = '72.5rem'
 const BN = 'grayscale(1)'
@@ -232,7 +232,7 @@ export function CitaCaso({ texto, nombre, cargo, retrato, logo }: Cita & { logo?
   )
 }
 
-/** Resultados como lista: "valor + título: texto", con la cifra en celeste. */
+/** Resultados como lista: "valor + título: texto", con la cifra en amarillo. */
 export function ResultadosCaso({ titulo = 'Resultados', items }: {
   titulo?: string
   items: { valor: string; titulo: string; texto: string }[]

@@ -4,7 +4,6 @@ import { Pagina, Hero, Pantalla, Boton, FUENTE, DESTACADA, Italica, Cierre, CABE
 import { ETAPAS } from '@/components/etapas-datos'
 import { EtapasScroll } from '@/components/etapas-scroll'
 import { CapacidadesTarjetas } from '@/components/capacidades'
-import { Grafico955 } from '@/components/grafico-95-5'
 import { CarruselCasos } from '@/components/carrusel-casos'
 import { CASOS } from '@/components/casos-datos'
 
@@ -31,12 +30,13 @@ export default function HomePage() {
 
         <Pantalla centrado tinta={CABECERAS.hielo.texto} titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
           <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
-          {/* El gráfico va inclinado y quieto. La fuente va chueca abajo a la derecha, cerca del gráfico,
-              con una flecha punteada que apunta al gráfico. */}
+          {/* El personaje (uno levanta la mano entre muchos iguales). La fuente va chueca abajo a la derecha,
+              con una flecha punteada que apunta a la imagen. */}
           <div className="relative mx-auto w-full pb-12" style={{ maxWidth: '19.75rem' }}>
-            <div style={{ rotate: '-8deg' }}>
-              <Grafico955 className="block w-full" />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/home/personaje-95-5.webp" width={708} height={718} loading="lazy"
+              alt="Un joven de polera amarilla levanta la mano frente a una multitud de jóvenes iguales en gris."
+              className="block h-auto w-full" />
             <div className="absolute bottom-0 right-0 flex flex-col items-start md:-right-16" style={{ rotate: '-8deg' }}>
               <p className="whitespace-nowrap" style={ESTILO_FUENTE}>Regla 95:5 · John Dawes</p>
               {/* eslint-disable-next-line @next/next/no-img-element */}

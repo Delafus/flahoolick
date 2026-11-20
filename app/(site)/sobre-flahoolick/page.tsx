@@ -7,8 +7,7 @@ export const metadata: Metadata = {
 }
 
 const AZUL = CABECERAS.hielo.texto
-/** PRUEBA de color: turquesa en vez de celeste (volver a CABECERAS.hielo.fondo). */
-const CELESTE = '#0090A0'
+const CELESTE = CABECERAS.hielo.fondo
 
 /** Fondo de borde a borde sin cambiar el ancho del contenido, con el azul noche como color del texto. */
 const banda = (fondo: string): React.CSSProperties => ({

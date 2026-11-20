@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { FontMix } from './font-mix'
 
@@ -35,6 +35,9 @@ export function ContactForm({
   const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState(false)
+  /** Antispam: momento en que se mostró el formulario. Un bot lo envía al instante; una persona tarda segundos. */
+  const inicio = useRef(0)
+  useEffect(() => { inicio.current = Date.now() }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,7 +45,7 @@ export function ContactForm({
     setError(false)
 
     const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form).entries())
+    const data = { ...Object.fromEntries(new FormData(form).entries()), t: inicio.current ? Date.now() - inicio.current : 0 }
 
     try {
       const res = await fetch('/api/contacto', {
@@ -69,6 +72,11 @@ export function ContactForm({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-x-4 gap-y-5 md:grid-cols-2">
+            {/* Antispam: campo trampa invisible. Las personas no lo ven ni lo llenan; los bots sí. */}
+            <div aria-hidden style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+              <label htmlFor="sitio_web">No llenar</label>
+              <input id="sitio_web" name="sitio_web" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
             {CAMPOS_MINIMAL.map(c => (
               <div key={c.id} className={`flex flex-col gap-2 ${c.id === 'email' ? 'md:col-span-2' : ''}`}>
                 <label htmlFor={c.id} className="label">{c.label}</label>
@@ -120,6 +128,11 @@ export function ContactForm({
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            {/* Antispam: campo trampa invisible. Las personas no lo ven ni lo llenan; los bots sí. */}
+            <div aria-hidden style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+              <label htmlFor="sitio_web">No llenar</label>
+              <input id="sitio_web" name="sitio_web" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { id: 'nombre',  label: 'Nombre' },

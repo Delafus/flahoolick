@@ -34,15 +34,15 @@ const FUERA_DE_TARJETAS = ['Dossiers y casos de éxito.', 'Agentes de inteligenc
 const EN_TARJETAS: Record<string, string> = { 'Narrativa de marca y liderazgo de opinión.': 'Narrativa de marca.' }
 
 /** Las tres capacidades en la home: tres columnas sin cajas, como los principios de Sobre y metodología.
-    Cada columna: un listón vertical junto al número y nombre en Bricolage, la explicación y viñetas chicas; lleva a su página. */
+    Cada columna: número y nombre en Bricolage (con un listón vertical al pasar el mouse), la explicación y viñetas chicas; lleva a su página. */
 export function CapacidadesTarjetas() {
   return (
     <div className="grid w-full grid-cols-1 gap-10 text-left md:grid-cols-3 md:gap-12">
       {DISCIPLINAS.map(d => (
         <Link key={d.id} href={d.href} className="group flex flex-col gap-4">
-          {/* Listón vertical corto a la izquierda del título, del alto del título. */}
-          <h3 className="pl-4 text-[1.5rem] md:text-[1.75rem]"
-            style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em', borderLeft: '4px solid currentColor' }}>
+          {/* Listón vertical corto a la izquierda del título: aparece solo al pasar el mouse. */}
+          <h3 className="border-l-4 border-transparent pl-4 text-[1.5rem] transition-colors duration-200 group-hover:border-current md:text-[1.75rem]"
+            style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
             {d.numero} {d.nombre}
           </h3>
           <p>{d.desc}</p>

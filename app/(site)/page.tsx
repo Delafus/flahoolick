@@ -32,12 +32,13 @@ export default function HomePage() {
           <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
           {/* El personaje (uno levanta la mano entre muchos iguales). La fuente va chueca abajo a la derecha,
               con una flecha punteada que apunta a la imagen. */}
-          <div className="relative mx-auto w-full pb-12" style={{ maxWidth: '19.75rem' }}>
+          <div className="relative mx-auto w-full pb-8 md:pb-0" style={{ maxWidth: '18rem' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/home/personaje-95-5.webp" width={708} height={718} loading="lazy"
-              alt="Un joven de polera amarilla levanta la mano frente a una multitud de jóvenes iguales en gris."
+            <img src="/home/personaje-95-5.webp" width={289} height={381} loading="lazy"
+              alt="Entre veinte jóvenes iguales en gris, uno de polera amarilla levanta la mano."
               className="block h-auto w-full" />
-            <div className="absolute bottom-0 right-0 flex flex-col items-start md:-right-16" style={{ rotate: '-8deg' }}>
+            {/* Fuente pegada a los pies del grupo: en escritorio sale justo por el borde derecho de la imagen. */}
+            <div className="absolute bottom-0 right-0 flex flex-col items-start md:right-auto md:left-full md:-ml-2 md:bottom-2" style={{ rotate: '-8deg' }}>
               <p className="whitespace-nowrap" style={ESTILO_FUENTE}>Regla 95:5 · John Dawes</p>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/flecha-curva.svg" alt="" aria-hidden className="-mt-0.5" style={{ width: '58px', height: 'auto', marginLeft: '-2.75rem' }} />

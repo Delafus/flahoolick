@@ -28,7 +28,7 @@ export default function SobreFlahoolick() {
     <Pagina>
       <Hero
         color="foto"
-        imagen={{ src: '/casos/dunamis/portada-historia.jpg', srcMovil: '/casos/dunamis/portada-historia-movil.jpg', foco: '64% 50%' }}
+        imagen={{ src: 'https://images.unsplash.com/photo-1791395183217-4118673e86ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDE%3D', bn: true }}
         titulo="Nacimos de una idea generosa."
         cursiva="una idea generosa."
         bajada={<>Del irlandés <em>flaithiúil</em>: generoso, espléndido, abundante. Flahoolick es un estudio de estrategia y contenido para empresas B2B con ciclos de decisión complejos.</>}

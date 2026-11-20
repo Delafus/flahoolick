@@ -114,7 +114,7 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
       En el teléfono, el texto arriba y el visual debajo. */
   dosColumnas?: boolean
   /** Foto a todo el ancho detrás del hero de color (como bain.com), con un oscurecido para que el texto blanco se lea. */
-  imagen?: { src: string; srcMovil?: string; foco?: string }
+  imagen?: { src: string; srcMovil?: string; foco?: string; /** En blanco y negro. */ bn?: boolean }
 }) {
   if (color && dosColumnas) {
     const { fondo, texto } = CABECERAS[color]
@@ -165,7 +165,7 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
             <picture>
               {imagen.srcMovil && <source media="(max-width: 767px)" srcSet={imagen.srcMovil} />}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imagen.src} alt="" className="h-full w-full" style={{ objectFit: 'cover', objectPosition: imagen.foco ?? '50% 50%' }} />
+              <img src={imagen.src} alt="" className="h-full w-full" style={{ objectFit: 'cover', objectPosition: imagen.foco ?? '50% 50%', filter: imagen.bn ? 'grayscale(1)' : undefined }} />
             </picture>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,12,40,0.45) 0%, rgba(10,12,40,0.35) 45%, rgba(10,12,40,0.7) 100%)' }} />
           </div>

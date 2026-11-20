@@ -86,12 +86,14 @@ export const CABECERAS = {
   hielo: { fondo: '#E1F2F0', texto: '#1C1854' },
   /** PRUEBA de color (2026-11-19), solo en Sobre Flahoolick: duotono rojo y turquesa de una referencia del usuario. */
   prueba: { fondo: '#F00000', texto: '#FFFFFF' },
+  /** PRUEBA: hero con foto (como bain.com). El fondo es el del header y lo que se ve si la foto no carga. */
+  foto: { fondo: '#1C1854', texto: '#FFFFFF' },
 } as const
 export type Cabecera = keyof typeof CABECERAS
 
 const ANCHO_HERO = 'min(80rem, calc(100vw - 2 * var(--page-px)))'
 
-export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual, compacto = false, dosColumnas = false }: {
+export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llamada', nota, completo = false, color, visual, compacto = false, dosColumnas = false, imagen }: {
   /** Línea pequeña sobre el titular. Puede ser una miga de pan con enlaces. */
   eyebrow?: React.ReactNode
   titulo: React.ReactNode
@@ -111,6 +113,8 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
   /** En escritorio: `visual` a la izquierda y el texto a la derecha, alineado a su izquierda, separados por una línea fina.
       En el teléfono, el texto arriba y el visual debajo. */
   dosColumnas?: boolean
+  /** Foto a todo el ancho detrás del hero de color (como bain.com), con un oscurecido para que el texto blanco se lea. */
+  imagen?: { src: string; srcMovil?: string; foco?: string }
 }) {
   if (color && dosColumnas) {
     const { fondo, texto } = CABECERAS[color]
@@ -155,7 +159,18 @@ export function Hero({ eyebrow, titulo, cursiva, bajada, cta = 'Agenda una llama
         }}
       >
         <PageColorSetter bg={fondo} text={texto} />
-        <div className="flex flex-col items-center gap-8" style={{ maxWidth: '64rem' }}>
+        {imagen && (
+          // Foto de borde a borde de la pantalla, detrás de todo, con oscurecido parejo y algo más fuerte abajo.
+          <div aria-hidden className="absolute inset-y-0" style={{ left: 'calc(50% - 50vw)', width: '100vw', zIndex: 0 }}>
+            <picture>
+              {imagen.srcMovil && <source media="(max-width: 767px)" srcSet={imagen.srcMovil} />}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={imagen.src} alt="" className="h-full w-full" style={{ objectFit: 'cover', objectPosition: imagen.foco ?? '50% 50%' }} />
+            </picture>
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,12,40,0.45) 0%, rgba(10,12,40,0.35) 45%, rgba(10,12,40,0.7) 100%)' }} />
+          </div>
+        )}
+        <div className="relative flex flex-col items-center gap-8" style={{ maxWidth: '64rem', zIndex: 1 }}>
           {eyebrow && <p className="label">{eyebrow}</p>}
           <h1 style={{ ...DESTACADA, fontSize: 'clamp(2.75rem, 6.2vw, 6.5rem)', lineHeight: 1, letterSpacing: '-0.035em' }}>
             {conCursiva(titulo, cursiva)}

@@ -22,9 +22,7 @@ export default function HomePage() {
   return (
     <Pagina>
         <Hero
-          /* PRUEBA (2026-11-19): hero con foto a todo el ancho, como bain.com. Antes: color="amarillo" sin imagen. */
-          color="foto"
-          imagen={{ src: 'https://images.unsplash.com/photo-1791395183217-4118673e86ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDE%3D', bn: true }}
+          color="amarillo"
           titulo={<>Tu empresa sabe mucho. <Italica>Haz que cuente.</Italica></>}
           /* Bajada anterior, guardada por si se vuelve a ella:
              "Transformamos el conocimiento de tu organización en autoridad de mercado, presencia de marca y herramientas comerciales." */

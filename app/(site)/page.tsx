@@ -34,7 +34,7 @@ export default function HomePage() {
               con una flecha punteada que apunta a la imagen. */}
           <div className="relative mx-auto w-full pb-8 md:pb-0" style={{ maxWidth: '21rem' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/home/guys.png" width={339} height={402} loading="lazy"
+            <img src="/home/guys.webp" width={678} height={804} loading="lazy"
               alt="Entre veinte jóvenes iguales en gris, uno de polera amarilla levanta la mano."
               className="block h-auto w-full" />
             {/* Fuente pegada a los pies del grupo: en escritorio sale justo por el borde derecho de la imagen. */}

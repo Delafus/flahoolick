@@ -73,8 +73,8 @@ export default function SobreFlahoolick() {
         titulo="Generosidad también es hacer circular lo que uno sabe."
         texto="Ayudamos a que el conocimiento de una empresa encuentre una forma, una audiencia y una función en el mercado."
         cta="Agenda una llamada"
-        fondo="#F00000"
-        tinta="#FFFFFF"
+        fondo="#F5FD92"
+        tinta="#1C1854"
       />
     </Pagina>
   )

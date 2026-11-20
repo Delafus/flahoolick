@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 
 /** Celeste con texto azul noche, como los cuerpos de todo el sitio. */
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 }
 
 const ACTUALIZADO = '19 de julio de 2026'
-const CORREO = '[correo de contacto]'
+/** Mientras no exista un correo del dominio, el canal de contacto es el formulario del sitio (llega al equipo). */
+const CORREO = <Link href="/#contacto" className="underline underline-offset-2">el formulario de contacto de este sitio</Link>
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
@@ -78,7 +80,7 @@ function Contenido() {
       <P>Flahoolick es un partner moderno de estrategia y contenido para empresas B2B.</P>
       <P>Para efectos de esta política, «Flahoolick», «nosotros» o «nuestro» se refiere a Flahoolick y a las personas o proveedores que apoyan la operación de este sitio y sus comunicaciones.</P>
       <P>Sitio web: flahoolick.com</P>
-      <P>Contacto: {CORREO}</P>
+      <P>Contacto: {CORREO}.</P>
 
       <H2>2. Qué información recopilamos</H2>
       <P>Podemos recopilar información personal y técnica cuando visitas nuestro sitio, completas un formulario, nos escribes directamente o te suscribes a nuestras comunicaciones.</P>
@@ -147,7 +149,7 @@ function Contenido() {
       <H2>6. Newsletter y comunicaciones editoriales</H2>
       <P>Más adelante, Flahoolick podrá ofrecer la suscripción a JERGA, nuestro medio editorial.</P>
       <P>Si te suscribes, usaremos tu correo electrónico y los datos asociados a la suscripción para enviarte contenidos, artículos, novedades, invitaciones o comunicaciones relacionadas con Flahoolick.</P>
-      <P>Podrás darte de baja de estas comunicaciones mediante el enlace de desuscripción incluido en cada correo o escribiéndonos directamente a {CORREO}.</P>
+      <P>Podrás darte de baja de estas comunicaciones mediante el enlace de desuscripción incluido en cada correo o escribiéndonos a través de {CORREO}.</P>
 
       <H2>7. Con quién podemos compartir información</H2>
       <P>Podemos compartir información con proveedores que nos ayudan a operar el sitio, analizar su desempeño, administrar comunicaciones o prestar servicios tecnológicos.</P>
@@ -187,7 +189,7 @@ function Contenido() {
         'Oposición al tratamiento en los casos aplicables',
         'Bloqueo de datos en los casos previstos por la normativa',
       ]} />
-      <P>Para ejercer estos derechos, puedes escribirnos a {CORREO}.</P>
+      <P>Para ejercer estos derechos, puedes escribirnos a través de {CORREO}.</P>
       <P>Podremos solicitar información adicional para verificar tu identidad antes de responder una solicitud.</P>
 
       <H2>12. Menores de edad</H2>
@@ -204,7 +206,7 @@ function Contenido() {
 
       <H2>15. Contacto</H2>
       <P>Para preguntas sobre esta Política de Privacidad o para ejercer derechos sobre tus datos personales, puedes contactarnos en:</P>
-      <P>Flahoolick<br />Santiago, Chile<br />{CORREO}</P>
+      <P>Flahoolick<br />Santiago, Chile<br />A través de {CORREO}.</P>
     </div>
   )
 }

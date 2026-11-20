@@ -458,12 +458,12 @@
 .volteo[data-estado="entra"] { animation: voltea-entra 750ms cubic-bezier(0.45, 0, 0.2, 1) both; }
 .volteo[data-estado="sale"] { animation: voltea-sale 750ms cubic-bezier(0.45, 0, 0.2, 1) both; }
 @keyframes voltea-entra {
-  from { transform: rotateY(90deg); }
+  from { transform: rotateY(calc(var(--giro, 1) * 90deg)); }
   to { transform: rotateY(0deg); }
 }
 @keyframes voltea-sale {
   from { transform: rotateY(0deg); }
-  to { transform: rotateY(-90deg); }
+  to { transform: rotateY(calc(var(--giro, 1) * -90deg)); }
 }
 .grafico-gira { animation: grafico-gira 40s linear infinite; }
 @keyframes grafico-gira { to { transform: rotate(360deg); } }

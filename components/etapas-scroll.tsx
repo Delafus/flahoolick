@@ -298,12 +298,13 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
             <GraficoEtapas estado={activa} className="w-full" />
           </div>
           {/* Textos apilados. Al cambiar de etapa, el bloque completo (título y párrafo) gira como la cara de un cubo:
-              la que sale y la que entra giran juntas sobre el mismo eje vertical. */}
+              la que sale y la que entra giran juntas sobre el mismo eje vertical. Al avanzar, la nueva entra por la derecha;
+              al retroceder, el cubo gira al revés y entra por la izquierda (--giro). */}
           <div ref={textos} className="grid" style={{ perspective: '900px' }}>
             {etapas.map((e, i) => (
               <div key={e.slug} aria-hidden={i !== activa} className="volteo flex flex-col gap-3"
                 data-estado={i === activa ? (cambio.anterior === -1 ? 'quieto' : 'entra') : i === cambio.anterior ? 'sale' : 'oculto'}
-                style={{ gridArea: '1 / 1', pointerEvents: i === activa ? 'auto' : 'none' }}>
+                style={{ gridArea: '1 / 1', pointerEvents: i === activa ? 'auto' : 'none', ['--giro' as string]: activa >= cambio.anterior ? 1 : -1 } as React.CSSProperties}>
                 <h3 className="text-[1.375rem]" style={TITULO}>
                   <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{numero(i)} {e.nombre}</Link>
                 </h3>

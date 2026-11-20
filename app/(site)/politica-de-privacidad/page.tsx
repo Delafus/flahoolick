@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Cómo Flahoolick recopila, usa y protege los datos personales de quienes visitan este sitio.',
 }
 
-const ACTUALIZADO = '[indicar fecha]'
+const ACTUALIZADO = '19 de julio de 2026'
 const CORREO = '[correo de contacto]'
 
 function H2({ children }: { children: React.ReactNode }) {

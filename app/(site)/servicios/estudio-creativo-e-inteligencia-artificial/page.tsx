@@ -15,10 +15,10 @@ const CONSTRUIMOS = [
 ]
 
 const PROCESO = [
-  { titulo: '1. Definimos el trabajo', texto: 'Qué problema debe resolver, quién lo utiliza y cómo sabremos si funciona.' },
-  { titulo: '2. Incorporamos el conocimiento', texto: 'Fuentes, reglas, mensajes, límites y situaciones que debe comprender.' },
-  { titulo: '3. Construimos una versión funcional', texto: 'Una primera solución acotada que permite probar el valor en condiciones reales.' },
-  { titulo: '4. Medimos y ampliamos', texto: 'Revisamos desempeño, corregimos errores y agregamos capacidades respaldadas por evidencia.' },
+  { titulo: 'Definimos el trabajo', texto: 'Qué problema debe resolver, quién lo utiliza y cómo sabremos si funciona.' },
+  { titulo: 'Incorporamos el conocimiento', texto: 'Fuentes, reglas, mensajes, límites y situaciones que debe comprender.' },
+  { titulo: 'Construimos una versión funcional', texto: 'Una primera solución acotada que permite probar el valor en condiciones reales.' },
+  { titulo: 'Medimos y ampliamos', texto: 'Revisamos desempeño, corregimos errores y agregamos capacidades respaldadas por evidencia.' },
 ]
 
 export default function EstudioCreativoEInteligenciaArtificial() {

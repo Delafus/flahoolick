@@ -85,7 +85,7 @@ export const CABECERAS = {
   /** Prueba de color (2026-11-19): fondo hielo con texto azul noche, en el hero de la home y el bloque de metodología. */
   hielo: { fondo: '#E1F2F0', texto: '#1C1854' },
   /** PRUEBA de color (2026-11-19), solo en Sobre Flahoolick: duotono rojo y turquesa de una referencia del usuario. */
-  prueba: { fondo: '#E8392A', texto: '#FFFFFF' },
+  prueba: { fondo: '#F00000', texto: '#FFFFFF' },
 } as const
 export type Cabecera = keyof typeof CABECERAS
 

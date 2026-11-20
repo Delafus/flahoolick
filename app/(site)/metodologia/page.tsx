@@ -55,7 +55,9 @@ export default function Metodologia() {
 
       <div style={CUERPO}>
         {/* Entrada: el problema y el punto de partida (el Value Proposition Canvas). */}
-        <section className="flex flex-col gap-8 py-16 md:gap-10 md:py-24">
+        {/* En escritorio, dos columnas: el texto a la izquierda y la imagen de los personajes apuntándose a la derecha. */}
+        <section className="grid grid-cols-1 items-center gap-10 py-16 md:py-24 lg:grid-cols-[7fr_5fr] lg:gap-16">
+          <div className="flex flex-col gap-8 md:gap-10">
           <h2 className="text-[2.25rem] md:text-[3.25rem]" style={{ ...TITULO, maxWidth: '22ch' }}>
             Un buen vendedor quiere crear valor para su cliente. <Italica>Lo difícil es que diga lo mismo que el resto de su empresa.</Italica>
           </h2>
@@ -63,6 +65,11 @@ export default function Metodologia() {
             <p>Cada área ve una parte distinta del cliente, y gran parte de lo que la empresa sabe nunca se escribió. Por eso empezamos con el Value Proposition Canvas, de Strategyzer: cruzamos lo que tu empresa ofrece con lo que cada segmento de clientes necesita resolver. De ahí sale a quién hablarle primero, con qué mensaje y qué historias contar para que el mercado te recuerde antes de salir a comprar.</p>
             <CreditoStrategyzer />
           </div>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/metodologia/spider.webp" width={1000} height={826} loading="lazy"
+            alt="Cuatro jóvenes iguales se apuntan entre sí con el dedo."
+            className="mx-auto block h-auto w-full" style={{ maxWidth: '30rem' }} />
         </section>
 
         {/* Las tres etapas con el gráfico animado (el mismo de la home). */}

@@ -254,42 +254,14 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
     return () => { window.removeEventListener('scroll', alMover); window.removeEventListener('resize', alMover); cancelAnimationFrame(cuadro) }
   }, [etapas.length])
 
-  // Teléfono: agrupa las palabras de cada párrafo en filas y le da a cada palabra el eje de giro de su fila
-  // (al centro de la fila, hundido media fila hacia atrás), para que cada fila gire entera como una capa de un cubo Rubik.
-  // Las filas alternan el sentido del giro. El título gira igual, como una fila sola.
+  // Teléfono: cada etapa es una cara de un cubo. El eje de giro va al centro del bloque, hundido medio ancho hacia atrás.
   useLayoutEffect(() => {
     const el = textos.current
     if (!el) return
-    const numerar = () => {
-      el.querySelectorAll<HTMLElement>('h3.voltea').forEach(h => {
-        h.style.setProperty('--ox', '50%')
-        h.style.setProperty('--oz', `${-h.offsetWidth / 2}px`)
-        h.style.setProperty('--dir', '1')
-      })
-      el.querySelectorAll('p').forEach(p => {
-        const filas: HTMLElement[][] = []
-        let alto: number | null = null
-        p.querySelectorAll<HTMLElement>('.palabra').forEach(w => {
-          if (alto === null || w.offsetTop > alto + 2) filas.push([])
-          alto = w.offsetTop
-          filas[filas.length - 1].push(w)
-        })
-        filas.forEach((fila, f) => {
-          const izq = Math.min(...fila.map(w => w.offsetLeft))
-          const der = Math.max(...fila.map(w => w.offsetLeft + w.offsetWidth))
-          const centro = (izq + der) / 2
-          fila.forEach(w => {
-            w.style.setProperty('--fila', String(f + 1))
-            w.style.setProperty('--dir', f % 2 ? '-1' : '1')
-            w.style.setProperty('--ox', `${centro - w.offsetLeft}px`)
-            w.style.setProperty('--oz', `${-(der - izq) / 2}px`)
-          })
-        })
-      })
-    }
-    numerar()
-    window.addEventListener('resize', numerar)
-    return () => window.removeEventListener('resize', numerar)
+    const medir = () => el.querySelectorAll<HTMLElement>('.volteo').forEach(c => c.style.setProperty('--oz', `${-c.offsetWidth / 2}px`))
+    medir()
+    window.addEventListener('resize', medir)
+    return () => window.removeEventListener('resize', medir)
   }, [])
 
   // Escritorio: el bloque avanza solo mientras está en pantalla y nadie lo está eligiendo.
@@ -325,17 +297,17 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 46svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" />
           </div>
-          {/* Textos apilados. Al cambiar de etapa, cada fila gira entera sobre un eje vertical, como una capa de un cubo Rubik:
-              la que sale se va hacia un lado y la nueva entra desde el otro, fila por fila en cascada, alternando el sentido. */}
-          <div ref={textos} className="grid">
+          {/* Textos apilados. Al cambiar de etapa, el bloque completo (título y párrafo) gira como la cara de un cubo:
+              la que sale y la que entra giran juntas sobre el mismo eje vertical. */}
+          <div ref={textos} className="grid" style={{ perspective: '900px' }}>
             {etapas.map((e, i) => (
               <div key={e.slug} aria-hidden={i !== activa} className="volteo flex flex-col gap-3"
                 data-estado={i === activa ? (cambio.anterior === -1 ? 'quieto' : 'entra') : i === cambio.anterior ? 'sale' : 'oculto'}
                 style={{ gridArea: '1 / 1', pointerEvents: i === activa ? 'auto' : 'none' }}>
-                <h3 className="voltea text-[1.375rem]" style={TITULO}>
+                <h3 className="text-[1.375rem]" style={TITULO}>
                   <Link href={`/metodologia/${e.slug}`} tabIndex={i === activa ? undefined : -1}>{numero(i)} {e.nombre}</Link>
                 </h3>
-                <p>{e.texto.split(' ').map((palabra, k) => <span key={k}><span className="voltea palabra">{palabra}</span> </span>)}</p>
+                <p>{e.texto}</p>
               </div>
             ))}
           </div>

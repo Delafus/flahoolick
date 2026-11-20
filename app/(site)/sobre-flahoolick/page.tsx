@@ -7,7 +7,8 @@ export const metadata: Metadata = {
 }
 
 const AZUL = CABECERAS.hielo.texto
-const CELESTE = CABECERAS.hielo.fondo
+/** PRUEBA de color: turquesa en vez de celeste (volver a CABECERAS.hielo.fondo). */
+const CELESTE = '#3E9AA5'
 
 /** Fondo de borde a borde sin cambiar el ancho del contenido, con el azul noche como color del texto. */
 const banda = (fondo: string): React.CSSProperties => ({
@@ -27,7 +28,7 @@ export default function SobreFlahoolick() {
   return (
     <Pagina>
       <Hero
-        color="amarillo"
+        color="prueba"
         compacto
         titulo="Nacimos de una idea generosa."
         cursiva="una idea generosa."

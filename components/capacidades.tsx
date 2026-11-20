@@ -40,9 +40,10 @@ export function CapacidadesTarjetas() {
     <div className="grid w-full grid-cols-1 gap-10 text-left md:grid-cols-3 md:gap-12">
       {DISCIPLINAS.map(d => (
         <Link key={d.id} href={d.href} className="group flex flex-col gap-4">
-          {/* Listón vertical corto a la izquierda del título: aparece solo al pasar el mouse. */}
-          <h3 className="border-l-4 border-transparent pl-4 text-[1.5rem] transition-colors duration-200 group-hover:border-current md:text-[1.75rem]"
+          {/* Título alineado con el texto. El listón vertical aparece solo al pasar el mouse, por fuera de la columna, a la izquierda. */}
+          <h3 className="relative text-[1.5rem] md:text-[1.75rem]"
             style={{ fontFamily: 'var(--font-bricolage)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+            <span aria-hidden className="absolute -left-4 top-0 bottom-0 w-1 bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
             {d.numero} {d.nombre}
           </h3>
           <p>{d.desc}</p>

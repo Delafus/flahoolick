@@ -94,11 +94,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Logos dentro del mismo celeste de "Veinticinco años", sin franja aparte; "Marcas que nos formaron" chico y centrado encima. */}
+        {/* Logos dentro del mismo celeste de "Veinticinco años", sin franja aparte; "Marcas que nos formaron" chico y centrado debajo, con flecha. */}
         <div className="pb-10 text-center md:pb-14"
           style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', backgroundColor: CABECERAS.hielo.fondo, color: CABECERAS.hielo.texto }}>
-          <p className="text-[0.8125rem]" style={{ opacity: 0.6 }}>Marcas que nos formaron</p>
           <Marquee color={CABECERAS.hielo.texto} excluir={['Dunamis']} />
+          {/* Debajo de los logos, con la misma flecha de la fuente del 95:5, apuntando hacia arriba a los logos. */}
+          <div className="mt-2 flex items-end justify-center gap-1.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/flecha-curva.svg" alt="" aria-hidden style={{ width: '46px', height: 'auto', rotate: '20deg', marginBottom: '0.35rem' }} />
+            <p className="text-[0.8125rem]" style={{ opacity: 0.6 }}>Marcas que nos formaron</p>
+          </div>
         </div>
 
         <Cierre />

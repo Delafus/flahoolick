@@ -254,19 +254,39 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
     return () => { window.removeEventListener('scroll', alMover); window.removeEventListener('resize', alMover); cancelAnimationFrame(cuadro) }
   }, [etapas.length])
 
-  // Teléfono: numera las filas de cada párrafo (por la altura de cada palabra) para que giren en cascada.
+  // Teléfono: agrupa las palabras de cada párrafo en filas y le da a cada palabra el eje de giro de su fila
+  // (al centro de la fila, hundido media fila hacia atrás), para que cada fila gire entera como una capa de un cubo Rubik.
+  // Las filas alternan el sentido del giro. El título gira igual, como una fila sola.
   useLayoutEffect(() => {
     const el = textos.current
     if (!el) return
-    const numerar = () => el.querySelectorAll('p').forEach(p => {
-      let fila = 0
-      let alto: number | null = null
-      p.querySelectorAll<HTMLElement>('.palabra').forEach(w => {
-        if (alto !== null && w.offsetTop > alto + 2) fila++
-        alto = w.offsetTop
-        w.style.setProperty('--fila', String(fila + 1))
+    const numerar = () => {
+      el.querySelectorAll<HTMLElement>('h3.voltea').forEach(h => {
+        h.style.setProperty('--ox', '50%')
+        h.style.setProperty('--oz', `${-h.offsetWidth / 2}px`)
+        h.style.setProperty('--dir', '1')
       })
-    })
+      el.querySelectorAll('p').forEach(p => {
+        const filas: HTMLElement[][] = []
+        let alto: number | null = null
+        p.querySelectorAll<HTMLElement>('.palabra').forEach(w => {
+          if (alto === null || w.offsetTop > alto + 2) filas.push([])
+          alto = w.offsetTop
+          filas[filas.length - 1].push(w)
+        })
+        filas.forEach((fila, f) => {
+          const izq = Math.min(...fila.map(w => w.offsetLeft))
+          const der = Math.max(...fila.map(w => w.offsetLeft + w.offsetWidth))
+          const centro = (izq + der) / 2
+          fila.forEach(w => {
+            w.style.setProperty('--fila', String(f + 1))
+            w.style.setProperty('--dir', f % 2 ? '-1' : '1')
+            w.style.setProperty('--ox', `${centro - w.offsetLeft}px`)
+            w.style.setProperty('--oz', `${-(der - izq) / 2}px`)
+          })
+        })
+      })
+    }
     numerar()
     window.addEventListener('resize', numerar)
     return () => window.removeEventListener('resize', numerar)
@@ -293,9 +313,9 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
       <div ref={pista} style={{ height: `${etapas.length * 100}svh` }}>
         <div className="sticky flex flex-col justify-center gap-5"
           style={{ top: HEADER, height: `calc(100svh - ${HEADER}px)` }}>
-          {/* Línea de avance fina, separada del header, a todo el ancho de la pantalla; bajo su punta, el nombre de la etapa
+          {/* Línea de avance fina, pegada al header, a todo el ancho de la pantalla; bajo su punta, el nombre de la etapa
               en chico. El nombre aparece recién cuando la línea ya es más larga que él (antes, no se ve). */}
-          <div aria-hidden className="absolute" style={{ top: 8, left: 'calc(50% - 50vw)', width: '100vw' }}>
+          <div aria-hidden className="absolute" style={{ top: 0, left: 'calc(50% - 50vw)', width: '100vw' }}>
             <div style={{ height: 2, width: `${avance * 100}%`, backgroundColor: NEGRO }} />
             <div className="whitespace-nowrap pt-1 text-right lowercase"
               style={{ width: `${avance * 100}%`, fontSize: '12px', lineHeight: 1.2, opacity: etiquetaVisible ? 1 : 0, transition: 'opacity 300ms ease' }}>
@@ -305,8 +325,8 @@ export function EtapasScroll({ etapas, pie }: { etapas: EtapaScroll[]; pie?: Rea
           <div className="mx-auto w-full" style={{ maxWidth: 'min(100%, 46svh)' }}>
             <GraficoEtapas estado={activa} className="w-full" />
           </div>
-          {/* Textos apilados. Al cambiar de etapa, el que sale gira hacia arriba sobre su eje horizontal y el que entra llega
-              girando desde abajo: el título como un bloque y el párrafo fila por fila, en cascada (como las filas de un cubo Rubik). */}
+          {/* Textos apilados. Al cambiar de etapa, cada fila gira entera sobre un eje vertical, como una capa de un cubo Rubik:
+              la que sale se va hacia un lado y la nueva entra desde el otro, fila por fila en cascada, alternando el sentido. */}
           <div ref={textos} className="grid">
             {etapas.map((e, i) => (
               <div key={e.slug} aria-hidden={i !== activa} className="volteo flex flex-col gap-3"

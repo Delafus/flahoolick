@@ -82,7 +82,7 @@ export default function HomePage() {
         </section>
 
         {/* Quiénes somos: centrado, en celeste con texto azul noche a todo el ancho. */}
-        <section className="flex flex-col items-center py-16 text-center md:py-24"
+        <section className="flex flex-col items-center pt-16 pb-12 text-center md:pt-24 md:pb-16"
           style={{ ...ANCHO_COMPLETO(CABECERAS.hielo.fondo), color: CABECERAS.hielo.texto, ['--tinta' as string]: CABECERAS.hielo.texto } as React.CSSProperties}>
           <div className="mx-auto flex flex-col items-center gap-6" style={{ maxWidth: '48rem' }}>
           <h2 className="text-[2.5rem] md:text-[3.75rem]" style={{ ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
@@ -94,15 +94,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Logos: una franja blanca apretada a todo el ancho, pegada al bloque celeste de arriba. "Marcas que nos formaron"
-            va en una pestañita blanca centrada, de esquinas redondeadas, que sale del borde superior de la franja. */}
-        <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ffffff' }}>
-          <p className="absolute bottom-full left-1/2 -translate-x-1/2">
-            <span className="inline-block whitespace-nowrap px-4 pt-1.5 pb-1 text-[0.8125rem]"
-              style={{ backgroundColor: '#ffffff', color: 'rgba(0,0,0,0.55)', borderRadius: '12px 12px 0 0' }}>
-              Marcas que nos formaron
-            </span>
-          </p>
+        {/* Logos dentro del mismo celeste de "Veinticinco años", sin franja aparte; "Marcas que nos formaron" chico y centrado encima. */}
+        <div className="pb-10 text-center md:pb-14"
+          style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', backgroundColor: CABECERAS.hielo.fondo, color: CABECERAS.hielo.texto }}>
+          <p className="text-[0.8125rem]" style={{ opacity: 0.6 }}>Marcas que nos formaron</p>
           <Marquee color={CABECERAS.hielo.texto} excluir={['Dunamis']} />
         </div>
 

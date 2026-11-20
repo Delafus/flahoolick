@@ -29,7 +29,6 @@ export default function HomePage() {
         />
 
         <Pantalla centrado tinta={CABECERAS.hielo.texto} titulo="Solo el 5% de tu mercado está listo para comprar hoy." cursiva="está listo para comprar hoy.">
-          <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
           {/* El personaje (uno levanta la mano entre muchos iguales). La fuente va chueca abajo a la derecha,
               con una flecha punteada que apunta a la imagen. */}
           <div className="relative mx-auto w-full pb-8 md:pb-0" style={{ maxWidth: '21rem' }}>
@@ -44,6 +43,7 @@ export default function HomePage() {
               <img src="/flecha-curva.svg" alt="" aria-hidden className="-mt-0.5" style={{ width: '58px', height: 'auto', marginLeft: '-2.75rem' }} />
             </div>
           </div>
+          <p>El 95% lo hará más adelante. Trabajamos para que tu marca esté presente cuando llegue ese momento.</p>
         </Pantalla>
 
         {/* Metodología: fondo amarillo a todo el ancho de la pantalla, con el gráfico de puntos que cambia con el scroll. */}

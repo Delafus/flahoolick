@@ -37,7 +37,7 @@ export default function EstrategiaYRelatoDeMarca() {
       </Bloque>
       <Bloque titulo="Empezamos por el negocio y las preguntas del comprador.">
         <p>Entrevistamos a dirección, ventas y especialistas para entender por qué te eligen tus clientes. Después lo comparamos con lo que dice tu competencia y con lo que tu comprador busca y pregunta.</p>
-        <p>De ahí salen los temas en que tu empresa tiene algo propio que decir.</p>
+        <p>Ahí aparece lo que tu empresa puede decir y la competencia no.</p>
       </Bloque>
       <Bloque titulo="Qué construimos.">
         <Items items={CONSTRUIMOS} />

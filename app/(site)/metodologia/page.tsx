@@ -19,13 +19,6 @@ const CUERPO = {
 
 const TITULO = { ...DESTACADA, lineHeight: 1.05, letterSpacing: '-0.03em' } as const
 
-/** Texto de cada etapa en esta página: más completo que el de la home. */
-const TEXTOS = [
-  'Entramos a tu negocio, revisamos la oferta, el mercado, las audiencias y el proceso comercial. Entrevistamos a dirección, ventas y especialistas para identificar qué problemas reales resuelves, qué conocimiento distingue a la empresa y dónde están las brechas que hoy dificultan explicarlo.',
-  'Cruzamos lo que ofreces con lo que tu cliente necesita resolver. Elegimos qué lugar puede ocupar la empresa, qué idea debe organizar su relato y qué mensajes, argumentos y pruebas necesitan compartir dirección, marketing, ventas y los equipos técnicos.',
-  'Convertimos esa dirección en una operación concreta para que tus audiencias puedan encontrarte, entenderte y recordarte: temas, contenidos, herramientas comerciales, formatos, canales, responsables y criterios de medición.',
-]
-
 /** Cinco principios basados en evidencia (Ehrenberg-Bass, Binet y Field), adaptados a B2B. Sin cifras hasta verificarlas. */
 const PRINCIPIOS = [
   { titulo: 'Al comprador no le importa tu marca.', texto: 'Le importan sus problemas. Cada mensaje parte de su situación, no de lo que la empresa quiere decir de sí misma.', fuente: 'Byron Sharp, How Brands Grow (2010).' },
@@ -77,7 +70,8 @@ export default function Metodologia() {
           <h2 className="text-[2.25rem] md:text-[3.25rem]" style={TITULO}>
             Cómo lo llevamos <Italica>a la práctica.</Italica>
           </h2>
-          <EtapasScroll etapas={ETAPAS.map((e, i) => ({ slug: e.slug, nombre: e.nombre, texto: TEXTOS[i], recibes: e.recibes }))} />
+          {/* Usa el mismo texto de "Qué hacemos" de cada página de etapa, para que no haya dos versiones. */}
+          <EtapasScroll etapas={ETAPAS.map(e => ({ slug: e.slug, nombre: e.nombre, texto: e.texto, recibes: e.recibes }))} />
         </section>
 
         {/* Bisagra: la propuesta de valor (lo que decir) y la distintividad (que te recuerden). */}

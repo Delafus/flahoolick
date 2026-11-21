@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, CuerpoCeleste } from '@/components/minimal'
+import { Pagina, Hero, Bloque, Items, Cierre, CuerpoCeleste } from '@/components/minimal'
 
 export const metadata: Metadata = {
   title: 'Estudio creativo e inteligencia artificial para marketing y ventas B2B | Flahoolick',
@@ -46,10 +46,6 @@ export default function EstudioCreativoEInteligenciaArtificial() {
       <Bloque titulo="Cómo lo hacemos.">
         <Items items={PROCESO} />
       </Bloque>
-      <CasoEnlace titulo="El equipo comercial pidió un PDF en Canva. Recibió un dossier que se comparte con un enlace.">
-        <p>Un PDF queda viejo cada vez que cambian el stock o los honorarios. El dossier web funciona en celular y tablet, y se actualiza una sola vez para todo el equipo.</p>
-        <p>Dee, el asistente virtual de Dunamis, está conectado a la base de propiedades y servicios: responde consultas, presenta las propiedades que calzan con cada persona, agenda la visita y deriva el contacto a un agente.</p>
-      </CasoEnlace>
       </CuerpoCeleste>
       <Cierre />
     </Pagina>

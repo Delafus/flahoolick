@@ -46,6 +46,11 @@ export default function EstudioCreativoEInteligenciaArtificial() {
       <Bloque titulo="Cómo lo hacemos.">
         <Items items={PROCESO} />
       </Bloque>
+      <Bloque titulo="La IA trabaja con lo que tu empresa tiene escrito.">
+        <p>Los modelos de IA son los mismos para todas las empresas. El resultado cambia según lo que cada una sabe y dónde lo guarda.</p>
+        <p>Si ese conocimiento vive en la cabeza de dos o tres personas, en reuniones sin registro o en carpetas que nadie abre, ningún agente puede usarlo. Por eso, antes de construir, lo capturamos con tus especialistas y lo dejamos escrito y ordenado.</p>
+        <p>Ese material queda en tu empresa. Sirve para el contenido de hoy y para cualquier herramienta que construyas después.</p>
+      </Bloque>
       </CuerpoCeleste>
       <Cierre />
     </Pagina>

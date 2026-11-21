@@ -3,21 +3,21 @@ import { Pagina, Hero, Bloque, Items, CasoEnlace, Cierre, FUENTE, CuerpoCeleste 
 
 export const metadata: Metadata = {
   title: 'Estrategia y relato de marca B2B | Flahoolick',
-  description: 'Definimos qué hace valiosa a tu empresa, cómo debe posicionarse y qué necesita escuchar cada audiencia.',
+  description: 'Definimos qué lugar puede ocupar tu empresa en su mercado y qué necesita escuchar cada persona que participa en la compra.',
 }
 
 const CONSTRUIMOS = [
-  { titulo: 'Posicionamiento y propuesta de valor', texto: 'El lugar que la empresa puede ocupar y defender en la mente del mercado, y la idea central que organiza lo que hace, cree y promete.' },
-  { titulo: 'Inteligencia de audiencias', texto: 'Quién participa en la decisión, qué necesita comprender y qué preguntas aparecen a lo largo de la oportunidad comercial.' },
-  { titulo: 'Arquitectura de mensajes', texto: 'La relación entre promesa, argumentos, pruebas, audiencias y situaciones comerciales.' },
-  { titulo: 'Estrategia editorial', texto: 'Los temas donde la empresa reúne conocimiento, credenciales y una oportunidad real de desarrollar una voz propia.' },
-  { titulo: 'Narrativa de marca y liderazgo de opinión', texto: 'El lenguaje, las señales visuales y los puntos de vista que vuelven reconocible a la empresa y a sus especialistas.' },
+  { titulo: 'Posicionamiento y propuesta de valor', texto: 'El lugar que tu empresa puede ocupar en su categoría y la idea que ordena todo lo que dice.' },
+  { titulo: 'Inteligencia de audiencias', texto: 'Quién participa en la compra, qué necesita entender cada persona y qué pregunta en cada etapa de la venta.' },
+  { titulo: 'Arquitectura de mensajes', texto: 'Qué se le dice a cada persona y con qué prueba, para que dirección, marketing y ventas digan lo mismo.' },
+  { titulo: 'Estrategia editorial', texto: 'Los temas en que tu empresa sabe más que el resto y puede hablar con autoridad.' },
+  { titulo: 'Narrativa de marca y liderazgo de opinión', texto: 'El tono, los elementos visuales y los puntos de vista que hacen reconocible a la empresa y a sus especialistas.' },
 ]
 
 const CAMBIA = [
-  { titulo: 'La empresa se vuelve más fácil de explicar', texto: 'Dirección, marketing y ventas cuentan una historia que el mercado puede comprender y repetir.' },
-  { titulo: 'La marca gana un lugar propio en la categoría', texto: 'La posición, el lenguaje y las señales expresan algo que la empresa puede sostener como propio.' },
-  { titulo: 'Las herramientas comparten un punto de partida', texto: 'Sitios, propuestas, campañas y presentaciones se construyen desde una misma arquitectura.' },
+  { titulo: 'La empresa se vuelve más fácil de explicar', texto: 'Dirección, marketing y ventas la explican de la misma manera.' },
+  { titulo: 'La marca deja de sonar como la competencia', texto: 'Dice algo que solo tu empresa puede sostener con pruebas.' },
+  { titulo: 'Todo sale de la misma base', texto: 'El sitio, las propuestas y las presentaciones parten del mismo documento. Nadie tiene que reinventar el discurso.' },
 ]
 
 export default function EstrategiaYRelatoDeMarca() {
@@ -28,16 +28,16 @@ export default function EstrategiaYRelatoDeMarca() {
         eyebrow="01. Estrategia y relato de marca"
         titulo="Una historia que tu mercado puede entender y repetir."
         cursiva="puede entender y repetir."
-        bajada="Definimos qué hace valiosa a tu empresa, cómo debe posicionarse y qué necesita escuchar cada audiencia."
+        bajada="Definimos qué lugar puede ocupar tu empresa en su mercado y qué necesita escuchar cada persona que participa en la compra."
       />
       <CuerpoCeleste>
       <Bloque titulo="Ocupar un lugar exige elegirlo.">
         <p>Las empresas complejas suelen describirse con las mismas palabras: innovación, experiencia y compromiso.</p>
-        <p>Una posición define qué valor puede defender la empresa, para quién importa y qué pruebas la vuelven creíble.</p>
+        <p>Posicionarse es elegir algo que puedes defender con pruebas y dejar de decir todo lo demás.</p>
       </Bloque>
       <Bloque titulo="Empezamos por el negocio y las preguntas del comprador.">
-        <p>Partimos de cómo la empresa crea valor, de las decisiones que la distinguen y de las razones por las que sus clientes la eligen. Luego contrastamos ese conocimiento con el mercado, la competencia, las búsquedas y las conversaciones que ya están ocurriendo.</p>
-        <p>Elegimos las conversaciones que tu empresa merece liderar.</p>
+        <p>Entrevistamos a dirección, ventas y especialistas para entender por qué te eligen tus clientes. Después lo comparamos con lo que dice tu competencia y con lo que tu comprador busca y pregunta.</p>
+        <p>De ahí salen los temas en que tu empresa tiene algo propio que decir.</p>
       </Bloque>
       <Bloque titulo="Qué construimos.">
         <Items items={CONSTRUIMOS} />
@@ -47,11 +47,11 @@ export default function EstrategiaYRelatoDeMarca() {
       </Bloque>
       <Bloque titulo="Qué recibes.">
         <p className="text-[1.375rem] md:text-[1.625rem]" style={{ ...FUENTE, fontWeight: 500, lineHeight: 1.3 }}>
-          Una plataforma estratégica, verbal y visual, aplicable en comunicación corporativa, marketing, ventas, licitaciones y experiencias digitales.
+          Una plataforma de marca con la posición, los mensajes, el tono y la identidad visual, lista para usar en el sitio, las propuestas, las licitaciones y las presentaciones.
         </p>
       </Bloque>
-      <CasoEnlace titulo="Una nueva identidad para dos públicos.">
-        <p>De una marca inmobiliaria a dos verticales con públicos distintos. Conservamos el nombre y el vínculo con el mundo inmobiliario, y construimos una identidad capaz de dar personalidad propia a Agency y Broker.</p>
+      <CasoEnlace titulo="Una identidad para dos públicos.">
+        <p>Dunamis tenía una sola marca para dos negocios con clientes distintos. Mantuvimos el nombre y su origen inmobiliario, y les dimos a Agency y a Broker una identidad propia.</p>
       </CasoEnlace>
       </CuerpoCeleste>
       <Cierre />

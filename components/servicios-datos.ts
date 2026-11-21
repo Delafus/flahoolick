@@ -17,7 +17,7 @@ export const DISCIPLINAS: Disciplina[] = [
     id: 'estrategia-y-relato-de-marca',
     numero: '01',
     nombre: 'Estrategia y relato de marca',
-    desc: 'Definimos qué hace valiosa a tu empresa, cómo debe posicionarse y qué necesita escuchar cada audiencia.',
+    desc: 'Definimos qué lugar puede ocupar tu empresa en su mercado y qué necesita escuchar cada persona que participa en la compra.',
     puntos: [
       'Posicionamiento y propuesta de valor.',
       'Inteligencia de audiencias.',
@@ -31,7 +31,7 @@ export const DISCIPLINAS: Disciplina[] = [
     id: 'sistema-operativo-de-contenido',
     numero: '02',
     nombre: 'Sistema operativo de contenido',
-    desc: 'Diseñamos la estructura que permite producir y distribuir contenido relevante de manera continua.',
+    desc: 'Organizamos qué publicar, para quién y cuándo, y cómo producirlo cada mes sin partir de cero.',
     puntos: [
       'Playbook de contenido.',
       'Planificación editorial.',
@@ -45,7 +45,7 @@ export const DISCIPLINAS: Disciplina[] = [
     id: 'estudio-creativo-e-inteligencia-artificial',
     numero: '03',
     nombre: 'Estudio creativo e inteligencia artificial',
-    desc: 'Convertimos la estrategia en contenidos, experiencias y herramientas que apoyan marketing y ventas.',
+    desc: 'Producimos el contenido, las piezas comerciales y las herramientas de IA que salen de tu estrategia.',
     puntos: [
       'Contenidos de autoridad.',
       'Presentaciones y herramientas comerciales.',

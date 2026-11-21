@@ -1,3 +1,4 @@
+import { JERGA_VISIBLE } from '@/components/jerga-visible'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const cat = await categoria(params.slug)
   if (!cat) return { title: 'JERGA | Flahoolick' }
-  return { title: `${cat.nombre} | JERGA`, description: cat.descripcion }
+  return { title: `${cat.nombre} | JERGA`, description: cat.descripcion, ...(JERGA_VISIBLE ? {} : { robots: { index: false } }) }
 }
 
 export default async function CategoriaPage({ params }: { params: { slug: string } }) {

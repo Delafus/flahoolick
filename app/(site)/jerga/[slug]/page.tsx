@@ -1,3 +1,4 @@
+import { JERGA_VISIBLE } from '@/components/jerga-visible'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${pieza.titulo} | JERGA`,
     description: pieza.bajada,
+    ...(JERGA_VISIBLE ? {} : { robots: { index: false } }),
   }
 }
 

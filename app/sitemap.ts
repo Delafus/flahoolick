@@ -25,7 +25,8 @@ const RUTAS = [
 export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const piezas = await todas().catch(() => [])
+  // Las piezas de JERGA entran al sitemap solo cuando JERGA esté visible.
+  const piezas = JERGA_VISIBLE ? await todas().catch(() => []) : []
   return [
     ...RUTAS.map(r => ({ url: `${BASE}${r}` })),
     ...piezas.map(p => ({ url: `${BASE}/jerga/${p.slug}` })),

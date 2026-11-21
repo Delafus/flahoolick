@@ -14,9 +14,10 @@ export const metadata: Metadata = {
 export default function Espera() {
   return (
     <main
-      className="flex min-h-[100svh] flex-col items-center justify-center gap-8 px-4 text-center"
+      className="flex min-h-[100svh] items-center justify-center px-4"
       style={{ backgroundColor: '#F5FD92', color: '#1C1854' }}
     >
+      <div className="flex flex-col items-start gap-3 text-left">
       <span
         role="img"
         aria-label="Flahoolick"
@@ -29,7 +30,8 @@ export default function Espera() {
           WebkitMaskSize: 'contain', maskSize: 'contain',
         }}
       />
-      <p className="text-lg">Estamos preparando el sitio. Vuelve pronto.</p>
+      <p className="text-sm md:text-base">Estudio de estrategia y contenido B2B, © 2026 Flahoolick</p>
+      </div>
     </main>
   )
 }

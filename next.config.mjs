@@ -2,6 +2,8 @@
 const nextConfig = {
   async redirects() {
     return [
+      // La dirección de Vercel lleva siempre al dominio propio.
+      { source: '/:path*', has: [{ type: 'host', value: 'flahoolick.vercel.app' }], destination: 'https://www.flahoolick.com/:path*', permanent: true },
       { source: '/casos/dunamis', destination: '/clientes/dunamis', permanent: true },
       { source: '/clientes/dunamis-borrador', destination: '/clientes/dunamis', permanent: false },
       { source: '/sensor', destination: '/metodologia#sensor', permanent: true },

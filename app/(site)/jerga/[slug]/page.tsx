@@ -174,7 +174,7 @@ export default async function PiezaPage({ params }: { params: { slug: string } }
         </div>
       </section>
 
-      <ContactForm bg="#1C1854" text="#E1F2F0" />
+      <ContactForm bg="#000000" text="#E1F2F0" />
     </>
   )
 }

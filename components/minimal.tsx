@@ -297,7 +297,7 @@ export function CasoEnlace({ titulo, children }: { titulo: string; children: Rea
 /** Módulo de contacto de todo el sitio: el de la versión anterior (gris cálido, titular mixto, campos blancos y botón blanco),
     a todo el ancho de la pantalla. Los textos de cada página ya no se usan aquí: el módulo es el mismo en todo el sitio. */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Cierre({ fondo = '#1C1854', tinta = '#E1F2F0' }: { titulo?: string; texto?: string; cta?: string; /** Color del módulo (por defecto, azul noche con texto celeste). */ fondo?: string; tinta?: string }) {
+export function Cierre({ fondo = '#000000', tinta = '#E1F2F0' }: { titulo?: string; texto?: string; cta?: string; /** Color del módulo (por defecto, negro con texto celeste). */ fondo?: string; tinta?: string }) {
   return (
     <div style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
       <ContactForm bg={fondo} text={tinta} submitLabel="Agenda una llamada" />

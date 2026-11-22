@@ -286,7 +286,7 @@ export function MasHistorias({ actual }: { actual: string }) {
 export function CierreCaso(_props: { titulo?: string }) {
   return (
     <div className="mt-24" style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}>
-      <ContactForm bg="#1C1854" text="#E1F2F0" submitLabel="Agenda una llamada" />
+      <ContactForm bg="#000000" text="#E1F2F0" submitLabel="Agenda una llamada" />
     </div>
   )
 }

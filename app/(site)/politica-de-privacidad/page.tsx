@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { PageColorSetter } from '@/components/page-color-setter'
 
 /** Celeste con texto azul noche, como los cuerpos de todo el sitio. */
@@ -12,8 +11,8 @@ export const metadata: Metadata = {
 }
 
 const ACTUALIZADO = '19 de julio de 2026'
-/** Mientras no exista un correo del dominio, el canal de contacto es el formulario del sitio (llega al equipo). */
-const CORREO = <Link href="/#contacto" className="underline underline-offset-2">el formulario de contacto de este sitio</Link>
+/** Canal de contacto para temas de privacidad. */
+const CORREO = <a href="mailto:felipe@flahoolick.com" className="underline underline-offset-2">felipe@flahoolick.com</a>
 
 function H2({ children }: { children: React.ReactNode }) {
   return (

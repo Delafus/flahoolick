@@ -70,7 +70,7 @@ export default async function JergaPage() {
 
       <Cierre
         titulo="Tráenos el manual más técnico o el problema de comunicación más árido de tu empresa."
-        texto="En 30 minutos podemos encontrar una primera forma de desarmarlo y convertirlo en una oportunidad de comunicación."
+        texto="En 20 minutos podemos encontrar una primera forma de desarmarlo y convertirlo en una oportunidad de comunicación."
         cta="Pongámoslo sobre la mesa →"
       />
     </Pagina>

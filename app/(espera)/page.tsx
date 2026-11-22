@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { CalEmbed, BotonAgenda, CORREO_CONTACTO } from '@/components/cal-embed'
 
 /*
   Página de espera (2026-11-21), hasta nuevo aviso.
@@ -31,7 +32,13 @@ export default function Espera() {
         }}
       />
       <p className="text-sm md:text-base">Estudio de estrategia y contenido B2B, © 2026 Flahoolick</p>
+      <div className="mt-8 flex flex-col items-start gap-3">
+        <BotonAgenda className="label px-6 py-3 transition-opacity hover:opacity-80"
+          style={{ backgroundColor: '#1C1854', color: '#F5FD92', borderRadius: '999px' }} />
+        <a href={`mailto:${CORREO_CONTACTO}`} className="text-sm underline underline-offset-2">{CORREO_CONTACTO}</a>
       </div>
+      </div>
+      <CalEmbed />
     </main>
   )
 }
